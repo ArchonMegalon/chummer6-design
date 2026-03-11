@@ -1,0 +1,218 @@
+2026-03-09 2026-03-09-design-repo-front-door.md applied via README, product README, architecture, and sync workflow documentation updates.
+2026-03-09 2026-03-09-185354-audit-task-11676.md applied by documenting repo-local mirror publish workflow and closing WL-D001.
+2026-03-10 WL-D003 slice applied by publishing repo-matched review guidance templates for core, presentation, run-services, play, ui-kit, and hub-registry, and by fixing the run-services review mirror path.
+2026-03-10 2026-03-09-design-repo-front-door.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10B; no additional canonical delta required.
+2026-03-10 2026-03-09-185354-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10B; milestone/backlog mapping for repo-local mirror publication remains present via WL-D008.
+2026-03-10 2026-03-09-design-repo-front-door.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10E; ownership/contract/blocker/milestone truth queue remains active and current.
+2026-03-10 2026-03-09-185354-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10E; executable milestone mapping remains explicit with WL-D009 state moved to in_progress.
+2026-03-10 2026-03-09-design-repo-front-door.md revalidated during WL-D007 publish-evidence refresh cycle 2026-03-10F; per-repo review-template mirror evidence remains current with updated destination refs and unchanged checksum parity.
+2026-03-10 2026-03-09-185354-audit-task-11676.md revalidated during WL-D007 publish-evidence refresh cycle 2026-03-10F; uncovered scope remains materialized via executable WL-D007 backlog with WL-D007-07 still blocked on missing media-factory repo provisioning.
+2026-03-10 2026-03-09-185355-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; ownership/contract/blocker/milestone truth maintenance remains materialized via WL-D009 backlog and dated cycle evidence.
+2026-03-10 2026-03-09-185355-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; review-template mirror scope remains materialized via WL-D007 plus WL-D010 unblock backlog with media-factory provisioning blocker explicitly tracked.
+2026-03-10 2026-03-09-185355-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; milestone coverage remains complete and resolved via WL-D006 in worklist and milestone registry.
+2026-03-10 2026-03-10-052920-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; repo-local mirror publishing queue remains executable via WL-D008 with blocked-state evidence published.
+2026-03-10 2026-03-10-052920-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; ownership/contract/blocker/milestone truth queue remains executable via WL-D009 and maintained with dated cycle notes.
+2026-03-10 2026-03-10-052921-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; review-guidance mirror queue remains executable via WL-D007 and WL-D010.
+2026-03-10 2026-03-10-082708-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; repo-local mirror publication scope remains mapped to WL-D008 with explicit blockers/evidence.
+2026-03-10 2026-03-10-082708-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; truth-maintenance scope remains mapped to WL-D009 executable backlog.
+2026-03-10 2026-03-10-082708-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; review-template mirror scope remains mapped to WL-D007/WL-D010 executable backlog.
+2026-03-10 2026-03-10-082708-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion scope remains covered by active WL-D008 backlog.
+2026-03-10 2026-03-10-082708-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion truth-maintenance scope remains covered by active WL-D009 backlog.
+2026-03-10 2026-03-10-082708-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; milestone registry coverage remains complete via WL-D006 resolution.
+2026-03-10 2026-03-10-082709-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion review-template scope remains covered by WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-095457-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; repo-local mirror publication scope remains mapped to WL-D008.
+2026-03-10 2026-03-10-095457-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; split-wave truth-maintenance scope remains mapped to WL-D009.
+2026-03-10 2026-03-10-095457-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; review-template mirror scope remains mapped to WL-D007/WL-D010.
+2026-03-10 2026-03-10-095457-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion mirror-publication scope remains mapped to WL-D008.
+2026-03-10 2026-03-10-095457-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion truth-maintenance scope remains mapped to WL-D009.
+2026-03-10 2026-03-10-095457-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion review-guidance scope remains mapped to WL-D007/WL-D010.
+2026-03-10 2026-03-10-095457-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; milestone registry completeness remains resolved via WL-D006.
+2026-03-10 2026-03-10-103909-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; repo-local mirror publication scope remains mapped to WL-D008.
+2026-03-10 2026-03-10-103909-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; split-wave truth-maintenance scope remains mapped to WL-D009.
+2026-03-10 2026-03-10-103909-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; review-template mirror scope remains mapped to WL-D007/WL-D010.
+2026-03-10 2026-03-10-103909-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion mirror-publication scope remains mapped to WL-D008.
+2026-03-10 2026-03-10-103909-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion truth-maintenance scope remains mapped to WL-D009.
+2026-03-10 2026-03-10-103909-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; queue-exhaustion review-guidance scope remains mapped to WL-D007/WL-D010.
+2026-03-10 2026-03-10-103909-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10O; milestone registry completeness remains resolved via WL-D006.
+2026-03-10 2026-03-10-111343-audit-task-11676.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; repo-local mirror publication scope remains mapped to WL-D008 with current blocked-state evidence.
+2026-03-10 2026-03-10-111343-audit-task-11677.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; ownership/contract/blocker/milestone truth maintenance remains mapped to WL-D009.
+2026-03-10 2026-03-10-111343-audit-task-11679.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; queue-exhaustion mirror-publication scope remains mapped to active WL-D008 backlog.
+2026-03-10 2026-03-10-111343-audit-task-11682.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; milestone coverage remains resolved via WL-D006.
+2026-03-10 2026-03-10-111344-audit-task-11678.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; review-guidance mirror scope remains mapped to WL-D007/WL-D010.
+2026-03-10 2026-03-10-111344-audit-task-11680.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; queue-exhaustion truth-maintenance scope remains mapped to WL-D009.
+2026-03-10 2026-03-10-111344-audit-task-11681.md revalidated during WL-D008 preflight refresh cycle 2026-03-10P; queue-exhaustion review-guidance scope remains mapped to WL-D007/WL-D010.
+2026-03-10 2026-03-10-120116-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; repo-local mirror publication scope remains mapped to WL-D008 runnable backlog.
+2026-03-10 2026-03-10-120116-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; ownership/contract/blocker/milestone truth maintenance scope remains mapped to WL-D009 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; review-guidance mirror scope remains mapped to WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; queue-exhaustion mirror-publication scope remains mapped to WL-D008 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; queue-exhaustion truth-maintenance scope remains mapped to WL-D009 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; queue-exhaustion review-guidance scope remains mapped to WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; milestone registry completeness remains resolved via WL-D006.
+2026-03-10 2026-03-10-public-chummer-program-audit.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10V; review-template mirror and repo-local mirror follow-up scope remains explicitly queued via WL-D007/WL-D008/WL-D010.
+feedback/2026-03-09-design-repo-front-door.md
+feedback/2026-03-09-185354-audit-task-11676.md
+2026-03-10 2026-03-09-185355-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10W; milestone coverage scope remains complete via WL-D006 and stale queue re-entry was removed.
+2026-03-10 2026-03-09-185355-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10W; ownership/contract/blocker/milestone truth scope remains materialized via WL-D009 backlog and stale queue duplicates were removed.
+feedback/2026-03-09-185355-audit-task-11682.md
+feedback/2026-03-09-185355-audit-task-11677.md
+2026-03-10 2026-03-09-185355-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10Z; review-guidance template mirror scope remains materially covered by executable WL-D007/WL-D010 backlog and stale queue overlay duplicates were removed.
+2026-03-10 2026-03-10-052920-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10Z; repo-local mirror publication scope remains materially covered by executable WL-D008 backlog mapping.
+feedback/2026-03-09-185355-audit-task-11678.md
+feedback/2026-03-10-052920-audit-task-11679.md
+feedback/2026-03-10-052920-audit-task-11680.md
+feedback/2026-03-10-052921-audit-task-11681.md
+2026-03-10 2026-03-10-082708-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AA; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with current blocked-state evidence.
+2026-03-10 2026-03-10-082708-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AA; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog and explicit runnable queue entries.
+2026-03-10 2026-03-10-082708-audit-task-11676.md revalidated during WL-D010 preflight cycle 2026-03-10AB; uncovered-scope mirror publication remains materially queued via WL-D008 and active review-template mirror unblock backlog WL-D010 with current-cycle evidence.
+2026-03-10 2026-03-10-082708-audit-task-11679.md revalidated during WL-D010 preflight cycle 2026-03-10AB; queue-exhaustion scope remains covered by runnable backlog entries in queue overlay plus refreshed WL-D010 blocked-state evidence.
+2026-03-10 2026-03-10-082708-audit-task-11676.md revalidated during WL-D010 preflight cycle 2026-03-10AC; uncovered review-template mirror scope remains materially queued via WL-D010 with refreshed `2026-03-10T18:30:09Z` blocked-state evidence.
+2026-03-10 2026-03-10-082708-audit-task-11679.md revalidated during WL-D010 preflight cycle 2026-03-10AC; queue-exhaustion coverage remains satisfied by active backlog entries plus refreshed WL-D010 blocked-state evidence.
+feedback/2026-03-10-082708-audit-task-11676.md
+feedback/2026-03-10-082708-audit-task-11679.md
+2026-03-10 2026-03-10-082708-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AX; split-wave truth-maintenance scope remains materially covered by executable backlog `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md`.
+2026-03-10 2026-03-10-082708-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AX; milestone registry coverage remains complete via resolved `WL-D006` and current `PROGRAM_MILESTONES.yaml` review state.
+feedback/2026-03-10-082708-audit-task-11677.md
+feedback/2026-03-10-082708-audit-task-11682.md
+2026-03-10 2026-03-10-082708-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AY; queue-exhaustion truth-maintenance scope remains materially covered by executable backlog `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md`.
+2026-03-10 2026-03-10-082708-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AY; review-guidance template mirror scope remains materially covered by executable backlog mapping `WL-D007`/`WL-D010`.
+feedback/2026-03-10-082708-audit-task-11680.md
+feedback/2026-03-10-082708-audit-task-11678.md
+2026-03-10 2026-03-10-082709-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AZ; queue-exhaustion review-guidance mirror scope remains materially covered by executable backlog mapping `WL-D007`/`WL-D010`.
+2026-03-10 2026-03-10-095457-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10AZ; uncovered repo-local mirror publication scope remains materially covered by executable backlog mapping `WL-D008`.
+feedback/2026-03-10-082709-audit-task-11681.md
+feedback/2026-03-10-095457-audit-task-11676.md
+2026-03-10 2026-03-10-095457-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BA; queue-exhaustion mirror-publication scope remains materially covered by executable backlog mapping `WL-D008`.
+2026-03-10 2026-03-10-095457-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BA; milestone registry coverage remains complete via resolved `WL-D006` and current `PROGRAM_MILESTONES.yaml` review state.
+feedback/2026-03-10-095457-audit-task-11679.md
+feedback/2026-03-10-095457-audit-task-11682.md
+2026-03-10 2026-03-10-095457-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BB; split-wave ownership/contract/blocker/milestone truth maintenance remains materially covered by executable backlog `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recurring cycle evidence in `products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md`.
+2026-03-10 2026-03-10-095457-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BB; queue-exhaustion truth-maintenance scope remains materially covered by active `WL-D009` mapping in `WORKLIST.md`, `PROGRAM_MILESTONES.yaml`, and queue overlay runnable items.
+feedback/2026-03-10-095457-audit-task-11677.md
+feedback/2026-03-10-095457-audit-task-11680.md
+2026-03-10 2026-03-10-095457-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BC; review-guidance template mirror scope remains materially covered by executable backlog mapping `WL-D007`/`WL-D010`.
+2026-03-10 2026-03-10-095457-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BC; queue-exhaustion review-guidance scope remains materially covered by executable backlog mapping `WL-D007`/`WL-D010`.
+feedback/2026-03-10-095457-audit-task-11678.md
+feedback/2026-03-10-095457-audit-task-11681.md
+2026-03-10 2026-03-10-103909-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BD; uncovered-scope mirror-publication finding remains materially covered by executable backlog mapping WL-D008.
+2026-03-10 2026-03-10-103909-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BD; queue-exhaustion mirror-publication finding remains materially covered by executable queue work via WL-D008 and active WL-D009 cycle evidence.
+feedback/2026-03-10-103909-audit-task-11676.md
+feedback/2026-03-10-103909-audit-task-11679.md
+2026-03-10 2026-03-10-103909-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BE; milestone coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml last_reviewed state.
+2026-03-10 2026-03-10-103909-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BE; split-wave ownership/contract/blocker/milestone truth scope remains materially covered by executable WL-D009 backlog and cycle evidence.
+feedback/2026-03-10-103909-audit-task-11682.md
+feedback/2026-03-10-103909-audit-task-11677.md
+2026-03-10 2026-03-10-103909-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-103909-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-103909-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-111343-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with blocked-state evidence.
+2026-03-10 2026-03-10-111343-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; ownership/contract/blocker/milestone truth-maintenance scope remains materially mapped to executable WL-D009 backlog.
+2026-03-10 2026-03-10-111343-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog.
+2026-03-10 2026-03-10-111343-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; milestone registry coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml review state.
+2026-03-10 2026-03-10-111344-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-111344-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-111344-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with blocked-state evidence.
+2026-03-10 2026-03-10-120116-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; ownership/contract/blocker/milestone truth-maintenance scope remains materially mapped to executable WL-D009 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-120116-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; milestone registry coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml review state.
+2026-03-10 2026-03-10-123535-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with blocked-state evidence.
+2026-03-10 2026-03-10-123535-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; ownership/contract/blocker/milestone truth-maintenance scope remains materially mapped to executable WL-D009 backlog.
+2026-03-10 2026-03-10-123535-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-123535-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog.
+2026-03-10 2026-03-10-123535-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-123535-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-123535-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; milestone registry coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml review state.
+2026-03-10 2026-03-10-131013-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with blocked-state evidence.
+2026-03-10 2026-03-10-131013-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; ownership/contract/blocker/milestone truth-maintenance scope remains materially mapped to executable WL-D009 backlog.
+2026-03-10 2026-03-10-131013-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-131013-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog.
+2026-03-10 2026-03-10-131013-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-131013-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-131013-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; milestone registry coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml review state.
+2026-03-10 2026-03-10-134155-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with blocked-state evidence.
+2026-03-10 2026-03-10-134155-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; ownership/contract/blocker/milestone truth-maintenance scope remains materially mapped to executable WL-D009 backlog.
+2026-03-10 2026-03-10-134155-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-134155-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog.
+2026-03-10 2026-03-10-134155-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-134155-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-134155-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; milestone registry coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml review state.
+2026-03-10 2026-03-10-153523-audit-task-11676.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; repo-local mirror publication scope remains materially mapped to executable WL-D008 backlog with blocked-state evidence.
+2026-03-10 2026-03-10-153523-audit-task-11677.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; ownership/contract/blocker/milestone truth-maintenance scope remains materially mapped to executable WL-D009 backlog.
+2026-03-10 2026-03-10-153523-audit-task-11678.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; review-guidance template mirror scope remains materially mapped to executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-153523-audit-task-11679.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion mirror-publication scope remains materially covered by executable WL-D008 backlog.
+2026-03-10 2026-03-10-153523-audit-task-11680.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion truth-maintenance scope remains materially covered by executable WL-D009 backlog.
+2026-03-10 2026-03-10-153523-audit-task-11681.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; queue-exhaustion review-guidance scope remains materially covered by executable WL-D007/WL-D010 backlog.
+2026-03-10 2026-03-10-153523-audit-task-11682.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; milestone registry coverage remains complete via resolved WL-D006 and current PROGRAM_MILESTONES.yaml review state.
+2026-03-10 2026-03-10-chummer-design-authority-audit.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; authority-audit recommendations were incorporated as no-change for this slice; split-wave truth files remain current and mirror/onboarding follow-up remains queued under WL-D007/WL-D008/WL-D010.
+2026-03-10 2026-03-10-chummer-master-designer-handoff.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; master-designer handoff was reviewed; no new WL-D009 canonical truth deltas were required for ownership/contract/blocker/milestone files this cycle.
+2026-03-10 2026-03-10-github-review-pr.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; GitHub review note was reviewed; this repo currently has no scripts/ai/verify.sh, so WL-D009 closeout evidence remains log/worklist/queue based for this slice.
+2026-03-10 2026-03-10-lead-dev-design-dropin-pack.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; drop-in recommendations were reviewed; no additional WL-D009 truth-file deltas were required beyond already-active executable backlog mapping.
+2026-03-10 2026-03-10-lead-dev-external-tools-plane-feedback.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; external-tools feedback was reviewed; no additional ownership/contract/blocker/milestone delta was required for the WL-D009 split-wave slice.
+2026-03-10 2026-03-10-public-chummer-program-audit.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; program-audit findings remain materially covered by active executable backlog mapping across WL-D007/WL-D008/WL-D009/WL-D010.
+2026-03-10 2026-03-10-public-repo-graph-audit.md revalidated during WL-D009 truth-maintenance cycle 2026-03-10BH; public repo-graph findings were reviewed; no additional WL-D009 truth-file changes were required in this cycle.
+feedback/2026-03-10-103909-audit-task-11678.md
+feedback/2026-03-10-103909-audit-task-11680.md
+feedback/2026-03-10-103909-audit-task-11681.md
+feedback/2026-03-10-111343-audit-task-11676.md
+feedback/2026-03-10-111343-audit-task-11677.md
+feedback/2026-03-10-111343-audit-task-11679.md
+feedback/2026-03-10-111343-audit-task-11682.md
+feedback/2026-03-10-111344-audit-task-11678.md
+feedback/2026-03-10-111344-audit-task-11680.md
+feedback/2026-03-10-111344-audit-task-11681.md
+feedback/2026-03-10-120116-audit-task-11676.md
+feedback/2026-03-10-120116-audit-task-11677.md
+feedback/2026-03-10-120116-audit-task-11678.md
+feedback/2026-03-10-120116-audit-task-11679.md
+feedback/2026-03-10-120116-audit-task-11680.md
+feedback/2026-03-10-120116-audit-task-11681.md
+feedback/2026-03-10-120116-audit-task-11682.md
+feedback/2026-03-10-123535-audit-task-11676.md
+feedback/2026-03-10-123535-audit-task-11677.md
+feedback/2026-03-10-123535-audit-task-11678.md
+feedback/2026-03-10-123535-audit-task-11679.md
+feedback/2026-03-10-123535-audit-task-11680.md
+feedback/2026-03-10-123535-audit-task-11681.md
+feedback/2026-03-10-123535-audit-task-11682.md
+feedback/2026-03-10-131013-audit-task-11676.md
+feedback/2026-03-10-131013-audit-task-11677.md
+feedback/2026-03-10-131013-audit-task-11678.md
+feedback/2026-03-10-131013-audit-task-11679.md
+feedback/2026-03-10-131013-audit-task-11680.md
+feedback/2026-03-10-131013-audit-task-11681.md
+feedback/2026-03-10-131013-audit-task-11682.md
+feedback/2026-03-10-134155-audit-task-11676.md
+feedback/2026-03-10-134155-audit-task-11677.md
+feedback/2026-03-10-134155-audit-task-11678.md
+feedback/2026-03-10-134155-audit-task-11679.md
+feedback/2026-03-10-134155-audit-task-11680.md
+feedback/2026-03-10-134155-audit-task-11681.md
+feedback/2026-03-10-134155-audit-task-11682.md
+feedback/2026-03-10-153523-audit-task-11676.md
+feedback/2026-03-10-153523-audit-task-11677.md
+feedback/2026-03-10-153523-audit-task-11678.md
+feedback/2026-03-10-153523-audit-task-11679.md
+feedback/2026-03-10-153523-audit-task-11680.md
+feedback/2026-03-10-153523-audit-task-11681.md
+feedback/2026-03-10-153523-audit-task-11682.md
+2026-03-11 feedback/2026-03-11-chummer-immediate-directives.md incorporated during WL-D007 mirror-evidence rerun cycle 2026-03-11AZ; directives align with active contract-canon and repo-purification priorities, no additional canon-file delta required for this slice.
+feedback/2026-03-10-chummer-design-authority-audit.md
+feedback/2026-03-10-chummer-master-designer-handoff.md
+feedback/2026-03-10-github-review-pr.md
+feedback/2026-03-10-lead-dev-design-dropin-pack.md
+feedback/2026-03-10-lead-dev-external-tools-plane-feedback.md
+feedback/2026-03-10-public-chummer-program-audit.md
+feedback/2026-03-10-public-repo-graph-audit.md
+2026-03-11 2026-03-11-chummer-public-design-and-ltd-audit.md revalidated during WL-D009 truth-maintenance cycle 2026-03-11B; ownership/contract/blocker/milestone canon remained no-change for this cycle and runnable backlog mapping remains current.
+2026-03-11 2026-03-11-github-review-pr.md applied during WL-D009 truth-maintenance cycle 2026-03-11B by correcting stale verifier-availability evidence in TRUTH_MAINTENANCE_LOG.md (`scripts/ai/verify.sh` exists in-repo).
+feedback/2026-03-11-chummer-public-design-and-ltd-audit.md
+feedback/2026-03-11-github-review-pr.md
+2026-03-11 2026-03-11-chummer-dev-group-change-guide.md revalidated during WL-D009 truth-maintenance cycle 2026-03-11Q; ownership/contract/blocker/milestone canon remained no-change for this cycle and executable backlog mapping remains current.
+feedback/2026-03-11-chummer-dev-group-change-guide.md
+2026-03-11 2026-03-11-chummer-foundation-horizon-guidance.md applied during WL-D009 truth-maintenance cycle 2026-03-11AV; horizon-foundation guidance aligns with current canon focus on contract/repo split fundamentals and queue-safe horizon labeling, with no additional ownership/contract/blocker/milestone truth-file deltas required in this cycle.
+feedback/2026-03-11-chummer-foundation-horizon-guidance.md
+2026-03-11 2026-03-11-github-review-pr.md applied during WL-D009 truth-maintenance cycle 2026-03-11AX by recording correction evidence in TRUTH_MAINTENANCE_LOG.md for the WL-D009-AW stale feedback-processing claim; ownership/contract/blocker/milestone canon remained no-change.
+feedback/2026-03-11-github-review-pr.md
