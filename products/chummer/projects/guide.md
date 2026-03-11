@@ -15,16 +15,15 @@
 
 ## Allowed inputs
 - `chummer6-design`
-- Fleet live state
+- the latest public program status
 - owning repo READMEs
 - approved public-surface summaries
 
-## Conflict rule
+## Priority order
 If `Chummer6` disagrees with canonical sources, fix `Chummer6`.
 
-Truth order:
 1. `chummer6-design`
-2. Fleet state
+2. latest public program status
 3. owning repo
 4. `Chummer6`
 
