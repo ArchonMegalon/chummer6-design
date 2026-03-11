@@ -186,7 +186,7 @@ It is not automatically approved for canonical runtime use.
 
 ## Repo ownership
 
-### `chummer-design`
+### `chummer6-design`
 
 Owns:
 
@@ -204,7 +204,7 @@ Must not own:
 * runtime keys
 * implementation adapters
 
-### `chummer.run-services`
+### `chummer6-hub`
 
 Owns:
 
@@ -225,7 +225,7 @@ Must not own:
 * canonical registry persistence
 * canonical media lifecycle
 
-### `chummer-media-factory`
+### `chummer6-media-factory`
 
 Owns:
 
@@ -247,7 +247,7 @@ Must not own:
 * client UX
 * general AI orchestration
 
-### `chummer-hub-registry`
+### `chummer6-hub-registry`
 
 May own:
 
@@ -261,7 +261,7 @@ Must not own:
 * media job orchestration
 * reasoning provider routing
 
-### `chummer-presentation` and `chummer-play`
+### `chummer6-ui` and `chummer6-mobile`
 
 May render upstream projections that refer to external outputs.
 
@@ -288,8 +288,8 @@ Low-cost reasoning and multimodal provider route.
 
 ### Owner
 
-* `chummer.run-services`
-* optional media-prompt-assist only via `chummer.run-services`
+* `chummer6-hub`
+* optional media-prompt-assist only via `chummer6-hub`
 
 ### Hard boundary
 
@@ -312,7 +312,7 @@ Primary or alternate structured AI provider route.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -335,8 +335,8 @@ Prompt/style/persona authoring support.
 
 ### Owner
 
-* `chummer.run-services` for orchestration-side prompt toolchain
-* possible future publication via `chummer-hub-registry`
+* `chummer6-hub` for orchestration-side prompt toolchain
+* possible future publication via `chummer6-hub-registry`
 
 ### Hard boundary
 
@@ -358,7 +358,7 @@ Evaluation lab only.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -380,7 +380,7 @@ Automation fallback and account-fact discovery.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -404,7 +404,7 @@ Approval inbox bridge.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -427,8 +427,8 @@ Docs/help plane.
 
 ### Owner
 
-* integration/orchestration: `chummer.run-services`
-* canonical source material: `chummer-design`, `chummer-hub-registry`, approved docs exports
+* integration/orchestration: `chummer6-hub`
+* canonical source material: `chummer6-design`, `chummer6-hub-registry`, approved docs exports
 
 ### Hard boundary
 
@@ -452,7 +452,7 @@ Feedback loop.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -475,7 +475,7 @@ Curated projection surface.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -499,7 +499,7 @@ Automation bridge.
 
 ### Owner
 
-* `chummer.run-services`
+* `chummer6-hub`
 
 ### Hard boundary
 
@@ -522,8 +522,8 @@ Cited research and synthesis support.
 
 ### Owner
 
-* `chummer-design` for design research
-* `chummer.run-services` for internal operator help/research assist
+* `chummer6-design` for design research
+* `chummer6-hub` for internal operator help/research assist
 
 ### Hard boundary
 
@@ -545,7 +545,7 @@ Strategy and ideation tool.
 
 ### Owner
 
-* `chummer-design`
+* `chummer6-design`
 
 ### Hard boundary
 
@@ -570,7 +570,7 @@ Document-render adapter.
 
 ### Owner
 
-* `chummer-media-factory`
+* `chummer6-media-factory`
 
 ### Hard boundary
 
@@ -593,7 +593,7 @@ Preview/thumbnail/share-card adapter.
 
 ### Owner
 
-* `chummer-media-factory`
+* `chummer6-media-factory`
 
 ### Hard boundary
 
@@ -615,7 +615,7 @@ Bounded video-render adapter.
 
 ### Owner
 
-* `chummer-media-factory`
+* `chummer6-media-factory`
 
 ### Hard boundary
 
@@ -638,8 +638,8 @@ Route visualization / route-render adapter.
 
 ### Owner
 
-* orchestration-side route semantics: `chummer.run-services`
-* render-side output execution: `chummer-media-factory`
+* orchestration-side route semantics: `chummer6-hub`
+* render-side output execution: `chummer6-media-factory`
 
 ### Hard boundary
 
@@ -660,7 +660,7 @@ Cold archive adapter.
 
 ### Owner
 
-* `chummer-media-factory`
+* `chummer6-media-factory`
 
 ### Hard boundary
 
@@ -680,7 +680,7 @@ Back-office only.
 
 ### Owner
 
-* future `chummer.run-services` back-office scope only if needed
+* future `chummer6-hub` back-office scope only if needed
 
 ### Hard boundary
 

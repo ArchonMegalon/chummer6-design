@@ -2,7 +2,7 @@
 
 ## Mission
 
-`chummer-design` is the lead-designer repo for Project Chummer.
+`chummer6-design` is the lead-designer repo for Project Chummer.
 It exists to prevent cross-repo architectural drift.
 
 ## Owns
@@ -26,7 +26,7 @@ It exists to prevent cross-repo architectural drift.
 ## Immediate work
 
 1. Replace all stub canonical files with real content.
-2. Onboard `chummer-media-factory` into the active design system.
+2. Onboard `chummer6-media-factory` into the active design system.
 3. Remove orphan product docs from the repo root.
 4. Make mirror coverage complete and enforceable.
 5. Publish real blocker and milestone truth.
@@ -56,7 +56,7 @@ This repo is only healthy when a worker can answer these questions without guess
 
 ## External tools governance
 
-`chummer-design` must classify each external tool as:
+`chummer6-design` must classify each external tool as:
 
 * runtime-adjacent orchestration
 * runtime-adjacent media

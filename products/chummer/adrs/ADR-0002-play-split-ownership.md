@@ -1,4 +1,4 @@
-# ADR-0002: Play Split Ownership Belongs to chummer-play
+# ADR-0002: Play Split Ownership Belongs to chummer6-mobile
 
 Date: 2026-03-10
 
@@ -10,10 +10,10 @@ Status: accepted
 - Presentation review guidance already flags direct play-shell ownership in presentation as a P1 issue.
 
 ## Decision
-- `chummer-play` owns player and GM play-mode shell UX, offline ledger/cache behavior, local sync client behavior, and installable mobile or play-shell surfaces.
-- `chummer-presentation` keeps builder, inspector, browser, and desktop workbench UX, but must not continue owning play-shell session or mobile surfaces.
-- `chummer-play` may depend only on `Chummer.Engine.Contracts`, `Chummer.Play.Contracts`, and `Chummer.Ui.Kit` for shared cross-repo boundaries unless a later ADR expands that set.
-- Provider secrets, rules evaluation, and publication or moderation workflows remain outside `chummer-play`.
+- `chummer6-mobile` owns player and GM play-mode shell UX, offline ledger/cache behavior, local sync client behavior, and installable mobile or play-shell surfaces.
+- `chummer6-ui` keeps builder, inspector, browser, and desktop workbench UX, but must not continue owning play-shell session or mobile surfaces.
+- `chummer6-mobile` may depend only on `Chummer.Engine.Contracts`, `Chummer.Play.Contracts`, and `Chummer.Ui.Kit` for shared cross-repo boundaries unless a later ADR expands that set.
+- Provider secrets, rules evaluation, and publication or moderation workflows remain outside `chummer6-mobile`.
 
 ## Consequences
 - Extraction work moves session-shell ownership out of presentation instead of creating a second presentation-owned mobile path.

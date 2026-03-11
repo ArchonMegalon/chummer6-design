@@ -1,5 +1,5 @@
 product: chummer
-canonical_source_repo: chummer-design
+canonical_source_repo: chummer6-design
 common_product_sources:
 - products/chummer/README.md
 - products/chummer/VISION.md
@@ -13,7 +13,7 @@ common_product_sources:
 - products/chummer/OWNERSHIP_MATRIX.md
 common_review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
 mirrors:
-- repo: chummer-core-engine
+- repo: chummer6-core
   product_target: .codex-design/product
   product_sources: &id001
   - products/chummer/README.md
@@ -29,42 +29,42 @@ mirrors:
   repo_source: products/chummer/projects/core.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
-- repo: chummer-presentation
+- repo: chummer6-ui
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/presentation.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
-- repo: chummer.run-services
+- repo: chummer6-hub
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/run-services.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
-- repo: chummer-play
+- repo: chummer6-mobile
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/play.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
-- repo: chummer-ui-kit
+- repo: chummer6-ui-kit
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/ui-kit.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
-- repo: chummer-hub-registry
+- repo: chummer6-hub-registry
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/hub-registry.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
-- repo: chummer-media-factory
+- repo: chummer6-media-factory
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md

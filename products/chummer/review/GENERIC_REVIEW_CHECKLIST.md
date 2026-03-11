@@ -84,4 +84,4 @@ Every substantive review should answer:
 * a split boundary is being locally re-merged
 * central design files are obviously stale or contradictory
 
-The fastest safe move in those cases is to fix `chummer-design`, not to guess locally.
+The fastest safe move in those cases is to fix `chummer6-design`, not to guess locally.

@@ -2,7 +2,7 @@
 
 ## Mission
 
-`chummer-ui-kit` owns design tokens, shared shell chrome, accessibility primitives, state badges, dense-data primitives, and cross-head visual building blocks.
+`chummer6-ui-kit` owns design tokens, shared shell chrome, accessibility primitives, state badges, dense-data primitives, and cross-head visual building blocks.
 
 ## Owns
 
@@ -50,7 +50,7 @@ If it requires domain DTOs or service calls to exist, it probably does not.
 
 ## External integration note
 
-`chummer-ui-kit` may style or present upstream provider-assisted state, but it must not own:
+`chummer6-ui-kit` may style or present upstream provider-assisted state, but it must not own:
 
 * vendor SDK integrations
 * external API clients

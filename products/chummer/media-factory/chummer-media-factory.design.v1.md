@@ -1,4 +1,4 @@
-# chummer-media-factory.design.v1.md
+# chummer6-media-factory.design.v1.md
 
 Version: v1.0
 Status: proposed authoritative repo design
@@ -6,7 +6,7 @@ Audience: Staff/Principal design review, worker-agent implementation, release pl
 
 ## 1. Mission
 
-`chummer-media-factory` is the dedicated rendering and media-generation runtime for Project Chummer.
+`chummer6-media-factory` is the dedicated rendering and media-generation runtime for Project Chummer.
 
 It exists to take **prepared, reviewable, grounded upstream plans** and turn them into:
 
@@ -52,12 +52,12 @@ It is a render plant, print shop, and artifact warehouse - not the campaign OS, 
 
 ## 3. Cross-repo boundary model
 
-### `chummer-core-engine`
+### `chummer6-core`
 
 Supplies semantic seeds only: aesthetic digests, character labels, dossier seed models, route seeds, and provenance metadata.
 It never renders and never stores heavy generated binaries.
 
-### `chummer.run-services`
+### `chummer6-hub`
 
 Owns orchestration and business meaning:
 
@@ -69,18 +69,18 @@ Owns orchestration and business meaning:
 
 `run-services` submits render work but must stop owning renderer execution.
 
-### `chummer-hub-registry`
+### `chummer6-hub-registry`
 
 Owns publication and immutable reusable artifacts:
 template packs, style packs, poster/report templates, and public asset metadata when those assets are meant to be installed and reused.
 It does not own per-session draft media execution.
 
-### `chummer-play` and `chummer-presentation`
+### `chummer6-mobile` and `chummer6-ui`
 
 Consume only approved asset handles, status DTOs, and preview data from upstream services.
 They never call render vendors and never store provider secrets.
 
-### `chummer-ui-kit`
+### `chummer6-ui-kit`
 
 Owns tokens, themes, shell chrome, approval chips, banner primitives, and view components only.
 It owns no media DTOs and no media business state.

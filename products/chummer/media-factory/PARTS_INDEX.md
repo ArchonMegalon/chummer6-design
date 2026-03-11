@@ -1,10 +1,10 @@
-# chummer-media-factory parts index
+# chummer6-media-factory parts index
 
 Every major subsystem has its own design document.
 
 ## Repo-level design
 
-* `chummer-media-factory.design.v1.md`
+* `chummer6-media-factory.design.v1.md`
 * `VISION_AND_MILESTONES.md`
 * `BOUNDARIES_AND_CONTRACTS.md`
 

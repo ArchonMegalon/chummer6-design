@@ -8,7 +8,7 @@ The output is a real repo, a real contract package, and a clean seam that later 
 
 ## Included
 
-* create `chummer-media-factory`
+* create `chummer6-media-factory`
 * create `Chummer.Media.Contracts`
 * define repo-local design docs
 * create contract fixtures and verification harness

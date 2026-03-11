@@ -10,13 +10,13 @@ That rule should resolve nearly every boundary dispute.
 
 | Repo                    | Owns with respect to media                                                                      | Must not own with respect to media                                                 |
 | ----------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `chummer-core-engine`   | semantic seeds, labels, provenance, route or dossier seed data                                  | rendering, storage, provider adapters, approval state                              |
-| `chummer.run-services`  | orchestration, drafting, approvals, delivery, campaign/session context, AI routing              | final renderer execution, binary lifecycle management, provider-specific job state |
-| `chummer-hub-registry`  | public/reusable template packs, style packs, immutable artifact metadata                        | per-session job execution, provider secrets, transient draft artifact storage      |
-| `chummer-play`          | display of approved assets and job state projections                                            | direct media submission, provider secrets, render orchestration                    |
-| `chummer-presentation`  | workbench/admin/authoring UI, inspect and compare surfaces                                      | renderer execution, binary storage, contract ownership                             |
-| `chummer-ui-kit`        | tokens, themes, components, view primitives                                                     | DTOs, media clients, storage, render state                                         |
-| `chummer-media-factory` | `Chummer.Media.Contracts`, render jobs, asset manifests, lifecycle, previews, provider adapters | campaign truth, rules truth, approvals policy, public UI                           |
+| `chummer6-core`   | semantic seeds, labels, provenance, route or dossier seed data                                  | rendering, storage, provider adapters, approval state                              |
+| `chummer6-hub`  | orchestration, drafting, approvals, delivery, campaign/session context, AI routing              | final renderer execution, binary lifecycle management, provider-specific job state |
+| `chummer6-hub-registry`  | public/reusable template packs, style packs, immutable artifact metadata                        | per-session job execution, provider secrets, transient draft artifact storage      |
+| `chummer6-mobile`          | display of approved assets and job state projections                                            | direct media submission, provider secrets, render orchestration                    |
+| `chummer6-ui`  | workbench/admin/authoring UI, inspect and compare surfaces                                      | renderer execution, binary storage, contract ownership                             |
+| `chummer6-ui-kit`        | tokens, themes, components, view primitives                                                     | DTOs, media clients, storage, render state                                         |
+| `chummer6-media-factory` | `Chummer.Media.Contracts`, render jobs, asset manifests, lifecycle, previews, provider adapters | campaign truth, rules truth, approvals policy, public UI                           |
 
 ## 3. Package plane
 
@@ -32,11 +32,11 @@ That rule should resolve nearly every boundary dispute.
 
 It may be referenced by:
 
-* `chummer-media-factory`
-* `chummer.run-services`
-* `chummer-play`
-* `chummer-presentation`
-* `chummer-hub-registry`
+* `chummer6-media-factory`
+* `chummer6-hub`
+* `chummer6-mobile`
+* `chummer6-ui`
+* `chummer6-hub-registry`
 
 It must not reference those repos back.
 

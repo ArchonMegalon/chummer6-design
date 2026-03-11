@@ -14,7 +14,7 @@ Status: accepted
 - `Chummer.Engine.Contracts` is the only canonical package for engine/runtime DTOs, reducer-facing events, explain payloads, and provenance shapes shared across repos.
 - `Chummer.Play.Contracts` is the only canonical package for play-shell API DTOs, sync payloads, install/session shell requests, and other play-specific cross-repo contracts.
 - No repo may publish or normalize cross-repo DTOs outside those contract packages.
-- Contract changes land in `chummer-design` first, then mirror into code repos through the approved sync manifest before implementation starts.
+- Contract changes land in `chummer6-design` first, then mirror into code repos through the approved sync manifest before implementation starts.
 
 ## Consequences
 - Core remains the authority for engine semantics, but package consumers depend on contracts rather than on core implementation assemblies.

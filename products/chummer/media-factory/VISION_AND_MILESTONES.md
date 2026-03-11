@@ -2,10 +2,10 @@
 
 ## 1. Why this repo exists
 
-Project Chummer already has a strong media seam, but it is still stranded inside `chummer.run-services`.
+Project Chummer already has a strong media seam, but it is still stranded inside `chummer6-hub`.
 The system already wants a dedicated repo because:
 
-* the central split order places `chummer-media-factory` after the contract and UI/registry splits
+* the central split order places `chummer6-media-factory` after the contract and UI/registry splits
 * the ownership matrix says `run-services` must not own media rendering after the split
 * the hosted-service design already names concrete asset-factory components
 * the current media contracts already reference a missing `Chummer.Media.Contracts` package
@@ -14,7 +14,7 @@ In other words: the seam is real, but the repo is not yet fully materialized.
 
 ## 2. Product vision
 
-`chummer-media-factory` is the internal studio and render plant for Chummer.
+`chummer6-media-factory` is the internal studio and render plant for Chummer.
 
 It should eventually feel like three things at once:
 
@@ -124,7 +124,7 @@ The repo reaches GA when all of the following are true:
 
 These are explicitly post-v1:
 
-* reusable public template/style packs published through `chummer-hub-registry`
+* reusable public template/style packs published through `chummer6-hub-registry`
 * richer asset derivation graphs
 * batch render farms and autoscaling
 * advanced text-layout engines and typography packs

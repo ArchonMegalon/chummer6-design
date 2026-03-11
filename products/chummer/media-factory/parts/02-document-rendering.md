@@ -36,7 +36,7 @@ It does **not** receive:
 ### `RenderTemplateCatalog`
 
 Resolves template pack references to immutable template versions.
-It may eventually consume packs from `chummer-hub-registry`, but the renderer itself only sees a versioned manifest.
+It may eventually consume packs from `chummer6-hub-registry`, but the renderer itself only sees a versioned manifest.
 
 ### `HtmlTemplateRenderer`
 
@@ -106,7 +106,7 @@ That gives you:
 * reviewable template outputs
 * predictable rendering
 * easier sanitization
-* eventual publication through `chummer-hub-registry`
+* eventual publication through `chummer6-hub-registry`
 
 ## 7. Security and sanitization
 
