@@ -1,4 +1,4 @@
-# chummer-design
+# chummer6-design
 
 Canonical cross-repo design front door for Project Chummer.
 
@@ -63,7 +63,7 @@ Not allowed at root:
 1. Designers, architects, and auditors update this repo first.
 2. Cross-repo design truth becomes canonical here.
 3. Fleet mirrors the approved subset into code repos under `.codex-design/*`.
-4. Workers implement inside code repos using mirrored local guidance.
+4. Workers implement inside `chummer6-*` code repos using mirrored local guidance.
 5. Auditors publish drift and blockers back into this repo.
 
 ## Precedence rule
