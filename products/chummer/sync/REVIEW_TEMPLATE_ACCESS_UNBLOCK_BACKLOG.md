@@ -9,34 +9,12 @@ Status key:
 - `done`
 
 Dependency:
-- Operator context must be able to write under `/docker/chummercomplete/chummer-*/.codex-design/review`.
+- sibling-repo `.codex-design/review` writes are restored and verified
 
 | Backlog ID | Status | Task | Owner | Evidence |
 |---|---|---|---|---|
-| WL-D011-01 | blocked | Confirm writable access for `.codex-design/review` in `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-mobile`, `chummer6-ui-kit`, and `chummer6-hub-registry`; capture each `publish_ref`. | worker with sibling-repo write access | blocked as of `2026-03-11T19:37:00Z` by `Permission denied` on all six destinations; append fresh preflight refs to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md` after access is restored |
-| WL-D011-02 | blocked | Re-run WL-D007-01..06 publish copies from repo-matched review templates into destination `.codex-design/review/REVIEW_CONTEXT.md`. | worker with sibling-repo write access | blocked pending WL-D011-01 |
-| WL-D011-03 | blocked | Compute source and destination SHA-256 checksums for WL-D007-01..06 and append checksum parity evidence. | worker with sibling-repo write access | blocked pending WL-D011-02; requires `source_sha256 == target_sha256` for each row |
-| WL-D011-04 | blocked | Flip WL-D007-01..06 from `blocked` to `done` in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`; keep WL-D007-07 tied to WL-D010 until media-factory is provisioned. | agent | blocked pending WL-D011-01..03 |
-| WL-D011-05 | blocked | Update `WORKLIST.md` to reflect WL-D007 narrowed scope and set WL-D011 done after evidence lands, then run `bash scripts/ai/verify.sh`. | agent | blocked pending WL-D011-01..04 |
-
-Completion gate:
-1. WL-D007-01..06 have publish evidence with checksum parity in the current cycle.
-2. WL-D007 blocker text only references WL-D007-07 (media-factory provisioning) if still open.
-3. Verification output is captured in the same closeout cycle.
-
-Execution runbook (use after access restoration):
-1. `for repo in chummer6-core chummer6-ui chummer6-hub chummer6-mobile chummer6-ui-kit chummer6-hub-registry; do test -w "/docker/chummercomplete/$repo/.codex-design/review" && git -C "/docker/chummercomplete/$repo" rev-parse --short=8 HEAD; done`
-2. `cp products/chummer/review/core.AGENTS.template.md /docker/chummercomplete/chummer6-core/.codex-design/review/REVIEW_CONTEXT.md`
-3. `cp products/chummer/review/presentation.AGENTS.template.md /docker/chummercomplete/chummer6-ui/.codex-design/review/REVIEW_CONTEXT.md`
-4. `cp products/chummer/review/run-services.AGENTS.template.md /docker/chummercomplete/chummer6-hub/.codex-design/review/REVIEW_CONTEXT.md`
-5. `cp products/chummer/review/play.AGENTS.template.md /docker/chummercomplete/chummer6-mobile/.codex-design/review/REVIEW_CONTEXT.md`
-6. `cp products/chummer/review/ui-kit.AGENTS.template.md /docker/chummercomplete/chummer6-ui-kit/.codex-design/review/REVIEW_CONTEXT.md`
-7. `cp products/chummer/review/hub-registry.AGENTS.template.md /docker/chummercomplete/chummer6-hub-registry/.codex-design/review/REVIEW_CONTEXT.md`
-8. `sha256sum products/chummer/review/core.AGENTS.template.md /docker/chummercomplete/chummer6-core/.codex-design/review/REVIEW_CONTEXT.md`
-9. `sha256sum products/chummer/review/presentation.AGENTS.template.md /docker/chummercomplete/chummer6-ui/.codex-design/review/REVIEW_CONTEXT.md`
-10. `sha256sum products/chummer/review/run-services.AGENTS.template.md /docker/chummercomplete/chummer6-hub/.codex-design/review/REVIEW_CONTEXT.md`
-11. `sha256sum products/chummer/review/play.AGENTS.template.md /docker/chummercomplete/chummer6-mobile/.codex-design/review/REVIEW_CONTEXT.md`
-12. `sha256sum products/chummer/review/ui-kit.AGENTS.template.md /docker/chummercomplete/chummer6-ui-kit/.codex-design/review/REVIEW_CONTEXT.md`
-13. `sha256sum products/chummer/review/hub-registry.AGENTS.template.md /docker/chummercomplete/chummer6-hub-registry/.codex-design/review/REVIEW_CONTEXT.md`
-14. Update `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and `WORKLIST.md`.
-15. `bash scripts/ai/verify.sh`
+| WL-D011-01 | done | Confirm writable access for `.codex-design/review` in `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-mobile`, `chummer6-ui-kit`, and `chummer6-hub-registry`; capture each `publish_ref`. | agent | completed on `2026-03-11T23:32:58Z` during review-context republish |
+| WL-D011-02 | done | Re-run WL-D007-01..06 publish copies from repo-matched review templates into destination `.codex-design/review/REVIEW_CONTEXT.md`. | agent | completed on `2026-03-11T23:32:58Z` |
+| WL-D011-03 | done | Compute source and destination SHA-256 checksums for WL-D007-01..06 and append checksum parity evidence. | agent | completed in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md` on `2026-03-11T23:32:58Z` |
+| WL-D011-04 | done | Flip WL-D007-01..06 from `blocked` to `done` in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`; keep WL-D007-07 tied to WL-D010 until media-factory is provisioned. | agent | completed on `2026-03-11T23:32:58Z` |
+| WL-D011-05 | done | Update `WORKLIST.md` to reflect WL-D007 narrowed scope and set WL-D011 done after evidence lands, then run `bash scripts/ai/verify.sh`. | agent | completed on `2026-03-11T23:32:58Z` |
