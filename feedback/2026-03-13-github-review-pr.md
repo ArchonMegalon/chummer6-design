@@ -3,5 +3,4 @@
 PR: local://design
 
 Findings:
-- [resolved] products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md : the blocker-canon contradiction was corrected by updating `BLK-007` to reflect the remaining review-context mirror drift instead of the already-cleared milestone parity issue.
-- [resolved] feedback/2026-03-13-github-review-pr.md : the prior mobile-omission delta was a false positive; `REVIEW_TEMPLATE_MIRROR_BACKLOG.md` already tracks `chummer6-mobile` as `WL-D007-DRIFT-2026-03-13-63` with parity evidence.
+- [medium] feedback/.applied.log : line 278 Lines 278-291 record `feedback/2026-03-13-171709-audit-task-11676..11682.md` as applied/revalidated, but those files are currently untracked (`git status` shows all seven as `??`). This creates a state-safety/auditability gap for feedback provenance. Either add those feedback files to version control in this slice or remove/correct the applied-log entries so logged application state matches tracked repo state.

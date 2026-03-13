@@ -11,12 +11,18 @@ Evidence format:
 | Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
 |---|---|---|---|---|---|
 | WL-D007-01 | chummer6-core | `0fe28da2` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
-| WL-D007-02 | chummer6-ui | `fa008325` | `ab55c615a44a945439964e43f0692ffea6981a9daeb5911bc07faeb351cc1efe` | `ab55c615a44a945439964e43f0692ffea6981a9daeb5911bc07faeb351cc1efe` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
+| WL-D007-02 | chummer6-ui | `fd936860` | `424cd8271f6f65b6ae8d3d4263c01d9253f0c016e5814f4362463d9caf849d43` | `424cd8271f6f65b6ae8d3d4263c01d9253f0c016e5814f4362463d9caf849d43` | done (revalidated on 2026-03-13T18:15:19Z after the presentation-template refresh; source and target already matched) |
 | WL-D007-03 | chummer6-hub | `e42bd2bb` | `aaec6412a30764ee648cf12d66a5ee31ee8bc5ac0726104c58d08d7945d759f6` | `aaec6412a30764ee648cf12d66a5ee31ee8bc5ac0726104c58d08d7945d759f6` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
 | WL-D007-04 | chummer6-mobile | `0daf0bb8` | `b5adf39e3e0a31fd2a2690e109fceb3415e681409c9b2b8dd12a805a8ef636c7` | `b5adf39e3e0a31fd2a2690e109fceb3415e681409c9b2b8dd12a805a8ef636c7` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
 | WL-D007-05 | chummer6-ui-kit | `0ab0b332` | `d033775703bb56f5324a67b59eb087981df2a8ae91abc15e05dedc972f8ea9fa` | `d033775703bb56f5324a67b59eb087981df2a8ae91abc15e05dedc972f8ea9fa` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
 | WL-D007-06 | chummer6-hub-registry | `2bcf6955` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
 | WL-D007-07 | chummer6-media-factory | `acf2a41c` | `8447017b9ac1a546863fe44aa3d1cc6af7a3f34b46e5826614039a7561caa837` | `8447017b9ac1a546863fe44aa3d1cc6af7a3f34b46e5826614039a7561caa837` | done (republished on 2026-03-11T23:32:58Z; checksum parity restored) |
+
+## Cycle 2026-03-13T18:15:19Z (presentation template parity refresh)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-58 | chummer6-ui | `fd936860` | `424cd8271f6f65b6ae8d3d4263c01d9253f0c016e5814f4362463d9caf849d43` | `424cd8271f6f65b6ae8d3d4263c01d9253f0c016e5814f4362463d9caf849d43` | done (revalidated after the presentation-template refresh; source and target already matched, so no republish was required) |
 
 ## Cycle 2026-03-11T23:32:58Z (WL-D007-01..07 republish)
 
@@ -364,3 +370,20 @@ Evidence format:
 | WL-D007-05 | chummer6-ui-kit | `0ab0b332` | `d033775703bb56f5324a67b59eb087981df2a8ae91abc15e05dedc972f8ea9fa` | `11c9c7a5bfce235bacf4be79623e5e97a7acaa55833c1c6c240467e9ca4a87e3` | blocked (drift detected on `2026-03-11T19:37:00Z`; attempted republish failed with sandbox `Permission denied` writing `/docker/chummercomplete/chummer6-ui-kit/.codex-design/review/REVIEW_CONTEXT.md`) |
 | WL-D007-06 | chummer6-hub-registry | `2bcf6955` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `11c9c7a5bfce235bacf4be79623e5e97a7acaa55833c1c6c240467e9ca4a87e3` | blocked (drift detected on `2026-03-11T19:37:00Z`; attempted republish failed with sandbox `Permission denied` writing `/docker/chummercomplete/chummer6-hub-registry/.codex-design/review/REVIEW_CONTEXT.md`) |
 | WL-D007-07 | chummer6-media-factory | `n/a` | `672bb3a8b521decc9e79aad24c6c679d3d5f43879bac99565e9c8001bcf46697` | `n/a` | blocked (preflight rechecked at `2026-03-11T19:37:00Z`; attempted republish failed with `No such file or directory` because destination repo path `/docker/chummercomplete/chummer6-media-factory` is not present; WL-D010-02..05 remain blocked pending fleet/repo-provisioning) |
+
+## Cycle 2026-03-13T17:21:40Z (WL-D012 drift follow-up: rows 57, 58, 59, 60, 62)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-57 | chummer6-core | `b382066f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (republished on `2026-03-13T17:21:40Z`; checksum parity restored) |
+| WL-D007-DRIFT-2026-03-13-58 | chummer6-ui | `fd936860` | `ab55c615a44a945439964e43f0692ffea6981a9daeb5911bc07faeb351cc1efe` | `ab55c615a44a945439964e43f0692ffea6981a9daeb5911bc07faeb351cc1efe` | done (republished on `2026-03-13T17:21:40Z`; checksum parity restored) |
+| WL-D007-DRIFT-2026-03-13-59 | chummer6-hub | `03c33183` | `aaec6412a30764ee648cf12d66a5ee31ee8bc5ac0726104c58d08d7945d759f6` | `aaec6412a30764ee648cf12d66a5ee31ee8bc5ac0726104c58d08d7945d759f6` | done (republished on `2026-03-13T17:21:40Z`; checksum parity restored) |
+| WL-D007-DRIFT-2026-03-13-60 | chummer6-ui-kit | `fadb4e9` | `d033775703bb56f5324a67b59eb087981df2a8ae91abc15e05dedc972f8ea9fa` | `d033775703bb56f5324a67b59eb087981df2a8ae91abc15e05dedc972f8ea9fa` | done (republished on `2026-03-13T17:21:40Z`; checksum parity restored) |
+| WL-D007-DRIFT-2026-03-13-62 | chummer6-media-factory | `e5a8e4d` | `8447017b9ac1a546863fe44aa3d1cc6af7a3f34b46e5826614039a7561caa837` | `8447017b9ac1a546863fe44aa3d1cc6af7a3f34b46e5826614039a7561caa837` | done (republished on `2026-03-13T17:21:40Z`; checksum parity restored) |
+
+## Cycle 2026-03-13T17:30:00Z (WL-D012 drift follow-up: rows 61, 63 revalidation)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-61 | chummer6-hub-registry | `811dc525` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (revalidated on `2026-03-13T17:30:00Z`; checksum parity already matched, no republish required) |
+| WL-D007-DRIFT-2026-03-13-63 | chummer6-mobile | `6ff52d0d` | `b5adf39e3e0a31fd2a2690e109fceb3415e681409c9b2b8dd12a805a8ef636c7` | `b5adf39e3e0a31fd2a2690e109fceb3415e681409c9b2b8dd12a805a8ef636c7` | done (revalidated on `2026-03-13T17:30:00Z`; checksum parity already matched, no republish required) |

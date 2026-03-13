@@ -2,6 +2,10 @@
 
 Last reviewed: 2026-03-13
 
+Review-template mirror drift status:
+- `BLK-007` remains cleared after WL-D012 drift follow-up completion and the `chummer6-ui` presentation-template parity revalidation recorded on `2026-03-13T18:15:19Z`.
+- Completed WL-D007 drift rows now include `57`, `58`, `59`, `60`, `61`, `62`, and `63` with publish/revalidation evidence in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`.
+
 ## RED blockers
 
 ### BLK-001 — design repo is not yet fully canonical
@@ -80,22 +84,6 @@ Owners:
 
 * chummer6-core
 * chummer6-hub
-
-### BLK-007 — review-context mirror drift follow-up remains
-
-Repo-local review-context mirrors still drift for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit`, and `chummer6-media-factory`; runnable follow-up rows remain open in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` (`WL-D007-DRIFT-2026-03-13-57`, `58`, `59`, `60`, and `62`), while `chummer6-mobile` and `chummer6-hub-registry` are already recorded in parity (`63` and `61`).
-
-Why this matters:
-Workers and GitHub review in code repos can consume stale repo-local review guidance even when central canon is current.
-
-Owners:
-
-* chummer6-design
-* chummer6-core
-* chummer6-ui
-* chummer6-hub
-* chummer6-ui-kit
-* chummer6-media-factory
 
 ## GREEN candidates once current blockers clear
 

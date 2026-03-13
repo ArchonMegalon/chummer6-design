@@ -275,3 +275,17 @@ feedback/2026-03-13-120640-audit-task-11682.md
 2026-03-13 feedback/2026-03-13-120640-audit-task-11677.md revalidated during WL-D009 cycle 2026-03-13T12:34:29Z by reconfirming WL-D007/WL-D010/WL-D011 completion notes against parity-complete review-template mirror publish evidence; no drift detected and no backlog reopen required.
 feedback/2026-03-13-120640-audit-task-11677.md
 2026-03-13 2026-03-11-github-review-pr.md applied during WL-D009 cycle 2026-03-13T16:44:55Z by aligning stale maintenance-log WL-D007 preflight timestamp evidence to canonical 2026-03-11T17:00:56Z and publishing a dated no-change truth-maintenance delta for ownership/contracts/blockers/milestones.
+2026-03-13 feedback/2026-03-13-171709-audit-task-11676.md applied by publishing executable queue/milestone mapping via queued WL-D012 for review-template mirror drift follow-up in WORKLIST and PROGRAM_MILESTONES.
+feedback/2026-03-13-171709-audit-task-11676.md
+2026-03-13 feedback/2026-03-13-171709-audit-task-11679.md applied by replacing generic queue-overlay scope text with runnable WL-D012 execution steps tied to WL-D007 drift rows and evidence refresh targets.
+feedback/2026-03-13-171709-audit-task-11679.md
+2026-03-13 feedback/2026-03-13-171709-audit-task-11682.md revalidated during WL-D012 closeout at 2026-03-13T17:21:40Z; milestone coverage/ETA-completion truth is already complete via `WL-D006` with canonical registry state maintained in `products/chummer/PROGRAM_MILESTONES.yaml`.
+feedback/2026-03-13-171709-audit-task-11682.md
+2026-03-13 feedback/2026-03-13-171709-audit-task-11677.md revalidated during WL-D012 closeout at 2026-03-13T17:21:40Z; uncovered split-wave ownership/contract/blocker/milestone scope remains materially mapped to executable backlog via completed `WL-D009` plus drift follow-up execution in `WL-D012`.
+feedback/2026-03-13-171709-audit-task-11677.md
+2026-03-13 feedback/2026-03-13-171709-audit-task-11680.md applied by materializing recurring executable queue coverage as `WL-D013` in `WORKLIST.md` + `products/chummer/PROGRAM_MILESTONES.yaml`, resetting `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` to a cycle-runnable queued baseline, and replacing generic queue overlay text in `.codex-studio/published/QUEUE.generated.yaml` with concrete runnable steps.
+feedback/2026-03-13-171709-audit-task-11680.md
+2026-03-13 feedback/2026-03-13-171709-audit-task-11678.md revalidated during the same pass; review-guidance template mirror scope remains covered by completed executable backlog (`WL-D007`, `WL-D010`, `WL-D011`, `WL-D012`) and no backlog reopen is required absent new drift evidence.
+feedback/2026-03-13-171709-audit-task-11678.md
+2026-03-13 feedback/2026-03-13-171709-audit-task-11681.md applied during WL-D013 cycle 2026-03-13T17:42:41Z; review-guidance template mirror scope remains materially covered by completed executable backlog/evidence (`WL-D007`, `WL-D010`, `WL-D011`, `WL-D012`), so no backlog reopen was required.
+feedback/2026-03-13-171709-audit-task-11681.md
