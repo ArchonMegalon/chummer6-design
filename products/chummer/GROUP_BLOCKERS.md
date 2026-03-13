@@ -81,12 +81,12 @@ Owners:
 * chummer6-core
 * chummer6-hub
 
-### BLK-007 — local mirror milestone parity drift
+### BLK-007 — review-context mirror drift follow-up remains
 
-`PROGRAM_MILESTONES.yaml` changed in canonical design after WL-D008 mirror publication, so `.codex-design/product/PROGRAM_MILESTONES.yaml` in all seven code repos now drifts (`source=fc55da...`, mirrored targets still `71a806...`).
+Repo-local review-context mirrors still drift for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit`, and `chummer6-media-factory`; runnable follow-up rows remain open in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` (`WL-D007-DRIFT-2026-03-13-57`, `58`, `59`, `60`, and `62`), while `chummer6-mobile` and `chummer6-hub-registry` are already recorded in parity (`63` and `61`).
 
 Why this matters:
-Workers and GitHub review in code repos can consume stale milestone truth even when central canon is current.
+Workers and GitHub review in code repos can consume stale repo-local review guidance even when central canon is current.
 
 Owners:
 
@@ -94,9 +94,7 @@ Owners:
 * chummer6-core
 * chummer6-ui
 * chummer6-hub
-* chummer6-mobile
 * chummer6-ui-kit
-* chummer6-hub-registry
 * chummer6-media-factory
 
 ## GREEN candidates once current blockers clear
