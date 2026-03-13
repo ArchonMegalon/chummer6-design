@@ -219,3 +219,26 @@ feedback/2026-03-11-github-review-pr.md
 2026-03-11 feedback/2026-03-11-chummer-immediate-directives.md re-incorporated during WL-D009 cycle 2026-03-11BB while executing WL-D007 mirror publish rerun at 2026-03-11T19:03:09Z; priorities remain contract canon, repo purification, and split-wave truth, with no additional canon-file delta beyond refreshed publish evidence/blocker timestamps.
 2026-03-11 feedback/2026-03-11-chummer-immediate-directives.md re-incorporated during WL-D009 cycle 2026-03-11BC while executing WL-D007 mirror publish rerun at 2026-03-11T19:27:07Z; priorities remain contract canon, repo purification, and split-wave truth, with no additional canon-file delta beyond refreshed publish evidence/blocker timestamps.
 2026-03-11 feedback/2026-03-11-chummer-immediate-directives.md re-incorporated during WL-D009 cycle 2026-03-11BD while executing WL-D007 mirror publish rerun at 2026-03-11T19:37:00Z; priorities remain contract canon, repo purification, and split-wave truth, with no additional canon-file delta beyond refreshed publish evidence/blocker timestamps.
+2026-03-12 feedback/2026-03-11-chummer-immediate-directives.md re-incorporated during WL-D009 cycle 2026-03-12T01:16:25Z; truth-maintenance updates kept focus on contract canon, repo purification, and split-wave truth layers.
+2026-03-12 feedback/2026-03-12-github-review-pr.md applied during WL-D009 cycle 2026-03-12T01:16:25Z by rerunning WL-D008 post-edit milestone parity verification and publishing drift evidence with updated `ade481...` canonical hash.
+feedback/2026-03-11-chummer-immediate-directives.md
+feedback/2026-03-12-github-review-pr.md
+2026-03-12 feedback/2026-03-12-github-review-pr.md reapplied during WL-D009 cycle 2026-03-12T11:56:33Z by adding row-level blocked `owner` and explicit `unblock` metadata for WL-D008-01..07 in LOCAL_MIRROR_PUBLISH_BACKLOG.md.
+feedback/2026-03-12-github-review-pr.md
+2026-03-12 feedback/2026-03-12-github-review-pr.md revalidated during WL-D009 cycle 2026-03-12T18:29:47Z while confirming feedback provenance and split-wave no-change canon across ownership/contracts/blockers/milestones.
+feedback/2026-03-12-github-review-pr.md
+2026-03-12 feedback/2026-03-12-github-review-pr.md revalidated during WL-D009 cycle 2026-03-12T19:18:41Z; split-wave ownership/contract/blocker/milestone canon stayed no-change, and the note remains present locally pending commit inclusion for reproducible provenance.
+2026-03-13 feedback/2026-03-13-github-review-pr.md applied during WL-D009 cycle 2026-03-13T00:12:35Z by confirming feedback provenance coverage (`feedback/2026-03-12-github-review-pr.md` exists in-repo and is retained for commit inclusion) and recording this dated split-wave truth-maintenance delta cycle.
+feedback/2026-03-13-github-review-pr.md
+2026-03-13 feedback/2026-03-12-github-review-pr.md revalidated during WL-D009 cycle 2026-03-13T01:20:21Z by refreshing WL-D008 parity evidence to current canonical milestone hash `fc55da...` and preserving oldest-first feedback provenance.
+feedback/2026-03-12-github-review-pr.md
+2026-03-13 feedback/2026-03-13-github-review-pr.md revalidated during WL-D009 cycle 2026-03-13T01:20:21Z by reconciling `BLK-007` and WL-D008 evidence/backlog hash references with current canonical milestones source `fc55da...`.
+feedback/2026-03-13-github-review-pr.md
+2026-03-13 feedback/2026-03-12-github-review-pr.md revalidated during WL-D009 cycle 2026-03-13T01:38:49Z while confirming oldest-first processing and reproducible feedback provenance for local mirror parity drift tracking.
+feedback/2026-03-12-github-review-pr.md
+2026-03-13 feedback/2026-03-13-github-review-pr.md revalidated during WL-D009 cycle 2026-03-13T01:38:49Z while confirming oldest-first processing and reproducible feedback provenance for local mirror parity drift tracking.
+feedback/2026-03-13-github-review-pr.md
+2026-03-13 feedback/2026-03-12-github-review-pr.md revalidated during WL-D009 cycle 2026-03-13T02:34:39Z; oldest-first replay remains deterministic and the file is present in-repo for reproducible provenance.
+feedback/2026-03-12-github-review-pr.md
+2026-03-13 feedback/2026-03-13-github-review-pr.md revalidated during WL-D009 cycle 2026-03-13T02:34:39Z; oldest-first replay remains deterministic and the file is present in-repo for reproducible provenance.
+feedback/2026-03-13-github-review-pr.md
