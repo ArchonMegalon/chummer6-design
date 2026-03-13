@@ -291,9 +291,9 @@ executable_queue:
   notes: Completed on 2026-03-13T10:19:08Z after republishing WL-D008-01..07 mirror subsets across all seven code repos and re-verifying `PROGRAM_MILESTONES.yaml` checksum parity in `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`.
 - id: WL-D009
   milestone: F3
-  status: in_progress
+  status: done
   backlog: products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md
-  notes: Recurring split-wave truth-maintenance cycle with dated change/no-change evidence in maintenance log.
+  notes: Completed on 2026-03-13T17:08:00Z after the latest split-wave truth-maintenance cycle reconfirmed ownership, contract, blocker, and milestone canon with dated no-change evidence in the maintenance log.
 - id: WL-D010
   milestone: F3
   status: done
