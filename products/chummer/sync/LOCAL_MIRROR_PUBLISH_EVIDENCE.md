@@ -1,6 +1,6 @@
 # Local Mirror Publish Evidence (WL-D008)
 
-Date: 2026-03-13 (publish at 2026-03-12T01:10:38Z; freshness recheck at 2026-03-13T01:20:21Z)
+Date: 2026-03-13 (republish at 2026-03-13T10:20:41Z)
 
 Evidence format:
 - `publish_ref`: destination repo commit checked during this cycle
@@ -10,10 +10,10 @@ Evidence format:
 
 | Backlog ID | Target Repo | publish_ref | program_milestones_source_sha256 | program_milestones_target_sha256 | result |
 |---|---|---|---|---|---|
-| WL-D008-01 | chummer6-core | `1b127c00` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
-| WL-D008-02 | chummer6-ui | `621ca154` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
-| WL-D008-03 | chummer6-hub | `fbfc3f53` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
-| WL-D008-04 | chummer6-mobile | `a5553e40` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
-| WL-D008-05 | chummer6-ui-kit | `3352c492` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
-| WL-D008-06 | chummer6-hub-registry | `95902d4d` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
-| WL-D008-07 | chummer6-media-factory | `bf30d83c` | `fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017` | `71a806cc37f4a0811cc9bb67e8c5da5d78c42029b74c5da773163f0bdd4aa3de` | drift (freshness recheck at 2026-03-13T01:20:21Z confirmed source/target mismatch; mirror refresh required) |
+| WL-D008-01 | chummer6-core | `c41ad900` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |
+| WL-D008-02 | chummer6-ui | `fd936860` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |
+| WL-D008-03 | chummer6-hub | `4a584d89` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |
+| WL-D008-04 | chummer6-mobile | `6ff52d0d` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |
+| WL-D008-05 | chummer6-ui-kit | `fadb4e92` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |
+| WL-D008-06 | chummer6-hub-registry | `811dc525` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |
+| WL-D008-07 | chummer6-media-factory | `e5a8e4d0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | `80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0` | done (republished `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review`; parity verified at 2026-03-13T10:20:41Z) |

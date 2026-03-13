@@ -1145,7 +1145,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-11AZ (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`/docker/chummercomplete/chummer6-design/products/chummer/ARCHITECTURE.md`, `/docker/chummercomplete/chummer6-design/WORKLIST.md`, `/docker/chummercomplete/chummer6-design/AGENTS.md`) and inspected repository state (`git status --short`) before edits.
 - WL-D009-02 `done`: processed unread feedback oldest-first for this cycle by incorporating `feedback/2026-03-11-chummer-immediate-directives.md`; guidance remains aligned with active focus on contract canon, repo purification, and split-wave truth layers, requiring no ownership/contract/blocker/milestone canon deltas for this slice.
-- WL-D009-03 `done`: re-ran WL-D007 publish preflight for all seven targets at `2026-03-11T16:22:35Z`; six provisioned repos still fail republish with sandbox `Permission denied`, and `chummer6-media-factory` remains unprovisioned (`No such file or directory`).
+- WL-D009-03 `done`: re-ran WL-D007 publish preflight for all seven targets at `2026-03-11T17:00:56Z`; six provisioned repos still fail republish with sandbox `Permission denied`, and `chummer6-media-factory` remains unprovisioned (`No such file or directory`).
 - WL-D009-04 `done`: appended the current-cycle per-repo publish evidence in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md` and refreshed blocker timestamps/refs in `WORKLIST.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md`, and `products/chummer/sync/REVIEW_TEMPLATE_ACCESS_UNBLOCK_BACKLOG.md`.
 - WL-D009-05 `done`: `scripts/ai/set-status.sh` remains unavailable in this repo; closeout verification is executed via `bash scripts/ai/verify.sh`.
 
@@ -1714,3 +1714,250 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 - WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no queue/blocker/ETA/completion drift was detected (`sha256=fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017`) and `last_reviewed` remains `2026-03-13`.
 - WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=f6aba813d4c74f22e8e659e8f5135f4644f3513dc7a9c49ba8a548096448b0d7`, `sha256=5adea9b98989bd953ba6b4a42a65a7190c116393c7890ef4a724711b86dba5ab`); `scripts/ai/set-status.sh` is not present in this repo.
 - WL-D009-07 `done`: published dated no-change delta notes for ownership matrix, contract canon, blockers, and milestone registry for this cycle.
+
+### WL-D009 Cycle 2026-03-13T09:38:49Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice feedback condition (`No unread feedback files`); oldest-first unread coverage check (`feedback/*.md` minus filename coverage extracted from `feedback/.applied.log`) returned `UNREAD_COUNT=0`.
+- WL-D009-03 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated split-wave contract canon and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no ownership/package or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no queue/blocker/ETA/completion drift was detected (`sha256=fc55da50157755e6b39fb1a4b8f2610ae37320f072011c6eab2e23eeccca7017`) and `last_reviewed` remains `2026-03-13`.
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=f6aba813d4c74f22e8e659e8f5135f4644f3513dc7a9c49ba8a548096448b0d7`, `sha256=5adea9b98989bd953ba6b4a42a65a7190c116393c7890ef4a724711b86dba5ab`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published dated no-change delta notes for ownership matrix, contract canon, blockers, and milestone registry for this cycle.
+
+### WL-D009 Cycle 2026-03-13T10:24:45Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files in provided oldest-first order: `feedback/2026-03-13-100942-audit-task-11682.md`, then `feedback/2026-03-13-100942-audit-task-11677.md`.
+- WL-D009-03 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated split-wave contract canon and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no ownership/package or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no queue/blocker/ETA/completion drift was detected in current repo state (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`) and `last_reviewed` remains `2026-03-13`.
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=8a3a75b3ff6d26d2ca05f49e9cd8b1be9c25abf71c0f3f847004493950c8dab4`, `sha256=5adea9b98989bd953ba6b4a42a65a7190c116393c7890ef4a724711b86dba5ab`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published dated no-change delta notes for ownership matrix, contract canon, blockers, and milestone registry for this cycle; `.codex-studio/published/QUEUE.generated.yaml` remains empty (`mode: prepend`, `items: []`).
+
+### WL-D009 Cycle 2026-03-13T10:28:54Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files in provided oldest-first order for this slice: `feedback/2026-03-13-100942-audit-task-11680.md`, then `feedback/2026-03-13-100942-audit-task-11678.md`.
+- WL-D009-03 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated split-wave contract canon and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no ownership/package or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no queue/blocker/ETA/completion drift was detected (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`) and `last_reviewed` remains `2026-03-13`.
+- WL-D009-06 `done`: revalidated executable backlog coverage; `WORKLIST.md` still maps `WL-D009` to `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=8a3a75b3ff6d26d2ca05f49e9cd8b1be9c25abf71c0f3f847004493950c8dab4`, `sha256=5adea9b98989bd953ba6b4a42a65a7190c116393c7890ef4a724711b86dba5ab`), and `.codex-studio/published/QUEUE.generated.yaml` now carries an explicit runnable WL-D009 queue item to prevent queue exhaustion while this recurring scope remains active.
+- WL-D009-07 `done`: published dated delta notes for this cycle as a no-change canon pass for ownership matrix, contract canon, blockers, and milestone registry, with queue overlay refreshed to executable-only WL-D009 scope.
+
+### WL-D009 Cycle 2026-03-13T10:40:32Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated unread feedback oldest-first for this cycle: `feedback/2026-03-13-100943-audit-task-11681.md`.
+- WL-D009-03 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated split-wave contract canon and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no ownership/package or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no queue/blocker/ETA/completion drift was detected (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`) and `last_reviewed` remains `2026-03-13`.
+- WL-D009-06 `done`: revalidated executable queue coverage for the feedback scope: review-guidance template mirror work remains materially covered as completed backlog in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` (`WL-D007-01..07 done`) and milestone executable queue rows (`WL-D007`, `WL-D010`, `WL-D011` done), while recurring split-wave maintenance remains runnable in `.codex-studio/published/QUEUE.generated.yaml` (`sha256=44063c188954cff4db3fce31999f35dfa60a3efee8db4f0971ca41921f4df388`).
+- WL-D009-07 `done`: published dated no-change delta notes for ownership matrix, contract canon, blockers, and milestone registry for this cycle; no queue/worklist reopen was required because the reported review-template scope is already closed with canonical runnable backlog evidence.
+
+### WL-D009 Cycle 2026-03-13T12:12:00Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files in provided order for this slice: `feedback/2026-03-13-120640-audit-task-11682.md`, then `feedback/2026-03-13-120640-audit-task-11677.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all three remain marked done with completion timestamp `2026-03-11T23:31:00Z` and explicit checksum-parity claims.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; the `2026-03-11T23:31:00Z` and `2026-03-11T23:32:58Z` cycles both record parity-complete `WL-D007-01..07`, including `WL-D007-07` for `chummer6-media-factory`.
+- WL-D009-05 `done`: confirmed no review-guidance mirror drift for the current slice; no unblock/publish rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and completed `WL-D007`/`WL-D010`/`WL-D011` were not reopened.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; cycle status remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: published this dated no-change delta for review-guidance mirror scope revalidation against completion evidence.
+
+### WL-D009 Cycle 2026-03-13T12:16:11Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files in provided order for this slice: `feedback/2026-03-13-120640-audit-task-11682.md`, then `feedback/2026-03-13-120640-audit-task-11677.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all remain `done` with completion timestamp `2026-03-11T23:31:00Z`.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; parity-complete `done` evidence for `WL-D007-01..07` remains intact (including `chummer6-media-factory`).
+- WL-D009-05 `done`: no review-guidance mirror drift was detected for this cycle; no backlog reopen was required and no rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; cycle state is recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-change delta for review-guidance mirror scope revalidation.
+
+### WL-D009 Cycle 2026-03-13T12:18:31Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files in provided order for this slice: `feedback/2026-03-13-120640-audit-task-11677.md`, then `feedback/2026-03-13-120640-audit-task-11682.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all remain `done` with completion timestamp `2026-03-11T23:31:00Z` and parity-complete completion notes.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; parity-complete `done` evidence for `WL-D007-01..07` remains intact for the `2026-03-11T23:31:00Z` and `2026-03-11T23:32:58Z` cycles.
+- WL-D009-05 `done`: no review-guidance mirror drift was detected for this run; no unblock/publish rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and completed `WL-D007`/`WL-D010`/`WL-D011` were not reopened.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; `scripts/ai/verify.sh` is present for local verification, and cycle state is recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-change delta for review-guidance mirror scope revalidation.
+
+### WL-D009 Cycle 2026-03-13T12:22:08Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files oldest-first for this slice: `feedback/2026-03-13-120640-audit-task-11682.md`, then `feedback/2026-03-13-120640-audit-task-11677.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all remain `done` with completion timestamp `2026-03-11T23:31:00Z`.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; parity-complete `done` evidence for `WL-D007-01..07` remains intact for both `2026-03-11T23:31:00Z` and `2026-03-11T23:32:58Z` cycles.
+- WL-D009-05 `done`: no review-guidance mirror drift was detected in this cycle; no unblock/publish rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and completed `WL-D007`/`WL-D010`/`WL-D011` were not reopened.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; `scripts/ai/verify.sh` remains available for local verification, and cycle state remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-change delta for review-guidance mirror scope revalidation.
+
+### WL-D009 Cycle 2026-03-13T12:27:54Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files oldest-first for this slice: `feedback/2026-03-13-120640-audit-task-11677.md`, then `feedback/2026-03-13-120640-audit-task-11682.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all remain `done` with completion timestamp `2026-03-11T23:31:00Z` and parity-complete completion notes.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; parity-complete `done` evidence for `WL-D007-01..07` remains intact for both `2026-03-11T23:31:00Z` and `2026-03-11T23:32:58Z` cycles.
+- WL-D009-05 `done`: no review-guidance mirror drift was detected in this cycle; no unblock/publish rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and completed `WL-D007`/`WL-D010`/`WL-D011` were not reopened.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; `scripts/ai/verify.sh` remains available for local verification, and cycle state remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-change delta for review-guidance mirror scope revalidation.
+
+### WL-D009 Cycle 2026-03-13T12:32:01Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files oldest-first for this slice: `feedback/2026-03-13-120640-audit-task-11682.md`, then `feedback/2026-03-13-120640-audit-task-11677.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all remain `done` with completion timestamp `2026-03-11T23:31:00Z` and parity-complete completion notes.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; parity-complete `done` evidence for `WL-D007-01..07` remains intact for both `2026-03-11T23:31:00Z` and `2026-03-11T23:32:58Z` cycles.
+- WL-D009-05 `done`: no review-guidance mirror drift was detected in this cycle; no unblock/publish rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and completed `WL-D007`/`WL-D010`/`WL-D011` were not reopened.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; cycle state remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-change delta for review-guidance mirror scope revalidation.
+
+### WL-D009 Cycle 2026-03-13T12:34:29Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback files in provided order for this slice: `feedback/2026-03-13-120640-audit-task-11682.md`, then `feedback/2026-03-13-120640-audit-task-11677.md`.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; all remain `done` with completion timestamp `2026-03-11T23:31:00Z` and parity-complete completion notes.
+- WL-D009-04 `done`: revalidated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`; parity-complete `done` evidence for `WL-D007-01..07` remains intact for both `2026-03-11T23:31:00Z` and `2026-03-11T23:32:58Z` cycles.
+- WL-D009-05 `done`: no review-guidance mirror drift was detected in this cycle; no unblock/publish rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, and completed `WL-D007`/`WL-D010`/`WL-D011` were not reopened.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; `scripts/ai/verify.sh` remains available for local verification, and cycle state remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-change delta for review-guidance mirror scope revalidation.
+
+### WL-D009 Cycle 2026-03-13T14:55:33Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: reconciled truth-maintenance scope against the current milestone schema and review-template mirror canon after the latest audit pass.
+- WL-D009-03 `done`: revalidated `WORKLIST.md` completion notes for `WL-D007`, `WL-D010`, and `WL-D011`; each remains `done` with completion timestamp `2026-03-11T23:31:00Z` and parity evidence recorded in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`.
+- WL-D009-04 `done`: corrected `products/chummer/sync/sync-manifest.yaml` so every mirrored repo now points at its repo-specific `*.AGENTS.template.md` review source instead of the generic checklist, keeping mirror publish intent aligned with `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`.
+- WL-D009-05 `done`: updated milestone-maintenance wording to match the current `products/chummer/PROGRAM_MILESTONES.yaml` schema (`last_reviewed`, phase/milestone `status`, `owners`, `exit`, and `current_release_blockers`) rather than the retired ETA/completion/confidence/blocker fields.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; `scripts/ai/verify.sh` is present for local verification, and this cycle record replaces the incomplete placeholder block that had landed below the canonical maintenance log.
+- WL-D009-07 `done`: appended this dated delta covering mirror-source corrections, milestone-schema wording alignment, and maintenance-log cleanup for the current cycle.
+
+### WL-D009 Cycle 2026-03-13T15:04:00Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); no unread feedback-file processing was required in this cycle.
+- WL-D009-03 `done`: revalidated review-template mirror state directly against local sibling repos under `/docker/chummercomplete/*/.codex-design/review/REVIEW_CONTEXT.md`.
+- WL-D009-04 `done`: detected review-template mirror drift in provisioned repos (`chummer6-core`, `chummer6-ui`, `chummer6-hub`) and missing mirror targets for (`chummer6-ui-kit`, `chummer6-hub-registry`, `chummer6-media-factory`); `chummer6-mobile` remained in checksum parity.
+- WL-D009-05 `done`: appended runnable unblock/publish rows `WL-D007-DRIFT-2026-03-13-01..06` to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` per slice rule, without reopening completed `WL-D007`/`WL-D010`/`WL-D011`.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: cycle closed with drift materialized as executable backlog and explicit unblock conditions.
+
+### WL-D009 Cycle 2026-03-13T15:14:00Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice instruction (`No unread feedback files`); no unread feedback-file processing was required.
+- WL-D009-03 `done`: revalidated review-template mirror drift directly against target repo review mirrors using SHA-256 checksums.
+- WL-D009-04 `done`: detected active drift for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, and `chummer6-media-factory`; target mirrors for `chummer6-ui-kit` and `chummer6-hub-registry` remain absent.
+- WL-D009-05 `done`: appended runnable rows `WL-D007-DRIFT-2026-03-13-07..10` to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` without reopening completed `WL-D007`/`WL-D010`/`WL-D011`.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status remains recorded in queue/worklist/maintenance docs.
+- WL-D009-07 `done`: attempted verification via `scripts/ai/verify.sh`, but it is not executable in this environment (`Permission denied`).
+
+### WL-D009 Cycle 2026-03-13T15:20:00Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: revalidated review-template mirror drift and found current mismatches for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-media-factory` and missing review targets for `chummer6-ui-kit` and `chummer6-hub-registry`.
+- WL-D009-03 `done`: appended runnable drift rows `WL-D007-DRIFT-2026-03-13-15` and `WL-D007-DRIFT-2026-03-13-16` to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, for the missing `chummer6-ui-kit` and `chummer6-hub-registry` targets.
+- WL-D009-04 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains captured in canonical queue/worklist/maintenance docs.
+- WL-D009-05 `done`: `bash scripts/ai/verify.sh` completed successfully (`ok`) after backlog append.
+
+### WL-D009 Cycle 2026-03-13T15:25:42Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); no unread feedback-file processing was required.
+- WL-D009-03 `done`: revalidated review-template mirror drift by recomputing live SHA-256 checksums against mirror targets in sibling repos; drift detected for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit`, and `chummer6-media-factory`.
+- WL-D009-04 `done`: revalidated parity rows; `chummer6-mobile` and `chummer6-hub-registry` currently match their template checksums, so no publish rows were added for those targets.
+- WL-D009-05 `done`: current runnable drift follow-up rows live in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` as `WL-D007-DRIFT-2026-03-13-57..62`, so the remedy path stays explicit without reopening completed `WL-D007`/`WL-D010`/`WL-D011`.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains captured in canonical queue/worklist/maintenance docs.
+
+### WL-D009 Cycle 2026-03-13T15:32:08Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); no unread feedback-file processing was required.
+- WL-D009-03 `done`: revalidated review-template mirror drift with live SHA-256 checksums against template sources and mirror targets.
+- WL-D009-04 `done`: detected the same active drift set already captured in backlog rows `WL-D007-DRIFT-2026-03-13-57..62` (`chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit`, `chummer6-media-factory`, with `chummer6-hub-registry` already recorded as parity/done), while `chummer6-mobile` remains in parity.
+- WL-D009-05 `done`: per slice rule, kept `WL-D007`/`WL-D010`/`WL-D011` closed and used drift-follow-up backlog rows instead of reopening completed work; no duplicate drift rows were appended because runnable rows already exist for each drifting target.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains captured in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: this cycle is a dated no-duplicate delta for review-template mirror drift revalidation.
+
+### WL-D009 Cycle 2026-03-13T15:37:32Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); no unread feedback-file processing was required.
+- WL-D009-03 `done`: revalidated review-template mirror drift with live SHA-256 checksums across sibling targets (`chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-mobile`, `chummer6-ui-kit`, `chummer6-hub-registry`, `chummer6-media-factory`).
+- WL-D009-04 `done`: active drift remains for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit`, and `chummer6-media-factory`; checksum parity remains for `chummer6-mobile` and `chummer6-hub-registry`.
+- WL-D009-05 `done`: no new rows were appended to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` because runnable drift rows already exist as `WL-D007-DRIFT-2026-03-13-57..62`; completed `WL-D007`/`WL-D010`/`WL-D011` remain closed.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains captured in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: appended this dated no-duplicate drift delta for the current slice.
+
+### WL-D009 Cycle 2026-03-13T15:39:15Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: confirmed unread feedback set is empty for this cycle by diffing `feedback/*.md` against `feedback/.applied.log`.
+- WL-D009-03 `done`: revalidated review-template mirror state with live SHA-256 checksums and current target paths; drift remains for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit` (target repo path `/docker/chummercomplete/chummer6-ui-kit`), and `chummer6-media-factory`, while checksum parity remains for `chummer6-mobile` and `chummer6-hub-registry` (target repo path `/docker/chummercomplete/chummer6-hub-registry`).
+- WL-D009-04 `done`: reconciled drift coverage in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`; runnable rows already exist for each currently drifting target (`WL-D007-DRIFT-2026-03-13-57..62`), so no duplicate rows were appended.
+- WL-D009-05 `done`: kept completed `WL-D007`/`WL-D010`/`WL-D011` closed per slice policy; used drift backlog continuity instead of reopening completed work.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains recorded in canonical queue/worklist/maintenance docs.
+
+### WL-D009 Cycle 2026-03-13T15:40:00Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); no unread feedback-file processing was required.
+- WL-D009-03 `done`: revalidated review-template mirror drift with live SHA-256 checksums: drift remains for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit`, and `chummer6-media-factory`; checksum parity remains for `chummer6-mobile` and `chummer6-hub-registry`.
+- WL-D009-04 `done`: confirmed this drift set is already covered by runnable rows in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` (`WL-D007-DRIFT-2026-03-13-57..62`), so no duplicate backlog rows were appended.
+- WL-D009-05 `done`: kept completed `WL-D007`/`WL-D010`/`WL-D011` closed and followed slice policy by using drift-follow-up backlog rows rather than reopening completed work.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains captured in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: published this dated no-duplicate delta for review-template mirror drift revalidation.
+
+### WL-D009 Cycle 2026-03-13T15:43:48Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); no unread feedback-file processing was required.
+- WL-D009-03 `done`: revalidated review-template mirror drift with live SHA-256 checksums at canonical target paths; drift exists for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, and `chummer6-media-factory`; `chummer6-mobile` is in checksum parity.
+- WL-D009-04 `done`: detected missing mirror targets at canonical paths for `chummer6-ui-kit` (`/docker/chummercomplete/chummer6-ui-kit/.codex-design/review/REVIEW_CONTEXT.md`) and `chummer6-hub-registry` (`/docker/chummercomplete/chummer6-hub-registry/.codex-design/review/REVIEW_CONTEXT.md`).
+- WL-D009-05 `done`: the canonical ui-kit and hub-registry follow-up rows now live as `WL-D007-DRIFT-2026-03-13-60` and `WL-D007-DRIFT-2026-03-13-61` in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, so completed `WL-D007`/`WL-D010`/`WL-D011` stay closed.
+- WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains captured in canonical queue/worklist/maintenance docs.
+- WL-D009-07 `done`: verification helper `scripts/ai/verify.sh` is not executable in this repo, so closeout verification remains manual for this slice.
+
+
+### WL-D009 Cycle 2026-03-13T15:48:20Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: re-ran startup slice read/checks and used latest SHA-256 parity checks against review template mirrors in the seven target repos from `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`/`products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`.
+- WL-D009-02 `done`: revalidated review-guidance mirror state and detected active drift for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-media-factory`, and `chummer6-ui-kit` (`/docker/chummercomplete/chummer-ui-kit`), with checksum parity for `chummer6-hub-registry` in `/docker/chummercomplete/chummer-hub-registry`.
+- WL-D009-03 `done`: confirmed existing runnable follow-up rows `WL-D007-DRIFT-2026-03-13-57..62` already in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` as the canonical remedy path.
+- WL-D009-04 `done`: did not reopen completed `WL-D007`/`WL-D010`/`WL-D011`; drift handling remains routed through `REVIEW_TEMPLATE_MIRROR_BACKLOG.md` runnable rows per slice rule.
+- WL-D009-05 `done`: required closeout verification succeeded via `bash scripts/ai/verify.sh`; this cycle records the no-duplicate drift delta against the already-queued backlog rows.
+- Feedback incorporation: no unread feedback files are pending in this slice.
+
+### WL-D009 Cycle 2026-03-13T15:48:37Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: revalidated required startup state and mirror checks.
+- WL-D009-02 `done`: confirmed unresolved review-template mirror drift remains for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit` (`/docker/chummercomplete/chummer-ui-kit` checksum mismatch), and `chummer6-media-factory`, while `chummer6-hub-registry` stays in checksum parity at `/docker/chummercomplete/chummer-hub-registry`.
+- WL-D009-03 `done`: confirmed existing runnable follow-up rows remain applicable for the drifting targets only; `chummer6-hub-registry` no longer needs a queued follow-up because the mirrored review template is already in parity.
+- WL-D009-04 `done`: did not append duplicate rows or reopen completed `WL-D007`/`WL-D010`/`WL-D011`; drift handling remains routed through current queued follow-up rows.
+- WL-D009-05 `done`: `scripts/ai/set-status.sh` is not present in this repo; verification status remains recorded in canonical queue/worklist/maintenance docs.
+- WL-D009-06 `done`: required closeout verification succeeded via `bash scripts/ai/verify.sh`.
+
+### WL-D009 Cycle 2026-03-13T16:33:33Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied slice feedback condition (`No unread feedback files`); oldest-first unread check against `feedback/.applied.log` returned no pending feedback files.
+- WL-D009-03 `done`: revalidated ownership canon in `products/chummer/OWNERSHIP_MATRIX.md`; no owner/boundary drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated contract and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no package-ownership or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no phase/milestone status, exit criteria, or current-release blocker drift was detected and `last_reviewed` remains `2026-03-13` (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`).
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=5f33218e422bda39ff91e6a849ccc4c5a79ba4b50e5580ce0c446d28a5b16efd`, `sha256=5a9fde4fcbd82ffefaa08647ee2952c11f113ab837be059bde59b5e0536cb451`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published this dated no-change split-wave delta note for ownership matrix, contract canon, blockers, and milestone registry.
+
+### WL-D009 Cycle 2026-03-13T16:36:34Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied slice feedback condition (`No unread feedback files`); oldest-first unread check returned `UNREAD_COUNT=0`.
+- WL-D009-03 `done`: revalidated ownership canon in `products/chummer/OWNERSHIP_MATRIX.md`; no owner/boundary drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated contract and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no package-ownership or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no phase/milestone status, exit criteria, or current-release blocker drift was detected and `last_reviewed` remains `2026-03-13` (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`).
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=5f33218e422bda39ff91e6a849ccc4c5a79ba4b50e5580ce0c446d28a5b16efd`, `sha256=5a9fde4fcbd82ffefaa08647ee2952c11f113ab837be059bde59b5e0536cb451`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published this dated no-change split-wave delta note for ownership matrix, contract canon, blockers, and milestone registry.
+
+### WL-D009 Cycle 2026-03-13T16:40:24Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied slice feedback condition (`No unread feedback files`); oldest-first unread check against `feedback/.applied.log` returned `UNREAD_COUNT=0`.
+- WL-D009-03 `done`: revalidated ownership canon in `products/chummer/OWNERSHIP_MATRIX.md`; no owner/boundary drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated contract and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no package-ownership or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no phase/milestone status, exit criteria, or current-release blocker drift was detected and `last_reviewed` remains `2026-03-13` (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`).
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=5f33218e422bda39ff91e6a849ccc4c5a79ba4b50e5580ce0c446d28a5b16efd`, `sha256=5a9fde4fcbd82ffefaa08647ee2952c11f113ab837be059bde59b5e0536cb451`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published this dated no-change split-wave delta note for ownership matrix, contract canon, blockers, and milestone registry.
+
+### WL-D009 Cycle 2026-03-13T16:44:55Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: processed unread feedback oldest-first for this cycle by incorporating `feedback/2026-03-11-github-review-pr.md`; aligned stale publish-preflight timestamp evidence in this log from `2026-03-11T16:22:35Z` to canonical `2026-03-11T17:00:56Z` to match cross-file WL-D007 evidence.
+- WL-D009-03 `done`: revalidated ownership canon in `products/chummer/OWNERSHIP_MATRIX.md`; no owner/boundary drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated contract and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no package-ownership or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no phase/milestone status, exit criteria, or current-release blocker drift was detected and `last_reviewed` remains `2026-03-13` (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`).
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md` and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=5f33218e422bda39ff91e6a849ccc4c5a79ba4b50e5580ce0c446d28a5b16efd`, `sha256=5a9fde4fcbd82ffefaa08647ee2952c11f113ab837be059bde59b5e0536cb451`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published this dated split-wave delta note for ownership matrix, contract canon, blockers, and milestone registry; this cycle includes the cross-log evidence consistency fix from feedback.
+
+### WL-D009 Cycle 2026-03-13T16:48:36Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: applied the provided slice condition (`No unread feedback files`); oldest-first unread check against `feedback/.applied.log` returned `UNREAD_COUNT=0`.
+- WL-D009-03 `done`: revalidated ownership canon in `products/chummer/OWNERSHIP_MATRIX.md`; no owner/boundary drift was detected (`sha256=feffb7fca0454e638578aecbe0914f11a515746fda7a0db57de6a1e343bebd67`).
+- WL-D009-04 `done`: revalidated contract and blocker canon in `products/chummer/CONTRACT_SETS.yaml` and `products/chummer/GROUP_BLOCKERS.md`; no package-ownership or blocker-state drift was detected (`sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`, `sha256=bb7fd0cdff31d1c9737a30c5f0e5cab8edd55b5d04b8eeeab088f1f414c4e28c`).
+- WL-D009-05 `done`: revalidated milestone registry canon in `products/chummer/PROGRAM_MILESTONES.yaml`; no phase/milestone status, exit criteria, or current-release blocker drift was detected and `last_reviewed` remains `2026-03-13` (`sha256=80512bdbfed24a9f0b3ddaf0031d601011ef847fe2450349ca9c4422734a9ed0`).
+- WL-D009-06 `done`: revalidated executable backlog mapping for `WL-D009` remains current in `WORKLIST.md`, `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md`, and `.codex-studio/published/QUEUE.generated.yaml` (`sha256=5f33218e422bda39ff91e6a849ccc4c5a79ba4b50e5580ce0c446d28a5b16efd`, `sha256=5a9fde4fcbd82ffefaa08647ee2952c11f113ab837be059bde59b5e0536cb451`, `sha256=6fb7f863876bd71cc3cfc25e3988f15a6981d05842d1511ee13afdeb9cfdeda0`); `scripts/ai/set-status.sh` is not present in this repo.
+- WL-D009-07 `done`: published this dated no-change split-wave delta note for ownership matrix, contract canon, blockers, and milestone registry.

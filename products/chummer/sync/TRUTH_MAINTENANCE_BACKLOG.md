@@ -19,7 +19,7 @@ Execution scope:
 | WL-D009-02 | done | Reconcile ownership drift against active repo boundaries and forbidden dependencies. | `products/chummer/OWNERSHIP_MATRIX.md` | changed sections or explicit no-change note |
 | WL-D009-03 | done | Reconcile contract family ownership, package ids, and dependency boundaries. | `products/chummer/CONTRACT_SETS.yaml` | changed rows or explicit no-change note |
 | WL-D009-04 | done | Reconcile cross-repo blockers and ensure blocker ownership/status is current. | `products/chummer/GROUP_BLOCKERS.md` | changed blockers or explicit no-change note |
-| WL-D009-05 | done | Reconcile milestone ETA/completion/blockers and refresh `last_reviewed`. | `products/chummer/PROGRAM_MILESTONES.yaml` | updated `last_reviewed` + changed/no-change note |
+| WL-D009-05 | done | Reconcile phase/milestone status, exit criteria coverage, current release blockers, and refresh `last_reviewed`. | `products/chummer/PROGRAM_MILESTONES.yaml` | updated `last_reviewed` + changed/no-change note |
 | WL-D009-06 | done | Verify WL-D009 remains represented by current milestone-truth coverage and executable backlog references. | `WORKLIST.md`, `products/chummer/PROGRAM_MILESTONES.yaml` | coverage + reference check note |
 | WL-D009-07 | done | Close cycle with dated delta summary and next-cycle follow-up hooks. | `products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md` | summary entry with follow-ups |
 

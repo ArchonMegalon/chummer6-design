@@ -11,7 +11,6 @@ common_product_sources:
 - products/chummer/CONTRACT_SETS.yaml
 - products/chummer/GROUP_BLOCKERS.md
 - products/chummer/OWNERSHIP_MATRIX.md
-common_review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
 mirrors:
 - repo: chummer6-core
   product_target: .codex-design/product
@@ -28,49 +27,49 @@ mirrors:
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/core.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/core.AGENTS.template.md
 - repo: chummer6-ui
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/presentation.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/presentation.AGENTS.template.md
 - repo: chummer6-hub
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/run-services.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/run-services.AGENTS.template.md
 - repo: chummer6-mobile
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/play.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/play.AGENTS.template.md
 - repo: chummer6-ui-kit
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/ui-kit.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/ui-kit.AGENTS.template.md
 - repo: chummer6-hub-registry
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/hub-registry.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/hub-registry.AGENTS.template.md
 - repo: chummer6-media-factory
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/media-factory.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/GENERIC_REVIEW_CHECKLIST.md
+  review_source: products/chummer/review/media-factory.AGENTS.template.md
 validation_rules:
 - Every active worker-driven code repo must appear in mirrors.
 - Missing .codex-design mirror coverage is a blocker.
