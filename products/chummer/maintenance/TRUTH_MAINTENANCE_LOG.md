@@ -2135,3 +2135,95 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 - Re-read the latest recurring closeout evidence and confirmed `WL-D013 Cycle 2026-03-13O` remains the current no-change split-wave truth-maintenance result.
 - Confirmed no new unread feedback or repo-local truth drift requires an immediate follow-up cycle beyond the already-recorded `WL-D013 Cycle 2026-03-13O` closeout.
 - Marked `WL-D013` done in `WORKLIST.md`, `products/chummer/PROGRAM_MILESTONES.yaml`, and `.codex-studio/published/QUEUE.generated.yaml` so recurring maintenance goes dormant until a new truth delta exists.
+
+## 2026-03-14
+
+### WL-D016 Queue Materialization 2026-03-14T00:00:00Z (operator: codex, system re-entry)
+- Executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- Confirmed no unread feedback files for this slice (`feedback/.applied.log` only; `UNREAD_COUNT=0`).
+- Kept the existing runnable backlog canon at `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`WL-D009-01..07`) and reopened recurring milestone/worklist mapping as `WL-D016` in `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml`.
+- Replaced stale generic queue overlay prompts in `.codex-studio/published/QUEUE.generated.yaml` with explicit executable `WL-D016` cycle steps.
+
+### WL-D016 Cycle 2026-03-14A (operator: codex, system re-entry)
+- WL-D009-01 `done`: re-ran split-wave truth-maintenance cycle setup and validated runnable references before closeout.
+- WL-D009-02 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was found (no change, `sha256=668d4e60e3efc16e26bcb171fd8b057ae4cc1527d9760c8da0cf441335b60af8`).
+- WL-D009-03 `done`: revalidated `products/chummer/CONTRACT_SETS.yaml`; contract-family ownership and package naming remain current (no change, `sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`).
+- WL-D009-04 `done`: revalidated `products/chummer/GROUP_BLOCKERS.md`; blocker ownership/status remains current (no change, `sha256=68bad124c3dd6ff2036c91ffc5b4c18daba3b1b7b7232c39e2db05ff3d4c1649`).
+- WL-D009-05 `done`: revalidated `products/chummer/PROGRAM_MILESTONES.yaml`; phase/milestone truth remains internally consistent and `last_reviewed` was refreshed to `2026-03-14`.
+- WL-D009-06 `done`: revalidated executable queue mapping is current and runnable in `WORKLIST.md`, `products/chummer/PROGRAM_MILESTONES.yaml`, and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md`.
+- WL-D009-07 `done`: published this dated split-wave delta note noting milestone registry refresh (`last_reviewed = 2026-03-14`); ownership matrix, contract canon, and blockers remained unchanged; recurring truth maintenance remains active as `WL-D016`.
+
+### WL-D016 Cycle 2026-03-14B (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and re-inspected repository state before edits.
+- WL-D009-02 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift detected (no change, `sha256=668d4e60e3efc16e26bcb171fd8b057ae4cc1527d9760c8da0cf441335b60af8`).
+- WL-D009-03 `done`: revalidated `products/chummer/CONTRACT_SETS.yaml`; no contract-family ownership or package-boundary drift detected (no change, `sha256=ac5f131161a360f7de20896ddc58b80409ea14a875e04531ba217a30b058a8fd`).
+- WL-D009-04 `done`: revalidated `products/chummer/GROUP_BLOCKERS.md`; no blocker ownership or status drift detected (no change, `sha256=68bad124c3dd6ff2036c91ffc5b4c18daba3b1b7b7232c39e2db05ff3d4c1649`).
+- WL-D009-05 `done`: revalidated `products/chummer/PROGRAM_MILESTONES.yaml`; phase/milestone structure remains internally consistent, `last_reviewed` remains `2026-03-14`, and an explicit no-change assertion was not possible after in-cycle updates; current hash is `sha256=3d38dd64384a53f826e616d6fe90f8f0ed4a981571acc91c41c863261286b61e`.
+- WL-D009-06 `done`: verified recurring mapping remains runnable in `WORKLIST.md` (`sha256=b7063aacc4bedaa465097026856bd46403fb5f99e58c03d36eacc422e3fea82c`) and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=232133a57f61af6717a08e3f6b48f69c6c898badd6175790ab5e006c44fa786c`); also normalized `.codex-studio/published/QUEUE.generated.yaml` so cycle evidence now matches repository state and excludes stale generic overlays.
+- WL-D009-07 `done`: cycle closeout published as an explicit dated split-wave delta noting milestone registry refresh (`last_reviewed = 2026-03-14`); ownership matrix, contract canon, blockers, milestones, and mapping remained unchanged; recurring truth maintenance remains active as `WL-D016`.
+
+### WL-D016 Cycle 2026-03-14C (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and re-inspected repository state before edits.
+- WL-D009-02 `done`: reconciled ownership boundaries and forbidden dependencies across `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary drift detected (no change, `sha256=668d4e60e3efc16e26bcb171fd8b057ae4cc1527d9760c8da0cf441335b60af8`).
+- WL-D009-03 `done`: reconciled contract-family ownership, canonical package IDs, and boundary ownership text across `products/chummer/CONTRACT_SETS.yaml`, `products/chummer/OWNERSHIP_MATRIX.md`, and `products/chummer/ARCHITECTURE.md`; no contract-owner or package-id drift was detected, and `products/chummer/CONTRACT_SETS.yaml` `last_reviewed` was refreshed to `2026-03-14` (`sha256=4ad08a4e4265930cdc1b28fa3f9fdec3e67647da65430ec71b68e916109aff81`).
+- WL-D009-04 `done`: reconciled cross-repo blocker ownership and status against current split-wave scope in `products/chummer/GROUP_BLOCKERS.md`; no blocker drift detected (no change, `sha256=68bad124c3dd6ff2036c91ffc5b4c18daba3b1b7b7232c39e2db05ff3d4c1649`).
+- WL-D009-05 `done`: reconciled phase/milestone status, exit criteria coverage, current-release blockers, and `last_reviewed` in `products/chummer/PROGRAM_MILESTONES.yaml`; phase/milestone structure remains internally consistent and `last_reviewed` remains `2026-03-14` (no change assertion, `sha256=3d38dd64384a53f826e616d6fe90f8f0ed4a981571acc91c41c863261286b61e`).
+- WL-D009-06 `done`: verified recurring mapping remains runnable across `WORKLIST.md` (`sha256=b7063aacc4bedaa465097026856bd46403fb5f99e58c03d36eacc422e3fea82c`) and `products/chummer/PROGRAM_MILESTONES.yaml` (backlog-defined canonical files for this row).
+- WL-D009-07 `done`: published explicit closeout for `WL-D016 Cycle 2026-03-14C` noting milestone registry and blocker/ownership/mapping no-change status; recurring truth maintenance remains active as `WL-D016`.
+- Feedback incorporation: processed `feedback/2026-03-14-github-review-pr.md` and corrected cycle-row alignment so `WL-D009-02..07` map to backlog-defined scopes (ownership, contracts, blockers, milestones, mapping, closeout) in canonical order.
+
+### WL-D016 Cycle 2026-03-14D (operator: codex, system re-entry)
+- WL-D009-07 `done`: explicit no-change split-wave truth delta executed after the 2026-03-14 feedback reconciliation; this pass detected no new canonical content deltas.
+- Evidence: `products/chummer/OWNERSHIP_MATRIX.md` unchanged (`sha256=668d4e60e3efc16e26bcb171fd8b057ae4cc1527d9760c8da0cf441335b60af8`), `products/chummer/CONTRACT_SETS.yaml` unchanged in contract ownership and package scope (`sha256=4ad08a4e4265930cdc1b28fa3f9fdec3e67647da65430ec71b68e916109aff81` with `last_reviewed=2026-03-14`), `products/chummer/GROUP_BLOCKERS.md` unchanged (`sha256=68bad124c3dd6ff2036c91ffc5b4c18daba3b1b7b7232c39e2db05ff3d4c1649`), `products/chummer/PROGRAM_MILESTONES.yaml` unchanged (`sha256=3d38dd64384a53f826e616d6fe90f8f0ed4a981571acc91c41c863261286b61e`), and recurring mapping evidence remained unchanged in `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml` (`WL-D016` remains mapped and runnable).
+
+### WL-D016 Cycle 2026-03-14E (operator: codex, system re-entry)
+- WL-D009-01 `done`: re-entered the recurring split-wave truth-maintenance lane and revalidated required startup reads for this cycle.
+- WL-D009-02 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was detected (no change, `sha256=668d4e60e3efc16e26bcb171fd8b057ae4cc1527d9760c8da0cf441335b60af8`).
+- WL-D009-03 `done`: revalidated `products/chummer/CONTRACT_SETS.yaml`; no contract-family ownership or canonical package-ID drift was detected (no change, `sha256=4ad08a4e4265930cdc1b28fa3f9fdec3e67647da65430ec71b68e916109aff81`).
+- WL-D009-04 `done`: revalidated `products/chummer/GROUP_BLOCKERS.md`; blocker ownership/status remains aligned with current split-wave state (no change, `sha256=68bad124c3dd6ff2036c91ffc5b4c18daba3b1b7b7232c39e2db05ff3d4c1649`).
+- WL-D009-05 `done`: revalidated `products/chummer/PROGRAM_MILESTONES.yaml`; phase/milestone truth remains internally consistent and `last_reviewed` remains `2026-03-14` (no change, `sha256=eff2afa67498925437b8817f35e36a902e872ff185312f4b11a63b7a15179126`).
+- WL-D009-06 `done`: revalidated recurring mapping in `WORKLIST.md` (`sha256=5beead8b16b86e13ec4e05565bfb0c3a33c6673845434f82f75d94edf66a2903`) and `products/chummer/PROGRAM_MILESTONES.yaml` plus queue overlay alignment in `.codex-studio/published/QUEUE.generated.yaml` (`sha256=9c407576d40637694ef3b6ae913d8121c06c060ee4607d7a0b61405ce83f34d2`), with canonical step IDs set to `WL-D009-01..07`.
+- WL-D009-07 `done`: published this dated no-change split-wave truth delta; recurring lane remains active as `WL-D016` and this cycle closes with queue/backlog row-ID alignment restored.
+- Feedback incorporation: applied `feedback/2026-03-14-github-review-pr.md` by replacing `WL-D016-01..07` queue-step IDs with canonical `WL-D009-01..07` to match `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md`.
+
+### WL-D016 Cycle 2026-03-14F (operator: codex, system re-entry)
+- WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
+- WL-D009-02 `done`: incorporated required unread feedback in provided oldest-first order: `feedback/2026-03-14-013735-audit-task-11676.md` then `feedback/2026-03-14-013735-audit-task-11679.md`.
+- WL-D009-03 `done`: materialized missing recurring repo-local mirror publication scope by extending `products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md` with executable recurring rows `WL-D018-01..05` while leaving WL-D008 completion evidence intact.
+- WL-D009-04 `done`: mapped the new recurring mirror lane as queued work item `WL-D018` in both `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml` so uncovered-scope and queue-exhaustion findings are backed by explicit milestone-linked backlog.
+- WL-D009-05 `done`: replaced stale generic queue-overlay prompts in `.codex-studio/published/QUEUE.generated.yaml` with explicit executable queue steps `WL-D018-01..05` and removed the stale milestone-coverage re-entry line for already completed WL-D006 scope.
+- WL-D009-06 `done`: revalidated queue/backlog consistency across `WORKLIST.md`, `products/chummer/PROGRAM_MILESTONES.yaml`, `.codex-studio/published/QUEUE.generated.yaml`, and `products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md`; recurring lanes now cover truth maintenance (`WL-D016`), review-template parity (`WL-D017`), and repo-local mirror parity (`WL-D018`).
+- WL-D009-07 `done`: published this dated split-wave delta note; ownership matrix, contract canon, blockers, and milestone phase exit criteria stayed unchanged in this cycle while uncovered mirror scope was materialized into runnable recurring queue work.
+
+### WL-D016 Cycle 2026-03-14T07:33:16Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T07:35:53Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14G (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice (`2026-03-14T07:38:18Z`).
+
+### WL-D016 Cycle 2026-03-14T07:40:34Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T07:42:53Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T09:18:08Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T07:47:54Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T07:50:04Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T07:52:15Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T07:54:30Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T20:06:48Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
