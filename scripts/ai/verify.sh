@@ -20,16 +20,16 @@ for path in \
   products/chummer/sync/sync-manifest.yaml \
   products/chummer/sync/publish-rules.yaml \
   products/chummer/projects/core.md \
-  products/chummer/projects/presentation.md \
-  products/chummer/projects/run-services.md \
-  products/chummer/projects/play.md \
+  products/chummer/projects/ui.md \
+  products/chummer/projects/hub.md \
+  products/chummer/projects/mobile.md \
   products/chummer/projects/ui-kit.md \
   products/chummer/projects/hub-registry.md \
   products/chummer/projects/design.md \
   products/chummer/review/core.AGENTS.template.md \
-  products/chummer/review/presentation.AGENTS.template.md \
-  products/chummer/review/run-services.AGENTS.template.md \
-  products/chummer/review/play.AGENTS.template.md \
+  products/chummer/review/ui.AGENTS.template.md \
+  products/chummer/review/hub.AGENTS.template.md \
+  products/chummer/review/mobile.AGENTS.template.md \
   products/chummer/review/ui-kit.AGENTS.template.md \
   products/chummer/review/hub-registry.AGENTS.template.md; do
   test -f "$repo_root/$path"

@@ -1,1 +1,47 @@
-/docker/chummercomplete/chummer-design/products/chummer/projects/play.md
+# Mobile implementation scope
+
+## Mission
+
+`chummer6-mobile` owns the dedicated player/GM/session shell for Chummer6:
+local-first play, reconnect/replay behavior, mobile/tablet UX, and installable PWA hardening.
+
+## Owns
+
+* player shell and GM shell for live play
+* local-first session ledger handling on the client side
+* reconnect, replay, resume, and observer continuity on the play shell side
+* offline/media caching for play use
+* dedicated `/api/play/*` route consumption and play-shell integration
+* installable PWA hardening for mobile/tablet play
+
+## Must not own
+
+* workbench/browser/desktop builder UX
+* engine/rules evaluation truth
+* registry or publication moderation UX
+* hosted orchestration ownership
+* copied shared contracts or copied shared UI primitives
+
+## Package boundary
+
+`chummer6-mobile` must consume canonical shared packages only:
+
+* `Chummer.Engine.Contracts`
+* `Chummer.Play.Contracts`
+* `Chummer.Ui.Kit`
+
+## Boundary truth
+
+The mobile boundary is healthy when the live shell can trust replay/resume without re-owning engine or workbench concerns.
+
+Current exit criteria remain practical, not decorative:
+
+* WL-005 class local-first seams must be boringly trustworthy
+* observer and cross-device continuity must stay in the play-shell boundary
+* package-only discipline must remain strict
+* old `chummer-play` naming must disappear from the live repo identity
+
+## Current reality
+
+This is one of the healthiest splits in the family.
+The remaining work is mostly seam hardening and release closure, not identity confusion.

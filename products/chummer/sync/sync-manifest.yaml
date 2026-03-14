@@ -32,23 +32,23 @@ mirrors:
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
-  repo_source: products/chummer/projects/presentation.md
+  repo_source: products/chummer/projects/ui.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/presentation.AGENTS.template.md
+  review_source: products/chummer/review/ui.AGENTS.template.md
 - repo: chummer6-hub
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
-  repo_source: products/chummer/projects/run-services.md
+  repo_source: products/chummer/projects/hub.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/run-services.AGENTS.template.md
+  review_source: products/chummer/review/hub.AGENTS.template.md
 - repo: chummer6-mobile
   product_target: .codex-design/product
   product_sources: *id001
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
-  repo_source: products/chummer/projects/play.md
+  repo_source: products/chummer/projects/mobile.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
-  review_source: products/chummer/review/play.AGENTS.template.md
+  review_source: products/chummer/review/mobile.AGENTS.template.md
 - repo: chummer6-ui-kit
   product_target: .codex-design/product
   product_sources: *id001

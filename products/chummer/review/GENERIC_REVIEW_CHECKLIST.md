@@ -10,9 +10,9 @@ Use this review context in every mirrored Chummer code repo.
 
 Reject if:
 
-* play behavior appears inside presentation
-* workbench behavior appears inside play
-* run-services regrows registry persistence or media execution
+* mobile behavior appears inside UI
+* workbench behavior appears inside mobile
+* hub regrows registry persistence or media execution
 * engine regrows UI or hosted-service authority
 * ui-kit gains domain DTOs or service logic
 
@@ -26,7 +26,7 @@ Reject if:
 
 * the change creates a duplicate shared DTO family
 * the change uses an ambiguous or legacy package name when canon is defined
-* the change smuggles engine semantics into play/run wrappers
+* the change smuggles engine semantics into mobile/hub wrappers
 
 ## 3. Mirror check
 
