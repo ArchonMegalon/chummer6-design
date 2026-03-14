@@ -1,5 +1,17 @@
 # Review Template Mirror Publish Evidence (WL-D007)
 
+## Cycle 2026-03-14T00:57:17Z (WL-D014-02/WL-D014-03 parity recheck)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-57 | chummer6-core | `e70701ba` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-58 | chummer6-ui | `84c56492` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-59 | chummer6-hub | `d0120b87` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-63 | chummer6-mobile | `1e348753` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-60 | chummer6-ui-kit | `8a30d1ab` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-61 | chummer6-hub-registry | `db4f4309` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-62 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+
 ## Cycle 2026-03-14T00:00:00Z (WL-D014-02/03 follow-up)
 
 | Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
