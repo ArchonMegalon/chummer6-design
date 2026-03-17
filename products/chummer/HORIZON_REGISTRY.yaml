@@ -1,0 +1,185 @@
+product: chummer
+version: 1
+purpose: Canonical machine-readable horizon registry for downstream guide generation and future build alignment.
+rules:
+- Downstream generators must source horizon existence, order, and public eligibility from this file.
+- Horizon docs in products/chummer/horizons/*.md remain the long-form human-readable canon.
+- A horizon listed here is a future-capability lane, not a shipment promise.
+- A horizon must define an eventual build path before it is treated as more than public storytelling.
+horizons:
+- id: nexus-pan
+  title: NEXUS-PAN
+  status: horizon
+  canon_doc: products/chummer/horizons/nexus-pan.md
+  public_guide:
+    enabled: true
+    order: 10
+    pain_label: My devices drift and the table loses confidence.
+  build_path:
+    intent: eventual_product_lane
+    current_state: horizon
+    next_state: bounded_research
+    owning_repos:
+    - chummer6-core
+    - chummer6-mobile
+    - chummer6-hub
+    milestone_family: H3
+    release_blocking: false
+  foundations:
+  - D1
+  - D2
+  - B0
+  tool_posture:
+    promoted: []
+    bounded: []
+- id: alice
+  title: ALICE
+  status: horizon
+  canon_doc: products/chummer/horizons/alice.md
+  public_guide:
+    enabled: true
+    order: 20
+    pain_label: We only discover weak builds after they explode in public.
+  build_path:
+    intent: eventual_product_lane
+    current_state: horizon
+    next_state: bounded_research
+    owning_repos:
+    - chummer6-core
+    - chummer6-ui
+    - chummer6-hub
+    milestone_family: H3
+    release_blocking: false
+  foundations:
+  - D0
+  - D2
+  - E0
+  tool_posture:
+    promoted:
+    - AI Magicx
+    bounded:
+    - 1min.AI
+- id: karma-forge
+  title: KARMA FORGE
+  status: horizon
+  canon_doc: products/chummer/horizons/karma-forge.md
+  public_guide:
+    enabled: true
+    order: 30
+    pain_label: I want house rules without fork chaos.
+  build_path:
+    intent: eventual_product_lane
+    current_state: horizon
+    next_state: bounded_research
+    owning_repos:
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-hub-registry
+    milestone_family: H3
+    release_blocking: false
+  foundations:
+  - A1
+  - A2
+  - C0
+  - D2
+  tool_posture:
+    promoted:
+    - Prompting Systems
+    - MetaSurvey
+    - ApproveThis
+    bounded:
+    - AI Magicx
+- id: jackpoint
+  title: JACKPOINT
+  status: horizon
+  canon_doc: products/chummer/horizons/jackpoint.md
+  public_guide:
+    enabled: true
+    order: 40
+    pain_label: I want dossiers, recaps, and briefings that feel good without making things up.
+  build_path:
+    intent: eventual_product_lane
+    current_state: horizon
+    next_state: bounded_research
+    owning_repos:
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-media-factory
+    milestone_family: H3
+    release_blocking: false
+  foundations:
+  - C0
+  - C1
+  - C1c
+  - E2b
+  tool_posture:
+    promoted:
+    - MarkupGo
+    - Soundmadeseen
+    - PeekShot
+    - Documentation.AI
+    - First Book ai
+    bounded:
+    - Unmixr AI
+    - Mootion
+    - Paperguide
+- id: runsite
+  title: RUNSITE
+  status: horizon
+  canon_doc: products/chummer/horizons/runsite.md
+  public_guide:
+    enabled: true
+    order: 50
+    pain_label: My players still misread the space even after the briefing.
+  build_path:
+    intent: eventual_product_lane
+    current_state: horizon
+    next_state: bounded_research
+    owning_repos:
+    - chummer6-hub
+    - chummer6-media-factory
+    milestone_family: H3
+    release_blocking: false
+  foundations:
+  - C1
+  - C1c
+  - E2b
+  tool_posture:
+    promoted:
+    - Crezlo Tours
+    - AvoMap
+    - PeekShot
+    bounded:
+    - Soundmadeseen
+    - BrowserAct
+- id: runbook-press
+  title: RUNBOOK PRESS
+  status: horizon
+  canon_doc: products/chummer/horizons/runbook-press.md
+  public_guide:
+    enabled: true
+    order: 60
+    pain_label: I want real primers, handbooks, and campaign books without duct-taping ten tools together.
+  build_path:
+    intent: eventual_product_lane
+    current_state: horizon
+    next_state: bounded_research
+    owning_repos:
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-media-factory
+    milestone_family: H3
+    release_blocking: false
+  foundations:
+  - C0
+  - C1
+  - E2b
+  tool_posture:
+    promoted:
+    - First Book ai
+    - MarkupGo
+    - Documentation.AI
+    bounded:
+    - Paperguide
+    - Soundmadeseen
+    - Unmixr AI

@@ -4,6 +4,7 @@ common_product_sources:
 - products/chummer/README.md
 - products/chummer/VISION.md
 - products/chummer/HORIZONS.md
+- products/chummer/HORIZON_REGISTRY.yaml
 - products/chummer/horizons/README.md
 - products/chummer/horizons/nexus-pan.md
 - products/chummer/horizons/alice.md
@@ -15,6 +16,7 @@ common_product_sources:
 - products/chummer/EXTERNAL_TOOLS_PLANE.md
 - products/chummer/LTD_CAPABILITY_MAP.md
 - products/chummer/PUBLIC_GUIDE_POLICY.md
+- products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml
 - products/chummer/HORIZON_SIGNAL_POLICY.md
 - products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md
 - products/chummer/ROADMAP.md
@@ -30,6 +32,7 @@ mirrors:
   - products/chummer/README.md
   - products/chummer/VISION.md
   - products/chummer/HORIZONS.md
+  - products/chummer/HORIZON_REGISTRY.yaml
   - products/chummer/horizons/README.md
   - products/chummer/horizons/nexus-pan.md
   - products/chummer/horizons/alice.md
@@ -41,6 +44,7 @@ mirrors:
   - products/chummer/EXTERNAL_TOOLS_PLANE.md
   - products/chummer/LTD_CAPABILITY_MAP.md
   - products/chummer/PUBLIC_GUIDE_POLICY.md
+  - products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml
   - products/chummer/HORIZON_SIGNAL_POLICY.md
   - products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md
   - products/chummer/ROADMAP.md

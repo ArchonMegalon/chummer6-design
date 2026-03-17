@@ -14,7 +14,7 @@ Cross-repo truth is canonical only when published here.
 
 ### Local authority
 
-Code repos may refine local implementation details, but they may not overrule cross-repo ownership, package canon, or milestone truth.
+Code repos may refine local implementation details, but they may not overrule cross-repo ownership, package canon, milestone truth, or the machine-readable public-guide source files.
 
 ### Conflict rule
 
@@ -26,10 +26,12 @@ Every active product must have:
 
 * vision
 * horizons
+* a machine-readable horizon registry
 * architecture
 * ownership
 * roadmap / milestones
 * contract registry entry
+* public guide/export policy if a downstream guide exists
 * blocker publication
 * repo implementation scope
 * review context
@@ -57,9 +59,9 @@ Changes canonical package ownership, contract families, compatibility promises, 
 
 Changes program sequencing, status, release gates, or group blockers.
 
-### Type F — horizon/public-signal change
+### Type F — horizon/public-signal/public-guide-source change
 
-Changes canonical future-capability posture, public-guide relationship, or advisory participation rules.
+Changes canonical future-capability posture, public-guide relationship, advisory participation rules, or the machine-readable source that downstream generators must consume.
 
 Types C, D, E, and F must update multiple canonical files in the same change.
 
@@ -94,11 +96,13 @@ Types C, D, E, and F must update multiple canonical files in the same change.
 * `sync/sync-manifest.yaml`
 * review coverage
 
-### Horizon/public-signal change must update
+### Horizon/public-signal/public-guide-source change must update
 
 * `products/chummer/HORIZONS.md`
+* `products/chummer/HORIZON_REGISTRY.yaml`
 * `products/chummer/horizons/*.md`
 * `products/chummer/PUBLIC_GUIDE_POLICY.md`
+* `products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
 * `products/chummer/HORIZON_SIGNAL_POLICY.md`
 * `products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
 * `products/chummer/PROGRAM_MILESTONES.yaml`
@@ -124,10 +128,11 @@ Auditors publish to canonical files, not to random scratch notes.
 * contract truth -> `CONTRACT_SETS.yaml`
 * group blockers -> `GROUP_BLOCKERS.md`
 * repo-boundary findings -> affected `projects/*.md` and `OWNERSHIP_MATRIX.md`
+* public-guide source drift -> `HORIZON_REGISTRY.yaml`, `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`, and related horizon docs
 
 ## Design debt rules
 
-A design repo issue is **red** if it can mislead workers into widening a boundary or duplicating a contract family.
+A design repo issue is **red** if it can mislead workers or generators into widening a boundary, duplicating a contract family, or projecting future lanes from stale local catalogs.
 
 Examples:
 
@@ -135,6 +140,7 @@ Examples:
 * stale blocker file that recommends a repo split already completed
 * one-line stub architecture docs
 * package owner ambiguity
+* downstream generator relying on a private hardcoded horizon catalog
 
 ## Done criteria for “lead designer” status
 
@@ -147,3 +153,4 @@ Examples:
 * package ownership is unambiguous
 * milestones are specific enough to gate release decisions
 * no orphan design docs live outside canonical product paths
+* downstream public-guide generation can source horizons from canonical machine-readable files instead of private local catalogs

@@ -108,11 +108,11 @@ This lane makes future-capability posture explicit without turning Horizons into
 
 ### H0 — Horizon canon established
 
-`chummer6-design` publishes a canonical Horizons layer and keeps it ahead of downstream public storytelling.
+`chummer6-design` publishes a canonical Horizons layer, a machine-readable horizon registry, and keeps both ahead of downstream public storytelling.
 
 ### H1 — Public guide and horizon sync policy
 
-`Chummer6` is governed as a downstream guide that cannot outrun canonical horizon docs.
+`Chummer6` is governed as a downstream guide that cannot outrun canonical horizon docs, and its generators source from design-owned export manifests instead of private horizon catalogs.
 
 ### H2 — LTD capability map complete
 
@@ -120,7 +120,7 @@ Owned external tools are mapped to promoted, bounded, parked, or non-product sta
 
 ### H3 — First bounded horizon promoted to research-ready
 
-At least one horizon has enough owner, tool, and provenance detail to move from vague idea to bounded research lane.
+At least one horizon has enough owner, tool, provenance, and build-path detail to move from vague idea to bounded research lane.
 
 ### H4 — Public signal loop defined
 

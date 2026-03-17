@@ -8,17 +8,19 @@ Read in this order:
 
 1. `VISION.md`
 2. `HORIZONS.md`
-3. `ARCHITECTURE.md`
-4. `EXTERNAL_TOOLS_PLANE.md`
-5. `LTD_CAPABILITY_MAP.md`
-6. `PUBLIC_GUIDE_POLICY.md`
-7. `HORIZON_SIGNAL_POLICY.md`
-8. `PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
-9. `OWNERSHIP_MATRIX.md`
-10. `PROGRAM_MILESTONES.yaml`
-11. `CONTRACT_SETS.yaml`
-12. `GROUP_BLOCKERS.md`
-13. `projects/*.md` for repo-specific scope
+3. `HORIZON_REGISTRY.yaml`
+4. `ARCHITECTURE.md`
+5. `EXTERNAL_TOOLS_PLANE.md`
+6. `LTD_CAPABILITY_MAP.md`
+7. `PUBLIC_GUIDE_POLICY.md`
+8. `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
+9. `HORIZON_SIGNAL_POLICY.md`
+10. `PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
+11. `OWNERSHIP_MATRIX.md`
+12. `PROGRAM_MILESTONES.yaml`
+13. `CONTRACT_SETS.yaml`
+14. `GROUP_BLOCKERS.md`
+15. `projects/*.md` for repo-specific scope
 
 ## Active Chummer repos
 
@@ -66,18 +68,19 @@ These inform the program but are not part of the main release train:
 
 * `fleet` — worker orchestration/control plane
 * `executive-assistant` — skill/runtime reference pattern for governed assistant orchestration
-* `Chummer6` — downstream public guide and Horizons explainer repo; useful for public storytelling, but not canonical design truth
+* `Chummer6` — downstream public guide and Horizons explainer repo; generated from design canon and export manifests, never from a private horizon catalog
 
 ## Current program priorities
 
 1. Make `chummer6-design` trustworthy as the lead-designer repo.
 2. Finalize package/contract canon.
-3. Complete the play split with package-only dependency discipline in `chummer6-mobile`.
-4. Expand `chummer6-ui-kit` into the real shared UI boundary.
-5. Complete registry and media service extractions.
-6. Shrink `chummer6-hub` into orchestration-only ownership where appropriate.
-7. Purify `chummer6-core` into a true deterministic engine repo.
-8. Finish product surfaces and release hardening.
+3. Make horizon and public-guide canon machine-readable.
+4. Complete the play split with package-only dependency discipline in `chummer6-mobile`.
+5. Expand `chummer6-ui-kit` into the real shared UI boundary.
+6. Complete registry and media service extractions.
+7. Shrink `chummer6-hub` into orchestration-only ownership where appropriate.
+8. Purify `chummer6-core` into a true deterministic engine repo.
+9. Finish product surfaces and release hardening.
 
 ## Non-goal
 
@@ -89,4 +92,5 @@ The immediate goal is:
 * package-based contracts
 * real split completion
 * durable design truth
+* machine-readable downstream canon
 * repeatable release governance

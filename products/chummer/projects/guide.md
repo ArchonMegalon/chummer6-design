@@ -1,39 +1,44 @@
-# guide
+# Chummer6 public guide scope
 
-## Purpose
-`Chummer6` is the downstream human guide repo for the Chummer6 program.
+## Mission
 
-## Rules
-- human-only
-- downstream-only
-- not canonical design
-- not a queue source
-- not a contract source
-- not a milestone source
-- not mirrored into code repos
-- not dispatchable
+`Chummer6` is the downstream human-facing guide for Project Chummer.
+Its job is to explain the product, current status, and future capability posture in public language.
+It is not the place where future lanes become canonical.
 
-## Allowed inputs
-- `chummer6-design`
-- the latest public program status
-- owning repo READMEs
-- approved public-surface summaries
+## What it owns
 
-## Priority order
-If `Chummer6` disagrees with canonical sources, fix `Chummer6`.
+* public explanation
+* public onboarding flow
+* public-friendly horizon storytelling
+* release shelf / test-dummy lane
+* public participation links
+* downstream generated guide assets
 
-1. `chummer6-design`
-2. latest public program status
-3. owning repo
-4. `Chummer6`
+## What it does not own
 
-## Out of scope
-- code
-- tests
-- scripts
-- runtime instructions
-- queue files
-- contract files
-- milestone authority
-- ADR authorship
-- review-template authorship
+* horizon existence
+* horizon ordering
+* owning repo truth
+* tool posture truth
+* canonical build promises
+* release gating
+
+## Generation source rule
+
+The guide generator must source:
+
+* horizon existence, ordering, and public eligibility from `products/chummer/HORIZON_REGISTRY.yaml`
+* page/source mapping rules from `products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
+* long-form future-lane meaning from `products/chummer/horizons/*.md`
+
+The guide generator must not:
+
+* define a private horizon catalog
+* keep retired horizons alive through stale local state
+* invent build promises, owners, or tool posture
+
+## Working rule
+
+`Chummer6` is allowed to be vivid.
+It is not allowed to be sovereign.

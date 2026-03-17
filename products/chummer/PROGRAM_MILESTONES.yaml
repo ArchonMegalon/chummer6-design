@@ -106,6 +106,7 @@ program_phases:
     status: open
     exit:
     - "`HORIZONS.md` exists in the product front door."
+    - "`HORIZON_REGISTRY.yaml` exists and is the machine-readable source of horizon existence and order."
     - Canonical horizon docs exist for promoted future lanes.
     - Future-capability posture no longer lives only in downstream public guide copy.
   - id: H1
@@ -115,8 +116,10 @@ program_phases:
     status: open
     exit:
     - "`PUBLIC_GUIDE_POLICY.md` defines `Chummer6` as downstream-only."
+    - "`PUBLIC_GUIDE_EXPORT_MANIFEST.yaml` defines downstream horizon generation rules."
     - The guide cannot outrun canonical horizon docs.
     - Public-facing repo posture is explicit in the front door.
+    - Downstream guide generation no longer depends on a private hardcoded horizon catalog.
   - id: H2
     title: LTD capability map complete
     owners:
@@ -137,6 +140,7 @@ program_phases:
     status: open
     exit:
     - At least one horizon has named owners, tool posture, and provenance constraints.
+    - At least one horizon has an explicit build path from horizon -> bounded research -> candidate build lane.
     - The horizon is ready for bounded research without widening release scope.
   - id: H4
     title: Public signal loop defined
