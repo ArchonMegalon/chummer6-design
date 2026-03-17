@@ -12,6 +12,9 @@ It exists to prevent cross-repo architectural drift.
 * package/contract ownership truth
 * milestone truth
 * blocker truth
+* horizon truth
+* public-guide relationship policy
+* public participation and signal policy
 * mirror/sync truth
 * repo-specific implementation scopes
 * generic review context
@@ -31,6 +34,7 @@ It exists to prevent cross-repo architectural drift.
 4. Make mirror coverage complete and enforceable.
 5. Publish real blocker and milestone truth.
 6. Add and maintain durable roadmap coverage for every active repo.
+7. Keep horizon canon ahead of downstream guide rhetoric and real LTD inventory drift.
 
 ## Quality bar
 
@@ -72,4 +76,3 @@ No external tool is architecturally accepted until:
 * system-of-record rule is defined
 * kill-switch rule is defined
 * rollout milestone is defined
-

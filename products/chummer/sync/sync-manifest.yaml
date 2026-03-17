@@ -3,8 +3,20 @@ canonical_source_repo: chummer6-design
 common_product_sources:
 - products/chummer/README.md
 - products/chummer/VISION.md
+- products/chummer/HORIZONS.md
+- products/chummer/horizons/README.md
+- products/chummer/horizons/nexus-pan.md
+- products/chummer/horizons/alice.md
+- products/chummer/horizons/karma-forge.md
+- products/chummer/horizons/jackpoint.md
+- products/chummer/horizons/runsite.md
+- products/chummer/horizons/runbook-press.md
 - products/chummer/ARCHITECTURE.md
 - products/chummer/EXTERNAL_TOOLS_PLANE.md
+- products/chummer/LTD_CAPABILITY_MAP.md
+- products/chummer/PUBLIC_GUIDE_POLICY.md
+- products/chummer/HORIZON_SIGNAL_POLICY.md
+- products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md
 - products/chummer/ROADMAP.md
 - products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md
 - products/chummer/PROGRAM_MILESTONES.yaml
@@ -17,7 +29,20 @@ mirrors:
   product_sources: &id001
   - products/chummer/README.md
   - products/chummer/VISION.md
+  - products/chummer/HORIZONS.md
+  - products/chummer/horizons/README.md
+  - products/chummer/horizons/nexus-pan.md
+  - products/chummer/horizons/alice.md
+  - products/chummer/horizons/karma-forge.md
+  - products/chummer/horizons/jackpoint.md
+  - products/chummer/horizons/runsite.md
+  - products/chummer/horizons/runbook-press.md
   - products/chummer/ARCHITECTURE.md
+  - products/chummer/EXTERNAL_TOOLS_PLANE.md
+  - products/chummer/LTD_CAPABILITY_MAP.md
+  - products/chummer/PUBLIC_GUIDE_POLICY.md
+  - products/chummer/HORIZON_SIGNAL_POLICY.md
+  - products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md
   - products/chummer/ROADMAP.md
   - products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md
   - products/chummer/PROGRAM_MILESTONES.yaml
