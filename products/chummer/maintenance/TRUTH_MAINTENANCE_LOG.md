@@ -224,7 +224,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 - WL-D009-03 `done`: revalidated WL-D007 mirror parity in each provisioned code repo by recomputing source/target SHA-256 values for `.codex-design/review/REVIEW_CONTEXT.md` (core-engine, presentation, run-services, play, ui-kit, hub-registry all match).
 - WL-D009-04 `done`: refreshed WL-D007 publish evidence refs in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md` to current destination commits while preserving checksum parity truth.
 - WL-D009-05 `done`: refreshed corresponding publish refs in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` to keep backlog and evidence synchronized.
-- WL-D009-06 `done`: reconfirmed WL-D007-07 remains blocked because `/docker/fleet/repos/chummer-media-factory` is still not provisioned in the local workspace.
+- WL-D009-06 `done`: reconfirmed WL-D007-07 remains blocked because `/docker/fleet/repos/chummer6-media-factory` is still not provisioned in the local workspace.
 - WL-D009-07 `done`: `scripts/ai/set-status.sh` is not available in this repo; executed `bash scripts/ai/verify.sh` for required closeout verification before completion handoff.
 
 ### WL-D009 Cycle 2026-03-10J (operator: codex, system re-entry)
@@ -240,7 +240,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10K (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
 - WL-D009-02 `done`: incorporated feedback oldest-first for this slice (`feedback/2026-03-09-design-repo-front-door.md`, `feedback/2026-03-09-185354-audit-task-11676.md`); no new canonical delta was required beyond current executable mirror backlog/worklist mapping.
-- WL-D009-03 `done`: executed WL-D010 preflight check and confirmed `/docker/fleet/repos/chummer-media-factory` is still missing, so publish/checksum/closeout steps remain blocked pending provisioning.
+- WL-D009-03 `done`: executed WL-D010 preflight check and confirmed `/docker/fleet/repos/chummer6-media-factory` is still missing, so publish/checksum/closeout steps remain blocked pending provisioning.
 - WL-D009-04 `done`: updated `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md` to reflect current blocked statuses for `WL-D010-01..05` with dated preflight evidence and explicit unblock conditions.
 - WL-D009-05 `done`: updated `WORKLIST.md` status for `WL-D010` from `queued` to `blocked` to match executable queue truth and current provisioning state.
 - WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; requirement was followed by recording status transitions directly in canonical queue docs.
@@ -284,7 +284,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10P (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
 - WL-D009-02 `done`: incorporated feedback oldest-first for this slice focus: `feedback/2026-03-09-design-repo-front-door.md` then `feedback/2026-03-09-185354-audit-task-11676.md`.
-- WL-D009-03 `done`: executed WL-D010 preflight check; destination repo path `/docker/fleet/repos/chummer-media-factory` is still missing (`No such file or directory`), so unblock backlog steps requiring repo-local publish remain blocked.
+- WL-D009-03 `done`: executed WL-D010 preflight check; destination repo path `/docker/fleet/repos/chummer6-media-factory` is still missing (`No such file or directory`), so unblock backlog steps requiring repo-local publish remain blocked.
 - WL-D009-04 `done`: refreshed blocker evidence wording in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md` and `WORKLIST.md` to capture this cycle's latest preflight result without changing queue state.
 - WL-D009-05 `done`: `scripts/ai/set-status.sh` is not available in this repo; status progression continues to be recorded directly in canonical queue and maintenance docs.
 
@@ -325,7 +325,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10U (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
 - WL-D009-02 `done`: processed unread feedback files oldest-first through `feedback/2026-03-10-111344-audit-task-11681.md`; findings remain repeated uncovered-scope/queue overlays that are already mapped to executable backlog (`WL-D007`, `WL-D008`, `WL-D009`, `WL-D010`).
-- WL-D009-03 `done`: executed WL-D010 preflight check and reconfirmed the destination repo `/docker/fleet/repos/chummer-media-factory` is still missing in this workspace (`repo_missing`).
+- WL-D009-03 `done`: executed WL-D010 preflight check and reconfirmed the destination repo `/docker/fleet/repos/chummer6-media-factory` is still missing in this workspace (`repo_missing`).
 - WL-D009-04 `done`: revalidated source template checksum for `products/chummer/review/media-factory.AGENTS.template.md` as `672bb3a8b521decc9e79aad24c6c679d3d5f43879bac99565e9c8001bcf46697` (unchanged).
 - WL-D009-05 `done`: refreshed blocked-state evidence wording for WL-D010 in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md` and `WORKLIST.md` to capture this cycle's preflight re-run.
 - WL-D009-06 `done`: `scripts/ai/set-status.sh` and `scripts/ai/verify.sh` are not present in this repo; status progression remains recorded directly in canonical queue/worklist/log docs.
@@ -374,7 +374,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 - WL-D009-07 `done`: removed stale queue-overlay duplication for review-guidance template materialization from `.codex-studio/published/QUEUE.generated.yaml`; concrete executable backlog items remain (`WL-D007`, `WL-D008`, `WL-D009`).
 
 ### WL-D010 Cycle 2026-03-10AC (operator: codex, system re-entry)
-- WL-D010-01 `blocked`: re-ran the media-factory provisioning preflight at `2026-03-10T18:30:09Z`; `/docker/fleet/repos/chummer-media-factory` is still absent, so no `publish_ref` can be recorded yet.
+- WL-D010-01 `blocked`: re-ran the media-factory provisioning preflight at `2026-03-10T18:30:09Z`; `/docker/fleet/repos/chummer6-media-factory` is still absent, so no `publish_ref` can be recorded yet.
 - WL-D010-02 `blocked`: publish step remains blocked because the destination repo checkout and `.codex-design/review/REVIEW_CONTEXT.md` target do not exist.
 - WL-D010-03 `blocked`: checksum parity cannot be computed for the destination file; source template SHA-256 remains `672bb3a8b521decc9e79aad24c6c679d3d5f43879bac99565e9c8001bcf46697`.
 - WL-D010-04 `blocked`: `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` and `WORKLIST.md` remain blocked, but their timestamps were refreshed to the current preflight cycle so the canonical queue state stays current.
@@ -423,11 +423,11 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10AE (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
 - WL-D009-02 `done`: incorporated required unread feedback oldest-first for this slice, including `feedback/2026-03-10-082708-audit-task-11676.md`, `feedback/2026-03-10-082708-audit-task-11679.md`, and the newer unread audit drops from `feedback/2026-03-10-120116-audit-task-11676.md` through `feedback/2026-03-10-123535-audit-task-11682.md`.
-- WL-D009-03 `done`: executed WL-D010 preflight check and reconfirmed the destination repo `/docker/fleet/repos/chummer-media-factory` is still missing (checked at `2026-03-10T12:57:46Z`).
+- WL-D009-03 `done`: executed WL-D010 preflight check and reconfirmed the destination repo `/docker/fleet/repos/chummer6-media-factory` is still missing (checked at `2026-03-10T12:57:46Z`).
 - WL-D009-04 `done`: refreshed blocked-state evidence with exact timestamp in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`, and `WORKLIST.md`.
 - WL-D009-05 `done`: added concrete post-provisioning execution runbook commands to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md` so WL-D010 can be completed immediately once provisioning lands.
 - WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains recorded directly in canonical queue/worklist/maintenance docs.
-- WL-D009-07 `done`: ran `bash scripts/ai/verify.sh` for closeout in this slice; queue remains blocked only by missing `/docker/fleet/repos/chummer-media-factory` provisioning.
+- WL-D009-07 `done`: ran `bash scripts/ai/verify.sh` for closeout in this slice; queue remains blocked only by missing `/docker/fleet/repos/chummer6-media-factory` provisioning.
 
 ### WL-D009 Cycle 2026-03-10AF (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
@@ -488,7 +488,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10AL (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits.
 - WL-D009-02 `done`: incorporated required unread feedback files in provided oldest-first order for this slice: `feedback/2026-03-10-082708-audit-task-11676.md`, then `feedback/2026-03-10-082708-audit-task-11679.md`.
-- WL-D009-03 `done`: executed WL-D010 preflight check and reconfirmed the destination repo `/docker/fleet/repos/chummer-media-factory` is still missing (checked at `2026-03-10T15:25:34Z`).
+- WL-D009-03 `done`: executed WL-D010 preflight check and reconfirmed the destination repo `/docker/fleet/repos/chummer6-media-factory` is still missing (checked at `2026-03-10T15:25:34Z`).
 - WL-D009-04 `done`: refreshed blocked-state evidence timestamps in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`, and `WORKLIST.md`.
 - WL-D009-05 `done`: reconfirmed source template checksum for `products/chummer/review/media-factory.AGENTS.template.md` remains `672bb3a8b521decc9e79aad24c6c679d3d5f43879bac99565e9c8001bcf46697`.
 - WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains recorded directly in canonical queue/worklist/maintenance docs.
@@ -523,7 +523,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10AP (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits; left unrelated user modifications untouched.
 - WL-D009-02 `done`: incorporated required unread feedback files in provided oldest-first order for this slice: `feedback/2026-03-10-082708-audit-task-11676.md`, then `feedback/2026-03-10-082708-audit-task-11679.md`; both findings remain materially covered by active executable backlog (`WL-D007`, `WL-D008`, `WL-D010`).
-- WL-D009-03 `done`: executed WL-D010 preflight check at `2026-03-10T18:14:16Z` and reconfirmed the destination repo `/docker/fleet/repos/chummer-media-factory` is still missing, so WL-D010-02..05 remain blocked by repo provisioning.
+- WL-D009-03 `done`: executed WL-D010 preflight check at `2026-03-10T18:14:16Z` and reconfirmed the destination repo `/docker/fleet/repos/chummer6-media-factory` is still missing, so WL-D010-02..05 remain blocked by repo provisioning.
 - WL-D009-04 `done`: revalidated source template checksum for `products/chummer/review/media-factory.AGENTS.template.md` as `672bb3a8b521decc9e79aad24c6c679d3d5f43879bac99565e9c8001bcf46697` (unchanged).
 - WL-D009-05 `done`: refreshed current-cycle blocked evidence in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`, `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`, and `WORKLIST.md`.
 - WL-D009-06 `done`: `scripts/ai/set-status.sh` and `scripts/ai/verify.sh` are not present in this repo, so status and verification remain recorded via canonical queue/worklist/maintenance evidence only.
@@ -531,7 +531,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-10AQ (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, `AGENTS.md`) and inspected repository state before edits; left unrelated in-progress user changes untouched.
 - WL-D009-02 `done`: incorporated required unread feedback files in provided order for this slice: `feedback/2026-03-10-082708-audit-task-11676.md`, then `feedback/2026-03-10-082708-audit-task-11679.md`; both findings remain materially covered by active executable backlog (`WL-D007`, `WL-D008`, `WL-D010`).
-- WL-D009-03 `done`: executed the largest sandbox-safe WL-D010 step by rerunning preflight at `2026-03-10T18:23:38Z`; `/docker/fleet/repos/chummer-media-factory` is still missing, so WL-D010-02..05 remain blocked by repo provisioning.
+- WL-D009-03 `done`: executed the largest sandbox-safe WL-D010 step by rerunning preflight at `2026-03-10T18:23:38Z`; `/docker/fleet/repos/chummer6-media-factory` is still missing, so WL-D010-02..05 remain blocked by repo provisioning.
 - WL-D009-04 `done`: appended the current blocked WL-D007-07 cycle to `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md` and refreshed blocked-state timestamps in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_UNBLOCK_BACKLOG.md` and `WORKLIST.md`.
 - WL-D009-05 `done`: reconfirmed the source template checksum for `products/chummer/review/media-factory.AGENTS.template.md` remains `672bb3a8b521decc9e79aad24c6c679d3d5f43879bac99565e9c8001bcf46697`.
 - WL-D009-06 `done`: `scripts/ai/set-status.sh` is not present in this repo; status progression remains recorded directly in canonical queue/worklist/maintenance docs.
@@ -1315,7 +1315,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-11T23:31:00Z (operator: codex, wrapper republish)
 - WL-D009-01 `done`: reran repo-family truth-maintenance against the live `chummer6-*` family.
 - WL-D009-02 `done`: republished review-context mirrors into core, ui, hub, mobile, ui-kit, hub-registry, and media-factory from the canonical design templates.
-- WL-D009-03 `done`: corrected the active media-factory workspace path to `/docker/fleet/repos/chummer-media-factory` across worklist, unblock backlog, and truth-maintenance docs.
+- WL-D009-03 `done`: corrected the active media-factory workspace path to `/docker/fleet/repos/chummer6-media-factory` across worklist, unblock backlog, and truth-maintenance docs.
 - WL-D009-04 `done`: refreshed review-template evidence and closed WL-D007, WL-D010, and WL-D011 as complete.
 - WL-D009-05 `done`: published the current-cycle no-longer-blocked state into canonical queue docs.
 
@@ -1323,7 +1323,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D009 Cycle 2026-03-11T23:32:58Z (operator: codex, wrapper republish)
 - WL-D009-01 `done`: reran repo-family truth-maintenance against the live `chummer6-*` family.
 - WL-D009-02 `done`: republished review-context mirrors into core, ui, hub, mobile, ui-kit, hub-registry, and media-factory from the canonical design templates.
-- WL-D009-03 `done`: corrected the active media-factory workspace path to `/docker/fleet/repos/chummer-media-factory` across worklist, unblock backlog, and truth-maintenance docs.
+- WL-D009-03 `done`: corrected the active media-factory workspace path to `/docker/fleet/repos/chummer6-media-factory` across worklist, unblock backlog, and truth-maintenance docs.
 - WL-D009-04 `done`: refreshed review-template evidence and closed WL-D007, WL-D010, and WL-D011 as complete.
 - WL-D009-05 `done`: published the current-cycle no-longer-blocked state into canonical queue docs.
 
@@ -2037,7 +2037,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 
 ### WL-D009 Cycle 2026-03-13T15:48:20Z (operator: codex, system re-entry)
 - WL-D009-01 `done`: re-ran startup slice read/checks and used latest SHA-256 parity checks against review template mirrors in the seven target repos from `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`/`products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md`.
-- WL-D009-02 `done`: revalidated review-guidance mirror state and detected active drift for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-media-factory`, and `chummer6-ui-kit` (`/docker/chummercomplete/chummer-ui-kit`), with checksum parity for `chummer6-hub-registry` in `/docker/chummercomplete/chummer-hub-registry`.
+- WL-D009-02 `done`: revalidated review-guidance mirror state and detected active drift for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-media-factory`, and `chummer6-ui-kit` (`/docker/chummercomplete/chummer6-ui-kit`), with checksum parity for `chummer6-hub-registry` in `/docker/chummercomplete/chummer6-hub-registry`.
 - WL-D009-03 `done`: confirmed existing runnable follow-up rows `WL-D007-DRIFT-2026-03-13-57..62` already in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_BACKLOG.md` as the canonical remedy path.
 - WL-D009-04 `done`: did not reopen completed `WL-D007`/`WL-D010`/`WL-D011`; drift handling remains routed through `REVIEW_TEMPLATE_MIRROR_BACKLOG.md` runnable rows per slice rule.
 - WL-D009-05 `done`: required closeout verification succeeded via `bash scripts/ai/verify.sh`; this cycle records the no-duplicate drift delta against the already-queued backlog rows.
@@ -2045,7 +2045,7 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 
 ### WL-D009 Cycle 2026-03-13T15:48:37Z (operator: codex, system re-entry)
 - WL-D009-01 `done`: revalidated required startup state and mirror checks.
-- WL-D009-02 `done`: confirmed unresolved review-template mirror drift remains for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit` (`/docker/chummercomplete/chummer-ui-kit` checksum mismatch), and `chummer6-media-factory`, while `chummer6-hub-registry` stays in checksum parity at `/docker/chummercomplete/chummer-hub-registry`.
+- WL-D009-02 `done`: confirmed unresolved review-template mirror drift remains for `chummer6-core`, `chummer6-ui`, `chummer6-hub`, `chummer6-ui-kit` (`/docker/chummercomplete/chummer6-ui-kit` checksum mismatch), and `chummer6-media-factory`, while `chummer6-hub-registry` stays in checksum parity at `/docker/chummercomplete/chummer6-hub-registry`.
 - WL-D009-03 `done`: confirmed existing runnable follow-up rows remain applicable for the drifting targets only; `chummer6-hub-registry` no longer needs a queued follow-up because the mirrored review template is already in parity.
 - WL-D009-04 `done`: did not append duplicate rows or reopen completed `WL-D007`/`WL-D010`/`WL-D011`; drift handling remains routed through current queued follow-up rows.
 - WL-D009-05 `done`: `scripts/ai/set-status.sh` is not present in this repo; verification status remains recorded in canonical queue/worklist/maintenance docs.

@@ -1,5 +1,41 @@
 # Review Template Mirror Publish Evidence (WL-D007)
 
+## Cycle 2026-03-14T06:54:15Z (WL-D014-03 explicit no-change parity evidence)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-57 | chummer6-core | `feb79af6` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-58 | chummer6-ui | `84c56492` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-59 | chummer6-hub | `d0120b87` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-63 | chummer6-mobile | `1e348753` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-60 | chummer6-ui-kit | `8a30d1ab` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-61 | chummer6-hub-registry | `db4f4309` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-62 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+
+## Cycle 2026-03-14T06:51:53Z (WL-D014-03 explicit no-change parity evidence)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-57 | chummer6-core | `feb79af6` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-58 | chummer6-ui | `84c56492` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-59 | chummer6-hub | `d0120b87` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-63 | chummer6-mobile | `1e348753` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-60 | chummer6-ui-kit | `8a30d1ab` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-61 | chummer6-hub-registry | `db4f4309` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-62 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+
+## Cycle 2026-03-14T06:49:28Z (WL-D014-03 explicit no-change parity evidence)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-DRIFT-2026-03-13-57 | chummer6-core | `feb79af6` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-58 | chummer6-ui | `84c56492` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-59 | chummer6-hub | `d0120b87` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-63 | chummer6-mobile | `1e348753` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-60 | chummer6-ui-kit | `8a30d1ab` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-61 | chummer6-hub-registry | `db4f4309` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (explicit no-change parity evidence; source and target match, no republish required) |
+| WL-D007-DRIFT-2026-03-13-62 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+
 ## Cycle 2026-03-14T00:57:17Z (WL-D014-02/WL-D014-03 parity recheck)
 
 | Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
@@ -589,3 +625,21 @@ Evidence format:
 | WL-D007-DRIFT-2026-03-13-60 | chummer6-ui-kit | `fadb4e9` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (explicit no-change parity evidence; source and target match, no republish required) |
 | WL-D007-DRIFT-2026-03-13-61 | chummer6-hub-registry | `811dc52` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (explicit no-change parity evidence; source and target match, no republish required) |
 | WL-D007-DRIFT-2026-03-13-62 | chummer6-media-factory | `e5a8e4d` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (explicit no-change parity evidence; source and target match, no republish required) |
+
+## Cycle 2026-03-14T06:40:45Z (WL-D014-01 checksum scan)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-01 | chummer6-core | `feb79af6` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum scan only; parity match) |
+| WL-D007-02 | chummer6-ui | `84c56492` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | `c9478bcfff2b6cf5c183bb5f38d7e4c739b92bccd971a03a194bd3bad6b14cb6` | done (checksum scan only; parity match) |
+| WL-D007-03 | chummer6-hub | `d0120b87` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | `7a45928eee0421dcb91e771aae927b729453790064c492bacedb78dd0a547f1d` | done (checksum scan only; parity match) |
+| WL-D007-04 | chummer6-mobile | `1e348753` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | `b3a4e2b645e07ec1f808ab2609edfc9559b761f71858fcb675c29e73b935c60e` | done (checksum scan only; parity match) |
+| WL-D007-05 | chummer6-ui-kit | `8a30d1ab` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum scan only; parity match) |
+| WL-D007-06 | chummer6-hub-registry | `db4f4309` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum scan only; parity match) |
+| WL-D007-07 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `31a132f07bf0cd4cc2158c8ec24432f7b2b8a3953fb0b8d8a229ea2a48da8084` | drift-detected (checksum scan only; requires WL-D014-02 follow-up) |
+
+## Cycle 2026-03-14T06:43:54Z (WL-D014-02 drift-only republish)
+
+| Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D007-07 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (drift detected in WL-D014-01 at `2026-03-14T06:40:45Z`; republished drifted target and restored checksum parity in WL-D014-02) |
