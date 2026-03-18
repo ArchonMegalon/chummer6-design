@@ -66,6 +66,12 @@ Not allowed at root:
 4. Workers implement inside `chummer6-*` code repos using mirrored local guidance.
 5. Auditors publish drift and blockers back into this repo.
 
+Mirror republish shortcut:
+
+```bash
+python3 scripts/ai/publish_local_mirrors.py
+```
+
 ## Precedence rule
 
 When documents disagree, precedence is:
