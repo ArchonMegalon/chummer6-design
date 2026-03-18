@@ -66,11 +66,11 @@ program_phases:
     - chummer6-hub
     - chummer6-mobile
     - chummer6-design
-    status: open
+    status: in_progress
     exit:
     - Chummer.Play.Contracts has stable ownership and package naming.
-    - Play consumes package-only seams.
-    - No duplicated semantic session DTO families remain across play/run surfaces.
+    - Play consumes package-only seams, including hosted play API and replay/checkpoint DTOs.
+    - No duplicated play/run session transport DTO families remain across hosted/mobile surfaces.
   - id: A3
     title: Run orchestration contract canon
     owners:
@@ -261,10 +261,10 @@ program_phases:
     - chummer6-core
     - chummer6-hub
     - chummer6-mobile
-    status: open
+    status: in_progress
     exit:
     - Semantic session mutation DTOs have one canonical owner.
-    - Transport wrappers do not invent second semantic event families.
+    - Transport wrappers do not invent second semantic event families or duplicate each other across play/run seams.
   - id: D2
     title: Runtime bundle canon complete
     owners:

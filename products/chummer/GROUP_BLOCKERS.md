@@ -1,6 +1,6 @@
 # Group blockers
 
-Last reviewed: 2026-03-13
+Last reviewed: 2026-03-18
 
 Review-template mirror drift status:
 - `BLK-007` remains cleared after WL-D012 drift follow-up completion and the `chummer6-ui` UI-template parity revalidation recorded on `2026-03-13T18:15:19Z`.
@@ -44,7 +44,7 @@ Owners:
 
 ### BLK-003 — session semantic duplication risk
 
-Semantic session event meaning still risks being defined in more than one place when play/run transport contracts duplicate engine semantics.
+Semantic session event meaning still risks drifting when engine canon is incomplete, even though the direct play/run transport duplication was removed.
 
 Why this matters:
 Replay truth, sync truth, reducer truth, and client truth can drift.
