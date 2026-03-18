@@ -13,6 +13,8 @@
 * explain provenance
 * engine contract canon
 * ruleset/plugin/script ABI
+* source-pack canon until a separate lifecycle is proven necessary
+* build-time knowledge projections derived from core-owned truth
 
 ## Must not own
 
@@ -29,6 +31,7 @@
 * remove `Chummer.Presentation.Contracts` and `Chummer.RunServices.Contracts` source leaks
 * quarantine legacy tooling out of the active engine solution
 * keep `Chummer.Engine.Contracts` as the only canonical engine/shared DTO source
+* make portable deterministic host strategy possible without committing to a rewrite doctrine
 * fix README drift so the repo no longer narrates play/workbench/service heads as engine ownership
 
 ## Milestone spine
@@ -59,3 +62,4 @@ It may emit deterministic payloads or consume approved deterministic inputs for 
 * depend on provider SDKs
 * depend on third-party orchestration APIs
 * embed vendor-specific receipts as canonical engine truth
+* allow assistants or projections to compute mechanics outside core-owned execution

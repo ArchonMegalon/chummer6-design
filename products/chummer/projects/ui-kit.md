@@ -27,7 +27,7 @@
 
 * become the package-only shared UI boundary for presentation and play
 * grow from token seed to full component system
-* define Chummer-specific reusable patterns like explain chips, stale badges, approval chips, Spider cards, and artifact cards
+* define Chummer-specific reusable patterns like explain chips, stale badges, approval chips, Spider cards, artifact cards, citations, replay timelines, and explorable-pack entry points
 
 ## Milestone spine
 

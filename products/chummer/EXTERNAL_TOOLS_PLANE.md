@@ -22,6 +22,7 @@ without allowing any external tool to become canonical product truth.
 ## Core rule
 
 External tools may assist, route, render, summarize, visualize, archive, notify, or project. They may not become the canonical source of rules truth, session truth, approval truth, registry truth, media truth, or canon truth.
+Build-time knowledge projections derived with external help are still derived views, not a second truth store.
 
 Chummer-owned repos and Chummer-owned manifests/stores remain authoritative.
 Owning an LTD does not obligate Chummer to integrate it.
@@ -191,6 +192,115 @@ Canonical manifests remain Chummer-owned.
 
 A redeemed or activated tool is merely eligible for integration.
 It is not automatically approved for canonical runtime use.
+
+## Capability applications by horizon family
+
+### Knowledge Fabric / explainers
+
+Use for:
+
+* grounded rules explainers
+* cited help surfaces
+* build-time knowledge projections
+* assistant-ready receipts and search slices
+
+Current posture:
+
+* `Prompting Systems`
+* `Documentation.AI`
+* `AI Magicx`
+* bounded `1min.AI`
+* bounded `Paperguide`
+* bounded `BrowserAct`
+
+### RUNSITE
+
+Use for:
+
+* explorable mission-space packs
+* floor plans and hotspot overlays
+* route overlays and location briefings
+* optional narrated walkthroughs
+
+Current posture:
+
+* `Crezlo Tours`
+* `AvoMap`
+* `PeekShot`
+* optional `Soundmadeseen`
+* bounded `BrowserAct`
+
+### JACKPOINT
+
+Use for:
+
+* dossiers
+* recap packets
+* narrated briefings
+* evidence rooms
+* share cards and artifact packets
+
+Current posture:
+
+* `MarkupGo`
+* `Soundmadeseen`
+* `PeekShot`
+* `Documentation.AI`
+* bounded `Unmixr AI`
+* bounded `Mootion`
+* bounded `Paperguide`
+
+### RUNBOOK PRESS
+
+Use for:
+
+* primers
+* handbooks
+* district guides
+* campaign books
+* convention modules
+
+Current posture:
+
+* `First Book ai`
+* `MarkupGo`
+* `Documentation.AI`
+* bounded `Paperguide`
+* bounded `Soundmadeseen`
+* bounded `Unmixr AI`
+
+### Public guide generation
+
+Use for:
+
+* downstream guide generation
+* visual explainer passes
+* ops-side capture and publishing support
+
+Current posture:
+
+* `Prompting Systems`
+* `AI Magicx`
+* `BrowserAct`
+* optional `Soundmadeseen`
+
+### Community signal
+
+Use for:
+
+* advisory future-lane intake
+* prioritization signals
+* editorial approval projection
+* curation boards
+
+Current posture:
+
+* `MetaSurvey`
+* `ApproveThis`
+* `Teable`
+
+Working rule:
+community signal may shape curiosity and research priority, but it does not become canonical product truth.
 
 ## Repo ownership
 

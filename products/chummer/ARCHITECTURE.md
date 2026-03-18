@@ -71,6 +71,31 @@ Render jobs, manifests, previews, asset lifecycle, and provider adapters belong 
 
 `chummer5a` is a migration/regression oracle. It is not part of the active multi-repo architecture.
 
+### Rule 10 — Knowledge projections are derived views
+
+Build-time chunks, embeddings, graph edges, searchable receipts, and similar knowledge projections are derived artifacts.
+They may help docs, explain, search, and assistant lanes, but they do not become a second truth store.
+
+### Rule 11 — AI never computes canonical mechanics
+
+No assistant, guide lane, help lane, or media lane computes canonical mechanics.
+Mechanical claims must come from `chummer6-core` outputs, receipts, or derived projections sourced from core-owned truth.
+
+### Rule 12 — Canonical session truth is event-ledger based
+
+Canonical session truth is append-only event or ledger truth.
+Replay, rejoin, and resume must consume that ledger rather than inventing competing mutation families.
+
+### Rule 13 — CRDT is soft-surface only
+
+CRDT-style merge logic is allowed for notes, journals, plans, comments, or similar collaborative surfaces.
+It is not the authority model for mechanics, reducer truth, or canonical session state.
+
+### Rule 14 — Portable engine host is a goal, not a technology religion
+
+The deterministic engine should be portable across hosted, browser, and local embedding contexts when that reduces drift or latency.
+The architecture does not commit Chummer to a language rewrite or a single runtime target in advance.
+
 ## Repo graph
 
 ```text
@@ -164,6 +189,7 @@ A repo is considered architecturally drifting when any of the following is true:
 * its mirrored `.codex-design/*` is missing or stale
 * it duplicates a contract family owned elsewhere
 * it rebuilds a split boundary locally instead of consuming the package/service
+* it lets a knowledge projection or assistant response masquerade as canonical mechanics truth
 
 
 ## External tools plane

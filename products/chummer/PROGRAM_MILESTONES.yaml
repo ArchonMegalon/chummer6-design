@@ -91,6 +91,7 @@ program_phases:
     exit:
     - External tools policy exists centrally.
     - All owned tools are classified by architectural role.
+    - Derived knowledge projections are explicitly treated as secondary views, not system-of-record truth.
     - System-of-record rules are documented.
     - External integrations are assigned to owning repos.
 - id: H
@@ -129,6 +130,7 @@ program_phases:
     status: open
     exit:
     - Owned tools are mapped to promoted, bounded, parked, or non-product states.
+    - Capability clusters are explicit instead of staying inventory-shaped.
     - Explicit owners exist for promoted and bounded product lanes.
     - "`EXTERNAL_TOOLS_PLANE.md` and `LTD_CAPABILITY_MAP.md` agree."
   - id: H3
@@ -152,6 +154,19 @@ program_phases:
     - Public proposal lanes are explicit.
     - Advisory signal collection rules are documented.
     - "`MetaSurvey`, `ApproveThis`, and `Teable` posture is canonical."
+  - id: H5
+    title: Knowledge fabric and replay horizons canonized
+    owners:
+    - chummer6-design
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-mobile
+    - chummer6-media-factory
+    status: open
+    exit:
+    - "`KNOWLEDGE FABRIC`, `GHOSTWIRE`, and `LOCAL CO-PROCESSOR` exist in horizon canon."
+    - Architecture explicitly forbids AI-computed mechanics and second-truth knowledge projections.
+    - Replay and local-acceleration lanes remain non-blocking and bounded.
 - id: B
   title: Surface split completion
   status: open

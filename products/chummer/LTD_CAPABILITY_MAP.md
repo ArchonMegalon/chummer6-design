@@ -12,7 +12,7 @@ It does not imply that every owned tool must be integrated.
 
 ## Promoted
 
-* `1min.AI` - low-cost governed reasoning fallback in `chummer6-hub`
+* `1min.AI` - bounded specialist explain, generation, and media-assist lane behind Chummer-owned adapters
 * `AI Magicx` - structured AI provider and visual/media assistance lane
 * `Prompting Systems` - prompt, style, and persona support for guide, horizon, and media workflows
 * `BrowserAct` - no-API automation fallback, account verification, capture, and ops bridge
@@ -55,3 +55,91 @@ Default owner posture:
 * `chummer6-media-factory` - document, image, preview, audio, video, route, and archive adapters
 * `chummer6-hub-registry` - publication references and compatibility metadata
 * `chummer6-design` - policy, classification, and rollout authority
+
+## Capability clusters
+
+### Knowledge fabric / explainers
+
+Horizon fit:
+
+* `KNOWLEDGE FABRIC`
+* `ALICE`
+
+Current cluster:
+
+* `Prompting Systems`
+* `Documentation.AI`
+* `AI Magicx`
+* bounded `1min.AI`
+* bounded `Paperguide`
+* bounded `BrowserAct`
+
+Working rule:
+these tools may shape cited explainers and build-time knowledge projections, but they do not become canonical mechanics truth.
+
+### Spatial lane
+
+Horizon fit:
+
+* `RUNSITE`
+
+Current cluster:
+
+* `Crezlo Tours`
+* `AvoMap`
+* `PeekShot`
+* optional `Soundmadeseen`
+* bounded `BrowserAct`
+
+### Artifact studio lane
+
+Horizon fit:
+
+* `JACKPOINT`
+
+Current cluster:
+
+* `MarkupGo`
+* `Soundmadeseen`
+* `PeekShot`
+* `Documentation.AI`
+* bounded `Unmixr AI`
+* bounded `Mootion`
+* bounded `Paperguide`
+
+### Creator press lane
+
+Horizon fit:
+
+* `RUNBOOK PRESS`
+
+Current cluster:
+
+* `First Book ai`
+* `MarkupGo`
+* `Documentation.AI`
+* bounded `Paperguide`
+* bounded `Soundmadeseen`
+* bounded `Unmixr AI`
+
+### Community signal lane
+
+Horizon fit:
+
+* advisory future-lane prioritization only
+
+Current cluster:
+
+* `MetaSurvey`
+* `ApproveThis`
+* `Teable`
+
+### Optional local acceleration
+
+Horizon fit:
+
+* `LOCAL CO-PROCESSOR`
+
+Working rule:
+this is an architectural posture, not a mandatory LTD lane.
+No external tool in this cluster may become a required runtime dependency for normal product use.

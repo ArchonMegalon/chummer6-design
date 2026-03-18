@@ -126,6 +126,20 @@ At least one horizon has enough owner, tool, provenance, and build-path detail t
 
 Public proposals and advisory prioritization routes are collected through governed surfaces without turning votes into canonical truth.
 
+## North-star capability layers
+
+Foundation work remains first.
+The design canon may still carry non-blocking end-state capability layers so downstream repos and public guides stop improvising the future.
+
+Current non-blocking north-star layers include:
+
+* Knowledge Fabric
+* Runsite Explorer
+* Artifact Studio
+* Creator Press
+* Replay / Forensics
+* Optional Local Co-Processor
+
 ## Repo milestone spine
 
 ### `chummer6-design`

@@ -10,6 +10,7 @@
 * identity, approvals, memory, and delivery on the hosted side
 * play API aggregation and hosted session coordination
 * orchestration-side Coach/Spider/Director surfaces
+* grounded docs/help and assistant routing based on cited Chummer-owned slices
 * hosted external-integration routing that is not render-only media execution
 
 ## Must not own
@@ -19,6 +20,7 @@
 * shared UI-kit primitives
 * long-term registry persistence ownership after the registry split
 * long-term render execution ownership after the media-factory split
+* invented mechanics in help, docs, or assistant lanes
 
 ## Package boundary
 
@@ -46,3 +48,4 @@ The mission statement is correct.
 The repo body still carries more authority than the mission statement allows.
 
 This repo should keep shrinking until the tree looks like the boundary story sounds.
+It should also serve grounded, cited slices instead of raw rulebook dumps or assistant-authored rules math.

@@ -13,6 +13,7 @@
 * asset lifecycle, retention, pinning, supersession
 * provider adapters for document/image/video execution
 * signed asset access and media storage discipline
+* bounded tours, narrated clips, generated documents, and replay previews as media execution products
 
 ## Must not own
 
@@ -30,6 +31,7 @@
 * extract media execution contracts out of `chummer6-hub`
 * land the shared job/asset kernel before domain-specific rendering features
 * onboard full mirror coverage from `chummer6-design`
+* keep runsite, JACKPOINT, RUNBOOK PRESS, and replay artifacts strictly render-side rather than lore or session truth
 
 ## Milestone spine
 
@@ -92,4 +94,3 @@ If it is about campaign meaning, approvals, delivery, or rules truth, it does no
 * previews and thumbnails are linked assets
 * archive providers are never the hot path
 * provider choice is adapter-private and switchable
-

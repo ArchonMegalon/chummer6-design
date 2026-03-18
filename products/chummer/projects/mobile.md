@@ -10,6 +10,7 @@ local-first play, reconnect/replay behavior, mobile/tablet UX, and installable P
 * player shell and GM shell for live play
 * local-first session ledger handling on the client side
 * reconnect, replay, resume, and observer continuity on the play shell side
+* append-only event-envelope consumption and bounded delta sync on the play shell side
 * offline/media caching for play use
 * dedicated `/api/play/*` route consumption and play-shell integration
 * installable PWA hardening for mobile/tablet play
@@ -40,8 +41,10 @@ Current exit criteria remain practical, not decorative:
 * observer and cross-device continuity must stay in the play-shell boundary
 * package-only discipline must remain strict
 * old `chummer6-mobile` naming must disappear from the live repo identity
+* CRDT-style merge is soft-surface only and never replaces canonical session ledger truth
 
 ## Current reality
 
 This is one of the healthiest splits in the family.
 The remaining work is mostly seam hardening and release closure, not identity confusion.
+Replay and forensics should grow out of this append-only ledger posture rather than inventing a second session truth model.

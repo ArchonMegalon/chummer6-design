@@ -24,6 +24,9 @@ Read in this order:
 
 ## Active Chummer repos
 
+The active graph is intentionally limited to the repos listed below.
+Project Chummer does not currently introduce separate `chummer6-data`, `chummer6-api`, or `chummer6-desktop` repos; proposals with those shapes must first be adapted into the existing family and justify any later split with explicit ownership and milestone evidence.
+
 ### `chummer6-design`
 
 Lead-designer repo. Owns cross-repo canonical design truth.

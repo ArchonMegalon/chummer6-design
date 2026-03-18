@@ -9,9 +9,10 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 
 * workbench/browser/desktop UX
 * builders, inspectors, and compare flows
-* explain and audit-facing UX on the workbench side
+* explain, citation, and audit-facing UX on the workbench side
 * moderation and admin surfaces that stay outside the live play shell
 * desktop packaging, installer delivery, and workbench-side release polish
+* workbench-side what-if and grounded rules-answer experiences
 
 ## Must not own
 
@@ -20,6 +21,7 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * engine/runtime mechanics truth
 * hosted orchestration or provider-secret ownership
 * source-copied shared UI primitives that belong in `Chummer.Ui.Kit`
+* local duplicated rules logic masquerading as explain UX
 
 ## Package boundary
 
@@ -50,3 +52,4 @@ That means:
 * feature maturity can be ahead of boundary purity
 * local “done” slices do not overrule the central `B2` program blocker
 * cleanup-by-deletion is still part of the implementation scope here
+* lightweight desktop-host evaluation is allowed here, but it does not justify a new repo split by itself
