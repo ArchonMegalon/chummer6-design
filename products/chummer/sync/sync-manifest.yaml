@@ -4,13 +4,18 @@ common_product_sources:
 - products/chummer/README.md
 - products/chummer/VISION.md
 - products/chummer/HORIZONS.md
+- products/chummer/HORIZON_REGISTRY.yaml
 - products/chummer/horizons/README.md
 - products/chummer/horizons/nexus-pan.md
 - products/chummer/horizons/alice.md
 - products/chummer/horizons/karma-forge.md
+- products/chummer/horizons/knowledge-fabric.md
 - products/chummer/horizons/jackpoint.md
 - products/chummer/horizons/runsite.md
 - products/chummer/horizons/runbook-press.md
+- products/chummer/horizons/ghostwire.md
+- products/chummer/horizons/table-pulse.md
+- products/chummer/horizons/local-co-processor.md
 - products/chummer/ARCHITECTURE.md
 - products/chummer/EXTERNAL_TOOLS_PLANE.md
 - products/chummer/LTD_CAPABILITY_MAP.md
@@ -30,13 +35,18 @@ mirrors:
   - products/chummer/README.md
   - products/chummer/VISION.md
   - products/chummer/HORIZONS.md
+  - products/chummer/HORIZON_REGISTRY.yaml
   - products/chummer/horizons/README.md
   - products/chummer/horizons/nexus-pan.md
   - products/chummer/horizons/alice.md
   - products/chummer/horizons/karma-forge.md
+  - products/chummer/horizons/knowledge-fabric.md
   - products/chummer/horizons/jackpoint.md
   - products/chummer/horizons/runsite.md
   - products/chummer/horizons/runbook-press.md
+  - products/chummer/horizons/ghostwire.md
+  - products/chummer/horizons/table-pulse.md
+  - products/chummer/horizons/local-co-processor.md
   - products/chummer/ARCHITECTURE.md
   - products/chummer/EXTERNAL_TOOLS_PLANE.md
   - products/chummer/LTD_CAPABILITY_MAP.md
