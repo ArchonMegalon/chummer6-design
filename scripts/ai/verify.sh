@@ -21,6 +21,11 @@ for path in \
   products/chummer/horizons/table-pulse.md \
   products/chummer/horizons/local-co-processor.md \
   products/chummer/ARCHITECTURE.md \
+  products/chummer/PUBLIC_LANDING_POLICY.md \
+  products/chummer/PUBLIC_LANDING_MANIFEST.yaml \
+  products/chummer/PUBLIC_FEATURE_REGISTRY.yaml \
+  products/chummer/PUBLIC_USER_MODEL.md \
+  products/chummer/PUBLIC_MEDIA_BRIEFS.yaml \
   products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md \
   products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md \
   products/chummer/PUBLIC_GUIDE_POLICY.md \
@@ -59,6 +64,11 @@ for path in \
 done
 
 rg -n '^# Public guide policy' "$repo_root/products/chummer/PUBLIC_GUIDE_POLICY.md" >/dev/null
+rg -n '^# Public landing policy$|product homepage, proof shelf, and invitation surface|provider names and LTD names are implementation details' "$repo_root/products/chummer/PUBLIC_LANDING_POLICY.md" >/dev/null
+rg -n '^product: chummer$|^surface: chummer.run$|^headline: Shadowrun rules truth, with receipts\.$|^registered_overlays:$' "$repo_root/products/chummer/PUBLIC_LANDING_MANIFEST.yaml" >/dev/null
+rg -n '^product: chummer$|^surface: chummer.run$|^cards:$|^  - id: horizon_karma_forge$|^    badge: Booster first$' "$repo_root/products/chummer/PUBLIC_FEATURE_REGISTRY.yaml" >/dev/null
+rg -n '^# Public user model$|^### Guest$|^### Registered user$|booster_opt_in' "$repo_root/products/chummer/PUBLIC_USER_MODEL.md" >/dev/null
+rg -n '^product: chummer$|^surface: chummer.run$|^style_epoch:$|^  - id: hero$' "$repo_root/products/chummer/PUBLIC_MEDIA_BRIEFS.yaml" >/dev/null
 rg -n '^# Horizon signal policy' "$repo_root/products/chummer/HORIZON_SIGNAL_POLICY.md" >/dev/null
 rg -n '^# Participation and booster workflow$|participant lane|device-auth|contribution receipt|Chummer.Engine.Contracts|Chummer.Ui.Kit' "$repo_root/products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md" >/dev/null
 rg -n '^# Community Sponsorship Backlog$|Hub = account / community / ledger / entitlement plane|Fleet = sponsored worker / execution plane|EA = provider / lane / telemetry plane' "$repo_root/products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md" >/dev/null
@@ -71,6 +81,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/EXTERNAL_TOOLS_PLANE.md" \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_USER_MODEL|PUBLIC_MEDIA_BRIEFS' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'booster_first|resource_burden|recognition_eligible' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
 
 echo ok

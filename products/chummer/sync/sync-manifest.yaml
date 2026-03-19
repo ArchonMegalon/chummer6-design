@@ -17,6 +17,11 @@ common_product_sources:
 - products/chummer/horizons/table-pulse.md
 - products/chummer/horizons/local-co-processor.md
 - products/chummer/ARCHITECTURE.md
+- products/chummer/PUBLIC_LANDING_POLICY.md
+- products/chummer/PUBLIC_LANDING_MANIFEST.yaml
+- products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
+- products/chummer/PUBLIC_USER_MODEL.md
+- products/chummer/PUBLIC_MEDIA_BRIEFS.yaml
 - products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md
 - products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md
 - products/chummer/EXTERNAL_TOOLS_PLANE.md
@@ -50,6 +55,11 @@ mirrors:
   - products/chummer/horizons/table-pulse.md
   - products/chummer/horizons/local-co-processor.md
   - products/chummer/ARCHITECTURE.md
+  - products/chummer/PUBLIC_LANDING_POLICY.md
+  - products/chummer/PUBLIC_LANDING_MANIFEST.yaml
+  - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
+  - products/chummer/PUBLIC_USER_MODEL.md
+  - products/chummer/PUBLIC_MEDIA_BRIEFS.yaml
   - products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md
   - products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md
   - products/chummer/EXTERNAL_TOOLS_PLANE.md

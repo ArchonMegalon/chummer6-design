@@ -2,11 +2,13 @@
 
 ## Purpose
 `Chummer6` is the downstream human guide repo for the Chummer6 program.
+It is not the `chummer.run` homepage.
 
 ## Rules
 - human-only
 - downstream-only
 - not canonical design
+- not the primary public landing surface
 - not a queue source
 - not a contract source
 - not a milestone source
