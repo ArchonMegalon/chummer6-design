@@ -32,8 +32,8 @@ Primary consumption boundary:
 
 ## Boundary truth
 
-Feature completion inside this repo is not enough to close the program milestone.
-`B2` closes only when the repo body matches the stated boundary:
+Feature completion inside this repo was not enough to close the split milestone.
+`B2` is now treated as complete because the repo body matches the stated boundary closely enough for release:
 
 * legacy/helper/tooling roots stop dominating the tree
 * shared visual chrome migrates into `chummer6-ui-kit`
@@ -42,11 +42,12 @@ Feature completion inside this repo is not enough to close the program milestone
 
 ## Current reality
 
-The product direction is right and the boundary is now explicit enough for `B2`.
+The product direction and the release bar are now aligned.
 Retained legacy roots are compatibility cargo, not hidden ownership claims.
 
 That means:
 
-* feature maturity and boundary purity now align closely enough to close the split milestone
+* feature maturity and boundary purity now align closely enough to close both `B2` and the workbench share of `E0`
 * shared visual chrome is package-owned and regression-guarded
+* workbench release evidence is explicit in `docs/WORKBENCH_RELEASE_SIGNOFF.md`
 * any retained legacy roots must stay explicitly documented as compatibility cargo

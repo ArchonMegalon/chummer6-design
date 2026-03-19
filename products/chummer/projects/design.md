@@ -28,13 +28,10 @@ It exists to prevent cross-repo architectural drift.
 
 ## Immediate work
 
-1. Replace all stub canonical files with real content.
-2. Onboard `chummer6-media-factory` into the active design system.
-3. Remove orphan product docs from the repo root.
-4. Make mirror coverage complete and enforceable.
-5. Publish real blocker and milestone truth.
-6. Add and maintain durable roadmap coverage for every active repo.
-7. Keep horizon canon ahead of downstream guide rhetoric and real LTD inventory drift.
+1. Keep truth-maintenance, review-template, and local-mirror cycles explicit.
+2. Keep the release evidence pack current when repo truth changes.
+3. Keep horizon/public-guide/Fleet participation canon ahead of downstream rhetoric and runtime drift.
+4. Treat new product work as additive evolution rather than reopening closed split-wave truth.
 
 ## Quality bar
 

@@ -33,6 +33,7 @@ for path in \
   products/chummer/CONTRACT_SETS.yaml \
   products/chummer/GROUP_BLOCKERS.md \
   products/chummer/OWNERSHIP_MATRIX.md \
+  products/chummer/RELEASE_EVIDENCE_PACK.md \
   products/chummer/sync/sync-manifest.yaml \
   products/chummer/sync/publish-rules.yaml \
   products/chummer/projects/core.md \
@@ -59,6 +60,7 @@ rg -n '^# Public guide policy' "$repo_root/products/chummer/PUBLIC_GUIDE_POLICY.
 rg -n '^# Horizon signal policy' "$repo_root/products/chummer/HORIZON_SIGNAL_POLICY.md" >/dev/null
 rg -n '^# TABLE PULSE' "$repo_root/products/chummer/horizons/table-pulse.md" >/dev/null
 rg -n '^  title: TABLE PULSE$' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
+rg -n '^# Release Evidence Pack$|No red blockers remain|chummer6-core|chummer6-ui|chummer6-mobile|chummer6-media-factory' "$repo_root/products/chummer/RELEASE_EVIDENCE_PACK.md" >/dev/null
 rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/HORIZON_SIGNAL_POLICY.md" \
   "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" \

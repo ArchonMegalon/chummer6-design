@@ -43,5 +43,5 @@ Current exit criteria remain practical, not decorative:
 
 ## Current reality
 
-This split is materially healthy enough to close `B0`, `A2`, and `D1`.
-Remaining work is local-first hardening, release polish, and future capability depth, not whether the play shell or its package seams are real.
+This split is materially healthy enough to close `B0`, `A2`, `D1`, and `E1`.
+Remaining work is future capability depth and cross-head polish, not whether the play shell, its replay/resume guarantees, or its package seams are real.

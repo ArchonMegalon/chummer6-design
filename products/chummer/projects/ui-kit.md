@@ -25,9 +25,9 @@
 
 ## Current focus
 
-* become the package-only shared UI boundary for presentation and play
-* grow from token seed to full component system
-* define Chummer-specific reusable patterns like explain chips, stale badges, approval chips, Spider cards, and artifact cards
+* keep the package-only shared UI boundary healthy for presentation and play
+* preserve deterministic adapter and preview contracts
+* grow the component catalog additively without reopening the shared-boundary question
 
 ## Milestone spine
 
@@ -46,6 +46,16 @@
 
 If a component should be shared by workbench and play, it belongs here.
 If it requires domain DTOs or service calls to exist, it probably does not.
+
+## Current reality
+
+The active shared boundary is release-ready for the current program scope.
+
+That means:
+
+* shell, banner, stale-state, approval, offline, and accessibility primitives are package-owned and verifier-backed
+* cross-head hardening closure uses explicit owner evidence in `docs/SHARED_SURFACE_SIGNOFF.md`
+* future dense-data and catalog expansion are additive design-system growth, not a blocker on the current release lane
 
 
 ## External integration note

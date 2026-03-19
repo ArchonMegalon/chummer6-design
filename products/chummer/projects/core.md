@@ -39,7 +39,7 @@ Contract canon is materially closed:
 * hosted contract mirrors are gone from this repo
 * session semantic ownership is verifier-backed
 
-The remaining work is engine purification and hardening, not continued contract ambiguity.
+The remaining work is engine purification, not continued contract ambiguity or missing hardening/certification proof.
 
 ## Milestone spine
 

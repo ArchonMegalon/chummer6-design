@@ -12,6 +12,7 @@
 - not a milestone source
 - not mirrored into code repos
 - not dispatchable
+- generated guide surfaces must include a "How can I help?" or equivalent support page that introduces boosters and links to the Hub participation endpoint
 
 ## Allowed inputs
 - `chummer6-design`

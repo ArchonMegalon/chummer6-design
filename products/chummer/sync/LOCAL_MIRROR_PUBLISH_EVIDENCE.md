@@ -1,5 +1,21 @@
 # Local Mirror Publish Evidence (WL-D008)
 
+## WL-D018 Cycle 2026-03-19A (operator: codex, final release closeout)
+
+- WL-D018-01 `done` at `2026-03-19T10:59:51Z`: reopened the recurring local-mirror lane after the final design closeout edits.
+- WL-D018-02 `done` at `2026-03-19T10:59:51Z`: republished the drifted local mirrors with `python3 scripts/ai/publish_local_mirrors.py`.
+- Republish summary:
+  - `chummer6-core`: 5 updates
+  - `chummer6-ui`: 5 updates
+  - `chummer6-hub`: 5 updates
+  - `chummer6-mobile`: 5 updates
+  - `chummer6-ui-kit`: 5 updates
+  - `chummer6-hub-registry`: 4 updates
+  - `chummer6-media-factory`: 5 updates
+  - `fleet`: 4 updates
+- WL-D018-03 `done` at `2026-03-19T10:59:51Z`: executed `python3 scripts/ai/publish_local_mirrors.py --check` and confirmed `changed=0 removed=0` across all configured targets.
+- WL-D018-04 `done` at `2026-03-19T10:59:51Z`: closed the cycle with explicit no-drift parity after the republish; the next recurring mirror cycle only reopens when canonical design files change again.
+
 Date: 2026-03-13 (republish at 2026-03-13T10:20:41Z)
 
 Evidence format:
