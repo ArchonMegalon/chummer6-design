@@ -90,6 +90,19 @@ Fleet must not own:
 * Hub user identity truth
 * raw participant OpenAI auth state outside lane-local worker storage
 
+### Rule 11 — Petition upward, do not invent local truth
+
+When a repo cannot finish work without widening a boundary, inventing a cross-repo contract, or contradicting mirrored canon, it must petition `chummer6-design`.
+
+Blocked workers do not get to create silent local truth just because the blueprint is missing a seam.
+
+### Rule 12 — Keep canon and operational evidence separate
+
+Canonical design truth belongs in `products/chummer/*`.
+
+Recurring parity/checksum/drift evidence belongs in automation-owned machine-readable outputs plus short human summaries.
+The design repo must not become the main operational log sink for work that Fleet can verify automatically.
+
 ## Repo graph
 
 ```text
@@ -132,6 +145,7 @@ chummer6-media-factory
 
 fleet
   ├─ consumes mirrored Chummer canon from chummer6-design
+  ├─ owns parity automation and clustered queue synthesis for mirrored canon
   ├─ orchestrates repo work across Chummer codebases
   ├─ keeps cheap groundwork as the default execution plane
   └─ may open explicit premium burst lanes that still land through review authority
@@ -193,6 +207,17 @@ A repo is considered architecturally drifting when any of the following is true:
 * its mirrored `.codex-design/*` is missing or stale
 * it duplicates a contract family owned elsewhere
 * it rebuilds a split boundary locally instead of consuming the package/service
+
+## Petition and synthesis plane
+
+Canonical split:
+
+* `chummer6-design` owns petition resolution, blocker truth, milestone truth, and final boundary decisions
+* `fleet` owns recurring mirror/parity verification plus clustering repeated drift findings into smaller, clearer queue work
+* `executive-assistant` owns reasoning-heavy synthesis and petition-packet generation where LLM help is useful, plus provider-aware cognitive loops such as proactive horizon scans, human-edit reflection, bounded replanning, and interruption-budget throttling
+
+The boring parity math should move downward into automation.
+The upward path for real boundary questions should stay explicit and legal.
 
 
 ## External tools plane

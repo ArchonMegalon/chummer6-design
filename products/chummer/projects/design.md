@@ -16,6 +16,8 @@ It exists to prevent cross-repo architectural drift.
 * public-guide relationship policy
 * public participation and signal policy
 * mirror/sync truth
+* petition intake and proposal canon
+* synthesis of repeated drift findings into blocker/task truth
 * repo-specific implementation scopes
 * generic review context
 
@@ -25,13 +27,15 @@ It exists to prevent cross-repo architectural drift.
 * service implementations
 * hidden duplicate product docs outside canonical paths
 * repo-local implementation details that belong in code repos
+* giant operational parity journals that bury canonical truth
 
 ## Immediate work
 
-1. Keep truth-maintenance, review-template, and local-mirror cycles explicit.
+1. Keep canon ahead of downstream rhetoric and runtime drift.
 2. Keep the release evidence pack current when repo truth changes.
-3. Keep horizon/public-guide/Fleet participation canon ahead of downstream rhetoric and runtime drift.
-4. Treat new product work as additive evolution rather than reopening closed split-wave truth.
+3. Provide a legal petition path whenever workers are blocked by missing seams or boundary contradictions.
+4. Synthesize repeated audit/worker findings into smaller, clearer blocker and task deltas.
+5. Push recurring parity bookkeeping down into Fleet automation instead of growing giant design-side evidence diaries.
 
 ## Quality bar
 

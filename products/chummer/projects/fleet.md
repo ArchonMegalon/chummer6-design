@@ -9,6 +9,8 @@ It exists to execute mirrored canon safely and cheaply first, not to redefine pr
 
 * cheap-first automation policy for repo work
 * queue selection, worker topology, and execution telemetry
+* machine-readable mirror/parity verification for mirrored canon
+* clustered queue synthesis when repeated drift findings point at one root cause
 * jury-gated landing control for protected branches
 * premium burst scheduling on top of the cheap baseline
 * lane-local worker auth/cache state on the execution host
@@ -25,6 +27,7 @@ It exists to execute mirrored canon safely and cheaply first, not to redefine pr
 * direct participant-consent UX
 * raw participant auth state in shared databases or repo files
 * merge authority outside the configured review/jury policy
+* canonical product/design decisions that belong in `chummer6-design`
 
 ## Baseline execution rule
 
@@ -35,6 +38,27 @@ The default Chummer/Fleet execution plane remains cheap-first:
 * final landing authority remains with the review/jury lane
 
 The cheap baseline must not be weakened just because premium capacity exists.
+
+## Mirror and synthesis rule
+
+Fleet should own the repeatable mechanics of mirror/parity checking and feedback clustering.
+
+Allowed:
+
+* compact machine-readable parity state
+* a Fleet-owned mirror status artifact that can be read without opening design-side checksum ledgers
+* short human summaries for mirror drift
+* synthesis of repeated uncovered-scope findings into fewer clearer queue rows
+
+Forbidden:
+
+* pushing giant checksum markdown tables back onto the design repo as the main operational record
+* turning repeated low-synthesis audit spam directly into queue truth without clustering
+
+Preferred operational surfaces:
+
+* Fleet-owned state such as `design_mirror_status.json`
+* synthesized queue candidates that keep `source_items` metadata instead of one task per uncovered-scope bullet
 
 ## Premium burst rule
 
