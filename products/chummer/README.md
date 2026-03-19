@@ -44,7 +44,7 @@ Player and GM play-mode shell. Owns mobile/PWA/session UX, offline ledger, sync 
 
 ### `chummer6-hub`
 
-Hosted orchestration and community plane. Owns identity mapping, user/community accounts, generic groups and memberships, sponsorship/booster UX, fact/reward/entitlement ledgers, play API aggregation, relay, approvals, memory, Coach/Spider/Director orchestration, and hosted service policy.
+Hosted orchestration and community plane. Owns identity mapping, user/community accounts, generic groups and memberships, sponsorship/booster UX, fact/reward/entitlement ledgers, play API aggregation, relay, approvals, memory, Coach/Spider/Director orchestration, and hosted service policy. The next major product sequencing rule is Hub-first: account/group/ledger backbone before more booster-specific Fleet product behavior.
 
 ### `chummer6-ui-kit`
 
@@ -79,6 +79,7 @@ These inform the program but are not part of the main release train:
 3. Maintain Fleet’s cheap-first execution plane and premium-burst policy through mirrored design truth rather than repo-local invention.
 4. Give workers a legal petition path when the blueprint is missing a seam, and synthesize repeated findings before they become queue truth.
 5. Treat future repo work as additive product evolution, not split-wave cleanup or contract-canon repair.
+6. Keep sponsored participation generic: Hub grows the reusable user/group/ledger platform first, and Fleet stays the worker execution plane underneath it.
 
 The foundational closure wave is materially finished. Future design work is maintenance or net-new product evolution rather than unresolved split, contract, or release-governance debt.
 
