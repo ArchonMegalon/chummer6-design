@@ -43,13 +43,15 @@ for path in \
   products/chummer/projects/hub-registry.md \
   products/chummer/projects/media-factory.md \
   products/chummer/projects/design.md \
+  products/chummer/projects/fleet.md \
   products/chummer/review/core.AGENTS.template.md \
   products/chummer/review/ui.AGENTS.template.md \
   products/chummer/review/hub.AGENTS.template.md \
   products/chummer/review/mobile.AGENTS.template.md \
   products/chummer/review/ui-kit.AGENTS.template.md \
   products/chummer/review/hub-registry.AGENTS.template.md \
-  products/chummer/review/media-factory.AGENTS.template.md; do
+  products/chummer/review/media-factory.AGENTS.template.md \
+  products/chummer/review/fleet.AGENTS.template.md; do
   test -f "$repo_root/$path"
 done
 

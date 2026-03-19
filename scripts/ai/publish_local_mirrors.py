@@ -20,6 +20,7 @@ REPO_ROOTS = {
     "chummer6-ui-kit": Path("/docker/chummercomplete/chummer-ui-kit"),
     "chummer6-hub-registry": Path("/docker/chummercomplete/chummer-hub-registry"),
     "chummer6-media-factory": Path("/docker/fleet/repos/chummer-media-factory"),
+    "fleet": Path("/docker/fleet"),
 }
 
 

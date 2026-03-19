@@ -105,6 +105,13 @@ mirrors:
   repo_source: products/chummer/projects/media-factory.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
   review_source: products/chummer/review/media-factory.AGENTS.template.md
+- repo: fleet
+  product_target: .codex-design/product
+  product_sources: *id001
+  repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
+  repo_source: products/chummer/projects/fleet.md
+  review_target: .codex-design/review/REVIEW_CONTEXT.md
+  review_source: products/chummer/review/fleet.AGENTS.template.md
 validation_rules:
 - Every active worker-driven code repo must appear in mirrors.
 - Missing .codex-design mirror coverage is a blocker.
