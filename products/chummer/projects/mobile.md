@@ -43,5 +43,5 @@ Current exit criteria remain practical, not decorative:
 
 ## Current reality
 
-This is one of the healthiest splits in the family.
-The remaining work is mostly seam hardening and release closure, not identity confusion.
+This split is materially healthy enough to close `B0`, `A2`, and `D1`.
+Remaining work is local-first hardening, release polish, and future capability depth, not whether the play shell or its package seams are real.

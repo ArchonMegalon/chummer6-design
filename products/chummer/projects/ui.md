@@ -42,11 +42,11 @@ Feature completion inside this repo is not enough to close the program milestone
 
 ## Current reality
 
-The product direction is right.
-The repo body still needs cleanup to match it.
+The product direction is right and the boundary is now explicit enough for `B2`.
+Retained legacy roots are compatibility cargo, not hidden ownership claims.
 
 That means:
 
-* feature maturity can be ahead of boundary purity
-* local “done” slices do not overrule the central `B2` program blocker
-* cleanup-by-deletion is still part of the implementation scope here
+* feature maturity and boundary purity now align closely enough to close the split milestone
+* shared visual chrome is package-owned and regression-guarded
+* any retained legacy roots must stay explicitly documented as compatibility cargo
