@@ -17,6 +17,7 @@ common_product_sources:
 - products/chummer/horizons/table-pulse.md
 - products/chummer/horizons/local-co-processor.md
 - products/chummer/ARCHITECTURE.md
+- products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md
 - products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md
 - products/chummer/EXTERNAL_TOOLS_PLANE.md
 - products/chummer/LTD_CAPABILITY_MAP.md
@@ -49,6 +50,7 @@ mirrors:
   - products/chummer/horizons/table-pulse.md
   - products/chummer/horizons/local-co-processor.md
   - products/chummer/ARCHITECTURE.md
+  - products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md
   - products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md
   - products/chummer/EXTERNAL_TOOLS_PLANE.md
   - products/chummer/LTD_CAPABILITY_MAP.md

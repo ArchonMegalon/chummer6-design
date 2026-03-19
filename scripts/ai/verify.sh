@@ -21,6 +21,7 @@ for path in \
   products/chummer/horizons/table-pulse.md \
   products/chummer/horizons/local-co-processor.md \
   products/chummer/ARCHITECTURE.md \
+  products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md \
   products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md \
   products/chummer/PUBLIC_GUIDE_POLICY.md \
   products/chummer/HORIZON_SIGNAL_POLICY.md \
@@ -59,6 +60,7 @@ done
 
 rg -n '^# Public guide policy' "$repo_root/products/chummer/PUBLIC_GUIDE_POLICY.md" >/dev/null
 rg -n '^# Horizon signal policy' "$repo_root/products/chummer/HORIZON_SIGNAL_POLICY.md" >/dev/null
+rg -n '^# Participation and booster workflow$|participant lane|device-auth|contribution receipt|Chummer.Engine.Contracts|Chummer.Ui.Kit' "$repo_root/products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md" >/dev/null
 rg -n '^# Community Sponsorship Backlog$|Hub = account / community / ledger / entitlement plane|Fleet = sponsored worker / execution plane|EA = provider / lane / telemetry plane' "$repo_root/products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md" >/dev/null
 rg -n '^# TABLE PULSE' "$repo_root/products/chummer/horizons/table-pulse.md" >/dev/null
 rg -n '^  title: TABLE PULSE$' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
@@ -69,5 +71,6 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/EXTERNAL_TOOLS_PLANE.md" \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'booster_first|resource_burden|recognition_eligible' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
 
 echo ok

@@ -57,6 +57,12 @@ That means:
 * cross-head hardening closure uses explicit owner evidence in `docs/SHARED_SURFACE_SIGNOFF.md`
 * future dense-data and catalog expansion are additive design-system growth, not a blocker on the current release lane
 
+## Package bootstrap rule
+
+`Chummer.Ui.Kit` must restore through a canonical package feed or an explicit generated compatibility tree for legacy consumers.
+
+The shared UI boundary is not considered healthy if downstream restore still depends on source-present local trees by accident.
+
 
 ## External integration note
 
