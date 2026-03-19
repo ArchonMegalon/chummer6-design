@@ -533,3 +533,8 @@ executable_queue:
   status: done
   backlog: WORKLIST.md
   notes: Closed 2026-03-19: Fleet premium burst policy was canonized in design first and then implemented downstream as a cheap-first baseline with explicit participant and operator premium-burst rules.
+- id: WL-D040
+  milestone: F3
+  status: done
+  backlog: WORKLIST.md
+  notes: Closed 2026-03-19: Hub community/account/ledger canon now makes sponsorship a reusable platform wave: Hub owns users, groups, facts/rewards/entitlements; Fleet owns sponsored worker execution and signed receipts; EA stays provider/telemetry substrate.

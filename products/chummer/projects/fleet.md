@@ -13,12 +13,15 @@ It exists to execute mirrored canon safely and cheaply first, not to redefine pr
 * premium burst scheduling on top of the cheap baseline
 * lane-local worker auth/cache state on the execution host
 * dynamic participant-lane registration after explicit Hub consent
+* sponsor-session execution metadata on participant lanes
+* signed contribution receipts emitted back to Hub after meaningful work
 
 ## Must not own
 
 * product architecture canon
 * package or contract ownership truth
 * Hub-issued user identity/session truth
+* canonical user/group/community ledger truth
 * direct participant-consent UX
 * raw participant auth state in shared databases or repo files
 * merge authority outside the configured review/jury policy
@@ -49,6 +52,7 @@ Participant direct burst requires:
 * lane-local auth/cache storage
 * premium-eligible slice policy
 * jury-gated landing
+* signed contribution receipts back to Hub
 
 Managed core burst remains operator-governed.
 
@@ -58,6 +62,7 @@ The Fleet premium burst boundary is considered healthy when:
 
 * `fleet` consumes mirrored canon from `chummer6-design`
 * `chummer6-hub` owns the consent/sponsorship UX
+* `chummer6-hub` owns account, group, reward, and entitlement truth
 * `fleet` owns the actual worker process, auth helper, and dynamic participant lane lifecycle
 * `executive-assistant` remains the managed substrate for operator-governed lanes and telemetry
 * final landing still goes through `jury`

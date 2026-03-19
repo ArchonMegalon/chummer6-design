@@ -252,3 +252,47 @@ This plane exists to integrate owned third-party capabilities without allowing a
 * no third-party tool owns Chummer media manifests
 * no third-party tool bypasses Chummer moderation or canonization
 * no hosted UX stores raw participant Codex/OpenAI auth caches; those stay lane-local on the execution host
+
+## Community sponsorship plane
+
+Chummer uses one community/sponsorship spine rather than a one-off booster feature.
+
+Canonical split:
+
+* `chummer6-hub` = account, community, group, ledger, sponsorship, and entitlement plane
+* `fleet` = sponsored worker and landing-control plane
+* `executive-assistant` = provider-aware substrate and ownership telemetry plane
+
+### Canonical concepts
+
+* identity principal: authenticated subject/session issued by Hub identity
+* user account: product-level human account linked to one or more principals
+* group: reusable social/authority container with `group_type`, `visibility`, `capabilities`, and policy
+* membership: a user’s role relation to a group
+* sponsor session: a bounded premium-burst sponsorship intent/execution record
+* entitlement: a durable product right granted to a user or group
+
+User accounts must not collapse into raw identity-subject rows. Groups must stay generic enough to serve booster groups now and campaign / GM-circle / creator-team surfaces later.
+
+### Accounting rule
+
+Chummer keeps three distinct journals:
+
+1. fact ledger: immutable raw events and contribution receipts
+2. reward journal: derived score, badge, streak, quest, and leaderboard accounting
+3. entitlement journal: durable product-right grants and revocations
+
+These journals must not be merged into one implicit score table.
+
+### Booster participation rule
+
+Boosting is modeled as:
+
+1. account or group joins a campaign / redeems a code / creates a sponsor session intent
+2. consent is recorded in Hub
+3. Fleet opens the participant lane and performs device auth on the execution host
+4. Fleet emits signed contribution receipts after meaningful work events
+5. Hub ingests receipts into the fact ledger
+6. reward and entitlement rules derive downstream projections from those receipts
+
+Points and perks must not be granted merely for linking an account or creating an idle lane.

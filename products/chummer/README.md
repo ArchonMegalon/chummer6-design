@@ -44,7 +44,7 @@ Player and GM play-mode shell. Owns mobile/PWA/session UX, offline ledger, sync 
 
 ### `chummer6-hub`
 
-Hosted orchestration plane. Owns identity, play API aggregation, relay, approvals, memory, Coach/Spider/Director orchestration, and service policy.
+Hosted orchestration and community plane. Owns identity mapping, user/community accounts, generic groups and memberships, sponsorship/booster UX, fact/reward/entitlement ledgers, play API aggregation, relay, approvals, memory, Coach/Spider/Director orchestration, and hosted service policy.
 
 ### `chummer6-ui-kit`
 
@@ -75,8 +75,9 @@ These inform the program but are not part of the main release train:
 ## Current program priorities
 
 1. Keep recurring truth, review-template, and local-mirror cycles explicit whenever canon changes.
-2. Maintain Fleet’s cheap-first execution plane and premium-burst policy through mirrored design truth rather than repo-local invention.
-3. Treat future repo work as additive product evolution, not split-wave cleanup or contract-canon repair.
+2. Keep Hub’s user/group/ledger/sponsorship model canonical so community participation, premium bursts, and later GM-group tooling all grow from one reusable platform.
+3. Maintain Fleet’s cheap-first execution plane and premium-burst policy through mirrored design truth rather than repo-local invention.
+4. Treat future repo work as additive product evolution, not split-wave cleanup or contract-canon repair.
 
 The foundational closure wave is materially finished. Future design work is maintenance or net-new product evolution rather than unresolved split, contract, or release-governance debt.
 
