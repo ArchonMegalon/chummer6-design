@@ -95,7 +95,7 @@ program_phases:
     - External integrations are assigned to owning repos.
 - id: H
   title: Horizons and public capability canon
-  status: in_progress
+  status: complete
   release_blocking: false
   goal: Make future-capability posture canonical without expanding the current release critical path.
   milestones:
@@ -103,7 +103,7 @@ program_phases:
     title: Horizon canon established
     owners:
     - chummer6-design
-    status: open
+    status: complete
     exit:
     - "`HORIZONS.md` exists in the product front door."
     - Canonical horizon docs exist for promoted future lanes.
@@ -112,7 +112,7 @@ program_phases:
     title: Public guide and horizon sync policy
     owners:
     - chummer6-design
-    status: open
+    status: complete
     exit:
     - "`PUBLIC_GUIDE_POLICY.md` defines `Chummer6` as downstream-only."
     - The guide cannot outrun canonical horizon docs.
@@ -134,7 +134,7 @@ program_phases:
     - chummer6-design
     - chummer6-hub
     - chummer6-media-factory
-    status: open
+    status: complete
     exit:
     - At least one horizon has named owners, tool posture, and provenance constraints.
     - The horizon is ready for bounded research without widening release scope.
@@ -143,7 +143,7 @@ program_phases:
     owners:
     - chummer6-design
     - chummer6-hub
-    status: open
+    status: complete
     exit:
     - Public proposal lanes are explicit.
     - Advisory signal collection rules are documented.
@@ -154,7 +154,7 @@ program_phases:
     - chummer6-design
     - chummer6-hub
     - chummer6-media-factory
-    status: open
+    status: complete
     exit:
     - "`TABLE PULSE` exists with explicit consent, privacy, and non-truth boundaries."
     - "`Nonverbia` posture is canonical across `HORIZON_REGISTRY.yaml`, `EXTERNAL_TOOLS_PLANE.md`, and `LTD_CAPABILITY_MAP.md`."
@@ -245,14 +245,14 @@ program_phases:
     - Run-services reads as an orchestrator, not a hidden super-repo.
 - id: D
   title: Truth and session canon
-  status: open
+  status: complete
   goal: Make semantics authoritative and reusable.
   milestones:
   - id: D0
     title: Explain canon complete
     owners:
     - chummer6-core
-    status: open
+    status: complete
     exit:
     - Structured explain traces are authoritative and consumable across product heads.
   - id: D1
@@ -271,7 +271,7 @@ program_phases:
     - chummer6-core
     - chummer6-hub
     - chummer6-mobile
-    status: open
+    status: complete
     exit:
     - Runtime bundle semantics, refresh/rebind flows, and provenance are coherent
       across engine, services, and clients.
@@ -428,3 +428,103 @@ executable_queue:
   status: queued
   backlog: products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md
   notes: Recurring repo-local mirror lane is queued so `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review` subsets remain current for workers and GitHub review each cycle via WL-D018-01..05, with dated evidence appended in `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`; latest completed cycle closed at `2026-03-14T07:18:51Z` after WL-D018-03 drift-only republish (product subset across all seven targets plus media-factory repo subset) followed by WL-D018-04 no-drift parity confirmation across all seven targets; WL-D008 remains the completed initial publication wave.
+- id: WL-D019
+  milestone: C1b
+  status: queued
+  backlog: WORKLIST.md
+  notes: Trace the orchestration-side adapter wave into executable hub inventory and owner-seam work instead of leaving `C1b` as broad milestone prose.
+- id: WL-D020
+  milestone: C1b
+  status: queued
+  backlog: WORKLIST.md
+  notes: Remove or quarantine any client-owned provider transport or credential-routing logic so hub can become the only active third-party adapter owner.
+- id: WL-D021
+  milestone: C1c
+  status: queued
+  backlog: WORKLIST.md
+  notes: Trace the media-side adapter wave into a concrete media-factory inventory for document, preview, route, video, and archive lanes.
+- id: WL-D022
+  milestone: C1c
+  status: queued
+  backlog: WORKLIST.md
+  notes: Add media-factory provenance, kill-switch, and provider-switchability proof so `C1c` can close on evidence rather than intent.
+- id: WL-D023
+  milestone: E2
+  status: queued
+  backlog: WORKLIST.md
+  notes: Close publication/install/review/discovery coherence across hub plus hub-registry with end-to-end proof.
+- id: WL-D024
+  milestone: E2
+  status: queued
+  backlog: WORKLIST.md
+  notes: Make registry-owned moderation, compatibility, install, and runtime-bundle read models feel authoritative rather than advisory.
+- id: WL-D025
+  milestone: E2b
+  status: queued
+  backlog: WORKLIST.md
+  notes: Integrate docs/help surfaces as grounded consumer views that cannot outrun canon.
+- id: WL-D026
+  milestone: E2b
+  status: queued
+  backlog: WORKLIST.md
+  notes: Integrate feedback loops as advisory, structured, receipt-bearing input lanes.
+- id: WL-D027
+  milestone: E2b
+  status: queued
+  backlog: WORKLIST.md
+  notes: Build operator projection boards as auditable consumers of canonical read models.
+- id: WL-D028
+  milestone: E3
+  status: queued
+  backlog: WORKLIST.md
+  notes: Finish assistant-plane governance and reviewability for Coach, Spider, and Director.
+- id: WL-D029
+  milestone: E4
+  status: queued
+  backlog: WORKLIST.md
+  notes: Stabilize document and packet-generation media capabilities with provenance and approval-safe execution proof.
+- id: WL-D030
+  milestone: E4
+  status: queued
+  backlog: WORKLIST.md
+  notes: Stabilize portrait and bounded-video media capabilities with the same governance and lifecycle depth.
+- id: WL-D031
+  milestone: E0
+  status: queued
+  backlog: WORKLIST.md
+  notes: Finish the missing workbench feature-depth surfaces: graphs, continuity, planner/calendar, and diagnostics.
+- id: WL-D032
+  milestone: E0
+  status: queued
+  backlog: WORKLIST.md
+  notes: Finish moderation, admin, publish, and richer Hub UX depth on the workbench side.
+- id: WL-D033
+  milestone: E1
+  status: queued
+  backlog: WORKLIST.md
+  notes: Close the remaining player/GM shell depth and installable-PWA proof in mobile.
+- id: WL-D034
+  milestone: F0
+  status: queued
+  backlog: WORKLIST.md
+  notes: Land explicit accessibility, localization, and performance signoff across UI, mobile, and ui-kit.
+- id: WL-D035
+  milestone: F1
+  status: queued
+  backlog: WORKLIST.md
+  notes: Add auditable runbooks, restore drills, and replay-safety proof across core, hub, hub-registry, and media-factory.
+- id: WL-D036
+  milestone: F2
+  status: queued
+  backlog: WORKLIST.md
+  notes: Certify import/export and regression fidelity against the legacy `chummer5a` corpus.
+- id: WL-D037
+  milestone: F3
+  status: queued
+  backlog: WORKLIST.md
+  notes: Build the final release evidence pack and keep mirror/status/public-promotion truth converged.
+- id: WL-D038
+  milestone: F3
+  status: queued
+  backlog: WORKLIST.md
+  notes: Keep the post-canon purification wave explicit so remaining legacy cargo in core and hub is deleted instead of normalized.

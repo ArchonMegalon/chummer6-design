@@ -45,6 +45,6 @@ None.
 ## GREEN candidates once current blockers clear
 
 * engine purification phase
-* runtime bundle canon
+* orchestration and media adapter depth
 * product completion phase
 * release hardening phase
