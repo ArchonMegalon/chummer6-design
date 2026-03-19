@@ -30,6 +30,10 @@ for path in \
   products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md \
   products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md \
   products/chummer/PUBLIC_GUIDE_POLICY.md \
+  products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml \
+  products/chummer/PUBLIC_PART_REGISTRY.yaml \
+  products/chummer/PUBLIC_FAQ_REGISTRY.yaml \
+  products/chummer/PUBLIC_HELP_COPY.md \
   products/chummer/HORIZON_SIGNAL_POLICY.md \
   products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md \
   products/chummer/adrs/README.md \
@@ -65,6 +69,10 @@ for path in \
 done
 
 rg -n '^# Public guide policy' "$repo_root/products/chummer/PUBLIC_GUIDE_POLICY.md" >/dev/null
+rg -n '^product: chummer$|^version: 1$|^page_types:$|^  root_story:$|^  part_page:$|^  faq_page:$|^  deep_source_trail:$' "$repo_root/products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml" >/dev/null
+rg -n '^product: chummer$|^version: 1$|^parts:$|^  - id: design$|^    public_tagline:|^  - id: hub$|^    why_you_care:' "$repo_root/products/chummer/PUBLIC_PART_REGISTRY.yaml" >/dev/null
+rg -n '^product: chummer$|^version: 1$|^sections:$|What is a booster\\?|Do I need to boost to help\\?|Will booster-first previews become free later\\?' "$repo_root/products/chummer/PUBLIC_FAQ_REGISTRY.yaml" >/dev/null
+rg -n '^# Public help copy$|^## Public feedback lane$|^## Booster lane$|^## Privacy and review safety$|^## Free later note$' "$repo_root/products/chummer/PUBLIC_HELP_COPY.md" >/dev/null
 rg -n '^# Public landing policy$|product homepage, proof shelf, and invitation surface|provider names and LTD names are implementation details' "$repo_root/products/chummer/PUBLIC_LANDING_POLICY.md" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^headline: Shadowrun rules truth, with receipts\.$|^registered_overlays:$' "$repo_root/products/chummer/PUBLIC_LANDING_MANIFEST.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^cards:$|^  - id: horizon_karma_forge$|^    badge: Booster first$' "$repo_root/products/chummer/PUBLIC_FEATURE_REGISTRY.yaml" >/dev/null
@@ -83,7 +91,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/EXTERNAL_TOOLS_PLANE.md" \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_USER_MODEL|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'booster_first|resource_burden|recognition_eligible' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
+rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_USER_MODEL|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'booster_first|resource_burden|recognition_eligible|free_later_intent' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
 
 echo ok

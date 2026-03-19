@@ -2,7 +2,6 @@
 
 ## Purpose
 `Chummer6` is the downstream human guide repo for the Chummer6 program.
-It is not the `chummer.run` homepage.
 
 ## Rules
 - human-only
@@ -17,18 +16,26 @@ It is not the `chummer.run` homepage.
 - generated guide surfaces must include a "How can I help?" or equivalent support page that introduces boosters and links to the Hub participation endpoint
 
 ## Allowed inputs
-- `chummer6-design`
-- the latest public program status
-- owning repo READMEs
-- approved public-surface summaries
+- `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`
+- `PUBLIC_PART_REGISTRY.yaml`
+- `PUBLIC_FAQ_REGISTRY.yaml`
+- `PUBLIC_HELP_COPY.md`
+- `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
+- `PUBLIC_LANDING_MANIFEST.yaml`
+- `PUBLIC_FEATURE_REGISTRY.yaml`
+- `PUBLIC_USER_MODEL.md`
+- `HORIZON_REGISTRY.yaml`
+- the latest approved public program status
+- owning repo READMEs only when the page class explicitly allows them
 
 ## Priority order
 If `Chummer6` disagrees with canonical sources, fix `Chummer6`.
 
 1. `chummer6-design`
-2. latest public program status
-3. owning repo
-4. `Chummer6`
+2. page-specific public registries and manifests
+3. latest public program status
+4. explicitly allowed owning repo sources
+5. `Chummer6`
 
 ## Out of scope
 - code
@@ -40,3 +47,4 @@ If `Chummer6` disagrees with canonical sources, fix `Chummer6`.
 - milestone authority
 - ADR authorship
 - review-template authorship
+- using raw implementation-scope ownership bullets as first-layer public part-page prose
