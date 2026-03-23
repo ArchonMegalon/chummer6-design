@@ -2,14 +2,16 @@
 
 ## Mission
 
-`chummer6-hub-registry` owns immutable artifact catalog, publication workflow, moderation state, installs, reviews, compatibility, and runtime-bundle head metadata.
+`chummer6-hub-registry` owns immutable artifact catalog, publication workflow, release channels, installs, updater-feed metadata, reviews, compatibility, and runtime-bundle head metadata.
 
 ## Owns
 
 * immutable artifact metadata
 * publication draft and publish/archive state
+* promoted release channels and channel heads
 * moderation state and review trails
 * install state and install history
+* installer/update-feed metadata
 * compatibility projections
 * runtime-bundle head metadata
 * published source-pack and explorable-pack metadata once promoted
@@ -22,6 +24,7 @@
 * Spider/session relay
 * media rendering
 * play/client implementation
+* installer build execution
 * canonical rules math
 
 ## Current focus

@@ -1,0 +1,18 @@
+mode: prepend
+items:
+- '{''Execute WL-D014-01'': ''compute source and destination SHA-256 checksums for all WL-D007 review-template mirror targets and append the cycle block in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`.''}'
+- '{''Execute WL-D014-02'': ''if checksum drift is detected, republish only drifted `.codex-design/review/REVIEW_CONTEXT.md` targets and capture publish refs + parity checksums.''}'
+- '{''Execute WL-D014-03'': ''if no drift is detected, append explicit no-change parity evidence for every checked review-template mirror target.''}'
+- '{''Execute WL-D014-04'': ''reflect cycle disposition in `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml` without reopening completed WL-D007/WL-D010/WL-D011/WL-D012 rows.''}'
+- '{''Execute WL-D018-01'': ''start recurring repo-local mirror cycle from `products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md` and record cycle metadata in `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`.''}'
+- '{''Execute WL-D018-02'': ''compute source/destination checksum parity for all seven `.codex-design/product`, `.codex-design/repo`, and `.codex-design/review` mirror subsets defined in `products/chummer/sync/sync-manifest.yaml`.''}'
+- '{''Execute WL-D018-03'': ''if drift is detected, republish only drifted local mirror subsets and capture destination publish refs plus post-publish parity checksums.''}'
+- '{''Execute WL-D018-04'': ''if no drift is detected, append explicit no-change parity evidence for every checked local mirror target.''}'
+- '{''Execute WL-D018-05'': ''reflect cycle disposition in `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml` while keeping WL-D008 closed and WL-D018 queued.''}'
+- '{''Execute WL-D009-01'': ''start recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and record the cycle date + operator.''}'
+- '{''Execute WL-D009-02'': ''reconcile ownership boundaries and forbidden dependencies against current split-wave definitions.''}'
+- '{''Execute WL-D009-03'': ''reconcile contract-family ownership, package IDs, and boundary ownership text.''}'
+- '{''Execute WL-D009-04'': ''reconcile blockers and ownership/status alignment.''}'
+- '{''Execute WL-D009-05'': ''reconcile milestone truth, `last_reviewed`, and phase/milestone exit criteria coverage.''}'
+- '{''Execute WL-D009-06'': ''validate recurring mapping and references for this cycle in `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml`.''}'
+- '{''Execute WL-D009-07'': ''append a dated split-wave truth delta note in `products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md` with explicit no-change evidence when no changes are detected.''}'
