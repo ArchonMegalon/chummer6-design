@@ -6,13 +6,13 @@
 | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `chummer6-design`        | central design governance          | canon, ownership, milestones, blockers, sync, review guidance                                           | code implementation, hidden parallel product docs                                  | none                                                                            |
 | `chummer6-core`   | deterministic rules/runtime engine | engine truth, reducer truth, runtime bundles, runtime fingerprints, explain canon, engine contracts     | play UI, workbench UI, registry persistence, media execution, hosted orchestration | `Chummer.Engine.Contracts`                                                      |
-| `chummer6-ui`  | workbench/browser/desktop UX       | builders, inspectors, compare, explain UX, admin/moderation UX, desktop packaging, installer/updater recipes, updater client behavior, local install state, staged apply helpers, in-app feedback/bug/crash entry points, local crash interception, diagnostics bundles, recovery dialogs | play shell, rule evaluation, offline ledger, media execution, registry rollout truth, canonical channel/update-feed truth, hosted support ticket truth | consumes `Chummer.Engine.Contracts`, `Chummer.Ui.Kit`                           |
+| `chummer6-ui`  | workbench/browser/desktop UX       | builders, inspectors, compare, explain UX, admin/moderation UX, desktop packaging, installer/updater recipes, updater client behavior, local install state, staged apply helpers, installation identity material, in-app feedback/bug/crash entry points, local crash interception, diagnostics bundles, recovery dialogs, redacted crash-envelope forwarding to Hub-owned intake | play shell, rule evaluation, offline ledger, media execution, registry rollout truth, canonical channel/update-feed truth, hosted support ticket truth, direct Fleet crash intake, per-user installer generation | consumes `Chummer.Engine.Contracts`, `Chummer.Ui.Kit`                           |
 | `chummer6-mobile`          | live session/mobile/PWA shell      | player shell, GM shell, offline ledger, sync client, play-safe Coach/Spider surfaces                    | builder UX, rule evaluation, registry/moderation, provider secrets                 | consumes `Chummer.Engine.Contracts`, `Chummer.Play.Contracts`, `Chummer.Ui.Kit` |
-| `chummer6-hub`  | hosted orchestration and community plane | identity, user accounts, groups, memberships, ledgers, participation UX, relay, approvals, memory, Coach/Spider/Director orchestration, delivery, play API aggregation, registry-backed downloads UX, account-aware install guidance, support intake, ticket threads, knowledge/help surfaces, surveys, human escalation, later support-assistant handoff | duplicate mechanics, registry persistence after split, media rendering after split, raw participant auth caches, Fleet worker execution, release manifest generation truth, update-feed truth, client-side crash interception | `Chummer.Play.Contracts`, `Chummer.Run.Contracts`                               |
+| `chummer6-hub`  | hosted orchestration and community plane | identity, user accounts, groups, memberships, ledgers, participation UX, relay, approvals, memory, Coach/Spider/Director orchestration, delivery, play API aggregation, registry-backed downloads UX, download receipts, install claim tickets, claimed-install grants, account-aware install guidance, support intake, crash-intake normalization, ticket threads, knowledge/help surfaces, surveys, human escalation, later support-assistant handoff, normalized crash work-item emission | duplicate mechanics, registry persistence after split, media rendering after split, raw participant auth caches, Fleet worker execution, release manifest generation truth, update-feed truth, client-side crash interception, personalized installer binaries | `Chummer.Play.Contracts`, `Chummer.Run.Contracts`                               |
 | `chummer6-ui-kit`        | shared design system               | tokens, themes, shell primitives, accessibility primitives, reusable components                         | domain DTOs, HTTP clients, storage, rules math                                     | `Chummer.Ui.Kit`                                                                |
-| `chummer6-hub-registry`  | catalog/publication service        | artifacts, publication drafts, release channels, desktop release heads, installs, update feeds, rollout/revocation state, reviews, compatibility, runtime-bundle heads | relay, Coach/Spider, media rendering, client UX, installer build execution, support ticket/help truth | `Chummer.Hub.Registry.Contracts`                                                |
+| `chummer6-hub-registry`  | catalog/publication service        | artifacts, publication drafts, release channels, desktop release heads, installs, update feeds, rollout/revocation state, reviews, compatibility, runtime-bundle heads, crash-triage enrichment facts derived from release/install/update truth | relay, Coach/Spider, media rendering, client UX, installer build execution, support ticket/help truth | `Chummer.Hub.Registry.Contracts`                                                |
 | `chummer6-media-factory` | media execution plant              | render jobs, previews, manifests, asset lifecycle, provider adapters, signed asset access               | campaign truth, rules truth, approvals policy, player/client UX                    | `Chummer.Media.Contracts`                                                       |
-| `fleet`                  | execution/control plane            | worker orchestration, queue policy, review/landing control, cheap-first automation, explicit premium burst lanes, lane-local auth helpers, sponsor-session receipts, release orchestration, signing/notarization jobs, publish/signoff evidence | product truth, contract canon, session truth, user/group/ledger truth, raw hosted identity/auth storage, installer recipe truth, canonical release-channel truth      | none                                                                            |
+| `fleet`                  | execution/control plane            | worker orchestration, queue policy, review/landing control, cheap-first automation, explicit premium burst lanes, lane-local auth helpers, sponsor-session receipts, release orchestration, signing/notarization jobs, publish/signoff evidence, normalized crash clustering/repro/test/patch-prep automation | product truth, contract canon, session truth, user/group/ledger truth, raw hosted identity/auth storage, installer recipe truth, canonical release-channel truth, canonical crash/support truth      | none                                                                            |
 | `chummer5a`             | legacy oracle                      | migration fixtures, regression corpus, legacy compatibility reference                                   | vNext architecture ownership                                                       | none                                                                            |
 
 ## Boundary notes
@@ -24,7 +24,7 @@ The only repo allowed to define canonical mechanics truth.
 ### `chummer6-ui`
 
 The only repo allowed to define workbench/browser/desktop product UX.
-It is also the only repo allowed to own desktop updater client behavior, local update state, staged apply helpers, local crash interception, diagnostics bundle creation, and next-launch recovery UX.
+It is also the only repo allowed to own desktop updater client behavior, local update state, staged apply helpers, installation-local credentials, local crash interception, diagnostics bundle creation, and next-launch recovery UX.
 It must not redefine published channel or update-feed truth or hosted support-case truth.
 
 ### `chummer6-mobile`
@@ -36,6 +36,8 @@ The only repo allowed to define the dedicated live play/mobile shell.
 The only repo allowed to own the reusable community/accounting plane and hosted orchestration, but not the only repo allowed to own hosted services.
 Registry and media must remain separate service boundaries.
 Hub may explain install and update posture, and it owns support-case/help truth, but it does not become the feed authority and it does not reclaim client-side crash interception.
+Hub owns the person/install relationship, install claim tickets, installation grants, and support-status closure, but it does not mutate signed release artifacts into per-user binaries.
+Hub is also the owned intake/orchestration seam for crash automation; Fleet consumes normalized work from Hub rather than raw client crash submissions.
 
 ### `chummer6-ui-kit`
 
@@ -45,6 +47,7 @@ The only repo allowed to own shared cross-head UI primitives.
 
 The only repo allowed to own immutable artifact catalog, publication/install/update truth, promoted release channels, and desktop release heads.
 Support surfaces may read that truth, but Registry does not become a help-desk or ticket system.
+Crash automation may enrich incidents from Registry facts, but that does not move intake or case truth into Registry.
 
 ### `chummer6-media-factory`
 
@@ -53,6 +56,7 @@ The only repo allowed to own render execution and render-asset lifecycle.
 ### `fleet`
 
 The only adjacent repo allowed to own cross-repo worker scheduling, release orchestration, participant worker lifecycle, and landing control, but never canonical Chummer product truth.
+Fleet may automate crash clustering, repro, test drafting, and candidate patch preparation only after Hub-owned normalization and Registry-backed release enrichment.
 
 ## Ownership violations
 
@@ -62,8 +66,11 @@ Any of the following is an ownership violation:
 * hub reintroduces media rendering or registry persistence after those splits complete
 * ui reclaims play-shell ownership
 * ui invents a second promoted channel vocabulary or local feed truth
+* desktop clients send raw crash payloads straight to Fleet as the primary seam
+* Fleet hot-patches production or lands code from a single crash report without the normal review/release path
 * a chat assistant becomes the required first support lane or the gate in front of crash/bug reporting
 * a vendor help desk or AppSumo tool becomes the canonical crash or ticket system
+* Hub or UI personalizes desktop installers per user instead of using claimable installs
 * mobile reimplements rules truth
 * ui-kit gains domain DTOs or HTTP clients
 * engine begins depending on ui/mobile/hub code
@@ -149,6 +156,7 @@ Owns:
 Must not own:
 
 * product architecture canon
+* raw desktop crash/client support intake
 * direct Hub identity/session issuance
 * participant-consent UX outside the Hub boundary
 * canonical user, group, reward, or entitlement ledger truth
@@ -163,6 +171,7 @@ Owns:
 * identity principal to product-user mapping
 * user accounts and profiles
 * generic groups, memberships, join codes, and boost codes
+* download receipts, install claim tickets, claimed-install grants, and account-linked support closure
 * fact ledger, reward journal, and entitlement journal
 * sponsor-session UX, community visibility, badges, quests, and leaderboards
 

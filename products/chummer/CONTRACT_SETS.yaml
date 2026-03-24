@@ -159,13 +159,40 @@ contract_sets:
     semantic_owner: chummer6-hub
     status: in_progress
     includes:
-      - crash report intake
+      - crash envelope intake
       - diagnostics attachment references
       - structured bug reports
       - lightweight feedback submissions
       - support case and thread state
+      - case status events
+      - resolution notices
+      - survey invites
       - knowledge article and public issue links
-    rule: "`chummer6-ui` owns local crash interception, diagnostics bundle creation, and recovery UX; `chummer6-hub` owns hosted support-case truth; external tools may assist routing or docs/help but may not become the canonical crash or ticket system."
+    rule: "`chummer6-ui` owns local crash interception, diagnostics bundle creation, recovery UX, and redacted intake forwarding; `chummer6-hub` owns hosted support-case truth and intake normalization; external tools may assist routing or docs/help but may not become the canonical crash or ticket system."
+
+  - id: crash_automation_vnext
+    canonical_package: Chummer.Run.Contracts
+    semantic_owner: chummer6-hub
+    status: in_progress
+    includes:
+      - crash cluster projections
+      - crash work items
+      - crash fingerprint and regression metadata
+      - Fleet-facing repro and patch-prep refs
+    rule: "Fleet may consume normalized crash automation DTOs for triage, repro, test drafting, and patch proposal, but raw desktop client crash payloads must enter through Hub-owned intake first and user-visible repair still ships through the normal review/release/update path."
+
+  - id: account_aware_install_linking_vnext
+    canonical_package: Chummer.Run.Contracts
+    semantic_owner: chummer6-hub
+    status: in_progress
+    includes:
+      - download receipts
+      - install claim tickets
+      - claimed installation records
+      - installation grants
+      - install-linked support identity
+      - release notices and follow-up invites
+    rule: "Hub owns the person/install/support relationship, but the downloaded desktop artifact remains the canonical signed build for its release target; Registry stays authoritative for channel, release-head, install, and update truth."
 
   - id: ui_system_vnext
     canonical_package: Chummer.Ui.Kit

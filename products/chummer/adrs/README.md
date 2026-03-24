@@ -13,3 +13,4 @@ Approved architecture decisions for cross-repo Chummer design live here.
 - [ADR-0008](ADR-0008-release-authority-split.md): Release authority stays split across core, UI, Fleet, hub-registry, Hub, and Media Factory.
 - [ADR-0009](ADR-0009-external-tools-plane.md): External tools remain adapter-bound helper planes and never become canonical Chummer truth.
 - [ADR-0010](ADR-0010-desktop-auto-update-plane.md): Desktop auto-update is registry-backed, UI-applied, and atomic in its first public wave.
+- [ADR-0011](ADR-0011-no-personalized-binaries-claimable-installs.md): Chummer uses claimable installs and account-aware linkage instead of per-user personalized binaries.

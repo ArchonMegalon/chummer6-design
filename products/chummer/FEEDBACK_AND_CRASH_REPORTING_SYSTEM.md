@@ -11,6 +11,8 @@ This file defines the first real Chummer support plane for:
 
 without letting a support assistant, a help-desk vendor, or an owned LTD become canonical product truth.
 
+Crash-intake automation, Fleet consumption rules, and the release/review boundary for automated crash triage are defined in `FEEDBACK_AND_CRASH_AUTOMATION.md`.
+
 ## Non-goals
 
 This file does not define:
@@ -18,6 +20,8 @@ This file does not define:
 * a chat support assistant as the first support feature
 * a requirement to buy another AppSumo LTD for the core crash path
 * a rule that private diagnostics must be pushed into a public issue tracker
+* raw desktop clients sending crash payloads straight to Fleet as the primary seam
+* Fleet hot-patching production because one crash report arrived
 * Fleet, Hub Registry, or a vendor dashboard as the support-ticket system of record
 * a permanent commitment to one support vendor
 * reuse of `Karma Forge` as a support or chat-assistant product name
@@ -46,6 +50,11 @@ Full diagnostics remain explicit opt-in.
 ### Support case
 
 A Hub-owned hosted ticket/thread record that may absorb a crash report, bug report, or feedback item and later link to knowledge articles, public issues, or human escalation.
+
+### Claimed install
+
+A desktop installation linked to a Hub account after download or first launch.
+Claimed installs let support history, fix notices, and gated-channel guidance attach to one real local copy without turning the installer into a per-user artifact.
 
 ### Support assistant
 
@@ -77,6 +86,7 @@ Phase-1 expectations:
 * redacted diagnostics bundle creation
 * offline spool and retry when transport is unavailable
 * no dependency on chat, sign-in, or a vendor widget
+* claimed-install linkage as an optional later enhancement, not a prerequisite for public stable crash reporting
 
 ### Lane 2 - Bug report
 
@@ -114,6 +124,18 @@ Private or potentially sensitive material must stay out of the public issue lane
 
 The support plane must make that split obvious to normal users.
 
+## Crash automation rule
+
+Automatic forwarding for triage is allowed, but the boundary stays clean:
+
+1. `chummer6-ui` captures the crash locally and sends a redacted crash envelope to a Hub-owned intake endpoint.
+2. `chummer6-hub` stores the support/case truth and normalizes that intake into crash work.
+3. `chummer6-hub-registry` enriches the incident with version, channel, platform, arch, release-head, runtime-bundle-head, and update facts.
+4. `fleet` may consume the normalized crash work item for clustering, repro, test generation, candidate patch drafting, and PR preparation.
+
+That does not make Fleet the support database, and it does not allow direct client-to-Fleet raw crash transport as the primary seam.
+Any user-visible repair still ships through the standard review, release, registry, and updater path.
+
 ## Canonical split
 
 ### `chummer6-design`
@@ -140,6 +162,7 @@ Owns:
 * local crash interception where the client can catch it
 * redacted diagnostics bundle creation
 * offline spool and retry behavior
+* redacted crash-envelope forwarding to Hub-owned intake
 * next-launch "Chummer closed unexpectedly" recovery UX
 * local recovery/help affordances that do not require hosted chat
 
@@ -155,6 +178,7 @@ Must not own:
 Owns:
 
 * support intake APIs and case/thread truth
+* crash-intake normalization and orchestration into machine work
 * knowledge/help surfaces
 * known-issue presentation
 * survey bridges
@@ -173,19 +197,23 @@ Must not own:
 Owns:
 
 * dedupe, routing, alerting, and triage automation around support signals
+* crash clustering, repro automation, regression-test drafting, candidate patch drafting, and PR preparation from normalized crash work items
 * operator-facing clustering and escalation aids
 
 Must not own:
 
 * support-ticket truth
+* raw desktop client crash intake as the primary seam
 * the primary user-facing crash path
 * canonical help/article truth
+* merge or release authority that bypasses the normal review/update path
 
 ### `chummer6-hub-registry`
 
 Owns:
 
 * release/install/update truth
+* version, channel, platform, arch, runtime-bundle-head, and update-availability facts that support cases and crash incidents may read for enrichment
 
 Must not own:
 
@@ -196,18 +224,29 @@ Must not own:
 
 Support surfaces may read release, platform, version, channel, and update-availability facts from registry truth so cases stay version-aware without inventing a second release record.
 
+## Install-linking rule
+
+Support cases may link to either:
+
+* a guest installation identity
+* or a claimed installation tied to a Hub account
+
+That improves closure and notification without requiring per-user binaries or sign-in-gated public downloads.
+
 ## Contract placement rule
 
 Support intake and case/thread DTOs belong in `Chummer.Run.Contracts`, not in UI-local DTO families and not in registry contracts.
 
 The minimum first-wave family is:
 
-* crash report intake
+* crash envelope intake
 * diagnostics attachment references
 * bug report submission
 * feedback submission
 * support case/thread state
 * knowledge-article and public-issue links
+* crash cluster projections
+* crash work items for downstream triage automation
 
 ## Default metadata rule
 

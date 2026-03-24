@@ -135,6 +135,24 @@ These are updater-facing artifacts consumed by desktop clients:
 
 The registry is the canonical source for both classes after promotion. The UI repo is the owner of how clients consume machine update payloads.
 
+## Claimable install rule
+
+Chummer makes installs claimable and account-aware without personalizing the delivered binary.
+
+Required posture:
+
+* Hub-first downloads are preferred for end users
+* public stable/open installers remain guest-readable
+* signed-in downloads may mint Hub-owned `DownloadReceipt` and `InstallClaimTicket` records
+* the downloaded artifact remains the canonical signed installer or archive for its `head × platform × arch × channel`
+* linking happens after download or first launch, not by mutating the artifact
+
+Forbidden posture:
+
+* one installer per user
+* post-sign mutation of a signed installer to inject account identity
+* making Hub the canonical release/feed authority because install linking exists
+
 ## Canonical flow
 
 1. `chummer6-core` produces runtime-bundle outputs and fingerprints.
@@ -142,7 +160,7 @@ The registry is the canonical source for both classes after promotion. The UI re
 3. When a self-hosted downloads target is configured, the successful desktop build automatically replaces the previous public downloads bundle and prunes superseded desktop artifacts so `/downloads` stays latest-only.
 4. `fleet` expands the release matrix, runs verify/promotion/signoff/signing/notarization orchestration, and prepares a registry publication payload.
 5. `chummer6-hub-registry` becomes the source of truth for promoted channels, installer/download records, desktop release heads, update-feed metadata, compatibility, and runtime-bundle heads.
-6. `chummer6-hub` reads registry truth and serves `/downloads`, account-aware install UX, and related public surfaces.
+6. `chummer6-hub` reads registry truth, serves `/downloads`, mints optional download receipts and install-claim tickets, and renders account-aware install UX without changing the underlying artifact.
 7. Desktop clients poll registry-backed channel/feed truth and apply updates through UI-owned helpers.
 8. `Chummer6` and other downstream guide surfaces read registry-backed release projections; they do not become build authorities.
 
@@ -185,6 +203,18 @@ This rule does not, by itself, make Linux a first-wave public promise for polish
 
 Public desktop update checks must not require a Hub account session for public channels. Private or entitlement-gated channels may use Hub-brokered access, but the final channel and update-feed truth still lives in `chummer6-hub-registry`.
 
+## Gated-channel install rule
+
+Public stable/open channels may remain anonymously downloadable and anonymously update-readable.
+
+Preview, private, or entitlement-gated channels may require:
+
+* a claimed installation
+* Hub-brokered installation grants
+* Registry-backed channel truth
+
+That still does not justify personalized binaries.
+
 ## Emergency rule
 
 A promoted desktop head may be:
@@ -194,6 +224,25 @@ A promoted desktop head may be:
 * revoked
 
 The registry owns those states. The client honors them. Fleet may orchestrate the promotion or revoke wave, but it does not become the runtime source of truth for clients.
+
+## Crash automation release rule
+
+Crash-driven automation does not bypass the release plane.
+
+Allowed shape:
+
+* `chummer6-ui` sends redacted crash envelopes to Hub-owned intake
+* `chummer6-hub` owns hosted incident truth and normalized crash work items
+* `chummer6-hub-registry` enriches those incidents with release/install/update facts
+* `fleet` may draft tests, repro attempts, patches, and PRs from normalized work
+
+Forbidden shape:
+
+* raw client crash traffic flowing straight to Fleet as the primary seam
+* Fleet merging or releasing a fix solely because crash automation proposed it
+* user-visible repair bypassing registry-owned channel truth or UI-owned updater behavior
+
+Crash fixes still ship through the standard review, publish, registry, and updater path.
 
 ## Karma Forge rule
 

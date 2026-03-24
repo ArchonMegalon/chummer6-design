@@ -330,12 +330,15 @@ program_phases:
     owners:
     - chummer6-ui
     - chummer6-hub
+    - chummer6-hub-registry
     - fleet
     status: in_progress
     exit:
     - Desktop clients can create a redacted diagnostics bundle and offer a next-launch crash recovery dialog.
     - Private crash submission does not depend on chat, sign-in, or a new AppSumo LTD.
     - Hosted support intake is version-aware using registry-backed release facts where available.
+    - Redacted crash envelopes enter through Hub-owned intake rather than raw client-to-Fleet submission.
+    - Fleet consumes normalized crash work items for triage and patch preparation without bypassing review or release gates.
   - id: L2
     title: Structured bug reporting lane
     owners:

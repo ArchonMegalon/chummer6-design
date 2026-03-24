@@ -4,47 +4,75 @@ Project Chummer is a multi-repo modernization of the legacy Chummer 5 applicatio
 
 ## Product entry
 
-Read in this order:
+Start with `START_HERE.md` if you are new.
+Use `GLOSSARY.md` when the repo-specific language gets dense.
+Use `journeys/README.md` when the question is "what does the user actually do end to end?"
+Use `METRICS_AND_SLOS.yaml` when the question is "what counts as good enough to ship?"
 
-1. `VISION.md`
-2. `HORIZONS.md`
-3. `HORIZON_REGISTRY.yaml`
-4. `ARCHITECTURE.md`
-5. `RELEASE_PIPELINE.md`
-6. `PUBLIC_LANDING_POLICY.md`
-7. `PUBLIC_LANDING_MANIFEST.yaml`
-8. `PUBLIC_FEATURE_REGISTRY.yaml`
-9. `PUBLIC_LANDING_ASSET_REGISTRY.yaml`
-10. `PUBLIC_USER_MODEL.md`
-11. `PUBLIC_AUTH_FLOW.md`
-12. `IDENTITY_AND_CHANNEL_LINKING_MODEL.md`
-13. `PUBLIC_MEDIA_BRIEFS.yaml`
-14. `PARTICIPATION_AND_BOOSTER_WORKFLOW.md`
-15. `COMMUNITY_SPONSORSHIP_BACKLOG.md`
-16. `EXTERNAL_TOOLS_PLANE.md`
-17. `LTD_CAPABILITY_MAP.md`
-18. `PUBLIC_GUIDE_POLICY.md`
-19. `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`
-20. `PUBLIC_PART_REGISTRY.yaml`
-21. `PUBLIC_FAQ_REGISTRY.yaml`
-22. `PUBLIC_HELP_COPY.md`
-23. `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
-24. `HORIZON_SIGNAL_POLICY.md`
-25. `PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
-26. `OWNERSHIP_MATRIX.md`
-27. `PROGRAM_MILESTONES.yaml`
-28. `CONTRACT_SETS.yaml`
-29. `GROUP_BLOCKERS.md`
-30. `projects/*.md` for repo-specific scope
+### Reading tracks
+
+1. Public/product story:
+   `VISION.md` -> `PUBLIC_LANDING_POLICY.md` -> `PUBLIC_LANDING_MANIFEST.yaml` -> `PUBLIC_FEATURE_REGISTRY.yaml` -> `PUBLIC_USER_MODEL.md` -> `PUBLIC_AUTH_FLOW.md`
+2. Repo and contract boundaries:
+   `ARCHITECTURE.md` -> `OWNERSHIP_MATRIX.md` -> `CONTRACT_SETS.yaml` -> `projects/*.md`
+3. Delivery and release control:
+   `RELEASE_PIPELINE.md` -> `DESKTOP_AUTO_UPDATE_SYSTEM.md` -> `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md` -> `PROGRAM_MILESTONES.yaml` -> `GROUP_BLOCKERS.md` -> `RELEASE_EVIDENCE_PACK.md`
+4. Future lanes and public explainer posture:
+   `HORIZONS.md` -> `HORIZON_REGISTRY.yaml` -> `PUBLIC_GUIDE_POLICY.md` -> `PUBLIC_GUIDE_PAGE_REGISTRY.yaml` -> `PUBLIC_PART_REGISTRY.yaml` -> `PUBLIC_FAQ_REGISTRY.yaml`
+
+### Full canonical set
+
+1. `START_HERE.md`
+2. `GLOSSARY.md`
+3. `VISION.md`
+4. `HORIZONS.md`
+5. `HORIZON_REGISTRY.yaml`
+6. `ARCHITECTURE.md`
+7. `RELEASE_PIPELINE.md`
+8. `DESKTOP_AUTO_UPDATE_SYSTEM.md`
+9. `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md`
+10. `PUBLIC_LANDING_POLICY.md`
+11. `PUBLIC_LANDING_MANIFEST.yaml`
+12. `PUBLIC_FEATURE_REGISTRY.yaml`
+13. `PUBLIC_LANDING_ASSET_REGISTRY.yaml`
+14. `PUBLIC_USER_MODEL.md`
+15. `PUBLIC_AUTH_FLOW.md`
+16. `IDENTITY_AND_CHANNEL_LINKING_MODEL.md`
+17. `PUBLIC_MEDIA_BRIEFS.yaml`
+18. `PARTICIPATION_AND_BOOSTER_WORKFLOW.md`
+19. `COMMUNITY_SPONSORSHIP_BACKLOG.md`
+20. `EXTERNAL_TOOLS_PLANE.md`
+21. `LTD_CAPABILITY_MAP.md`
+22. `PUBLIC_GUIDE_POLICY.md`
+23. `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`
+24. `PUBLIC_PART_REGISTRY.yaml`
+25. `PUBLIC_FAQ_REGISTRY.yaml`
+26. `PUBLIC_HELP_COPY.md`
+27. `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
+28. `HORIZON_SIGNAL_POLICY.md`
+29. `PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
+30. `METRICS_AND_SLOS.yaml`
+31. `journeys/README.md`
+32. `OWNERSHIP_MATRIX.md`
+33. `PROGRAM_MILESTONES.yaml`
+34. `CONTRACT_SETS.yaml`
+35. `GROUP_BLOCKERS.md`
+36. `projects/*.md` for repo-specific scope
 
 `HORIZON_REGISTRY.yaml` is the machine-readable source for horizon existence, order, public-guide eligibility, and eventual build path.
 The current horizon set covers knowledge fabric, spatial/runsite artifacts, creator press, replay/forensics, and bounded table coaching in addition to the earlier continuity and simulation lanes.
 `RELEASE_PIPELINE.md` is the canonical source for where release orchestration, desktop packaging, runtime-bundle production, registry publication truth, updater feeds, and public download/install rendering belong.
+`DESKTOP_AUTO_UPDATE_SYSTEM.md` is the canonical source for the first desktop self-update wave, including the split between install media, machine update payloads, registry-owned release heads, rollout states, and UI-owned apply helpers.
+`FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md` is the canonical source for the first support plane, including the split between crash reporting, structured bug reporting, lightweight feedback, Hub-owned case truth, and the explicit rule that a support assistant is phase 2 rather than phase 0.
+`ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md` is the canonical source for Hub-first downloads, claimable installs, installation-level auth, and the rule that Chummer personalizes the relationship rather than the binary.
+`FEEDBACK_AND_CRASH_STATUS_MODEL.md` is the canonical source for support-case status events, fix-available notices, and post-release follow-up rules.
 `PUBLIC_LANDING_MANIFEST.yaml`, `PUBLIC_FEATURE_REGISTRY.yaml`, and `PUBLIC_LANDING_ASSET_REGISTRY.yaml` are the machine-readable source for the `chummer.run` landing structure, CTA routing, public proof shelf, asset slots, and signed-in overlay posture.
 `PUBLIC_PROGRESS_PARTS.yaml` is the canonical product-part mapping, public copy registry, and ETA/momentum policy input for the hosted `/progress` report, while `PROGRESS_REPORT.generated.json`, `PROGRESS_REPORT.generated.html`, and `PROGRESS_REPORT_POSTER.svg` are generated downstream projections that Hub may serve directly.
 `PUBLIC_AUTH_FLOW.md` defines the first-wave login/signup/logout posture, guest fallbacks, and which provider surfaces may appear publicly in the hosted shell.
 `IDENTITY_AND_CHANNEL_LINKING_MODEL.md` is the canonical source for email hygiene, social bootstrap, linked identities, official companion channels, and the rule that EA stays the orchestrator brain behind those channels.
 `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`, `PUBLIC_PART_REGISTRY.yaml`, `PUBLIC_FAQ_REGISTRY.yaml`, and `PUBLIC_HELP_COPY.md` are the machine-readable and public-safe source of truth for downstream guide generation outside the landing surface, including the generated download/build shelf.
+`METRICS_AND_SLOS.yaml` is the release-scorecard canon for measurable user-trust, continuity, publication, and install/update gates.
+`journeys/*.md` defines the top end-to-end user flows and failure-mode recoveries that multiple repos must preserve.
 
 ## Active Chummer repos
 
@@ -58,7 +86,7 @@ Deterministic rules/runtime engine. Owns engine truth, explain canon, reducer tr
 
 ### `chummer6-ui`
 
-Workbench/browser/desktop product head. Owns builders, inspectors, compare tools, moderation/admin UX, large-screen operator flows, and the desktop installer/updater recipe.
+Workbench/browser/desktop product head. Owns builders, inspectors, compare tools, moderation/admin UX, large-screen operator flows, desktop installer recipes, desktop updater integration, desktop apply helpers, and in-app feedback/bug/crash entry points.
 
 ### `chummer6-mobile`
 
@@ -66,7 +94,7 @@ Player and GM play-mode shell. Owns mobile/PWA/session UX, offline ledger, sync 
 
 ### `chummer6-hub`
 
-Hosted orchestration and community plane. Owns identity mapping, user/community accounts, generic groups and memberships, sponsorship/booster UX, fact/reward/entitlement ledgers, public landing/home projection for `chummer.run`, play API aggregation, relay, approvals, memory, Coach/Spider/Director orchestration, and hosted service policy. The next major product sequencing rule is Hub-first: account/group/ledger backbone before more booster-specific Fleet product behavior.
+Hosted orchestration and community plane. Owns identity mapping, user/community accounts, generic groups and memberships, sponsorship/booster UX, fact/reward/entitlement ledgers, public landing/home projection for `chummer.run`, play API aggregation, relay, approvals, memory, Coach/Spider/Director orchestration, support-case and help surfaces, and hosted service policy. The next major product sequencing rule is Hub-first: account/group/ledger backbone before more booster-specific Fleet product behavior.
 
 ### `chummer6-ui-kit`
 
@@ -74,7 +102,7 @@ Shared design system package. Owns tokens, themes, shell primitives, accessibili
 
 ### `chummer6-hub-registry`
 
-Artifact catalog and publication system. Owns immutable artifacts, publication workflows, release channels, install/update truth, reviews, compatibility, and runtime-bundle head metadata.
+Artifact catalog and publication system. Owns immutable artifacts, publication workflows, release channels, desktop release heads, install/update truth, reviews, compatibility, and runtime-bundle head metadata.
 
 ### `chummer6-media-factory`
 
@@ -90,7 +118,7 @@ Legacy/oracle repo. Used for migration, regression fixtures, and compatibility r
 
 These inform the program but are not part of the main release train:
 
-* `fleet` — worker orchestration/control plane, mirrored from this repo for execution policy, parity automation, and queue synthesis
+* `fleet` — worker orchestration/control plane, mirrored from this repo for execution policy, parity automation, queue synthesis, release orchestration, and signing/notarization evidence
 * `executive-assistant` — governed assistant runtime and synthesis/petition reference pattern, including proactive horizon scans, human-edit reflection, bounded replanning, interruption-budget throttling, and explicit design-governance skills such as `design_petition`, `design_synthesis`, and `mirror_status_brief`
 * `Chummer6` — downstream public guide and Horizons explainer repo; useful for public storytelling, but not canonical design truth
 
@@ -103,9 +131,10 @@ These inform the program but are not part of the main release train:
 5. Treat future repo work as additive product evolution, not split-wave cleanup or contract-canon repair.
 6. Keep sponsored participation generic: Hub grows the reusable user/group/ledger platform first, and Fleet stays the worker execution plane underneath it.
 7. Keep `chummer.run` as the product front door and proof shelf, while `Chummer6` remains the deeper downstream explainer.
-8. Keep release/build/install/update truth split cleanly: Core emits runtime bundles, UI emits installer-ready desktop heads, Fleet orchestrates the release lane, Registry owns promoted channel truth, and Hub renders downloads from registry state.
+8. Keep release/build/install/update truth split cleanly: Core emits runtime bundles, UI emits installer-ready desktop heads plus updater apply logic, Fleet orchestrates the release lane, Registry owns promoted channel truth and feed metadata, and Hub renders downloads from registry state.
+9. Keep installs claimable rather than personalized: Hub may bind an install to an account, but shipped desktop artifacts remain canonical signed builds for their release target.
 
-The foundational closure wave is materially finished. Future design work is maintenance or net-new product evolution rather than unresolved split, contract, or release-governance debt.
+The foundational closure wave is materially finished. Growth tracks such as broader participation and public-surface expansion remain live, but they now sit on top of finished release-governance and boundary truth instead of reopening it.
 
 `PARTICIPATION_AND_BOOSTER_WORKFLOW.md` is the first-class canon for user language, ownership, state transitions, receipts, recognition, and package/bootstrap truth for the bounded participation lane.
 
