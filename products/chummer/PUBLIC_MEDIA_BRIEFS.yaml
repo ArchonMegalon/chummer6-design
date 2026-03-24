@@ -1,13 +1,43 @@
 product: chummer
 surface: chummer.run
-version: 1
+version: 2
 style_epoch:
   mode: single_epoch_per_full_build
   comparison_between_builds: allowed
   note: A full landing build pass should share one major visual family, while later passes may intentionally compare different epochs.
+render_rules:
+  raster_only: true
+  no_svg: true
+  master_format: png
+  required_derivatives:
+    - avif
+    - webp
+  desktop_composition: 16:9
+  mobile_safety_rule: keep_critical_action_inside_middle_60_percent
+  no_readable_text: true
+  no_logos: true
+  no_provider_names: true
+  no_ui_labels: true
+  semantic_anchor_count_minimum: 3
+shared_prompt_scaffold:
+  style_anchor: |
+    premium software-campaign still, grounded Shadowrun-inspired cyberpunk fantasy, editorial realism, original composition, navy and graphite base palette, electric blue interface glow, warm amber proof lighting, subtle rain reflections, realistic skin and materials, layered physical props, high information density, product-specific semantics, no readable text, no logos
+  negative_prompt: |
+    readable text, letters, giant monogram, logo, watermark, central signboard, empty alley, empty boulevard, billboard centerpiece, sparse desk with one prop, lone brooding figure at vague wall, entertainment poster pose, action-movie gun pose, anime, comic art, cel shading, cosplay look, over-saturated magenta neon, low-detail hands, distorted anatomy, fisheye lens, huge lens flare, floating nonsense UI clutter, stock-photo smile
+semantic_anchors:
+  - dossier papers or briefing packet
+  - six-sided dice
+  - cyberware part or deck module
+  - magical focus or reagent
+  - route overlay or threat marker
+  - integrity seal or evidence clip
+  - commlink or data chip
+  - reviewer, witness, or operator relationship
 rules:
   - No provider names appear in public landing assets.
   - No LTD names appear in public landing assets.
+  - PNG masters with AVIF and WebP derivatives are required for every public still.
+  - No SVG files appear anywhere in the public front-door campaign set.
   - No empty placeholder frames are allowed.
   - Every placeholder card must still explain what is coming and why it matters.
   - Text in rendered images must be post-composited or otherwise verified instead of trusting raw model lettering.
@@ -15,6 +45,16 @@ rules:
   - First-contact assets must feel information-rich, layered, and unmistakably product-specific rather than like quiet generic cyberpunk mood art.
   - Hero, index, and flagship horizon art must carry visible semantic anchors for what the product does; style alone is not enough.
   - Central signboards, empty roadway ambience, and low-density “one person plus one vague prop wall” compositions are failures on public guide/landing surfaces.
+  - Calm isolated workstation energy is not enough for first contact; show relationships, pressure, and proof props.
+  - Every generated frame must keep decisive action inside the safe center so one master can survive desktop and mobile crops.
+contact_sheet_rejection:
+  - giant letterform or centered signboard
+  - empty neon boulevard
+  - lone person at vague wall
+  - sparse desk with one laptop and one mug
+  - generic cyberpunk mood art with no dossier, dice, or proof semantics
+  - text baked into the image
+  - poster-key-art posing instead of product-scene storytelling
 visual_contract:
   first_contact_hero:
     density_target: high
