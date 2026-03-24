@@ -3,7 +3,7 @@
 ## Mission
 
 `chummer6-ui` owns the workbench, browser, and desktop user experience for Chummer6.
-It is the repo for builders, inspectors, compare views, explain UX, moderation/admin surfaces, installable desktop delivery, and desktop self-update behavior.
+It is the repo for builders, inspectors, compare views, explain UX, moderation/admin surfaces, installable desktop delivery, desktop self-update behavior, and in-app bug/feedback/crash entry points.
 
 ## Owns
 
@@ -15,6 +15,11 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * updater integration inside desktop heads
 * local install/channel state for desktop clients
 * staged apply helpers and relaunch flow
+* local crash interception where the client can catch it
+* redacted diagnostics bundle creation
+* offline spool and retry for support payloads
+* next-launch crash recovery UX
+* in-app feedback and structured bug-report entry points
 * platform-specific packaging adapters that emit machine update payloads
 * at least one Linux portable smoke-test build that lands in the downloads bundle for cheap local updater verification
 * release-bundle emission for desktop artifacts
@@ -28,6 +33,9 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * hosted orchestration or provider-secret ownership
 * canonical channel or update-feed truth
 * rollout or revoke truth for promoted desktop heads
+* hosted support-ticket truth
+* knowledge-base truth
+* support-assistant orchestration
 * source-copied shared UI primitives that belong in `Chummer.Ui.Kit`
 * archive-style retention of superseded public download bundles
 
@@ -62,6 +70,16 @@ The updater backend is not canonical. The ownership split is.
 * update settings/about UX
 
 It must not invent a second promoted-channel vocabulary or bypass registry-published rollout and revoke truth.
+
+## Support rule
+
+`chummer6-ui` must ship the first support plane as native product UX:
+
+* crash recovery and private crash-report entry
+* structured bug reporting
+* lightweight feedback
+
+It must not make a chat assistant the first support feature, and it must not require another AppSumo LTD for the core crash path.
 
 ## Boundary truth
 

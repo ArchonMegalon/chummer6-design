@@ -32,7 +32,7 @@ packages:
 
   - id: Chummer.Run.Contracts
     owner_repo: chummer6-hub
-    purpose: Hosted orchestration contracts for identity, approvals, run-specific ingestion/backup seams, delivery, and service policy.
+    purpose: Hosted orchestration contracts for identity, approvals, support intake, run-specific ingestion/backup seams, delivery, and service policy.
     status: complete
     versioning_policy: SemVer. Breaking hosted orchestration or participation semantics is major; additive workflow fields are minor; compatible clarifications are patch.
     deprecation_policy: Deprecations must be published in design and hub, dual-served for at least one promoted release cycle, and paired with milestone/blocker updates before removal.
@@ -153,6 +153,19 @@ contract_sets:
       - revoke request
       - recognition projection
     rule: Hub owns sponsor, consent, visibility, ledger, and recognition semantics; Fleet owns execution-side lifecycle and receipt signing; EA may project ownership telemetry but may not redefine the workflow family.
+
+  - id: support_intake_vnext
+    canonical_package: Chummer.Run.Contracts
+    semantic_owner: chummer6-hub
+    status: in_progress
+    includes:
+      - crash report intake
+      - diagnostics attachment references
+      - structured bug reports
+      - lightweight feedback submissions
+      - support case and thread state
+      - knowledge article and public issue links
+    rule: "`chummer6-ui` owns local crash interception, diagnostics bundle creation, and recovery UX; `chummer6-hub` owns hosted support-case truth; external tools may assist routing or docs/help but may not become the canonical crash or ticket system."
 
   - id: ui_system_vnext
     canonical_package: Chummer.Ui.Kit

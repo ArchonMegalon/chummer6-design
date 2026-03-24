@@ -17,6 +17,9 @@
 * the `chummer.run` public landing, proof shelf, public status, and signed-in home overlays
 * registry-backed downloads, channel selection, and install guidance UX
 * optional entitlement brokering for gated desktop channels
+* support intake, ticket threads, and private case truth
+* knowledge/help surfaces, known-issue pages, and human escalation flows
+* survey bridges and later grounded support-assistant handoff layers
 * play API aggregation and hosted session coordination
 * orchestration-side Coach/Spider/Director surfaces
 * hosted external-integration routing that is not render-only media execution
@@ -33,6 +36,7 @@
 * Fleet worker execution or landing authority
 * release manifest generation or update-feed authority
 * public desktop update polling or local updater decisions
+* client-side crash interception or local diagnostics bundle creation
 
 ## Package boundary
 
@@ -65,6 +69,15 @@ Participation UX for premium burst lanes belongs here, but the resulting Codex a
 The first-class sponsor/consent/device-auth/lane/receipt lifecycle is defined centrally in `products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md`.
 The first-class linked-identity and channel-linking posture is defined centrally in `products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md`.
 Desktop download and install guidance may live here, but the public update feed and promoted desktop head truth stay in `chummer6-hub-registry`.
+
+## Support plane rule
+
+Hub owns support-case truth, knowledge/help surfaces, and human escalation.
+
+It does not replace the native client crash path.
+Crash recovery starts in `chummer6-ui`; hosted support truth starts here.
+
+If a support assistant is approved later, it lands on Hub/help surfaces after the crash, bug-report, feedback, and human-escalation lanes are already real.
 
 ## Sequencing rule
 

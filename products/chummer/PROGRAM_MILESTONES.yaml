@@ -308,6 +308,74 @@ program_phases:
     - Registry can pause or revoke a bad desktop head.
     - Clients do not auto-apply revoked or downgraded heads.
     - Promotion evidence includes the signature, digest, and notarization material needed to make rollback and recovery predictable.
+- id: L
+  title: Feedback and crash reporting
+  status: in_progress
+  release_blocking: false
+  goal: Ship a real support plane with crash reporting, structured bug reporting, and lightweight feedback before any support assistant becomes user-facing.
+  milestones:
+  - id: L0
+    title: Support and crash canon established
+    owners:
+    - chummer6-design
+    - chummer6-ui
+    - chummer6-hub
+    status: in_progress
+    exit:
+    - "`FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md` exists and agrees with `OWNERSHIP_MATRIX.md`, `PUBLIC_HELP_COPY.md`, and `EXTERNAL_TOOLS_PLANE.md`."
+    - Crash reports, bug reports, and feedback are explicitly different intake lanes.
+    - The support assistant is explicitly phase 2 rather than phase 0.
+  - id: L1
+    title: Crash capture and recovery lane
+    owners:
+    - chummer6-ui
+    - chummer6-hub
+    - fleet
+    status: in_progress
+    exit:
+    - Desktop clients can create a redacted diagnostics bundle and offer a next-launch crash recovery dialog.
+    - Private crash submission does not depend on chat, sign-in, or a new AppSumo LTD.
+    - Hosted support intake is version-aware using registry-backed release facts where available.
+  - id: L2
+    title: Structured bug reporting lane
+    owners:
+    - chummer6-ui
+    - chummer6-hub
+    status: in_progress
+    exit:
+    - Users can submit expected-versus-actual behavior, repro steps, optional screenshots, and optional diagnostics.
+    - Public-safe reproducible bugs can link or promote into the public issue lane.
+    - Sensitive or account-specific bug cases stay private in Hub support threads.
+  - id: L3
+    title: Lightweight feedback lane
+    owners:
+    - chummer6-ui
+    - chummer6-hub
+    status: in_progress
+    exit:
+    - Users can send low-friction product feedback without opening a full bug ticket.
+    - Structured feedback bridges remain adapter-bound and do not become support truth.
+    - Feedback can be clustered and triaged without pretending survey vendors are the ticket system of record.
+  - id: L4
+    title: Knowledge base and human escalation
+    owners:
+    - chummer6-hub
+    - chummer6-design
+    status: in_progress
+    exit:
+    - Help and known-issue surfaces are version-aware and linked to support cases where needed.
+    - Human escalation exists for private crash and bug cases.
+    - Hub help surfaces can reflect update availability and release posture without replacing registry truth.
+  - id: L5
+    title: Support assistant later
+    owners:
+    - chummer6-hub
+    - chummer6-design
+    status: pending
+    exit:
+    - A support assistant only lands after crash, bug-report, feedback, and human-escalation lanes are real.
+    - The assistant answers from curated help and known-issue sources and hands off cleanly when confidence is low.
+    - "`Karma Forge` is not reused as the support-assistant name."
 - id: B
   title: Surface split completion
   status: complete

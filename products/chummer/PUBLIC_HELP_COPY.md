@@ -4,12 +4,23 @@
 
 If you want to help without touching premium participation at all, use the public front door:
 
-* report a bug
+* file a public bug
+* send lightweight product feedback
 * flag confusing public copy
 * suggest a future lane
 * point at a horizon that sounds more useful than the current list
 
 That keeps feedback public and legible instead of making normal humans spelunk through design canon.
+
+## Private crash lane
+
+If Chummer closes unexpectedly, the first safe path is a private in-product crash report:
+
+* review the redacted diagnostics bundle
+* send it privately
+* or decline to send it
+
+Private crash diagnostics should not be forced into a public issue or a chat widget.
 
 ## Booster lane
 
@@ -46,4 +57,5 @@ When those lanes become cheaper and safer to operate broadly, the long-run inten
 
 * Open the public participation page
 * File a public issue
+* Send a private crash report from the recovery flow when Chummer closes unexpectedly
 * Read current status before promising yourself too much

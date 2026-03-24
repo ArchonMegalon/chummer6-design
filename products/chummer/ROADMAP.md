@@ -6,6 +6,7 @@ Current status on 2026-03-24:
 
 * package canon, split completion, explain canon, runtime-bundle canon, hub product-consumer planes, play-shell closure, assistant-plane governance, media capability closure, replay/DR hardening, legacy migration certification, and release-governance closure are materially complete
 * the foundational program is now in maintenance mode rather than split-wave closeout mode
+* structured crash reporting, bug reporting, and lightweight feedback are now the active additive support-plane lane rather than a missing baseline
 
 ## Phase A — Canon and package plane
 
@@ -192,6 +193,34 @@ The macOS desktop head can update from registry-owned truth while keeping the `.
 ### K4 — Rollout, revoke, and rollback become boring
 
 Promotion pause/revoke state, anti-downgrade rules, and local rollback windows become explicit and predictable rather than helper-script folklore.
+
+## Non-blocking feedback and crash lane
+
+This lane makes support intake, crash recovery, and low-friction feedback first-class without pretending that a chat assistant is the first thing users need.
+
+### L0 — Support and crash canon established
+
+`chummer6-design` publishes first-class canon for crash reporting, structured bug reports, lightweight feedback, support-case truth, privacy defaults, and the explicit "assistant later" rule.
+
+### L1 — Crash capture and recovery lane
+
+`chummer6-ui` and `chummer6-hub` make private crash reporting real with redacted diagnostics bundles, recovery UX, and version-aware support intake.
+
+### L2 — Structured bug reporting lane
+
+Users can send reproducible bug reports with expected-versus-actual detail, repro steps, and optional evidence without forcing everything through a public issue.
+
+### L3 — Lightweight feedback lane
+
+Low-friction "this feels off" and idea/suggestion input becomes real without bloating it into a ticket before triage.
+
+### L4 — Knowledge base and human escalation
+
+Known-issue/help surfaces and human support escalation become version-aware and cleanly linked to the real case/thread system.
+
+### L5 — Support assistant later
+
+Only after the earlier lanes are real does a grounded support assistant become eligible, and `Karma Forge` remains a build/rules label instead of the support-assistant name.
 
 ## Repo milestone spine
 
