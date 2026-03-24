@@ -3,7 +3,13 @@
 Approved architecture decisions for cross-repo Chummer design live here.
 
 ## Accepted
-- [ADR-0001](/docker/chummercomplete/chummer6-design/products/chummer/adrs/ADR-0001-contract-plane-canon.md): Contract-plane canon is package-owned and design-first.
-- [ADR-0002](/docker/chummercomplete/chummer6-design/products/chummer/adrs/ADR-0002-play-split-ownership.md): `chummer6-mobile` owns the play shell and depends only on approved shared packages.
-- [ADR-0003](/docker/chummercomplete/chummer6-design/products/chummer/adrs/ADR-0003-ui-kit-split.md): `chummer6-ui-kit` is the package-only shared UI boundary.
-- [ADR-0004](/docker/chummercomplete/chummer6-design/products/chummer/adrs/ADR-0004-hub-registry-split.md): `chummer6-hub-registry` owns registry and publication state after extraction from run-services.
+- [ADR-0001](ADR-0001-contract-plane-canon.md): Contract-plane canon is package-owned and design-first.
+- [ADR-0002](ADR-0002-play-split-ownership.md): `chummer6-mobile` owns the play shell and depends only on approved shared packages.
+- [ADR-0003](ADR-0003-ui-kit-split.md): `chummer6-ui-kit` is the package-only shared UI boundary.
+- [ADR-0004](ADR-0004-hub-registry-split.md): `chummer6-hub-registry` owns registry and publication state after extraction from run-services.
+- [ADR-0005](ADR-0005-public-surface-design-first.md): Public landing and guide meaning are design-first, with `chummer.run` and `Chummer6` intentionally split.
+- [ADR-0006](ADR-0006-participation-and-sponsored-execution-split.md): Hub owns participation and sponsor-session truth while Fleet owns sponsored execution lanes and signed contribution receipts.
+- [ADR-0007](ADR-0007-identity-and-companion-channel-linking.md): Identity, linked-channel policy, and companion-channel ownership stay in Hub, with EA remaining the orchestrator brain behind governed channels.
+- [ADR-0008](ADR-0008-release-authority-split.md): Release authority stays split across core, UI, Fleet, hub-registry, Hub, and Media Factory.
+- [ADR-0009](ADR-0009-external-tools-plane.md): External tools remain adapter-bound helper planes and never become canonical Chummer truth.
+- [ADR-0010](ADR-0010-desktop-auto-update-plane.md): Desktop auto-update is registry-backed, UI-applied, and atomic in its first public wave.

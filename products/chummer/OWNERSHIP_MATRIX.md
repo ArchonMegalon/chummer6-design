@@ -6,13 +6,13 @@
 | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `chummer6-design`        | central design governance          | canon, ownership, milestones, blockers, sync, review guidance                                           | code implementation, hidden parallel product docs                                  | none                                                                            |
 | `chummer6-core`   | deterministic rules/runtime engine | engine truth, reducer truth, runtime bundles, runtime fingerprints, explain canon, engine contracts     | play UI, workbench UI, registry persistence, media execution, hosted orchestration | `Chummer.Engine.Contracts`                                                      |
-| `chummer6-ui`  | workbench/browser/desktop UX       | builders, inspectors, compare, explain UX, admin/moderation UX, desktop packaging, installer/updater recipe | play shell, rule evaluation, offline ledger, media execution, release-channel truth | consumes `Chummer.Engine.Contracts`, `Chummer.Ui.Kit`                           |
+| `chummer6-ui`  | workbench/browser/desktop UX       | builders, inspectors, compare, explain UX, admin/moderation UX, desktop packaging, installer/updater recipes, updater client behavior, local install state, staged apply helpers | play shell, rule evaluation, offline ledger, media execution, registry rollout truth, canonical channel/update-feed truth | consumes `Chummer.Engine.Contracts`, `Chummer.Ui.Kit`                           |
 | `chummer6-mobile`          | live session/mobile/PWA shell      | player shell, GM shell, offline ledger, sync client, play-safe Coach/Spider surfaces                    | builder UX, rule evaluation, registry/moderation, provider secrets                 | consumes `Chummer.Engine.Contracts`, `Chummer.Play.Contracts`, `Chummer.Ui.Kit` |
-| `chummer6-hub`  | hosted orchestration and community plane | identity, user accounts, groups, memberships, ledgers, participation UX, relay, approvals, memory, Coach/Spider/Director orchestration, delivery, play API aggregation, registry-backed downloads UX | duplicate mechanics, registry persistence after split, media rendering after split, raw participant auth caches, Fleet worker execution, release manifest generation truth | `Chummer.Play.Contracts`, `Chummer.Run.Contracts`                               |
+| `chummer6-hub`  | hosted orchestration and community plane | identity, user accounts, groups, memberships, ledgers, participation UX, relay, approvals, memory, Coach/Spider/Director orchestration, delivery, play API aggregation, registry-backed downloads UX, account-aware install guidance | duplicate mechanics, registry persistence after split, media rendering after split, raw participant auth caches, Fleet worker execution, release manifest generation truth, update-feed truth | `Chummer.Play.Contracts`, `Chummer.Run.Contracts`                               |
 | `chummer6-ui-kit`        | shared design system               | tokens, themes, shell primitives, accessibility primitives, reusable components                         | domain DTOs, HTTP clients, storage, rules math                                     | `Chummer.Ui.Kit`                                                                |
-| `chummer6-hub-registry`  | catalog/publication service        | artifacts, publication drafts, release channels, installs, update feeds, reviews, compatibility, runtime-bundle heads | relay, Coach/Spider, media rendering, client UX, installer build execution         | `Chummer.Hub.Registry.Contracts`                                                |
+| `chummer6-hub-registry`  | catalog/publication service        | artifacts, publication drafts, release channels, desktop release heads, installs, update feeds, rollout/revocation state, reviews, compatibility, runtime-bundle heads | relay, Coach/Spider, media rendering, client UX, installer build execution         | `Chummer.Hub.Registry.Contracts`                                                |
 | `chummer6-media-factory` | media execution plant              | render jobs, previews, manifests, asset lifecycle, provider adapters, signed asset access               | campaign truth, rules truth, approvals policy, player/client UX                    | `Chummer.Media.Contracts`                                                       |
-| `fleet`                  | execution/control plane            | worker orchestration, queue policy, review/landing control, cheap-first automation, explicit premium burst lanes, lane-local auth helpers, sponsor-session receipts, release orchestration, publish/signoff evidence | product truth, contract canon, session truth, user/group/ledger truth, raw hosted identity/auth storage, installer recipe truth, canonical release-channel truth      | none                                                                            |
+| `fleet`                  | execution/control plane            | worker orchestration, queue policy, review/landing control, cheap-first automation, explicit premium burst lanes, lane-local auth helpers, sponsor-session receipts, release orchestration, signing/notarization jobs, publish/signoff evidence | product truth, contract canon, session truth, user/group/ledger truth, raw hosted identity/auth storage, installer recipe truth, canonical release-channel truth      | none                                                                            |
 | `chummer5a`             | legacy oracle                      | migration fixtures, regression corpus, legacy compatibility reference                                   | vNext architecture ownership                                                       | none                                                                            |
 
 ## Boundary notes
@@ -24,7 +24,8 @@ The only repo allowed to define canonical mechanics truth.
 ### `chummer6-ui`
 
 The only repo allowed to define workbench/browser/desktop product UX.
-It is also the only repo allowed to own the desktop installer/updater recipe.
+It is also the only repo allowed to own desktop updater client behavior, local update state, and staged apply helpers.
+It must not redefine published channel or update-feed truth.
 
 ### `chummer6-mobile`
 
@@ -34,6 +35,7 @@ The only repo allowed to define the dedicated live play/mobile shell.
 
 The only repo allowed to own the reusable community/accounting plane and hosted orchestration, but not the only repo allowed to own hosted services.
 Registry and media must remain separate service boundaries.
+Hub may explain install and update posture, but it does not become the feed authority.
 
 ### `chummer6-ui-kit`
 
@@ -41,7 +43,7 @@ The only repo allowed to own shared cross-head UI primitives.
 
 ### `chummer6-hub-registry`
 
-The only repo allowed to own immutable artifact catalog, publication/install/update truth, and promoted release channels.
+The only repo allowed to own immutable artifact catalog, publication/install/update truth, promoted release channels, and desktop release heads.
 
 ### `chummer6-media-factory`
 
@@ -58,11 +60,13 @@ Any of the following is an ownership violation:
 * a repo introduces a shared cross-repo DTO family outside its canonical package
 * hub reintroduces media rendering or registry persistence after those splits complete
 * ui reclaims play-shell ownership
+* ui invents a second promoted channel vocabulary or local feed truth
 * mobile reimplements rules truth
 * ui-kit gains domain DTOs or HTTP clients
 * engine begins depending on ui/mobile/hub code
 * design repo becomes stale enough that code repos must invent architecture locally
 * fleet introduces execution policy that contradicts mirrored design canon
+* hub or fleet become the runtime update authority for desktop clients
 
 
 ## External integration ownership

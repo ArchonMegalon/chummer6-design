@@ -1,5 +1,5 @@
 product: chummer
-last_reviewed: 2026-03-19
+last_reviewed: 2026-03-24
 release_track: vnext-foundation
 repo_boundary_purity:
 - repo: chummer6-design
@@ -226,7 +226,7 @@ program_phases:
     exit:
     - "`chummer.run` exposes `/`, `/what-is-chummer`, `/now`, `/horizons`, `/downloads`, `/participate`, `/status`, and `/artifacts` from design-owned landing truth."
     - Public CTA routing does not depend on repo-local improvised feature maps.
-    - Landing copy does not mention provider or LTD names."
+    - Landing copy does not mention provider or LTD names.
   - id: J2
     title: Signed-in overlays become boring
     owners:
@@ -234,8 +234,8 @@ program_phases:
     status: in_progress
     exit:
     - "`/home` and `/account` give registered users a thin but real overlay above the public landing."
-    - Follow/beta/participation overlays exist as product surfaces even if deeper workflows remain preview-bound."
-    - Public and registered behavior matches `PUBLIC_USER_MODEL.md`."
+    - Follow, beta, and participation overlays exist as product surfaces even if deeper workflows remain preview-bound.
+    - Public and registered behavior matches `PUBLIC_USER_MODEL.md`.
   - id: J3
     title: Identity and channel linking posture becomes canonical
     owners:
@@ -244,8 +244,70 @@ program_phases:
     status: in_progress
     exit:
     - "`IDENTITY_AND_CHANNEL_LINKING_MODEL.md` defines email hygiene, provider bootstrap priority, linked identities, linked channels, and official-versus-user-provided Telegram posture."
-    - Hub exposes a first real linked-identity and channel-link surface without inventing a second orchestration brain."
-    - EA remains the canonical companion/runtime brain behind official channel adapters."
+    - Hub exposes a first real linked-identity and channel-link surface without inventing a second orchestration brain.
+    - EA remains the canonical companion/runtime brain behind official channel adapters.
+- id: K
+  title: Desktop auto-update
+  status: in_progress
+  release_blocking: false
+  goal: Make Windows and macOS desktop heads self-updating through registry-owned channel truth and UI-owned apply helpers without turning Hub or Fleet into the runtime source of truth.
+  milestones:
+  - id: K0
+    title: Desktop update canon established
+    owners:
+    - chummer6-design
+    - chummer6-ui
+    - chummer6-hub-registry
+    - fleet
+    status: complete
+    exit:
+    - "`DESKTOP_AUTO_UPDATE_SYSTEM.md` exists and agrees with `RELEASE_PIPELINE.md`."
+    - Install media versus machine update payloads are explicitly distinguished.
+    - UI, registry, Hub, and Fleet ownership rules are explicit.
+    - A Linux portable smoke-test artifact is required in the downloads bundle even before Linux becomes a first-wave public self-update promise.
+  - id: K1
+    title: Registry desktop release heads
+    owners:
+    - chummer6-hub-registry
+    - chummer6-design
+    status: in_progress
+    exit:
+    - "`Chummer.Hub.Registry.Contracts` includes desktop release-head and update-feed DTOs."
+    - Promoted desktop heads reference install media, machine update payloads, embedded runtime-bundle heads, and release-note references.
+    - Rollout, pause, and revoke state are part of registry truth.
+  - id: K2
+    title: Windows desktop head self-updates
+    owners:
+    - chummer6-ui
+    - chummer6-hub-registry
+    - fleet
+    status: in_progress
+    exit:
+    - The Windows desktop client records pinned channel and installed version locally.
+    - The desktop head can check, stage, apply, and relaunch into a newer version through a UI-owned apply helper.
+    - Signed payload verification happens before apply and a last-known-good window exists until first successful launch.
+  - id: K3
+    title: macOS desktop head self-updates
+    owners:
+    - chummer6-ui
+    - chummer6-hub-registry
+    - fleet
+    status: in_progress
+    exit:
+    - The macOS desktop client updates from registry-owned truth while keeping the `.dmg` as the first-install surface.
+    - The apply helper can replace the `.app` bundle or fall back to a guided reinstall when the install location is not writable.
+    - Signing, notarization, and quarantine handling are part of release orchestration evidence.
+  - id: K4
+    title: Rollout, revoke, and rollback discipline
+    owners:
+    - chummer6-hub-registry
+    - chummer6-ui
+    - fleet
+    status: in_progress
+    exit:
+    - Registry can pause or revoke a bad desktop head.
+    - Clients do not auto-apply revoked or downgraded heads.
+    - Promotion evidence includes the signature, digest, and notarization material needed to make rollback and recovery predictable.
 - id: B
   title: Surface split completion
   status: complete
@@ -450,14 +512,15 @@ program_phases:
     exit:
     - Legacy import/export and regression corpus are certified.
   - id: F3
-    title: Release complete
+    title: Foundation release complete
     owners:
     - chummer6-design
     status: complete
     exit:
     - All prior phase exits are met.
     - No open red blockers remain.
-    - The product vision is complete enough for release.
+    - The `vnext-foundation` product is complete enough for release.
+    - Growth tracks may continue without re-opening foundation release truth.
 current_release_blockers: []
 executable_queue:
 - id: WL-D007

@@ -3,7 +3,7 @@
 ## Mission
 
 `chummer6-ui` owns the workbench, browser, and desktop user experience for Chummer6.
-It is the repo for builders, inspectors, compare views, explain UX, moderation/admin surfaces, and installable desktop delivery.
+It is the repo for builders, inspectors, compare views, explain UX, moderation/admin surfaces, installable desktop delivery, and desktop self-update behavior.
 
 ## Owns
 
@@ -13,6 +13,10 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * moderation and admin surfaces that stay outside the live play shell
 * desktop packaging, installer delivery, and workbench-side release polish
 * updater integration inside desktop heads
+* local install/channel state for desktop clients
+* staged apply helpers and relaunch flow
+* platform-specific packaging adapters that emit machine update payloads
+* at least one Linux portable smoke-test build that lands in the downloads bundle for cheap local updater verification
 * release-bundle emission for desktop artifacts
 * automatic post-build publication of the latest successful desktop bundle into configured self-hosted downloads targets
 
@@ -23,6 +27,7 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * engine/runtime mechanics truth
 * hosted orchestration or provider-secret ownership
 * canonical channel or update-feed truth
+* rollout or revoke truth for promoted desktop heads
 * source-copied shared UI primitives that belong in `Chummer.Ui.Kit`
 * archive-style retention of superseded public download bundles
 
@@ -34,6 +39,7 @@ Primary consumption boundary:
 
 * `Chummer.Engine.Contracts`
 * `Chummer.Ui.Kit`
+* `Chummer.Hub.Registry.Contracts` for published desktop release-head and update-feed DTOs
 
 ## Restore rule
 
@@ -44,6 +50,19 @@ Primary consumption boundary:
 
 Workers must not have to guess whether missing restore is caused by a feed problem or a missing compatibility tree.
 
+## Desktop update rule
+
+The updater backend is not canonical. The ownership split is.
+
+`chummer6-ui` may wrap a third-party updater backend or use a custom helper, but it must still own:
+
+* check/download/stage/apply/relaunch behavior
+* local rollback-window state
+* per-head startup hooks
+* update settings/about UX
+
+It must not invent a second promoted-channel vocabulary or bypass registry-published rollout and revoke truth.
+
 ## Boundary truth
 
 Feature completion inside this repo was not enough to close the split milestone.
@@ -53,6 +72,8 @@ Feature completion inside this repo was not enough to close the split milestone.
 * shared visual chrome migrates into `chummer6-ui-kit`
 * play-shell ownership remains fully outside this repo
 * installer/release work stays workbench-scoped instead of reabsorbing unrelated ownership
+
+Desktop auto-update is additive evolution after that boundary closure. It must not be implemented by letting desktop concerns leak back into Hub, Fleet, or Core.
 
 ## Current reality
 
@@ -65,3 +86,4 @@ That means:
 * shared visual chrome is package-owned and regression-guarded
 * workbench release evidence is explicit in `docs/WORKBENCH_RELEASE_SIGNOFF.md`
 * any retained legacy roots must stay explicitly documented as compatibility cargo
+* the first desktop updater wave should ship atomic full-head replacement before delta or runtime-only evolution

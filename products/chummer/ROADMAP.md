@@ -2,7 +2,7 @@
 
 This roadmap carries the program all the way to finished-state vision, not just to the split wave.
 
-Current status on 2026-03-19:
+Current status on 2026-03-24:
 
 * package canon, split completion, explain canon, runtime-bundle canon, hub product-consumer planes, play-shell closure, assistant-plane governance, media capability closure, replay/DR hardening, legacy migration certification, and release-governance closure are materially complete
 * the foundational program is now in maintenance mode rather than split-wave closeout mode
@@ -103,9 +103,9 @@ Core, hub, registry, and media all have operational confidence.
 
 `chummer5a` migration and regression confidence are formally certified.
 
-### F3 — Release complete
+### F3 — Foundation release complete
 
-The product vision is complete enough for release: split finished, boundaries clean, packages canonical, product surfaces coherent, and operational discipline in place.
+The `vnext-foundation` product is complete enough for release: split finished, boundaries clean, packages canonical, product surfaces coherent, and operational discipline in place. Growth tracks may continue without reopening foundation release truth.
 
 ## Non-blocking Horizons canon lane
 
@@ -169,6 +169,30 @@ This lane makes `chummer.run` a canon-backed product front door instead of leavi
 
 `chummer.run` exposes thin but real signed-in overlays, participation entry, artifact teasers, and status/download surfaces without inventing local product truth.
 
+## Non-blocking desktop update lane
+
+This lane makes desktop self-update a first-class product capability without retroactively changing the release bar for `vnext-foundation`.
+
+### K0 — Desktop update canon established
+
+`chummer6-design` publishes first-class canon for desktop release heads, install media, machine update payloads, rollout/revoke truth, and UI-owned apply helpers.
+
+### K1 — Registry-backed desktop release heads
+
+`chummer6-hub-registry` projects promoted desktop heads by `head × platform × arch × channel`, including install media, machine update payloads, release notes, runtime-bundle references, and rollout posture.
+
+### K2 — Windows desktop head self-updates
+
+The Windows desktop head can check, stage, apply, relaunch, and recover without turning installers or Fleet scripts into the runtime source of truth.
+
+### K3 — macOS desktop head self-updates
+
+The macOS desktop head can update from registry-owned truth while keeping the `.dmg` as the initial install surface rather than the runtime update authority.
+
+### K4 — Rollout, revoke, and rollback become boring
+
+Promotion pause/revoke state, anti-downgrade rules, and local rollback windows become explicit and predictable rather than helper-script folklore.
+
 ## Repo milestone spine
 
 ### `chummer6-design`
@@ -181,7 +205,7 @@ E0 purification -> E1 runtime DTO canon -> E2 explain canon -> E3 session reduce
 
 ### `chummer6-ui`
 
-P0 ownership correction -> P1 package-only UI consumption -> P2 workbench shell -> P3 explain UX -> P4 Build Lab UX -> P5 registry/admin/publish UX -> P6 platform parity -> P7 accessibility/perf -> P8 finished workbench.
+ P0 ownership correction -> P1 package-only UI consumption -> P2 workbench shell -> P3 explain UX -> P4 Build Lab UX -> P5 registry/admin/publish UX -> P6 platform parity -> P7 accessibility/perf -> P8 desktop update plane -> P9 finished workbench.
 
 ### `chummer6-mobile`
 
@@ -193,7 +217,7 @@ U0 governance -> U1 token canon -> U2 primitives -> U3 shell chrome -> U4 dense 
 
 ### `chummer6-hub-registry`
 
-H0 contract canon -> H1 artifact domain -> H2 publication drafts -> H3 install/compatibility engine -> H4 search/discovery/reviews -> H5 template/style publication -> H6 federation/org channels -> H7 hardening -> H8 finished registry.
+ H0 contract canon -> H1 artifact domain -> H2 publication drafts -> H3 install/compatibility engine -> H4 search/discovery/reviews -> H5 template/style publication -> H6 federation/org channels -> H7 desktop release heads -> H8 hardening -> H9 finished registry.
 
 ### `chummer6-media-factory`
 
