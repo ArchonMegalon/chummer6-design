@@ -33,6 +33,7 @@ Owns:
 * updater integration inside the desktop heads
 * workbench-side release polish
 * release-bundle emission for desktop artifacts
+* the post-build sync step that replaces the public downloads shelf with the latest successful bundle when a deploy target is configured
 
 Must not own:
 
@@ -107,10 +108,11 @@ It must not own installers, release feeds, channel policy, or publication/update
 
 1. `chummer6-core` produces runtime-bundle outputs and fingerprints.
 2. `chummer6-ui` produces desktop bundles plus installer/update-ready package outputs.
-3. `fleet` expands the release matrix, runs verify/promotion/signoff orchestration, and prepares a registry publication payload.
-4. `chummer6-hub-registry` becomes the source of truth for promoted channels, installer/download records, update-feed metadata, compatibility, and runtime-bundle heads.
-5. `chummer6-hub` reads registry truth and serves `/downloads`, account-aware install UX, and related public surfaces.
-6. `Chummer6` and other downstream guide surfaces read registry-backed release projections; they do not become build authorities.
+3. When a self-hosted downloads target is configured, the successful desktop build automatically replaces the previous public downloads bundle and prunes superseded desktop artifacts so `/downloads` stays latest-only.
+4. `fleet` expands the release matrix, runs verify/promotion/signoff orchestration, and prepares a registry publication payload.
+5. `chummer6-hub-registry` becomes the source of truth for promoted channels, installer/download records, update-feed metadata, compatibility, and runtime-bundle heads.
+6. `chummer6-hub` reads registry truth and serves `/downloads`, account-aware install UX, and related public surfaces.
+7. `Chummer6` and other downstream guide surfaces read registry-backed release projections; they do not become build authorities.
 
 ## Initial ship rule
 
@@ -143,3 +145,15 @@ Updater integration lives in `chummer6-ui`.
 Release and channel truth for that updater lives in `chummer6-hub-registry`.
 
 Fleet may orchestrate the packaging/promotion wave, but the desktop head owns the updater client behavior and the registry owns the published feed/channel records.
+
+## Latest shelf rule
+
+The public `/downloads` surface is a latest-build shelf, not a long archive listing.
+
+When the desktop build pipeline is configured with a deploy target, each successful build must:
+
+* publish the freshly generated bundle into the active downloads root
+* replace the compatibility and canonical release manifests in that root
+* remove superseded desktop artifacts from that root
+
+That keeps `chummer.run/downloads` and other self-hosted downloads surfaces aligned to the newest successful desktop bundle.

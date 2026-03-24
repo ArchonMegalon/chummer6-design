@@ -14,6 +14,7 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * desktop packaging, installer delivery, and workbench-side release polish
 * updater integration inside desktop heads
 * release-bundle emission for desktop artifacts
+* automatic post-build publication of the latest successful desktop bundle into configured self-hosted downloads targets
 
 ## Must not own
 
@@ -23,6 +24,7 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * hosted orchestration or provider-secret ownership
 * canonical channel or update-feed truth
 * source-copied shared UI primitives that belong in `Chummer.Ui.Kit`
+* archive-style retention of superseded public download bundles
 
 ## Package boundary
 
