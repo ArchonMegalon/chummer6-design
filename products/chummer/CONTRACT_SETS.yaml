@@ -192,7 +192,7 @@ contract_sets:
       - installation grants
       - install-linked support identity
       - release notices and follow-up invites
-    rule: "Hub owns the person/install/support relationship, but the downloaded desktop artifact remains the canonical signed build for its release target; Registry stays authoritative for channel, release-head, install, and update truth."
+    rule: "Hub owns the person/install/support relationship, but the downloaded desktop artifact remains the canonical signed build for its release target; Registry stays authoritative for install access classes, channel, release-head, install, and update truth."
 
   - id: ui_system_vnext
     canonical_package: Chummer.Ui.Kit
@@ -212,6 +212,7 @@ contract_sets:
       - artifact metadata
       - publication state
       - install state
+      - install access class posture
       - desktop release-head records
       - update-feed projections
       - review and compatibility projections
