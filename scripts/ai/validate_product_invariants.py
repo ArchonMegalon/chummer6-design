@@ -51,6 +51,7 @@ def main() -> int:
         "BUILD_LAB_PRODUCT_MODEL.md",
         "NEXT_15_BIG_WINS_EXECUTION_PLAN.md",
         "NEXT_20_BIG_WINS_EXECUTION_PLAN.md",
+        "NEXT_20_BIG_WINS_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
         "projects/executive-assistant.md",
     }
@@ -143,15 +144,20 @@ def main() -> int:
         "BUILD_LAB_PRODUCT_MODEL.md",
         "NEXT_15_BIG_WINS_EXECUTION_PLAN.md",
         "NEXT_20_BIG_WINS_EXECUTION_PLAN.md",
+        "NEXT_20_BIG_WINS_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "claim-install-and-close-a-support-case.md",
         "run-a-campaign-and-return.md",
         "organize-a-community-and-close-the-loop.md",
+        "validate_next20_milestones.py",
+        "materialize_public_guide_bundle.py",
     )
     for marker in verify_expectations:
         if marker not in verify_sh:
             errors.append(f"verify.sh must enforce {marker}.")
+    if "materialize_public_guide_bundle.py" in verify_sh and "--check" not in verify_sh:
+        errors.append("verify.sh must run materialize_public_guide_bundle.py in --check mode.")
 
     required_repo_paths = (
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Campaign.Contracts" / "Chummer.Campaign.Contracts.csproj",
