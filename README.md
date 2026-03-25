@@ -27,6 +27,8 @@ This repo is the **lead designer** for the Chummer program. It is the only place
 ## Canonical tree
 
 * `products/chummer/README.md` — product entry point
+* `products/chummer/START_HERE.md` — role-based fast entry into canon
+* `products/chummer/GLOSSARY.md` — shared program vocabulary
 * `products/chummer/VISION.md` — product vision and finished-state intent
 * `products/chummer/ARCHITECTURE.md` — repo graph, dependency rules, seam rules
 * `products/chummer/ROADMAP.md` — long-range program roadmap
@@ -34,6 +36,8 @@ This repo is the **lead designer** for the Chummer program. It is the only place
 * `products/chummer/OWNERSHIP_MATRIX.md` — authority map per repo
 * `products/chummer/PROGRAM_MILESTONES.yaml` — milestone registry
 * `products/chummer/CONTRACT_SETS.yaml` — contract/package registry
+* `products/chummer/METRICS_AND_SLOS.yaml` — product scorecard and release gates
+* `products/chummer/journeys/*.md` — canonical user journeys and failure-mode flows
 * `products/chummer/GROUP_BLOCKERS.md` — active cross-repo blockers
 * `products/chummer/projects/*.md` — repo-specific implementation scopes
 * `products/chummer/review/*.md` — review guidance mirrored into code repos

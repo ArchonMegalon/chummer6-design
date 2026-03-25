@@ -23,10 +23,12 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 
 ## Mirror and truth freshness
 
-- review-template parity evidence: `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`
-- local mirror parity evidence: `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`
-- truth-maintenance evidence: `products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md`
+- primary executable proof: `bash scripts/ai/verify.sh`
+- sync topology proof: `python3 scripts/ai/validate_sync_manifest.py`
+- downstream root-canon proof: `python3 scripts/ai/validate_downstream_root_aliases.py`
+- local parity proof: `python3 scripts/ai/publish_local_mirrors.py --check`
+- historical audit trails remain in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`, `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`, and `products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md`
 
 ## Promotion posture
 
-Chummer is release-complete at the canonical product/design level. Public-guide and participation surfaces remain downstream-only and may stay on a protected-preview deployment posture until operators choose broader promotion, but that deployment choice no longer reflects missing design or repo-boundary truth.
+Chummer foundation release is complete at the canonical product/design level. Public-guide and participation surfaces remain downstream growth tracks and may stay on a protected-preview deployment posture until operators choose broader promotion, but that deployment choice no longer reflects missing foundation design or repo-boundary truth.

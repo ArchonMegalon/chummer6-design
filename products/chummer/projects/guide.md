@@ -24,7 +24,7 @@
 - `PUBLIC_LANDING_MANIFEST.yaml`
 - `PUBLIC_FEATURE_REGISTRY.yaml`
 - `PUBLIC_USER_MODEL.md`
-- registry-backed generated release matrix artifact
+- generated release matrix artifact
 - `HORIZON_REGISTRY.yaml`
 - the latest approved public program status
 - owning repo READMEs only when the page class explicitly allows them

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import sys
 from collections import Counter
@@ -12,16 +13,112 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPO_ROOT / "products" / "chummer" / "sync" / "sync-manifest.yaml"
-REPO_ROOTS = {
-    "chummer6-core": Path("/docker/chummercomplete/chummer-core-engine"),
-    "chummer6-ui": Path("/docker/chummercomplete/chummer-presentation"),
-    "chummer6-hub": Path("/docker/chummercomplete/chummer.run-services"),
-    "chummer6-mobile": Path("/docker/chummercomplete/chummer-play"),
-    "chummer6-ui-kit": Path("/docker/chummercomplete/chummer-ui-kit"),
-    "chummer6-hub-registry": Path("/docker/chummercomplete/chummer-hub-registry"),
-    "chummer6-media-factory": Path("/docker/fleet/repos/chummer-media-factory"),
-    "fleet": Path("/docker/fleet"),
+REPO_DIR_ALIASES = {
+    "chummer6-core": ("chummer6-core", "chummer-core-engine"),
+    "chummer6-ui": ("chummer6-ui", "chummer-presentation"),
+    "chummer6-hub": ("chummer6-hub", "chummer.run-services"),
+    "chummer6-mobile": ("chummer6-mobile", "chummer-play"),
+    "chummer6-ui-kit": ("chummer6-ui-kit", "chummer-ui-kit"),
+    "chummer6-hub-registry": ("chummer6-hub-registry", "chummer-hub-registry"),
+    "chummer6-media-factory": ("chummer6-media-factory", "chummer-media-factory"),
+    "fleet": ("fleet",),
 }
+DEFAULT_REPO_ROOT_CANDIDATES = {
+    "chummer6-core": (
+        REPO_ROOT.parent / "chummer6-core",
+        REPO_ROOT.parent / "chummer-core-engine",
+        Path("/docker/chummercomplete/chummer6-core"),
+        Path("/docker/chummercomplete/chummer-core-engine"),
+    ),
+    "chummer6-ui": (
+        REPO_ROOT.parent / "chummer6-ui",
+        REPO_ROOT.parent / "chummer-presentation",
+        Path("/docker/chummercomplete/chummer6-ui"),
+        Path("/docker/chummercomplete/chummer-presentation"),
+    ),
+    "chummer6-hub": (
+        REPO_ROOT.parent / "chummer6-hub",
+        REPO_ROOT.parent / "chummer.run-services",
+        Path("/docker/chummercomplete/chummer6-hub"),
+        Path("/docker/chummercomplete/chummer.run-services"),
+    ),
+    "chummer6-mobile": (
+        REPO_ROOT.parent / "chummer6-mobile",
+        REPO_ROOT.parent / "chummer-play",
+        Path("/docker/chummercomplete/chummer6-mobile"),
+        Path("/docker/chummercomplete/chummer-play"),
+    ),
+    "chummer6-ui-kit": (
+        REPO_ROOT.parent / "chummer6-ui-kit",
+        REPO_ROOT.parent / "chummer-ui-kit",
+        Path("/docker/chummercomplete/chummer6-ui-kit"),
+        Path("/docker/chummercomplete/chummer-ui-kit"),
+    ),
+    "chummer6-hub-registry": (
+        REPO_ROOT.parent / "chummer6-hub-registry",
+        REPO_ROOT.parent / "chummer-hub-registry",
+        Path("/docker/chummercomplete/chummer6-hub-registry"),
+        Path("/docker/chummercomplete/chummer-hub-registry"),
+    ),
+    "chummer6-media-factory": (
+        REPO_ROOT.parent / "chummer6-media-factory",
+        REPO_ROOT.parent / "chummer-media-factory",
+        Path("/docker/chummercomplete/chummer6-media-factory"),
+        Path("/docker/chummercomplete/chummer-media-factory"),
+        Path("/docker/fleet/repos/chummer6-media-factory"),
+        Path("/docker/fleet/repos/chummer-media-factory"),
+    ),
+    "fleet": (
+        REPO_ROOT.parent / "fleet",
+        Path("/docker/fleet"),
+    ),
+}
+
+
+def _dedupe_paths(paths: list[Path]) -> list[Path]:
+    seen: set[str] = set()
+    unique: list[Path] = []
+    for path in paths:
+        normalized = str(path.expanduser())
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        unique.append(Path(normalized))
+    return unique
+
+
+def _repo_root_override_var(repo_name: str) -> str:
+    return f"{repo_name.upper().replace('-', '_')}_REPO_ROOT"
+
+
+def _candidate_repo_roots(repo_name: str, repo_base: Path | None) -> list[Path]:
+    candidates: list[Path] = []
+
+    override = os.environ.get(_repo_root_override_var(repo_name))
+    if override:
+        candidates.append(Path(override).expanduser())
+
+    base_overrides: list[Path] = []
+    if repo_base is not None:
+        base_overrides.append(repo_base.expanduser())
+    shared_base = os.environ.get("CHUMMER_REPO_BASE")
+    if shared_base:
+        base_overrides.append(Path(shared_base).expanduser())
+
+    for base in _dedupe_paths(base_overrides):
+        for alias in REPO_DIR_ALIASES.get(repo_name, (repo_name,)):
+            candidates.append(base / alias)
+
+    candidates.extend(DEFAULT_REPO_ROOT_CANDIDATES.get(repo_name, ()))
+    return _dedupe_paths(candidates)
+
+
+def _resolve_repo_root(repo_name: str, repo_base: Path | None) -> tuple[Path | None, list[Path]]:
+    candidates = _candidate_repo_roots(repo_name, repo_base)
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate, candidates
+    return None, candidates
 
 
 def _load_manifest(path: Path) -> dict[str, object]:
@@ -29,6 +126,33 @@ def _load_manifest(path: Path) -> dict[str, object]:
     if not isinstance(data, dict):
         raise ValueError("sync_manifest_not_object")
     return data
+
+
+def _expand_product_sources(manifest: dict[str, object], mirror: dict[str, object]) -> list[str]:
+    group_table = manifest.get("product_source_groups") or {}
+    if group_table and not isinstance(group_table, dict):
+        raise ValueError("sync_manifest_product_source_groups_not_object")
+
+    expanded: list[str] = []
+    for group_name in mirror.get("product_groups") or []:
+        group_items = group_table.get(group_name) if isinstance(group_table, dict) else None
+        if not isinstance(group_items, list):
+            raise ValueError(f"sync_manifest_product_group_not_list:{group_name}")
+        expanded.extend(str(item or "").strip() for item in group_items)
+
+    explicit_sources = mirror.get("product_sources") or mirror.get("sources") or []
+    if explicit_sources and not isinstance(explicit_sources, list):
+        raise ValueError("sync_manifest_product_sources_not_list")
+    expanded.extend(str(item or "").strip() for item in explicit_sources)
+
+    ordered_sources: list[str] = []
+    seen: set[str] = set()
+    for source in expanded:
+        if not source or source in seen:
+            continue
+        seen.add(source)
+        ordered_sources.append(source)
+    return ordered_sources
 
 
 def _relative_product_target(source_rel: str, duplicate_basenames: set[str], product_target: str) -> Path:
@@ -73,13 +197,13 @@ def _prune_stale_product_files(product_root: Path, expected_rel_paths: set[Path]
     return removed
 
 
-def publish_mirrors(*, write: bool, prune: bool) -> int:
+def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None) -> int:
     manifest = _load_manifest(MANIFEST_PATH)
     mirrors = manifest.get("mirrors") or []
     if not isinstance(mirrors, list):
         raise ValueError("sync_manifest_mirrors_not_list")
 
-    missing_repos: list[str] = []
+    missing_repos: list[tuple[str, str, list[Path]]] = []
     changed_count = 0
     removed_count = 0
 
@@ -87,14 +211,13 @@ def publish_mirrors(*, write: bool, prune: bool) -> int:
         if not isinstance(mirror, dict):
             continue
         repo_name = str(mirror.get("repo") or "").strip()
-        repo_root = REPO_ROOTS.get(repo_name)
-        if repo_root is None or not repo_root.exists():
-            missing_repos.append(repo_name or "<missing>")
+        repo_root, candidates = _resolve_repo_root(repo_name, repo_base)
+        if repo_root is None:
+            missing_repos.append((repo_name or "<missing>", _repo_root_override_var(repo_name), candidates))
             continue
 
         product_target = str(mirror.get("product_target") or mirror.get("target") or ".codex-design/product").strip()
-        product_sources = [str(item or "").strip() for item in mirror.get("product_sources") or mirror.get("sources") or []]
-        product_sources = [item for item in product_sources if item]
+        product_sources = _expand_product_sources(manifest, mirror)
         duplicate_basenames = {
             name
             for name, count in Counter(Path(source).name for source in product_sources).items()
@@ -143,7 +266,10 @@ def publish_mirrors(*, write: bool, prune: bool) -> int:
             print(f"  remove {rel}")
 
     if missing_repos:
-        print("missing repos:", ", ".join(missing_repos), file=sys.stderr)
+        print("missing repos:", file=sys.stderr)
+        for repo_name, env_var, candidates in missing_repos:
+            checked = ", ".join(str(path) for path in candidates)
+            print(f"  {repo_name}: set {env_var} or CHUMMER_REPO_BASE; checked {checked}", file=sys.stderr)
         return 1
 
     print(f"summary: changed={changed_count} removed={removed_count} mode={'write' if write else 'check'} prune={prune}")
@@ -154,8 +280,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Publish repo-local `.codex-design` mirrors from the canonical Chummer design manifest.")
     parser.add_argument("--check", action="store_true", help="Report drift without writing mirror targets.")
     parser.add_argument("--no-prune", action="store_true", help="Do not remove stale mirrored product files that are no longer in the manifest.")
+    parser.add_argument("--repo-base", type=Path, help="Optional base directory containing sibling repos under canonical or legacy local names.")
     args = parser.parse_args()
-    return publish_mirrors(write=not args.check, prune=not args.no_prune)
+    return publish_mirrors(write=not args.check, prune=not args.no_prune, repo_base=args.repo_base)
 
 
 if __name__ == "__main__":
