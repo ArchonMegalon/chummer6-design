@@ -139,7 +139,7 @@ Public proposals and advisory prioritization routes are collected through govern
 
 ## Non-blocking participation and bootstrap lane
 
-This lane makes the bounded participate/booster workflow and package bootstrap truth explicit without turning them into release-blocking gates.
+This lane makes the guided participation workflow and package bootstrap truth explicit without turning them into release-blocking gates.
 
 ### I0 — Participation workflow canon established
 
