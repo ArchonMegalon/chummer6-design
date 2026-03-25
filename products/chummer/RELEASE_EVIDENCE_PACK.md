@@ -10,6 +10,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 - `GROUP_BLOCKERS.md` reports no red blockers.
 - The product vision, horizon canon, public-guide policy, and Fleet participation/support posture are all canonical and downstream-synced from this repo.
 - The Account-Aware Front Door wave is materially closed on public `main`; see `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md` for the post-foundation public-surface closeout record.
+ - The active execution ordering after closeout is `NEXT_20_BIG_WINS_EXECUTION_PLAN.md`; `NEXT_15_BIG_WINS_EXECUTION_PLAN.md` remains preserved as the prior wave record.
 
 ## Owner-repo evidence
 

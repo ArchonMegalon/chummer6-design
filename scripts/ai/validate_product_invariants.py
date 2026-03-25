@@ -50,6 +50,8 @@ def main() -> int:
         "ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md",
         "BUILD_LAB_PRODUCT_MODEL.md",
         "NEXT_15_BIG_WINS_EXECUTION_PLAN.md",
+        "NEXT_20_BIG_WINS_EXECUTION_PLAN.md",
+        "PUBLIC_TRUST_CONTENT.yaml",
         "projects/executive-assistant.md",
     }
     for name in required_readme_refs:
@@ -140,6 +142,8 @@ def main() -> int:
         "ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md",
         "BUILD_LAB_PRODUCT_MODEL.md",
         "NEXT_15_BIG_WINS_EXECUTION_PLAN.md",
+        "NEXT_20_BIG_WINS_EXECUTION_PLAN.md",
+        "PUBLIC_TRUST_CONTENT.yaml",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "claim-install-and-close-a-support-case.md",
         "run-a-campaign-and-return.md",

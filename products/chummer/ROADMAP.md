@@ -16,7 +16,7 @@ The current recommended wave is **Campaign Spine Execution**.
 It turns `Chummer.Campaign.Contracts`, the living dossier, and Build Lab handoff into the executable middle of the product so Chummer stops being only a well-governed stack and becomes a campaign OS people can actually live inside.
 
 The just-closed front-door wave is recorded in `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md`.
-The broader ordered plan now lives in `NEXT_15_BIG_WINS_EXECUTION_PLAN.md`.
+The broader ordered plan now lives in `NEXT_20_BIG_WINS_EXECUTION_PLAN.md`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
 The immediate additive shape is:
