@@ -15,3 +15,4 @@ Approved architecture decisions for cross-repo Chummer design live here.
 - [ADR-0010](ADR-0010-desktop-auto-update-plane.md): Desktop auto-update is registry-backed, UI-applied, and atomic in its first public wave.
 - [ADR-0011](ADR-0011-no-personalized-binaries-claimable-installs.md): Chummer uses claimable installs and account-aware linkage instead of per-user personalized binaries.
 - [ADR-0012](ADR-0012-product-governor-and-feedback-loop.md): Whole-product pulse and feedback routing are first-class canon rather than scattered operator instinct.
+- [ADR-0013](ADR-0013-campaign-and-control-middle-plane.md): Campaign continuity and product control are first-class middle planes, initially bounded inside Hub rather than left implicit across other repos.

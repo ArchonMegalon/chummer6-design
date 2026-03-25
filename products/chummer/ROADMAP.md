@@ -7,6 +7,7 @@ Current status on 2026-03-24:
 * package canon, split completion, explain canon, runtime-bundle canon, hub product-consumer planes, play-shell closure, assistant-plane governance, media capability closure, replay/DR hardening, legacy migration certification, and release-governance closure are materially complete
 * the foundational program is now in maintenance mode rather than split-wave closeout mode
 * structured crash reporting, bug reporting, and lightweight feedback are now the active additive support-plane lane rather than a missing baseline
+* campaign-spine and product-control canon are now the additive middle-layer wave that turns the foundation into a campaign-scale product
 
 ## Phase A — Canon and package plane
 
@@ -67,6 +68,14 @@ Reducer-safe session semantics are owned once and consumed everywhere else.
 ### D2 — Runtime bundle canon complete
 
 Runtime bundles, fingerprints, and replay-safe payloads stabilize across engine and clients.
+
+### D3 — Campaign spine canon complete
+
+Runner dossier, crew, campaign, run, scene, objective, and replay-safe continuity become first-class shared product truth rather than implied behavior split across Hub, mobile, and publication lanes.
+
+### D4 — Product control canon complete
+
+Support, crash, feedback, release, and public-promise signals become first-class control-plane truth with governed packets, health scorecards, and honest closure.
 
 ## Phase E — Product completion
 

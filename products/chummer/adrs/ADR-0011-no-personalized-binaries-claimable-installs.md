@@ -86,4 +86,4 @@ The canonical design doc for this decision is:
 Expected contract-family split:
 
 * install and claim DTOs in `Chummer.Hub.Registry.Contracts`
-* support and notification DTOs in `Chummer.Run.Contracts`
+* support and control-loop DTOs in `Chummer.Control.Contracts`

@@ -284,9 +284,9 @@ The registry-owned family includes:
 * promoted release-head records
 * update-feed and rollout posture
 
-Support and notification DTOs belong in `Chummer.Run.Contracts`.
+Support and control-loop DTOs belong in `Chummer.Control.Contracts`.
 
-The run-owned family includes:
+The control-owned family includes:
 
 * `CrashEnvelope`
 * `BugReport`
@@ -295,5 +295,7 @@ The run-owned family includes:
 * `CaseStatusEvent`
 * `ResolutionNotice`
 * `SurveyInvite`
+
+Generic orchestration or delivery notifications that are not support truth remain in `Chummer.Run.Contracts`.
 
 No repo may invent a second cross-repo vocabulary for install claim state, installation grants, support-case statuses, or user-visible resolution notifications.

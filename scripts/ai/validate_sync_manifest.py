@@ -16,6 +16,7 @@ REQUIRED_REPOS = {
     "chummer6-hub-registry",
     "chummer6-media-factory",
     "fleet",
+    "executive-assistant",
 }
 
 

@@ -22,57 +22,13 @@ REPO_DIR_ALIASES = {
     "chummer6-hub-registry": ("chummer6-hub-registry", "chummer-hub-registry"),
     "chummer6-media-factory": ("chummer6-media-factory", "chummer-media-factory"),
     "fleet": ("fleet",),
+    "executive-assistant": ("executive-assistant", "EA", "ea"),
 }
-DEFAULT_REPO_ROOT_CANDIDATES = {
-    "chummer6-core": (
-        REPO_ROOT.parent / "chummer6-core",
-        REPO_ROOT.parent / "chummer-core-engine",
-        Path("/docker/chummercomplete/chummer6-core"),
-        Path("/docker/chummercomplete/chummer-core-engine"),
-    ),
-    "chummer6-ui": (
-        REPO_ROOT.parent / "chummer6-ui",
-        REPO_ROOT.parent / "chummer-presentation",
-        Path("/docker/chummercomplete/chummer6-ui"),
-        Path("/docker/chummercomplete/chummer-presentation"),
-    ),
-    "chummer6-hub": (
-        REPO_ROOT.parent / "chummer6-hub",
-        REPO_ROOT.parent / "chummer.run-services",
-        Path("/docker/chummercomplete/chummer6-hub"),
-        Path("/docker/chummercomplete/chummer.run-services"),
-    ),
-    "chummer6-mobile": (
-        REPO_ROOT.parent / "chummer6-mobile",
-        REPO_ROOT.parent / "chummer-play",
-        Path("/docker/chummercomplete/chummer6-mobile"),
-        Path("/docker/chummercomplete/chummer-play"),
-    ),
-    "chummer6-ui-kit": (
-        REPO_ROOT.parent / "chummer6-ui-kit",
-        REPO_ROOT.parent / "chummer-ui-kit",
-        Path("/docker/chummercomplete/chummer6-ui-kit"),
-        Path("/docker/chummercomplete/chummer-ui-kit"),
-    ),
-    "chummer6-hub-registry": (
-        REPO_ROOT.parent / "chummer6-hub-registry",
-        REPO_ROOT.parent / "chummer-hub-registry",
-        Path("/docker/chummercomplete/chummer6-hub-registry"),
-        Path("/docker/chummercomplete/chummer-hub-registry"),
-    ),
-    "chummer6-media-factory": (
-        REPO_ROOT.parent / "chummer6-media-factory",
-        REPO_ROOT.parent / "chummer-media-factory",
-        Path("/docker/chummercomplete/chummer6-media-factory"),
-        Path("/docker/chummercomplete/chummer-media-factory"),
-        Path("/docker/fleet/repos/chummer6-media-factory"),
-        Path("/docker/fleet/repos/chummer-media-factory"),
-    ),
-    "fleet": (
-        REPO_ROOT.parent / "fleet",
-        Path("/docker/fleet"),
-    ),
-}
+DEFAULT_REPO_BASE_CANDIDATES = (
+    REPO_ROOT.parent,
+    REPO_ROOT.parent.parent,
+    REPO_ROOT.parent.parent / "fleet" / "repos",
+)
 
 
 def _dedupe_paths(paths: list[Path]) -> list[Path]:
@@ -105,11 +61,10 @@ def _candidate_repo_roots(repo_name: str, repo_base: Path | None) -> list[Path]:
     if shared_base:
         base_overrides.append(Path(shared_base).expanduser())
 
-    for base in _dedupe_paths(base_overrides):
+    default_bases = [Path(base).expanduser() for base in DEFAULT_REPO_BASE_CANDIDATES]
+    for base in _dedupe_paths(base_overrides + default_bases):
         for alias in REPO_DIR_ALIASES.get(repo_name, (repo_name,)):
             candidates.append(base / alias)
-
-    candidates.extend(DEFAULT_REPO_ROOT_CANDIDATES.get(repo_name, ()))
     return _dedupe_paths(candidates)
 
 
@@ -157,12 +112,11 @@ def _expand_product_sources(manifest: dict[str, object], mirror: dict[str, objec
 
 def _relative_product_target(source_rel: str, duplicate_basenames: set[str], product_target: str) -> Path:
     source_path = Path(source_rel)
-    if source_path.name in duplicate_basenames:
-        parts = list(source_path.parts)
-        if len(parts) >= 2 and parts[0] == "products" and parts[1] == "chummer":
-            relative_source = Path(*parts[2:])
-        else:
-            relative_source = source_path
+    parts = list(source_path.parts)
+    if len(parts) >= 2 and parts[0] == "products" and parts[1] == "chummer":
+        relative_source = Path(*parts[2:])
+    elif source_path.name in duplicate_basenames:
+        relative_source = source_path
     else:
         relative_source = Path(source_path.name)
     return Path(product_target) / relative_source
@@ -273,12 +227,22 @@ def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None) -> int:
         return 1
 
     print(f"summary: changed={changed_count} removed={removed_count} mode={'write' if write else 'check'} prune={prune}")
+    if not write and (changed_count or removed_count):
+        print(
+            f"mirror_drift_detected: changed={changed_count} removed={removed_count}",
+            file=sys.stderr,
+        )
+        return 1
     return 0
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Publish repo-local `.codex-design` mirrors from the canonical Chummer design manifest.")
-    parser.add_argument("--check", action="store_true", help="Report drift without writing mirror targets.")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Report drift without writing mirror targets and exit non-zero if mirror parity is broken.",
+    )
     parser.add_argument("--no-prune", action="store_true", help="Do not remove stale mirrored product files that are no longer in the manifest.")
     parser.add_argument("--repo-base", type=Path, help="Optional base directory containing sibling repos under canonical or legacy local names.")
     args = parser.parse_args()

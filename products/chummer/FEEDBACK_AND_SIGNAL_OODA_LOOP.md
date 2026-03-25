@@ -3,6 +3,7 @@
 ## Purpose
 
 This file defines how Chummer turns raw signals into governed product action.
+It is the packet-routing detail underneath `SUPPORT_AND_SIGNAL_OODA_LOOP.md`.
 
 The goal is not a giant inbox.
 The goal is a closed loop:

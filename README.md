@@ -52,6 +52,7 @@ Allowed at root:
 * `README.md`
 * `AGENTS.md`
 * `WORKLIST.md`
+* bounded feedback-intake metadata under `feedback/` (`README.md` and `.applied.log` only)
 * automation or repo-management scripts
 * generic repo metadata
 
