@@ -5,7 +5,13 @@ trust_pages:
   - id: help
     eyebrow: "Help"
     heading: "Get help without guessing"
-    intro: "Use the first-party product path first: install help, account recovery, current release truth, and a real support intake before you fall through to deeper repo material."
+    intro: "Use the first-party product path first: install help, account recovery, current release truth, and a real support intake before you fall through to deeper technical material."
+    effective_date: "2026-03-25"
+    updated_date: "2026-03-25"
+    summary_points:
+      - "First-party help comes first"
+      - "Support is separate from participation"
+      - "Downloads and account stay connected"
     actions:
       - label: "Open support intake"
         href: "/contact#support-intake"
@@ -17,44 +23,49 @@ trust_pages:
         href: "/downloads"
         tone: ghost
     sections:
-      - id: support-path
-        eyebrow: "First step"
-        heading: "Start with the product surface, not the repo trail"
-        body: "The hosted front door should answer the normal customer questions directly. Use Help, FAQ, Downloads, Account, and Contact before you go hunting through implementation repos."
-        bullets:
-          - "Downloads explains the current preview, installer, and update posture."
-          - "Account handles sign-in, recovery, devices, and tracked support."
-          - "Contact opens a first-party support case without a GitHub account."
-          - "FAQ answers the normal preview and product questions in plain language."
       - id: install-update
-        eyebrow: "Install and update"
-        heading: "Use the release page and install help as one flow"
-        body: "Start with the recommended installer and the release page. If the path is unclear, use install help and known issues instead of guessing between package types or runtime heads."
+        eyebrow: "Install or update"
+        heading: "Start with the release page and install help"
+        body: "The release page should answer the normal install questions directly: recommended installer, known issues, update posture, and the next support step if the path still is not clear."
         bullets:
           - "One recommended installer is the default path."
-          - "Alternative heads and manual packages are advanced paths."
-          - "Account-aware downloads keep the install handoff attached from first launch."
+          - "Alternative builds and manual packages are advanced paths."
+          - "Signed-in downloads keep the install handoff attached from first launch."
           - "Devices and access is where linked copies and claim codes stay visible later."
-      - id: support-entry
-        eyebrow: "Support"
-        heading: "Product help should become a support case, not a side-channel rumor"
+      - id: sign-in-recovery
+        eyebrow: "Sign-in or account recovery"
+        heading: "Keep access and recovery on one calm path"
+        body: "Account creation, sign-in, and recovery should stay boring. Use the account surface and the recovery flow before you fall back to manual troubleshooting."
+        bullets:
+          - "Create an account when you want preview downloads, recovery, and tracked support."
+          - "Use recovery email so one sign-in method is never the whole story."
+          - "Devices and access stays separate from identity recovery."
+      - id: product-bug
+        eyebrow: "Product bug"
+        heading: "Product help should become a support case, not a rumor"
         body: "The first-party intake is the default lane for install trouble, product bugs, and practical feedback. GitHub is the advanced public issue lane, not the main customer entry point."
         bullets:
           - "Use Contact for install trouble, product bugs, or UX friction."
           - "Use Account > Support when you want tracked case history in the signed-in shell."
           - "Use GitHub only when you intentionally want a public technical issue trail."
-      - id: participation-boundary
-        eyebrow: "Participation"
-        heading: "Participation is optional and separate from support"
-        body: "Guided contribution is not the price of admission. Support and product use should stand on their own before anybody decides to lend deeper help."
+      - id: product-question
+        eyebrow: "Product question or UX confusion"
+        heading: "Ask from the product surface first"
+        body: "Normal preview questions should be answerable from the product shell itself. Support and FAQ exist so you do not need to infer the answer from repo language or implementation details."
         bullets:
-          - "You do not need to participate to report a bug or ask for help."
-          - "Public feedback stays separate from guided contribution."
-          - "Recognition and contribution history should not outrun customer basics."
+          - "FAQ answers the normal preview and product questions in plain language."
+          - "Support cases stay separate from optional participation."
+          - "You do not need a GitHub account to ask for help."
   - id: privacy
     eyebrow: "Privacy"
     heading: "What Chummer stores, and what it does not"
     intro: "This is the practical hosted-product posture right now: what the account keeps, what stays out of Hub, and how install linking and support stay bounded."
+    effective_date: "2026-03-25"
+    updated_date: "2026-03-25"
+    summary_points:
+      - "The installer stays canonical"
+      - "Hub stores account and support state"
+      - "Provider secrets stay out of Hub"
     actions:
       - label: "Open account"
         href: "/account"
@@ -86,6 +97,12 @@ trust_pages:
     eyebrow: "Terms"
     heading: "Preview terms in plain language"
     intro: "The current hosted promise is straightforward: early access, honest labels, installer-first delivery when available, and support that should explain the current boundary instead of hiding it."
+    effective_date: "2026-03-25"
+    updated_date: "2026-03-25"
+    summary_points:
+      - "Early access, not finished breadth"
+      - "Installer-first when available"
+      - "Support is first-party"
     actions:
       - label: "Open downloads"
         href: "/downloads"
@@ -113,6 +130,12 @@ trust_pages:
     eyebrow: "Contact"
     heading: "Open the right support case"
     intro: "Chummer should not make you guess where to send a problem. Use the first-party intake below for install help, product bugs, and practical feedback."
+    effective_date: "2026-03-25"
+    updated_date: "2026-03-25"
+    summary_points:
+      - "First-party support intake"
+      - "Guest submissions allowed"
+      - "Tracked follow-up with an account"
     actions:
       - label: "Open support intake"
         href: "/contact#support-intake"
