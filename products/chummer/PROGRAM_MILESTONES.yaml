@@ -250,7 +250,7 @@ program_phases:
   title: Desktop auto-update
   status: in_progress
   release_blocking: false
-  goal: Make Windows and macOS desktop heads self-updating through registry-owned channel truth and UI-owned apply helpers without turning Hub or Fleet into the runtime source of truth.
+  goal: Make Windows and Linux desktop heads installer-aware and self-updating through registry-owned channel truth and UI-owned apply helpers without turning Hub or Fleet into the runtime source of truth.
   milestones:
   - id: K0
     title: Desktop update canon established
@@ -264,7 +264,7 @@ program_phases:
     - "`DESKTOP_AUTO_UPDATE_SYSTEM.md` exists and agrees with `RELEASE_PIPELINE.md`."
     - Install media versus machine update payloads are explicitly distinguished.
     - UI, registry, Hub, and Fleet ownership rules are explicit.
-    - A Linux portable smoke-test artifact is required in the downloads bundle even before Linux becomes a first-wave public self-update promise.
+    - A Linux `.deb` installer target is required in the downloads bundle and portable public archives are not.
   - id: K1
     title: Registry desktop release heads
     owners:
@@ -287,16 +287,16 @@ program_phases:
     - The desktop head can check, stage, apply, and relaunch into a newer version through a UI-owned apply helper.
     - Signed payload verification happens before apply and a last-known-good window exists until first successful launch.
   - id: K3
-    title: macOS desktop head self-updates
+    title: Linux desktop head installer/update handoff
     owners:
     - chummer6-ui
     - chummer6-hub-registry
     - fleet
     status: in_progress
     exit:
-    - The macOS desktop client updates from registry-owned truth while keeping the `.dmg` as the first-install surface.
-    - The apply helper can replace the `.app` bundle or fall back to a guided reinstall when the install location is not writable.
-    - Signing, notarization, and quarantine handling are part of release orchestration evidence.
+    - The Linux desktop client ships as a `.deb` installer rather than a public portable archive.
+    - The updater can either apply an in-place payload or hand off the `.deb` installer when the lane is installer-only.
+    - Release evidence proves the Linux installer can be built and inspected on a cheap Linux verification host.
   - id: K4
     title: Rollout, revoke, and rollback discipline
     owners:

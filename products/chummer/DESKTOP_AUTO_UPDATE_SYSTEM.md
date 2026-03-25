@@ -6,12 +6,12 @@ This file defines how installable desktop clients become self-updating without c
 
 The target experience is:
 
-* a user installs Chummer from a Windows `.exe` or a macOS `.dmg`
+* a user installs Chummer from a Windows `.exe` or a Linux `.deb`
 * the desktop client can later check for updates in-app
-* the client can download, stage, apply, and relaunch into a newer version
+* the client can later either stage an in-place payload or hand off a newer platform installer
 * release channels, promoted heads, rollout state, and revocation truth remain registry-owned
 * the updater stays atomic in its first wave so app and runtime skew does not become a hidden source of corruption
-* the release lane still emits a Linux portable smoke-test build so updater/apply behavior can be exercised locally on cheap Linux hosts and reflected in the downloads bundle
+* the public downloads shelf stays installer-only rather than falling back to portable archives
 
 ## Non-goals
 
@@ -42,11 +42,11 @@ This model is intentionally head-agnostic. It does not force canon to pick one d
 A human-facing first-install artifact such as:
 
 * Windows installer `.exe`
-* macOS `.dmg`
+* Linux installer `.deb`
 
 ### Machine update payload
 
-A client-facing staged-update artifact used for in-place application updates. This may be a full package in phase 1 and may later gain delta variants.
+A client-facing staged-update artifact used for in-place application updates or installer handoff. This may be a full package in phase 1 and may later gain delta variants.
 
 ### Desktop release head
 
@@ -153,9 +153,9 @@ Phase 1 desktop auto-update is intentionally conservative:
 
 * public channels are registry-backed and pollable without a Hub account session
 * the app shell and embedded runtime bundle update atomically as one promoted desktop head
-* install media and machine update payloads are distinct artifact classes
+* install media and machine update payloads are distinct artifact classes even when a lane publishes installers only
 * the updater may be automatic or user-approved, but apply authority stays in the UI-owned client helper
-* Linux remains a smoke-test and diagnostic build in phase 1, not a first-wave promise that Linux self-update UX is finished
+* Windows and Linux are the first installer targets; macOS returns only when the program has a real installer lane instead of archive cargo
 
 ## Client behavior
 
@@ -164,7 +164,7 @@ The desktop client must:
 * record installed version, platform, arch, and pinned channel locally
 * fetch release-head or feed truth from `chummer6-hub-registry`
 * validate signature and digest material before apply
-* stage updates before replacing the live installation
+* stage updates before replacing the live installation or launching the next installer handoff
 * keep a last-known-good rollback window until first successful launch of the new head
 * honor paused or revoked heads
 
@@ -191,10 +191,10 @@ The registry must publish a desktop release head keyed by `head × platform × a
 Fleet owns the release lane that:
 
 * builds desktop heads
-* emits at least one Linux portable smoke-test head for cheap local verification
+* emits Windows `.exe` and Linux `.deb` installer targets
 * signs and notarizes them where required
 * verifies digests and evidence
-* publishes the Linux smoke-test artifact into the generated downloads bundle used for local and self-hosted verification
+* publishes installer-only bundles into the generated downloads shelf used for local and self-hosted verification
 * promotes or revokes registry-backed desktop heads
 
 Fleet may orchestrate the workflow, but it must not become the runtime system of record for clients.

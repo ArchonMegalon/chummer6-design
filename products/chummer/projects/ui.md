@@ -21,7 +21,7 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 * next-launch crash recovery UX
 * in-app feedback and structured bug-report entry points
 * platform-specific packaging adapters that emit machine update payloads
-* at least one Linux portable smoke-test build that lands in the downloads bundle for cheap local updater verification
+* Windows `.exe` and Linux `.deb` installer targets for the public downloads bundle
 * release-bundle emission for desktop artifacts
 * automatic post-build publication of the latest successful desktop bundle into configured self-hosted downloads targets
 

@@ -31,7 +31,7 @@ Owns:
 * desktop packaging recipes
 * installer production recipes
 * updater integration inside the desktop heads
-* Linux portable smoke-test builds for cheap local desktop verification
+* Windows installer `.exe` and Linux installer `.deb` target production
 * local install/channel state for desktop clients
 * staged apply helpers and relaunch flow for desktop updates
 * workbench-side release polish
@@ -122,16 +122,16 @@ Chummer keeps human install media and machine update payloads distinct.
 These are user-facing first-install artifacts:
 
 * Windows installer `.exe`
-* macOS `.dmg`
+* Linux installer `.deb`
 
 ### Machine update payloads
 
 These are updater-facing artifacts consumed by desktop clients:
 
-* full-head update packages
+* full-head in-place update packages when a head emits them
+* platform installer handoff packages when the published lane is installer-only
 * optional later delta packages
 * release-note references and staged-apply metadata
-* Linux portable smoke-test archives used to verify helper/apply behavior on local Linux hosts
 
 The registry is the canonical source for both classes after promotion. The UI repo is the owner of how clients consume machine update payloads.
 
@@ -144,7 +144,7 @@ Required posture:
 * Hub-first downloads are preferred for end users
 * public stable/open installers remain guest-readable
 * signed-in downloads may mint Hub-owned `DownloadReceipt` and `InstallClaimTicket` records
-* the downloaded artifact remains the canonical signed installer or archive for its `head × platform × arch × channel`
+* the downloaded artifact remains the canonical signed installer or update package for its `head × platform × arch × channel`
 * linking happens after download or first launch, not by mutating the artifact
 
 Forbidden posture:
@@ -156,7 +156,7 @@ Forbidden posture:
 ## Canonical flow
 
 1. `chummer6-core` produces runtime-bundle outputs and fingerprints.
-2. `chummer6-ui` produces desktop bundles plus installer-ready media, machine update payloads, and at least one Linux portable smoke-test archive.
+2. `chummer6-ui` produces installer-ready desktop bundles for Windows `.exe` and Linux `.deb`, plus any machine update payloads needed by the updater lane.
 3. When a self-hosted downloads target is configured, the successful desktop build automatically replaces the previous public downloads bundle and prunes superseded desktop artifacts so `/downloads` stays latest-only.
 4. `fleet` expands the release matrix, runs verify/promotion/signoff/signing/notarization orchestration, and prepares a registry publication payload.
 5. `chummer6-hub-registry` becomes the source of truth for promoted channels, installer/download records, desktop release heads, update-feed metadata, compatibility, and runtime-bundle heads.
@@ -187,17 +187,17 @@ Phase 1 desktop auto-update is atomic:
 
 Differential updates are allowed later, but only if the registry compatibility plane and milestone truth explicitly permit them.
 
-## Linux smoke rule
+## Linux installer rule
 
-Before a desktop updater wave is considered ready for promotion, the release lane must produce a Linux portable build that can be exercised on the local worker or agent environment.
+Before a desktop installer wave is considered ready for promotion, the release lane must produce a Linux `.deb` installer that can be built and inspected on a cheap Linux verification host.
 
-That Linux build exists to:
+That Linux installer exists to:
 
-* smoke-test the UI-owned apply helper without requiring Windows or macOS on every local verification host
-* prove the generated downloads bundle really contains a runnable non-installer artifact
-* keep `/downloads` aligned with the latest smoke-verifiable desktop bundle during local and self-hosted verification
+* prove the public downloads bundle is installer-only rather than archive-first
+* keep `/downloads` aligned with the latest smoke-verifiable Linux install surface
+* exercise the UI-owned installer handoff/update path on a real Linux host
 
-This rule does not, by itself, make Linux a first-wave public promise for polished self-update UX.
+This rule makes Linux a real public installer target. It does not claim every Linux distro gets identical self-update behavior on day one.
 
 ## Public auth rule
 
