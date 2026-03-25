@@ -171,6 +171,62 @@ A linked copy may additionally:
 * receive account-aware update/channel guidance
 * receive follow-up surveys after fixes land
 
+## Roaming workspace rule
+
+Claiming an install may unlock roaming workspace restore, but restore follows typed scope rules rather than raw file sync.
+
+### Person scope
+
+May restore:
+
+* profile and preferences
+* pinned runners and recent campaigns
+* personal rule-environment refs
+* personal artifact-shelf refs
+
+### Campaign or group scope
+
+May restore:
+
+* campaign roster and campaign rule environment
+* shared dossiers, recaps, and artifact refs
+* group-owned rights and allowances
+
+### Install scope
+
+Must stay local:
+
+* caches
+* logs and crash dumps
+* rollback windows
+* hardware tuning
+* local secrets and key material
+* device-specific channel posture
+
+### Entitlement scope
+
+Entitlements do not sync as install-local booleans.
+
+Hub resolves:
+
+* premium features
+* preview-channel access
+* GM or creator unlocks
+* group-owned rights
+
+Clients may cache short-lived capability grants for offline grace periods, but Hub truth remains authoritative.
+
+### Restore trust rule
+
+A claimed second device may restore dossiers, campaigns, rule-environment refs, artifact refs, and eligible features.
+
+It must not:
+
+* silently last-write-wins a dossier conflict
+* compute against the wrong rule environment
+* imply a feature is unlocked because of a stale local toggle
+* sync secrets or diagnostics just because the install is claimed
+
 ## Support linkage rule
 
 Support truth stays in Hub.

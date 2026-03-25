@@ -46,6 +46,10 @@ product_source_groups:
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/EXPERIENCE_SUCCESS_METRICS.md
     - products/chummer/USER_JOURNEYS.md
+    - products/chummer/BUILD_LAB_PRODUCT_MODEL.md
+    - products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md
+    - products/chummer/ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md
+    - products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md
     - products/chummer/PROGRAM_MILESTONES.yaml
     - products/chummer/CONTRACT_SETS.yaml
     - products/chummer/GROUP_BLOCKERS.md
@@ -53,6 +57,7 @@ product_source_groups:
   product_middle:
     - products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md
     - products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md
+    - products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md
   horizons:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml
@@ -74,12 +79,20 @@ product_source_groups:
     - products/chummer/journeys/README.md
     - products/chummer/journeys/rejoin-after-disconnect.md
     - products/chummer/journeys/recover-from-sync-conflict.md
+    - products/chummer/journeys/run-a-campaign-and-return.md
+  journey_roaming:
+    - products/chummer/journeys/README.md
+    - products/chummer/journeys/continue-on-a-second-claimed-device.md
   journey_release:
     - products/chummer/journeys/README.md
     - products/chummer/journeys/install-and-update.md
+    - products/chummer/journeys/claim-install-and-close-a-support-case.md
   journey_publication:
     - products/chummer/journeys/README.md
     - products/chummer/journeys/publish-a-grounded-artifact.md
+  journey_community:
+    - products/chummer/journeys/README.md
+    - products/chummer/journeys/organize-a-community-and-close-the-loop.md
   public_surface:
     - products/chummer/PUBLIC_LANDING_POLICY.md
     - products/chummer/PUBLIC_DOWNLOADS_POLICY.md
@@ -144,6 +157,7 @@ mirrors:
     - product_middle
     - support_plane
     - journey_workbench
+    - journey_roaming
     - journey_release
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/ui.md
@@ -162,8 +176,10 @@ mirrors:
     - external_tools
     - horizons
     - journey_continuity
+    - journey_roaming
     - journey_release
     - journey_publication
+    - journey_community
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/hub.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
@@ -175,6 +191,7 @@ mirrors:
     - product_middle
     - horizons
     - journey_continuity
+    - journey_roaming
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/mobile.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
@@ -196,6 +213,7 @@ mirrors:
     - public_surface
     - release
     - horizons
+    - journey_roaming
     - journey_release
     - journey_publication
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
@@ -229,8 +247,10 @@ mirrors:
     - horizons
     - journey_workbench
     - journey_continuity
+    - journey_roaming
     - journey_release
     - journey_publication
+    - journey_community
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/fleet.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md
@@ -246,6 +266,8 @@ mirrors:
     - support_plane
     - external_tools
     - horizons
+    - journey_roaming
+    - journey_community
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
   repo_source: products/chummer/projects/executive-assistant.md
   review_target: .codex-design/review/REVIEW_CONTEXT.md

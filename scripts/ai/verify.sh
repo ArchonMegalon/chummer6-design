@@ -11,6 +11,7 @@ for path in \
   products/chummer/VISION.md \
   products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md \
   products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md \
+  products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md \
   products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md \
   products/chummer/SUPPORT_AND_SIGNAL_OODA_LOOP.md \
   products/chummer/USER_JOURNEYS.md \
@@ -39,6 +40,7 @@ for path in \
   products/chummer/PUBLIC_LANDING_ASSET_REGISTRY.yaml \
   products/chummer/PUBLIC_NAVIGATION.yaml \
   products/chummer/PUBLIC_PROGRESS_PARTS.yaml \
+  products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml \
   products/chummer/PUBLIC_USER_MODEL.md \
   products/chummer/PUBLIC_AUTH_FLOW.md \
   products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md \
@@ -64,7 +66,10 @@ for path in \
   products/chummer/PUBLIC_HELP_COPY.md \
   products/chummer/HORIZON_SIGNAL_POLICY.md \
   products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md \
+  products/chummer/BUILD_LAB_PRODUCT_MODEL.md \
+  products/chummer/ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md \
   products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md \
+  products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md \
   products/chummer/ROADMAP.md \
   products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md \
   products/chummer/METRICS_AND_SLOS.yaml \
@@ -112,8 +117,12 @@ for path in \
   feedback/README.md \
   products/chummer/journeys/README.md \
   products/chummer/journeys/build-and-inspect-a-character.md \
+  products/chummer/journeys/claim-install-and-close-a-support-case.md \
+  products/chummer/journeys/continue-on-a-second-claimed-device.md \
   products/chummer/journeys/rejoin-after-disconnect.md \
   products/chummer/journeys/install-and-update.md \
+  products/chummer/journeys/run-a-campaign-and-return.md \
+  products/chummer/journeys/organize-a-community-and-close-the-loop.md \
   products/chummer/journeys/publish-a-grounded-artifact.md \
   products/chummer/journeys/recover-from-sync-conflict.md; do
   test -f "$repo_root/$path"
@@ -130,27 +139,36 @@ rg -n '^# Start here$|^## Fast path by role$|^## Fast path by question$|^## Read
 rg -n '^# Glossary$|^## Booster$|^## Sponsor session$|^## Proof shelf$|^## Horizon$' "$repo_root/products/chummer/GLOSSARY.md" >/dev/null
 rg -n '^# Campaign spine and crew model$|^## Canonical domain objects$|Chummer\\.Campaign\\.Contracts|replay-safe continuity' "$repo_root/products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md" >/dev/null
 rg -n '^# Character lifecycle and living dossier$|^## Lifecycle spine$|living dossier|Chummer\\.Campaign\\.Contracts' "$repo_root/products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md" >/dev/null
+rg -n '^# Roaming workspace and entitlement sync$|^## Roaming scopes$|^## Synced product state$|^## Conflict rules$|Chummer\\.Campaign\\.Contracts|Chummer\\.Hub\\.Registry\\.Contracts' "$repo_root/products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md" >/dev/null
 rg -n '^# Product control and governor loop$|^## Control-plane objects$|Chummer\\.Control\\.Contracts|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP' "$repo_root/products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md" >/dev/null
 rg -n '^# Support and signal OODA loop$|^## Observe$|^## Close$|Chummer\\.Control\\.Contracts|FEEDBACK_AND_CRASH_REPORTING_SYSTEM' "$repo_root/products/chummer/SUPPORT_AND_SIGNAL_OODA_LOOP.md" >/dev/null
 rg -n '^# User journeys$|Build|Explain|Run|Publish|Improve' "$repo_root/products/chummer/USER_JOURNEYS.md" >/dev/null
 rg -n '^# Experience success metrics$|Build|Explain|Run|Publish|Improve' "$repo_root/products/chummer/EXPERIENCE_SUCCESS_METRICS.md" >/dev/null
 rg -n '^# Long-range roadmap$|^## Phase A — Canon and package plane$|^## Non-blocking public landing and discovery lane$|^## Repo milestone spine$' "$repo_root/products/chummer/ROADMAP.md" >/dev/null
 rg -n '^# Chummer next-wave milestone list$|^## Recommended initiative$|^## Milestones$|^### M0' "$repo_root/products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md" >/dev/null
+rg -n '^# Account-aware front door closeout$|^## Purpose$|^## Material closeout on public `main`$|^## Language correction$|^## What remains additive$' "$repo_root/products/chummer/ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md" >/dev/null
+rg -n '^# Build Lab product model$|^## Purpose$|^## Product promise$|^## Ownership split$|^## Non-goals$' "$repo_root/products/chummer/BUILD_LAB_PRODUCT_MODEL.md" >/dev/null
+rg -n '^# Chummer next 15 big wins execution plan$|^## Ordering rule$|^## Wave 0$|^## The 15 wins$|^### 1\\. Publish the closeout you already claim$|^### 15\\. Refresh the public story around Build / Explain / Run / Publish / Improve$' "$repo_root/products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
 rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## Mirror discipline$|^## Petition path$' "$repo_root/products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md" >/dev/null
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^scorecards:$|^  - id: release_health$|^  - id: support_and_feedback_closure$|^  - id: campaign_middle_health$|^  - id: control_loop_integrity$|^weekly_snapshot:$' "$repo_root/products/chummer/PRODUCT_HEALTH_SCORECARD.yaml" >/dev/null
-rg -n '^product: chummer$|^version: 1$|^scorecards:$|^release_gates:$|^  - id: deterministic_rules_truth$|^  - id: session_continuity$|^  - id: campaign_and_dossier_continuity$|^  - id: support_and_closure_honesty$' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
+rg -n '^product: chummer$|^version: 1$|^scorecards:$|^release_gates:$|^  - id: deterministic_rules_truth$|^  - id: session_continuity$|^  - id: campaign_and_dossier_continuity$|^  - id: roaming_workspace_trust$|^  - id: support_and_closure_honesty$|^  - id: roaming_workspace_gate$' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^asset_slots:$|^  - id: hero$' "$repo_root/products/chummer/PUBLIC_LANDING_ASSET_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^routes:$|^  - route: /$|^  - route: /downloads$' "$repo_root/products/chummer/PUBLIC_NAVIGATION.yaml" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^parts:$|^  - id: design$|^  - id: hub$' "$repo_root/products/chummer/PUBLIC_PROGRESS_PARTS.yaml" >/dev/null
+rg -n '^product: chummer$|^surface: chummer.run$|^version: 1$|^guest_readable_channels:$|^known_issues_label:|^guest_gate_heading:' "$repo_root/products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml" >/dev/null
 rg -n '\"generated_at\"|\"parts\"|\"status\"' "$repo_root/products/chummer/PROGRESS_REPORT.generated.json" >/dev/null
 rg -n '<!DOCTYPE html>|progress report|chummer' "$repo_root/products/chummer/PROGRESS_REPORT.generated.html" >/dev/null
 rg -n '<svg|progress|poster' "$repo_root/products/chummer/PROGRESS_REPORT_POSTER.svg" >/dev/null
 rg -n '\"history\"|\"generated_at\"' "$repo_root/products/chummer/PROGRESS_HISTORY.generated.json" >/dev/null
-rg -n '^# Journey canon$|build-and-inspect-a-character|rejoin-after-disconnect|install-and-update|publish-a-grounded-artifact|recover-from-sync-conflict' "$repo_root/products/chummer/journeys/README.md" >/dev/null
+rg -n '^# Journey canon$|build-and-inspect-a-character|claim-install-and-close-a-support-case|continue-on-a-second-claimed-device|run-a-campaign-and-return|organize-a-community-and-close-the-loop|rejoin-after-disconnect|install-and-update|publish-a-grounded-artifact|recover-from-sync-conflict' "$repo_root/products/chummer/journeys/README.md" >/dev/null
 rg -n '^# Build and inspect a character$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/build-and-inspect-a-character.md" >/dev/null
+rg -n '^# Claim install and close a support case$|^## Happy path$|^## Failure modes$|^## Owning repos$' "$repo_root/products/chummer/journeys/claim-install-and-close-a-support-case.md" >/dev/null
+rg -n '^# Continue on a second claimed device$|^## Happy path$|^## Failure modes$|^## Owning repos$' "$repo_root/products/chummer/journeys/continue-on-a-second-claimed-device.md" >/dev/null
 rg -n '^# Rejoin after disconnect$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/rejoin-after-disconnect.md" >/dev/null
 rg -n '^# Install and update$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/install-and-update.md" >/dev/null
+rg -n '^# Run a campaign and return$|^## Happy path$|^## Failure modes$|^## Owning repos$' "$repo_root/products/chummer/journeys/run-a-campaign-and-return.md" >/dev/null
+rg -n '^# Organize a community and close the loop$|^## Happy path$|^## Failure modes$|^## Owning repos$' "$repo_root/products/chummer/journeys/organize-a-community-and-close-the-loop.md" >/dev/null
 rg -n '^# Publish a grounded artifact$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/publish-a-grounded-artifact.md" >/dev/null
 rg -n '^# Recover from sync conflict$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/recover-from-sync-conflict.md" >/dev/null
 
@@ -191,9 +209,10 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/EXTERNAL_TOOLS_PLANE.md" \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PRODUCT_HEALTH_SCORECARD|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'Chummer\\.Campaign\\.Contracts|Chummer\\.Control\\.Contracts|campaign_spine_vnext|support_status_vnext|feedback_signal_ooda_vnext' "$repo_root/products/chummer/CONTRACT_SETS.yaml" >/dev/null
+rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PRODUCT_HEALTH_SCORECARD|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'Chummer\\.Campaign\\.Contracts|Chummer\\.Control\\.Contracts|campaign_spine_vnext|living_dossier_vnext|rule_environment_vnext|roaming_workspace_vnext|support_status_vnext|feedback_signal_ooda_vnext' "$repo_root/products/chummer/CONTRACT_SETS.yaml" >/dev/null
 rg -n 'booster_first|resource_burden|recognition_eligible|free_later_intent' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
+python3 "$repo_root/scripts/ai/validate_product_invariants.py" >/dev/null
 
 echo ok
