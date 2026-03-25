@@ -1,5 +1,5 @@
 group_id: chummer-vnext
-last_reviewed: 2026-03-24
+last_reviewed: 2026-03-25
 
 packages:
   - id: Chummer.Engine.Contracts
@@ -182,17 +182,17 @@ contract_sets:
     rule: "Fleet may consume normalized crash automation DTOs for triage, repro, test drafting, and patch proposal, but raw desktop client crash payloads must enter through Hub-owned intake first and user-visible repair still ships through the normal review/release/update path."
 
   - id: account_aware_install_linking_vnext
-    canonical_package: Chummer.Run.Contracts
-    semantic_owner: chummer6-hub
+    canonical_package: Chummer.Hub.Registry.Contracts
+    semantic_owner: chummer6-hub-registry
     status: in_progress
     includes:
       - download receipts
+      - install access class posture
       - install claim tickets
       - claimed installation records
       - installation grants
-      - install-linked support identity
-      - release notices and follow-up invites
-    rule: "Hub owns the person/install/support relationship, but the downloaded desktop artifact remains the canonical signed build for its release target; Registry stays authoritative for install access classes, channel, release-head, install, and update truth."
+      - install-to-release compatibility projections
+    rule: "`chummer6-hub` owns account-linking UX and the person/install/support relationship, but `Chummer.Hub.Registry.Contracts` owns the install-facing DTO family for download receipts, claim/grant metadata, install access posture, and install/update compatibility truth."
 
   - id: ui_system_vnext
     canonical_package: Chummer.Ui.Kit

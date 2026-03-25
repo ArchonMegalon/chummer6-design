@@ -48,6 +48,7 @@ That means:
 * a user may run as guest first and claim the copy later without reinstalling
 * the shipped installer remains the canonical signed artifact for its `head × platform × arch × channel × version`
 * Hub owns the person/install/support relationship while Registry keeps release, channel, install-access, and update truth
+* Fleet may automate triage and patch preparation downstream of Hub cases, but it does not become canonical support truth
 
 ## Consequences
 
@@ -75,3 +76,14 @@ The following are rejected by this ADR:
 * post-sign mutation that changes the delivered signed artifact
 * treating a merged fix as the same thing as a fix available on the user's channel
 * making claimable installs an excuse to bypass Registry-owned channel or update truth
+
+## Follow-on design implications
+
+The canonical design doc for this decision is:
+
+* `products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md`
+
+Expected contract-family split:
+
+* install and claim DTOs in `Chummer.Hub.Registry.Contracts`
+* support and notification DTOs in `Chummer.Run.Contracts`

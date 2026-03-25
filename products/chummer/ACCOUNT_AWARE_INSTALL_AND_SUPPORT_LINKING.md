@@ -191,17 +191,63 @@ Claimed installs add closure and history.
 Private diagnostics stay private by default.
 Any public issue projection must strip account identifiers, dumps, sensitive local content, and any data that would surprise a reasonable user if exposed publicly.
 
+Hub stores the canonical `SupportCase` and its `CaseStatusEvent` history.
+Fleet may receive normalized work items such as crash clusters or repro tasks, but Fleet work is downstream of the Hub case rather than a replacement for it.
+
+### Case status rule
+
+Minimum first-wave statuses are:
+
+* `received`
+* `matched_known_issue`
+* `needs_info`
+* `accepted`
+* `not_planned`
+* `fixed_pending_channel`
+* `fixed_available`
+* `closed`
+
+Feedback and idea cases may use only the statuses that make sense for that case type.
+For feedback, `accepted` means the idea is intentionally kept alive or planned; it does not mean the outcome already shipped.
+
+### Known-issue linkage rule
+
+If a new report matches a known issue, Hub should attach it to that issue and tell the user they are now linked to an existing case instead of pretending a new investigation started.
+
 ## Release-notice rule
 
 Do not treat "PR merged" as "fixed for the user."
 
 The user-visible fix moment is when the repair is promoted to the reporter's actual channel according to Registry truth.
 
+### Meaningful updates only
+
+Hub should notify on user-meaningful transitions, not every internal automation event.
+
+Good candidates are:
+
+* we matched your report to a known issue
+* we need one more detail
+* this suggestion is accepted
+* this suggestion is not planned
+* this fix is now available on your channel
+
+### Channel-aware fix notices
+
+When a fix is merged but not yet promoted to the reporter's channel, the case may move to `fixed_pending_channel`.
+Only after Registry truth shows availability on the user's pinned or eligible channel may Hub send a `ResolutionNotice` that says the issue is fixed for them.
+
 Status email or in-product notice may say:
 
 * fixed in version `X.Y.Z`
 * available on `Stable`, `Preview`, or another concrete channel
 * update now
+
+### Rejection honesty
+
+If feedback is declined, the user may be told so with a bounded reason such as out of scope, duplicate, conflict with product direction, or too costly for the current phase.
+
+Do not silently close high-signal feedback when a respectful explanation would build more trust.
 
 ## External survey/tooling rule
 
@@ -216,27 +262,38 @@ They must not become:
 MetaSurvey-style tooling is allowed as a survey bridge after Hub decides when to invite.
 No browser or desktop client may embed third-party support or survey credentials directly.
 
+First-wave survey posture should stay:
+
+* preference-respecting
+* delayed until the outcome is actually meaningful
+* bounded in length
+* never the only way to see case status
+
 ## Contract placement rule
 
-Account-aware install linking and support-linking DTOs belong in `Chummer.Run.Contracts`.
-
 Registry-owned release/install/update DTOs stay in `Chummer.Hub.Registry.Contracts`.
-That registry-owned family includes install access posture, release-head truth, install compatibility, and update-feed meaning.
 
-The minimum Hub-owned family includes:
+The registry-owned family includes:
 
 * `DownloadReceipt`
+* `InstallAccessClass`
 * `InstallClaimTicket`
 * `ClaimedInstallation`
 * `InstallationGrant`
+* install-to-release compatibility projections
+* promoted release-head records
+* update-feed and rollout posture
+
+Support and notification DTOs belong in `Chummer.Run.Contracts`.
+
+The run-owned family includes:
+
+* `CrashEnvelope`
+* `BugReport`
+* `FeedbackSubmission`
 * `SupportCase`
 * `CaseStatusEvent`
 * `ResolutionNotice`
 * `SurveyInvite`
 
-The complementary registry-owned family includes:
-
-* install access class vocabulary
-* install-to-release compatibility projections
-* promoted release-head records
-* update-feed and rollout posture
+No repo may invent a second cross-repo vocabulary for install claim state, installation grants, support-case statuses, or user-visible resolution notifications.
