@@ -64,6 +64,37 @@ visual_contract:
     person_count_target: duo_or_team
     humor_allowed: false
     pseudo_text_allowed: false
+    required_setting_markers:
+      - improvised garage clinic
+      - hacked med gear
+      - tool chest or lift bay residue
+      - cheap fluorescent strips or work lamps
+      - wet concrete, tarp, or extension-cord grime
+    required_cast_markers:
+      - metahuman clinician preferred
+      - wounded runner
+      - support figure optional but encouraged
+    required_overlay_schema:
+      - BOD
+      - AGI
+      - REA
+      - STR
+      - CHA
+      - INT
+      - LOG
+      - WIL
+      - ESS
+      - EDGE
+    required_status_labels:
+      - UPGRADING
+    forbidden_environment_markers:
+      - clean hospital exam room
+      - pristine dental-clinic lighting
+      - white-box medical showroom
+    forbidden_cast_defaults:
+      - lone clean human doctor in white coat
+    cyberpunk_intensity: high
+    shadowrun_lore_weight: high
     must_show_semantic_anchors:
       - runner or table-prep trust pressure
       - a visible operator relationship instead of a lone isolated figure
@@ -83,6 +114,16 @@ visual_contract:
     person_count_target: plurality_optional
     humor_allowed: false
     pseudo_text_allowed: false
+    required_setting_markers:
+      - multiple future districts or lanes
+      - street-level cyberpunk clues
+      - differentiated faction or domain hints
+    forbidden_environment_markers:
+      - empty road ambience
+      - sparse interchange
+      - one sign carrying the whole image
+    cyberpunk_intensity: medium_high
+    shadowrun_lore_weight: medium
     must_show_semantic_anchors:
       - branching plurality
       - differentiated future or work lanes
@@ -100,6 +141,24 @@ visual_contract:
     person_count_target: duo_preferred
     humor_allowed: false
     pseudo_text_allowed: false
+    required_setting_markers:
+      - industrial rule-lab or approval rail
+      - consequence or rollback machinery
+      - provenance seals or rule cassettes
+      - approval witness presence
+    required_overlay_schema:
+      - DIFF
+      - APPROVAL
+      - PROVENANCE
+      - ROLLBACK
+    required_action_posture:
+      - standing_or_in_motion
+    forbidden_environment_markers:
+      - quiet desk still life
+      - two people sitting at table
+      - generic paperwork workshop
+    cyberpunk_intensity: high
+    shadowrun_lore_weight: high
     must_show_semantic_anchors:
       - governed change under pressure
       - at least one visible witness, reviewer, or approval presence
@@ -114,7 +173,7 @@ visual_contract:
 sections:
   - id: hero
     brief_family: clinic_intake
-    scene_families: clinic_intake, service_rack, boulevard_of_futures
+    scene_families: streetdoc_garage_clinic, getaway_van_triage, safehouse_patchup, runner_upgrade_bay, clinic_intake
     motion_policy: premium_still_or_short_muted_loop
     density_target: high
     overlay_density: medium
@@ -157,7 +216,7 @@ sections:
     flash_level: restrained
   - id: coming_next
     brief_family: boulevard_of_futures
-    scene_families: boulevard_of_futures, streetfront, facility_exterior
+    scene_families: boulevard_of_futures, streetfront, rooftop_overwatch, fixer_negotiation, matrix_support_corner
     motion_policy: stills_only
     density_target: high
     overlay_density: medium
