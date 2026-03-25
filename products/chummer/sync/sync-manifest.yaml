@@ -58,6 +58,7 @@ product_source_groups:
     - products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md
     - products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md
     - products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md
+    - products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md
   horizons:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml

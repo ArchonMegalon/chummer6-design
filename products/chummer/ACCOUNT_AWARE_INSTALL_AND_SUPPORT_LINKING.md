@@ -201,6 +201,7 @@ Must stay local:
 * rollback windows
 * hardware tuning
 * local secrets and key material
+* device role posture such as `workstation`, `play_tablet`, `observer_screen`, or `preview_scout`
 * device-specific channel posture
 
 ### Entitlement scope
@@ -226,6 +227,8 @@ It must not:
 * compute against the wrong rule environment
 * imply a feature is unlocked because of a stale local toggle
 * sync secrets or diagnostics just because the install is claimed
+
+The next-layer home-cockpit and device-role semantics are defined in `CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md`.
 
 ## Support linkage rule
 
