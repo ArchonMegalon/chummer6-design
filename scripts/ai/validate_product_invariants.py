@@ -10,6 +10,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
+DOCKER_ROOT = ROOT.parents[1]
 
 
 def load_yaml(path: Path) -> dict:
@@ -147,6 +148,17 @@ def main() -> int:
     for marker in verify_expectations:
         if marker not in verify_sh:
             errors.append(f"verify.sh must enforce {marker}.")
+
+    required_repo_paths = (
+        DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Campaign.Contracts" / "Chummer.Campaign.Contracts.csproj",
+        DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Control.Contracts" / "Chummer.Control.Contracts.csproj",
+        DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Controllers" / "CampaignSpineController.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Services" / "Community" / "CampaignSpineService.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer-hub-registry" / "Chummer.Hub.Registry.Contracts" / "InstallLinkingContracts.cs",
+    )
+    for path in required_repo_paths:
+        if not path.exists():
+            errors.append(f"required downstream implementation path is missing: {path}")
 
     return fail(errors) if errors else 0
 
