@@ -89,7 +89,7 @@ Managed core burst remains operator-governed.
 
 ## Sequencing constraint
 
-Do not add more booster-product features to Fleet until Hub's reusable user/group/ledger spine exists.
+Do not add more guided-contribution product features to Fleet until Hub's reusable user/group/ledger spine exists.
 
 Allowed while that backbone is still being built:
 

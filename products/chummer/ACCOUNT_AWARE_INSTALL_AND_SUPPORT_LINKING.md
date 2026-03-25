@@ -53,7 +53,7 @@ Whether that installation may read:
 
 * open public stable channels
 * preview or private channels
-* booster-first or otherwise gated release lanes
+* guided-preview or otherwise gated release lanes
 
 Registry remains the source of truth for channels and release heads.
 Hub may broker account-aware grants, but it does not become the feed authority.

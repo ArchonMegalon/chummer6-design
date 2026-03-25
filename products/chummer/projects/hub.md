@@ -92,7 +92,7 @@ Build order for the next serious Hub wave:
 5. Fleet receipt ingest and sponsor-session projections
 6. leaderboards, badges, quests, and entitlement-backed perks
 
-New booster-facing UX must not outrun that shared backbone.
+New guided-contribution UX must not outrun that shared backbone.
 The point is to make boosting the first public use case of a reusable community platform, not a one-off side feature.
 
 ## Community modeling rule
@@ -106,7 +106,7 @@ Canonical Hub concepts:
 * entitlement: durable user or group product right
 * sponsor session: bounded premium-burst sponsorship lifecycle
 
-User accounts must not collapse into raw identity subjects, and group types must stay generic enough for `booster`, `campaign`, `gm_circle`, `creator_team`, `guild`, and future org-like surfaces.
+User accounts must not collapse into raw identity subjects, and group types must stay generic enough for `guided_contribution`, `campaign`, `gm_circle`, `creator_team`, `guild`, and future org-like surfaces.
 
 Linked identities and linked channels are separate records:
 
@@ -142,7 +142,7 @@ Rewards must be derived from validated Fleet contribution receipts, not from mer
 * leaderboards, rewards, and entitlements
 * gated desktop-channel guidance when entitlement-backed download and install policy matters
 
-That initial product shell can be server-rendered and thin, but it must exist here before Fleet grows more booster-specific product behavior.
+That initial product shell can be server-rendered and thin, but it must exist here before Fleet grows more guided-contribution-specific product behavior.
 
 ## Fleet boundary handoff
 
