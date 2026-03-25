@@ -1,5 +1,37 @@
 product: chummer
 canonical_source_repo: chummer6-design
+local_repo_base_candidates:
+  - ..
+  - ../..
+  - ../../fleet/repos
+repo_root_aliases:
+  chummer6-core:
+    - chummer6-core
+    - chummer-core-engine
+  chummer6-ui:
+    - chummer6-ui
+    - chummer-presentation
+  chummer6-hub:
+    - chummer6-hub
+    - chummer.run-services
+  chummer6-mobile:
+    - chummer6-mobile
+    - chummer-play
+  chummer6-ui-kit:
+    - chummer6-ui-kit
+    - chummer-ui-kit
+  chummer6-hub-registry:
+    - chummer6-hub-registry
+    - chummer-hub-registry
+  chummer6-media-factory:
+    - chummer6-media-factory
+    - chummer-media-factory
+  fleet:
+    - fleet
+  executive-assistant:
+    - executive-assistant
+    - EA
+    - ea
 product_source_groups:
   base_governance:
     - products/chummer/README.md

@@ -137,7 +137,7 @@ def main() -> int:
         repo_name = str(raw_mirror.get("repo") or "").strip()
         if not repo_name:
             continue
-        repo_root, _ = mirrors._resolve_repo_root(repo_name, None)
+        repo_root, _ = mirrors._resolve_repo_root(manifest, repo_name, None)
         if repo_root is None:
             continue
         errors.extend(_validate_repo(repo_name, repo_root))

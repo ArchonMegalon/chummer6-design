@@ -37,6 +37,15 @@ def main() -> int:
         _error(errors, "sync_manifest: product_source_groups must be a non-empty map")
         groups = {}
 
+    base_candidates = manifest.get("local_repo_base_candidates")
+    if not isinstance(base_candidates, list) or not base_candidates:
+        _error(errors, "sync_manifest: local_repo_base_candidates must be a non-empty list")
+
+    repo_aliases = manifest.get("repo_root_aliases")
+    if not isinstance(repo_aliases, dict) or not repo_aliases:
+        _error(errors, "sync_manifest: repo_root_aliases must be a non-empty map")
+        repo_aliases = {}
+
     for group_name, raw_items in groups.items():
         if not isinstance(raw_items, list) or not raw_items:
             _error(errors, f"sync_manifest: group '{group_name}' must be a non-empty list")
@@ -67,6 +76,10 @@ def main() -> int:
         if repo_name in seen_repos:
             _error(errors, f"sync_manifest: duplicate mirror repo '{repo_name}'")
         seen_repos.add(repo_name)
+
+        aliases = repo_aliases.get(repo_name) if isinstance(repo_aliases, dict) else None
+        if not isinstance(aliases, list) or not any(str(item or "").strip() for item in aliases):
+            _error(errors, f"sync_manifest: mirror '{repo_name}' is missing repo_root_aliases coverage")
 
         for field in ("product_target", "repo_target", "repo_source", "review_target", "review_source"):
             if not str(raw_mirror.get(field) or "").strip():

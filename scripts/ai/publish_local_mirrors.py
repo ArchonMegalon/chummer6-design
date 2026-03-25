@@ -13,22 +13,6 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPO_ROOT / "products" / "chummer" / "sync" / "sync-manifest.yaml"
-REPO_DIR_ALIASES = {
-    "chummer6-core": ("chummer6-core", "chummer-core-engine"),
-    "chummer6-ui": ("chummer6-ui", "chummer-presentation"),
-    "chummer6-hub": ("chummer6-hub", "chummer.run-services"),
-    "chummer6-mobile": ("chummer6-mobile", "chummer-play"),
-    "chummer6-ui-kit": ("chummer6-ui-kit", "chummer-ui-kit"),
-    "chummer6-hub-registry": ("chummer6-hub-registry", "chummer-hub-registry"),
-    "chummer6-media-factory": ("chummer6-media-factory", "chummer-media-factory"),
-    "fleet": ("fleet",),
-    "executive-assistant": ("executive-assistant", "EA", "ea"),
-}
-DEFAULT_REPO_BASE_CANDIDATES = (
-    REPO_ROOT.parent,
-    REPO_ROOT.parent.parent,
-    REPO_ROOT.parent.parent / "fleet" / "repos",
-)
 
 
 def _dedupe_paths(paths: list[Path]) -> list[Path]:
@@ -47,29 +31,56 @@ def _repo_root_override_var(repo_name: str) -> str:
     return f"{repo_name.upper().replace('-', '_')}_REPO_ROOT"
 
 
-def _candidate_repo_roots(repo_name: str, repo_base: Path | None) -> list[Path]:
+def _local_repo_base_candidates(manifest: dict[str, object], repo_base: Path | None) -> list[Path]:
+    candidates: list[Path] = []
+    if repo_base is not None:
+        candidates.append(repo_base.expanduser())
+    shared_base = os.environ.get("CHUMMER_REPO_BASE")
+    if shared_base:
+        candidates.append(Path(shared_base).expanduser())
+
+    configured = manifest.get("local_repo_base_candidates") or []
+    if configured and not isinstance(configured, list):
+        raise ValueError("sync_manifest_local_repo_base_candidates_not_list")
+    for item in configured:
+        raw = str(item or "").strip()
+        if not raw:
+            continue
+        path = Path(raw).expanduser()
+        if not path.is_absolute():
+            path = (REPO_ROOT / path).resolve()
+        candidates.append(path)
+    return _dedupe_paths(candidates)
+
+
+def _repo_aliases(manifest: dict[str, object], repo_name: str) -> list[str]:
+    alias_table = manifest.get("repo_root_aliases") or {}
+    if alias_table and not isinstance(alias_table, dict):
+        raise ValueError("sync_manifest_repo_root_aliases_not_object")
+    values = alias_table.get(repo_name) if isinstance(alias_table, dict) else None
+    if values is None:
+        return [repo_name]
+    if not isinstance(values, list):
+        raise ValueError(f"sync_manifest_repo_aliases_not_list:{repo_name}")
+    aliases = [str(item or "").strip() for item in values if str(item or "").strip()]
+    return aliases or [repo_name]
+
+
+def _candidate_repo_roots(manifest: dict[str, object], repo_name: str, repo_base: Path | None) -> list[Path]:
     candidates: list[Path] = []
 
     override = os.environ.get(_repo_root_override_var(repo_name))
     if override:
         candidates.append(Path(override).expanduser())
 
-    base_overrides: list[Path] = []
-    if repo_base is not None:
-        base_overrides.append(repo_base.expanduser())
-    shared_base = os.environ.get("CHUMMER_REPO_BASE")
-    if shared_base:
-        base_overrides.append(Path(shared_base).expanduser())
-
-    default_bases = [Path(base).expanduser() for base in DEFAULT_REPO_BASE_CANDIDATES]
-    for base in _dedupe_paths(base_overrides + default_bases):
-        for alias in REPO_DIR_ALIASES.get(repo_name, (repo_name,)):
+    for base in _local_repo_base_candidates(manifest, repo_base):
+        for alias in _repo_aliases(manifest, repo_name):
             candidates.append(base / alias)
     return _dedupe_paths(candidates)
 
 
-def _resolve_repo_root(repo_name: str, repo_base: Path | None) -> tuple[Path | None, list[Path]]:
-    candidates = _candidate_repo_roots(repo_name, repo_base)
+def _resolve_repo_root(manifest: dict[str, object], repo_name: str, repo_base: Path | None) -> tuple[Path | None, list[Path]]:
+    candidates = _candidate_repo_roots(manifest, repo_name, repo_base)
     for candidate in candidates:
         if candidate.exists():
             return candidate, candidates
@@ -165,7 +176,7 @@ def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None) -> int:
         if not isinstance(mirror, dict):
             continue
         repo_name = str(mirror.get("repo") or "").strip()
-        repo_root, candidates = _resolve_repo_root(repo_name, repo_base)
+        repo_root, candidates = _resolve_repo_root(manifest, repo_name, repo_base)
         if repo_root is None:
             missing_repos.append((repo_name or "<missing>", _repo_root_override_var(repo_name), candidates))
             continue
