@@ -9,6 +9,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 - All phase exits from `A` through `F` are materially met in `PROGRAM_MILESTONES.yaml`.
 - `GROUP_BLOCKERS.md` reports no red blockers.
 - The product vision, horizon canon, public-guide policy, and Fleet participation/support posture are all canonical and downstream-synced from this repo.
+- The Account-Aware Front Door wave is materially closed on public `main`; see `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md` for the post-foundation public-surface closeout record.
 
 ## Owner-repo evidence
 
@@ -31,4 +32,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 
 ## Promotion posture
 
-Chummer foundation release is complete at the canonical product/design level. Public-guide and participation surfaces remain downstream growth tracks and may stay on a protected-preview deployment posture until operators choose broader promotion, but that deployment choice no longer reflects missing foundation design or repo-boundary truth.
+Chummer foundation release is complete at the canonical product/design level.
+The first account-aware install, update, support, and operator-control wave is also materially closed on public `main`.
+Public product maturity is still advancing in campaign-spine execution, living-dossier depth, Build Lab productization, weekly pulse history depth, and broader promotion posture.
+That remaining work is additive product growth, not evidence that foundation design or repo-boundary truth is still missing.

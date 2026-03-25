@@ -2,29 +2,29 @@
 
 This roadmap carries the program all the way to finished-state vision, not just to the split wave.
 
-Current status on 2026-03-24:
+Current status on 2026-03-25:
 
 * package canon, split completion, explain canon, runtime-bundle canon, hub product-consumer planes, play-shell closure, assistant-plane governance, media capability closure, replay/DR hardening, legacy migration certification, and release-governance closure are materially complete
 * the foundational program is now in maintenance mode rather than split-wave closeout mode
-* structured crash reporting, bug reporting, and lightweight feedback are now the active additive support-plane lane rather than a missing baseline
-* campaign-spine and product-control canon are now the additive middle-layer wave that turns the foundation into a campaign-scale product
+* the Account-Aware Front Door wave is materially closed on public `main`: Hub front door and account overlays, registry-backed install and update truth, cross-platform desktop build and startup-smoke gating, the first support plane, and the first product-governor loop are live enough to stop describing that wave as merely provisional
+* the public progress layer is real, but ETA remains a momentum or planning proxy until weekly history depth grows beyond the first recorded snapshots
+* campaign-spine execution, living-dossier product depth, and Build Lab productization are now the additive middle-layer wave that turns the foundation into a campaign-scale product
 
 ## Recommended next initiative
 
-The current recommended wave is **Account-Aware Front Door**.
-It turns `chummer.run` into a real account-aware install, update, and support surface backed by Hub + Registry + UI while keeping the design/control loop honest across `chummer6-design`, Fleet, and `executive-assistant`.
+The current recommended wave is **Campaign Spine Execution**.
+It turns `Chummer.Campaign.Contracts`, the living dossier, and Build Lab handoff into the executable middle of the product so Chummer stops being only a well-governed stack and becomes a campaign OS people can actually live inside.
 
-The concrete milestone spine for that wave lives in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
-Its shape is:
+The just-closed front-door wave is recorded in `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md`.
+The broader ordered plan now lives in `NEXT_15_BIG_WINS_EXECUTION_PLAN.md`.
+The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
-* M0 canon and control-loop closure
-* M1 durable Hub community and account spine
-* M2 Registry release/install/update model
-* M3 public downloads and signed-in install surfaces
-* M4 desktop self-update and install linking
-* M5 crash, bug, and feedback closure loop
-* M6 operator and design OODA loop
-* M7 validation and mirror hardening
+The immediate additive shape is:
+
+* make `Chummer.Campaign.Contracts` executable instead of merely canonical
+* ship the living dossier as a real product object that survives build, play, recap, and return
+* make Build Lab the flagship Build plus Explain surface that feeds dossier and campaign continuity
+* keep validator and weekly-pulse discipline honest so public and operator claims cannot drift again
 
 ## Phase A — Canon and package plane
 
@@ -254,7 +254,7 @@ Known-issue/help surfaces and human support escalation become version-aware and 
 
 ### L5 — Support assistant later
 
-Only after the earlier lanes are real does a grounded support assistant become eligible, and `Karma Forge` remains a build/rules label instead of the support-assistant name.
+The grounded support assistant is now the later phase-2 layer on top of the real support plane, and `Karma Forge` remains a build/rules label instead of the support-assistant name.
 
 ## Non-blocking product governor and autopilot lane
 

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
+fleet_root="${1:-${repo_root}/../fleet}"
+as_of="${2:-$(date -u +%F)}"
+
+python3 "${fleet_root}/scripts/materialize_public_progress_report.py" \
+  --repo-root "${fleet_root}" \
+  --out "${repo_root}/products/chummer/PROGRESS_REPORT.generated.json" \
+  --html-out "${repo_root}/products/chummer/PROGRESS_REPORT.generated.html" \
+  --poster-out "${repo_root}/products/chummer/PROGRESS_REPORT_POSTER.svg" \
+  --history-out "${repo_root}/products/chummer/PROGRESS_HISTORY.generated.json" \
+  --as-of "${as_of}" \
+  --mirror-root ''
+
+python3 "${repo_root}/scripts/ai/validate_product_invariants.py" >/dev/null
