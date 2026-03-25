@@ -8,15 +8,16 @@ Start with `START_HERE.md` if you are new.
 Use `GLOSSARY.md` when the repo-specific language gets dense.
 Use `journeys/README.md` when the question is "what does the user actually do end to end?"
 Use `METRICS_AND_SLOS.yaml` when the question is "what counts as good enough to ship?"
+Use `PRODUCT_HEALTH_SCORECARD.yaml` when the question is "how does whole-product reality steer the next decision?"
 
 ### Reading tracks
 
 1. Public/product story:
    `VISION.md` -> `PUBLIC_LANDING_POLICY.md` -> `PUBLIC_LANDING_MANIFEST.yaml` -> `PUBLIC_FEATURE_REGISTRY.yaml` -> `PUBLIC_USER_MODEL.md` -> `PUBLIC_AUTH_FLOW.md`
 2. Repo and contract boundaries:
-   `ARCHITECTURE.md` -> `OWNERSHIP_MATRIX.md` -> `CONTRACT_SETS.yaml` -> `projects/*.md`
+   `ARCHITECTURE.md` -> `OWNERSHIP_MATRIX.md` -> `LEAD_DESIGNER_OPERATING_MODEL.md` -> `PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md` -> `CONTRACT_SETS.yaml` -> `projects/*.md`
 3. Delivery and release control:
-   `RELEASE_PIPELINE.md` -> `DESKTOP_AUTO_UPDATE_SYSTEM.md` -> `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md` -> `PROGRAM_MILESTONES.yaml` -> `GROUP_BLOCKERS.md` -> `RELEASE_EVIDENCE_PACK.md`
+   `RELEASE_PIPELINE.md` -> `PUBLIC_DOWNLOADS_POLICY.md` -> `DESKTOP_AUTO_UPDATE_SYSTEM.md` -> `PUBLIC_AUTO_UPDATE_POLICY.md` -> `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md` -> `FEEDBACK_AND_SIGNAL_OODA_LOOP.md` -> `FEEDBACK_AND_CRASH_STATUS_MODEL.md` -> `PROGRAM_MILESTONES.yaml` -> `GROUP_BLOCKERS.md` -> `RELEASE_EVIDENCE_PACK.md`
 4. Future lanes and public explainer posture:
    `HORIZONS.md` -> `HORIZON_REGISTRY.yaml` -> `PUBLIC_GUIDE_POLICY.md` -> `PUBLIC_GUIDE_PAGE_REGISTRY.yaml` -> `PUBLIC_PART_REGISTRY.yaml` -> `PUBLIC_FAQ_REGISTRY.yaml`
 
@@ -28,44 +29,56 @@ Use `METRICS_AND_SLOS.yaml` when the question is "what counts as good enough to 
 4. `HORIZONS.md`
 5. `HORIZON_REGISTRY.yaml`
 6. `ARCHITECTURE.md`
-7. `RELEASE_PIPELINE.md`
-8. `DESKTOP_AUTO_UPDATE_SYSTEM.md`
-9. `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md`
-10. `PUBLIC_LANDING_POLICY.md`
-11. `PUBLIC_LANDING_MANIFEST.yaml`
-12. `PUBLIC_FEATURE_REGISTRY.yaml`
-13. `PUBLIC_LANDING_ASSET_REGISTRY.yaml`
-14. `PUBLIC_USER_MODEL.md`
-15. `PUBLIC_AUTH_FLOW.md`
-16. `IDENTITY_AND_CHANNEL_LINKING_MODEL.md`
-17. `PUBLIC_MEDIA_BRIEFS.yaml`
-18. `PARTICIPATION_AND_BOOSTER_WORKFLOW.md`
-19. `COMMUNITY_SPONSORSHIP_BACKLOG.md`
-20. `EXTERNAL_TOOLS_PLANE.md`
-21. `LTD_CAPABILITY_MAP.md`
-22. `PUBLIC_GUIDE_POLICY.md`
-23. `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`
-24. `PUBLIC_PART_REGISTRY.yaml`
-25. `PUBLIC_FAQ_REGISTRY.yaml`
-26. `PUBLIC_HELP_COPY.md`
-27. `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
-28. `HORIZON_SIGNAL_POLICY.md`
-29. `PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
-30. `METRICS_AND_SLOS.yaml`
-31. `journeys/README.md`
-32. `OWNERSHIP_MATRIX.md`
-33. `PROGRAM_MILESTONES.yaml`
-34. `CONTRACT_SETS.yaml`
-35. `GROUP_BLOCKERS.md`
-36. `projects/*.md` for repo-specific scope
+7. `LEAD_DESIGNER_OPERATING_MODEL.md`
+8. `PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md`
+9. `PRODUCT_HEALTH_SCORECARD.yaml`
+10. `RELEASE_PIPELINE.md`
+11. `PUBLIC_DOWNLOADS_POLICY.md`
+12. `DESKTOP_AUTO_UPDATE_SYSTEM.md`
+13. `PUBLIC_AUTO_UPDATE_POLICY.md`
+14. `ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md`
+15. `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md`
+16. `FEEDBACK_AND_SIGNAL_OODA_LOOP.md`
+17. `FEEDBACK_AND_CRASH_AUTOMATION.md`
+18. `FEEDBACK_AND_CRASH_STATUS_MODEL.md`
+19. `PUBLIC_LANDING_POLICY.md`
+20. `PUBLIC_LANDING_MANIFEST.yaml`
+21. `PUBLIC_FEATURE_REGISTRY.yaml`
+22. `PUBLIC_LANDING_ASSET_REGISTRY.yaml`
+23. `PUBLIC_USER_MODEL.md`
+24. `PUBLIC_AUTH_FLOW.md`
+25. `IDENTITY_AND_CHANNEL_LINKING_MODEL.md`
+26. `PUBLIC_MEDIA_BRIEFS.yaml`
+27. `PARTICIPATION_AND_BOOSTER_WORKFLOW.md`
+28. `COMMUNITY_SPONSORSHIP_BACKLOG.md`
+29. `EXTERNAL_TOOLS_PLANE.md`
+30. `LTD_CAPABILITY_MAP.md`
+31. `PUBLIC_GUIDE_POLICY.md`
+32. `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`
+33. `PUBLIC_PART_REGISTRY.yaml`
+34. `PUBLIC_FAQ_REGISTRY.yaml`
+35. `PUBLIC_HELP_COPY.md`
+36. `PUBLIC_GUIDE_EXPORT_MANIFEST.yaml`
+37. `HORIZON_SIGNAL_POLICY.md`
+38. `PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md`
+39. `METRICS_AND_SLOS.yaml`
+40. `journeys/README.md`
+41. `OWNERSHIP_MATRIX.md`
+42. `PROGRAM_MILESTONES.yaml`
+43. `CONTRACT_SETS.yaml`
+44. `GROUP_BLOCKERS.md`
+45. `projects/*.md` for repo-specific scope
 
 `HORIZON_REGISTRY.yaml` is the machine-readable source for horizon existence, order, public-guide eligibility, and eventual build path.
 The current horizon set covers knowledge fabric, spatial/runsite artifacts, creator press, replay/forensics, and bounded table coaching in addition to the earlier continuity and simulation lanes.
 `RELEASE_PIPELINE.md` is the canonical source for where release orchestration, desktop packaging, runtime-bundle production, registry publication truth, updater feeds, and public download/install rendering belong.
+`PUBLIC_DOWNLOADS_POLICY.md` and `PUBLIC_AUTO_UPDATE_POLICY.md` are the public copy and CTA truth for `/downloads` and in-app update promises, so landing/help/guide surfaces cannot drift away from the install/update contract.
 `DESKTOP_AUTO_UPDATE_SYSTEM.md` is the canonical source for the first desktop self-update wave, including the split between install media, machine update payloads, registry-owned release heads, rollout states, and UI-owned apply helpers.
 `FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md` is the canonical source for the first support plane, including the split between crash reporting, structured bug reporting, lightweight feedback, Hub-owned case truth, and the explicit rule that a support assistant is phase 2 rather than phase 0.
+`FEEDBACK_AND_SIGNAL_OODA_LOOP.md` is the canonical routing loop from raw support, survey, public-issue, and release signals into code, docs, queue, policy, or canon action.
 `ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md` is the canonical source for Hub-first downloads, claimable installs, installation-level auth, and the rule that Chummer personalizes the relationship rather than the binary.
 `FEEDBACK_AND_CRASH_STATUS_MODEL.md` is the canonical source for support-case status events, fix-available notices, and post-release follow-up rules.
+`PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md` defines the whole-product operator seam between reality and canon, while `PRODUCT_HEALTH_SCORECARD.yaml` defines the weekly pulse that role uses to freeze, reroute, or escalate work.
 `PUBLIC_LANDING_MANIFEST.yaml`, `PUBLIC_FEATURE_REGISTRY.yaml`, and `PUBLIC_LANDING_ASSET_REGISTRY.yaml` are the machine-readable source for the `chummer.run` landing structure, CTA routing, public proof shelf, asset slots, and signed-in overlay posture.
 `PUBLIC_PROGRESS_PARTS.yaml` is the canonical product-part mapping, public copy registry, and ETA/momentum policy input for the hosted `/progress` report, while `PROGRESS_REPORT.generated.json`, `PROGRESS_REPORT.generated.html`, and `PROGRESS_REPORT_POSTER.svg` are generated downstream projections that Hub may serve directly. The raster-only rule in the public media briefs applies to front-door campaign art rather than these generated progress exports.
 `PUBLIC_AUTH_FLOW.md` defines the first-wave login/signup/logout posture, guest fallbacks, and which provider surfaces may appear publicly in the hosted shell.
@@ -127,7 +140,7 @@ These inform the program but are not part of the main release train:
 1. Keep canonical design files concise, machine-readable where useful, and clearly above operational evidence noise.
 2. Keep Hub’s user/group/ledger/sponsorship model canonical so community participation, premium bursts, and later GM-group tooling all grow from one reusable platform.
 3. Maintain Fleet’s cheap-first execution plane and premium-burst policy through mirrored design truth rather than repo-local invention.
-4. Give workers a legal petition path when the blueprint is missing a seam, and synthesize repeated findings before they become queue truth.
+4. Give workers a legal petition path when the blueprint is missing a seam, synthesize repeated findings before they become queue truth, and route whole-product signal clusters through the product-governor loop instead of ad hoc operator intuition.
 5. Treat future repo work as additive product evolution, not split-wave cleanup or contract-canon repair.
 6. Keep sponsored participation generic: Hub grows the reusable user/group/ledger platform first, and Fleet stays the worker execution plane underneath it.
 7. Keep `chummer.run` as the product front door and proof shelf, while `Chummer6` remains the deeper downstream explainer.
@@ -139,6 +152,8 @@ The foundational closure wave is materially finished. Growth tracks such as broa
 `PARTICIPATION_AND_BOOSTER_WORKFLOW.md` is the first-class canon for user language, ownership, state transitions, receipts, recognition, and package/bootstrap truth for the bounded participation lane.
 
 `COMMUNITY_SPONSORSHIP_BACKLOG.md` is the implementation-ordered source for the Hub-first community/accounting wave. It distinguishes what already landed in Hub/Fleet/EA from the remaining durable-storage, convergence, and product-depth deltas.
+
+`PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md`, `FEEDBACK_AND_SIGNAL_OODA_LOOP.md`, and `PRODUCT_HEALTH_SCORECARD.yaml` are the operating loop for turning product reality into governed course correction instead of leaving that work as scattered feedback notes.
 
 ## Non-goal
 

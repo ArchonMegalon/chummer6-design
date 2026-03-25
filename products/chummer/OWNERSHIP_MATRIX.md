@@ -15,6 +15,40 @@
 | `fleet`                  | execution/control plane            | worker orchestration, queue policy, review/landing control, cheap-first automation, explicit premium burst lanes, lane-local auth helpers, sponsor-session receipts, release orchestration, signing/notarization jobs, publish/signoff evidence, normalized crash clustering/repro/test/patch-prep automation | product truth, contract canon, session truth, user/group/ledger truth, raw hosted identity/auth storage, installer recipe truth, canonical release-channel truth, canonical crash/support truth      | none                                                                            |
 | `chummer5a`             | legacy oracle                      | migration fixtures, regression corpus, legacy compatibility reference                                   | vNext architecture ownership                                                       | none                                                                            |
 
+## Program-level stewardship roles
+
+### Lead designer
+
+Owns:
+
+* canonical product truth
+* repo and package boundaries
+* milestone and blocker canon
+* public-story and horizon canon
+
+Must not own:
+
+* raw support inbox
+* worker execution
+* day-to-day stop/replan authority just because a live issue exists
+
+### Product governor
+
+Owns:
+
+* whole-product health
+* support and feedback closure posture
+* cross-repo scope pressure review
+* stop, freeze, reroute, and escalation authority when reality diverges from current plan
+* the weekly pulse defined in `PRODUCT_HEALTH_SCORECARD.yaml`
+
+Must not own:
+
+* raw support-case truth
+* package canon
+* repo-local implementation detail
+* direct worker execution
+
 ## Boundary notes
 
 ### `chummer6-core`
@@ -38,6 +72,7 @@ Registry and media must remain separate service boundaries.
 Hub may explain install and update posture, and it owns support-case/help truth, but it does not become the feed authority and it does not reclaim client-side crash interception.
 Hub owns the person/install relationship, install claim tickets, installation grants, and support-status closure, but it does not mutate signed release artifacts into per-user binaries.
 Hub is also the owned intake/orchestration seam for crash automation; Fleet consumes normalized work from Hub rather than raw client crash submissions.
+Hub owns raw support and feedback intake plus user-facing closure, but it does not become the product governor.
 
 ### `chummer6-ui-kit`
 
@@ -57,6 +92,7 @@ The only repo allowed to own render execution and render-asset lifecycle.
 
 The only adjacent repo allowed to own cross-repo worker scheduling, release orchestration, participant worker lifecycle, and landing control, but never canonical Chummer product truth.
 Fleet may automate crash clustering, repro, test drafting, and candidate patch preparation only after Hub-owned normalization and Registry-backed release enrichment.
+Fleet may prepare evidence packets and queue proposals for designer or product-governor review, but it does not own whole-product stop/replan authority.
 
 ## Ownership violations
 

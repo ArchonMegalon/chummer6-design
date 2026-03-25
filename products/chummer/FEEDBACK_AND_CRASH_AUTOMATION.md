@@ -8,6 +8,8 @@ The canonical rule is:
 
 > Crash reports flow into a Hub-owned intake plane; Fleet may consume normalized crash work items for automated triage, repro, and patch proposal, but must not become canonical support truth or bypass the standard review/release/update pipeline.
 
+Clustered crash and support packets then feed the broader routing loop defined in `FEEDBACK_AND_SIGNAL_OODA_LOOP.md`.
+
 ## Non-goals
 
 This file does not allow:

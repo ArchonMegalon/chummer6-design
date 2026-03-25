@@ -222,6 +222,26 @@ Known-issue/help surfaces and human support escalation become version-aware and 
 
 Only after the earlier lanes are real does a grounded support assistant become eligible, and `Karma Forge` remains a build/rules label instead of the support-assistant name.
 
+## Non-blocking product governor and autopilot lane
+
+This lane makes whole-product health, feedback closure, and stop/replan authority first-class instead of leaving them as scattered operator instinct.
+
+### M0 — Product governor canon established
+
+`chummer6-design` publishes first-class canon for the product governor role, whole-product pulse, and freeze/reroute rules.
+
+### M1 — Feedback and signal OODA loop established
+
+Hub intake, Fleet clustering, designer review, and product-governor routing become one explicit loop instead of semi-manual staging.
+
+### M2 — Weekly product health scorecard real
+
+The weekly program pulse tracks release health, feedback closure, blocker age, design drift, and public-promise drift.
+
+### M3 — Closed-loop support and release reality
+
+Support and public reporting can show not just design truth, but governed reality: what is hurting, what changed, what was rerouted, and why.
+
 ## Repo milestone spine
 
 ### `chummer6-design`

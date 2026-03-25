@@ -24,6 +24,12 @@ shared_prompt_scaffold:
     premium software-campaign still, grounded Shadowrun-inspired cyberpunk fantasy, editorial realism, original composition, navy and graphite base palette, electric blue interface glow, warm amber proof lighting, subtle rain reflections, realistic skin and materials, layered physical props, high information density, product-specific semantics, no readable text, no logos
   negative_prompt: |
     readable text, letters, giant monogram, logo, watermark, central signboard, empty alley, empty boulevard, billboard centerpiece, sparse desk with one prop, lone brooding figure at vague wall, entertainment poster pose, action-movie gun pose, anime, comic art, cel shading, cosplay look, over-saturated magenta neon, low-detail hands, distorted anatomy, fisheye lens, huge lens flare, floating nonsense UI clutter, stock-photo smile
+critical_asset_style_epoch:
+  mode: flagship_poster
+  style_anchor: |
+    illustrated promo-poster for a cyberpunk-fantasy tabletop world, high-contrast painted realism, dramatic cover-art framing, bold silhouette grouping, saturated but grounded color, visible grime, patched gear, neon and sodium-vapor contrast, metahuman street-life specificity, dense practical props, diegetic overlays added in post, unmistakably Shadowrun-adjacent runner life, not a clean cinematic screenshot, not a generic software landing still
+  negative_prompt: |
+    stock-photo realism, quiet editorial still, clean clinic, sterile exam room, generic sci-fi workshop, moody empty corridor, tasteful sparse composition, corporate lifestyle ad, one person in a dim room, paperwork meeting, tidy suburban medical office, bland near-future thriller vibe
 semantic_anchors:
   - dossier papers or briefing packet
   - six-sided dice
@@ -65,15 +71,15 @@ visual_contract:
     humor_allowed: false
     pseudo_text_allowed: false
     required_setting_markers:
-      - improvised garage clinic
-      - hacked med gear
-      - tool chest or lift bay residue
-      - cheap fluorescent strips or work lamps
-      - wet concrete, tarp, or extension-cord grime
+      - improvised garage clinic required
+      - hacked med gear required
+      - tool chest or lift bay residue required
+      - cheap fluorescent strips or work lamps required
+      - wet concrete, tarp, or extension-cord grime required
     required_cast_markers:
-      - metahuman clinician preferred
-      - wounded runner
-      - support figure optional but encouraged
+      - metahuman clinician required
+      - wounded runner required
+      - assistant or teammate encouraged
     required_overlay_schema:
       - BOD
       - AGI
@@ -89,10 +95,12 @@ visual_contract:
       - UPGRADING
     forbidden_environment_markers:
       - clean hospital exam room
+      - clean van interior with no garage cues
       - pristine dental-clinic lighting
       - white-box medical showroom
     forbidden_cast_defaults:
       - lone clean human doctor in white coat
+      - ambiguous hooded figure with no clinical role readability
     cyberpunk_intensity: high
     shadowrun_lore_weight: high
     must_show_semantic_anchors:
@@ -142,21 +150,25 @@ visual_contract:
     humor_allowed: false
     pseudo_text_allowed: false
     required_setting_markers:
-      - industrial rule-lab or approval rail
-      - consequence or rollback machinery
-      - provenance seals or rule cassettes
-      - approval witness presence
+      - industrial rule-lab required
+      - approval rail required
+      - consequence or rollback machinery required
+      - provenance seals or rule cassettes required
     required_overlay_schema:
       - DIFF
       - APPROVAL
       - PROVENANCE
       - ROLLBACK
     required_action_posture:
-      - standing_or_in_motion
+      - standing_or_in_motion required
+    required_cast_markers:
+      - rulesmith required
+      - reviewer or witness required
     forbidden_environment_markers:
       - quiet desk still life
       - two people sitting at table
       - generic paperwork workshop
+      - tidy modern studio bench
     cyberpunk_intensity: high
     shadowrun_lore_weight: high
     must_show_semantic_anchors:

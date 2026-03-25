@@ -164,11 +164,32 @@ contract_sets:
       - structured bug reports
       - lightweight feedback submissions
       - support case and thread state
-      - case status events
-      - resolution notices
-      - survey invites
       - knowledge article and public issue links
     rule: "`chummer6-ui` owns local crash interception, diagnostics bundle creation, recovery UX, and redacted intake forwarding; `chummer6-hub` owns hosted support-case truth and intake normalization; external tools may assist routing or docs/help but may not become the canonical crash or ticket system."
+
+  - id: support_status_vnext
+    canonical_package: Chummer.Run.Contracts
+    semantic_owner: chummer6-hub
+    status: in_progress
+    includes:
+      - case status events
+      - resolution notices
+      - fix-available notices
+      - follow-up survey invites
+      - reporter-channel availability state
+    rule: "Support closure follows Hub case truth plus Registry-backed channel availability. Merged code or drafted fixes are not enough to emit a user-facing fixed notice."
+
+  - id: feedback_signal_ooda_vnext
+    canonical_package: Chummer.Run.Contracts
+    semantic_owner: chummer6-hub
+    status: in_progress
+    includes:
+      - feedback clusters
+      - support and release signal packets
+      - routing decisions
+      - defer or reject reasons
+      - closure notices
+    rule: "Hub owns raw intake and closure, Fleet may synthesize clustered evidence packets, and product-governor or designer review may route the packet; raw signals do not become backlog or canon truth without synthesis."
 
   - id: crash_automation_vnext
     canonical_package: Chummer.Run.Contracts

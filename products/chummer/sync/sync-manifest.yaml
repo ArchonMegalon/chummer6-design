@@ -8,6 +8,8 @@ product_source_groups:
     - products/chummer/VISION.md
     - products/chummer/ARCHITECTURE.md
     - products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md
+    - products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md
+    - products/chummer/PRODUCT_HEALTH_SCORECARD.yaml
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/PROGRAM_MILESTONES.yaml
     - products/chummer/CONTRACT_SETS.yaml
@@ -42,6 +44,7 @@ product_source_groups:
     - products/chummer/journeys/publish-a-grounded-artifact.md
   public_surface:
     - products/chummer/PUBLIC_LANDING_POLICY.md
+    - products/chummer/PUBLIC_DOWNLOADS_POLICY.md
     - products/chummer/PUBLIC_LANDING_MANIFEST.yaml
     - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
     - products/chummer/PUBLIC_USER_MODEL.md
@@ -70,8 +73,12 @@ product_source_groups:
   release:
     - products/chummer/RELEASE_PIPELINE.md
     - products/chummer/DESKTOP_AUTO_UPDATE_SYSTEM.md
+    - products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md
   support_plane:
     - products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md
+    - products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md
+    - products/chummer/FEEDBACK_AND_CRASH_AUTOMATION.md
+    - products/chummer/FEEDBACK_AND_CRASH_STATUS_MODEL.md
   external_tools:
     - products/chummer/EXTERNAL_TOOLS_PLANE.md
     - products/chummer/LTD_CAPABILITY_MAP.md

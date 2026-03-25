@@ -379,6 +379,53 @@ program_phases:
     - A support assistant only lands after crash, bug-report, feedback, and human-escalation lanes are real.
     - The assistant answers from curated help and known-issue sources and hands off cleanly when confidence is low.
     - "`Karma Forge` is not reused as the support-assistant name."
+- id: M
+  title: Product governor and autopilot loop
+  status: in_progress
+  release_blocking: false
+  goal: Turn support truth, release truth, and scope pressure into one governed whole-product course-correction loop.
+  milestones:
+  - id: M0
+    title: Product governor canon established
+    owners:
+    - chummer6-design
+    - fleet
+    status: in_progress
+    exit:
+    - "`PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md` exists and agrees with `OWNERSHIP_MATRIX.md` and Fleet scope canon."
+    - Whole-product freeze, reroute, and escalation rules are explicit.
+    - The product governor is not treated as a duplicate of the lead designer.
+  - id: M1
+    title: Feedback and signal OODA loop established
+    owners:
+    - chummer6-design
+    - chummer6-hub
+    - fleet
+    status: in_progress
+    exit:
+    - "`FEEDBACK_AND_SIGNAL_OODA_LOOP.md` defines intake classes, packet synthesis, routing, and closure rules."
+    - Hub, Fleet, designer, and product-governor roles are explicit.
+    - Raw signals no longer stand in for backlog or canon truth without clustering.
+  - id: M2
+    title: Weekly product pulse established
+    owners:
+    - chummer6-design
+    - fleet
+    status: in_progress
+    exit:
+    - "`PRODUCT_HEALTH_SCORECARD.yaml` exists and defines weekly pulse metrics."
+    - Release health, feedback closure, blocker age, design drift, and public-promise drift all have named owners.
+    - The weekly pulse can justify freeze, reroute, or defer decisions with bounded reasons.
+  - id: M3
+    title: Fleet operator surface consumes governor canon
+    owners:
+    - fleet
+    - chummer6-design
+    status: in_progress
+    exit:
+    - Fleet mirrors the governor and feedback-loop canon downstream.
+    - Fleet Studio exposes a `product_governor` role alongside the designer role.
+    - Designer and governor surfaces consume the same canonical loop instead of local prose.
 - id: B
   title: Surface split completion
   status: complete

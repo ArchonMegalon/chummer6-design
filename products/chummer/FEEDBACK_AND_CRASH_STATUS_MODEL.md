@@ -1,8 +1,8 @@
-# Feedback and crash status model
+# Support and feedback status model
 
 ## Purpose
 
-This file defines how Chummer support cases move from intake to closure once crash, bug, and feedback lanes exist.
+This file defines how Chummer support and feedback cases move from intake to closure once crash, bug, and feedback lanes exist.
 
 It keeps status communication honest and tied to release truth instead of developer-local events.
 
@@ -27,12 +27,17 @@ Every support case may carry:
 The minimum canonical status family is:
 
 * `received`
-* `needs_review`
-* `needs_more_info`
+* `clustered`
+* `routed`
+* `awaiting_evidence`
 * `known_issue`
+* `accepted`
+* `deferred`
+* `rejected`
 * `in_progress`
 * `fixed_pending_release`
 * `released_to_reporter_channel`
+* `user_notified`
 * `closed`
 
 Optional later variants may exist, but they must not redefine the meaning of these baseline states.
@@ -44,14 +49,26 @@ Support cases use append-only status events.
 The minimum event family is:
 
 * intake accepted
+* case clustered into a packet
+* packet routed to the next owner
 * case linked to installation
 * case linked to user
 * duplicate or cluster match
 * more-info request
 * fix linked to work item or public issue
 * release reached reporter channel
+* user notified
 * follow-up survey invited
 * case closed
+
+## Meanings that must stay stable
+
+* `clustered` means the case is now part of a grouped evidence packet; it does not imply an accepted fix path.
+* `routed` means the packet has a next owner and next lane.
+* `accepted` means the issue or idea is intentionally kept alive.
+* `deferred` means "not now" with an explicit reason, not silent disappearance.
+* `rejected` means the idea or request is intentionally declined.
+* `user_notified` means a reporter-facing update was actually sent.
 
 ## Closure rule
 

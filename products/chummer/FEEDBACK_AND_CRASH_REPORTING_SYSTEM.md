@@ -12,6 +12,7 @@ This file defines the first real Chummer support plane for:
 without letting a support assistant, a help-desk vendor, or an owned LTD become canonical product truth.
 
 Crash-intake automation, Fleet consumption rules, and the release/review boundary for automated crash triage are defined in `FEEDBACK_AND_CRASH_AUTOMATION.md`.
+Signal clustering, routing, and closure discipline beyond raw intake are defined in `FEEDBACK_AND_SIGNAL_OODA_LOOP.md`.
 
 ## Non-goals
 
