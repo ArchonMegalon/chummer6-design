@@ -5,6 +5,21 @@
 `executive-assistant` is the governed synthesis/runtime substrate adjacent to the Chummer release train.
 It exists to turn mirrored canon and bounded product signals into petitions, synthesis briefs, and operator aids without becoming a second product authority.
 
+## Governance posture
+
+`executive-assistant` sits inside the Fleet `control-plane` autonomy perimeter alongside `fleet`.
+
+That means:
+
+* the designer and product-governor loop may observe EA runtime posture, mirror drift, synthesis seams, and operator aids as first-class control-plane input
+* EA is governance-adjacent and execution-relevant, not hidden sidecar cargo
+
+That does not mean:
+
+* EA owns canon
+* EA owns milestones, blockers, queue truth, or release authority
+* EA becomes a substitute for Hub, Fleet, or `chummer6-design`
+
 ## Owns
 
 * provider-aware runtime substrate for governed assistant execution

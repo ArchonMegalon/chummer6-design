@@ -9,6 +9,23 @@ Current status on 2026-03-24:
 * structured crash reporting, bug reporting, and lightweight feedback are now the active additive support-plane lane rather than a missing baseline
 * campaign-spine and product-control canon are now the additive middle-layer wave that turns the foundation into a campaign-scale product
 
+## Recommended next initiative
+
+The current recommended wave is **Account-Aware Front Door**.
+It turns `chummer.run` into a real account-aware install, update, and support surface backed by Hub + Registry + UI while keeping the design/control loop honest across `chummer6-design`, Fleet, and `executive-assistant`.
+
+The concrete milestone spine for that wave lives in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
+Its shape is:
+
+* M0 canon and control-loop closure
+* M1 durable Hub community and account spine
+* M2 Registry release/install/update model
+* M3 public downloads and signed-in install surfaces
+* M4 desktop self-update and install linking
+* M5 crash, bug, and feedback closure loop
+* M6 operator and design OODA loop
+* M7 validation and mirror hardening
+
 ## Phase A — Canon and package plane
 
 ### A0 — Design repo bootstrap complete
