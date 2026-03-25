@@ -22,6 +22,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 - `chummer6-hub-registry`: owner-read-model and restore proof are explicit in `docs/REGISTRY_PRODUCT_READMODELS.md` and `docs/REGISTRY_RESTORE_RUNBOOK.md`.
 - `chummer6-media-factory`: adapter authority, stable media capability, and restore proof are explicit in `docs/MEDIA_ADAPTER_MATRIX.md`, `docs/MEDIA_CAPABILITY_SIGNOFF.md`, and `docs/MEDIA_FACTORY_RESTORE_RUNBOOK.md`.
 - `fleet`: design remains mirrored into runtime/operator truth, and premium-burst participation is design-first canon before downstream execution.
+- `chummer6-design`: weekly pulse publication now emits a generated governor snapshot, and interop/portability canon is explicit enough to stop relying on code archaeology for that product promise.
 
 ## Mirror and truth freshness
 
@@ -35,5 +36,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 
 Chummer foundation release is complete at the canonical product/design level.
 The first account-aware install, update, support, and operator-control wave is also materially closed on public `main`.
-Public product maturity is still advancing in campaign-spine execution, living-dossier depth, Build Lab productization, weekly pulse history depth, and broader promotion posture.
+Public product maturity is still advancing in campaign-spine execution breadth, rule-environment depth, roaming sync, GM runboard richness, Build Lab productization, weekly pulse history depth, and broader promotion posture.
+The signed-in home cockpit and the first living-dossier runtime object are now part of the shipped public/account-aware product surface rather than only planned canon.
+The weekly pulse itself now emits a bounded generated snapshot, and interop/portability now has explicit canon instead of implied compatibility drift.
 That remaining work is additive product growth, not evidence that foundation design or repo-boundary truth is still missing.

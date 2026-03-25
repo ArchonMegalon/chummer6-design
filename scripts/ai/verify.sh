@@ -33,6 +33,7 @@ for path in \
   products/chummer/ARCHITECTURE.md \
   products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md \
   products/chummer/PRODUCT_HEALTH_SCORECARD.yaml \
+  products/chummer/WEEKLY_PRODUCT_PULSE.generated.json \
   products/chummer/PUBLIC_LANDING_POLICY.md \
   products/chummer/PUBLIC_DOWNLOADS_POLICY.md \
   products/chummer/PUBLIC_LANDING_MANIFEST.yaml \
@@ -70,6 +71,7 @@ for path in \
   products/chummer/HORIZON_SIGNAL_POLICY.md \
   products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md \
   products/chummer/BUILD_LAB_PRODUCT_MODEL.md \
+  products/chummer/INTEROP_AND_PORTABILITY_MODEL.md \
   products/chummer/ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md \
   products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md \
   products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md \
@@ -91,6 +93,7 @@ for path in \
   products/chummer/adrs/ADR-0011-no-personalized-binaries-claimable-installs.md \
   products/chummer/adrs/ADR-0012-product-governor-and-feedback-loop.md \
   products/chummer/adrs/ADR-0013-campaign-and-control-middle-plane.md \
+  products/chummer/adrs/ADR-0014-interop-and-portability-plane.md \
   products/chummer/PROGRAM_MILESTONES.yaml \
   products/chummer/CONTRACT_SETS.yaml \
   products/chummer/GROUP_BLOCKERS.md \
@@ -148,7 +151,9 @@ python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next20_repo_evidence.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
+python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null
 
 rg -n '^# Start here$|^## Fast path by role$|^## Fast path by question$|^## Reading discipline$' "$repo_root/products/chummer/START_HERE.md" >/dev/null
@@ -157,6 +162,7 @@ rg -n '^# Campaign spine and crew model$|^## Canonical domain objects$|Chummer\\
 rg -n '^# Character lifecycle and living dossier$|^## Lifecycle spine$|living dossier|Chummer\\.Campaign\\.Contracts' "$repo_root/products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md" >/dev/null
 rg -n '^# Roaming workspace and entitlement sync$|^## Roaming scopes$|^## Synced product state$|^## Conflict rules$|Chummer\\.Campaign\\.Contracts|Chummer\\.Hub\\.Registry\\.Contracts' "$repo_root/products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md" >/dev/null
 rg -n '^# Campaign workspace and device roles$|^## Core product objects$|^## Device roles$|^## Compounding loops$|what changed for them|campaign workspace' "$repo_root/products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md" >/dev/null
+rg -n '^# Interop and portability model$|^## Product promise$|Chummer\\.Play\\.Contracts\\.Interop|portable export package manifest|migration receipts' "$repo_root/products/chummer/INTEROP_AND_PORTABILITY_MODEL.md" >/dev/null
 rg -n '^# Product control and governor loop$|^## Control-plane objects$|Chummer\\.Control\\.Contracts|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP' "$repo_root/products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md" >/dev/null
 rg -n '^# Support and signal OODA loop$|^## Observe$|^## Close$|Chummer\\.Control\\.Contracts|FEEDBACK_AND_CRASH_REPORTING_SYSTEM' "$repo_root/products/chummer/SUPPORT_AND_SIGNAL_OODA_LOOP.md" >/dev/null
 rg -n '^# User journeys$|Build|Explain|Run|Publish|Improve' "$repo_root/products/chummer/USER_JOURNEYS.md" >/dev/null
@@ -171,6 +177,7 @@ rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins$|^waves:$
 rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## Mirror discipline$|^## Petition path$' "$repo_root/products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md" >/dev/null
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^scorecards:$|^  - id: release_health$|^  - id: support_and_feedback_closure$|^  - id: campaign_middle_health$|^  - id: control_loop_integrity$|^weekly_snapshot:$' "$repo_root/products/chummer/PRODUCT_HEALTH_SCORECARD.yaml" >/dev/null
+rg -n '\"contract_name\": \"chummer\\.weekly_product_pulse\"|\"governor_decisions\"|\"next_checkpoint_question\"|\"history_snapshot_count\"' "$repo_root/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^scorecards:$|^release_gates:$|^  - id: deterministic_rules_truth$|^  - id: session_continuity$|^  - id: campaign_and_dossier_continuity$|^  - id: roaming_workspace_trust$|next_safe_action_clarity|device_role_posture_visibility|^  - id: support_and_closure_honesty$|^  - id: roaming_workspace_gate$' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^asset_slots:$|^  - id: hero$' "$repo_root/products/chummer/PUBLIC_LANDING_ASSET_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^routes:$|^  - route: /$|^  - route: /downloads$' "$repo_root/products/chummer/PUBLIC_NAVIGATION.yaml" >/dev/null
@@ -222,6 +229,7 @@ rg -n '^# ADR-0010:|Registry-Backed and UI-Applied' "$repo_root/products/chummer
 rg -n '^# ADR-0011:|claimable installs instead' "$repo_root/products/chummer/adrs/ADR-0011-no-personalized-binaries-claimable-installs.md" >/dev/null
 rg -n '^# ADR-0012:|product governor and feedback loop are first-class canon' "$repo_root/products/chummer/adrs/ADR-0012-product-governor-and-feedback-loop.md" >/dev/null
 rg -n '^# ADR-0013:|campaign and control become first-class middle planes' "$repo_root/products/chummer/adrs/ADR-0013-campaign-and-control-middle-plane.md" >/dev/null
+rg -n '^# ADR-0014:|Interop and portability are first-class product promises' "$repo_root/products/chummer/adrs/ADR-0014-interop-and-portability-plane.md" >/dev/null
 rg -n 'repo: executive-assistant|products/chummer/projects/executive-assistant.md|products/chummer/review/executive-assistant.AGENTS.template.md|products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md|products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md|products/chummer/PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml' "$repo_root/products/chummer/sync/sync-manifest.yaml" >/dev/null
 rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/HORIZON_SIGNAL_POLICY.md" \
@@ -230,7 +238,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PRODUCT_HEALTH_SCORECARD|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n '^# Chummer Public Guide Bundle$|^## What is real now$|^## Product parts$|^## Canon sources$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^# Status$|^## Current pulse$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$|^## Start with the product surface, not the repo trail$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
@@ -241,7 +249,7 @@ rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/d
 rg -n '^# Horizons$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '\"generated_from\"|\"page_count\"|\"sources\"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
-rg -n 'Chummer\\.Campaign\\.Contracts|Chummer\\.Control\\.Contracts|campaign_spine_vnext|living_dossier_vnext|rule_environment_vnext|roaming_workspace_vnext|campaign workspace summaries|device-role posture refs|support_status_vnext|feedback_signal_ooda_vnext' "$repo_root/products/chummer/CONTRACT_SETS.yaml" >/dev/null
+rg -n 'Chummer\\.Campaign\\.Contracts|Chummer\\.Control\\.Contracts|campaign_spine_vnext|living_dossier_vnext|rule_environment_vnext|roaming_workspace_vnext|interop_portability_vnext|campaign workspace summaries|device-role posture refs|support_status_vnext|feedback_signal_ooda_vnext' "$repo_root/products/chummer/CONTRACT_SETS.yaml" >/dev/null
 rg -n 'booster_first|resource_burden|recognition_eligible|free_later_intent' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_invariants.py" >/dev/null
 

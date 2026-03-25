@@ -14,4 +14,8 @@ python3 "${fleet_root}/scripts/materialize_public_progress_report.py" \
   --as-of "${as_of}" \
   --mirror-root ''
 
+python3 "${repo_root}/scripts/ai/materialize_weekly_product_pulse_snapshot.py" \
+  --as-of "${as_of}" \
+  --out "${repo_root}/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json"
+
 python3 "${repo_root}/scripts/ai/validate_product_invariants.py" >/dev/null

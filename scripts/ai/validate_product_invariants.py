@@ -49,6 +49,7 @@ def main() -> int:
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md",
         "BUILD_LAB_PRODUCT_MODEL.md",
+        "INTEROP_AND_PORTABILITY_MODEL.md",
         "NEXT_15_BIG_WINS_EXECUTION_PLAN.md",
         "NEXT_20_BIG_WINS_EXECUTION_PLAN.md",
         "NEXT_20_BIG_WINS_REGISTRY.yaml",
@@ -88,6 +89,16 @@ def main() -> int:
         if not str(item.get("deprecation_policy") or "").strip():
             errors.append(f"{package_id} is missing deprecation_policy.")
 
+    contract_sets_rows = contract_sets.get("contract_sets") or []
+    if isinstance(contract_sets_rows, list):
+        ids = {
+            str(item.get("id") or "").strip()
+            for item in contract_sets_rows
+            if isinstance(item, dict)
+        }
+        if "interop_portability_vnext" not in ids:
+            errors.append("CONTRACT_SETS.yaml must define interop_portability_vnext.")
+
     phase_rows = milestones.get("program_phases") or []
     if not isinstance(phase_rows, list):
         errors.append("PROGRAM_MILESTONES.yaml program_phases must be a list.")
@@ -119,6 +130,16 @@ def main() -> int:
     if int(history.get("snapshot_count") or 0) < 2:
         errors.append("Progress history must record at least two snapshots.")
 
+    pulse_snapshot_path = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
+    pulse_snapshot = load_json(pulse_snapshot_path)
+    if str(pulse_snapshot.get("contract_name") or "").strip() != "chummer.weekly_product_pulse":
+        errors.append("WEEKLY_PRODUCT_PULSE.generated.json must carry the chummer.weekly_product_pulse contract name.")
+    if int((pulse_snapshot.get("supporting_signals") or {}).get("history_snapshot_count") or 0) != int(history.get("snapshot_count") or 0):
+        errors.append("Weekly product pulse must carry the same history snapshot count as PROGRESS_HISTORY.generated.json.")
+    snapshot_payload = pulse_snapshot.get("snapshot") or {}
+    if not isinstance(snapshot_payload, dict) or not snapshot_payload.get("governor_decisions"):
+        errors.append("Weekly product pulse must include at least one governor decision.")
+
     groups = sync_manifest.get("product_source_groups") or {}
     mirrors = sync_manifest.get("mirrors") or []
     if "journey_community" not in groups:
@@ -142,16 +163,20 @@ def main() -> int:
     verify_expectations = (
         "ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md",
         "BUILD_LAB_PRODUCT_MODEL.md",
+        "INTEROP_AND_PORTABILITY_MODEL.md",
         "NEXT_15_BIG_WINS_EXECUTION_PLAN.md",
         "NEXT_20_BIG_WINS_EXECUTION_PLAN.md",
         "NEXT_20_BIG_WINS_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
+        "WEEKLY_PRODUCT_PULSE.generated.json",
         "claim-install-and-close-a-support-case.md",
         "run-a-campaign-and-return.md",
         "organize-a-community-and-close-the-loop.md",
         "validate_next20_milestones.py",
+        "validate_next20_repo_evidence.py",
         "materialize_public_guide_bundle.py",
+        "materialize_weekly_product_pulse_snapshot.py",
     )
     for marker in verify_expectations:
         if marker not in verify_sh:
@@ -164,6 +189,10 @@ def main() -> int:
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Control.Contracts" / "Chummer.Control.Contracts.csproj",
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Controllers" / "CampaignSpineController.cs",
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Services" / "Community" / "CampaignSpineService.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.AI" / "Controllers" / "InteropController.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Services" / "Support" / "SupportAssistantService.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer-core-engine" / "Chummer.Application" / "BuildLab" / "DefaultBuildLabService.cs",
+        DOCKER_ROOT / "chummercomplete" / "Chummer6" / "scripts" / "verify_public_guide.sh",
         DOCKER_ROOT / "chummercomplete" / "chummer-hub-registry" / "Chummer.Hub.Registry.Contracts" / "InstallLinkingContracts.cs",
     )
     for path in required_repo_paths:

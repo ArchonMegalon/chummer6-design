@@ -56,4 +56,4 @@ It exists so the public guide surface can be compiled from design canon instead 
 
 ## Support posture
 
-Use the first-party product path first: install help, account recovery, current release truth, and a real support intake before you fall through to deeper repo material.
+Use the first-party product path first: install help, account recovery, current release truth, and a real support intake before you fall through to deeper technical material.

@@ -191,6 +191,28 @@ def main() -> int:
                 if milestone_wave_assignments.get(milestone_id) != wave_id:
                     _fail(errors, f"NEXT_20_BIG_WINS_REGISTRY.yaml: milestone {milestone_id} is listed under {wave_id} but assigned to {milestone_wave_assignments.get(milestone_id, '<missing>')}.")
 
+        required_statuses = {
+            1: "complete",
+            2: "complete",
+            3: "complete",
+            4: "complete",
+            5: "complete",
+            7: "complete",
+            10: "complete",
+        }
+        milestone_by_id = {
+            int(item.get("id")): item
+            for item in milestones
+            if isinstance(item, dict) and str(item.get("id") or "").strip().isdigit()
+        }
+        for milestone_id, expected_status in required_statuses.items():
+            actual_status = _norm_status((milestone_by_id.get(milestone_id) or {}).get("status"))
+            if actual_status != expected_status:
+                _fail(errors, f"NEXT_20_BIG_WINS_REGISTRY.yaml: milestone {milestone_id} must be {expected_status}.")
+        wave_w0_status = _norm_status(next((item.get("status") for item in waves if isinstance(item, dict) and str(item.get("id") or "").strip() == "W0"), ""))
+        if wave_w0_status != "complete":
+            _fail(errors, "NEXT_20_BIG_WINS_REGISTRY.yaml: wave W0 must be complete.")
+
     if errors:
         for item in errors:
             print(item, file=sys.stderr)

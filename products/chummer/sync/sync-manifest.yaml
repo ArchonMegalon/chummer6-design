@@ -43,10 +43,12 @@ product_source_groups:
     - products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md
     - products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md
     - products/chummer/PRODUCT_HEALTH_SCORECARD.yaml
+    - products/chummer/WEEKLY_PRODUCT_PULSE.generated.json
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/EXPERIENCE_SUCCESS_METRICS.md
     - products/chummer/USER_JOURNEYS.md
     - products/chummer/BUILD_LAB_PRODUCT_MODEL.md
+    - products/chummer/INTEROP_AND_PORTABILITY_MODEL.md
     - products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md
     - products/chummer/ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md
     - products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md

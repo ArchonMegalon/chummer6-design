@@ -7,8 +7,9 @@ Current status on 2026-03-25:
 * package canon, split completion, explain canon, runtime-bundle canon, hub product-consumer planes, play-shell closure, assistant-plane governance, media capability closure, replay/DR hardening, legacy migration certification, and release-governance closure are materially complete
 * the foundational program is now in maintenance mode rather than split-wave closeout mode
 * the Account-Aware Front Door wave is materially closed on public `main`: Hub front door and account overlays, registry-backed install and update truth, cross-platform desktop build and startup-smoke gating, the first support plane, and the first product-governor loop are live enough to stop describing that wave as merely provisional
-* the public progress layer is real, but ETA remains a momentum or planning proxy until weekly history depth grows beyond the first recorded snapshots
-* campaign-spine execution, living-dossier product depth, and Build Lab productization are now the additive middle-layer wave that turns the foundation into a campaign-scale product
+* the public progress layer is real, and the weekly product pulse now emits a bounded governor snapshot; ETA still stays conservative until measured history depth grows beyond the first recorded snapshots
+* campaign-spine execution, rule-environment depth, roaming workspace sync, and GM runboard closure are now the additive middle-layer wave that turns the foundation into a campaign-scale product; the living-dossier runtime object and signed-in home cockpit are now part of the shipped surface
+* interop and portability are now explicit canon rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 
 ## Recommended next initiative
 
@@ -21,8 +22,8 @@ The historical milestone spine for the closed front-door wave remains in `NEXT_W
 
 The immediate additive shape is:
 
-* make `Chummer.Campaign.Contracts` executable instead of merely canonical
-* ship the living dossier as a real product object that survives build, play, recap, and return
+* make `Chummer.Campaign.Contracts` executable instead of merely canonical across more than the first shipped cockpit/workspace slice
+* deepen the living dossier from the first shipped runtime object and home cockpit into fuller campaign/runboard breadth
 * make Build Lab the flagship Build plus Explain surface that feeds dossier and campaign continuity
 * keep validator and weekly-pulse discipline honest so public and operator claims cannot drift again
 
