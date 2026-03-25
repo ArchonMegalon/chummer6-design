@@ -23,6 +23,7 @@ The first canonical signal families are:
 * public issue
 * Discord or community signal
 * release regression
+* release smoke-start failure
 * blocker drift
 * public-promise drift
 
@@ -51,6 +52,14 @@ Fleet owns:
 * repro or routing aids
 * grouped candidate actions
 
+### Fleet release verification
+
+Fleet also owns the machine-generated release signal plane for:
+
+* cross-platform build receipts
+* startup smoke receipts
+* smoke-start crashes or failed-ready startup receipts from controlled verification hosts
+
 ### Signal packet rule
 
 Raw signals must become one bounded packet before they influence roadmap or queue truth.
@@ -65,6 +74,7 @@ A packet should contain:
 * linked support or crash clusters
 * likely owner repos
 * recommended routing lane
+* verification-host and startup-phase facts when the signal is a release smoke-start failure
 
 ## Orient
 
@@ -95,6 +105,7 @@ Send a packet to the product governor when any of these are true:
 * the issue threatens release readiness or user trust
 * the right fix lane is ambiguous
 * freeze, reroute, or defer posture is required
+* a platform head built but failed startup smoke before promotion
 
 ## Decide
 

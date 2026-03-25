@@ -184,13 +184,21 @@ This lane makes desktop self-update a first-class product capability without ret
 
 ### K2 — Windows desktop head self-updates
 
+Every desktop release wave builds Windows, macOS, and Linux artifacts from one candidate, launches each one in a bounded startup smoke environment, and routes startup crashes into the product-governor OODA loop before promotion.
+
+### K3 — Windows desktop head self-updates
+
 The Windows desktop head can check, stage, apply, relaunch, and recover without turning installers or Fleet scripts into the runtime source of truth.
 
-### K3 — macOS desktop head self-updates
+### K4 — macOS desktop head self-updates
 
 The macOS desktop head can update from registry-owned truth while keeping the `.dmg` as the initial install surface rather than the runtime update authority.
 
-### K4 — Rollout, revoke, and rollback become boring
+### K5 — Linux desktop head installer/update handoff
+
+The Linux desktop head ships as a real `.deb` release target, can be launched in startup smoke on a Linux host, and can either apply an in-place payload or hand off the installer without collapsing release truth into archive cargo.
+
+### K6 — Rollout, revoke, and rollback become boring
 
 Promotion pause/revoke state, anti-downgrade rules, and local rollback windows become explicit and predictable rather than helper-script folklore.
 
