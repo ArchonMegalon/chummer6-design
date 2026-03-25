@@ -36,7 +36,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 
 Chummer foundation release is complete at the canonical product/design level.
 The first account-aware install, update, support, and operator-control wave is also materially closed on public `main`.
-Public product maturity is still advancing in campaign-spine execution breadth, rule-environment depth, roaming sync, GM runboard richness, Build Lab productization, weekly pulse history depth, and broader promotion posture.
-The signed-in home cockpit and the first living-dossier runtime object are now part of the shipped public/account-aware product surface rather than only planned canon.
+Public product maturity is still advancing in broader package-only campaign-contract adoption, roaming sync depth, Build Lab productization, weekly pulse history depth, and broader promotion posture.
+The signed-in home cockpit, explicit rule-environment posture, the first living-dossier runtime object, the first campaign workspace / GM runboard slice, and the first organizer/operator account surface are now part of the shipped public/account-aware product surface rather than only planned canon.
 The weekly pulse itself now emits a bounded generated snapshot, and interop/portability now has explicit canon instead of implied compatibility drift.
 That remaining work is additive product growth, not evidence that foundation design or repo-boundary truth is still missing.

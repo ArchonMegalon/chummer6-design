@@ -8,7 +8,8 @@ Current status on 2026-03-25:
 * the foundational program is now in maintenance mode rather than split-wave closeout mode
 * the Account-Aware Front Door wave is materially closed on public `main`: Hub front door and account overlays, registry-backed install and update truth, cross-platform desktop build and startup-smoke gating, the first support plane, and the first product-governor loop are live enough to stop describing that wave as merely provisional
 * the public progress layer is real, and the weekly product pulse now emits a bounded governor snapshot; ETA still stays conservative until measured history depth grows beyond the first recorded snapshots
-* campaign-spine execution, rule-environment depth, roaming workspace sync, and GM runboard closure are now the additive middle-layer wave that turns the foundation into a campaign-scale product; the living-dossier runtime object and signed-in home cockpit are now part of the shipped surface
+* campaign-spine execution is now materially visible in the shipped surface: living-dossier runtime objects, signed-in home cockpit, explicit rule-environment posture, campaign workspace / GM runboard, and the first organizer/operator layer are live enough to stop describing them as only conceptual
+* roaming workspace sync depth, broader package-only campaign-contract adoption, and richer campaign breadth remain the additive middle-layer work that turns the foundation into a campaign-scale product
 * interop and portability are now explicit canon rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 
 ## Recommended next initiative

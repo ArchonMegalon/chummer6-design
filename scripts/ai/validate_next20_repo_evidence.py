@@ -39,7 +39,7 @@ def main() -> int:
     errors: list[str] = []
     registry = _load_yaml(PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
 
-    expected_complete = (1, 2, 3, 4, 5, 7, 10, 12, 15, 17, 18)
+    expected_complete = (1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 15, 17, 18, 19)
     for milestone_id in expected_complete:
         status = _milestone_status(registry, milestone_id)
         if status != "complete":
@@ -116,15 +116,18 @@ def main() -> int:
     for token in ("SupportCases:", "CampaignSpine:", "BuildHomePrimaryAction", "GetAccountSummary"):
         if token not in home_controller:
             errors.append(f"Home controller must keep {token} evidence for cockpit closure.")
-    for token in ("What changed for you", "Device roles", "Campaign workspace", "Runboard", "Dossiers, runs, and current continuity"):
+    for token in ("What changed for you", "Device roles", "Campaign workspace", "Runboard", "Dossiers, runs, and current continuity", "Rule environments", "GM readiness cues"):
         if token not in home_view:
             errors.append(f"Home view must keep '{token}' evidence for the signed-in cockpit.")
-    for token in ("IReadOnlyList<RunProjection> Runs", "PublicationSafeProjection", "RuleEnvironmentRef"):
+    for token in ("IReadOnlyList<RunProjection> Runs", "IReadOnlyList<CrewProjection> Crews", "IReadOnlyList<CampaignWorkspaceProjection> Workspaces", "PublicationSafeProjection", "RuleEnvironmentRef", "ApprovalState"):
         if token not in campaign_contracts:
             errors.append(f"Campaign contracts must keep {token} evidence for living dossier and runboard closure.")
-    for token in ("authenticatedHomeModel.CampaignSpine.Runs.Count", "SupportCases.Any", "accountModel.CampaignSpine.Runs.Count"):
+    for token in ("authenticatedHomeModel.CampaignSpine.Runs.Count", "authenticatedHomeModel.CampaignSpine.Workspaces.Count", "SupportCases.Any", "accountModel.CampaignSpine.Runs.Count", "accountModel.CampaignSpine.Workspaces.Count", "ReadinessCues.Count", "OperatorRole", "CampaignVisibilitySummary"):
         if token not in smoke:
             errors.append(f"Run-services smoke must keep {token} evidence for home/account cockpit closure.")
+    for token in ("Campaign workspace", "GM readiness", "Recap and artifact shelf", "Permissions", "Campaign visibility", "Rule environment"):
+        if token not in account_view:
+            errors.append(f"Account view must keep '{token}' evidence for campaign and organizer workspace closure.")
 
     if errors:
         for error in errors:

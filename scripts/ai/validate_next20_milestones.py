@@ -197,8 +197,11 @@ def main() -> int:
             3: "complete",
             4: "complete",
             5: "complete",
+            8: "complete",
             7: "complete",
             10: "complete",
+            11: "complete",
+            19: "complete",
         }
         milestone_by_id = {
             int(item.get("id")): item
