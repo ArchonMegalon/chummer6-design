@@ -16,8 +16,12 @@ ROADMAP_PATH = REPO_ROOT / "products" / "chummer" / "ROADMAP.md"
 EXPECTED_IDS = list(range(1, 21))
 VALID_WAVES = {"W0", "W1", "W2", "W3"}
 VALID_STATUSES = {"not_started", "in_progress", "complete", "blocked"}
-CLOSED_WAVE_SENTENCE = "The Next 20 Big Wins wave is materially closed on public `main`."
-FOLLOW_ON_WAVE_SENTENCE = "The current recommended wave is **Campaign Breadth and Promotion**."
+closed_wave_sentence = "The Next 20 Big Wins wave is materially closed on public `main`."
+CLOSED_WAVE_SENTENCE = closed_wave_sentence
+FOLLOW_ON_WAVE_SENTENCES = {
+    "The current recommended wave is **Campaign Breadth and Promotion**.",
+    "The current recommended wave is **Post-Audit Next 20 Big Wins**.",
+}
 ACTIVE_WAVE_SENTENCE = "The current recommended wave is **Campaign Spine Execution**."
 
 
@@ -79,8 +83,8 @@ def main() -> int:
         if registry_status == "complete":
             if CLOSED_WAVE_SENTENCE not in roadmap_text:
                 _fail(errors, "ROADMAP.md must record that the Next 20 Big Wins wave is materially closed on public `main`.")
-            if FOLLOW_ON_WAVE_SENTENCE not in roadmap_text:
-                _fail(errors, "ROADMAP.md must name Campaign Breadth and Promotion as the post-next20 recommended wave.")
+            if not any(sentence in roadmap_text for sentence in FOLLOW_ON_WAVE_SENTENCES):
+                _fail(errors, "ROADMAP.md must name Campaign Breadth and Promotion or Post-Audit Next 20 Big Wins as the post-next20 recommended wave.")
         else:
             if ACTIVE_WAVE_SENTENCE not in roadmap_text:
                 _fail(errors, "ROADMAP.md must state Campaign Spine Execution as the current recommended wave while NEXT_20_BIG_WINS remains open.")

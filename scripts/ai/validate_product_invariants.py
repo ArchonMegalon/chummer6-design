@@ -65,8 +65,13 @@ def main() -> int:
     if next20_status == "complete":
         if "The Next 20 Big Wins wave is materially closed on public `main`." not in roadmap:
             errors.append("ROADMAP.md must record the closed Next 20 Big Wins wave.")
-        if "**Campaign Breadth and Promotion**" not in roadmap:
-            errors.append("ROADMAP.md must name Campaign Breadth and Promotion as the post-next20 recommended wave.")
+        if (
+            "**Campaign Breadth and Promotion**" not in roadmap
+            and "**Post-Audit Next 20 Big Wins**" not in roadmap
+        ):
+            errors.append(
+                "ROADMAP.md must name Campaign Breadth and Promotion or Post-Audit Next 20 Big Wins as the next current wave."
+            )
     elif "**Campaign Spine Execution**" not in roadmap:
         errors.append("ROADMAP.md must name Campaign Spine Execution as the current recommended wave while NEXT_20_BIG_WINS remains open.")
     if "**Account-Aware Front Door**" in roadmap and "current recommended wave is **Account-Aware Front Door**" in roadmap:
