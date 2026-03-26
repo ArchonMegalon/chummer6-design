@@ -1,0 +1,205 @@
+product: chummer
+version: 1
+last_reviewed: 2026-03-26
+program_wave: post_audit_next_20_big_wins
+goal: graduate remaining open product seams and close remaining campaign-control truth gaps.
+status: in_progress
+
+waves:
+  - id: W0
+    name: Close open truth and ship campaign/control graduation
+    status: in_progress
+    milestone_ids:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+  - id: W1
+    name: Make campaign OS feel coherent
+    status: not_started
+    milestone_ids:
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+  - id: W2
+    name: Widen the moat
+    status: not_started
+    milestone_ids:
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+
+milestones:
+  - id: 1
+    title: Graduate Chummer.Campaign.Contracts from in-progress to complete
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-media-factory
+      - chummer6-design
+    status: not_started
+  - id: 2
+    title: Graduate Chummer.Control.Contracts from in-progress to complete
+    owners:
+      - chummer6-hub
+      - fleet
+      - executive-assistant
+      - chummer6-ui
+      - chummer6-design
+    status: not_started
+  - id: 3
+    title: Finish roaming workspace sync across claimed devices
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-ui
+      - chummer6-mobile
+    status: not_started
+  - id: 4
+    title: Ship Build Lab UX end to end
+    owners:
+      - chummer6-ui
+      - chummer6-hub
+      - chummer6-core
+    status: not_started
+  - id: 5
+    title: Launch Rules Navigator
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-hub
+      - chummer6-design
+    status: not_started
+  - id: 6
+    title: Complete legacy migration cutover into dossier/campaign packages
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-hub
+      - chummer6-design
+    status: not_started
+  - id: 7
+    title: Turn creator publication into a real governed pillar
+    owners:
+      - chummer6-media-factory
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-design
+    status: not_started
+  - id: 8
+    title: Close remaining participation/bootstrap debt
+    owners:
+      - fleet
+      - chummer6-hub
+      - Chummer6
+      - executive-assistant
+      - chummer6-design
+      - chummer6-core
+      - chummer6-ui-kit
+      - chummer6-ui
+    status: not_started
+  - id: 9
+    title: Campaign workspace v2: session plan, readiness, recap, and return
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-mobile
+    status: not_started
+  - id: 10
+    title: Device roles v2 and install intelligence
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-ui
+      - chummer6-mobile
+    status: not_started
+  - id: 11
+    title: Rule-environment lifecycle and governed promotion
+    owners:
+      - chummer6-hub
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-design
+    status: not_started
+  - id: 12
+    title: Home cockpit v2: real what changed for me
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-hub-registry
+    status: not_started
+  - id: 13
+    title: Team mode in Build Lab
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-hub
+    status: not_started
+  - id: 14
+    title: Portable dossier and campaign package exchange
+    owners:
+      - chummer6-core
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-hub-registry
+    status: not_started
+  - id: 15
+    title: Creator publication v2: discovery, lineage, and moderation
+    owners:
+      - chummer6-media-factory
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-design
+    status: not_started
+  - id: 16
+    title: Support assistant v2 on grounded case truth
+    owners:
+      - chummer6-hub
+      - executive-assistant
+      - fleet
+      - chummer6-design
+      - chummer6-core
+    status: not_started
+  - id: 17
+    title: Organizer and community operator v2
+    owners:
+      - chummer6-hub
+      - executive-assistant
+      - chummer6-design
+    status: not_started
+  - id: 18
+    title: Guided onboarding and primer lane
+    owners:
+      - chummer6-ui
+      - chummer6-hub
+      - chummer6-design
+      - chummer6-core
+    status: not_started
+  - id: 19
+    title: Public trust surface v2
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - fleet
+      - chummer6-ui
+    status: not_started
+  - id: 20
+    title: Compress the public story for launch
+    owners:
+      - chummer6-design
+      - Chummer6
+      - chummer6-hub
+      - fleet
+    status: not_started
