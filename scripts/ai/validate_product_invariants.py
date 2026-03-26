@@ -39,6 +39,7 @@ def main() -> int:
 
     contract_sets = load_yaml(PRODUCT / "CONTRACT_SETS.yaml")
     milestones = load_yaml(PRODUCT / "PROGRAM_MILESTONES.yaml")
+    next20 = load_yaml(PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
     sync_manifest = load_yaml(PRODUCT / "sync" / "sync-manifest.yaml")
     progress = load_json(PRODUCT / "PROGRESS_REPORT.generated.json")
     history = load_json(PRODUCT / "PROGRESS_HISTORY.generated.json")
@@ -60,8 +61,14 @@ def main() -> int:
         if name not in readme:
             errors.append(f"README.md must reference {name}.")
 
-    if "**Campaign Spine Execution**" not in roadmap:
-        errors.append("ROADMAP.md must name Campaign Spine Execution as the current recommended wave.")
+    next20_status = str(next20.get("status") or "").strip().lower()
+    if next20_status == "complete":
+        if "The Next 20 Big Wins wave is materially closed on public `main`." not in roadmap:
+            errors.append("ROADMAP.md must record the closed Next 20 Big Wins wave.")
+        if "**Campaign Breadth and Promotion**" not in roadmap:
+            errors.append("ROADMAP.md must name Campaign Breadth and Promotion as the post-next20 recommended wave.")
+    elif "**Campaign Spine Execution**" not in roadmap:
+        errors.append("ROADMAP.md must name Campaign Spine Execution as the current recommended wave while NEXT_20_BIG_WINS remains open.")
     if "**Account-Aware Front Door**" in roadmap and "current recommended wave is **Account-Aware Front Door**" in roadmap:
         errors.append("ROADMAP.md still advertises the closed Account-Aware Front Door wave as the current recommendation.")
 
@@ -192,6 +199,11 @@ def main() -> int:
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.AI" / "Controllers" / "InteropController.cs",
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Services" / "Support" / "SupportAssistantService.cs",
         DOCKER_ROOT / "chummercomplete" / "chummer-core-engine" / "Chummer.Application" / "BuildLab" / "DefaultBuildLabService.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer-play" / "src" / "Chummer.Play.Core" / "Roaming" / "RoamingWorkspaceSyncPlanner.cs",
+        DOCKER_ROOT / "chummercomplete" / "chummer-presentation" / "Chummer.Blazor" / "Components" / "Shared" / "BuildLabHandoffPanel.razor",
+        DOCKER_ROOT / "chummercomplete" / "chummer-presentation" / "Chummer.Blazor" / "Components" / "Shared" / "RulesNavigatorPanel.razor",
+        DOCKER_ROOT / "chummercomplete" / "chummer-presentation" / "Chummer.Blazor" / "Components" / "Shared" / "CreatorPublicationPanel.razor",
+        DOCKER_ROOT / "fleet" / "repos" / "chummer-media-factory" / "src" / "Chummer.Media.Factory.Runtime" / "Assets" / "CreatorPublicationPlannerService.cs",
         DOCKER_ROOT / "chummercomplete" / "Chummer6" / "scripts" / "verify_public_guide.sh",
         DOCKER_ROOT / "chummercomplete" / "chummer-hub-registry" / "Chummer.Hub.Registry.Contracts" / "InstallLinkingContracts.cs",
     )

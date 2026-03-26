@@ -16,6 +16,9 @@ ROADMAP_PATH = REPO_ROOT / "products" / "chummer" / "ROADMAP.md"
 EXPECTED_IDS = list(range(1, 21))
 VALID_WAVES = {"W0", "W1", "W2", "W3"}
 VALID_STATUSES = {"not_started", "in_progress", "complete", "blocked"}
+CLOSED_WAVE_SENTENCE = "The Next 20 Big Wins wave is materially closed on public `main`."
+FOLLOW_ON_WAVE_SENTENCE = "The current recommended wave is **Campaign Breadth and Promotion**."
+ACTIVE_WAVE_SENTENCE = "The current recommended wave is **Campaign Spine Execution**."
 
 
 def _fail(errors: list[str], message: str) -> None:
@@ -54,8 +57,6 @@ def main() -> int:
     plan_text = PLAN_PATH.read_text(encoding="utf-8")
     roadmap_text = ROADMAP_PATH.read_text(encoding="utf-8")
 
-    if "The current recommended wave is **Campaign Spine Execution**." not in roadmap_text:
-        _fail(errors, "ROADMAP.md must state Campaign Spine Execution as the current recommended wave.")
     if "The previous Account-Aware Front Door wave is materially closed end-to-end" not in plan_text:
         _fail(errors, "NEXT_20_BIG_WINS_EXECUTION_PLAN.md must state the front-door wave is materially closed.")
     if "NEXT_20_BIG_WINS_REGISTRY.yaml" not in plan_text:
@@ -74,6 +75,15 @@ def main() -> int:
     if not data:
         _fail(errors, "NEXT_20_BIG_WINS_REGISTRY.yaml missing or invalid YAML.")
     else:
+        registry_status = _norm_status(data.get("status"))
+        if registry_status == "complete":
+            if CLOSED_WAVE_SENTENCE not in roadmap_text:
+                _fail(errors, "ROADMAP.md must record that the Next 20 Big Wins wave is materially closed on public `main`.")
+            if FOLLOW_ON_WAVE_SENTENCE not in roadmap_text:
+                _fail(errors, "ROADMAP.md must name Campaign Breadth and Promotion as the post-next20 recommended wave.")
+        else:
+            if ACTIVE_WAVE_SENTENCE not in roadmap_text:
+                _fail(errors, "ROADMAP.md must state Campaign Spine Execution as the current recommended wave while NEXT_20_BIG_WINS remains open.")
         if str(data.get("product") or "").strip() != "chummer":
             _fail(errors, "NEXT_20_BIG_WINS_REGISTRY.yaml: product must be 'chummer'.")
         if str(data.get("program_wave") or "").strip() != "next_20_big_wins":
@@ -191,7 +201,7 @@ def main() -> int:
                 if milestone_wave_assignments.get(milestone_id) != wave_id:
                     _fail(errors, f"NEXT_20_BIG_WINS_REGISTRY.yaml: milestone {milestone_id} is listed under {wave_id} but assigned to {milestone_wave_assignments.get(milestone_id, '<missing>')}.")
 
-        required_statuses = {
+        required_statuses = {milestone_id: "complete" for milestone_id in EXPECTED_IDS} if registry_status == "complete" else {
             1: "complete",
             2: "complete",
             3: "complete",
@@ -212,9 +222,12 @@ def main() -> int:
             actual_status = _norm_status((milestone_by_id.get(milestone_id) or {}).get("status"))
             if actual_status != expected_status:
                 _fail(errors, f"NEXT_20_BIG_WINS_REGISTRY.yaml: milestone {milestone_id} must be {expected_status}.")
-        wave_w0_status = _norm_status(next((item.get("status") for item in waves if isinstance(item, dict) and str(item.get("id") or "").strip() == "W0"), ""))
-        if wave_w0_status != "complete":
-            _fail(errors, "NEXT_20_BIG_WINS_REGISTRY.yaml: wave W0 must be complete.")
+        for wave_id in ("W0", "W1", "W2", "W3"):
+            wave_status = _norm_status(next((item.get("status") for item in waves if isinstance(item, dict) and str(item.get("id") or "").strip() == wave_id), ""))
+            if wave_id == "W0" and wave_status != "complete":
+                _fail(errors, "NEXT_20_BIG_WINS_REGISTRY.yaml: wave W0 must be complete.")
+            if registry_status == "complete" and wave_status != "complete":
+                _fail(errors, f"NEXT_20_BIG_WINS_REGISTRY.yaml: wave {wave_id} must be complete when the registry itself is complete.")
 
     if errors:
         for item in errors:

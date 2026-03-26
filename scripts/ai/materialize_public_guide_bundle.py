@@ -28,6 +28,11 @@ def _load_json(path: Path) -> dict[str, object]:
     return payload if isinstance(payload, dict) else {}
 
 
+def _load_registry_status() -> str:
+    payload = _load_yaml(PRODUCT_ROOT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
+    return str(payload.get("status") or "").strip().lower()
+
+
 def _load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
@@ -110,6 +115,7 @@ def _generate_root(
     overall = progress.get("overall_progress_percent")
     phase = str(progress.get("phase_label") or "Current product posture").strip()
     snapshot_count = progress.get("history_snapshot_count")
+    registry_status = _load_registry_status()
 
     rows = [
         _front_matter("Chummer Public Guide Bundle", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
@@ -130,7 +136,11 @@ def _generate_root(
     rows.extend(
         [
             "- The Account-Aware Front Door wave is treated as materially closed in canon.",
-            "- The active additive plan is the next-20 execution wave.",
+            (
+                "- The next-20 additive wave is materially closed in canon; follow-on work now focuses on campaign breadth, creator trust, and broader promotion."
+                if registry_status == "complete"
+                else "- The active additive plan is the next-20 execution wave."
+            ),
             "- Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.",
             "",
             "## Start here",

@@ -34,7 +34,12 @@ def _current_recommended_wave(roadmap_text: str) -> str:
     match = re.search(r"The current recommended wave is \*\*(.+?)\*\*\.", roadmap_text)
     if match:
         return match.group(1).strip()
-    return "Campaign Spine Execution"
+    return "Campaign Breadth and Promotion"
+
+
+def _next20_registry_status() -> str:
+    payload = _load_yaml(PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
+    return str(payload.get("status") or "").strip().lower()
 
 
 def _front_door_closed(release_text: str) -> bool:
@@ -59,12 +64,17 @@ def _oldest_blocker_days(blockers_text: str, as_of: dt.date) -> int:
     return max((as_of - reviewed_on).days, 0)
 
 
-def _top_clusters(current_wave: str, report: dict[str, Any]) -> list[dict[str, Any]]:
+def _top_clusters(current_wave: str, report: dict[str, Any], *, next20_closed: bool) -> list[dict[str, Any]]:
     longest_pole = _longest_pole_label(report)
+    additive_summary = (
+        f"{current_wave} is the post-next20 additive product-pressure cluster: broaden campaign return, creator publication, public promotion, and trust-surface follow-through without reopening closed boundary or control-plane work."
+        if next20_closed
+        else f"{current_wave} remains the main additive product-pressure cluster: campaign spine, living dossier, roaming workspace, and return-to-campaign depth still need to feel like one lived product."
+    )
     return [
         {
-            "cluster_id": "campaign_middle_execution",
-            "summary": f"{current_wave} remains the main additive product-pressure cluster: campaign spine, living dossier, roaming workspace, and return-to-campaign depth still need to feel like one lived product.",
+            "cluster_id": "campaign_breadth_and_promotion" if next20_closed else "campaign_middle_execution",
+            "summary": additive_summary,
             "source_paths": [
                 "products/chummer/ROADMAP.md",
                 "products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml",
@@ -94,6 +104,8 @@ def _governor_decisions(
     report: dict[str, Any],
     current_wave: str,
     oldest_blocker_days: int,
+    *,
+    next20_closed: bool,
 ) -> list[dict[str, Any]]:
     overall = int(report.get("overall_progress_percent") or 0)
     history_count = int(report.get("history_snapshot_count") or 0)
@@ -101,12 +113,20 @@ def _governor_decisions(
     longest_pole = _longest_pole_label(report)
     return [
         {
-            "decision_id": f"{as_of.isoformat()}-continue-{current_wave.casefold().replace(' ', '-')}",
-            "action": "continue",
+            "decision_id": f"{as_of.isoformat()}-{'closeout-and-continue' if next20_closed else 'continue'}-{current_wave.casefold().replace(' ', '-')}",
+            "action": "closeout_and_continue" if next20_closed else "continue",
             "reason": (
-                f"Keep the recommended wave on {current_wave}. The pulse shows {overall}% overall progress in "
-                f"'{phase_label}', history depth has reached {history_count} snapshots, and the pacing risk is still "
-                f"concentrated in {longest_pole} rather than in reopened foundation blockers."
+                (
+                    f"Keep the recommended wave on {current_wave} now that the Next 20 Big Wins program is materially closed. "
+                    f"The pulse shows {overall}% overall progress in '{phase_label}', history depth has reached {history_count} snapshots, "
+                    f"and the pacing risk is still concentrated in {longest_pole} rather than in reopened foundation blockers."
+                )
+                if next20_closed
+                else (
+                    f"Keep the recommended wave on {current_wave}. The pulse shows {overall}% overall progress in "
+                    f"'{phase_label}', history depth has reached {history_count} snapshots, and the pacing risk is still "
+                    f"concentrated in {longest_pole} rather than in reopened foundation blockers."
+                )
             ),
             "cited_signals": [
                 f"overall_progress_percent={overall}",
@@ -128,6 +148,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     release_text = _read_text(PRODUCT / "RELEASE_EVIDENCE_PACK.md")
 
     current_wave = _current_recommended_wave(roadmap_text)
+    next20_closed = _next20_registry_status() == "complete"
     history_count = int(history.get("snapshot_count") or 0)
     blockers_open = _red_blockers_open(blockers_text)
     oldest_blocker_days = _oldest_blocker_days(blockers_text, as_of)
@@ -153,12 +174,16 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
                 "reason": release_health_reason,
                 "front_door_wave_closed": _front_door_closed(release_text),
             },
-            "top_support_or_feedback_clusters": _top_clusters(current_wave, report),
+            "top_support_or_feedback_clusters": _top_clusters(current_wave, report, next20_closed=next20_closed),
             "oldest_blocker_days": oldest_blocker_days,
             "design_drift_count": 0,
             "public_promise_drift_count": 0,
-            "governor_decisions": _governor_decisions(as_of, report, current_wave, oldest_blocker_days),
-            "next_checkpoint_question": "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?",
+            "governor_decisions": _governor_decisions(as_of, report, current_wave, oldest_blocker_days, next20_closed=next20_closed),
+            "next_checkpoint_question": (
+                "What is the smallest cross-repo slice that makes campaign breadth, creator trust, and public promotion feel undeniably real to users?"
+                if next20_closed
+                else "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?"
+            ),
         },
         "supporting_signals": {
             "current_recommended_wave": current_wave,
