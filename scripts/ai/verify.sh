@@ -76,6 +76,9 @@ for path in \
   products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md \
   products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md \
   products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml \
+  products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md \
+  products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml \
+  products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md \
   products/chummer/ROADMAP.md \
   products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md \
   products/chummer/METRICS_AND_SLOS.yaml \
@@ -151,6 +154,7 @@ python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_post_audit_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_repo_evidence.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
@@ -173,7 +177,10 @@ rg -n '^# Account-aware front door closeout$|^## Purpose$|^## Material closeout 
 rg -n '^# Build Lab product model$|^## Purpose$|^## Product promise$|^## Ownership split$|^## Non-goals$' "$repo_root/products/chummer/BUILD_LAB_PRODUCT_MODEL.md" >/dev/null
 rg -n '^# Chummer next 15 big wins execution plan$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 1\\. Publish the closeout you already claim$|^### 20\\. Refresh the public story around Build / Explain / Run / Publish / Improve$' "$repo_root/products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
 rg -n '^# Chummer next 20 big wins execution plan$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 20\\. Turn creator publication into a second pillar$|^## Ordering rule$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
+rg -n '^# Chummer post-audit next 20 big wins$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 20\\. Compress the public story for launch$|^## Suggested order$|^## Ordering rule$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md" >/dev/null
+rg -n '^# Post-audit next 20 big wins closeout$|^## Purpose$|^## Material closeout of previous baseline$|^## Language correction$|^## What remains additive$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins$|^waves:$|^milestones:$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml" >/dev/null
+rg -n '^product: chummer$|^version: 1$|^program_wave: post_audit_next_20_big_wins$|^waves:$|^milestones:$|^  - id: W0$|^  - id: W1$|^  - id: W2$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml" >/dev/null
 rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## Mirror discipline$|^## Petition path$' "$repo_root/products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md" >/dev/null
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^scorecards:$|^  - id: release_health$|^  - id: support_and_feedback_closure$|^  - id: campaign_middle_health$|^  - id: control_loop_integrity$|^weekly_snapshot:$' "$repo_root/products/chummer/PRODUCT_HEALTH_SCORECARD.yaml" >/dev/null
