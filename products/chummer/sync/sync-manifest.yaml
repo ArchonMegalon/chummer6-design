@@ -56,6 +56,9 @@ product_source_groups:
     - products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml
     - products/chummer/PROGRAM_MILESTONES.yaml
     - products/chummer/CONTRACT_SETS.yaml
+    - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md
+    - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md
+    - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml
     - products/chummer/GROUP_BLOCKERS.md
     - products/chummer/OWNERSHIP_MATRIX.md
   product_middle:
@@ -101,6 +104,7 @@ product_source_groups:
   public_surface:
     - products/chummer/PUBLIC_LANDING_POLICY.md
     - products/chummer/PUBLIC_DOWNLOADS_POLICY.md
+    - products/chummer/PUBLIC_TRUST_CONTENT.yaml
     - products/chummer/PUBLIC_LANDING_MANIFEST.yaml
     - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
     - products/chummer/PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml
