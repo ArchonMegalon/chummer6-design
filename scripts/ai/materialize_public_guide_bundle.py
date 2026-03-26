@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import difflib
 import json
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -14,6 +15,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT_ROOT = ROOT / "products" / "chummer"
 OUTPUT_DEFAULT = "products/chummer/public-guide"
+POST_AUDIT_REGISTRY = PRODUCT_ROOT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
+ACTIVE_WAVE_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -28,9 +31,17 @@ def _load_json(path: Path) -> dict[str, object]:
     return payload if isinstance(payload, dict) else {}
 
 
-def _load_registry_status() -> str:
-    payload = _load_yaml(PRODUCT_ROOT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
+def _load_registry_status(path: Path) -> str:
+    payload = _load_yaml(path)
     return str(payload.get("status") or "").strip().lower()
+
+
+def _current_recommended_wave() -> str:
+    roadmap = _load_text(PRODUCT_ROOT / "ROADMAP.md")
+    match = re.search(r"The current recommended wave is \*\*(.+?)\*\*\.", roadmap)
+    if match:
+        return match.group(1).strip()
+    return "Current product wave"
 
 
 def _load_text(path: Path) -> str:
@@ -115,7 +126,9 @@ def _generate_root(
     overall = progress.get("overall_progress_percent")
     phase = str(progress.get("phase_label") or "Current product posture").strip()
     snapshot_count = progress.get("history_snapshot_count")
-    registry_status = _load_registry_status()
+    post_audit_closed = _load_registry_status(POST_AUDIT_REGISTRY) == "complete"
+    active_registry_status = _load_registry_status(ACTIVE_WAVE_REGISTRY)
+    active_wave = _current_recommended_wave()
 
     rows = [
         _front_matter("Chummer Public Guide Bundle", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
@@ -137,9 +150,9 @@ def _generate_root(
         [
             "- The Account-Aware Front Door wave is treated as materially closed in canon.",
             (
-                "- The next-20 additive wave is materially closed in canon; follow-on work now focuses on campaign breadth, creator trust, and broader promotion."
-                if registry_status == "complete"
-                else "- The active additive plan is the next-20 execution wave."
+                f"- The Post-Audit Next 20 wave is treated as materially closed in canon, and the active additive plan is {active_wave}."
+                if post_audit_closed and active_registry_status in {"in_progress", "complete"}
+                else "- The next-20 additive wave is materially closed in canon; follow-on work now focuses on campaign breadth, creator trust, and broader promotion."
             ),
             "- Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.",
             "",
@@ -428,11 +441,17 @@ def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object]) -> No
 
 
 def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
+    active_wave = {
+        "title": _current_recommended_wave(),
+        "registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
+        "status": _load_registry_status(ACTIVE_WAVE_REGISTRY),
+    }
     generated = {
         "generated_from": str(PRODUCT_ROOT / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "generated_by": "materialize_public_guide_bundle.py",
         "page_count": len(list(out_dir.rglob("*.md"))),
         "status": manifest.get("status") or "ok",
+        "active_wave": active_wave,
         "sources": manifest.get("sources") or {},
     }
     _write(out_dir / "manifest.generated.json", json.dumps(generated, indent=2, sort_keys=True))

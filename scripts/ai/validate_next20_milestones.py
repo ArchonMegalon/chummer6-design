@@ -21,6 +21,7 @@ CLOSED_WAVE_SENTENCE = closed_wave_sentence
 FOLLOW_ON_WAVE_SENTENCES = {
     "The current recommended wave is **Campaign Breadth and Promotion**.",
     "The current recommended wave is **Post-Audit Next 20 Big Wins**.",
+    "The current recommended wave is **Next 20 Big Wins After Post-Audit Closeout**.",
 }
 ACTIVE_WAVE_SENTENCE = "The current recommended wave is **Campaign Spine Execution**."
 

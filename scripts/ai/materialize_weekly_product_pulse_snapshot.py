@@ -14,6 +14,9 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
 DEFAULT_OUT = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
+NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
+POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
+ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -37,8 +40,8 @@ def _current_recommended_wave(roadmap_text: str) -> str:
     return "Campaign Breadth and Promotion"
 
 
-def _next20_registry_status() -> str:
-    payload = _load_yaml(PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
+def _registry_status(path: Path) -> str:
+    payload = _load_yaml(path)
     return str(payload.get("status") or "").strip().lower()
 
 
@@ -64,20 +67,33 @@ def _oldest_blocker_days(blockers_text: str, as_of: dt.date) -> int:
     return max((as_of - reviewed_on).days, 0)
 
 
-def _top_clusters(current_wave: str, report: dict[str, Any], *, next20_closed: bool) -> list[dict[str, Any]]:
+def _top_clusters(current_wave: str, report: dict[str, Any], *, next20_closed: bool, post_audit_closed: bool) -> list[dict[str, Any]]:
     longest_pole = _longest_pole_label(report)
-    additive_summary = (
-        f"{current_wave} is the post-next20 additive product-pressure cluster: broaden campaign return, creator publication, public promotion, and trust-surface follow-through without reopening closed boundary or control-plane work."
-        if next20_closed
-        else f"{current_wave} remains the main additive product-pressure cluster: campaign spine, living dossier, roaming workspace, and return-to-campaign depth still need to feel like one lived product."
-    )
+    if post_audit_closed:
+        additive_summary = (
+            f"{current_wave} is the post-post-audit additive pressure cluster: make the campaign OS indispensable, widen Build and Explain, strengthen exchange and publication, and turn trust plus operator depth into launch-scale product posture."
+        )
+        cluster_id = "campaign_os_indispensable_and_launch_scale"
+        active_registry_source = "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
+    elif next20_closed:
+        additive_summary = (
+            f"{current_wave} is the post-next20 additive product-pressure cluster: broaden campaign return, creator publication, public promotion, and trust-surface follow-through without reopening closed boundary or control-plane work."
+        )
+        cluster_id = "campaign_breadth_and_promotion"
+        active_registry_source = "products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
+    else:
+        additive_summary = (
+            f"{current_wave} remains the main additive product-pressure cluster: campaign spine, living dossier, roaming workspace, and return-to-campaign depth still need to feel like one lived product."
+        )
+        cluster_id = "campaign_middle_execution"
+        active_registry_source = "products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml"
     return [
         {
-            "cluster_id": "campaign_breadth_and_promotion" if next20_closed else "campaign_middle_execution",
+            "cluster_id": cluster_id,
             "summary": additive_summary,
             "source_paths": [
                 "products/chummer/ROADMAP.md",
-                "products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml",
+                active_registry_source,
             ],
         },
         {
@@ -106,28 +122,41 @@ def _governor_decisions(
     oldest_blocker_days: int,
     *,
     next20_closed: bool,
+    post_audit_closed: bool,
 ) -> list[dict[str, Any]]:
     overall = int(report.get("overall_progress_percent") or 0)
     history_count = int(report.get("history_snapshot_count") or 0)
     phase_label = str(report.get("phase_label") or "").strip() or "Scale & stabilize"
     longest_pole = _longest_pole_label(report)
+    if post_audit_closed:
+        decision_id = f"{as_of.isoformat()}-closeout-and-continue-{current_wave.casefold().replace(' ', '-')}"
+        action = "closeout_and_continue"
+        reason = (
+            f"Keep the recommended wave on {current_wave} now that the Post-Audit Next 20 Big Wins program is materially closed. "
+            f"The pulse shows {overall}% overall progress in '{phase_label}', history depth has reached {history_count} snapshots, "
+            f"and the pacing risk is still concentrated in {longest_pole} rather than in reopened foundation, campaign-middle, or trust-surface blockers."
+        )
+    elif next20_closed:
+        decision_id = f"{as_of.isoformat()}-closeout-and-continue-{current_wave.casefold().replace(' ', '-')}"
+        action = "closeout_and_continue"
+        reason = (
+            f"Keep the recommended wave on {current_wave} now that the Next 20 Big Wins program is materially closed. "
+            f"The pulse shows {overall}% overall progress in '{phase_label}', history depth has reached {history_count} snapshots, "
+            f"and the pacing risk is still concentrated in {longest_pole} rather than in reopened foundation blockers."
+        )
+    else:
+        decision_id = f"{as_of.isoformat()}-continue-{current_wave.casefold().replace(' ', '-')}"
+        action = "continue"
+        reason = (
+            f"Keep the recommended wave on {current_wave}. The pulse shows {overall}% overall progress in "
+            f"'{phase_label}', history depth has reached {history_count} snapshots, and the pacing risk is still "
+            f"concentrated in {longest_pole} rather than in reopened foundation blockers."
+        )
     return [
         {
-            "decision_id": f"{as_of.isoformat()}-{'closeout-and-continue' if next20_closed else 'continue'}-{current_wave.casefold().replace(' ', '-')}",
-            "action": "closeout_and_continue" if next20_closed else "continue",
-            "reason": (
-                (
-                    f"Keep the recommended wave on {current_wave} now that the Next 20 Big Wins program is materially closed. "
-                    f"The pulse shows {overall}% overall progress in '{phase_label}', history depth has reached {history_count} snapshots, "
-                    f"and the pacing risk is still concentrated in {longest_pole} rather than in reopened foundation blockers."
-                )
-                if next20_closed
-                else (
-                    f"Keep the recommended wave on {current_wave}. The pulse shows {overall}% overall progress in "
-                    f"'{phase_label}', history depth has reached {history_count} snapshots, and the pacing risk is still "
-                    f"concentrated in {longest_pole} rather than in reopened foundation blockers."
-                )
-            ),
+            "decision_id": decision_id,
+            "action": action,
+            "reason": reason,
             "cited_signals": [
                 f"overall_progress_percent={overall}",
                 f"history_snapshot_count={history_count}",
@@ -148,7 +177,8 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     release_text = _read_text(PRODUCT / "RELEASE_EVIDENCE_PACK.md")
 
     current_wave = _current_recommended_wave(roadmap_text)
-    next20_closed = _next20_registry_status() == "complete"
+    next20_closed = _registry_status(NEXT20_REGISTRY) == "complete"
+    post_audit_closed = _registry_status(POST_AUDIT_REGISTRY) == "complete"
     history_count = int(history.get("snapshot_count") or 0)
     blockers_open = _red_blockers_open(blockers_text)
     oldest_blocker_days = _oldest_blocker_days(blockers_text, as_of)
@@ -174,15 +204,19 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
                 "reason": release_health_reason,
                 "front_door_wave_closed": _front_door_closed(release_text),
             },
-            "top_support_or_feedback_clusters": _top_clusters(current_wave, report, next20_closed=next20_closed),
+            "top_support_or_feedback_clusters": _top_clusters(current_wave, report, next20_closed=next20_closed, post_audit_closed=post_audit_closed),
             "oldest_blocker_days": oldest_blocker_days,
             "design_drift_count": 0,
             "public_promise_drift_count": 0,
-            "governor_decisions": _governor_decisions(as_of, report, current_wave, oldest_blocker_days, next20_closed=next20_closed),
+            "governor_decisions": _governor_decisions(as_of, report, current_wave, oldest_blocker_days, next20_closed=next20_closed, post_audit_closed=post_audit_closed),
             "next_checkpoint_question": (
-                "What is the smallest cross-repo slice that makes campaign breadth, creator trust, and public promotion feel undeniably real to users?"
-                if next20_closed
-                else "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?"
+                "What is the smallest cross-repo slice that makes the campaign OS indispensable and turns trust, adoption, and publication depth into a real launch advantage?"
+                if post_audit_closed
+                else (
+                    "What is the smallest cross-repo slice that makes campaign breadth, creator trust, and public promotion feel undeniably real to users?"
+                    if next20_closed
+                    else "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?"
+                )
             ),
         },
         "supporting_signals": {
@@ -191,6 +225,8 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
             "phase_label": str(report.get("phase_label") or "").strip(),
             "history_snapshot_count": history_count,
             "longest_pole": _longest_pole_label(report),
+            "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
+            "active_wave_registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
             "scorecard_metric_count": sum(len((card or {}).get("metrics") or []) for card in (scorecard.get("scorecards") or []) if isinstance(card, dict)),
         },
     }

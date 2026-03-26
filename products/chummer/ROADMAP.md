@@ -9,28 +9,31 @@ Current status on 2026-03-26:
 * the Account-Aware Front Door wave is materially closed on public `main`: Hub front door and account overlays, registry-backed install and update truth, cross-platform desktop build and startup-smoke gating, the first support plane, and the first product-governor loop are live enough to stop describing that wave as merely provisional
 * the public progress layer is real, and the weekly product pulse now emits a bounded governor snapshot; ETA still stays conservative until measured history depth grows beyond the first recorded snapshots
 * the Next 20 Big Wins wave is now materially closed on public `main`: package-owned `Chummer.Campaign.Contracts`, roaming workspace restore, Build Lab handoff UX, Rules Navigator, interop round-trip truth, legacy migration receipts, the grounded support assistant, organizer/operator surfaces, and creator publication are all part of the repo-local executable and verified surface rather than only canon.
-* the successor post-audit sequence is now tracked as `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md` plus `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml`.
+* the Post-Audit Next 20 Big Wins wave is now materially closed on public `main`, and its closeout is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md`.
+* the successor sequence is now tracked as `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` plus `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
 * interop and portability are now explicit canon plus runtime/export truth rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 * the additive work after this closeout is no longer “make the missing middle real”; it is campaign breadth, broader public promotion, live operator cadence, and estate-wide adoption depth on top of the now-closed next-20 baseline
 
 ## Recommended next initiative
 
 The Next 20 Big Wins wave is materially closed on public `main`.
-The current recommended wave is **Post-Audit Next 20 Big Wins**.
-It uses `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md` as execution text and `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml` for machine-readable progress.
-It takes the now-shipped campaign middle, creator/trust surfaces, and account-aware public shell and pushes them into broader public promotion, richer campaign return depth, and estate-wide adoption without reopening the already-closed boundary and control-plane work.
+The Post-Audit Next 20 Big Wins wave is materially closed on public `main`.
+The current recommended wave is **Next 20 Big Wins After Post-Audit Closeout**.
+It uses `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` as execution text and `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml` for machine-readable progress.
+It takes the now-closed campaign middle and trust baseline and turns them into an indispensable campaign OS, a wider Build and Explain moat, a stronger exchange and publication pillar, and launch-scale trust plus operator depth.
 
 The just-closed front-door wave is recorded in `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md`.
 The just-closed additive follow-on wave is recorded in `NEXT_20_BIG_WINS_EXECUTION_PLAN.md` and `NEXT_20_BIG_WINS_REGISTRY.yaml`.
-The active post-audit wave is `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md`, with machine-readable progress in `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml`.
+The just-closed post-audit wave is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md`, `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml`, and `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md`.
+The active successor wave is `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md`, with machine-readable progress in `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
 The immediate additive shape is:
 
-* promote the now-package-owned campaign middle into broader public and multi-device product breadth without reintroducing local shadow models
-* deepen creator publication, campaign continuity return, and public trust surfaces from “real and shipped” into “boring and broadly promoted”
-* keep validator and weekly-pulse discipline honest so closeout claims cannot drift away from repo reality
-* use the post-audit wave for breadth and promotion pressure, not for reopening already-closed front-door, control-loop, or package-boundary seams
+* make the campaign OS indispensable across session plan, run, recap, downtime, travel, roster movement, and long-lived campaign memory without reintroducing local shadow models
+* widen Build and Explain by making progression planning, team fit, rule-environment diffs, and receipts feel like one grounded product
+* elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
+* turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
 
 ## Phase A — Canon and package plane
 

@@ -11,7 +11,8 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 - The product vision, horizon canon, public-guide policy, and Fleet participation/support posture are all canonical and downstream-synced from this repo.
 - The Account-Aware Front Door wave is materially closed on public `main`; see `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md` for the post-foundation public-surface closeout record.
 - The Next 20 Big Wins wave is also materially closed on public `main`; `NEXT_20_BIG_WINS_EXECUTION_PLAN.md` and `NEXT_20_BIG_WINS_REGISTRY.yaml` now serve as the preserved additive-wave closeout record, while `NEXT_15_BIG_WINS_EXECUTION_PLAN.md` remains the older historical plan.
-- A post-audit follow-on wave is now active in `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md` with machine-readable status in `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml`.
+- The Post-Audit Next 20 Big Wins wave is now materially closed on public `main`; see `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md` for the additive follow-on closeout record.
+- The current successor wave is `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` with machine-readable status in `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
 
 ## Owner-repo evidence
 
@@ -23,7 +24,7 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 - `chummer6-hub-registry`: owner-read-model and restore proof are explicit in `docs/REGISTRY_PRODUCT_READMODELS.md` and `docs/REGISTRY_RESTORE_RUNBOOK.md`.
 - `chummer6-media-factory`: adapter authority, stable media capability, and restore proof are explicit in `docs/MEDIA_ADAPTER_MATRIX.md`, `docs/MEDIA_CAPABILITY_SIGNOFF.md`, and `docs/MEDIA_FACTORY_RESTORE_RUNBOOK.md`.
 - `fleet`: design remains mirrored into runtime/operator truth, and premium-burst participation is design-first canon before downstream execution.
-- `chummer6-design`: weekly pulse publication now emits a generated governor snapshot, interop/portability canon is explicit enough to stop relying on code archaeology, and the next-20 closeout registry is machine-readable rather than prose-only.
+- `chummer6-design`: weekly pulse publication now emits a generated governor snapshot, interop/portability canon is explicit enough to stop relying on code archaeology, and the next-wave registries are machine-readable rather than prose-only.
 
 ## Mirror and truth freshness
 
@@ -38,7 +39,8 @@ Purpose: close `WL-D037` by keeping the final release argument in one canonical 
 Chummer foundation release is complete at the canonical product/design level.
 The first account-aware install, update, support, and operator-control wave is also materially closed on public `main`.
 The Next 20 Big Wins additive wave is materially closed on public `main`.
-The post-audit next 20 sequence is active and records the current next execution priorities.
+The post-audit next 20 sequence is materially closed on public `main`.
+The current successor wave records the next execution priorities after that closeout.
 The signed-in home cockpit, explicit rule-environment posture, living-dossier runtime object, package-owned campaign-contract adoption, roaming restore packet, Build Lab handoff UX, Rules Navigator, migration receipts, creator publication posture, and the first organizer/operator account surface are now part of the shipped public/account-aware product surface rather than only planned canon.
 The weekly pulse itself now emits a bounded generated snapshot, and interop/portability now has explicit canon plus runtime/export proof instead of implied compatibility drift.
 Public product maturity is still advancing in broader promotion breadth, estate-wide adoption, live operator cadence, and measured production depth rather than in still-missing repo-local canon or package seams.

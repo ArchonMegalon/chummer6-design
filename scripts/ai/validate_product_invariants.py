@@ -40,6 +40,8 @@ def main() -> int:
     contract_sets = load_yaml(PRODUCT / "CONTRACT_SETS.yaml")
     milestones = load_yaml(PRODUCT / "PROGRAM_MILESTONES.yaml")
     next20 = load_yaml(PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
+    post_audit_next20 = load_yaml(PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml")
+    after_post_audit_next20 = load_yaml(PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml")
     sync_manifest = load_yaml(PRODUCT / "sync" / "sync-manifest.yaml")
     progress = load_json(PRODUCT / "PROGRESS_REPORT.generated.json")
     history = load_json(PRODUCT / "PROGRESS_HISTORY.generated.json")
@@ -57,6 +59,8 @@ def main() -> int:
         "NEXT_20_BIG_WINS_REGISTRY.yaml",
         "POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md",
         "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml",
+        "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md",
+        "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
         "projects/executive-assistant.md",
     }
@@ -65,10 +69,19 @@ def main() -> int:
             errors.append(f"README.md must reference {name}.")
 
     next20_status = str(next20.get("status") or "").strip().lower()
+    post_audit_status = str(post_audit_next20.get("status") or "").strip().lower()
+    after_post_audit_status = str(after_post_audit_next20.get("status") or "").strip().lower()
     if next20_status == "complete":
         if "The Next 20 Big Wins wave is materially closed on public `main`." not in roadmap:
             errors.append("ROADMAP.md must record the closed Next 20 Big Wins wave.")
-        if (
+        if post_audit_status == "complete":
+            if "The Post-Audit Next 20 Big Wins wave is materially closed on public `main`." not in roadmap:
+                errors.append("ROADMAP.md must record the closed Post-Audit Next 20 Big Wins wave.")
+            if "**Next 20 Big Wins After Post-Audit Closeout**" not in roadmap:
+                errors.append("ROADMAP.md must name Next 20 Big Wins After Post-Audit Closeout as the active follow-on wave.")
+            if after_post_audit_status not in {"in_progress", "complete"}:
+                errors.append("NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml must be in_progress or complete once the post-audit wave is closed.")
+        elif (
             "**Campaign Breadth and Promotion**" not in roadmap
             and "**Post-Audit Next 20 Big Wins**" not in roadmap
         ):
@@ -185,6 +198,8 @@ def main() -> int:
         "POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md",
         "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml",
         "POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md",
+        "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md",
+        "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "WEEKLY_PRODUCT_PULSE.generated.json",
@@ -193,6 +208,7 @@ def main() -> int:
         "organize-a-community-and-close-the-loop.md",
         "validate_next20_milestones.py",
         "validate_post_audit_next20_milestones.py",
+        "validate_after_post_audit_next20_milestones.py",
         "validate_next20_repo_evidence.py",
         "materialize_public_guide_bundle.py",
         "materialize_weekly_product_pulse_snapshot.py",

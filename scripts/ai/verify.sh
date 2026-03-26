@@ -80,6 +80,8 @@ for path in \
   products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md \
   products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml \
   products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md \
+  products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md \
+  products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml \
   products/chummer/ROADMAP.md \
   products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md \
   products/chummer/METRICS_AND_SLOS.yaml \
@@ -156,6 +158,7 @@ python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_post_audit_next20_milestones.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_after_post_audit_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_repo_evidence.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
@@ -178,10 +181,12 @@ rg -n '^# Account-aware front door closeout$|^## Purpose$|^## Material closeout 
 rg -n '^# Build Lab product model$|^## Purpose$|^## Product promise$|^## Ownership split$|^## Non-goals$' "$repo_root/products/chummer/BUILD_LAB_PRODUCT_MODEL.md" >/dev/null
 rg -n '^# Chummer next 15 big wins execution plan$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 1\\. Publish the closeout you already claim$|^### 20\\. Refresh the public story around Build / Explain / Run / Publish / Improve$' "$repo_root/products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
 rg -n '^# Chummer next 20 big wins execution plan$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 20\\. Turn creator publication into a second pillar$|^## Ordering rule$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
-rg -n '^# Chummer post-audit next 20 big wins$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 20\\. Compress the public story for launch$|^## Suggested order$|^## Ordering rule$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md" >/dev/null
+rg -n '^# Chummer post-audit next 20 big wins$|^## Framing$|^## Wave 0 — close the open truth your repos already admit$|^### 20\\. Compress the public story for launch$|^## Ordering rule$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md" >/dev/null
 rg -n '^# Post-audit next 20 big wins closeout$|^## Purpose$|^## Material closeout of previous baseline$|^## Language correction$|^## What remains additive$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins$|^waves:$|^milestones:$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^program_wave: post_audit_next_20_big_wins$|^waves:$|^milestones:$|^  - id: W0$|^  - id: W1$|^  - id: W2$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml" >/dev/null
+rg -n '^# Chummer next 20 big wins after post-audit closeout$|^## Precondition$|^## Wave 1 - make the campaign OS indispensable$|^### 20\\. Product pulse v2: measured adoption, provider-route stewardship, and launch readiness$|^## Ordering rule$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md" >/dev/null
+rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins_after_post_audit_closeout$|^waves:$|^milestones:$|^  - id: W1$|^  - id: W2$|^  - id: W3$|^  - id: W4$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml" >/dev/null
 rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## Mirror discipline$|^## Petition path$' "$repo_root/products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md" >/dev/null
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^# Provider and route stewardship$|^## Ownership split$|^## Required stewardship loop$|^## Hygiene checklist$|^## Hard rules$' "$repo_root/products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md" >/dev/null
@@ -247,7 +252,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n '^# Chummer Public Guide Bundle$|^## What is real now$|^## Product parts$|^## Canon sources$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^# Status$|^## Current pulse$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$|^## Start with the product surface, not the repo trail$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
@@ -257,7 +262,7 @@ rg -n '^# Contact$|^## Pick the case type that matches the problem$' "$repo_root
 rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/dev/null
 rg -n '^# Horizons$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
-rg -n '\"generated_from\"|\"page_count\"|\"sources\"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
+rg -n '\"generated_from\"|\"page_count\"|\"active_wave\"|\"sources\"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n 'Chummer\\.Campaign\\.Contracts|Chummer\\.Control\\.Contracts|campaign_spine_vnext|living_dossier_vnext|rule_environment_vnext|roaming_workspace_vnext|interop_portability_vnext|campaign workspace summaries|device-role posture refs|support_status_vnext|feedback_signal_ooda_vnext' "$repo_root/products/chummer/CONTRACT_SETS.yaml" >/dev/null
 rg -n 'booster_first|resource_burden|recognition_eligible|free_later_intent' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_invariants.py" >/dev/null
