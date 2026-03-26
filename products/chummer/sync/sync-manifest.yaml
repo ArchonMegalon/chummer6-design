@@ -144,6 +144,7 @@ product_source_groups:
     - products/chummer/FEEDBACK_AND_CRASH_STATUS_MODEL.md
   external_tools:
     - products/chummer/EXTERNAL_TOOLS_PLANE.md
+    - products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md
     - products/chummer/LTD_CAPABILITY_MAP.md
 mirrors:
 - repo: chummer6-core
