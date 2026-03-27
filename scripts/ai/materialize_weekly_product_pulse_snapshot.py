@@ -17,6 +17,7 @@ DEFAULT_OUT = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
 NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
+FLEET_JOURNEY_GATES = ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "JOURNEY_GATES.generated.json"
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -168,6 +169,24 @@ def _governor_decisions(
     ]
 
 
+def _journey_gate_health() -> dict[str, Any]:
+    if not FLEET_JOURNEY_GATES.is_file():
+        return {
+            "state": "unknown",
+            "reason": "Fleet journey-gate truth is not materialized yet.",
+            "blocked_count": 0,
+            "warning_count": 0,
+        }
+    payload = _load_json(FLEET_JOURNEY_GATES)
+    summary = payload.get("summary") or {}
+    return {
+        "state": str(summary.get("overall_state") or "unknown").strip() or "unknown",
+        "reason": str(summary.get("recommended_action") or "Fleet journey-gate summary is available.").strip(),
+        "blocked_count": int(summary.get("blocked_count") or 0),
+        "warning_count": int(summary.get("warning_count") or 0),
+    }
+
+
 def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     scorecard = _load_yaml(PRODUCT / "PRODUCT_HEALTH_SCORECARD.yaml")
     report = _load_json(PRODUCT / "PROGRESS_REPORT.generated.json")
@@ -204,6 +223,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
                 "reason": release_health_reason,
                 "front_door_wave_closed": _front_door_closed(release_text),
             },
+            "journey_gate_health": _journey_gate_health(),
             "top_support_or_feedback_clusters": _top_clusters(current_wave, report, next20_closed=next20_closed, post_audit_closed=post_audit_closed),
             "oldest_blocker_days": oldest_blocker_days,
             "design_drift_count": 0,
@@ -225,6 +245,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
             "phase_label": str(report.get("phase_label") or "").strip(),
             "history_snapshot_count": history_count,
             "longest_pole": _longest_pole_label(report),
+            "journey_gate_source": str(FLEET_JOURNEY_GATES),
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
             "active_wave_registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
             "scorecard_metric_count": sum(len((card or {}).get("metrics") or []) for card in (scorecard.get("scorecards") or []) if isinstance(card, dict)),

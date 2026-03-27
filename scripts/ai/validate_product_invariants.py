@@ -49,6 +49,8 @@ def main() -> int:
     required_readme_refs = {
         "START_HERE.md",
         "GLOSSARY.md",
+        "GOLDEN_JOURNEY_RELEASE_GATES.yaml",
+        "PRIVACY_AND_RETENTION_BOUNDARIES.md",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md",
         "POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md",
@@ -167,6 +169,9 @@ def main() -> int:
     snapshot_payload = pulse_snapshot.get("snapshot") or {}
     if not isinstance(snapshot_payload, dict) or not snapshot_payload.get("governor_decisions"):
         errors.append("Weekly product pulse must include at least one governor decision.")
+    journey_gate_health = snapshot_payload.get("journey_gate_health") or {}
+    if not isinstance(journey_gate_health, dict) or "state" not in journey_gate_health:
+        errors.append("Weekly product pulse must include journey_gate_health.")
 
     groups = sync_manifest.get("product_source_groups") or {}
     mirrors = sync_manifest.get("mirrors") or []
@@ -201,8 +206,11 @@ def main() -> int:
         "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md",
         "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
+        "validate_golden_journey_release_gates.py",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "WEEKLY_PRODUCT_PULSE.generated.json",
+        "GOLDEN_JOURNEY_RELEASE_GATES.yaml",
+        "PRIVACY_AND_RETENTION_BOUNDARIES.md",
         "claim-install-and-close-a-support-case.md",
         "run-a-campaign-and-return.md",
         "organize-a-community-and-close-the-loop.md",
