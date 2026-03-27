@@ -31,3 +31,5 @@ platforms:
     signing_posture: codesign_and_notarization_required
     updater_mode: handoff_until_public_promotion
     supportability: gated_by_signing_and_notarization
+    public_manifest_visibility: hidden_until_signed_and_promoted
+    public_promotion_gate: signed_dmg_notarized_and_release_truth_promoted

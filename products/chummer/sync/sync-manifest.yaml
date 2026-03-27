@@ -138,6 +138,11 @@ product_source_groups:
     - products/chummer/DESKTOP_AUTO_UPDATE_SYSTEM.md
     - products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md
     - products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml
+  desktop_delivery:
+    - products/chummer/DESKTOP_CLIENT_PRODUCT_CUT.md
+    - products/chummer/DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml
+    - products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md
+    - products/chummer/LOCALIZATION_PARITY_MATRIX.yaml
   support_plane:
     - products/chummer/SUPPORT_AND_SIGNAL_OODA_LOOP.md
     - products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md
@@ -166,6 +171,7 @@ mirrors:
   product_groups:
     - base_governance
     - release
+    - desktop_delivery
     - product_middle
     - support_plane
     - journey_workbench
@@ -184,6 +190,7 @@ mirrors:
     - hub_public_runtime
     - participation
     - release
+    - desktop_delivery
     - support_plane
     - external_tools
     - horizons
@@ -224,6 +231,7 @@ mirrors:
     - base_governance
     - public_surface
     - release
+    - desktop_delivery
     - horizons
     - journey_roaming
     - journey_release

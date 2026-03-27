@@ -54,6 +54,12 @@ macOS remains buildable and design-supported, but it is not automatically public
 
 Public promotion requires the codesign, notarization, and release-truth path to be complete enough that the shelf can make honest promises.
 
+Until that gate closes:
+
+* built `.dmg` artifacts count as internal release evidence, smoke evidence, and promotion-prep input
+* public download manifests and public `/downloads` surfaces must not present macOS as currently available
+* support copy must say that macOS availability depends on signed/notarized promotion, not on raw build success alone
+
 ## Artifact posture
 
 The desktop wave distinguishes artifact roles explicitly:
@@ -82,4 +88,4 @@ For the current wave:
 * compatibility/fallback head: `Chummer.Blazor.Desktop`
 * Windows public lane: installer-first with portable `.exe` fallback allowed
 * Linux public lane: `.deb` first, bounded manual fallback allowed when the installer lane is not yet boring enough
-* macOS lane: buildable but not presumed shelf-ready until signing/notarization and public truth close
+* macOS lane: buildable but withheld from the public shelf until signed/notarized `.dmg` promotion and release-truth close
