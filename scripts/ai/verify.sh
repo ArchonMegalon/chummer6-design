@@ -53,8 +53,12 @@ for path in \
   products/chummer/PROGRESS_REPORT.generated.json \
   products/chummer/PROGRESS_REPORT_POSTER.svg \
   products/chummer/RELEASE_PIPELINE.md \
+  products/chummer/DESKTOP_CLIENT_PRODUCT_CUT.md \
+  products/chummer/DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml \
   products/chummer/DESKTOP_AUTO_UPDATE_SYSTEM.md \
   products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md \
+  products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md \
+  products/chummer/LOCALIZATION_PARITY_MATRIX.yaml \
   products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md \
   products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md \
   products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md \
@@ -197,6 +201,10 @@ rg -n '^product: chummer$|^surface: chummer.run$|^asset_slots:$|^  - id: hero$' 
 rg -n '^product: chummer$|^surface: chummer.run$|^routes:$|^  - route: /$|^  - route: /downloads$' "$repo_root/products/chummer/PUBLIC_NAVIGATION.yaml" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^parts:$|^  - id: design$|^  - id: hub$' "$repo_root/products/chummer/PUBLIC_PROGRESS_PARTS.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^version: 1$|^guest_readable_channels:$|^known_issues_label:|^guest_gate_heading:' "$repo_root/products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml" >/dev/null
+rg -n '^# Desktop client product cut$|^## Purpose$|^## Shipped desktop heads$|^## Current preview cut$|^## Platform posture$|Chummer\\.Avalonia|Chummer\\.Blazor\\.Desktop' "$repo_root/products/chummer/DESKTOP_CLIENT_PRODUCT_CUT.md" >/dev/null
+rg -n '^# Localization and language system$|^## Purpose$|^## Shipping locale set$|^## Translation domains$|^## Runtime behavior$|en-US|de-DE|fr-FR|ja-JP|pt-BR|zh-CN' "$repo_root/products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md" >/dev/null
+rg -n '^product: chummer$|^surface: desktop_and_hosted_language_system$|^version: 1$|^source_locale: en-US$|^fallback_locale: en-US$|^shipping_locales:$|^domains:$|^locale_matrix:$' "$repo_root/products/chummer/LOCALIZATION_PARITY_MATRIX.yaml" >/dev/null
+rg -n '^product: chummer$|^surface: desktop_delivery$|^version: 1$|^flagship_head: Chummer\\.Avalonia$|^fallback_head: Chummer\\.Blazor\\.Desktop$|^platforms:$|^  - id: windows$|^  - id: linux$|^  - id: macOS$' "$repo_root/products/chummer/DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml" >/dev/null
 rg -n '\"generated_at\"|\"parts\"|\"status\"' "$repo_root/products/chummer/PROGRESS_REPORT.generated.json" >/dev/null
 rg -n '<!DOCTYPE html>|progress report|chummer' "$repo_root/products/chummer/PROGRESS_REPORT.generated.html" >/dev/null
 rg -n '<svg|progress|poster' "$repo_root/products/chummer/PROGRESS_REPORT_POSTER.svg" >/dev/null
@@ -252,7 +260,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|DESKTOP_CLIENT_PRODUCT_CUT|DESKTOP_PLATFORM_ACCEPTANCE_MATRIX|LOCALIZATION_AND_LANGUAGE_SYSTEM|LOCALIZATION_PARITY_MATRIX|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n '^# Chummer Public Guide Bundle$|^## What is real now$|^## Product parts$|^## Canon sources$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^# Status$|^## Current pulse$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$|^## Start with the product surface, not the repo trail$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
