@@ -2,7 +2,11 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
-fleet_root="${1:-${repo_root}/../fleet}"
+default_fleet_root="/docker/fleet"
+if [ ! -d "$default_fleet_root" ]; then
+  default_fleet_root="${repo_root}/../fleet"
+fi
+fleet_root="${1:-${default_fleet_root}}"
 as_of="${2:-$(date -u +%F)}"
 
 python3 "${fleet_root}/scripts/materialize_public_progress_report.py" \

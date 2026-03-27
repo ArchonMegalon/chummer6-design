@@ -10,6 +10,10 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
 DOCKER_ROOT = ROOT.parents[1]
+UI_ROOT_CANDIDATES = (
+    DOCKER_ROOT / "chummercomplete" / "chummer6-ui",
+    DOCKER_ROOT / "chummercomplete" / "chummer-presentation",
+)
 
 
 def _load_yaml(path: Path) -> dict:
@@ -19,6 +23,13 @@ def _load_yaml(path: Path) -> dict:
 
 def _read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
+
+
+def _resolve_ui_root() -> Path:
+    for candidate in UI_ROOT_CANDIDATES:
+        if candidate.exists():
+            return candidate
+    return UI_ROOT_CANDIDATES[0]
 
 
 def _milestone_status(registry: dict, milestone_id: int) -> str:
@@ -148,7 +159,7 @@ def main() -> int:
         if token not in play_verify:
             errors.append(f"Mobile verify script must keep {token} evidence for package-owned roaming workspace.")
 
-    ui_root = DOCKER_ROOT / "chummercomplete" / "chummer-presentation"
+    ui_root = _resolve_ui_root()
     ui_home = _read(ui_root / "Chummer.Blazor" / "Components" / "Pages" / "Home.razor")
     ui_build_lab = _read(ui_root / "Chummer.Blazor" / "Components" / "Shared" / "BuildLabHandoffPanel.razor")
     ui_rules = _read(ui_root / "Chummer.Blazor" / "Components" / "Shared" / "RulesNavigatorPanel.razor")

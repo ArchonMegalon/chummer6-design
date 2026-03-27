@@ -227,6 +227,10 @@ def main() -> int:
     if "materialize_public_guide_bundle.py" in verify_sh and "--check" not in verify_sh:
         errors.append("verify.sh must run materialize_public_guide_bundle.py in --check mode.")
 
+    ui_root = DOCKER_ROOT / "chummercomplete" / "chummer6-ui"
+    if not ui_root.exists():
+        ui_root = DOCKER_ROOT / "chummercomplete" / "chummer-presentation"
+
     required_repo_paths = (
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Campaign.Contracts" / "Chummer.Campaign.Contracts.csproj",
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Control.Contracts" / "Chummer.Control.Contracts.csproj",
@@ -236,9 +240,9 @@ def main() -> int:
         DOCKER_ROOT / "chummercomplete" / "chummer.run-services" / "Chummer.Run.Api" / "Services" / "Support" / "SupportAssistantService.cs",
         DOCKER_ROOT / "chummercomplete" / "chummer-core-engine" / "Chummer.Application" / "BuildLab" / "DefaultBuildLabService.cs",
         DOCKER_ROOT / "chummercomplete" / "chummer-play" / "src" / "Chummer.Play.Core" / "Roaming" / "RoamingWorkspaceSyncPlanner.cs",
-        DOCKER_ROOT / "chummercomplete" / "chummer-presentation" / "Chummer.Blazor" / "Components" / "Shared" / "BuildLabHandoffPanel.razor",
-        DOCKER_ROOT / "chummercomplete" / "chummer-presentation" / "Chummer.Blazor" / "Components" / "Shared" / "RulesNavigatorPanel.razor",
-        DOCKER_ROOT / "chummercomplete" / "chummer-presentation" / "Chummer.Blazor" / "Components" / "Shared" / "CreatorPublicationPanel.razor",
+        ui_root / "Chummer.Blazor" / "Components" / "Shared" / "BuildLabHandoffPanel.razor",
+        ui_root / "Chummer.Blazor" / "Components" / "Shared" / "RulesNavigatorPanel.razor",
+        ui_root / "Chummer.Blazor" / "Components" / "Shared" / "CreatorPublicationPanel.razor",
         DOCKER_ROOT / "fleet" / "repos" / "chummer-media-factory" / "src" / "Chummer.Media.Factory.Runtime" / "Assets" / "CreatorPublicationPlannerService.cs",
         DOCKER_ROOT / "chummercomplete" / "Chummer6" / "scripts" / "verify_public_guide.sh",
         DOCKER_ROOT / "chummercomplete" / "chummer-hub-registry" / "Chummer.Hub.Registry.Contracts" / "InstallLinkingContracts.cs",

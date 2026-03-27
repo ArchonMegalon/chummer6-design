@@ -13,7 +13,7 @@ It exists so the public guide surface can be compiled from design canon instead 
 
 - overall_progress_percent: 73
 - phase_label: Scale & stabilize
-- history_snapshot_count: 2
+- history_snapshot_count: 3
 - The Account-Aware Front Door wave is treated as materially closed in canon.
 - The Post-Audit Next 20 wave is treated as materially closed in canon, and the active additive plan is Next 20 Big Wins After Post-Audit Closeout.
 - Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.

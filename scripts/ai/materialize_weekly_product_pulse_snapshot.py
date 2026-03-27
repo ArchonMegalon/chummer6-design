@@ -17,7 +17,20 @@ DEFAULT_OUT = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
 NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
-FLEET_JOURNEY_GATES = ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "JOURNEY_GATES.generated.json"
+FLEET_JOURNEY_GATE_CANDIDATES = (
+    Path("/docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json"),
+    ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "JOURNEY_GATES.generated.json",
+)
+
+
+def _resolve_fleet_journey_gates() -> Path:
+    for candidate in FLEET_JOURNEY_GATE_CANDIDATES:
+        if candidate.is_file():
+            return candidate
+    return FLEET_JOURNEY_GATE_CANDIDATES[0]
+
+
+FLEET_JOURNEY_GATES = _resolve_fleet_journey_gates()
 
 
 def _load_json(path: Path) -> dict[str, Any]:
