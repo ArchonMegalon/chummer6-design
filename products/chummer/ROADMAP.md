@@ -11,6 +11,7 @@ Current status on 2026-03-26:
 * the Next 20 Big Wins wave is now materially closed on public `main`: package-owned `Chummer.Campaign.Contracts`, roaming workspace restore, Build Lab handoff UX, Rules Navigator, interop round-trip truth, legacy migration receipts, the grounded support assistant, organizer/operator surfaces, and creator publication are all part of the repo-local executable and verified surface rather than only canon.
 * the Post-Audit Next 20 Big Wins wave is now materially closed on public `main`, and its closeout is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md`.
 * the successor sequence is now tracked as `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` plus `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
+* the active audit-driven remediation overlay for that successor wave is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`; it sharpens journey proof, flagship-surface focus, bounded-context discipline, and promotion-trust expectations without replacing the machine-readable registry
 * interop and portability are now explicit canon plus runtime/export truth rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 * the additive work after this closeout is no longer “make the missing middle real”; it is campaign breadth, broader public promotion, live operator cadence, and estate-wide adoption depth on top of the now-closed next-20 baseline
 
@@ -26,6 +27,7 @@ The just-closed front-door wave is recorded in `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOU
 The just-closed additive follow-on wave is recorded in `NEXT_20_BIG_WINS_EXECUTION_PLAN.md` and `NEXT_20_BIG_WINS_REGISTRY.yaml`.
 The just-closed post-audit wave is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md`, `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml`, and `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md`.
 The active successor wave is `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md`, with machine-readable progress in `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
+The active audit overlay for correcting where design proof still outruns journey proof is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
 The immediate additive shape is:

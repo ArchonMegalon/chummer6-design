@@ -59,6 +59,7 @@ product_source_groups:
     - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md
     - products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md
     - products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml
+    - products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md
     - products/chummer/PROGRAM_MILESTONES.yaml
     - products/chummer/CONTRACT_SETS.yaml
     - products/chummer/GROUP_BLOCKERS.md

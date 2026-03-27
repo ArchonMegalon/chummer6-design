@@ -86,6 +86,7 @@ for path in \
   products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md \
   products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md \
   products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml \
+  products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md \
   products/chummer/ROADMAP.md \
   products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md \
   products/chummer/METRICS_AND_SLOS.yaml \
@@ -191,6 +192,7 @@ rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins$|^waves:$
 rg -n '^product: chummer$|^version: 1$|^program_wave: post_audit_next_20_big_wins$|^waves:$|^milestones:$|^  - id: W0$|^  - id: W1$|^  - id: W2$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml" >/dev/null
 rg -n '^# Chummer next 20 big wins after post-audit closeout$|^## Precondition$|^## Wave 1 - make the campaign OS indispensable$|^### 20\\. Product pulse v2: measured adoption, provider-route stewardship, and launch readiness$|^## Ordering rule$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins_after_post_audit_closeout$|^waves:$|^milestones:$|^  - id: W1$|^  - id: W2$|^  - id: W3$|^  - id: W4$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml" >/dev/null
+rg -n '^# Chummer Campaign-OS gap and change guide$|^## Purpose$|^## Main gaps and risks$|^## Team change guide$|^## Priority order$' "$repo_root/products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md" >/dev/null
 rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## Mirror discipline$|^## Petition path$' "$repo_root/products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md" >/dev/null
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^# Provider and route stewardship$|^## Ownership split$|^## Required stewardship loop$|^## Hygiene checklist$|^## Hard rules$' "$repo_root/products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md" >/dev/null
