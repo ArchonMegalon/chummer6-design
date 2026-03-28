@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import importlib.util
 import json
 import os
 import re
@@ -24,6 +25,9 @@ HUB_REGISTRY_ROOT_ENV = "CHUMMER_HUB_REGISTRY_ROOT"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
+MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
+
+_MEDIA_WORKER = None
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -101,6 +105,51 @@ def _resolve_asset_source(repo_root: Path) -> Path:
     raise FileNotFoundError(f"unable to locate public-guide asset source; checked: {searched}")
 
 
+def _media_worker_module():
+    global _MEDIA_WORKER
+    if _MEDIA_WORKER is False:
+        return None
+    if _MEDIA_WORKER is not None:
+        return _MEDIA_WORKER
+    if not MEDIA_WORKER_PATH.is_file():
+        _MEDIA_WORKER = False
+        return None
+    try:
+        spec = importlib.util.spec_from_file_location("chummer6_guide_media_worker", MEDIA_WORKER_PATH)
+        if spec is None or spec.loader is None:
+            _MEDIA_WORKER = False
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    except Exception:
+        _MEDIA_WORKER = False
+        return None
+    _MEDIA_WORKER = module
+    return module
+
+
+def _asset_embed_allowed(*, out_dir: Path, asset_path: str) -> bool:
+    normalized = str(asset_path or "").replace("\\", "/").strip()
+    if normalized != "assets/pages/horizons-index.png":
+        return True
+    worker = _media_worker_module()
+    if worker is None:
+        return True
+    image_path = out_dir / normalized
+    if not image_path.is_file():
+        return False
+    try:
+        score, notes = worker.visual_audit_score(image_path=image_path, target=normalized)
+    except Exception:
+        return True
+    blocked_notes = {
+        "visual_audit:readable_signage_risk",
+        "visual_audit:text_sprawl",
+        "visual_audit:missing_lane_plurality",
+    }
+    return score >= 300.0 and not (blocked_notes & set(notes))
+
+
 def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) -> None:
     derivative_path.parent.mkdir(parents=True, exist_ok=True)
     if codec == "webp":
@@ -162,6 +211,8 @@ def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> s
 
 def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str) -> list[str]:
     if not (out_dir / asset_path).is_file():
+        return []
+    if not _asset_embed_allowed(out_dir=out_dir, asset_path=asset_path):
         return []
     return [f"![{alt}]({_relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)})", ""]
 

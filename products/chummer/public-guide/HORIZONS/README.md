@@ -8,8 +8,6 @@ generated_by: "materialize_public_guide_bundle.py"
 
 These horizon pages are generated only for entries with `public_guide.enabled == true`.
 
-![Chummer6 horizons index art](../assets/pages/horizons-index.png)
-
 - [NEXUS-PAN](nexus-pan.md)
 - [ALICE](alice.md)
 - [KARMA FORGE](karma-forge.md)
