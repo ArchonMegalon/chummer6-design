@@ -6,6 +6,8 @@ import difflib
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -21,6 +23,7 @@ ACTIVE_WAVE_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOU
 HUB_REGISTRY_ROOT_ENV = "CHUMMER_HUB_REGISTRY_ROOT"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
+CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -57,6 +60,10 @@ def _write(path: Path, content: str) -> None:
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
 
 
+def _ffmpeg_bin() -> str:
+    return os.environ.get("FFMPEG_BIN", "ffmpeg").strip() or "ffmpeg"
+
+
 def _slug(value: str) -> str:
     cleaned = "".join(ch.lower() if ch.isalnum() else "-" for ch in value)
     while "--" in cleaned:
@@ -70,6 +77,93 @@ def _boolish(value: object) -> bool:
     if isinstance(value, str):
         return value.strip().lower() in {"1", "true", "yes", "on"}
     return bool(value)
+
+
+def _candidate_asset_roots(repo_root: Path) -> list[Path]:
+    roots: list[Path] = []
+    env_root = os.environ.get(CHUMMER6_ASSET_SOURCE_ENV, "").strip()
+    if env_root:
+        roots.append(Path(env_root))
+    for candidate in (
+        repo_root.parent / "Chummer6" / "assets",
+        repo_root.parent / "chummer6" / "assets",
+    ):
+        if candidate not in roots:
+            roots.append(candidate)
+    return roots
+
+
+def _resolve_asset_source(repo_root: Path) -> Path:
+    for candidate in _candidate_asset_roots(repo_root):
+        if candidate.is_dir():
+            return candidate
+    searched = ", ".join(str(path) for path in _candidate_asset_roots(repo_root))
+    raise FileNotFoundError(f"unable to locate public-guide asset source; checked: {searched}")
+
+
+def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) -> None:
+    derivative_path.parent.mkdir(parents=True, exist_ok=True)
+    if codec == "webp":
+        command = [
+            _ffmpeg_bin(),
+            "-y",
+            "-loglevel",
+            "error",
+            "-i",
+            str(source),
+            "-c:v",
+            "libwebp",
+            "-compression_level",
+            "6",
+            "-quality",
+            "82",
+            str(derivative_path),
+        ]
+    elif codec == "avif":
+        command = [
+            _ffmpeg_bin(),
+            "-y",
+            "-loglevel",
+            "error",
+            "-i",
+            str(source),
+            "-c:v",
+            "libaom-av1",
+            "-still-picture",
+            "1",
+            "-cpu-used",
+            "6",
+            "-crf",
+            "32",
+            "-b:v",
+            "0",
+            str(derivative_path),
+        ]
+    else:
+        raise ValueError(f"unsupported codec: {codec}")
+    subprocess.run(command, check=True, capture_output=True, text=True)
+
+
+def _materialize_public_assets(repo_root: Path, out_dir: Path) -> None:
+    source_root = _resolve_asset_source(repo_root)
+    destination = out_dir / "assets"
+    if destination.exists():
+        shutil.rmtree(destination)
+    shutil.copytree(source_root, destination)
+    for png_path in destination.rglob("*.png"):
+        _materialize_derivative(png_path, png_path.with_suffix(".webp"), codec="webp")
+        _materialize_derivative(png_path, png_path.with_suffix(".avif"), codec="avif")
+
+
+def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> str:
+    relative = os.path.relpath(out_dir / asset_path, start=doc_path.parent)
+    return relative.replace(os.sep, "/")
+
+
+def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str) -> list[str]:
+    if not (out_dir / asset_path).is_file():
+        return []
+    return [f"![{alt}]({_relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)})", ""]
 
 
 def _front_matter(title: str, source: str) -> str:
@@ -253,6 +347,7 @@ def _generate_root(
     trust_payload: dict[str, object],
     progress: dict[str, object],
 ) -> None:
+    doc_path = out_dir / "README.md"
     parts = [item for item in (part_registry.get("parts") or []) if isinstance(item, dict)]
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
@@ -332,10 +427,13 @@ def _generate_root(
             ),
             "- Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.",
             "",
-            "## Start here",
-            "",
         ]
     )
+    hero_rows = _image_rows(doc_path=doc_path, out_dir=out_dir, asset_path="assets/hero/chummer6-hero.png", alt="Chummer6 flagship hero art")
+    if hero_rows:
+        rows.extend(["## First contact", ""])
+        rows.extend(hero_rows)
+    rows.extend(["## Start here", ""])
     rows.extend(ordered_ctas)
     rows.extend(["", "## Product parts", ""])
     for part in parts:
@@ -358,7 +456,7 @@ def _generate_root(
         if intro:
             rows.extend(["", "## Support posture", "", intro])
 
-    _write(out_dir / "README.md", "\n".join(rows))
+    _write(doc_path, "\n".join(rows))
 
 
 def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object]) -> None:
@@ -591,6 +689,7 @@ def _generate_contact(out_dir: Path, trust_payload: dict[str, object]) -> None:
 
 def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> None:
     parts = [item for item in (part_registry.get("parts") or []) if isinstance(item, dict)]
+    index_path = out_dir / "PARTS" / "README.md"
     index_rows = [
         _front_matter("Parts", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
         "# Parts",
@@ -598,29 +697,36 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         "Each page here is generated from `PUBLIC_PART_REGISTRY.yaml`.",
         "",
     ]
+    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/parts-index.png", alt="Chummer6 parts index art"))
     for part in parts:
         part_id = str(part.get("id") or "").strip()
         title = str(part.get("title") or part_id).strip() or part_id
         slug = _slug(part_id)
         index_rows.append(f"- [{title}]({slug}.md)")
 
+        doc_path = out_dir / "PARTS" / f"{slug}.md"
         rows = [
             _front_matter(f"Part: {title}", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
             f"# {title}",
             "",
             str(part.get("public_tagline") or "").strip(),
             "",
-            "## When you care",
-            "",
-            str(part.get("you_touch_this_when") or "").strip() or "When this part becomes relevant to your flow.",
-            "",
-            "## Why you care",
-            "",
-            str(part.get("why_you_care") or "").strip() or "This part contributes meaningfully to the product.",
-            "",
-            "## What you notice",
-            "",
         ]
+        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/parts/{slug}.png", alt=f"{title} guide art"))
+        rows.extend(
+            [
+                "## When you care",
+                "",
+                str(part.get("you_touch_this_when") or "").strip() or "When this part becomes relevant to your flow.",
+                "",
+                "## Why you care",
+                "",
+                str(part.get("why_you_care") or "").strip() or "This part contributes meaningfully to the product.",
+                "",
+                "## What you notice",
+                "",
+            ]
+        )
         for item in part.get("what_you_notice") or []:
             text = str(item).strip()
             if text:
@@ -664,6 +770,7 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
 
     enabled.sort(key=sort_key)
 
+    index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
         _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Horizons",
@@ -671,6 +778,7 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
         "These horizon pages are generated only for entries with `public_guide.enabled == true`.",
         "",
     ]
+    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
 
     for horizon in enabled:
         horizon_id = str(horizon.get("id") or "").strip()
@@ -678,6 +786,7 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
         slug = _slug(horizon_id)
         index_rows.append(f"- [{title}]({slug}.md)")
 
+        doc_path = out_dir / "HORIZONS" / f"{slug}.md"
         rows = [
             _front_matter(f"Horizon: {title}", "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
@@ -688,6 +797,8 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
             value = str(horizon.get(field) or "").strip()
             if value:
                 rows.append(f"- {field}: {value}")
+        rows.extend([""])
+        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=f"{title} horizon art"))
 
         build_path = horizon.get("build_path") or {}
         if isinstance(build_path, dict):
@@ -768,6 +879,7 @@ def generate_bundle(repo_root: Path, out_dir: Path) -> None:
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
 
+    _materialize_public_assets(repo_root, out_dir)
     _generate_root(out_dir, manifest, page_registry, part_registry, landing_manifest, trust_payload, progress)
     _generate_status(out_dir, trust_payload, progress)
     _generate_help(out_dir, help_copy, trust_payload)
@@ -802,17 +914,24 @@ def _compare_trees(expected: Path, actual: Path) -> int:
         return 1
 
     for rel in sorted(expected_files):
-        expected_text = (expected / rel).read_text(encoding="utf-8")
-        actual_text = (actual / rel).read_text(encoding="utf-8")
-        if expected_text != actual_text:
-            print(f"bundle_content_diff:{rel}", file=sys.stderr)
-            for line in difflib.unified_diff(
-                expected_text.splitlines(keepends=True),
-                actual_text.splitlines(keepends=True),
-                fromfile=f"expected/{rel}",
-                tofile=f"actual/{rel}",
-            ):
-                print(line.rstrip(), file=sys.stderr)
+        expected_path = expected / rel
+        actual_path = actual / rel
+        if expected_path.suffix.lower() in {".md", ".json", ".yaml", ".yml", ".txt"}:
+            expected_text = expected_path.read_text(encoding="utf-8")
+            actual_text = actual_path.read_text(encoding="utf-8")
+            if expected_text != actual_text:
+                print(f"bundle_content_diff:{rel}", file=sys.stderr)
+                for line in difflib.unified_diff(
+                    expected_text.splitlines(keepends=True),
+                    actual_text.splitlines(keepends=True),
+                    fromfile=f"expected/{rel}",
+                    tofile=f"actual/{rel}",
+                ):
+                    print(line.rstrip(), file=sys.stderr)
+                return 1
+            continue
+        if expected_path.read_bytes() != actual_path.read_bytes():
+            print(f"bundle_binary_diff:{rel}", file=sys.stderr)
             return 1
     return 0
 

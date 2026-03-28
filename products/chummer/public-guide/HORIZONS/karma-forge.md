@@ -11,6 +11,9 @@ generated_by: "materialize_public_guide_bundle.py"
 - wow_promise: Tables can evolve governed rulesets without splintering into unreadable forks.
 - table_scene: A GM promotes a house-rule pack with visible impact, approval history, and reversible publication state.
 
+![KARMA FORGE horizon art](../assets/horizons/karma-forge.png)
+
+
 ## Build path
 
 - intent: eventual_product_lane

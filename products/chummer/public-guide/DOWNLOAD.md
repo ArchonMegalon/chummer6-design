@@ -60,7 +60,7 @@ Local release proof passed for: install_claim_restore_continue, build_explain_pu
 ## Release proof
 
 - status: passed
-- generated_at: 2026-03-28T17:59:20Z
+- generated_at: 2026-03-28T21:03:08Z
 - base_url: http://127.0.0.1:8091
 
 ### Journeys passed

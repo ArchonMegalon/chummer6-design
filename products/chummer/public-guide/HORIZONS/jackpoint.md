@@ -11,6 +11,9 @@ generated_by: "materialize_public_guide_bundle.py"
 - wow_promise: The table gets grounded short-to-medium-form artifacts that feel finished without severing provenance.
 - table_scene: After a run, the GM exports a dossier-plus-recap packet with narration, evidence rooms, and share-safe previews.
 
+![JACKPOINT horizon art](../assets/horizons/jackpoint.png)
+
+
 ## Build path
 
 - intent: eventual_product_lane

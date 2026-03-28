@@ -11,6 +11,9 @@ generated_by: "materialize_public_guide_bundle.py"
 - wow_promise: Long-form publishing becomes governed, reusable, and materially better than one-off document hacks.
 - table_scene: A creator turns approved Chummer artifacts into a district guide or campaign book without vendor dashboards becoming the source of truth.
 
+![RUNBOOK PRESS horizon art](../assets/horizons/runbook-press.png)
+
+
 ## Build path
 
 - intent: eventual_product_lane

@@ -26,6 +26,10 @@ Build characters, inspect rulings, and keep sessions moving with explainable mat
 - The Post-Audit Next 20 wave is treated as materially closed in canon, and the active additive plan is Next 20 Big Wins After Post-Audit Closeout.
 - Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.
 
+## First contact
+
+![Chummer6 flagship hero art](assets/hero/chummer6-hero.png)
+
 ## Start here
 
 - [Start here](START_HERE.md)

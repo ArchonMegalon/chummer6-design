@@ -11,6 +11,9 @@ generated_by: "materialize_public_guide_bundle.py"
 - wow_promise: GMs get bounded post-session coaching about table dynamics without turning Chummer into live surveillance.
 - table_scene: After an online session, the GM opens a coaching packet and sees spotlight balance, pacing heat zones, disengagement markers, and one or two concrete suggestions for the next run.
 
+![TABLE PULSE horizon art](../assets/horizons/table-pulse.png)
+
+
 ## Build path
 
 - intent: eventual_product_lane
