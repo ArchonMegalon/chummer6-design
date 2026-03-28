@@ -212,7 +212,7 @@ rg -n '^# Desktop client product cut$|^## Purpose$|^## Shipped desktop heads$|^#
 rg -n '^# Localization and language system$|^## Purpose$|^## Shipping locale set$|^## Translation domains$|^## Runtime behavior$|en-US|de-DE|fr-FR|ja-JP|pt-BR|zh-CN' "$repo_root/products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md" >/dev/null
 rg -n '^product: chummer$|^surface: desktop_and_hosted_language_system$|^version: 1$|^source_locale: en-US$|^fallback_locale: en-US$|^shipping_locales:$|^domains:$|^locale_matrix:$' "$repo_root/products/chummer/LOCALIZATION_PARITY_MATRIX.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: desktop_delivery$|^version: 1$|^flagship_head: Chummer\\.Avalonia$|^fallback_head: Chummer\\.Blazor\\.Desktop$|^platforms:$|^  - id: windows$|^  - id: linux$|^  - id: macOS$' "$repo_root/products/chummer/DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml" >/dev/null
-rg -n '\"generated_at\"|\"parts\"|\"status\"' "$repo_root/products/chummer/PROGRESS_REPORT.generated.json" >/dev/null
+rg -n '\"generated_at\"|\"parts\"|\"status\"|\"active_wave\"|\"active_wave_status\"|\"current_phase\"|\"eta_summary\"' "$repo_root/products/chummer/PROGRESS_REPORT.generated.json" >/dev/null
 rg -n '<!DOCTYPE html>|progress report|chummer' "$repo_root/products/chummer/PROGRESS_REPORT.generated.html" >/dev/null
 rg -n '<svg|progress|poster' "$repo_root/products/chummer/PROGRESS_REPORT_POSTER.svg" >/dev/null
 rg -n '\"history\"|\"generated_at\"' "$repo_root/products/chummer/PROGRESS_HISTORY.generated.json" >/dev/null

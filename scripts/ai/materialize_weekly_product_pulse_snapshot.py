@@ -214,6 +214,31 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     history_count = int(history.get("snapshot_count") or 0)
     blockers_open = _red_blockers_open(blockers_text)
     oldest_blocker_days = _oldest_blocker_days(blockers_text, as_of)
+    overall_progress = int(report.get("overall_progress_percent") or 0)
+    phase_label = str(report.get("phase_label") or "").strip() or "Scale & stabilize"
+    longest_pole = _longest_pole_label(report)
+    journey_gate_health = _journey_gate_health()
+    governor_decisions = _governor_decisions(
+        as_of,
+        report,
+        current_wave,
+        oldest_blocker_days,
+        next20_closed=next20_closed,
+        post_audit_closed=post_audit_closed,
+    )
+    next_checkpoint_question = (
+        "What is the smallest cross-repo slice that makes the campaign OS indispensable and turns trust, adoption, and publication depth into a real launch advantage?"
+        if post_audit_closed
+        else (
+            "What is the smallest cross-repo slice that makes campaign breadth, creator trust, and public promotion feel undeniably real to users?"
+            if next20_closed
+            else "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?"
+        )
+    )
+    summary = (
+        f"{current_wave} remains the active wave; journey proof is {journey_gate_health['state']}; "
+        f"overall progress is {overall_progress}% in '{phase_label}'; the longest pole remains {longest_pole}."
+    )
 
     release_health_state = "green_or_explained" if not blockers_open else "needs_attention"
     release_health_reason = (
@@ -230,34 +255,34 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         "scorecard_source": "products/chummer/PRODUCT_HEALTH_SCORECARD.yaml",
         "progress_report_source": "products/chummer/PROGRESS_REPORT.generated.json",
         "progress_history_source": "products/chummer/PROGRESS_HISTORY.generated.json",
+        # Flat aliases keep older readers working while the richer snapshot shape
+        # remains the canonical source of detail.
+        "summary": summary,
+        "active_wave": current_wave,
+        "active_wave_status": _registry_status(ACTIVE_WAVE_REGISTRY),
+        "journey_gate_health": journey_gate_health,
+        "governor_decisions": governor_decisions,
+        "next_checkpoint_question": next_checkpoint_question,
         "snapshot": {
             "release_health": {
                 "state": release_health_state,
                 "reason": release_health_reason,
                 "front_door_wave_closed": _front_door_closed(release_text),
             },
-            "journey_gate_health": _journey_gate_health(),
+            "journey_gate_health": journey_gate_health,
             "top_support_or_feedback_clusters": _top_clusters(current_wave, report, next20_closed=next20_closed, post_audit_closed=post_audit_closed),
             "oldest_blocker_days": oldest_blocker_days,
             "design_drift_count": 0,
             "public_promise_drift_count": 0,
-            "governor_decisions": _governor_decisions(as_of, report, current_wave, oldest_blocker_days, next20_closed=next20_closed, post_audit_closed=post_audit_closed),
-            "next_checkpoint_question": (
-                "What is the smallest cross-repo slice that makes the campaign OS indispensable and turns trust, adoption, and publication depth into a real launch advantage?"
-                if post_audit_closed
-                else (
-                    "What is the smallest cross-repo slice that makes campaign breadth, creator trust, and public promotion feel undeniably real to users?"
-                    if next20_closed
-                    else "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?"
-                )
-            ),
+            "governor_decisions": governor_decisions,
+            "next_checkpoint_question": next_checkpoint_question,
         },
         "supporting_signals": {
             "current_recommended_wave": current_wave,
-            "overall_progress_percent": int(report.get("overall_progress_percent") or 0),
-            "phase_label": str(report.get("phase_label") or "").strip(),
+            "overall_progress_percent": overall_progress,
+            "phase_label": phase_label,
             "history_snapshot_count": history_count,
-            "longest_pole": _longest_pole_label(report),
+            "longest_pole": longest_pole,
             "journey_gate_source": str(FLEET_JOURNEY_GATES),
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
             "active_wave_registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",

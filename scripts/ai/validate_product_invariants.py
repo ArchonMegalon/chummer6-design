@@ -159,6 +159,9 @@ def main() -> int:
         errors.append("Progress report and history snapshot counts must match.")
     if int(history.get("snapshot_count") or 0) < 2:
         errors.append("Progress history must record at least two snapshots.")
+    for field in ("active_wave", "active_wave_status", "current_phase", "eta_summary"):
+        if field not in progress:
+            errors.append(f"PROGRESS_REPORT.generated.json must expose compatibility field {field}.")
 
     pulse_snapshot_path = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
     pulse_snapshot = load_json(pulse_snapshot_path)
@@ -172,6 +175,9 @@ def main() -> int:
     journey_gate_health = snapshot_payload.get("journey_gate_health") or {}
     if not isinstance(journey_gate_health, dict) or "state" not in journey_gate_health:
         errors.append("Weekly product pulse must include journey_gate_health.")
+    for field in ("summary", "active_wave", "active_wave_status", "governor_decisions", "next_checkpoint_question"):
+        if field not in pulse_snapshot:
+            errors.append(f"WEEKLY_PRODUCT_PULSE.generated.json must expose compatibility field {field}.")
 
     groups = sync_manifest.get("product_source_groups") or {}
     mirrors = sync_manifest.get("mirrors") or []
