@@ -19,9 +19,9 @@ Build characters, inspect rulings, and keep sessions moving with explainable mat
 
 ## What is real now
 
-- overall_progress_percent: 73
-- phase_label: Scale & stabilize
-- history_snapshot_count: 4
+- overall_progress_percent: 100
+- phase_label: Public-fit polish
+- history_snapshot_count: 5
 - The Account-Aware Front Door wave is treated as materially closed in canon.
 - The Post-Audit Next 20 wave is treated as materially closed in canon, and the active additive plan is Next 20 Big Wins After Post-Audit Closeout.
 - Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.

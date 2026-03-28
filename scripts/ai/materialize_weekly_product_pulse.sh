@@ -7,7 +7,7 @@ if [ ! -d "$default_fleet_root" ]; then
   default_fleet_root="${repo_root}/../fleet"
 fi
 fleet_root="${1:-${default_fleet_root}}"
-as_of="${2:-$(date -u +%F)}"
+as_of="${2:-$(date +%F)}"
 
 python3 "${fleet_root}/scripts/materialize_public_progress_report.py" \
   --repo-root "${fleet_root}" \

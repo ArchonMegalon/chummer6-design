@@ -10,7 +10,7 @@ This page is generated from the registry-owned public release-channel projection
 
 ## Current build matrix
 
-- phase_label: Scale & stabilize
+- phase_label: Public-fit polish
 - Preview channel: docker
 - version: smoke-2026.03.24-linux-x64
 - published_at: 2026-03-24T19:03:57Z
@@ -60,8 +60,8 @@ Local release proof passed for: install_claim_restore_continue, build_explain_pu
 ## Release proof
 
 - status: passed
-- generated_at: 2026-03-28T21:03:08Z
-- base_url: http://127.0.0.1:8091
+- generated_at: 2026-03-28T21:20:34Z
+- base_url: https://chummer.run
 
 ### Journeys passed
 
