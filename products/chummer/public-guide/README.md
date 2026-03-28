@@ -9,6 +9,14 @@ generated_by: "materialize_public_guide_bundle.py"
 This bundle is generated from canonical design files in `chummer6-design`.
 It exists so the public guide surface can be compiled from design canon instead of hand-maintained drift.
 
+## Product promise
+
+Shadowrun rules truth, with receipts.
+
+Build characters, inspect rulings, and keep sessions moving with explainable math, durable state, and clear proof of what works today.
+
+- Preview product. Honest status. No mystery roadmap.
+
 ## What is real now
 
 - overall_progress_percent: 73
@@ -20,7 +28,10 @@ It exists so the public guide surface can be compiled from design canon instead 
 
 ## Start here
 
+- [Start here](START_HERE.md)
 - [Status](STATUS.md)
+- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)
+- [How can I help](HOW_CAN_I_HELP.md)
 - [Download](DOWNLOAD.md)
 - [Help](HELP.md)
 - [FAQ](FAQ.md)
