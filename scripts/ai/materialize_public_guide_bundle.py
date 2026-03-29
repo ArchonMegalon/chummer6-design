@@ -130,7 +130,26 @@ def _media_worker_module():
 
 def _asset_embed_allowed(*, out_dir: Path, asset_path: str) -> bool:
     normalized = str(asset_path or "").replace("\\", "/").strip()
-    if normalized != "assets/pages/horizons-index.png":
+    gate_specs = {
+        "assets/pages/horizons-index.png": {
+            "min_score": 300.0,
+            "blocked_notes": {
+                "visual_audit:readable_signage_risk",
+                "visual_audit:text_sprawl",
+                "visual_audit:missing_lane_plurality",
+            },
+        },
+        "assets/pages/parts-index.png": {
+            "min_score": 300.0,
+            "blocked_notes": {
+                "visual_audit:readable_signage_risk",
+                "visual_audit:text_sprawl",
+                "visual_audit:dominant_wall_panel",
+            },
+        },
+    }
+    gate = gate_specs.get(normalized)
+    if gate is None:
         return True
     worker = _media_worker_module()
     if worker is None:
@@ -142,12 +161,9 @@ def _asset_embed_allowed(*, out_dir: Path, asset_path: str) -> bool:
         score, notes = worker.visual_audit_score(image_path=image_path, target=normalized)
     except Exception:
         return True
-    blocked_notes = {
-        "visual_audit:readable_signage_risk",
-        "visual_audit:text_sprawl",
-        "visual_audit:missing_lane_plurality",
-    }
-    return score >= 300.0 and not (blocked_notes & set(notes))
+    blocked_notes = {str(entry).strip() for entry in (gate.get("blocked_notes") or set()) if str(entry).strip()}
+    min_score = float(gate.get("min_score") or 0.0)
+    return score >= min_score and not (blocked_notes & set(notes))
 
 
 def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) -> None:
