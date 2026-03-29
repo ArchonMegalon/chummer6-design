@@ -200,6 +200,52 @@ def _journey_gate_health() -> dict[str, Any]:
     }
 
 
+def _launch_readiness_summary(
+    *,
+    journey_gate_health: dict[str, Any],
+    blockers_open: bool,
+    active_wave_status: str,
+    longest_pole: str,
+) -> str:
+    blocked_count = int(journey_gate_health.get("blocked_count") or 0)
+    state = str(journey_gate_health.get("state") or "").strip().lower()
+    if blockers_open or blocked_count > 0 or state == "blocked":
+        return f"Hold launch expansion while {longest_pole} keeps trust-critical proof blocked."
+    if active_wave_status == "in_progress":
+        return "Wave remains active. Keep launch expansion behind governed canaries until support fallout stays stable."
+    return "Ready for broader launch fan-out if provider-route canaries and support closure stay stable."
+
+
+def _provider_route_stewardship_signal(
+    *,
+    as_of: dt.date,
+    journey_gate_health: dict[str, Any],
+    blockers_open: bool,
+    active_wave_status: str,
+) -> dict[str, Any]:
+    blocked_count = int(journey_gate_health.get("blocked_count") or 0)
+    state = str(journey_gate_health.get("state") or "").strip().lower()
+    review_due = (as_of + dt.timedelta(days=14)).isoformat()
+    default_status = (
+        "Pilot defaults are governed"
+        if active_wave_status == "in_progress"
+        else "Default route posture is governed and review-backed"
+    )
+    if blockers_open or blocked_count > 0 or state == "blocked":
+        return {
+            "default_status": default_status,
+            "canary_status": "Canary review required before widening defaults",
+            "review_due": review_due,
+            "next_decision": "Hold default promotion until blocked journey proof and trust fallout are cleared.",
+        }
+    return {
+        "default_status": default_status,
+        "canary_status": "Canary green on all active lanes",
+        "review_due": review_due,
+        "next_decision": "Promote once support fallout remains stable.",
+    }
+
+
 def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     scorecard = _load_yaml(PRODUCT / "PRODUCT_HEALTH_SCORECARD.yaml")
     report = _load_json(PRODUCT / "PROGRESS_REPORT.generated.json")
@@ -246,6 +292,19 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         if not blockers_open
         else "At least one red blocker is open, so release posture needs explicit justification before promotion or claim expansion."
     )
+    active_wave_status = _registry_status(ACTIVE_WAVE_REGISTRY)
+    launch_readiness = _launch_readiness_summary(
+        journey_gate_health=journey_gate_health,
+        blockers_open=blockers_open,
+        active_wave_status=active_wave_status,
+        longest_pole=longest_pole,
+    )
+    provider_route_stewardship = _provider_route_stewardship_signal(
+        as_of=as_of,
+        journey_gate_health=journey_gate_health,
+        blockers_open=blockers_open,
+        active_wave_status=active_wave_status,
+    )
 
     payload: dict[str, Any] = {
         "contract_name": "chummer.weekly_product_pulse",
@@ -259,7 +318,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         # remains the canonical source of detail.
         "summary": summary,
         "active_wave": current_wave,
-        "active_wave_status": _registry_status(ACTIVE_WAVE_REGISTRY),
+        "active_wave_status": active_wave_status,
         "journey_gate_health": journey_gate_health,
         "governor_decisions": governor_decisions,
         "next_checkpoint_question": next_checkpoint_question,
@@ -283,6 +342,8 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
             "phase_label": phase_label,
             "history_snapshot_count": history_count,
             "longest_pole": longest_pole,
+            "launch_readiness": launch_readiness,
+            "provider_route_stewardship": provider_route_stewardship,
             "journey_gate_source": str(FLEET_JOURNEY_GATES),
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
             "active_wave_registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
