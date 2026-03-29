@@ -22,12 +22,14 @@ OUTPUT_DEFAULT = "products/chummer/public-guide"
 POST_AUDIT_REGISTRY = PRODUCT_ROOT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
 HUB_REGISTRY_ROOT_ENV = "CHUMMER_HUB_REGISTRY_ROOT"
+IMAGE_CURATION_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_IMAGE_CURATION.yaml"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
 
 _MEDIA_WORKER = None
+_IMAGE_CURATION = None
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -128,8 +130,60 @@ def _media_worker_module():
     return module
 
 
+def _image_curation() -> dict[str, dict[str, object]]:
+    global _IMAGE_CURATION
+    if isinstance(_IMAGE_CURATION, dict):
+        return _IMAGE_CURATION
+    if not IMAGE_CURATION_PATH.is_file():
+        _IMAGE_CURATION = {}
+        return _IMAGE_CURATION
+    payload = _load_yaml(IMAGE_CURATION_PATH)
+    raw_assets = payload.get("assets") or {}
+    curated: dict[str, dict[str, object]] = {}
+    if isinstance(raw_assets, dict):
+        for raw_key, raw_value in raw_assets.items():
+            key = str(raw_key or "").replace("\\", "/").strip()
+            if key.startswith("assets/") and isinstance(raw_value, dict):
+                curated[key] = raw_value
+    _IMAGE_CURATION = curated
+    return curated
+
+
+def _resolve_curated_asset_source(*, repo_root: Path, source_root: Path, raw_value: str) -> Path:
+    cleaned = str(raw_value or "").strip()
+    if not cleaned:
+        raise FileNotFoundError("empty curated asset source")
+    path = Path(cleaned)
+    candidates: list[Path] = []
+    if path.is_absolute():
+        candidates.append(path)
+        candidates.extend(
+            candidate / Path(cleaned).name
+            for candidate in _candidate_asset_roots(repo_root)
+            if candidate.is_dir()
+        )
+    elif cleaned.startswith("assets/"):
+        candidates.append(source_root / Path(cleaned).relative_to("assets"))
+        candidates.append(repo_root.parent / "Chummer6" / cleaned)
+    else:
+        candidates.append(repo_root / cleaned)
+        candidates.append(repo_root.parent / cleaned)
+        candidates.append(source_root.parent / cleaned)
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+    searched = ", ".join(str(candidate) for candidate in candidates)
+    raise FileNotFoundError(f"unable to resolve curated asset source {cleaned}; checked: {searched}")
+
+
 def _asset_embed_allowed(*, out_dir: Path, asset_path: str) -> bool:
     normalized = str(asset_path or "").replace("\\", "/").strip()
+    curation = _image_curation().get(normalized) or {}
+    embed_policy = str(curation.get("embed_policy") or "").strip().lower()
+    if embed_policy in {"suppress", "hide", "deny", "drop"}:
+        return False
+    if embed_policy in {"allow_manual", "manual", "curated"}:
+        return (out_dir / normalized).is_file()
     gate_specs = {
         "assets/pages/horizons-index.png": {
             "min_score": 300.0,
@@ -140,6 +194,14 @@ def _asset_embed_allowed(*, out_dir: Path, asset_path: str) -> bool:
             },
         },
         "assets/pages/parts-index.png": {
+            "min_score": 300.0,
+            "blocked_notes": {
+                "visual_audit:readable_signage_risk",
+                "visual_audit:text_sprawl",
+                "visual_audit:dominant_wall_panel",
+            },
+        },
+        "assets/horizons/alice.png": {
             "min_score": 300.0,
             "blocked_notes": {
                 "visual_audit:readable_signage_risk",
@@ -215,6 +277,14 @@ def _materialize_public_assets(repo_root: Path, out_dir: Path) -> None:
     if destination.exists():
         shutil.rmtree(destination)
     shutil.copytree(source_root, destination)
+    for asset_path, entry in _image_curation().items():
+        source_override = str(entry.get("source_override") or "").strip()
+        if not source_override:
+            continue
+        source = _resolve_curated_asset_source(repo_root=repo_root, source_root=source_root, raw_value=source_override)
+        target = destination / Path(asset_path).relative_to("assets")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
     for png_path in destination.rglob("*.png"):
         _materialize_derivative(png_path, png_path.with_suffix(".webp"), codec="webp")
         _materialize_derivative(png_path, png_path.with_suffix(".avif"), codec="avif")

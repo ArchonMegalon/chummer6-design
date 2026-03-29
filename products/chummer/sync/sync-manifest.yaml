@@ -46,6 +46,7 @@ product_source_groups:
     - products/chummer/WEEKLY_PRODUCT_PULSE.generated.json
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml
+    - products/chummer/CAMPAIGN_AUTHORITY_AND_PERMISSIONS.md
     - products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md
     - products/chummer/EXPERIENCE_SUCCESS_METRICS.md
     - products/chummer/USER_JOURNEYS.md
