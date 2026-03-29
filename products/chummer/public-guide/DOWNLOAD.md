@@ -19,9 +19,9 @@ This page is generated from the registry-owned public release-channel projection
 - rollout_state: local_docker_preview
 - supportability_state: local_docker_proven
 
-Local release proof passed for: install_claim_restore_continue, build_explain_publish, campaign_session_recover_recap, report_cluster_release_notify.
+Local release proof passed for: install_claim_restore_continue, build_explain_publish, campaign_session_recover_recap, report_cluster_release_notify. Claimed-device restore and bounded offline prefetch stayed grounded on the current shelf.
 
-- known_issues: Preview caveats still apply, but the current shelf has recent install, recovery, and support proof instead of only manifest presence.
+- known_issues: Preview caveats still apply, but the current shelf has recent install, claimed-device recovery, bounded offline prefetch, and support proof instead of only manifest presence.
 - fix_availability: Only send fixed notices after the affected install can receive the published channel artifact now on the shelf.
 
 ### Windows
