@@ -169,6 +169,51 @@ def main() -> int:
         errors.append("WEEKLY_PRODUCT_PULSE.generated.json must carry the chummer.weekly_product_pulse contract name.")
     if int((pulse_snapshot.get("supporting_signals") or {}).get("history_snapshot_count") or 0) != int(history.get("snapshot_count") or 0):
         errors.append("Weekly product pulse must carry the same history snapshot count as PROGRESS_HISTORY.generated.json.")
+    supporting_signals = pulse_snapshot.get("supporting_signals") or {}
+    if not isinstance(supporting_signals, dict):
+        errors.append("WEEKLY_PRODUCT_PULSE.generated.json must expose supporting_signals as an object.")
+    else:
+        required_supporting_signals = (
+            "closure_health",
+            "adoption_health",
+            "progress_trend",
+            "provider_route_stewardship",
+        )
+        for signal_name in required_supporting_signals:
+            if signal_name not in supporting_signals:
+                errors.append(f"WEEKLY_PRODUCT_PULSE.generated.json must include supporting signal '{signal_name}'.")
+
+        closure_health = supporting_signals.get("closure_health")
+        if not isinstance(closure_health, dict):
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json must expose closure_health as an object in supporting_signals.")
+        elif "state" not in closure_health:
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json closure_health must include a state field.")
+
+        adoption_health = supporting_signals.get("adoption_health")
+        if not isinstance(adoption_health, dict):
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json must expose adoption_health as an object in supporting_signals.")
+        elif "state" not in adoption_health:
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json adoption_health must include a state field.")
+
+        progress_trend = supporting_signals.get("progress_trend")
+        if not isinstance(progress_trend, dict):
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json must expose progress_trend as an object in supporting_signals.")
+        elif "state" not in progress_trend or "direction" not in progress_trend:
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json progress_trend must include state and direction fields.")
+
+        provider_route_stewardship = supporting_signals.get("provider_route_stewardship")
+        if not isinstance(provider_route_stewardship, dict):
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json must expose provider_route_stewardship as an object in supporting_signals.")
+        elif {
+            "default_status",
+            "canary_status",
+            "review_due",
+            "next_decision",
+        } - set(map(str, provider_route_stewardship.keys())):
+            errors.append(
+                "WEEKLY_PRODUCT_PULSE.generated.json provider_route_stewardship must include default_status, canary_status, review_due, and next_decision fields."
+            )
+
     snapshot_payload = pulse_snapshot.get("snapshot") or {}
     if not isinstance(snapshot_payload, dict) or not snapshot_payload.get("governor_decisions"):
         errors.append("Weekly product pulse must include at least one governor decision.")

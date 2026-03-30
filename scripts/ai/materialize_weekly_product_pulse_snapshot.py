@@ -17,20 +17,71 @@ DEFAULT_OUT = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
 NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
+MAX_PROGRESS_TREND_SAMPLES = 8
+PROVIDER_ROUTE_REVIEW_CADENCE_DAYS = 14
 FLEET_JOURNEY_GATE_CANDIDATES = (
     Path("/docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json"),
     ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "JOURNEY_GATES.generated.json",
 )
+FLEET_SUPPORT_CASE_PACKETS_CANDIDATES = (
+    Path("/docker/fleet/.codex-studio/published/SUPPORT_CASE_PACKETS.generated.json"),
+    ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "SUPPORT_CASE_PACKETS.generated.json",
+)
+FLEET_STATUS_PLANE_CANDIDATES = (
+    Path("/docker/fleet/.codex-studio/published/STATUS_PLANE.generated.yaml"),
+    ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "STATUS_PLANE.generated.yaml",
+)
+LOCAL_RELEASE_PROOF_CANDIDATES = (
+    ROOT / "chummer.run-services" / ".codex-studio" / "published" / "HUB_LOCAL_RELEASE_PROOF.generated.json",
+    ROOT / "chummer6-hub" / ".codex-studio" / "published" / "HUB_LOCAL_RELEASE_PROOF.generated.json",
+    Path("/docker/fleet/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json"),
+)
 
 
-def _resolve_fleet_journey_gates() -> Path:
-    for candidate in FLEET_JOURNEY_GATE_CANDIDATES:
+def _resolve_fleet_artifact(candidates: tuple[Path, ...]) -> Path:
+    for candidate in candidates:
         if candidate.is_file():
             return candidate
-    return FLEET_JOURNEY_GATE_CANDIDATES[0]
+    return candidates[0]
 
 
-FLEET_JOURNEY_GATES = _resolve_fleet_journey_gates()
+FLEET_JOURNEY_GATES = _resolve_fleet_artifact(FLEET_JOURNEY_GATE_CANDIDATES)
+FLEET_SUPPORT_CASE_PACKETS = _resolve_fleet_artifact(FLEET_SUPPORT_CASE_PACKETS_CANDIDATES)
+FLEET_STATUS_PLANE = _resolve_fleet_artifact(FLEET_STATUS_PLANE_CANDIDATES)
+LOCAL_RELEASE_PROOF = _resolve_fleet_artifact(LOCAL_RELEASE_PROOF_CANDIDATES)
+
+
+def _read_optional_yaml(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {}
+    return _load_yaml(path)
+
+
+def _read_optional_json(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {}
+    return _load_json(path)
+
+
+def _parse_iso_date(value: str | None) -> dt.datetime | None:
+    if not value:
+        return None
+    normalized = str(value).strip()
+    if not normalized:
+        return None
+    if normalized.endswith("Z"):
+        normalized = f"{normalized[:-1]}+00:00"
+    try:
+        return dt.datetime.fromisoformat(normalized)
+    except ValueError:
+        return None
+
+
+def _safe_int(value: Any, *, default: int = 0) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -200,50 +251,387 @@ def _journey_gate_health() -> dict[str, Any]:
     }
 
 
-def _launch_readiness_summary(
+def _compute_closure_health(
+    journey_gates: dict[str, Any],
+    support_packets: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not journey_gates and not support_packets:
+        return None
+
+    waiting_closure_count = 0
+    pending_human_response_count = 0
+    for journey in journey_gates.get("journeys") or []:
+        if not isinstance(journey, dict):
+            continue
+        signals = journey.get("signals") if isinstance(journey.get("signals"), dict) else {}
+        waiting_closure_count += _safe_int(signals.get("support_closure_waiting_count"))
+        pending_human_response_count += _safe_int(signals.get("support_needs_human_response_count"))
+
+    summary_payload = support_packets.get("summary") if isinstance(support_packets.get("summary"), dict) else {}
+    source_payload = support_packets.get("source") if isinstance(support_packets.get("source"), dict) else {}
+
+    open_case_count = _safe_int(summary_payload.get("open_case_count"))
+    reported_case_count = _safe_int(source_payload.get("reported_count"))
+    materialized_packet_count = _safe_int(source_payload.get("materialized_count"))
+    design_impact_count = _safe_int(summary_payload.get("design_impact_count"))
+
+    state = (
+        "clear"
+        if waiting_closure_count == 0 and pending_human_response_count == 0 and open_case_count == 0
+        else "watch"
+        if waiting_closure_count > 0 or pending_human_response_count > 0
+        else "monitor"
+    )
+
+    summary = (
+        f"{waiting_closure_count} waiting closure / {pending_human_response_count} pending human response. {open_case_count} open support packets across {reported_case_count} reported cases."
+        if state == "clear"
+        else f"{waiting_closure_count} waiting closure / {pending_human_response_count} pending human response. {open_case_count} open support packets still need closure follow-through."
+        if state == "watch"
+        else f"{waiting_closure_count} waiting closure / {pending_human_response_count} pending human response. {open_case_count} open support packets and {design_impact_count} design-impact packet(s) remain under review."
+    )
+
+    return {
+        "state": state,
+        "open_case_count": open_case_count,
+        "waiting_closure_count": waiting_closure_count,
+        "pending_human_response_count": pending_human_response_count,
+        "reported_case_count": reported_case_count,
+        "materialized_packet_count": materialized_packet_count,
+        "design_impact_count": design_impact_count,
+        "summary": summary,
+    }
+
+
+def _compute_adoption_health(report: dict[str, Any], local_release_proof: dict[str, Any]) -> dict[str, Any] | None:
+    history_snapshot_count = _safe_int(report.get("history_snapshot_count"))
+    proven_journey_count = len(local_release_proof.get("journeys_passed") or []) if isinstance(local_release_proof.get("journeys_passed"), list) else 0
+    proven_route_count = len(local_release_proof.get("proof_routes") or []) if isinstance(local_release_proof.get("proof_routes"), list) else 0
+    local_release_proof_status = str(local_release_proof.get("status") or "unknown").strip().lower()
+
+    if (
+        history_snapshot_count == 0
+        and proven_journey_count == 0
+        and proven_route_count == 0
+        and local_release_proof_status == "unknown"
+    ):
+        return None
+
+    state = (
+        "clear"
+        if local_release_proof_status == "passed" and proven_journey_count > 0 and proven_route_count > 0
+        else "early"
+        if history_snapshot_count > 0
+        else "partial"
+    )
+
+    proof_segment = (
+        "Current local edge proof passed."
+        if local_release_proof_status == "passed"
+        else f"Current local edge proof is {local_release_proof_status}."
+    )
+
+    if proven_journey_count > 0 and proven_route_count > 0:
+        journeys_segment = f"{proven_journey_count} journey proofs and {proven_route_count} trust routes are on record."
+    elif proven_journey_count > 0:
+        journeys_segment = f"{proven_journey_count} journey proofs are on record."
+    elif proven_route_count > 0:
+        journeys_segment = f"{proven_route_count} trust routes are on record."
+    else:
+        journeys_segment = "Journey-proof evidence is still accumulating."
+
+    if history_snapshot_count > 0:
+        history_segment = (
+            f"{history_snapshot_count} weekly snapshots are measured so far, so adoption history is still early."
+            if history_snapshot_count < 6
+            else f"{history_snapshot_count} weekly snapshots are on record for the current public trust posture."
+        )
+    else:
+        history_segment = "Weekly adoption history is not materialized yet."
+
+    return {
+        "state": state,
+        "local_release_proof_status": local_release_proof_status,
+        "proven_journey_count": proven_journey_count,
+        "proven_route_count": proven_route_count,
+        "history_snapshot_count": history_snapshot_count,
+        "summary": f"{proof_segment} {journeys_segment} {history_segment}",
+    }
+
+
+def _compute_progress_trend(history: dict[str, Any]) -> dict[str, Any] | None:
+    snapshots = history.get("snapshots")
+    if not isinstance(snapshots, list):
+        return None
+
+    samples = [
+        {"as_of": str(snapshot.get("as_of") or "").strip(), "overall_progress_percent": _safe_int(snapshot.get("overall_progress_percent"))}
+        for snapshot in snapshots
+        if isinstance(snapshot, dict)
+        and str(snapshot.get("as_of") or "").strip()
+        and snapshot.get("overall_progress_percent") is not None
+    ]
+    samples.sort(key=lambda item: item["as_of"])
+
+    if not samples:
+        return None
+    if len(samples) > MAX_PROGRESS_TREND_SAMPLES:
+        samples = samples[-MAX_PROGRESS_TREND_SAMPLES:]
+
+    if len(samples) < 2:
+        single = samples[0]["as_of"]
+        return {
+            "state": "early",
+            "direction": "flat",
+            "delta_percent": 0,
+            "from_as_of": single,
+            "to_as_of": single,
+            "summary": "Progress trend is awaiting measured history; two weekly points are required.",
+            "sample_count": len(samples),
+            "samples": samples,
+        }
+
+    previous = samples[-2]
+    latest = samples[-1]
+    delta = latest["overall_progress_percent"] - previous["overall_progress_percent"]
+    direction = "up" if delta > 0 else "down" if delta < 0 else "flat"
+    direction_label = {
+        "up": "Upward momentum",
+        "down": "Regression",
+    }.get(direction, "Flat trend")
+    delta_text = (
+        f"+{abs(delta)}%"
+        if direction == "up"
+        else f"-{abs(delta)}%"
+        if direction == "down"
+        else f"{abs(delta)}%"
+    )
+    trend_window = " -> ".join(
+        f"{sample['as_of']} {sample['overall_progress_percent']}%" for sample in samples
+    )
+
+    return {
+        "state": "steady" if abs(delta) == 0 else "moving",
+        "direction": direction,
+        "delta_percent": abs(delta),
+        "from_as_of": previous["as_of"],
+        "to_as_of": latest["as_of"],
+        "summary": f"{direction_label} {delta_text} from {previous['as_of']} to {latest['as_of']}. Trend window: {trend_window}.",
+        "sample_count": len(samples),
+        "samples": samples,
+    }
+
+
+def _provider_route_review_due(review_evidence_generated_at: str | None, fallback_review_due: str | None, as_of: dt.date) -> str | None:
+    if review_evidence_generated_at:
+        parsed = _parse_iso_date(review_evidence_generated_at)
+        if parsed is not None:
+            return (parsed.date() + dt.timedelta(days=PROVIDER_ROUTE_REVIEW_CADENCE_DAYS)).isoformat()
+    if fallback_review_due:
+        return fallback_review_due
+    return (as_of + dt.timedelta(days=PROVIDER_ROUTE_REVIEW_CADENCE_DAYS)).isoformat()
+
+
+def _compute_provider_route_decision(
     *,
-    journey_gate_health: dict[str, Any],
-    blockers_open: bool,
-    active_wave_status: str,
-    longest_pole: str,
+    public_target_count: int,
+    canary_healthy: bool,
+    hub_is_public_pilot: bool,
+    closure_health: dict[str, Any] | None,
+    local_release_proof: dict[str, Any],
 ) -> str:
-    blocked_count = int(journey_gate_health.get("blocked_count") or 0)
-    state = str(journey_gate_health.get("state") or "").strip().lower()
-    if blockers_open or blocked_count > 0 or state == "blocked":
-        return f"Hold launch expansion while {longest_pole} keeps trust-critical proof blocked."
-    if active_wave_status == "in_progress":
-        return "Wave remains active. Keep launch expansion behind governed canaries until support fallout stays stable."
-    return "Ready for broader launch fan-out if provider-route canaries and support closure stay stable."
+    if public_target_count == 0:
+        return "Hold broad promotion until public route canary coverage exists."
+    if not canary_healthy:
+        return "Hold broad promotion until route canaries return to green."
+    if str(local_release_proof.get("status") or "").strip().lower() != "passed":
+        return "Hold broad promotion until fresh local release proof passes on the public edge."
+    if closure_health is not None and str(closure_health.get("state") or "").strip().lower() != "clear":
+        return "Keep the current pilot default until support closure returns to a clear posture."
+    if not hub_is_public_pilot:
+        return "Finish the public pilot promotion path before making this the default route."
+    return "Promote once canaries stay green and support fallout remains clear through the next route review."
 
 
 def _provider_route_stewardship_signal(
     *,
-    as_of: dt.date,
     journey_gate_health: dict[str, Any],
     blockers_open: bool,
     active_wave_status: str,
-) -> dict[str, Any]:
+    as_of: dt.date,
+    status_plane: dict[str, Any],
+    closure_health: dict[str, Any] | None,
+    local_release_proof: dict[str, Any],
+    seed: dict[str, Any] | None,
+) -> str:
     blocked_count = int(journey_gate_health.get("blocked_count") or 0)
     state = str(journey_gate_health.get("state") or "").strip().lower()
-    review_due = (as_of + dt.timedelta(days=14)).isoformat()
-    default_status = (
-        "Pilot defaults are governed"
-        if active_wave_status == "in_progress"
-        else "Default route posture is governed and review-backed"
-    )
-    if blockers_open or blocked_count > 0 or state == "blocked":
+
+    if not status_plane:
+        default_status = "Pilot defaults are not yet governed"
+        canary_status = "Canary evidence is still accumulating"
+        if blockers_open or blocked_count > 0 or state == "blocked" or active_wave_status != "in_progress":
+            hub_is_public_pilot = default_status == "Pilot defaults are governed"
+        else:
+            hub_is_public_pilot = True
+        seed_provider_route = (seed or {}).get("provider_route_stewardship") if isinstance(seed, dict) else {}
+        review_due = _provider_route_review_due(
+            review_evidence_generated_at=None,
+            fallback_review_due=(seed_provider_route or {}).get("review_due") if isinstance(seed_provider_route, dict) else None,
+            as_of=as_of,
+        )
+        next_decision = _compute_provider_route_decision(
+            public_target_count=0,
+            canary_healthy=False,
+            hub_is_public_pilot=hub_is_public_pilot,
+            closure_health=closure_health,
+            local_release_proof=local_release_proof,
+        )
         return {
             "default_status": default_status,
-            "canary_status": "Canary review required before widening defaults",
+            "canary_status": canary_status,
             "review_due": review_due,
-            "next_decision": "Hold default promotion until blocked journey proof and trust fallout are cleared.",
+            "next_decision": next_decision,
         }
+
+    deployment = status_plane.get("deployment_posture") if isinstance(status_plane.get("deployment_posture"), dict) else {}
+    runtime_healing = status_plane.get("runtime_healing") if isinstance(status_plane.get("runtime_healing"), dict) else {}
+    summary_payload = runtime_healing.get("summary") if isinstance(runtime_healing.get("summary"), dict) else {}
+
+    public_target_count = _safe_int(deployment.get("public_target_count"))
+    degraded_service_count = _safe_int(summary_payload.get("degraded_service_count"))
+    alert_state = str(summary_payload.get("alert_state") or "").strip().lower()
+    canary_healthy = degraded_service_count == 0 and alert_state == "healthy" and public_target_count > 0
+
+    projects = status_plane.get("projects")
+    if isinstance(projects, list):
+        hub_is_public_pilot = any(
+            isinstance(project, dict)
+            and str(project.get("id") or "").strip().casefold() == "hub"
+            and str(project.get("deployment_access_posture") or "").strip().casefold() == "public"
+            and str(project.get("deployment_promotion_stage") or "").strip().casefold() == "promoted_preview"
+            for project in projects
+        )
+    else:
+        hub_is_public_pilot = False
+
+    default_status = (
+        "Pilot defaults are governed"
+        if hub_is_public_pilot
+        else "Pilot defaults still need operator review"
+        if public_target_count > 0
+        else "Pilot defaults are not yet governed"
+    )
+
+    if canary_healthy:
+        canary_status = "Canary green on all active lanes"
+    elif degraded_service_count > 0:
+        canary_status = f"Canary watch on {degraded_service_count} active lane(s)"
+    else:
+        canary_status = "Canary evidence is still accumulating"
+
+    if active_wave_status == "in_progress" and state == "ready":
+        default_status = "Pilot defaults are governed"
+
+    review_evidence_generated_at = str(status_plane.get("generated_at") or "").strip()
+    seed_provider_route = (seed or {}).get("provider_route_stewardship") if isinstance(seed, dict) else None
+    review_due = _provider_route_review_due(
+        review_evidence_generated_at=review_evidence_generated_at if review_evidence_generated_at else None,
+        fallback_review_due=(seed_provider_route or {}).get("review_due") if isinstance(seed_provider_route, dict) else None,
+        as_of=as_of,
+    )
+
     return {
         "default_status": default_status,
-        "canary_status": "Canary green on all active lanes",
+        "canary_status": canary_status,
         "review_due": review_due,
-        "next_decision": "Promote once support fallout remains stable.",
+        "next_decision": _compute_provider_route_decision(
+            public_target_count=public_target_count,
+            canary_healthy=canary_healthy,
+            hub_is_public_pilot=hub_is_public_pilot,
+            closure_health=closure_health,
+            local_release_proof=local_release_proof,
+        ),
     }
+
+
+def _closure_health_summary(closure_health: dict[str, Any] | None) -> str:
+    if closure_health is None:
+        return "support closure evidence is partial."
+    return {
+        "clear": "support closure is clear",
+        "watch": "support closure still needs follow-through",
+        "monitor": "support closure needs monitoring",
+    }.get(str(closure_health.get("state") or "").strip(), "support closure evidence is partial.")
+
+
+def _missing_closure_health() -> dict[str, Any]:
+    return {
+        "state": "unknown",
+        "open_case_count": 0,
+        "waiting_closure_count": 0,
+        "pending_human_response_count": 0,
+        "reported_case_count": 0,
+        "materialized_packet_count": 0,
+        "design_impact_count": 0,
+        "summary": "Support closure evidence is not yet measurable from the current public evidence payload.",
+    }
+
+
+def _missing_adoption_health(history_snapshot_count: int) -> dict[str, Any]:
+    return {
+        "state": "unknown",
+        "local_release_proof_status": "unknown",
+        "proven_journey_count": 0,
+        "proven_route_count": 0,
+        "history_snapshot_count": history_snapshot_count,
+        "summary": (
+            "Adoption health is still early and needs more weekly snapshots."
+            if history_snapshot_count
+            else "Adoption health cannot be measured before weekly history exists."
+        ),
+    }
+
+
+def _missing_progress_trend(as_of: dt.date) -> dict[str, Any]:
+    return {
+        "state": "unknown",
+        "direction": "flat",
+        "delta_percent": 0,
+        "from_as_of": as_of.isoformat(),
+        "to_as_of": as_of.isoformat(),
+        "summary": "Progress trend is not yet measurable without at least two weekly points.",
+        "sample_count": 0,
+        "samples": [],
+    }
+
+
+def _launch_readiness_summary(
+    *,
+    journey_gate_health: dict[str, Any],
+    blocked_journeys: bool,
+    local_release_proof: dict[str, Any],
+    provider_route_stewardship: dict[str, Any],
+    closure_health: dict[str, Any] | None,
+    active_wave_status: str,
+) -> str:
+    if not journey_gate_health and not local_release_proof and closure_health is None and not provider_route_stewardship:
+        return "Launch posture is still waiting on provider-route evidence." if active_wave_status == "in_progress" else "Launch posture is still waiting on provider-route evidence."
+
+    blocked_journey_count = int(journey_gate_health.get("blocked_count") or 0) if isinstance(journey_gate_health, dict) else 0
+    if blocked_journeys or blocked_journey_count > 0:
+        return f"Hold launch expansion pending route-canary validation. {blocked_journey_count} golden journey(s) remain blocked."
+
+    if str(local_release_proof.get("status") or "").strip().lower() != "passed":
+        return "Hold launch expansion pending fresh local release proof on the public edge."
+
+    if closure_health is not None and str(closure_health.get("state") or "").strip().lower() != "clear":
+        return "Hold launch expansion until support closure returns to a clear posture on the public edge."
+
+    if str(provider_route_stewardship.get("canary_status") or "") == "Canary green on all active lanes":
+        return "Route-canary validation is green; widen launch only while support fallout remains stable."
+
+    return "Launch posture is still waiting on provider-route evidence."
 
 
 def build_snapshot(as_of: dt.date) -> dict[str, Any]:
@@ -264,6 +652,15 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     phase_label = str(report.get("phase_label") or "").strip() or "Scale & stabilize"
     longest_pole = _longest_pole_label(report)
     journey_gate_health = _journey_gate_health()
+    support_packets = _read_optional_json(FLEET_SUPPORT_CASE_PACKETS)
+    status_plane = _read_optional_yaml(FLEET_STATUS_PLANE)
+    local_release_proof = _read_optional_json(LOCAL_RELEASE_PROOF)
+    closure_health = _compute_closure_health(
+        _load_json(FLEET_JOURNEY_GATES) if FLEET_JOURNEY_GATES.is_file() else {},
+        support_packets,
+    )
+    adoption_health = _compute_adoption_health(report, local_release_proof)
+    progress_trend = _compute_progress_trend(history)
     governor_decisions = _governor_decisions(
         as_of,
         report,
@@ -283,7 +680,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     )
     summary = (
         f"{current_wave} remains the active wave; journey proof is {journey_gate_health['state']}; "
-        f"overall progress is {overall_progress}% in '{phase_label}'; the longest pole remains {longest_pole}."
+        f"overall progress is {overall_progress}% in '{phase_label}'; the longest pole remains {longest_pole}; {_closure_health_summary(closure_health)}."
     )
 
     release_health_state = "green_or_explained" if not blockers_open else "needs_attention"
@@ -293,16 +690,23 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         else "At least one red blocker is open, so release posture needs explicit justification before promotion or claim expansion."
     )
     active_wave_status = _registry_status(ACTIVE_WAVE_REGISTRY)
-    launch_readiness = _launch_readiness_summary(
-        journey_gate_health=journey_gate_health,
-        blockers_open=blockers_open,
-        active_wave_status=active_wave_status,
-        longest_pole=longest_pole,
-    )
+    blocked_journeys = blockers_open or journey_gate_health.get("blocked_count", 0) > 0 or str(journey_gate_health.get("state") or "").strip().lower() == "blocked"
     provider_route_stewardship = _provider_route_stewardship_signal(
-        as_of=as_of,
         journey_gate_health=journey_gate_health,
-        blockers_open=blockers_open,
+        blockers_open=blocked_journeys,
+        active_wave_status=active_wave_status,
+        as_of=as_of,
+        status_plane=status_plane,
+        closure_health=closure_health,
+        local_release_proof=local_release_proof,
+        seed=None,
+    )
+    launch_readiness = _launch_readiness_summary(
+        blocked_journeys=blocked_journeys,
+        journey_gate_health=journey_gate_health,
+        local_release_proof=local_release_proof,
+        provider_route_stewardship=provider_route_stewardship,
+        closure_health=closure_health,
         active_wave_status=active_wave_status,
     )
 
@@ -350,6 +754,11 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
             "scorecard_metric_count": sum(len((card or {}).get("metrics") or []) for card in (scorecard.get("scorecards") or []) if isinstance(card, dict)),
         },
     }
+
+    payload["supporting_signals"]["closure_health"] = closure_health or _missing_closure_health()
+    payload["supporting_signals"]["adoption_health"] = adoption_health or _missing_adoption_health(history_count)
+    payload["supporting_signals"]["progress_trend"] = progress_trend or _missing_progress_trend(as_of)
+
     return payload
 
 

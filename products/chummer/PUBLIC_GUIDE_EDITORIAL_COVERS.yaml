@@ -30,7 +30,7 @@ assets:
     chips:
       - COMPARE
       - PRECHECK
-      - ENGINE TRUTH
+      - RECEIPTS
     accent: "#f59e0b"
     accent_secondary: "#4fd1ff"
     focus: [0.42, 0.46]
@@ -71,10 +71,10 @@ assets:
     series_label: CHUMMER6 HORIZON
     index: "04"
     title: JACKPOINT
-    subtitle: Grounded dossiers, recaps, and briefings that still carry provenance.
+    subtitle: Grounded dossiers, recaps, and briefings with clear receipts.
     chips:
       - DOSSIERS
-      - PROVENANCE
+      - RECEIPTS
       - RECAPS
     accent: "#67e8f9"
     accent_secondary: "#8bff9e"
@@ -128,7 +128,7 @@ assets:
     series_label: CHUMMER6 HORIZON
     index: "07"
     title: TABLE PULSE
-    subtitle: Bounded post-session coaching about pacing, energy, and spotlight balance.
+    subtitle: Post-session coaching about pacing, energy, and spotlight balance.
     chips:
       - PACING
       - SPOTLIGHT
@@ -141,11 +141,11 @@ assets:
     kind: mosaic_cover
     series_label: CHUMMER6 FUTURES
     title: HORIZONS
-    subtitle: Bounded product moves with differentiated identities, grounded seams, and real table pain behind each lane.
+    subtitle: Future-facing ideas shaped by real table friction, clearer planning, and better continuity.
     chips:
-      - FUTURE LANES
-      - GROUNDED MOVES
-      - TABLE PAIN
+      - NEXT IDEAS
+      - TABLE NEEDS
+      - CONTINUITY
     accent: "#4fd1ff"
     accent_secondary: "#ff7a45"
     tile_sources:
@@ -161,11 +161,11 @@ assets:
     series_label: CHUMMER6 PART
     index: "01"
     title: DESIGN
-    subtitle: The long-range product map and truth filter.
+    subtitle: The long-range product map and decision filter.
     chips:
-      - CANON
+      - STRATEGY
       - ROADMAP
-      - TRUTH FILTER
+      - DECISIONS
     accent: "#82cfff"
     accent_secondary: "#f6d365"
     focus: [0.54, 0.44]
@@ -210,9 +210,9 @@ assets:
     series_label: CHUMMER6 PART
     index: "04"
     title: MOBILE
-    subtitle: The session shell you feel at the table.
+    subtitle: The table-side companion you feel during play.
     chips:
-      - SESSION SHELL
+      - TABLESIDE
       - AT TABLE
       - RECOVERY
     accent: "#57c7ff"
@@ -225,11 +225,11 @@ assets:
     series_label: CHUMMER6 PART
     index: "05"
     title: HUB
-    subtitle: The online side that keeps identity, coordination, and hosted participation boring.
+    subtitle: The online side that keeps sign-in, sync, and community features boring.
     chips:
-      - IDENTITY
-      - HOSTING
-      - COORDINATION
+      - ACCOUNTS
+      - SYNC
+      - COMMUNITY
     accent: "#4fd1ff"
     accent_secondary: "#8bff9e"
     focus: [0.62, 0.44]
@@ -257,11 +257,11 @@ assets:
     series_label: CHUMMER6 PART
     index: "07"
     title: HUB REGISTRY
-    subtitle: The artifact shelf, install truth, and compatibility record.
+    subtitle: The release shelf, install record, and compatibility record.
     chips:
-      - ARTIFACTS
+      - FILES
       - COMPATIBILITY
-      - SHELF
+      - RELEASES
     accent: "#f7b267"
     accent_secondary: "#82cfff"
     focus: [0.64, 0.48]
@@ -272,11 +272,11 @@ assets:
     series_label: CHUMMER6 PART
     index: "08"
     title: MEDIA FACTORY
-    subtitle: The render-only asset plant.
+    subtitle: The dedicated media studio.
     chips:
-      - RENDERS
-      - BRIEFS
-      - PUBLIC ASSETS
+      - TEASERS
+      - DOSSIERS
+      - SHOWCASES
     accent: "#ff5c7a"
     accent_secondary: "#ffd166"
     focus: [0.50, 0.42]
@@ -290,11 +290,11 @@ assets:
     layout: editorial_cluster
     series_label: CHUMMER6 SYSTEM
     title: PARTS
-    subtitle: The deterministic engine, inspectable workbench, session shell, artifact shelf, and publication plant behind the public guide.
+    subtitle: The rules engine, inspectable workbench, table companion, release path, and publishing studio behind the public guide.
     chips:
-      - PRODUCT MAP
-      - SHARED LANGUAGE
-      - TRUST SEAMS
+      - PRODUCT TOUR
+      - RULES + TOOLS
+      - RELEASE PATH
     accent: "#ff7a45"
     accent_secondary: "#57c7ff"
     tile_sources:

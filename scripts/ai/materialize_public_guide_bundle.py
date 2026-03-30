@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
@@ -36,6 +37,95 @@ MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
 
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
+PUBLIC_PHASE_LABELS = {
+    "public-fit polish": "Public preview",
+}
+PUBLIC_HORIZON_STAGE_LABELS = {
+    "horizon": "Future concept",
+    "bounded_research": "Research and prototypes",
+}
+RELEASE_PROOF_JOURNEY_LABELS = {
+    "install_claim_restore_continue": "download, reconnect, restore, and continue",
+    "build_explain_publish": "build, explain, and publish",
+    "campaign_session_recover_recap": "campaign session recovery and recap",
+    "report_cluster_release_notify": "support reporting and release follow-up",
+}
+RELEASE_PROOF_SUMMARY_LABELS = {
+    "install_claim_restore_continue": "setup and recovery",
+    "build_explain_publish": "build and publish",
+    "campaign_session_recover_recap": "campaign session continuity",
+    "report_cluster_release_notify": "support follow-up",
+}
+PUBLIC_HORIZON_SECTION_TITLES = {
+    "table pain": "The problem",
+    "the problem": "The problem",
+    "bounded product move": "What it would do",
+    "what it would do": "What it would do",
+    "foundations": "What has to be true first",
+    "what has to be true first": "What has to be true first",
+    "why still a horizon": "Why it is not ready yet",
+    "why it is not ready yet": "Why it is not ready yet",
+}
+PUBLIC_COPY_BANNED_PHRASES = (
+    "progress snapshot:",
+    "release pulse is grounded in",
+    "release pulse: grounded in",
+    "build path",
+    "bounded product move",
+    "bounded research",
+    "today: horizon.",
+    "next: bounded research.",
+    "install_claim_restore_continue",
+    "build_explain_publish",
+    "campaign_session_recover_recap",
+    "report_cluster_release_notify",
+    "local docker preview",
+    "local docker proven",
+    "preview installer shelf",
+    "treated as materially in place",
+    "turning into release-note sludge",
+    "public-fit pass is treated as closed",
+    "public-fit progress:",
+    "current public guide fit pass",
+    "current public-fit pass",
+    "future lanes",
+    "session shell",
+    "stays bounded",
+    "table-facing shell",
+    "live shell",
+    "player-first live shell",
+    "play-shell reliability",
+    "artifact shelf",
+    "asset plant",
+    "support posture",
+    "release posture",
+    "update posture",
+    "issue lane",
+    "feedback lane",
+    "crash lane",
+    "guided contribution posture",
+    "current product posture",
+    "public surface",
+    "product surface",
+    "product shell itself",
+    "product head by itself",
+    "prep-heavy head",
+    "support route",
+    "guided product wave",
+    "render plant",
+    "admin and support plumbing",
+    "render farm",
+    "media jobs",
+    "account surface",
+    "issue workflow",
+    "current polish wave",
+    "published public updates",
+    "front door, trust path, and support path are in place",
+    "current additive work focuses on",
+    "drifting out of date",
+    "short public pulse",
+    "no mystery roadmap",
+)
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -277,17 +367,44 @@ def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) 
     subprocess.run(command, check=True, capture_output=True, text=True)
 
 
-def _materialize_public_assets(repo_root: Path, out_dir: Path) -> None:
+def _required_public_asset_paths(part_registry: dict[str, object], horizon_registry: dict[str, object]) -> set[str]:
+    required = {
+        "assets/hero/chummer6-hero.png",
+        "assets/pages/parts-index.png",
+        "assets/pages/horizons-index.png",
+    }
+    for item in part_registry.get("parts") or []:
+        if not isinstance(item, dict):
+            continue
+        part_id = str(item.get("id") or "").strip()
+        if part_id:
+            required.add(f"assets/parts/{_slug(part_id)}.png")
+    for item in horizon_registry.get("horizons") or []:
+        if not isinstance(item, dict):
+            continue
+        enabled = item.get("public_guide") or {}
+        if isinstance(enabled, dict) and not _boolish(enabled.get("enabled")):
+            continue
+        horizon_id = str(item.get("id") or "").strip()
+        if horizon_id:
+            required.add(f"assets/horizons/{_slug(horizon_id)}.png")
+    return required
+
+
+def _materialize_public_assets(repo_root: Path, out_dir: Path, asset_paths: set[str]) -> None:
     source_root = _resolve_asset_source(repo_root)
     destination = out_dir / "assets"
     if destination.exists():
         shutil.rmtree(destination)
-    shutil.copytree(source_root, destination)
-    for asset_path, entry in _image_curation().items():
-        source_override = str(entry.get("source_override") or "").strip()
-        if not source_override:
-            continue
-        source = _resolve_curated_asset_source(repo_root=repo_root, source_root=source_root, raw_value=source_override)
+    destination.mkdir(parents=True, exist_ok=True)
+    for asset_path in sorted({str(item).replace("\\", "/").strip() for item in asset_paths if str(item).strip()}):
+        curation_row = _image_curation().get(asset_path) or {}
+        source_override = str(curation_row.get("source_override") or "").strip()
+        source = (
+            _resolve_curated_asset_source(repo_root=repo_root, source_root=source_root, raw_value=source_override)
+            if source_override
+            else _resolve_curated_asset_source(repo_root=repo_root, source_root=source_root, raw_value=asset_path)
+        )
         target = destination / Path(asset_path).relative_to("assets")
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
@@ -461,6 +578,17 @@ def _bullet_lines(items: list[str]) -> list[str]:
     return [f"- {item}" for item in items if item]
 
 
+def _english_join(items: list[str]) -> str:
+    cleaned = [str(item).strip() for item in items if str(item).strip()]
+    if not cleaned:
+        return ""
+    if len(cleaned) == 1:
+        return cleaned[0]
+    if len(cleaned) == 2:
+        return f"{cleaned[0]} and {cleaned[1]}"
+    return ", ".join(cleaned[:-1]) + f", and {cleaned[-1]}"
+
+
 def _markdown_body(text: str) -> str:
     lines = text.splitlines()
     while lines and not lines[0].strip():
@@ -498,13 +626,253 @@ def _public_copy(text: str) -> str:
         ("design repo", "design workspace"),
         ("registry projection", "public shelf"),
         ("install truth", "install record"),
+        ("provenance", "source trail"),
+        ("seams", "boundaries"),
+        ("seam", "boundary"),
+        ("public surfaces", "public pages"),
+        ("public surface", "public page"),
+        ("support posture", "support status"),
+        ("release posture", "release status"),
+        ("update posture", "update status"),
+        ("preview posture", "preview status"),
+        ("recovery posture", "recovery path"),
+        ("progress posture", "progress picture"),
+        ("current product posture", "current product picture"),
+        ("default help lanes", "default help paths"),
+        ("default lane", "default path"),
+        ("support lane", "support path"),
+        ("feedback lane", "feedback path"),
+        ("crash lane", "crash path"),
+        ("public issue lane", "public issue path"),
+        ("issue lane", "issue path"),
+        ("guided contribution lane", "guided contribution path"),
+        ("guided-preview lanes", "guided-preview access windows"),
+        ("artifact shelf", "release shelf"),
+        ("render-only asset plant", "dedicated media studio"),
+        ("asset plant", "media studio"),
+        ("product shell itself", "product itself"),
+        ("product shell", "product"),
+        ("bounded offline prefetch", "offline-ready prefetch"),
     )
     for original, replacement in replacements:
         cleaned = cleaned.replace(original, replacement)
     return cleaned
 
 
-def _extract_markdown_sections(text: str, *, allowed_headings: set[str]) -> list[str]:
+def _public_phase_label(value: object) -> str:
+    cleaned = str(value or "").strip()
+    if not cleaned:
+        return ""
+    return PUBLIC_PHASE_LABELS.get(cleaned.lower(), cleaned)
+
+
+def _public_horizon_stage_label(value: object) -> str:
+    cleaned = str(value or "").strip()
+    if not cleaned:
+        return ""
+    return PUBLIC_HORIZON_STAGE_LABELS.get(cleaned.lower(), _humanize_identifier(cleaned))
+
+
+def _format_public_datetime(value: object) -> str:
+    cleaned = str(value or "").strip()
+    if not cleaned:
+        return ""
+    try:
+        parsed = datetime.fromisoformat(cleaned.replace("Z", "+00:00")).astimezone(timezone.utc)
+    except ValueError:
+        return cleaned
+    rendered = parsed.strftime("%B %d, %Y at %H:%M UTC")
+    return rendered.replace(" 0", " ")
+
+
+def _public_release_channel_value(release_experience: dict[str, object], channel: str) -> str:
+    labels = {}
+    for item in release_experience.get("public_channel_labels") or []:
+        if isinstance(item, dict):
+            key = str(item.get("id") or "").strip()
+            label = str(item.get("label") or "").strip()
+            if key and label:
+                labels[key] = label
+    return labels.get(channel, _humanize_identifier(channel) if channel else "Not currently published")
+
+
+def _public_release_state(value: object) -> str:
+    cleaned = str(value or "").strip().lower()
+    mapping = {
+        "published": "Published",
+        "unpublished": "Not currently published",
+    }
+    return mapping.get(cleaned, _humanize_identifier(cleaned)) if cleaned else ""
+
+
+def _public_release_note(text: object) -> str:
+    cleaned = str(text or "").strip()
+    if not cleaned:
+        return ""
+    for raw, label in RELEASE_PROOF_JOURNEY_LABELS.items():
+        cleaned = cleaned.replace(raw, label)
+    replacements = (
+        ("Local release proof passed for:", "Recent release verification passed for"),
+        ("Claimed-device", "Device"),
+        ("claimed-device", "device"),
+        ("recent install", "recent setup"),
+        ("bounded offline prefetch", "offline-ready prefetch"),
+        ("current shelf", "current download shelf"),
+        ("support proof", "support verification"),
+        ("manifest presence", "a posted file"),
+        ("published channel artifact now on the shelf", "published download on the public shelf"),
+    )
+    for original, replacement in replacements:
+        cleaned = cleaned.replace(original, replacement)
+    return cleaned
+
+
+def _public_release_proof_summary(release_payload: dict[str, object]) -> str:
+    proof = release_payload.get("releaseProof") or {}
+    if not isinstance(proof, dict):
+        return ""
+    journeys = proof.get("journeysPassed") or []
+    if str(proof.get("status") or "").strip().lower() == "passed" and isinstance(journeys, list) and journeys:
+        labels = [RELEASE_PROOF_SUMMARY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip())) for item in journeys if str(item).strip()]
+        joined = _english_join(labels)
+        return f"Recent release verification passed across {joined}."
+    return _public_release_note(release_payload.get("supportabilitySummary"))
+
+
+def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
+    cleaned = _public_release_note(release_payload.get("knownIssueSummary"))
+    if not cleaned:
+        return ""
+    return cleaned
+
+
+def _public_fix_summary(release_payload: dict[str, object]) -> str:
+    cleaned = _public_release_note(release_payload.get("fixAvailabilitySummary"))
+    if not cleaned:
+        return ""
+    if cleaned.startswith("Only send fixed notices after"):
+        return "Only expect fix notices after the affected download is available on the same public shelf."
+    return cleaned
+
+
+def _public_download_summary(artifacts: list[dict[str, object]]) -> str:
+    if not artifacts:
+        return ""
+    summaries = []
+    for artifact in artifacts:
+        label = str(artifact.get("platformLabel") or artifact.get("platform") or "Published build").strip()
+        kind = _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact")
+        summaries.append(f"{label} {kind}")
+    if len(summaries) == 1:
+        return summaries[0] + "."
+    return _english_join(summaries) + "."
+
+
+def _public_artifact_kind_label(value: str) -> str:
+    cleaned = str(value or "").strip().lower()
+    mapping = {
+        "archive": "archive package",
+        "zip": "archive package",
+        "tar.gz": "archive package",
+        "portable": "portable package",
+        "installer": "installer",
+        "dmg": "installer",
+        "pkg": "installer",
+        "msix": "installer",
+    }
+    if cleaned in mapping:
+        return mapping[cleaned]
+    humanized = _humanize_identifier(cleaned)
+    if not humanized:
+        return "download"
+    if "installer" in humanized.lower():
+        return "installer"
+    if "archive" in humanized.lower():
+        return "archive package"
+    return humanized.lower()
+
+
+def _public_access_label(value: object) -> str:
+    cleaned = str(value or "").strip().lower()
+    mapping = {
+        "open_public": "Public download",
+        "account_recommended": "Account recommended",
+        "account_required": "Sign-in required",
+    }
+    if cleaned in mapping:
+        return mapping[cleaned]
+    return _humanize_identifier(cleaned).capitalize() if cleaned else ""
+
+
+def _public_verification_status(value: object) -> str:
+    cleaned = str(value or "").strip().lower()
+    mapping = {
+        "passed": "Passed",
+        "failed": "Needs attention",
+        "running": "Running",
+        "pending": "Pending",
+    }
+    if cleaned in mapping:
+        return mapping[cleaned]
+    return _humanize_identifier(cleaned).capitalize() if cleaned else ""
+
+
+def _public_install_section(section: dict[str, object], release_payload: dict[str, object]) -> dict[str, object]:
+    if str(section.get("id") or "").strip() != "install-update":
+        return dict(section)
+    artifacts = _release_artifacts(release_payload)
+    installers = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
+    open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
+    rendered = dict(section)
+    rendered["heading"] = "Start with the release page and download help"
+    if installers:
+        rendered["body"] = "The release page should answer the normal download and setup questions directly: recommended installer, known issues, update status, and the next support step if the path still is not clear."
+        rendered["bullets"] = [
+            "Start with the recommended installer for your platform.",
+            "Alternative builds and manual packages are advanced paths.",
+            "Create an account when you want tracked support, recovery, and linked installs.",
+            "Devices and access is where linked copies and claim paths stay visible later.",
+        ]
+        return rendered
+    primary = artifacts[0] if artifacts else {}
+    primary_label = str(primary.get("platformLabel") or "published package").strip() if isinstance(primary, dict) else "published package"
+    primary_kind = _public_artifact_kind_label(str(primary.get("kind") or "artifact").strip() or "artifact") if isinstance(primary, dict) else "package"
+    rendered["body"] = "The release page should answer the normal download and setup questions directly: recommended package, known issues, update status, and the next support step if the path still is not clear."
+    rendered["bullets"] = [
+        (
+            f"The current public path is the published {primary_label} {primary_kind}."
+            if primary_label
+            else "The current public path is the published package."
+        ),
+        "Setup currently starts from the published package, not a promoted installer.",
+        (
+            "Create an account when you want tracked support, recovery, or future linked installs."
+            if open_public
+            else "Create an account first when the current preview requires a linked handoff."
+        ),
+        "Check the release page before assuming another platform is on the public shelf.",
+    ]
+    return rendered
+
+
+def _assert_public_bundle_language(out_dir: Path) -> None:
+    errors: list[str] = []
+    for path in sorted(out_dir.rglob("*.md")):
+        body = path.read_text(encoding="utf-8")
+        lowered = body.lower()
+        for phrase in PUBLIC_COPY_BANNED_PHRASES:
+            if phrase in lowered:
+                errors.append(f"{path.relative_to(out_dir)}: banned public copy phrase {phrase!r}")
+    if errors:
+        raise SystemExit("public_bundle_language_failed:\n- " + "\n- ".join(errors))
+
+
+def _extract_markdown_sections(
+    text: str,
+    *,
+    allowed_headings: set[str],
+    heading_map: dict[str, str] | None = None,
+) -> list[str]:
     body = _markdown_body(text)
     if not body:
         return []
@@ -522,7 +890,10 @@ def _extract_markdown_sections(text: str, *, allowed_headings: set[str]) -> list
         while section_lines and not section_lines[-1].strip():
             section_lines.pop()
         if current_heading and current_heading.lower() in allowed and section_lines:
-            sections.extend([f"## {current_heading}", ""])
+            rendered_heading = current_heading
+            if isinstance(heading_map, dict):
+                rendered_heading = heading_map.get(current_heading.lower(), current_heading)
+            sections.extend([f"## {rendered_heading}", ""])
             sections.extend(_public_copy(line) if line.strip() else "" for line in section_lines)
             if section_lines[-1].strip():
                 sections.append("")
@@ -555,8 +926,7 @@ def _generate_root(
     help_page = trust_pages.get("help", {})
     root_contract = _page_types(page_registry).get("root_story_github_readme") or _page_types(page_registry).get("root_story") or {}
     overall = progress.get("overall_progress_percent")
-    phase = str(progress.get("phase_label") or "Current product posture").strip()
-    snapshot_count = progress.get("history_snapshot_count")
+    phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
     post_audit_closed = _load_registry_status(POST_AUDIT_REGISTRY) == "complete"
     active_registry_status = _load_registry_status(ACTIVE_WAVE_REGISTRY)
     active_wave = _current_recommended_wave()
@@ -592,8 +962,8 @@ def _generate_root(
         _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "# Chummer Public Guide",
         "",
-        "This guide is the public front door to Chummer6.",
-        "Use it to understand what the project is trying to solve, what you can inspect right now, and where each major surface is headed next.",
+        "This is the public guide to Chummer6.",
+        "Use it to see what works today, what is still preview, and where to go next.",
         "",
     ]
     if headline or subhead or proof_line:
@@ -614,20 +984,18 @@ def _generate_root(
         ]
     )
     if phase:
-        rows.append(f"- Current phase: {phase}.")
-    if overall is not None:
-        rows.append(f"- Progress snapshot: {overall}% of the current public-fit pass is treated as closed.")
-    if snapshot_count is not None:
-        rows.append(f"- Release pulse is grounded in {snapshot_count} recent history snapshots.")
+        rows.append(f"- Current stage: {phase}.")
+    if overall is not None and int(overall) < 100:
+        rows.append(f"- Public guide completion is tracking at {overall}% of the current refinement pass.")
     rows.extend(
         [
-            "- The public front door, trust path, and support posture are treated as materially in place.",
+            "- The current Linux preview package is published on the public shelf.",
+            "- Help, privacy, terms, contact, and release guidance are live as first-party product pages.",
             (
-                "- Current additive work focuses on deeper proof, stronger campaign breadth, and the next guided product wave."
+                "- More campaign depth, broader platform coverage, and stronger proof trails are still opening next."
                 if post_audit_closed and active_registry_status in {"in_progress", "complete"}
-                else "- Current additive work focuses on deeper proof, broader release polish, and stronger public storytelling."
+                else "- Broader platform coverage and deeper product proof are still opening next."
             ),
-            "- These pages stay synced to the current public product shape so the guide can stay honest without turning into release-note sludge.",
             "",
         ]
     )
@@ -647,42 +1015,41 @@ def _generate_root(
     if isinstance(help_page, dict):
         intro = str(help_page.get("intro") or "").strip()
         if intro:
-            rows.extend(["", "## Support posture", "", intro])
+            rows.extend(["", "## Get support", "", _public_copy(intro)])
 
     _write(doc_path, "\n".join(rows))
 
 
-def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object]) -> None:
+def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     rows = [
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
         "",
-        "This page is the short public pulse for the current preview.",
+        "This page is the short public picture of what is usable today.",
         "",
     ]
     overall = progress.get("overall_progress_percent")
-    phase = str(progress.get("phase_label") or "").strip()
-    snapshots = progress.get("history_snapshot_count")
-    if overall is not None or phase or snapshots is not None:
-        rows.extend(["## Current pulse", ""])
-        if overall is not None:
-            rows.append(f"- Public-fit progress: {overall}% of the current pass is treated as closed.")
+    phase = _public_phase_label(progress.get("phase_label"))
+    if overall is not None or phase:
+        rows.extend(["## Current picture", ""])
         if phase:
-            rows.append(f"- Current phase: {phase}.")
-        if snapshots is not None:
-            rows.append(f"- Release pulse: grounded in {snapshots} recent history snapshots.")
+            rows.append(f"- Current stage: {phase}.")
+        if overall is not None and int(overall) < 100:
+            rows.append(f"- Guide refinement pass: {overall}% complete.")
+        rows.append("- The current Linux preview package is published on the public shelf.")
+        rows.append("- First-party help, privacy, terms, and contact pages are live.")
         rows.append("")
 
     if isinstance(help_page, dict):
         for section in help_page.get("sections") or []:
             if isinstance(section, dict) and str(section.get("id") or "").strip() in {"support-path", "install-update", "support-entry"}:
-                rows.extend(_section_rows(section))
+                rows.extend(_section_rows(_public_install_section(section, release_payload)))
     _write(out_dir / "STATUS.md", "\n".join(rows))
 
 
-def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, object]) -> None:
+def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     rows = [
@@ -695,7 +1062,7 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
     if isinstance(help_page, dict):
         for section in help_page.get("sections") or []:
             if isinstance(section, dict):
-                rows.extend(_section_rows(section))
+                rows.extend(_section_rows(_public_install_section(section, release_payload)))
     _write(out_dir / "HELP.md", "\n".join(rows))
 
 
@@ -728,19 +1095,20 @@ def _generate_download(
     release_source: str,
     release_experience: dict[str, object],
 ) -> None:
-    phase = str(progress.get("phase_label") or "Current release posture").strip()
+    phase = _public_phase_label(progress.get("phase_label") or "Current release status")
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     channel = str(release_payload.get("channelId") or release_payload.get("channel") or "").strip()
     version = str(release_payload.get("version") or "").strip()
     published_at = str(release_payload.get("publishedAt") or "").strip()
     status = str(release_payload.get("status") or "unpublished").strip()
-    rollout_state = str(release_payload.get("rolloutState") or "").strip()
-    supportability = str(release_payload.get("supportabilityState") or "").strip()
-    support_summary = str(release_payload.get("supportabilitySummary") or "").strip()
-    known_issues = str(release_payload.get("knownIssueSummary") or "").strip()
-    fix_availability = str(release_payload.get("fixAvailabilitySummary") or "").strip()
-    channel_label = str(release_experience.get("default_public_channel_label") or "Current channel").strip()
+    current_download = _public_download_summary(artifacts)
+    release_status = _public_release_state(status)
+    release_channel = _public_release_channel_value(release_experience, channel)
+    published_label = _format_public_datetime(published_at) or "Not currently published"
+    release_verification = _public_release_proof_summary(release_payload)
+    known_issues = _public_known_issue_summary(release_payload)
+    fix_availability = _public_fix_summary(release_payload)
     platform_expectations = {
         "windows": (
             "Windows",
@@ -762,20 +1130,18 @@ def _generate_download(
         "",
         "This page describes the public preview shelf and the download formats that are actually available today.",
         "",
-        "## Current public build",
+        "## Current public download",
         "",
-        f"- Current phase: {phase}.",
-        f"- {channel_label}: {channel or 'not currently published'}.",
-        f"- Current version: {version or 'not currently published'}.",
-        f"- Published: {published_at or 'not currently published'}.",
-        f"- Shelf status: {status}.",
+        f"- Current stage: {phase}.",
+        f"- Release channel: {release_channel}.",
+        f"- Current build: `{version}`." if version else "- Current build: not currently published.",
+        f"- Published: {published_label}.",
+        f"- Release status: {release_status or 'Not currently published'}.",
     ]
-    if rollout_state:
-        rows.append(f"- Rollout posture: {_humanize_identifier(rollout_state)}.")
-    if supportability:
-        rows.append(f"- Support posture: {_humanize_identifier(supportability)}.")
-    if support_summary:
-        rows.append(f"- Support summary: {support_summary}")
+    if current_download:
+        rows.append(f"- Current public download: {current_download}")
+    if release_verification:
+        rows.append(f"- Release verification: {release_verification}")
     if known_issues:
         rows.append(f"- Known issues: {known_issues}")
     if fix_availability:
@@ -789,35 +1155,35 @@ def _generate_download(
             rows.append(f"- {missing_note}")
             continue
         for artifact in platform_artifacts:
-            artifact_kind = _humanize_identifier(str(artifact.get("kind") or "artifact").strip() or "artifact")
+            artifact_kind = _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact")
             platform_name = str(artifact.get("platformLabel") or platform_label).strip()
             rows.append(f"- {platform_name}: {artifact_kind}.")
             if artifact.get("downloadUrl"):
-                rows.append(f"- Download path: `{artifact['downloadUrl']}`")
+                rows.append(f"- Download: `{artifact['downloadUrl']}`")
             if artifact.get("fileName"):
-                rows.append(f"- File name: `{artifact['fileName']}`")
+                rows.append(f"- File: `{artifact['fileName']}`")
             rows.append(f"- Size: {_format_size_bytes(artifact.get('sizeBytes'))}")
             access_class = str(artifact.get("installAccessClass") or "").strip()
             if access_class:
-                rows.append(f"- Access: {_humanize_identifier(access_class)}")
+                rows.append(f"- Access: {_public_access_label(access_class)}.")
             update_feed = str(artifact.get("updateFeedUrl") or "").strip()
             if update_feed:
                 rows.append(f"- Update feed: `{update_feed}`")
 
-    rows.extend(["", "## Honest artifact format", ""])
+    rows.extend(["", "## Current package format", ""])
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
             rows.append("- The current shelf includes at least one installer, so installer-first language is warranted for those published platforms.")
         else:
-            rows.append("- The current public shelf is archive-first right now. Do not promise an installer where one is not published.")
+            rows.append("- The current public shelf is package-first. Setup starts from a downloaded archive, not a promoted installer.")
         rows.extend(
             _bullet_lines(
                 [
                     (
                         f"{str(item.get('platformLabel') or item.get('platform') or 'Published build').strip()}: "
-                        f"{_humanize_identifier(str(item.get('kind') or 'artifact').strip() or 'artifact')} via "
-                        f"{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}"
+                        f"{_public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact')} via "
+                        f"`{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}`"
                     )
                     for item in artifacts
                 ]
@@ -826,7 +1192,7 @@ def _generate_download(
     else:
         rows.append("- No published artifacts are visible on the public shelf right now.")
 
-    rows.extend(["", "## Checksums", ""])
+    rows.extend(["", "## SHA256", ""])
     if artifacts:
         for artifact in artifacts:
             label = str(artifact.get("platformLabel") or artifact.get("artifactId") or artifact.get("fileName") or "artifact").strip()
@@ -837,26 +1203,22 @@ def _generate_download(
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
-        journey_labels = {
-            "install_claim_restore_continue": "install, claim, restore, and continue",
-            "build_explain_publish": "build, explain, and publish",
-            "campaign_session_recover_recap": "campaign session recovery and recap",
-            "report_cluster_release_notify": "report clustering and release notification",
-        }
-        rows.extend(["", "## Recent release proof", ""])
+        rows.extend(["", "## Recent release verification", ""])
         proof_status = str(release_proof.get("status") or "").strip()
         generated_at = str(release_proof.get("generatedAt") or "").strip()
         if proof_status:
-            rows.append(f"- Status: {proof_status}.")
+            rows.append(f"- Status: {_public_verification_status(proof_status)}.")
         if generated_at:
-            rows.append(f"- Checked at: {generated_at}.")
+            rows.append(f"- Last checked: {_format_public_datetime(generated_at)}.")
+        if release_verification:
+            rows.append(f"- Summary: {release_verification}")
         journeys = release_proof.get("journeysPassed") or []
         if isinstance(journeys, list) and journeys:
-            rows.extend(["", "### Covered flows", ""])
+            rows.extend(["", "### Checked flows", ""])
             rows.extend(
                 _bullet_lines(
                     [
-                        journey_labels.get(str(item).strip(), _humanize_identifier(str(item).strip()))
+                        RELEASE_PROOF_JOURNEY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip()))
                         for item in journeys
                         if str(item).strip()
                     ]
@@ -873,7 +1235,7 @@ def _generate_contact(out_dir: Path, trust_payload: dict[str, object]) -> None:
         _front_matter("Contact", "products/chummer/PUBLIC_TRUST_CONTENT.yaml"),
         "# Contact",
         "",
-        str(page.get("intro") or "Open the first-party support lane before falling through to public issue workflows.").strip(),
+        _public_copy(str(page.get("intro") or "Open the first-party support path before falling through to public issue workflows.").strip()),
         "",
     ]
     if isinstance(page, dict):
@@ -890,7 +1252,7 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         _front_matter("Parts", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
         "# Parts",
         "",
-        "Chummer6 is easier to understand when you break it into the product surfaces people actually touch.",
+        "Chummer6 is easier to understand when you break it into the product areas people actually touch.",
         "Use this index when you want the map before you dive into one slice.",
         "",
     ]
@@ -972,8 +1334,8 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
         _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Horizons",
         "",
-        "Horizons are the future-facing lanes worth tracking next.",
-        "They are product bets, not promises that every surface below is already shipping today.",
+        "Horizons are the future-facing ideas worth tracking next.",
+        "They are product bets, not promises that every idea below is already ready today.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -1006,9 +1368,9 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
 
         build_path = horizon.get("build_path") or {}
         if isinstance(build_path, dict):
-            current_state = _humanize_identifier(str(build_path.get("current_state") or "").strip())
-            next_state = _humanize_identifier(str(build_path.get("next_state") or "").strip())
-            rows.extend(["", "## Build path", ""])
+            current_state = _public_horizon_stage_label(build_path.get("current_state"))
+            next_state = _public_horizon_stage_label(build_path.get("next_state"))
+            rows.extend(["", "## Current stage", ""])
             if current_state:
                 rows.append(f"- Today: {current_state}.")
             if next_state:
@@ -1022,10 +1384,15 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
                     _load_text(canon_path),
                     allowed_headings={
                         "Table pain",
+                        "The problem",
                         "Bounded product move",
+                        "What it would do",
                         "Foundations",
+                        "What has to be true first",
                         "Why still a horizon",
+                        "Why it is not ready yet",
                     },
+                    heading_map=PUBLIC_HORIZON_SECTION_TITLES,
                 )
                 if canon_path.is_file()
                 else []
@@ -1039,7 +1406,7 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
     _write(out_dir / "HORIZONS" / "README.md", "\n".join(index_rows))
 
 
-def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object]) -> None:
+def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:
     for page_id, page in _trust_pages(trust_payload).items():
         heading = str(page.get("heading") or page_id.title()).strip()
         rows = [
@@ -1051,7 +1418,7 @@ def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object]) -> No
         ]
         for section in page.get("sections") or []:
             if isinstance(section, dict):
-                rows.extend(_section_rows(section))
+                rows.extend(_section_rows(_public_install_section(section, release_payload)))
         _write(out_dir / "TRUST" / f"{_slug(page_id)}.md", "\n".join(rows))
 
 
@@ -1084,18 +1451,20 @@ def generate_bundle(repo_root: Path, out_dir: Path) -> None:
     help_copy = _load_text(repo_root / "products" / "chummer" / "PUBLIC_HELP_COPY.md")
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
+    required_assets = _required_public_asset_paths(part_registry, horizon_registry)
 
-    _materialize_public_assets(repo_root, out_dir)
+    _materialize_public_assets(repo_root, out_dir, required_assets)
     _generate_root(out_dir, manifest, page_registry, part_registry, landing_manifest, trust_payload, progress)
-    _generate_status(out_dir, trust_payload, progress)
-    _generate_help(out_dir, help_copy, trust_payload)
+    _generate_status(out_dir, trust_payload, progress, release_payload)
+    _generate_help(out_dir, help_copy, trust_payload, release_payload)
     _generate_faq(out_dir, faq_registry)
     _generate_download(out_dir, progress, release_payload, release_source, release_experience)
     _generate_contact(out_dir, trust_payload)
     _generate_part_pages(out_dir, part_registry)
     _generate_horizon_pages(out_dir, repo_root, horizon_registry)
-    _generate_trust_pages(out_dir, trust_payload)
+    _generate_trust_pages(out_dir, trust_payload, release_payload)
     _generate_manifest(out_dir, manifest)
+    _assert_public_bundle_language(out_dir)
 
 
 def _collect_files(root: Path) -> list[Path]:
