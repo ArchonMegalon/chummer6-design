@@ -2,9 +2,9 @@ output_root: products/chummer/public-guide-curated-assets
 defaults:
   width: 1600
   height: 900
-  title_font: /usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf
-  label_font: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
-  body_font: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+  title_font: /usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf
+  label_font: /usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf
+  body_font: /usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf
 assets:
   assets/hero/chummer6-hero.png:
     kind: feature_cover
@@ -22,7 +22,7 @@ assets:
     motif: clinic_ticks
   assets/horizons/alice.png:
     kind: feature_cover
-    source: assets/horizons/alice.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/alice.png
     series_label: CHUMMER6 HORIZON
     index: "02"
     title: ALICE
@@ -37,7 +37,7 @@ assets:
     motif: hazard_arcs
   assets/horizons/nexus-pan.png:
     kind: feature_cover
-    source: assets/horizons/nexus-pan.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/nexus-pan.png
     series_label: CHUMMER6 HORIZON
     index: "01"
     title: NEXUS-PAN
@@ -52,7 +52,7 @@ assets:
     motif: network_nodes
   assets/horizons/karma-forge.png:
     kind: feature_cover
-    source: assets/horizons/karma-forge.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/karma-forge.png
     series_label: CHUMMER6 HORIZON
     index: "03"
     title: KARMA FORGE
@@ -67,7 +67,7 @@ assets:
     motif: forge_lattice
   assets/horizons/jackpoint.png:
     kind: feature_cover
-    source: assets/horizons/jackpoint.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/jackpoint.png
     series_label: CHUMMER6 HORIZON
     index: "04"
     title: JACKPOINT
@@ -82,7 +82,7 @@ assets:
     motif: dossier_grid
   assets/horizons/runsite.png:
     kind: feature_cover
-    source: assets/horizons/runsite.png
+    source: raw:/docker/fleet/state/chummer6/full_run_batch_20260329a/assets__horizons__runsite__b.png
     series_label: CHUMMER6 HORIZON
     index: "05"
     title: RUNSITE
@@ -93,11 +93,23 @@ assets:
       - LEGIBILITY
     accent: "#ff7a45"
     accent_secondary: "#6ce7ff"
-    focus: [0.55, 0.50]
+    focus: [0.34, 0.50]
+    background_focus: [0.36, 0.48]
+    background_zoom: 1.10
+    background_overlay_alpha: 130
+    background_darken_regions:
+      - [0.63, 0.02, 0.98, 0.66]
+    background_darken_factor: 0.32
+    panel_focus: [0.28, 0.50]
+    panel_zoom: 1.34
+    panel_overlay_alpha: 58
+    panel_darken_regions:
+      - [0.60, 0.02, 0.98, 0.66]
+    panel_darken_factor: 0.24
     motif: route_grid
   assets/horizons/runbook-press.png:
     kind: feature_cover
-    source: assets/horizons/runbook-press.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/runbook-press.png
     series_label: CHUMMER6 HORIZON
     index: "06"
     title: RUNBOOK PRESS
@@ -112,7 +124,7 @@ assets:
     motif: print_columns
   assets/horizons/table-pulse.png:
     kind: feature_cover
-    source: assets/horizons/table-pulse.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/table-pulse.png
     series_label: CHUMMER6 HORIZON
     index: "07"
     title: TABLE PULSE
@@ -137,16 +149,15 @@ assets:
     accent: "#4fd1ff"
     accent_secondary: "#ff7a45"
     tile_sources:
-      - raw:assets/horizons/nexus-pan.png
-      - raw:assets/horizons/alice.png
-      - raw:assets/horizons/karma-forge.png
-      - raw:assets/horizons/jackpoint.png
-      - raw:assets/horizons/runsite.png
-      - raw:assets/horizons/runbook-press.png
-      - raw:assets/horizons/table-pulse.png
+      - raw:products/chummer/public-guide-curated-assets/source-plates/horizons/nexus-pan.png
+      - raw:products/chummer/public-guide-curated-assets/source-plates/horizons/alice.png
+      - raw:products/chummer/public-guide-curated-assets/source-plates/horizons/karma-forge.png
+      - raw:products/chummer/public-guide-curated-assets/source-plates/horizons/jackpoint.png
+      - raw:products/chummer/public-guide-curated-assets/source-plates/horizons/runbook-press.png
+      - raw:products/chummer/public-guide-curated-assets/source-plates/horizons/table-pulse.png
   assets/parts/design.png:
     kind: feature_cover
-    source: assets/parts/design.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/design.png
     series_label: CHUMMER6 PART
     index: "01"
     title: DESIGN
@@ -161,7 +172,7 @@ assets:
     motif: dossier_grid
   assets/parts/core.png:
     kind: feature_cover
-    source: assets/parts/core.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/core.png
     series_label: CHUMMER6 PART
     index: "02"
     title: CORE
@@ -176,22 +187,26 @@ assets:
     motif: ledger_grid
   assets/parts/ui.png:
     kind: feature_cover
-    source: assets/parts/ui.png
+    source: raw:chummer.run-services/Chummer.Run.Api/wwwroot/media/product/proof-builder-trail.png
     series_label: CHUMMER6 PART
     index: "03"
     title: UI
-    subtitle: The workbench and inspect-everything surface.
+    subtitle: The workbench, receipts, and inspect-everything surface.
     chips:
       - WORKBENCH
       - INSPECT
       - EXPLAIN
-    accent: "#ff6b57"
-    accent_secondary: "#ffd166"
-    focus: [0.56, 0.48]
-    motif: signal_bars
+    accent: "#5ad1ff"
+    accent_secondary: "#f7b267"
+    focus: [0.34, 0.50]
+    background_focus: [0.34, 0.50]
+    background_zoom: 1.12
+    panel_focus: [0.32, 0.52]
+    panel_zoom: 1.08
+    motif: ledger_grid
   assets/parts/mobile.png:
     kind: feature_cover
-    source: assets/parts/mobile.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/mobile.png
     series_label: CHUMMER6 PART
     index: "04"
     title: MOBILE
@@ -206,7 +221,7 @@ assets:
     motif: route_grid
   assets/parts/hub.png:
     kind: feature_cover
-    source: assets/parts/hub.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/hub.png
     series_label: CHUMMER6 PART
     index: "05"
     title: HUB
@@ -217,11 +232,13 @@ assets:
       - COORDINATION
     accent: "#4fd1ff"
     accent_secondary: "#8bff9e"
-    focus: [0.58, 0.46]
+    focus: [0.62, 0.44]
+    panel_focus: [0.64, 0.44]
+    panel_zoom: 1.06
     motif: network_nodes
   assets/parts/ui-kit.png:
     kind: feature_cover
-    source: assets/parts/ui-kit.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/ui-kit.png
     series_label: CHUMMER6 PART
     index: "06"
     title: UI KIT
@@ -236,7 +253,7 @@ assets:
     motif: swatch_grid
   assets/parts/hub-registry.png:
     kind: feature_cover
-    source: assets/parts/hub-registry.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/hub-registry.png
     series_label: CHUMMER6 PART
     index: "07"
     title: HUB REGISTRY
@@ -251,7 +268,7 @@ assets:
     motif: shelf_brackets
   assets/parts/media-factory.png:
     kind: feature_cover
-    source: assets/parts/media-factory.png
+    source: products/chummer/public-guide-curated-assets/source-plates/parts/media-factory.png
     series_label: CHUMMER6 PART
     index: "08"
     title: MEDIA FACTORY
@@ -262,10 +279,15 @@ assets:
       - PUBLIC ASSETS
     accent: "#ff5c7a"
     accent_secondary: "#ffd166"
-    focus: [0.54, 0.48]
+    focus: [0.50, 0.42]
+    background_focus: [0.50, 0.42]
+    background_zoom: 1.08
+    panel_focus: [0.48, 0.38]
+    panel_zoom: 1.18
     motif: print_columns
   assets/pages/parts-index.png:
     kind: mosaic_cover
+    layout: editorial_cluster
     series_label: CHUMMER6 SYSTEM
     title: PARTS
     subtitle: The deterministic engine, inspectable workbench, session shell, artifact shelf, and publication plant behind the public guide.
@@ -276,11 +298,18 @@ assets:
     accent: "#ff7a45"
     accent_secondary: "#57c7ff"
     tile_sources:
-      - raw:assets/parts/design.png
-      - raw:assets/parts/core.png
-      - raw:assets/parts/ui.png
-      - raw:assets/parts/mobile.png
-      - raw:assets/parts/hub.png
-      - raw:assets/parts/ui-kit.png
-      - raw:assets/parts/hub-registry.png
-      - raw:assets/parts/media-factory.png
+      - source: raw:chummer.run-services/Chummer.Run.Api/wwwroot/media/product/proof-builder-trail.png
+        focus: [0.34, 0.52]
+        zoom: 1.08
+      - source: raw:products/chummer/public-guide-curated-assets/source-plates/parts/design.png
+        focus: [0.54, 0.44]
+      - source: raw:products/chummer/public-guide-curated-assets/source-plates/parts/core.png
+        focus: [0.72, 0.50]
+      - source: raw:products/chummer/public-guide-curated-assets/source-plates/parts/hub.png
+        focus: [0.64, 0.44]
+        zoom: 1.06
+      - source: raw:products/chummer/public-guide-curated-assets/source-plates/parts/mobile.png
+        focus: [0.58, 0.50]
+      - source: raw:products/chummer/public-guide-curated-assets/source-plates/parts/media-factory.png
+        focus: [0.48, 0.38]
+        zoom: 1.14

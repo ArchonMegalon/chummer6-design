@@ -33,11 +33,9 @@ RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.ge
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
-EDITORIAL_COVER_BUILDER_PATH = ROOT / "scripts" / "ai" / "build_public_guide_editorial_covers.py"
 
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
-_EDITORIAL_COVER_BUILDER = None
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -71,7 +69,7 @@ def _load_text(path: Path) -> str:
 
 def _write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content.rstrip() + "\n", encoding="utf-8")
+    path.write_text(content.strip() + "\n", encoding="utf-8")
 
 
 def _ffmpeg_bin() -> str:
@@ -135,29 +133,6 @@ def _media_worker_module():
         _MEDIA_WORKER = False
         return None
     _MEDIA_WORKER = module
-    return module
-
-
-def _editorial_cover_builder_module():
-    global _EDITORIAL_COVER_BUILDER
-    if _EDITORIAL_COVER_BUILDER is False:
-        return None
-    if _EDITORIAL_COVER_BUILDER is not None:
-        return _EDITORIAL_COVER_BUILDER
-    if not EDITORIAL_COVER_BUILDER_PATH.is_file():
-        _EDITORIAL_COVER_BUILDER = False
-        return None
-    try:
-        spec = importlib.util.spec_from_file_location("build_public_guide_editorial_covers", EDITORIAL_COVER_BUILDER_PATH)
-        if spec is None or spec.loader is None:
-            _EDITORIAL_COVER_BUILDER = False
-            return None
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-    except Exception:
-        _EDITORIAL_COVER_BUILDER = False
-        return None
-    _EDITORIAL_COVER_BUILDER = module
     return module
 
 
@@ -335,16 +310,7 @@ def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str) -> 
 
 
 def _front_matter(title: str, source: str) -> str:
-    return "\n".join(
-        [
-            "---",
-            f"title: {json.dumps(title)}",
-            f"source: {json.dumps(source)}",
-            'generated_by: "materialize_public_guide_bundle.py"',
-            "---",
-            "",
-        ]
-    )
+    return ""
 
 
 def _trust_pages(payload: dict[str, object]) -> dict[str, dict[str, object]]:
@@ -375,7 +341,7 @@ def _page_types(payload: dict[str, object]) -> dict[str, dict[str, object]]:
 
 def _section_rows(section: dict[str, object], *, level: int = 2) -> list[str]:
     heading = str(section.get("heading") or section.get("title") or "").strip()
-    body = str(section.get("body") or "").strip()
+    body = _public_copy(str(section.get("body") or "").strip())
     bullets = section.get("bullets") or []
     rows: list[str] = []
     if heading:
@@ -383,7 +349,7 @@ def _section_rows(section: dict[str, object], *, level: int = 2) -> list[str]:
     if body:
         rows.extend([body, ""])
     if isinstance(bullets, list):
-        lines = [f"- {str(item).strip()}" for item in bullets if str(item).strip()]
+        lines = [f"- {_public_copy(str(item).strip())}" for item in bullets if str(item).strip()]
         if lines:
             rows.extend(lines)
             rows.append("")
@@ -506,6 +472,74 @@ def _markdown_body(text: str) -> str:
     return "\n".join(lines).strip()
 
 
+def _humanize_identifier(value: str) -> str:
+    cleaned = re.sub(r"[_-]+", " ", str(value or "").strip())
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    return cleaned
+
+
+def _public_copy(text: str) -> str:
+    cleaned = str(text or "").strip()
+    replacements = (
+        ("truth filter", "decision filter"),
+        ("canonical plan", "shared plan"),
+        ("canonical product plan", "shared product plan"),
+        ("canonical session", "durable session"),
+        ("design canon", "design docs"),
+        ("silent canon", "silent product truth"),
+        ("package ownership canon", "clear package ownership"),
+        ("approved canonical source packs", "approved source packs"),
+        ("session semantic canon", "session semantics"),
+        ("runtime bundle canon", "runtime bundles"),
+        ("explain canon", "explain surfaces"),
+        ("deterministic runtime DTO canon", "deterministic runtime DTOs"),
+        ("repo or implementation detail", "implementation detail"),
+        ("repo language", "implementation language"),
+        ("design repo", "design workspace"),
+        ("registry projection", "public shelf"),
+        ("install truth", "install record"),
+    )
+    for original, replacement in replacements:
+        cleaned = cleaned.replace(original, replacement)
+    return cleaned
+
+
+def _extract_markdown_sections(text: str, *, allowed_headings: set[str]) -> list[str]:
+    body = _markdown_body(text)
+    if not body:
+        return []
+
+    allowed = {heading.strip().lower() for heading in allowed_headings if heading.strip()}
+    sections: list[str] = []
+    current_heading = ""
+    current_lines: list[str] = []
+
+    def flush() -> None:
+        nonlocal current_heading, current_lines
+        section_lines = list(current_lines)
+        while section_lines and not section_lines[0].strip():
+            section_lines.pop(0)
+        while section_lines and not section_lines[-1].strip():
+            section_lines.pop()
+        if current_heading and current_heading.lower() in allowed and section_lines:
+            sections.extend([f"## {current_heading}", ""])
+            sections.extend(_public_copy(line) if line.strip() else "" for line in section_lines)
+            if section_lines[-1].strip():
+                sections.append("")
+        current_heading = ""
+        current_lines = []
+
+    for line in body.splitlines():
+        if line.startswith("## "):
+            flush()
+            current_heading = line[3:].strip()
+            continue
+        if current_heading:
+            current_lines.append(line)
+    flush()
+    return sections
+
+
 def _generate_root(
     out_dir: Path,
     manifest: dict[str, object],
@@ -555,11 +589,11 @@ def _generate_root(
             ordered_ctas.append(line)
 
     rows = [
-        _front_matter("Chummer Public Guide Bundle", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
-        "# Chummer Public Guide Bundle",
+        _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
+        "# Chummer Public Guide",
         "",
-        "This bundle is generated from canonical design files in `chummer6-design`.",
-        "It exists so the public guide surface can be compiled from design canon instead of hand-maintained drift.",
+        "This guide is the public front door to Chummer6.",
+        "Use it to understand what the project is trying to solve, what you can inspect right now, and where each major surface is headed next.",
         "",
     ]
     if headline or subhead or proof_line:
@@ -579,21 +613,21 @@ def _generate_root(
         "",
         ]
     )
-    if overall is not None:
-        rows.append(f"- overall_progress_percent: {overall}")
     if phase:
-        rows.append(f"- phase_label: {phase}")
+        rows.append(f"- Current phase: {phase}.")
+    if overall is not None:
+        rows.append(f"- Progress snapshot: {overall}% of the current public-fit pass is treated as closed.")
     if snapshot_count is not None:
-        rows.append(f"- history_snapshot_count: {snapshot_count}")
+        rows.append(f"- Release pulse is grounded in {snapshot_count} recent history snapshots.")
     rows.extend(
         [
-            "- The Account-Aware Front Door wave is treated as materially closed in canon.",
+            "- The public front door, trust path, and support posture are treated as materially in place.",
             (
-                f"- The Post-Audit Next 20 wave is treated as materially closed in canon, and the active additive plan is {active_wave}."
+                "- Current additive work focuses on deeper proof, stronger campaign breadth, and the next guided product wave."
                 if post_audit_closed and active_registry_status in {"in_progress", "complete"}
-                else "- The next-20 additive wave is materially closed in canon; follow-on work now focuses on campaign breadth, creator trust, and broader promotion."
+                else "- Current additive work focuses on deeper proof, broader release polish, and stronger public storytelling."
             ),
-            "- Help, trust, release, and horizon pages below are generated from public-safe registries and trust manifests.",
+            "- These pages stay synced to the current public product shape so the guide can stay honest without turning into release-note sludge.",
             "",
         ]
     )
@@ -607,17 +641,8 @@ def _generate_root(
     for part in parts:
         part_id = str(part.get("id") or "").strip()
         title = str(part.get("title") or part_id).strip() or part_id
-        tagline = str(part.get("public_tagline") or "").strip()
+        tagline = _public_copy(str(part.get("public_tagline") or "").strip())
         rows.append(f"- [{title}](PARTS/{_slug(part_id)}.md): {tagline or 'Current product area.'}")
-
-    source_lines = [
-        f"- `{source}`"
-        for source in (manifest.get("sources") or {}).values()
-        if isinstance(source, str) and source.strip()
-    ]
-    if source_lines:
-        rows.extend(["", "## Canon sources", ""])
-        rows.extend(source_lines)
 
     if isinstance(help_page, dict):
         intro = str(help_page.get("intro") or "").strip()
@@ -634,7 +659,7 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
         "",
-        "This page is generated from public progress and trust-content canon.",
+        "This page is the short public pulse for the current preview.",
         "",
     ]
     overall = progress.get("overall_progress_percent")
@@ -643,11 +668,11 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     if overall is not None or phase or snapshots is not None:
         rows.extend(["## Current pulse", ""])
         if overall is not None:
-            rows.append(f"- overall_progress_percent: {overall}")
+            rows.append(f"- Public-fit progress: {overall}% of the current pass is treated as closed.")
         if phase:
-            rows.append(f"- phase_label: {phase}")
+            rows.append(f"- Current phase: {phase}.")
         if snapshots is not None:
-            rows.append(f"- history_snapshot_count: {snapshots}")
+            rows.append(f"- Release pulse: grounded in {snapshots} recent history snapshots.")
         rows.append("")
 
     if isinstance(help_page, dict):
@@ -664,7 +689,7 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         _front_matter("Help", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# Help",
         "",
-        help_copy or "Use the product front door first for help and support.",
+        "Use the first-party support path first.",
         "",
     ]
     if isinstance(help_page, dict):
@@ -689,7 +714,7 @@ def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
                 if not isinstance(entry, dict):
                     continue
                 question = str(entry.get("question") or "").strip()
-                answer = str(entry.get("answer") or "").strip()
+                answer = _public_copy(str(entry.get("answer") or "").strip())
                 if not question or not answer:
                     continue
                 rows.extend([f"### {question}", "", answer, ""])
@@ -719,11 +744,11 @@ def _generate_download(
     platform_expectations = {
         "windows": (
             "Windows",
-            "No current published Windows artifact appears in the registry projection.",
+            "No current published Windows download is on the public shelf.",
         ),
         "linux": (
             "Linux",
-            "No current published Linux artifact appears in the registry projection.",
+            "No current published Linux download is on the public shelf.",
         ),
         "macos": (
             "macOS",
@@ -735,27 +760,26 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
-        "This page is generated from the registry-owned public release-channel projection plus the canonical downloads and auto-update policy.",
+        "This page describes the public preview shelf and the download formats that are actually available today.",
         "",
-        "## Current build matrix",
+        "## Current public build",
         "",
-        f"- phase_label: {phase}",
-        f"- {channel_label}: {channel or 'not published'}",
-        f"- version: {version or 'not published'}",
-        f"- published_at: {published_at or 'not published'}",
-        f"- status: {status}",
-        f"- source: `{release_source}`",
+        f"- Current phase: {phase}.",
+        f"- {channel_label}: {channel or 'not currently published'}.",
+        f"- Current version: {version or 'not currently published'}.",
+        f"- Published: {published_at or 'not currently published'}.",
+        f"- Shelf status: {status}.",
     ]
     if rollout_state:
-        rows.append(f"- rollout_state: {rollout_state}")
+        rows.append(f"- Rollout posture: {_humanize_identifier(rollout_state)}.")
     if supportability:
-        rows.append(f"- supportability_state: {supportability}")
+        rows.append(f"- Support posture: {_humanize_identifier(supportability)}.")
     if support_summary:
-        rows.extend(["", support_summary])
+        rows.append(f"- Support summary: {support_summary}")
     if known_issues:
-        rows.extend(["", f"- known_issues: {known_issues}"])
+        rows.append(f"- Known issues: {known_issues}")
     if fix_availability:
-        rows.append(f"- fix_availability: {fix_availability}")
+        rows.append(f"- Fix availability: {fix_availability}")
 
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]
@@ -765,75 +789,79 @@ def _generate_download(
             rows.append(f"- {missing_note}")
             continue
         for artifact in platform_artifacts:
-            artifact_kind = str(artifact.get("kind") or "artifact").strip() or "artifact"
+            artifact_kind = _humanize_identifier(str(artifact.get("kind") or "artifact").strip() or "artifact")
             platform_name = str(artifact.get("platformLabel") or platform_label).strip()
-            rows.append(f"- {platform_name}: {artifact_kind}")
+            rows.append(f"- {platform_name}: {artifact_kind}.")
             if artifact.get("downloadUrl"):
-                rows.append(f"- download: {artifact['downloadUrl']}")
+                rows.append(f"- Download path: `{artifact['downloadUrl']}`")
             if artifact.get("fileName"):
-                rows.append(f"- file_name: {artifact['fileName']}")
-            rows.append(f"- size: {_format_size_bytes(artifact.get('sizeBytes'))}")
+                rows.append(f"- File name: `{artifact['fileName']}`")
+            rows.append(f"- Size: {_format_size_bytes(artifact.get('sizeBytes'))}")
             access_class = str(artifact.get("installAccessClass") or "").strip()
             if access_class:
-                rows.append(f"- access: {access_class}")
+                rows.append(f"- Access: {_humanize_identifier(access_class)}")
             update_feed = str(artifact.get("updateFeedUrl") or "").strip()
             if update_feed:
-                rows.append(f"- update_feed: {update_feed}")
+                rows.append(f"- Update feed: `{update_feed}`")
 
     rows.extend(["", "## Honest artifact format", ""])
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
-            rows.append("- The current shelf includes at least one installer artifact, so installer-first posture is real for those published platforms.")
+            rows.append("- The current shelf includes at least one installer, so installer-first language is warranted for those published platforms.")
         else:
-            rows.append("- No installer artifact is published in the current registry projection, so the current shelf should describe the published archive/portable formats plainly instead of implying an installer exists.")
+            rows.append("- The current public shelf is archive-first right now. Do not promise an installer where one is not published.")
         rows.extend(
             _bullet_lines(
                 [
-                    f"{str(item.get('artifactId') or '').strip()}: {str(item.get('kind') or 'artifact').strip() or 'artifact'} via {str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}"
+                    (
+                        f"{str(item.get('platformLabel') or item.get('platform') or 'Published build').strip()}: "
+                        f"{_humanize_identifier(str(item.get('kind') or 'artifact').strip() or 'artifact')} via "
+                        f"{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}"
+                    )
                     for item in artifacts
                 ]
             )
         )
     else:
-        rows.append("- No published artifacts are present in the registry projection right now.")
+        rows.append("- No published artifacts are visible on the public shelf right now.")
 
-    rows.extend(["", "## SHA256", ""])
+    rows.extend(["", "## Checksums", ""])
     if artifacts:
         for artifact in artifacts:
-            label = str(artifact.get("artifactId") or artifact.get("fileName") or "artifact").strip()
+            label = str(artifact.get("platformLabel") or artifact.get("artifactId") or artifact.get("fileName") or "artifact").strip()
             sha256 = str(artifact.get("sha256") or "").strip() or "missing"
             rows.append(f"- {label}: `{sha256}`")
     else:
-        rows.append("- No published artifact checksums are available because the registry projection has no artifacts.")
-
-    rows.extend(["", "## Raw release fallback", ""])
-    rows.append("- The registry-owned compatibility export `releases.json` remains the raw fallback for legacy/manual consumers.")
-    rows.append("- Public guide copy should still lead with the current promoted shelf instead of treating the raw manifest as the front door.")
-    rows.append("- Installer-first language and trust promises come from `PUBLIC_DOWNLOADS_POLICY.md`.")
-    rows.append("- Update behavior and rollback language come from `PUBLIC_AUTO_UPDATE_POLICY.md`.")
-    rows.append("- The public release shelf posture comes from `PUBLIC_RELEASE_EXPERIENCE.yaml`.")
+        rows.append("- No published artifact checksums are available because the public shelf has no artifacts.")
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
-        rows.extend(["", "## Release proof", ""])
+        journey_labels = {
+            "install_claim_restore_continue": "install, claim, restore, and continue",
+            "build_explain_publish": "build, explain, and publish",
+            "campaign_session_recover_recap": "campaign session recovery and recap",
+            "report_cluster_release_notify": "report clustering and release notification",
+        }
+        rows.extend(["", "## Recent release proof", ""])
         proof_status = str(release_proof.get("status") or "").strip()
         generated_at = str(release_proof.get("generatedAt") or "").strip()
-        base_url = str(release_proof.get("baseUrl") or "").strip()
         if proof_status:
-            rows.append(f"- status: {proof_status}")
+            rows.append(f"- Status: {proof_status}.")
         if generated_at:
-            rows.append(f"- generated_at: {generated_at}")
-        if base_url:
-            rows.append(f"- base_url: {base_url}")
+            rows.append(f"- Checked at: {generated_at}.")
         journeys = release_proof.get("journeysPassed") or []
         if isinstance(journeys, list) and journeys:
-            rows.extend(["", "### Journeys passed", ""])
-            rows.extend(_bullet_lines([str(item).strip() for item in journeys if str(item).strip()]))
-        proof_routes = release_proof.get("proofRoutes") or []
-        if isinstance(proof_routes, list) and proof_routes:
-            rows.extend(["", "### Proof routes", ""])
-            rows.extend(_bullet_lines([str(item).strip() for item in proof_routes if str(item).strip()]))
+            rows.extend(["", "### Covered flows", ""])
+            rows.extend(
+                _bullet_lines(
+                    [
+                        journey_labels.get(str(item).strip(), _humanize_identifier(str(item).strip()))
+                        for item in journeys
+                        if str(item).strip()
+                    ]
+                )
+            )
 
     _write(out_dir / "DOWNLOAD.md", "\n".join(rows))
 
@@ -862,7 +890,8 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         _front_matter("Parts", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
         "# Parts",
         "",
-        "Each page here is generated from `PUBLIC_PART_REGISTRY.yaml`.",
+        "Chummer6 is easier to understand when you break it into the product surfaces people actually touch.",
+        "Use this index when you want the map before you dive into one slice.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/parts-index.png", alt="Chummer6 parts index art"))
@@ -877,7 +906,7 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
             _front_matter(f"Part: {title}", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
             f"# {title}",
             "",
-            str(part.get("public_tagline") or "").strip(),
+            _public_copy(str(part.get("public_tagline") or "").strip()),
             "",
         ]
         rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/parts/{slug}.png", alt=f"{title} guide art"))
@@ -885,30 +914,30 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
             [
                 "## When you care",
                 "",
-                str(part.get("you_touch_this_when") or "").strip() or "When this part becomes relevant to your flow.",
+                _public_copy(str(part.get("you_touch_this_when") or "").strip()) or "When this part becomes relevant to your flow.",
                 "",
                 "## Why you care",
                 "",
-                str(part.get("why_you_care") or "").strip() or "This part contributes meaningfully to the product.",
+                _public_copy(str(part.get("why_you_care") or "").strip()) or "This part contributes meaningfully to the product.",
                 "",
                 "## What you notice",
                 "",
             ]
         )
         for item in part.get("what_you_notice") or []:
-            text = str(item).strip()
+            text = _public_copy(str(item).strip())
             if text:
                 rows.append(f"- {text}")
         noteworthy = part.get("public_noteworthy_limits") or []
         if isinstance(noteworthy, list) and noteworthy:
             rows.extend(["", "## Current limits", ""])
-            rows.extend(f"- {str(item).strip()}" for item in noteworthy if str(item).strip())
+            rows.extend(f"- {_public_copy(str(item).strip())}" for item in noteworthy if str(item).strip())
         rows.extend(
             [
                 "",
-                "## Current truth",
+                "## Current state",
                 "",
-                str(part.get("current_truth") or "").strip() or "Current product truth is still moving here.",
+                _public_copy(str(part.get("current_truth") or "").strip()) or "Current product posture is still moving here.",
             ]
         )
         deeper = part.get("go_deeper_links") or []
@@ -943,7 +972,8 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
         _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Horizons",
         "",
-        "These horizon pages are generated only for entries with `public_guide.enabled == true`.",
+        "Horizons are the future-facing lanes worth tracking next.",
+        "They are product bets, not promises that every surface below is already shipping today.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -959,42 +989,50 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
             _front_matter(f"Horizon: {title}", "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
             "",
-            f"- id: {horizon_id}",
         ]
-        for field in ("pain_label", "wow_promise", "table_scene"):
-            value = str(horizon.get(field) or "").strip()
-            if value:
-                rows.append(f"- {field}: {value}")
-        rows.extend([""])
+        wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
+        if wow_promise:
+            rows.extend([wow_promise, ""])
         rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=f"{title} horizon art"))
+
+        pain_label = _public_copy(str(horizon.get("pain_label") or "").strip())
+        table_scene = _public_copy(str(horizon.get("table_scene") or "").strip())
+        if pain_label or table_scene:
+            rows.extend(["## Why this matters", ""])
+            if pain_label:
+                rows.extend([pain_label, ""])
+            if table_scene:
+                rows.extend([f"Picture the scene: {table_scene}", ""])
 
         build_path = horizon.get("build_path") or {}
         if isinstance(build_path, dict):
+            current_state = _humanize_identifier(str(build_path.get("current_state") or "").strip())
+            next_state = _humanize_identifier(str(build_path.get("next_state") or "").strip())
             rows.extend(["", "## Build path", ""])
-            for field in ("intent", "current_state", "next_state"):
-                value = str(build_path.get(field) or "").strip()
-                if value:
-                    rows.append(f"- {field}: {value}")
-        owning_repos = horizon.get("owning_repos") or []
-        tool_posture = horizon.get("tool_posture") or {}
-        if owning_repos or tool_posture:
-            rows.extend(["", "## Registry posture", ""])
-            if isinstance(owning_repos, list) and owning_repos:
-                rows.extend(f"- owning_repo: {str(item).strip()}" for item in owning_repos if str(item).strip())
-            if isinstance(tool_posture, dict):
-                promoted = [str(item).strip() for item in (tool_posture.get("promoted") or []) if str(item).strip()]
-                bounded = [str(item).strip() for item in (tool_posture.get("bounded") or []) if str(item).strip()]
-                rows.append(f"- promoted_tools: {', '.join(promoted) if promoted else 'none'}")
-                rows.append(f"- bounded_tools: {', '.join(bounded) if bounded else 'none'}")
+            if current_state:
+                rows.append(f"- Today: {current_state}.")
+            if next_state:
+                rows.append(f"- Next: {next_state}.")
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
         if canon_doc:
             canon_path = repo_root / canon_doc
-            rows.extend(["", "## Canon source", ""])
-            rows.append(f"`{canon_doc}`")
-            embedded = _markdown_body(_load_text(canon_path)) if canon_path.is_file() else ""
+            embedded = (
+                _extract_markdown_sections(
+                    _load_text(canon_path),
+                    allowed_headings={
+                        "Table pain",
+                        "Bounded product move",
+                        "Foundations",
+                        "Why still a horizon",
+                    },
+                )
+                if canon_path.is_file()
+                else []
+            )
             if embedded:
-                rows.extend(["", embedded])
+                rows.extend([""])
+                rows.extend(embedded)
 
         _write(out_dir / "HORIZONS" / f"{slug}.md", "\n".join(rows))
 
@@ -1008,7 +1046,7 @@ def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object]) -> No
             _front_matter(heading, "products/chummer/PUBLIC_TRUST_CONTENT.yaml"),
             f"# {heading}",
             "",
-            str(page.get("intro") or "").strip() or f"Canonical trust guidance for {page_id}.",
+            _public_copy(str(page.get("intro") or "").strip()) or f"Trust guidance for {page_id}.",
             "",
         ]
         for section in page.get("sections") or []:

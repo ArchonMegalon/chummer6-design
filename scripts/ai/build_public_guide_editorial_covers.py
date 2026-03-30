@@ -74,9 +74,37 @@ def _resolve_source(repo_root: Path, source_root: Path, raw_value: str, output_r
     raise FileNotFoundError(f"unable to resolve source {cleaned}; checked: {searched}")
 
 
-def _fit_cover(image: Image.Image, size: tuple[int, int], focus: tuple[float, float]) -> Image.Image:
+def _focus_tuple(raw_value: object, default: tuple[float, float] = (0.5, 0.5)) -> tuple[float, float]:
+    if isinstance(raw_value, (list, tuple)) and len(raw_value) >= 2:
+        return (
+            max(0.0, min(1.0, float(raw_value[0]))),
+            max(0.0, min(1.0, float(raw_value[1]))),
+        )
+    return default
+
+
+def _zoom_value(raw_value: object, default: float = 1.0) -> float:
+    try:
+        zoom = float(raw_value)
+    except (TypeError, ValueError):
+        return default
+    return max(1.0, zoom)
+
+
+def _fit_cover(
+    image: Image.Image,
+    size: tuple[int, int],
+    focus: tuple[float, float],
+    *,
+    zoom: float = 1.0,
+) -> Image.Image:
     centering = (max(0.0, min(1.0, focus[0])), max(0.0, min(1.0, focus[1])))
-    return ImageOps.fit(image, size, method=Image.Resampling.LANCZOS, centering=centering)
+    if zoom <= 1.001:
+        return ImageOps.fit(image, size, method=Image.Resampling.LANCZOS, centering=centering)
+    crop_width = max(1, int(round(size[0] / zoom)))
+    crop_height = max(1, int(round(size[1] / zoom)))
+    cropped = ImageOps.fit(image, (crop_width, crop_height), method=Image.Resampling.LANCZOS, centering=centering)
+    return cropped.resize(size, Image.Resampling.LANCZOS)
 
 
 def _darken(image: Image.Image, factor: float) -> Image.Image:
@@ -98,6 +126,108 @@ def _sharpness(image: Image.Image, factor: float) -> Image.Image:
 def _blend_overlay(base: Image.Image, color: tuple[int, int, int, int], alpha: int) -> Image.Image:
     overlay = Image.new("RGBA", base.size, (color[0], color[1], color[2], alpha))
     return Image.alpha_composite(base.convert("RGBA"), overlay)
+
+
+def _apply_blur_regions(image: Image.Image, regions: object, *, radius: float) -> Image.Image:
+    if not isinstance(regions, list) or not regions:
+        return image
+    width, height = image.size
+    base = image.convert("RGBA")
+    for raw_region in regions:
+        if not isinstance(raw_region, (list, tuple)) or len(raw_region) < 4:
+            continue
+        left = int(float(raw_region[0]) * width)
+        top = int(float(raw_region[1]) * height)
+        right = int(float(raw_region[2]) * width)
+        bottom = int(float(raw_region[3]) * height)
+        left = max(0, min(width - 1, left))
+        top = max(0, min(height - 1, top))
+        right = max(left + 1, min(width, right))
+        bottom = max(top + 1, min(height, bottom))
+        crop = base.crop((left, top, right, bottom))
+        blurred = crop.filter(ImageFilter.GaussianBlur(radius=radius))
+        base.paste(blurred, (left, top, right, bottom))
+    return base.convert(image.mode)
+
+
+def _apply_darken_regions(image: Image.Image, regions: object, *, factor: float) -> Image.Image:
+    if not isinstance(regions, list) or not regions:
+        return image
+    width, height = image.size
+    base = image.convert("RGBA")
+    clamped_factor = max(0.15, min(1.0, float(factor)))
+    for raw_region in regions:
+        if not isinstance(raw_region, (list, tuple)) or len(raw_region) < 4:
+            continue
+        left = int(float(raw_region[0]) * width)
+        top = int(float(raw_region[1]) * height)
+        right = int(float(raw_region[2]) * width)
+        bottom = int(float(raw_region[3]) * height)
+        left = max(0, min(width - 1, left))
+        top = max(0, min(height - 1, top))
+        right = max(left + 1, min(width, right))
+        bottom = max(top + 1, min(height, bottom))
+        crop = base.crop((left, top, right, bottom)).convert("RGB")
+        darkened = _darken(crop, clamped_factor).convert("RGBA")
+        base.paste(darkened, (left, top, right, bottom))
+    return base.convert(image.mode)
+
+
+def _vertical_gradient(size: tuple[int, int], top: tuple[int, int, int, int], bottom: tuple[int, int, int, int]) -> Image.Image:
+    mask = Image.linear_gradient("L").resize(size)
+    return Image.composite(Image.new("RGBA", size, bottom), Image.new("RGBA", size, top), mask)
+
+
+def _fit_text_block(
+    draw: ImageDraw.ImageDraw,
+    *,
+    text: str,
+    font_path: str,
+    max_size: int,
+    min_size: int,
+    max_width: int,
+    max_lines: int,
+) -> tuple[ImageFont.FreeTypeFont, list[str], int]:
+    cleaned = str(text or "").strip()
+    if not cleaned:
+        font = _font(font_path, min_size)
+        return font, [], min_size
+    for size in range(max_size, min_size - 1, -4):
+        font = _font(font_path, size)
+        lines = _wrap_text(draw, cleaned, font, max_width)
+        line_widths = [draw.textbbox((0, 0), line, font=font)[2] for line in lines] if lines else [0]
+        if len(lines) <= max_lines and max(line_widths) <= max_width:
+            return font, lines, size
+    font = _font(font_path, min_size)
+    return font, _wrap_text(draw, cleaned, font, max_width), min_size
+
+
+def _series_style(spec: dict[str, object]) -> str:
+    target = str(spec.get("_target") or "")
+    if target.startswith("assets/hero/"):
+        return "hero"
+    if target.startswith("assets/horizons/"):
+        return "horizon"
+    if target.startswith("assets/parts/"):
+        return "part"
+    if target.startswith("assets/pages/"):
+        return "index"
+    return "feature"
+
+
+def _apply_editorial_finish(image: Image.Image, *, sigma: float = 10.0, opacity: int = 18) -> Image.Image:
+    base = image.convert("RGBA")
+    noise = Image.effect_noise(base.size, sigma).convert("L")
+    noise = ImageOps.autocontrast(noise)
+    noise_layer = Image.merge("RGBA", (noise, noise, noise, Image.new("L", base.size, opacity)))
+    vignette = Image.new("L", base.size, 0)
+    vignette_draw = ImageDraw.Draw(vignette)
+    width, height = base.size
+    vignette_draw.ellipse((-int(width * 0.14), -int(height * 0.22), int(width * 1.14), int(height * 1.20)), fill=190)
+    vignette = ImageOps.invert(vignette).filter(ImageFilter.GaussianBlur(radius=84))
+    vignette_layer = Image.new("RGBA", base.size, (3, 6, 10, 0))
+    vignette_layer.putalpha(vignette)
+    return Image.alpha_composite(Image.alpha_composite(base, vignette_layer), noise_layer)
 
 
 def _tracked_text(draw: ImageDraw.ImageDraw, position: tuple[int, int], text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int], tracking: int) -> None:
@@ -227,109 +357,143 @@ def _draw_footer(draw: ImageDraw.ImageDraw, *, width: int, height: int, font: Im
 def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root: Path, output_root: Path, defaults: dict[str, object]) -> Path:
     width = int(defaults.get("width") or 1600)
     height = int(defaults.get("height") or 900)
-    title_font = _font(str(defaults.get("title_font")), 112 if len(str(spec.get("title") or "")) <= 10 else 96)
-    label_font = _font(str(defaults.get("label_font")), 30)
-    body_font = _font(str(defaults.get("body_font")), 34)
-    chip_font = _font(str(defaults.get("label_font")), 24)
-    index_font = _font(str(defaults.get("title_font")), 168)
+    title_font_path = str(defaults.get("title_font"))
+    label_font_path = str(defaults.get("label_font"))
+    body_font_path = str(defaults.get("body_font"))
+    label_font = _font(label_font_path, 27)
+    chip_font = _font(label_font_path, 22)
+    style = _series_style(spec)
 
     source_value = str(spec.get("source") or "").strip()
     if source_value and not source_value.startswith("raw:"):
         source_value = f"raw:{source_value}"
-    source_path = _resolve_source(repo_root, source_root, source_value, output_root)
-    focus_values = spec.get("focus") or [0.5, 0.5]
-    focus = (
-        float(focus_values[0]) if isinstance(focus_values, (list, tuple)) and len(focus_values) >= 1 else 0.5,
-        float(focus_values[1]) if isinstance(focus_values, (list, tuple)) and len(focus_values) >= 2 else 0.5,
-    )
+    background_source_value = str(spec.get("background_source") or source_value).strip()
+    panel_source_value = str(spec.get("panel_source") or source_value).strip()
+    background_source_path = _resolve_source(repo_root, source_root, background_source_value, output_root)
+    panel_source_path = _resolve_source(repo_root, source_root, panel_source_value, output_root)
+    focus = _focus_tuple(spec.get("focus"), (0.5, 0.5))
+    background_focus = _focus_tuple(spec.get("background_focus"), focus)
+    panel_focus = _focus_tuple(spec.get("panel_focus"), focus)
+    background_zoom = _zoom_value(spec.get("background_zoom"), 1.0)
+    panel_zoom = _zoom_value(spec.get("panel_zoom"), 1.0)
     accent = _hex_rgba(str(spec.get("accent") or "#4fd1ff"), 255)
     secondary = _hex_rgba(str(spec.get("accent_secondary") or "#ff7a45"), 255)
+    copy_width = {"hero": 598, "horizon": 506, "part": 510}.get(style, 548)
+    rail_width = copy_width + 70
+    pad = 72
 
-    source_image = Image.open(source_path).convert("RGB")
-    background = _fit_cover(source_image, (width, height), focus)
-    background = _contrast(_saturate(_darken(background, 0.62), 0.9), 1.08)
-    background = background.filter(ImageFilter.GaussianBlur(radius=18))
-    canvas = _blend_overlay(background, _hex_rgba("#07111a", 255), 118)
+    background_source_image = Image.open(background_source_path).convert("RGB")
+    panel_source_image = Image.open(panel_source_path).convert("RGB")
+    background = _fit_cover(background_source_image, (width, height), background_focus, zoom=background_zoom)
+    background = _contrast(_saturate(_darken(background, 0.64), 0.94), 1.08)
+    background = background.filter(ImageFilter.GaussianBlur(radius=16))
+    background = _apply_blur_regions(background, spec.get("background_blur_regions"), radius=float(spec.get("background_blur_radius") or 28))
+    background = _apply_darken_regions(background, spec.get("background_darken_regions"), factor=float(spec.get("background_darken_factor") or 0.62))
+    canvas = _blend_overlay(background, _hex_rgba("#07111a", 255), int(spec.get("background_overlay_alpha") or 118))
 
-    panel_width = int(width * 0.66)
-    panel_image = _fit_cover(source_image, (panel_width, height), focus)
-    panel_image = _sharpness(_contrast(_saturate(panel_image, 1.14), 1.08), 1.25)
-    panel_image = _blend_overlay(panel_image, accent, 26)
+    panel_width = width - copy_width + 110
+    panel_image = _fit_cover(panel_source_image, (panel_width, height), panel_focus, zoom=panel_zoom)
+    panel_image = _apply_blur_regions(panel_image, spec.get("panel_blur_regions"), radius=float(spec.get("panel_blur_radius") or 28))
+    panel_image = _apply_darken_regions(panel_image, spec.get("panel_darken_regions"), factor=float(spec.get("panel_darken_factor") or 0.62))
+    panel_image = _sharpness(_contrast(_saturate(panel_image, 1.10), 1.06), 1.18)
+    panel_overlay_alpha = int(spec.get("panel_overlay_alpha") or (18 if style == "hero" else 22))
+    panel_image = _blend_overlay(panel_image, accent, panel_overlay_alpha)
     panel_mask = Image.new("L", (width, height), 0)
     mask_draw = ImageDraw.Draw(panel_mask)
     mask_draw.polygon(
         [
-            (width - panel_width + 54, 0),
+            (copy_width - 22, 0),
             (width, 0),
             (width, height),
-            (width - panel_width - 26, height),
+            (copy_width - 118, height),
         ],
         fill=255,
     )
-    panel_mask = panel_mask.filter(ImageFilter.GaussianBlur(radius=8))
+    panel_mask = panel_mask.filter(ImageFilter.GaussianBlur(radius=14))
     panel_layer = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-    panel_layer.paste(panel_image.convert("RGBA"), (width - panel_width, 0))
+    panel_layer.paste(panel_image.convert("RGBA"), (copy_width - 12, 0))
     canvas = Image.composite(panel_layer, canvas, panel_mask)
 
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
-    draw.rectangle((0, 0, 690, height), fill=(7, 12, 18, 210))
+    rail = _vertical_gradient((rail_width, height), (8, 12, 18, 224), (8, 12, 18, 204))
+    overlay.alpha_composite(rail, (0, 0))
     draw.polygon(
         [
-            (488, 0),
-            (630, 0),
-            (560, height),
-            (430, height),
+            (copy_width - 72, 0),
+            (copy_width + 82, 0),
+            (copy_width - 4, height),
+            (copy_width - 146, height),
         ],
-        fill=(7, 12, 18, 160),
+        fill=(8, 12, 18, 150),
     )
-    draw.rectangle((74, 76, 516, 290), fill=(14, 19, 28, 120))
+    draw.rounded_rectangle((pad - 6, 76, copy_width - 70, 184), radius=28, fill=(14, 19, 28, 118), outline=(255, 255, 255, 28), width=1)
+    info_bottom = height - 100
+    draw.rounded_rectangle((pad - 8, 204, copy_width - 46, info_bottom), radius=34, fill=(10, 15, 22, 72), outline=(255, 255, 255, 18), width=1)
     _draw_panel_motif(
         draw,
         motif=str(spec.get("motif") or ""),
-        rect=(88, 92, 484, 306),
-        accent=(accent[0], accent[1], accent[2], 165),
-        secondary=(secondary[0], secondary[1], secondary[2], 128),
+        rect=(pad + 8, 88, copy_width - 92, 182),
+        accent=(accent[0], accent[1], accent[2], 150),
+        secondary=(secondary[0], secondary[1], secondary[2], 122),
     )
-    seam_points = [(588, 0), (602, 0), (530, height), (516, height)]
+    seam_points = [(copy_width + 22, 0), (copy_width + 38, 0), (copy_width - 46, height), (copy_width - 62, height)]
     draw.polygon(seam_points, fill=(accent[0], accent[1], accent[2], 170))
-    draw.line((604, 32, 566, height - 32), fill=(secondary[0], secondary[1], secondary[2], 150), width=3)
+    draw.line((copy_width + 46, 34, copy_width - 12, height - 34), fill=(secondary[0], secondary[1], secondary[2], 140), width=3)
+    draw.line((pad, height - 78, copy_width - 92, height - 78), fill=(255, 255, 255, 34), width=1)
 
     series_label = str(spec.get("series_label") or "").strip()
     if series_label:
-        _tracked_text(draw, (88, 70), series_label, label_font, (238, 240, 243, 230), 3)
-    index_label = str(spec.get("index") or "").strip()
-    if index_label:
-        draw.text((84, 262), index_label, font=index_font, fill=(accent[0], accent[1], accent[2], 62))
-
+        _tracked_text(draw, (pad, 48), series_label, label_font, (238, 240, 243, 230), 3)
     title = str(spec.get("title") or "").strip()
-    title_y = 262
+    title_y = 238 if style == "hero" else 224
+    title_max_width = copy_width - (pad * 2) - 8
     if title:
-        title_font = _font(str(defaults.get("title_font")), 108 if len(title) <= 10 else 92)
-        title_lines = _wrap_text(draw, title, title_font, 420)
+        title_font, title_lines, title_size = _fit_text_block(
+            draw,
+            text=title,
+            font_path=title_font_path,
+            max_size=122 if style == "hero" else 104,
+            min_size=72 if style == "hero" else 62,
+            max_width=title_max_width,
+            max_lines=2,
+        )
+        title_step = int(title_size * 0.84)
+        draw.line((pad, title_y - 22, pad + 72, title_y - 22), fill=(secondary[0], secondary[1], secondary[2], 200), width=3)
         for idx, line in enumerate(title_lines):
-            draw.text((88, title_y + idx * 94), line, font=title_font, fill=(246, 247, 250, 245))
-        subtitle_start_y = title_y + len(title_lines) * 94 + 20
+            draw.text((pad, title_y + idx * title_step), line, font=title_font, fill=(246, 247, 250, 245))
+        subtitle_start_y = title_y + len(title_lines) * title_step + 18
     else:
         subtitle_start_y = title_y
 
     subtitle = str(spec.get("subtitle") or "").strip()
     if subtitle:
-        subtitle_lines = _wrap_text(draw, subtitle, body_font, 430)
+        body_font, subtitle_lines, body_size = _fit_text_block(
+            draw,
+            text=subtitle,
+            font_path=body_font_path,
+            max_size=34 if style == "hero" else 31,
+            min_size=24,
+            max_width=title_max_width,
+            max_lines=4,
+        )
+        body_step = int(body_size * 1.22)
         for idx, line in enumerate(subtitle_lines[:4]):
-            draw.text((92, subtitle_start_y + idx * 44), line, font=body_font, fill=(218, 223, 228, 226))
-        chips_y = subtitle_start_y + min(len(subtitle_lines), 4) * 44 + 34
+            draw.text((pad + 2, subtitle_start_y + idx * body_step), line, font=body_font, fill=(218, 223, 228, 228))
     else:
-        chips_y = subtitle_start_y + 24
+        subtitle_lines = []
+        body_step = 0
+
+    chips_y = max(subtitle_start_y + min(len(subtitle_lines), 4) * body_step + 30, height - 96)
 
     chips = [str(item).strip() for item in (spec.get("chips") or []) if str(item).strip()]
-    chip_x = 88
+    chip_x = pad
     for chip in chips[:3]:
         chip_width = _draw_chip(draw, text=chip, x=chip_x, y=chips_y, font=chip_font, accent=(accent[0], accent[1], accent[2], 225))
         chip_x += chip_width + 14
 
     _draw_footer(draw, width=width, height=height, font=chip_font, accent=(secondary[0], secondary[1], secondary[2], 220))
-    combined = Image.alpha_composite(canvas, overlay).convert("RGB")
+    combined = _apply_editorial_finish(Image.alpha_composite(canvas, overlay)).convert("RGB")
     target_path = output_root / str(spec.get("_target") or "")
     target_path.parent.mkdir(parents=True, exist_ok=True)
     combined.save(target_path, format="PNG", compress_level=6)
@@ -339,87 +503,160 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
 def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root: Path, output_root: Path, defaults: dict[str, object]) -> Path:
     width = int(defaults.get("width") or 1600)
     height = int(defaults.get("height") or 900)
-    label_font = _font(str(defaults.get("label_font")), 30)
-    title_font = _font(str(defaults.get("title_font")), 102)
-    body_font = _font(str(defaults.get("body_font")), 32)
-    chip_font = _font(str(defaults.get("label_font")), 24)
+    title_font_path = str(defaults.get("title_font"))
+    label_font_path = str(defaults.get("label_font"))
+    body_font_path = str(defaults.get("body_font"))
+    label_font = _font(label_font_path, 27)
+    chip_font = _font(label_font_path, 22)
     accent = _hex_rgba(str(spec.get("accent") or "#4fd1ff"), 255)
     secondary = _hex_rgba(str(spec.get("accent_secondary") or "#ff7a45"), 255)
+    copy_width = 548
+    pad = 72
 
     canvas = Image.new("RGBA", (width, height), (8, 12, 18, 255))
     bg = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     bg_draw = ImageDraw.Draw(bg)
     bg_draw.rectangle((0, 0, width, height), fill=(8, 12, 18, 255))
-    bg_draw.rectangle((0, 0, 690, height), fill=(12, 18, 28, 255))
-    bg_draw.polygon([(500, 0), (656, 0), (590, height), (442, height)], fill=(12, 18, 28, 200))
+    bg_draw.rectangle((0, 0, copy_width + 54, height), fill=(12, 18, 28, 255))
+    bg_draw.polygon([(copy_width - 28, 0), (copy_width + 98, 0), (copy_width + 18, height), (copy_width - 110, height)], fill=(12, 18, 28, 192))
 
-    tile_sources = [str(item).strip() for item in (spec.get("tile_sources") or []) if str(item).strip()]
-    columns = 4 if len(tile_sources) > 6 else 3
-    rows = max(1, math.ceil(len(tile_sources) / columns))
+    raw_tile_sources = spec.get("tile_sources") or []
+    tile_specs: list[dict[str, object]] = []
+    if isinstance(raw_tile_sources, list):
+        for raw_entry in raw_tile_sources:
+            if isinstance(raw_entry, dict):
+                source_value = str(raw_entry.get("source") or "").strip()
+                if source_value:
+                    tile_specs.append(
+                        {
+                            "source": source_value,
+                            "focus": _focus_tuple(raw_entry.get("focus"), (0.5, 0.5)),
+                            "zoom": _zoom_value(raw_entry.get("zoom"), 1.0),
+                        }
+                    )
+            elif str(raw_entry).strip():
+                tile_specs.append({"source": str(raw_entry).strip(), "focus": (0.5, 0.5), "zoom": 1.0})
+
+    layout = str(spec.get("layout") or "grid").strip().lower()
     gutter = 18
-    grid_left = 612
-    grid_top = 86
-    grid_width = width - grid_left - 70
-    grid_height = height - 160
-    tile_width = int((grid_width - gutter * (columns - 1)) / columns)
-    tile_height = int((grid_height - gutter * (rows - 1)) / rows)
+    grid_left = copy_width + 44
+    grid_top = 84
+    grid_width = width - grid_left - 58
+    grid_height = height - 146
 
-    for idx, raw_source in enumerate(tile_sources):
-        source_path = _resolve_source(repo_root, source_root, raw_source, output_root)
-        tile = Image.open(source_path).convert("RGB")
-        tile = _fit_cover(tile, (tile_width, tile_height), (0.5, 0.5))
-        tile = _contrast(_saturate(_darken(tile, 0.78), 1.05), 1.06)
-        tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18)
-        col = idx % columns
-        row = idx // columns
-        row_start = row * columns
-        row_count = min(columns, max(0, len(tile_sources) - row_start))
-        row_span = row_count * tile_width + max(0, row_count - 1) * gutter
-        row_offset = max(0, (grid_width - row_span) // 2)
-        x = grid_left + row_offset + col * (tile_width + gutter)
-        y = grid_top + row * (tile_height + gutter)
-        canvas.alpha_composite(tile, (x, y))
+    if layout == "editorial_cluster" and tile_specs:
+        cluster_specs = tile_specs[:6]
+        lead_width = int(grid_width * 0.58)
+        side_width = grid_width - lead_width - gutter
+        top_height = int(grid_height * 0.52)
+        small_height = int((top_height - gutter) / 2)
+        bottom_height = grid_height - top_height - gutter
+        bottom_width = int((grid_width - gutter * 2) / 3)
+        placements = [
+            (grid_left, grid_top, lead_width, top_height),
+            (grid_left + lead_width + gutter, grid_top, side_width, small_height),
+            (grid_left + lead_width + gutter, grid_top + small_height + gutter, side_width, small_height),
+            (grid_left, grid_top + top_height + gutter, bottom_width, bottom_height),
+            (grid_left + bottom_width + gutter, grid_top + top_height + gutter, bottom_width, bottom_height),
+            (grid_left + (bottom_width + gutter) * 2, grid_top + top_height + gutter, bottom_width, bottom_height),
+        ]
         frame = ImageDraw.Draw(canvas)
-        frame.rounded_rectangle((x, y, x + tile_width, y + tile_height), radius=22, outline=accent if idx % 2 == 0 else secondary, width=3)
+        for idx, (tile_spec, (x, y, tile_width, tile_height)) in enumerate(zip(cluster_specs, placements)):
+            source_path = _resolve_source(repo_root, source_root, str(tile_spec.get("source") or ""), output_root)
+            tile = Image.open(source_path).convert("RGB")
+            tile = _fit_cover(tile, (tile_width, tile_height), tile_spec.get("focus") or (0.5, 0.5), zoom=float(tile_spec.get("zoom") or 1.0))
+            tile = _contrast(_saturate(_darken(tile, 0.80 if idx == 0 else 0.76), 1.05), 1.06)
+            tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18 if idx == 0 else 20)
+            shadow_offset = 14 if idx == 0 else 10
+            radius = 28 if idx == 0 else 22
+            frame.rounded_rectangle((x + shadow_offset, y + shadow_offset, x + tile_width + shadow_offset, y + tile_height + shadow_offset), radius=radius, fill=(0, 0, 0, 118))
+            canvas.alpha_composite(tile, (x, y))
+            frame.rounded_rectangle((x, y, x + tile_width, y + tile_height), radius=radius, outline=accent if idx % 2 == 0 else secondary, width=3)
+    else:
+        columns = 4 if len(tile_specs) > 6 else 3
+        rows = max(1, math.ceil(len(tile_specs) / columns))
+        tile_width = int((grid_width - gutter * (columns - 1)) / columns)
+        tile_height = int((grid_height - gutter * (rows - 1)) / rows)
+
+        for idx, tile_spec in enumerate(tile_specs):
+            source_path = _resolve_source(repo_root, source_root, str(tile_spec.get("source") or ""), output_root)
+            tile = Image.open(source_path).convert("RGB")
+            tile = _fit_cover(tile, (tile_width, tile_height), tile_spec.get("focus") or (0.5, 0.5), zoom=float(tile_spec.get("zoom") or 1.0))
+            tile = _contrast(_saturate(_darken(tile, 0.78), 1.05), 1.06)
+            tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18)
+            col = idx % columns
+            row = idx // columns
+            row_start = row * columns
+            row_count = min(columns, max(0, len(tile_specs) - row_start))
+            row_span = row_count * tile_width + max(0, row_count - 1) * gutter
+            row_offset = max(0, (grid_width - row_span) // 2)
+            x = grid_left + row_offset + col * (tile_width + gutter)
+            y = grid_top + row * (tile_height + gutter)
+            frame = ImageDraw.Draw(canvas)
+            frame.rounded_rectangle((x + 10, y + 12, x + tile_width + 10, y + tile_height + 12), radius=24, fill=(0, 0, 0, 110))
+            canvas.alpha_composite(tile, (x, y))
+            frame.rounded_rectangle((x, y, x + tile_width, y + tile_height), radius=22, outline=accent if idx % 2 == 0 else secondary, width=3)
 
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
-    draw.rectangle((0, 0, 580, height), fill=(8, 12, 18, 185))
-    draw.polygon([(574, 0), (596, 0), (524, height), (502, height)], fill=(accent[0], accent[1], accent[2], 165))
-    draw.line((598, 34, 566, height - 34), fill=(secondary[0], secondary[1], secondary[2], 144), width=3)
+    rail = _vertical_gradient((copy_width + 44, height), (8, 12, 18, 220), (8, 12, 18, 196))
+    overlay.alpha_composite(rail, (0, 0))
+    draw.polygon([(copy_width + 2, 0), (copy_width + 18, 0), (copy_width - 44, height), (copy_width - 60, height)], fill=(accent[0], accent[1], accent[2], 165))
+    draw.line((copy_width + 24, 34, copy_width - 18, height - 34), fill=(secondary[0], secondary[1], secondary[2], 144), width=3)
+    draw.rounded_rectangle((pad - 6, 76, copy_width - 74, 184), radius=28, fill=(14, 19, 28, 118), outline=(255, 255, 255, 28), width=1)
+    draw.rounded_rectangle((pad - 8, 210, copy_width - 52, height - 104), radius=34, fill=(10, 15, 22, 72), outline=(255, 255, 255, 18), width=1)
     _draw_panel_motif(
         draw,
         motif="network_nodes",
-        rect=(88, 88, 468, 292),
+        rect=(pad + 8, 86, copy_width - 94, 182),
         accent=(accent[0], accent[1], accent[2], 160),
         secondary=(secondary[0], secondary[1], secondary[2], 120),
     )
 
     series_label = str(spec.get("series_label") or "").strip()
     if series_label:
-        _tracked_text(draw, (88, 70), series_label, label_font, (238, 240, 243, 230), 3)
+        _tracked_text(draw, (pad, 48), series_label, label_font, (238, 240, 243, 230), 3)
 
     title = str(spec.get("title") or "").strip()
-    title_lines = _wrap_text(draw, title, title_font, 430)
-    title_y = 302
+    title_font, title_lines, title_size = _fit_text_block(
+        draw,
+        text=title,
+        font_path=title_font_path,
+        max_size=116,
+        min_size=72,
+        max_width=copy_width - (pad * 2) - 8,
+        max_lines=2,
+    )
+    title_y = 242
+    title_step = int(title_size * 0.84)
+    draw.line((pad, title_y - 22, pad + 72, title_y - 22), fill=(secondary[0], secondary[1], secondary[2], 200), width=3)
     for idx, line in enumerate(title_lines):
-        draw.text((88, title_y + idx * 92), line, font=title_font, fill=(246, 247, 250, 245))
+        draw.text((pad, title_y + idx * title_step), line, font=title_font, fill=(246, 247, 250, 245))
 
     subtitle = str(spec.get("subtitle") or "").strip()
-    subtitle_y = title_y + len(title_lines) * 92 + 18
-    subtitle_lines = _wrap_text(draw, subtitle, body_font, 430)
+    body_font, subtitle_lines, body_size = _fit_text_block(
+        draw,
+        text=subtitle,
+        font_path=body_font_path,
+        max_size=32,
+        min_size=24,
+        max_width=copy_width - (pad * 2) - 8,
+        max_lines=4,
+    )
+    subtitle_y = title_y + len(title_lines) * title_step + 20
+    body_step = int(body_size * 1.22)
     for idx, line in enumerate(subtitle_lines[:4]):
-        draw.text((92, subtitle_y + idx * 42), line, font=body_font, fill=(218, 223, 228, 226))
+        draw.text((pad + 2, subtitle_y + idx * body_step), line, font=body_font, fill=(218, 223, 228, 226))
 
     chips = [str(item).strip() for item in (spec.get("chips") or []) if str(item).strip()]
-    chip_x = 88
-    chips_y = subtitle_y + min(len(subtitle_lines), 4) * 42 + 34
+    chip_x = pad
+    chips_y = max(subtitle_y + min(len(subtitle_lines), 4) * body_step + 32, height - 96)
     for chip in chips[:3]:
         chip_width = _draw_chip(draw, text=chip, x=chip_x, y=chips_y, font=chip_font, accent=(accent[0], accent[1], accent[2], 225))
         chip_x += chip_width + 14
 
     _draw_footer(draw, width=width, height=height, font=chip_font, accent=(secondary[0], secondary[1], secondary[2], 220))
-    combined = Image.alpha_composite(canvas, overlay).convert("RGB")
+    combined = _apply_editorial_finish(Image.alpha_composite(canvas, overlay)).convert("RGB")
     target_path = output_root / str(spec.get("_target") or "")
     target_path.parent.mkdir(parents=True, exist_ok=True)
     combined.save(target_path, format="PNG", compress_level=6)
