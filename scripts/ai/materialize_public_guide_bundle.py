@@ -15,6 +15,12 @@ from pathlib import Path
 
 import yaml
 
+try:
+    from PIL import Image, ImageChops
+except Exception:
+    Image = None
+    ImageChops = None
+
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT_ROOT = ROOT / "products" / "chummer"
@@ -27,9 +33,11 @@ RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.ge
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
+EDITORIAL_COVER_BUILDER_PATH = ROOT / "scripts" / "ai" / "build_public_guide_editorial_covers.py"
 
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
+_EDITORIAL_COVER_BUILDER = None
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -127,6 +135,29 @@ def _media_worker_module():
         _MEDIA_WORKER = False
         return None
     _MEDIA_WORKER = module
+    return module
+
+
+def _editorial_cover_builder_module():
+    global _EDITORIAL_COVER_BUILDER
+    if _EDITORIAL_COVER_BUILDER is False:
+        return None
+    if _EDITORIAL_COVER_BUILDER is not None:
+        return _EDITORIAL_COVER_BUILDER
+    if not EDITORIAL_COVER_BUILDER_PATH.is_file():
+        _EDITORIAL_COVER_BUILDER = False
+        return None
+    try:
+        spec = importlib.util.spec_from_file_location("build_public_guide_editorial_covers", EDITORIAL_COVER_BUILDER_PATH)
+        if spec is None or spec.loader is None:
+            _EDITORIAL_COVER_BUILDER = False
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    except Exception:
+        _EDITORIAL_COVER_BUILDER = False
+        return None
+    _EDITORIAL_COVER_BUILDER = module
     return module
 
 
@@ -1033,6 +1064,22 @@ def _collect_files(root: Path) -> list[Path]:
     return sorted(path for path in root.rglob("*") if path.is_file())
 
 
+def _images_visually_equal(expected_path: Path, actual_path: Path) -> bool:
+    if Image is None or ImageChops is None:
+        return expected_path.read_bytes() == actual_path.read_bytes()
+    expected_image = Image.open(expected_path).convert("RGBA")
+    actual_image = Image.open(actual_path).convert("RGBA")
+    if expected_image.size != actual_image.size:
+        return False
+    diff = ImageChops.difference(expected_image, actual_image)
+    if diff.getbbox() is None:
+        return True
+    channel_extrema = diff.getextrema()
+    max_delta = max(high for _, high in channel_extrema)
+    tolerance = 0 if expected_path.suffix.lower() == ".png" else 2
+    return max_delta <= tolerance
+
+
 def _compare_trees(expected: Path, actual: Path) -> int:
     if not expected.exists():
         print(f"expected_dir_missing:{expected}", file=sys.stderr)
@@ -1067,9 +1114,15 @@ def _compare_trees(expected: Path, actual: Path) -> int:
                     print(line.rstrip(), file=sys.stderr)
                 return 1
             continue
-        if expected_path.read_bytes() != actual_path.read_bytes():
+        if expected_path.suffix.lower() in {".png", ".webp", ".avif"}:
+            if _images_visually_equal(expected_path, actual_path):
+                continue
             print(f"bundle_binary_diff:{rel}", file=sys.stderr)
             return 1
+        if expected_path.read_bytes() == actual_path.read_bytes():
+            continue
+        print(f"bundle_binary_diff:{rel}", file=sys.stderr)
+        return 1
     return 0
 
 
