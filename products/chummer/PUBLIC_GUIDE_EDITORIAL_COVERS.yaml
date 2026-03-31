@@ -19,6 +19,18 @@ assets:
     accent: "#79d8ff"
     accent_secondary: "#f5b04d"
     focus: [0.56, 0.47]
+    background_brightness: 0.76
+    background_saturation: 1.00
+    background_contrast: 1.04
+    background_blur_sigma: 12
+    background_overlay_alpha: 98
+    panel_brightness: 1.12
+    panel_saturation: 1.18
+    panel_contrast: 1.10
+    panel_sharpness: 1.06
+    panel_overlay_alpha: 8
+    editorial_finish_sigma: 8
+    editorial_finish_opacity: 10
     motif: clinic_ticks
   assets/horizons/alice.png:
     kind: feature_cover

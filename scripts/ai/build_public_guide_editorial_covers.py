@@ -91,6 +91,20 @@ def _zoom_value(raw_value: object, default: float = 1.0) -> float:
     return max(1.0, zoom)
 
 
+def _float_value(raw_value: object, default: float) -> float:
+    try:
+        return float(raw_value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _int_value(raw_value: object, default: int) -> int:
+    try:
+        return int(float(raw_value))
+    except (TypeError, ValueError):
+        return default
+
+
 def _fit_cover(
     image: Image.Image,
     size: tuple[int, int],
@@ -381,12 +395,22 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
     copy_width = {"hero": 598, "horizon": 506, "part": 510}.get(style, 548)
     rail_width = copy_width + 70
     pad = 72
+    background_brightness = max(0.40, min(1.20, _float_value(spec.get("background_brightness"), 0.64)))
+    background_saturation = max(0.60, min(1.40, _float_value(spec.get("background_saturation"), 0.94)))
+    background_contrast = max(0.80, min(1.40, _float_value(spec.get("background_contrast"), 1.08)))
+    background_blur_sigma = max(0.0, min(40.0, _float_value(spec.get("background_blur_sigma"), 16.0)))
+    panel_brightness = max(0.80, min(1.30, _float_value(spec.get("panel_brightness"), 1.0)))
+    panel_saturation = max(0.80, min(1.40, _float_value(spec.get("panel_saturation"), 1.10)))
+    panel_contrast = max(0.80, min(1.40, _float_value(spec.get("panel_contrast"), 1.06)))
+    panel_sharpness = max(0.80, min(1.40, _float_value(spec.get("panel_sharpness"), 1.18)))
+    editorial_finish_sigma = max(0.0, min(20.0, _float_value(spec.get("editorial_finish_sigma"), 10.0)))
+    editorial_finish_opacity = max(0, min(64, _int_value(spec.get("editorial_finish_opacity"), 18)))
 
     background_source_image = Image.open(background_source_path).convert("RGB")
     panel_source_image = Image.open(panel_source_path).convert("RGB")
     background = _fit_cover(background_source_image, (width, height), background_focus, zoom=background_zoom)
-    background = _contrast(_saturate(_darken(background, 0.64), 0.94), 1.08)
-    background = background.filter(ImageFilter.GaussianBlur(radius=16))
+    background = _contrast(_saturate(_darken(background, background_brightness), background_saturation), background_contrast)
+    background = background.filter(ImageFilter.GaussianBlur(radius=background_blur_sigma))
     background = _apply_blur_regions(background, spec.get("background_blur_regions"), radius=float(spec.get("background_blur_radius") or 28))
     background = _apply_darken_regions(background, spec.get("background_darken_regions"), factor=float(spec.get("background_darken_factor") or 0.62))
     canvas = _blend_overlay(background, _hex_rgba("#07111a", 255), int(spec.get("background_overlay_alpha") or 118))
@@ -395,8 +419,9 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
     panel_image = _fit_cover(panel_source_image, (panel_width, height), panel_focus, zoom=panel_zoom)
     panel_image = _apply_blur_regions(panel_image, spec.get("panel_blur_regions"), radius=float(spec.get("panel_blur_radius") or 28))
     panel_image = _apply_darken_regions(panel_image, spec.get("panel_darken_regions"), factor=float(spec.get("panel_darken_factor") or 0.62))
-    panel_image = _sharpness(_contrast(_saturate(panel_image, 1.10), 1.06), 1.18)
-    panel_overlay_alpha = int(spec.get("panel_overlay_alpha") or (18 if style == "hero" else 22))
+    panel_image = ImageEnhance.Brightness(panel_image).enhance(panel_brightness)
+    panel_image = _sharpness(_contrast(_saturate(panel_image, panel_saturation), panel_contrast), panel_sharpness)
+    panel_overlay_alpha = _int_value(spec.get("panel_overlay_alpha"), 18 if style == "hero" else 22)
     panel_image = _blend_overlay(panel_image, accent, panel_overlay_alpha)
     panel_mask = Image.new("L", (width, height), 0)
     mask_draw = ImageDraw.Draw(panel_mask)
@@ -493,7 +518,11 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
         chip_x += chip_width + 14
 
     _draw_footer(draw, width=width, height=height, font=chip_font, accent=(secondary[0], secondary[1], secondary[2], 220))
-    combined = _apply_editorial_finish(Image.alpha_composite(canvas, overlay)).convert("RGB")
+    combined = _apply_editorial_finish(
+        Image.alpha_composite(canvas, overlay),
+        sigma=editorial_finish_sigma,
+        opacity=editorial_finish_opacity,
+    ).convert("RGB")
     target_path = output_root / str(spec.get("_target") or "")
     target_path.parent.mkdir(parents=True, exist_ok=True)
     combined.save(target_path, format="PNG", compress_level=6)
