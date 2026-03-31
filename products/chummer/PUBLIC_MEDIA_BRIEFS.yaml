@@ -469,11 +469,14 @@ asset_overlay_contracts:
       - base_scene
       - verified_overlay_optional
   assets/horizons/runsite.png:
-    world_marker_minimum: 3
+    world_marker_minimum: 4
     environment_share_minimum: 0.60
     subject_crop_maximum: 0.24
     cast_readability_required: true
     overlay_anchor_required: true
+    required_cast_markers:
+      - metahuman planner or obvious augment visible
+      - one secondary figure or team trace in the scene depth
     allowed_overlay_modes:
       - none
       - ambient_diegetic

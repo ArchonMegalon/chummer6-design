@@ -82,7 +82,7 @@ assets:
     motif: dossier_grid
   assets/horizons/runsite.png:
     kind: feature_cover
-    source: raw:/docker/fleet/state/chummer6/full_run_batch_20260329a/assets__horizons__runsite__b.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/runsite.png
     series_label: CHUMMER6 HORIZON
     index: "05"
     title: RUNSITE
@@ -93,18 +93,16 @@ assets:
       - LEGIBILITY
     accent: "#ff7a45"
     accent_secondary: "#6ce7ff"
-    focus: [0.34, 0.50]
-    background_focus: [0.36, 0.48]
-    background_zoom: 1.10
-    background_overlay_alpha: 130
-    background_darken_regions:
-      - [0.63, 0.02, 0.98, 0.66]
-    background_darken_factor: 0.32
-    panel_focus: [0.28, 0.50]
-    panel_zoom: 1.34
-    panel_overlay_alpha: 58
-    panel_darken_regions:
-      - [0.60, 0.02, 0.98, 0.66]
+    focus: [0.72, 0.43]
+    background_focus: [0.75, 0.43]
+    background_zoom: 1.09
+    background_overlay_alpha: 112
+    background_darken_regions: []
+    background_darken_factor: 0.18
+    panel_focus: [0.74, 0.43]
+    panel_zoom: 1.18
+    panel_overlay_alpha: 48
+    panel_darken_regions: []
     panel_darken_factor: 0.24
     motif: route_grid
   assets/horizons/runbook-press.png:
