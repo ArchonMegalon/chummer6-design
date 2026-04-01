@@ -17,3 +17,4 @@ Approved architecture decisions for cross-repo Chummer design live here.
 - [ADR-0012](ADR-0012-product-governor-and-feedback-loop.md): Whole-product pulse and feedback routing are first-class canon rather than scattered operator instinct.
 - [ADR-0013](ADR-0013-campaign-and-control-middle-plane.md): Campaign continuity and product control are first-class middle planes, initially bounded inside Hub rather than left implicit across other repos.
 - [ADR-0014](ADR-0014-interop-and-portability-plane.md): Interop and portability are explicit product promises with named owner-package seams instead of compatibility folklore.
+- [ADR-0015](ADR-0015-drug-system-semantics-and-application.md): Drug systems are deterministic, ruleset-pluggable, and receipt-backed via core contracts.

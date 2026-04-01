@@ -36,6 +36,7 @@ The immediate additive shape is:
 * widen Build and Explain by making progression planning, team fit, rule-environment diffs, and receipts feel like one grounded product
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
+* raise every major surface to the flagship-grade bar in `FLAGSHIP_PRODUCT_BAR.md`, especially the authored desktop client, ruleset-specific UX, public trust shelf, and live-play continuity
 
 ## Phase A — Canon and package plane
 

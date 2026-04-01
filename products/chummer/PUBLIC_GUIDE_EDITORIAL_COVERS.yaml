@@ -178,7 +178,11 @@ assets:
       - DECISIONS
     accent: "#82cfff"
     accent_secondary: "#f6d365"
-    focus: [0.54, 0.44]
+    focus: [0.60, 0.52]
+    panel_brightness: 1.06
+    panel_saturation: 1.18
+    panel_contrast: 1.12
+    panel_sharpness: 1.30
     motif: dossier_grid
   assets/parts/core.png:
     kind: feature_cover
@@ -193,7 +197,11 @@ assets:
       - ENGINE
     accent: "#f7b267"
     accent_secondary: "#5ad1ff"
-    focus: [0.72, 0.50]
+    focus: [0.52, 0.54]
+    panel_brightness: 1.04
+    panel_saturation: 1.16
+    panel_contrast: 1.10
+    panel_sharpness: 1.28
     motif: ledger_grid
   assets/parts/ui.png:
     kind: feature_cover
@@ -259,7 +267,9 @@ assets:
       - CONSISTENCY
     accent: "#ffd166"
     accent_secondary: "#82cfff"
-    focus: [0.56, 0.46]
+    focus: [0.58, 0.52]
+    panel_saturation: 1.16
+    panel_contrast: 1.08
     motif: swatch_grid
   assets/parts/hub-registry.png:
     kind: feature_cover
@@ -274,7 +284,9 @@ assets:
       - RELEASES
     accent: "#f7b267"
     accent_secondary: "#82cfff"
-    focus: [0.64, 0.48]
+    focus: [0.68, 0.46]
+    panel_focus: [0.70, 0.46]
+    panel_zoom: 1.05
     motif: shelf_brackets
   assets/parts/media-factory.png:
     kind: feature_cover

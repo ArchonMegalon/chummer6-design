@@ -359,6 +359,112 @@ def _draw_panel_motif(draw: ImageDraw.ImageDraw, *, motif: str, rect: tuple[int,
         draw.line((left + 72, top + 232, left + 240, top + 232), fill=accent, width=3)
 
 
+def _draw_bracket_box(
+    draw: ImageDraw.ImageDraw,
+    *,
+    box: tuple[int, int, int, int],
+    color: tuple[int, int, int, int],
+    width: int = 3,
+    arm: int = 26,
+) -> None:
+    left, top, right, bottom = box
+    arm_x = min(arm, max(10, (right - left) // 3))
+    arm_y = min(arm, max(10, (bottom - top) // 3))
+    draw.line((left, top, left + arm_x, top), fill=color, width=width)
+    draw.line((left, top, left, top + arm_y), fill=color, width=width)
+    draw.line((right - arm_x, top, right, top), fill=color, width=width)
+    draw.line((right, top, right, top + arm_y), fill=color, width=width)
+    draw.line((left, bottom - arm_y, left, bottom), fill=color, width=width)
+    draw.line((left, bottom, left + arm_x, bottom), fill=color, width=width)
+    draw.line((right - arm_x, bottom, right, bottom), fill=color, width=width)
+    draw.line((right, bottom - arm_y, right, bottom), fill=color, width=width)
+
+
+def _draw_scene_overlay(
+    draw: ImageDraw.ImageDraw,
+    *,
+    motif: str,
+    rect: tuple[int, int, int, int],
+    accent: tuple[int, int, int, int],
+    secondary: tuple[int, int, int, int],
+) -> None:
+    left, top, right, bottom = rect
+    width = right - left
+    height = bottom - top
+
+    def pt(px: float, py: float) -> tuple[int, int]:
+        return (left + int(width * px), top + int(height * py))
+
+    accent_soft = (accent[0], accent[1], accent[2], min(128, max(48, accent[3])))
+    accent_faint = (accent[0], accent[1], accent[2], max(28, accent[3] // 2))
+    secondary_soft = (secondary[0], secondary[1], secondary[2], min(118, max(44, secondary[3])))
+    secondary_faint = (secondary[0], secondary[1], secondary[2], max(24, secondary[3] // 2))
+
+    _draw_bracket_box(
+        draw,
+        box=(pt(0.14, 0.12)[0], pt(0.14, 0.12)[1], pt(0.43, 0.34)[0], pt(0.43, 0.34)[1]),
+        color=accent_soft,
+        width=3,
+        arm=max(22, width // 28),
+    )
+    _draw_bracket_box(
+        draw,
+        box=(pt(0.56, 0.18)[0], pt(0.56, 0.18)[1], pt(0.86, 0.40)[0], pt(0.86, 0.40)[1]),
+        color=secondary_soft,
+        width=2,
+        arm=max(18, width // 32),
+    )
+    _draw_bracket_box(
+        draw,
+        box=(pt(0.24, 0.58)[0], pt(0.24, 0.58)[1], pt(0.50, 0.80)[0], pt(0.50, 0.80)[1]),
+        color=accent_soft,
+        width=2,
+        arm=max(18, width // 32),
+    )
+
+    draw.arc((pt(0.06, 0.04)[0], pt(0.04, 0.04)[1], pt(0.72, 0.72)[0], pt(0.72, 0.72)[1]), start=208, end=318, fill=secondary_faint, width=2)
+    draw.arc((pt(0.42, 0.26)[0], pt(0.10, 0.08)[1], pt(1.02, 0.86)[0], pt(0.92, 0.94)[1]), start=196, end=294, fill=accent_faint, width=2)
+    draw.line((pt(0.10, 0.48), pt(0.28, 0.48), pt(0.36, 0.42), pt(0.50, 0.42), pt(0.62, 0.34), pt(0.78, 0.34)), fill=secondary_faint, width=2)
+    draw.line((pt(0.60, 0.74), pt(0.82, 0.74)), fill=accent_faint, width=2)
+
+    for px, py, radius, fill in (
+        (0.18, 0.48, 8, accent_soft),
+        (0.62, 0.34, 7, secondary_soft),
+        (0.73, 0.74, 6, accent_soft),
+    ):
+        x, y = pt(px, py)
+        draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=fill)
+
+    if motif in {"network_nodes", "route_grid"}:
+        nodes = [pt(0.54, 0.16), pt(0.72, 0.26), pt(0.82, 0.48), pt(0.66, 0.64), pt(0.48, 0.74)]
+        for start, end in zip(nodes, nodes[1:]):
+            draw.line((*start, *end), fill=accent_soft, width=2)
+        for x, y in nodes:
+            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline=secondary_soft, width=2)
+    elif motif in {"ledger_grid", "clinic_ticks", "pulse_bands"}:
+        baseline = top + int(height * 0.84)
+        for idx in range(6):
+            x = left + int(width * (0.18 + idx * 0.10))
+            draw.line((x, baseline - int(height * 0.14), x, baseline + int(height * 0.02)), fill=accent_faint, width=2)
+        draw.line((left + int(width * 0.14), baseline, right - int(width * 0.08), baseline), fill=secondary_faint, width=2)
+    elif motif in {"dossier_grid", "shelf_brackets", "print_columns"}:
+        for idx in range(3):
+            box_left = left + int(width * 0.58)
+            box_top = top + int(height * (0.50 + idx * 0.11))
+            box_right = right - int(width * 0.08)
+            box_bottom = box_top + int(height * 0.07)
+            draw.rounded_rectangle((box_left, box_top, box_right, box_bottom), radius=12, outline=secondary_faint, width=2)
+    elif motif == "swatch_grid":
+        for row in range(2):
+            for col in range(3):
+                x1 = left + int(width * (0.58 + col * 0.10))
+                y1 = top + int(height * (0.52 + row * 0.12))
+                x2 = x1 + int(width * 0.07)
+                y2 = y1 + int(height * 0.05)
+                color = accent_faint if (row + col) % 2 == 0 else secondary_faint
+                draw.rounded_rectangle((x1, y1, x2, y2), radius=10, outline=color, width=2)
+
+
 def _draw_footer(draw: ImageDraw.ImageDraw, *, width: int, height: int, font: ImageFont.FreeTypeFont, accent: tuple[int, int, int, int]) -> None:
     label = "PUBLIC GUIDE"
     text_bbox = draw.textbbox((0, 0), label, font=font)
@@ -461,6 +567,13 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
         rect=(pad + 8, 88, copy_width - 92, 182),
         accent=(accent[0], accent[1], accent[2], 150),
         secondary=(secondary[0], secondary[1], secondary[2], 122),
+    )
+    _draw_scene_overlay(
+        draw,
+        motif=str(spec.get("motif") or ""),
+        rect=(copy_width + 54, 36, width - 40, height - 66),
+        accent=(accent[0], accent[1], accent[2], 92 if style == "hero" else 108),
+        secondary=(secondary[0], secondary[1], secondary[2], 78 if style == "hero" else 92),
     )
     seam_points = [(copy_width + 22, 0), (copy_width + 38, 0), (copy_width - 46, height), (copy_width - 62, height)]
     draw.polygon(seam_points, fill=(accent[0], accent[1], accent[2], 170))

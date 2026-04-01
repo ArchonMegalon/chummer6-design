@@ -47,6 +47,16 @@
 If a component should be shared by workbench and play, it belongs here.
 If it requires domain DTOs or service calls to exist, it probably does not.
 
+## Flagship-grade bar
+
+`chummer6-ui-kit` is not flagship grade until:
+
+* dense-data tables, compare grids, inspectors, effect chips, and timeline primitives let expert users scan and act at speed
+* keyboard, pointer, focus, contrast, and localization-safe wrapping are first-class in promoted surfaces rather than retrofit chores
+* shared primitives can express active rule-environment posture, package conflicts, preview diffs, and restore warnings without each head inventing its own package UX
+* shared primitives can express edition-authored cues, preview and hazard posture, and recovery messaging without each head reinventing them
+* motion, empty states, and progressive disclosure feel intentional instead of reading like generic admin scaffolding
+
 ## Current reality
 
 The active shared boundary is release-ready for the current program scope.

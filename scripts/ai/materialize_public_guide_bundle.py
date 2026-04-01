@@ -951,8 +951,7 @@ def _generate_root(
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
         "- [Contact](CONTACT.md)",
-        "- [Parts index](PARTS/README.md)",
-        "- [Horizons index](HORIZONS/README.md)",
+        "- [Roadmap and future ideas](HORIZONS/README.md)",
     ]
     for line in extra_routes:
         if line not in ordered_ctas:
@@ -962,8 +961,7 @@ def _generate_root(
         _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "# Chummer Public Guide",
         "",
-        "This is the public guide to Chummer6.",
-        "Use it to see what works today, what is still preview, and where to go next.",
+        "Start here if you want the public answer first: what Chummer6 does, what is real today, and whether the current preview is worth your time.",
         "",
     ]
     if headline or subhead or proof_line:
@@ -979,14 +977,24 @@ def _generate_root(
             rows.append("")
     rows.extend(
         [
+            "## What people usually want to know",
+            "",
+            "- I want to try the preview: [Download](DOWNLOAD.md).",
+            "- I want the honest current picture: [Status](STATUS.md).",
+            "- I want the two-minute product story: [What Chummer6 Is](WHAT_CHUMMER6_IS.md).",
+            "- I need support or want to report pain: [Help](HELP.md) and [Contact](CONTACT.md).",
+            "- I only care about future ideas: [Horizons](HORIZONS/README.md).",
+            "",
+        ]
+    )
+    rows.extend(
+        [
         "## What is real now",
         "",
         ]
     )
     if phase:
         rows.append(f"- Current stage: {phase}.")
-    if overall is not None and int(overall) < 100:
-        rows.append(f"- Public guide completion is tracking at {overall}% of the current refinement pass.")
     rows.extend(
         [
             "- The current Linux preview package is published on the public shelf.",
@@ -1005,17 +1013,28 @@ def _generate_root(
         rows.extend(hero_rows)
     rows.extend(["## Start here", ""])
     rows.extend(ordered_ctas)
-    rows.extend(["", "## Product parts", ""])
-    for part in parts:
-        part_id = str(part.get("id") or "").strip()
-        title = str(part.get("title") or part_id).strip() or part_id
-        tagline = _public_copy(str(part.get("public_tagline") or "").strip())
-        rows.append(f"- [{title}](PARTS/{_slug(part_id)}.md): {tagline or 'Current product area.'}")
+    rows.extend(
+        [
+            "",
+            "## Why people keep watching",
+            "",
+            "- Deterministic engine: the same inputs are supposed to produce the same answer, not a vibe-based approximation.",
+            "- Rules receipts: the modifier trail is meant to stay attached to the result instead of disappearing behind a black box.",
+            "- Local-first continuity: the product is being shaped to survive device drift and bad connectivity without losing the thread.",
+            "",
+            "## Product parts",
+            "",
+            "You do not need this map first. Use it when you want the behind-the-scenes split after the friendly tour.",
+            "",
+            "- [Parts index](PARTS/README.md): the behind-the-scenes product map once you already care how the experience is split.",
+            "- [Horizons index](HORIZONS/README.md): future bets and research lanes, clearly separated from what is ready today.",
+        ]
+    )
 
     if isinstance(help_page, dict):
         intro = str(help_page.get("intro") or "").strip()
         if intro:
-            rows.extend(["", "## Get support", "", _public_copy(intro)])
+            rows.extend(["", "## Need help", "", _public_copy(intro)])
 
     _write(doc_path, "\n".join(rows))
 
@@ -1252,8 +1271,8 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         _front_matter("Parts", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
         "# Parts",
         "",
-        "Chummer6 is easier to understand when you break it into the product areas people actually touch.",
-        "Use this index when you want the map before you dive into one slice.",
+        "This is the deeper product map, not the first stop for most readers.",
+        "Use it after the friendly tour, when you want to understand how the experience is split behind the scenes.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/parts-index.png", alt="Chummer6 parts index art"))
@@ -1334,8 +1353,8 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
         _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Horizons",
         "",
-        "Horizons are the future-facing ideas worth tracking next.",
-        "They are product bets, not promises that every idea below is already ready today.",
+        "Use this index when you want to see where Chummer6 could go next after you understand the current product picture.",
+        "These are product bets and research lanes, not promises that every idea below is ready today.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))

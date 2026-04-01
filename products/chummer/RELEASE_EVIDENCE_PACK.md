@@ -1,8 +1,9 @@
 # Release Evidence Pack
 
-Last reviewed: 2026-03-26
+Last reviewed: 2026-04-01
 
 Purpose: close `WL-D037` by keeping the final release argument in one canonical location.
+This pack records foundation and wave-closeout truth, but full public-release completeness still depends on the flagship acceptance bar in `FLAGSHIP_RELEASE_ACCEPTANCE.yaml`.
 
 ## Program exit summary
 
@@ -45,3 +46,14 @@ The signed-in home cockpit, explicit rule-environment posture, living-dossier ru
 The weekly pulse itself now emits a bounded generated snapshot, and interop/portability now has explicit canon plus runtime/export proof instead of implied compatibility drift.
 Public product maturity is still advancing in broader promotion breadth, estate-wide adoption, live operator cadence, and measured production depth rather than in still-missing repo-local canon or package seams.
 That remaining work is additive product growth, not evidence that foundation design or repo-boundary truth is still missing.
+
+## Flagship release rule
+
+This file is not by itself sufficient proof of a flagship-complete public release.
+
+A final flagship release argument must also show:
+
+* `FLAGSHIP_RELEASE_ACCEPTANCE.yaml` pass posture or bounded preview explanations
+* journey evidence from `GOLDEN_JOURNEY_RELEASE_GATES.yaml`
+* explicit rule-environment and amend-package honesty on build, import, restore, and explain surfaces
+* public/download/help/support coherence with the actual promoted artifacts
