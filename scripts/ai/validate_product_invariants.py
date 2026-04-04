@@ -167,6 +167,12 @@ def main() -> int:
     pulse_snapshot = load_json(pulse_snapshot_path)
     if str(pulse_snapshot.get("contract_name") or "").strip() != "chummer.weekly_product_pulse":
         errors.append("WEEKLY_PRODUCT_PULSE.generated.json must carry the chummer.weekly_product_pulse contract name.")
+    try:
+        pulse_contract_version = int(pulse_snapshot.get("contract_version") or 0)
+    except (TypeError, ValueError):
+        pulse_contract_version = 0
+    if pulse_contract_version < 3:
+        errors.append("WEEKLY_PRODUCT_PULSE.generated.json must use contract_version >= 3.")
     if int((pulse_snapshot.get("supporting_signals") or {}).get("history_snapshot_count") or 0) != int(history.get("snapshot_count") or 0):
         errors.append("Weekly product pulse must carry the same history snapshot count as PROGRESS_HISTORY.generated.json.")
     supporting_signals = pulse_snapshot.get("supporting_signals") or {}
@@ -178,6 +184,7 @@ def main() -> int:
             "adoption_health",
             "progress_trend",
             "provider_route_stewardship",
+            "automation_alignment",
         )
         for signal_name in required_supporting_signals:
             if signal_name not in supporting_signals:
@@ -214,6 +221,21 @@ def main() -> int:
                 "WEEKLY_PRODUCT_PULSE.generated.json provider_route_stewardship must include default_status, canary_status, review_due, and next_decision fields."
             )
 
+        automation_alignment = supporting_signals.get("automation_alignment")
+        if not isinstance(automation_alignment, dict):
+            errors.append("WEEKLY_PRODUCT_PULSE.generated.json must expose automation_alignment as an object in supporting_signals.")
+        elif {
+            "state",
+            "active_wave_registry",
+            "active_open_milestone_ids",
+            "handoff_frontier_milestone_ids",
+            "out_of_program_frontier_milestone_ids",
+            "summary",
+        } - set(map(str, automation_alignment.keys())):
+            errors.append(
+                "WEEKLY_PRODUCT_PULSE.generated.json automation_alignment must include state, registry, milestone id lists, and summary fields."
+            )
+
     snapshot_payload = pulse_snapshot.get("snapshot") or {}
     if not isinstance(snapshot_payload, dict) or not snapshot_payload.get("governor_decisions"):
         errors.append("Weekly product pulse must include at least one governor decision.")
@@ -223,6 +245,25 @@ def main() -> int:
     for field in ("summary", "active_wave", "active_wave_status", "governor_decisions", "next_checkpoint_question"):
         if field not in pulse_snapshot:
             errors.append(f"WEEKLY_PRODUCT_PULSE.generated.json must expose compatibility field {field}.")
+    scorecard_required_fields = (
+        "as_of",
+        "release_health",
+        "flagship_readiness",
+        "rule_environment_trust",
+        "journey_gate_health",
+        "edition_authorship_and_import_confidence",
+        "top_support_or_feedback_clusters",
+        "oldest_blocker_days",
+        "design_drift_count",
+        "public_promise_drift_count",
+        "governor_decisions",
+        "next_checkpoint_question",
+    )
+    for field in scorecard_required_fields:
+        if field not in pulse_snapshot:
+            errors.append(
+                f"WEEKLY_PRODUCT_PULSE.generated.json must expose scorecard weekly_snapshot field '{field}' at the top level."
+            )
 
     groups = sync_manifest.get("product_source_groups") or {}
     mirrors = sync_manifest.get("mirrors") or []

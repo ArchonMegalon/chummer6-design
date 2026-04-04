@@ -20,6 +20,10 @@ POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
 MAX_PROGRESS_TREND_SAMPLES = 8
 PROVIDER_ROUTE_REVIEW_CADENCE_DAYS = 14
+FLEET_HANDOFF_CANDIDATES = (
+    Path("/docker/fleet/NEXT_SESSION_HANDOFF.md"),
+    ROOT.parents[1] / "fleet" / "NEXT_SESSION_HANDOFF.md",
+)
 FLEET_JOURNEY_GATE_CANDIDATES = (
     Path("/docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json"),
     ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "JOURNEY_GATES.generated.json",
@@ -156,6 +160,86 @@ def _resolve_active_wave_registry(current_wave: str) -> tuple[Path, str]:
     if fallback.is_file():
         return fallback, _registry_status(fallback)
     return ACTIVE_WAVE_REGISTRY, "unknown"
+
+
+def _active_open_milestone_ids(registry_path: Path) -> list[int]:
+    payload = _read_optional_yaml(registry_path)
+    rows = payload.get("milestones")
+    if not isinstance(rows, list):
+        return []
+    open_ids: list[int] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        status = str(row.get("status") or "").strip().lower()
+        if status in {"complete", "done", "closed"}:
+            continue
+        milestone_id = _safe_int(row.get("id"), default=0)
+        if milestone_id <= 0:
+            continue
+        if milestone_id not in open_ids:
+            open_ids.append(milestone_id)
+    return sorted(open_ids)
+
+
+def _read_optional_text(path: Path) -> str:
+    if not path.is_file():
+        return ""
+    return _read_text(path)
+
+
+def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
+    if not text:
+        return []
+    folded = text.splitlines()
+    ids: list[int] = []
+    marker_patterns = (
+        re.compile(r"frontier milestone ids to prioritize first\s*:\s*(.+)$", flags=re.IGNORECASE),
+        re.compile(r"frontier milestone ids\s*:\s*(.+)$", flags=re.IGNORECASE),
+        re.compile(r"current open milestone ids\s*:\s*(.+)$", flags=re.IGNORECASE),
+    )
+    for line in folded:
+        stripped = line.strip()
+        for pattern in marker_patterns:
+            match = pattern.search(stripped)
+            if not match:
+                continue
+            for token in re.split(r"[,\s]+", match.group(1).strip()):
+                if not token or not token.isdigit():
+                    continue
+                value = int(token)
+                if value > 0 and value not in ids:
+                    ids.append(value)
+    return ids
+
+
+def _automation_alignment_signal(active_wave_registry_path: Path, active_wave_status: str) -> dict[str, Any]:
+    handoff_path = _resolve_fleet_artifact(FLEET_HANDOFF_CANDIDATES)
+    handoff_text = _read_optional_text(handoff_path)
+    frontier_ids = _parse_frontier_ids_from_handoff_text(handoff_text)
+    open_ids = _active_open_milestone_ids(active_wave_registry_path)
+    out_of_program_ids = [value for value in frontier_ids if value not in open_ids]
+    state = "aligned"
+    if str(active_wave_status or "").strip().lower() in {"active", "in_progress", "in-progress"} and not frontier_ids:
+        state = "watch"
+    if out_of_program_ids:
+        state = "misaligned"
+    summary = (
+        "Automation frontier aligns with the active program open milestones."
+        if state == "aligned"
+        else "Automation frontier is missing explicit milestone focus even though the active program is still open."
+        if state == "watch"
+        else "Automation frontier drifts outside active program open milestones and must be corrected before promotion."
+    )
+    return {
+        "state": state,
+        "active_wave_registry": _product_relative(active_wave_registry_path),
+        "active_open_milestone_ids": open_ids,
+        "handoff_frontier_milestone_ids": frontier_ids,
+        "out_of_program_frontier_milestone_ids": out_of_program_ids,
+        "handoff_source": str(handoff_path),
+        "summary": summary,
+    }
 
 
 def _front_door_closed(release_text: str) -> bool:
@@ -777,6 +861,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     adoption_health = _compute_adoption_health(report, local_release_proof)
     progress_trend = _compute_progress_trend(history)
     active_wave_registry_path, active_wave_status = _resolve_active_wave_registry(current_wave)
+    automation_alignment = _automation_alignment_signal(active_wave_registry_path, active_wave_status)
     next_checkpoint_question = (
         "What is the smallest cross-repo slice that makes the campaign OS indispensable and turns trust, adoption, and publication depth into a real launch advantage?"
         if post_audit_closed
@@ -797,6 +882,11 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         if not blockers_open
         else "At least one red blocker is open, so release posture needs explicit justification before promotion or claim expansion."
     )
+    release_health = {
+        "state": release_health_state,
+        "reason": release_health_reason,
+        "front_door_wave_closed": _front_door_closed(release_text),
+    }
     blocked_journeys = blockers_open or journey_gate_health.get("blocked_count", 0) > 0 or str(journey_gate_health.get("state") or "").strip().lower() == "blocked"
     provider_route_stewardship = _provider_route_stewardship_signal(
         journey_gate_health=journey_gate_health,
@@ -831,9 +921,40 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         active_wave_status=active_wave_status,
     )
 
+    flagship_readiness_state = (
+        "ready"
+        if not blocked_journeys and str(local_release_proof.get("status") or "").strip().lower() == "passed"
+        else "watch"
+    )
+    flagship_readiness = {
+        "state": flagship_readiness_state,
+        "reason": (
+            "Journey gates are ready and local release proof passed."
+            if flagship_readiness_state == "ready"
+            else "Flagship readiness is still constrained by blocked journey proof or missing local release proof."
+        ),
+    }
+    rule_environment_trust = {
+        "state": "ready" if str(journey_gate_health.get("state") or "").strip().lower() == "ready" else "watch",
+        "reason": (
+            "Rule-environment trust follows current journey-gate readiness."
+            if str(journey_gate_health.get("state") or "").strip().lower() == "ready"
+            else "Rule-environment trust still needs journey-gate closure."
+        ),
+    }
+    edition_authorship_and_import_confidence = {
+        "state": "monitor" if history_count >= 2 else "early",
+        "reason": (
+            "Edition/import confidence is monitored through ongoing history-backed pulse snapshots."
+            if history_count >= 2
+            else "Edition/import confidence needs more history snapshots."
+        ),
+    }
+    top_clusters = _top_clusters(current_wave, report, next20_closed=next20_closed, post_audit_closed=post_audit_closed)
+
     payload: dict[str, Any] = {
         "contract_name": "chummer.weekly_product_pulse",
-        "contract_version": 1,
+        "contract_version": 3,
         "generated_at": _snapshot_generated_at(report, history, as_of),
         "as_of": as_of.isoformat(),
         "scorecard_source": "products/chummer/PRODUCT_HEALTH_SCORECARD.yaml",
@@ -844,17 +965,24 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         "summary": summary,
         "active_wave": current_wave,
         "active_wave_status": active_wave_status,
+        "release_health": release_health,
+        "flagship_readiness": flagship_readiness,
+        "rule_environment_trust": rule_environment_trust,
+        "edition_authorship_and_import_confidence": edition_authorship_and_import_confidence,
         "journey_gate_health": journey_gate_health,
+        "top_support_or_feedback_clusters": top_clusters,
+        "oldest_blocker_days": oldest_blocker_days,
+        "design_drift_count": 0,
+        "public_promise_drift_count": 0,
         "governor_decisions": governor_decisions,
         "next_checkpoint_question": next_checkpoint_question,
         "snapshot": {
-            "release_health": {
-                "state": release_health_state,
-                "reason": release_health_reason,
-                "front_door_wave_closed": _front_door_closed(release_text),
-            },
+            "release_health": release_health,
+            "flagship_readiness": flagship_readiness,
+            "rule_environment_trust": rule_environment_trust,
+            "edition_authorship_and_import_confidence": edition_authorship_and_import_confidence,
             "journey_gate_health": journey_gate_health,
-            "top_support_or_feedback_clusters": _top_clusters(current_wave, report, next20_closed=next20_closed, post_audit_closed=post_audit_closed),
+            "top_support_or_feedback_clusters": top_clusters,
             "oldest_blocker_days": oldest_blocker_days,
             "design_drift_count": 0,
             "public_promise_drift_count": 0,
@@ -873,6 +1001,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
             "active_wave_registry": _product_relative(active_wave_registry_path),
             "scorecard_metric_count": sum(len((card or {}).get("metrics") or []) for card in (scorecard.get("scorecards") or []) if isinstance(card, dict)),
+            "automation_alignment": automation_alignment,
         },
     }
 
