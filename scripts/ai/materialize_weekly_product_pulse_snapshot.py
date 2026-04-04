@@ -14,6 +14,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
 DEFAULT_OUT = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
+NEXT12_REGISTRY = PRODUCT / "NEXT_12_BIGGEST_WINS_REGISTRY.yaml"
 NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
@@ -110,6 +111,53 @@ def _registry_status(path: Path) -> str:
     return str(payload.get("status") or "").strip().lower()
 
 
+def _status_is_active(status: str) -> bool:
+    return str(status or "").strip().lower() in {"active", "in_progress", "in-progress"}
+
+
+def _product_relative(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT)).replace("\\", "/")
+    except ValueError:
+        return str(path)
+
+
+def _resolve_active_wave_registry(current_wave: str) -> tuple[Path, str]:
+    wave = str(current_wave or "").strip().lower()
+    candidates: list[Path] = []
+    if "next 12" in wave:
+        candidates.append(NEXT12_REGISTRY)
+    if "post-audit" in wave:
+        candidates.append(POST_AUDIT_REGISTRY)
+    if "next 20 big wins after post-audit closeout" in wave:
+        candidates.append(ACTIVE_WAVE_REGISTRY)
+    if "next 20" in wave:
+        candidates.append(NEXT20_REGISTRY)
+    candidates.extend([NEXT12_REGISTRY, ACTIVE_WAVE_REGISTRY, POST_AUDIT_REGISTRY, NEXT20_REGISTRY])
+
+    seen: set[Path] = set()
+    deduped: list[Path] = []
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        deduped.append(candidate)
+
+    fallback = ACTIVE_WAVE_REGISTRY
+    for candidate in deduped:
+        if not candidate.is_file():
+            continue
+        status = _registry_status(candidate)
+        if _status_is_active(status):
+            return candidate, status
+        if fallback == ACTIVE_WAVE_REGISTRY:
+            fallback = candidate
+
+    if fallback.is_file():
+        return fallback, _registry_status(fallback)
+    return ACTIVE_WAVE_REGISTRY, "unknown"
+
+
 def _front_door_closed(release_text: str) -> bool:
     return "Account-Aware Front Door wave is materially closed" in release_text
 
@@ -134,7 +182,14 @@ def _oldest_blocker_days(blockers_text: str, as_of: dt.date) -> int:
 
 def _top_clusters(current_wave: str, report: dict[str, Any], *, next20_closed: bool, post_audit_closed: bool) -> list[dict[str, Any]]:
     longest_pole = _longest_pole_label(report)
-    if post_audit_closed:
+    wave_folded = str(current_wave or "").strip().lower()
+    if "next 12" in wave_folded:
+        additive_summary = (
+            f"{current_wave} is the active pressure cluster: finish install-specific trust/support truth, creator publication and shelf posture, pulse-v3 launch governance, and no-step-back utility parity."
+        )
+        cluster_id = "next12_trust_publication_launch_scale"
+        active_registry_source = "products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml"
+    elif post_audit_closed:
         additive_summary = (
             f"{current_wave} is the post-post-audit additive pressure cluster: make the campaign OS indispensable, widen Build and Explain, strengthen exchange and publication, and turn trust plus operator depth into launch-scale product posture."
         )
@@ -186,6 +241,12 @@ def _governor_decisions(
     current_wave: str,
     oldest_blocker_days: int,
     *,
+    active_wave_status: str,
+    journey_gate_health: dict[str, Any],
+    closure_health: dict[str, Any] | None,
+    provider_route_stewardship: dict[str, Any],
+    local_release_proof: dict[str, Any],
+    blocked_journeys: bool,
     next20_closed: bool,
     post_audit_closed: bool,
 ) -> list[dict[str, Any]]:
@@ -193,7 +254,16 @@ def _governor_decisions(
     history_count = int(report.get("history_snapshot_count") or 0)
     phase_label = str(report.get("phase_label") or "").strip() or "Scale & stabilize"
     longest_pole = _longest_pole_label(report)
-    if post_audit_closed:
+    current_wave_folded = str(current_wave or "").strip().lower()
+    if "next 12" in current_wave_folded:
+        decision_id = f"{as_of.isoformat()}-focus-{current_wave.casefold().replace(' ', '-')}"
+        action = "focus_shift"
+        reason = (
+            f"Keep delivery focus on {current_wave}. The pulse shows {overall}% overall progress in '{phase_label}', "
+            f"history depth has reached {history_count} snapshots, and the pacing risk remains concentrated in {longest_pole} "
+            "while trust/publication/utility closure still needs measured completion on the active registry."
+        )
+    elif post_audit_closed:
         decision_id = f"{as_of.isoformat()}-closeout-and-continue-{current_wave.casefold().replace(' ', '-')}"
         action = "closeout_and_continue"
         reason = (
@@ -217,7 +287,38 @@ def _governor_decisions(
             f"'{phase_label}', history depth has reached {history_count} snapshots, and the pacing risk is still "
             f"concentrated in {longest_pole} rather than in reopened foundation blockers."
         )
-    return [
+    journey_state = str(journey_gate_health.get("state") or "").strip().lower()
+    blocked_count = _safe_int(journey_gate_health.get("blocked_count"))
+    closure_state = str((closure_health or {}).get("state") or "").strip().lower()
+    canary_status = str(provider_route_stewardship.get("canary_status") or "").strip()
+    local_release_status = str(local_release_proof.get("status") or "").strip().lower()
+    if blocked_journeys or blocked_count > 0 or journey_state == "blocked":
+        control_action = "freeze_launch"
+        control_reason = (
+            f"Freeze launch expansion while {blocked_count} golden journey(s) remain blocked and journey health is {journey_state or 'unknown'}."
+        )
+    elif local_release_status != "passed":
+        control_action = "freeze_launch"
+        control_reason = (
+            "Freeze launch expansion until fresh local release proof passes on the public edge."
+        )
+    elif canary_status != "Canary green on all active lanes":
+        control_action = "freeze_launch"
+        control_reason = (
+            f"Freeze launch expansion until provider-route canaries return to green (current: {canary_status or 'unknown'})."
+        )
+    elif closure_state and closure_state != "clear":
+        control_action = "freeze_launch"
+        control_reason = (
+            f"Freeze launch expansion until support closure returns to clear posture (current: {closure_state})."
+        )
+    else:
+        control_action = "launch_expand"
+        control_reason = (
+            "Launch expansion is approved for the next bounded window while canaries and support closure remain clear."
+        )
+
+    decisions = [
         {
             "decision_id": decision_id,
             "action": action,
@@ -228,9 +329,23 @@ def _governor_decisions(
                 f"oldest_blocker_days={oldest_blocker_days}",
                 f"phase_label={phase_label}",
                 f"longest_pole={longest_pole}",
+                f"active_wave_status={active_wave_status or 'unknown'}",
             ],
-        }
+        },
+        {
+            "decision_id": f"{as_of.isoformat()}-launch-governance",
+            "action": control_action,
+            "reason": control_reason,
+            "cited_signals": [
+                f"journey_gate_state={journey_state or 'unknown'}",
+                f"journey_gate_blocked_count={blocked_count}",
+                f"local_release_proof_status={local_release_status or 'unknown'}",
+                f"provider_canary_status={canary_status or 'unknown'}",
+                f"closure_health_state={closure_state or 'unknown'}",
+            ],
+        },
     ]
+    return decisions
 
 
 def _journey_gate_health() -> dict[str, Any]:
@@ -463,14 +578,14 @@ def _provider_route_stewardship_signal(
     closure_health: dict[str, Any] | None,
     local_release_proof: dict[str, Any],
     seed: dict[str, Any] | None,
-) -> str:
+) -> dict[str, Any]:
     blocked_count = int(journey_gate_health.get("blocked_count") or 0)
     state = str(journey_gate_health.get("state") or "").strip().lower()
 
     if not status_plane:
         default_status = "Pilot defaults are not yet governed"
         canary_status = "Canary evidence is still accumulating"
-        if blockers_open or blocked_count > 0 or state == "blocked" or active_wave_status != "in_progress":
+        if blockers_open or blocked_count > 0 or state == "blocked" or not _status_is_active(active_wave_status):
             hub_is_public_pilot = default_status == "Pilot defaults are governed"
         else:
             hub_is_public_pilot = True
@@ -530,7 +645,7 @@ def _provider_route_stewardship_signal(
     else:
         canary_status = "Canary evidence is still accumulating"
 
-    if active_wave_status == "in_progress" and state == "ready":
+    if _status_is_active(active_wave_status) and state == "ready":
         default_status = "Pilot defaults are governed"
 
     review_evidence_generated_at = str(status_plane.get("generated_at") or "").strip()
@@ -661,14 +776,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     )
     adoption_health = _compute_adoption_health(report, local_release_proof)
     progress_trend = _compute_progress_trend(history)
-    governor_decisions = _governor_decisions(
-        as_of,
-        report,
-        current_wave,
-        oldest_blocker_days,
-        next20_closed=next20_closed,
-        post_audit_closed=post_audit_closed,
-    )
+    active_wave_registry_path, active_wave_status = _resolve_active_wave_registry(current_wave)
     next_checkpoint_question = (
         "What is the smallest cross-repo slice that makes the campaign OS indispensable and turns trust, adoption, and publication depth into a real launch advantage?"
         if post_audit_closed
@@ -689,7 +797,6 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         if not blockers_open
         else "At least one red blocker is open, so release posture needs explicit justification before promotion or claim expansion."
     )
-    active_wave_status = _registry_status(ACTIVE_WAVE_REGISTRY)
     blocked_journeys = blockers_open or journey_gate_health.get("blocked_count", 0) > 0 or str(journey_gate_health.get("state") or "").strip().lower() == "blocked"
     provider_route_stewardship = _provider_route_stewardship_signal(
         journey_gate_health=journey_gate_health,
@@ -700,6 +807,20 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
         closure_health=closure_health,
         local_release_proof=local_release_proof,
         seed=None,
+    )
+    governor_decisions = _governor_decisions(
+        as_of,
+        report,
+        current_wave,
+        oldest_blocker_days,
+        active_wave_status=active_wave_status,
+        journey_gate_health=journey_gate_health,
+        closure_health=closure_health,
+        provider_route_stewardship=provider_route_stewardship,
+        local_release_proof=local_release_proof,
+        blocked_journeys=blocked_journeys,
+        next20_closed=next20_closed,
+        post_audit_closed=post_audit_closed,
     )
     launch_readiness = _launch_readiness_summary(
         blocked_journeys=blocked_journeys,
@@ -750,7 +871,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
             "provider_route_stewardship": provider_route_stewardship,
             "journey_gate_source": str(FLEET_JOURNEY_GATES),
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
-            "active_wave_registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
+            "active_wave_registry": _product_relative(active_wave_registry_path),
             "scorecard_metric_count": sum(len((card or {}).get("metrics") or []) for card in (scorecard.get("scorecards") or []) if isinstance(card, dict)),
         },
     }
