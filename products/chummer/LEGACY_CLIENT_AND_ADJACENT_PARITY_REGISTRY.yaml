@@ -96,7 +96,7 @@ families:
       - metaindex
     current_design_equivalents:
       - RULE_ENVIRONMENT_AND_AMEND_SYSTEM.md
-    status: missing
+    status: partial
     milestone_ids:
       - 13
   - id: settings_and_rules_environment_authoring
