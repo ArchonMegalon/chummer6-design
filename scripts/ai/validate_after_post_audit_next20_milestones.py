@@ -17,7 +17,8 @@ CLOSEOUT_PATH = REPO_ROOT / "products" / "chummer" / "POST_AUDIT_NEXT_20_BIG_WIN
 EXPECTED_IDS = list(range(1, 21))
 VALID_WAVES = {"W1", "W2", "W3", "W4"}
 VALID_STATUSES = {"not_started", "in_progress", "complete", "blocked"}
-CURRENT_WAVE_SENTENCE = "The current recommended wave is **Next 20 Big Wins After Post-Audit Closeout**."
+RETIRED_WAVE_SENTENCE = "The current recommended wave is **Next 20 Big Wins After Post-Audit Closeout**."
+ACTIVE_SUCCESSOR_WAVE_SENTENCE = "The current recommended wave is **Next 12 Biggest Wins**."
 
 
 def _fail(errors: list[str], message: str) -> None:
@@ -67,12 +68,14 @@ def main() -> int:
         if milestone_id not in plan_milestones:
             _fail(errors, f"NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md missing milestone heading {milestone_id}.")
 
-    if CURRENT_WAVE_SENTENCE not in roadmap_text:
-        _fail(errors, "ROADMAP.md must state the current recommended wave as Next 20 Big Wins After Post-Audit Closeout.")
-    if "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml" not in roadmap_text:
-        _fail(errors, "ROADMAP.md must reference NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml.")
-    if "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md" not in roadmap_text:
-        _fail(errors, "ROADMAP.md must reference NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md.")
+    if RETIRED_WAVE_SENTENCE in roadmap_text:
+        _fail(errors, "ROADMAP.md must stop presenting Next 20 Big Wins After Post-Audit Closeout as the active wave.")
+    if ACTIVE_SUCCESSOR_WAVE_SENTENCE not in roadmap_text:
+        _fail(errors, "ROADMAP.md must state Next 12 Biggest Wins as the current recommended wave.")
+    if "NEXT_12_BIGGEST_WINS_REGISTRY.yaml" not in roadmap_text:
+        _fail(errors, "ROADMAP.md must reference NEXT_12_BIGGEST_WINS_REGISTRY.yaml as the active registry.")
+    if "NEXT_12_BIGGEST_WINS_GUIDE.md" not in roadmap_text:
+        _fail(errors, "ROADMAP.md must reference NEXT_12_BIGGEST_WINS_GUIDE.md as the active guide.")
 
     data = _load_yaml(REGISTRY_PATH)
     if not data:

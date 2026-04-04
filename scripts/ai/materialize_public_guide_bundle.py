@@ -28,6 +28,8 @@ PRODUCT_ROOT = ROOT / "products" / "chummer"
 OUTPUT_DEFAULT = "products/chummer/public-guide"
 POST_AUDIT_REGISTRY = PRODUCT_ROOT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
+NEXT12_REGISTRY = PRODUCT_ROOT / "NEXT_12_BIGGEST_WINS_REGISTRY.yaml"
+NEXT20_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 HUB_REGISTRY_ROOT_ENV = "CHUMMER_HUB_REGISTRY_ROOT"
 IMAGE_CURATION_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_IMAGE_CURATION.yaml"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
@@ -143,6 +145,45 @@ def _load_json(path: Path) -> dict[str, object]:
 def _load_registry_status(path: Path) -> str:
     payload = _load_yaml(path)
     return str(payload.get("status") or "").strip().lower()
+
+
+def _status_is_active(status: str) -> bool:
+    return str(status or "").strip().lower() in {"active", "in_progress", "in-progress"}
+
+
+def _resolve_active_wave_registry(current_wave: str) -> tuple[Path, str]:
+    wave = str(current_wave or "").strip().lower()
+    candidates: list[Path] = []
+    if "next 12" in wave:
+        candidates.append(NEXT12_REGISTRY)
+    if "post-audit" in wave:
+        candidates.append(POST_AUDIT_REGISTRY)
+    if "next 20 big wins after post-audit closeout" in wave:
+        candidates.append(ACTIVE_WAVE_REGISTRY)
+    if "next 20" in wave:
+        candidates.append(NEXT20_REGISTRY)
+    candidates.extend([NEXT12_REGISTRY, ACTIVE_WAVE_REGISTRY, POST_AUDIT_REGISTRY, NEXT20_REGISTRY])
+
+    seen: set[Path] = set()
+    ordered: list[Path] = []
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        ordered.append(candidate)
+
+    fallback = ACTIVE_WAVE_REGISTRY
+    for candidate in ordered:
+        if not candidate.is_file():
+            continue
+        status = _load_registry_status(candidate)
+        if _status_is_active(status):
+            return candidate, status
+        if fallback == ACTIVE_WAVE_REGISTRY:
+            fallback = candidate
+    if fallback.is_file():
+        return fallback, _load_registry_status(fallback)
+    return ACTIVE_WAVE_REGISTRY, "unknown"
 
 
 def _current_recommended_wave() -> str:
@@ -1442,10 +1483,12 @@ def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object], relea
 
 
 def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
+    current_wave = _current_recommended_wave()
+    active_registry_path, active_registry_status = _resolve_active_wave_registry(current_wave)
     active_wave = {
-        "title": _current_recommended_wave(),
-        "registry": "products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
-        "status": _load_registry_status(ACTIVE_WAVE_REGISTRY),
+        "title": current_wave,
+        "registry": str(active_registry_path.relative_to(ROOT)).replace("\\", "/"),
+        "status": active_registry_status,
     }
     generated = {
         "generated_from": str(PRODUCT_ROOT / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),

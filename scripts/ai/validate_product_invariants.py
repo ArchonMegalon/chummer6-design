@@ -42,6 +42,7 @@ def main() -> int:
     next20 = load_yaml(PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml")
     post_audit_next20 = load_yaml(PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml")
     after_post_audit_next20 = load_yaml(PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml")
+    next12 = load_yaml(PRODUCT / "NEXT_12_BIGGEST_WINS_REGISTRY.yaml")
     sync_manifest = load_yaml(PRODUCT / "sync" / "sync-manifest.yaml")
     progress = load_json(PRODUCT / "PROGRESS_REPORT.generated.json")
     history = load_json(PRODUCT / "PROGRESS_HISTORY.generated.json")
@@ -63,6 +64,8 @@ def main() -> int:
         "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml",
         "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md",
         "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml",
+        "NEXT_12_BIGGEST_WINS_GUIDE.md",
+        "NEXT_12_BIGGEST_WINS_REGISTRY.yaml",
         "PUBLIC_TRUST_CONTENT.yaml",
         "projects/executive-assistant.md",
     }
@@ -73,16 +76,19 @@ def main() -> int:
     next20_status = str(next20.get("status") or "").strip().lower()
     post_audit_status = str(post_audit_next20.get("status") or "").strip().lower()
     after_post_audit_status = str(after_post_audit_next20.get("status") or "").strip().lower()
+    next12_status = str(next12.get("status") or "").strip().lower()
     if next20_status == "complete":
         if "The Next 20 Big Wins wave is materially closed on public `main`." not in roadmap:
             errors.append("ROADMAP.md must record the closed Next 20 Big Wins wave.")
         if post_audit_status == "complete":
             if "The Post-Audit Next 20 Big Wins wave is materially closed on public `main`." not in roadmap:
                 errors.append("ROADMAP.md must record the closed Post-Audit Next 20 Big Wins wave.")
-            if "**Next 20 Big Wins After Post-Audit Closeout**" not in roadmap:
-                errors.append("ROADMAP.md must name Next 20 Big Wins After Post-Audit Closeout as the active follow-on wave.")
+            if "**Next 12 Biggest Wins**" not in roadmap:
+                errors.append("ROADMAP.md must name Next 12 Biggest Wins as the active follow-on wave.")
             if after_post_audit_status not in {"in_progress", "complete"}:
                 errors.append("NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml must be in_progress or complete once the post-audit wave is closed.")
+            if next12_status not in {"active", "in_progress", "in-progress"}:
+                errors.append("NEXT_12_BIGGEST_WINS_REGISTRY.yaml must be active/in_progress once the post-audit wave is closed.")
         elif (
             "**Campaign Breadth and Promotion**" not in roadmap
             and "**Post-Audit Next 20 Big Wins**" not in roadmap

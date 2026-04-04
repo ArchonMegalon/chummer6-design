@@ -1,7 +1,7 @@
 {
   "contract_name": "chummer.weekly_product_pulse",
   "contract_version": 3,
-  "generated_at": "2026-04-03T15:29:59Z",
+  "generated_at": "2026-04-04T17:18:02Z",
   "as_of": "2026-04-04",
   "scorecard_source": "products/chummer/PRODUCT_HEALTH_SCORECARD.yaml",
   "progress_report_source": "products/chummer/PROGRESS_REPORT.generated.json",
@@ -29,8 +29,8 @@
   "journey_gate_health": {
     "state": "blocked",
     "reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
-    "blocked_count": 6,
-    "warning_count": 0
+    "blocked_count": 3,
+    "warning_count": 3
   },
   "top_support_or_feedback_clusters": [
     {
@@ -78,10 +78,10 @@
     {
       "decision_id": "2026-04-04-launch-governance",
       "action": "freeze_launch",
-      "reason": "Freeze launch expansion while 6 golden journey(s) remain blocked and journey health is blocked.",
+      "reason": "Freeze launch expansion while 3 golden journey(s) remain blocked and journey health is blocked.",
       "cited_signals": [
         "journey_gate_state=blocked",
-        "journey_gate_blocked_count=6",
+        "journey_gate_blocked_count=3",
         "local_release_proof_status=unknown",
         "provider_canary_status=Canary evidence is still accumulating",
         "closure_health_state=clear"
@@ -110,8 +110,8 @@
     "journey_gate_health": {
       "state": "blocked",
       "reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
-      "blocked_count": 6,
-      "warning_count": 0
+      "blocked_count": 3,
+      "warning_count": 3
     },
     "top_support_or_feedback_clusters": [
       {
@@ -159,10 +159,10 @@
       {
         "decision_id": "2026-04-04-launch-governance",
         "action": "freeze_launch",
-        "reason": "Freeze launch expansion while 6 golden journey(s) remain blocked and journey health is blocked.",
+        "reason": "Freeze launch expansion while 3 golden journey(s) remain blocked and journey health is blocked.",
         "cited_signals": [
           "journey_gate_state=blocked",
-          "journey_gate_blocked_count=6",
+          "journey_gate_blocked_count=3",
           "local_release_proof_status=unknown",
           "provider_canary_status=Canary evidence is still accumulating",
           "closure_health_state=clear"
@@ -177,9 +177,9 @@
     "phase_label": "Public-fit polish",
     "history_snapshot_count": 9,
     "longest_pole": "Core Engine",
-    "launch_readiness": "Hold launch expansion pending route-canary validation. 6 golden journey(s) remain blocked.",
+    "launch_readiness": "Hold launch expansion pending route-canary validation. 3 golden journey(s) remain blocked.",
     "provider_route_stewardship": {
-      "default_status": "Pilot defaults are not yet governed",
+      "default_status": "Pilot defaults are governed",
       "canary_status": "Canary evidence is still accumulating",
       "review_due": "2026-04-18",
       "next_decision": "Hold broad promotion until public route canary coverage exists."
