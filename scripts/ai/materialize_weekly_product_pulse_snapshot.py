@@ -192,25 +192,40 @@ def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
     if not text:
         return []
     folded = text.splitlines()
-    ids: list[int] = []
-    marker_patterns = (
+    frontier_patterns = (
         re.compile(r"frontier milestone ids to prioritize first\s*:\s*(.+)$", flags=re.IGNORECASE),
         re.compile(r"frontier milestone ids\s*:\s*(.+)$", flags=re.IGNORECASE),
-        re.compile(r"current open milestone ids\s*:\s*(.+)$", flags=re.IGNORECASE),
     )
-    for line in folded:
-        stripped = line.strip()
-        for pattern in marker_patterns:
-            match = pattern.search(stripped)
-            if not match:
+    current_open_pattern = re.compile(r"current open milestone ids\s*:\s*(.+)$", flags=re.IGNORECASE)
+
+    def parse_ids(raw: str) -> list[int]:
+        ids: list[int] = []
+        for token in re.split(r"[,\s]+", raw.strip()):
+            if not token or not token.isdigit():
                 continue
-            for token in re.split(r"[,\s]+", match.group(1).strip()):
-                if not token or not token.isdigit():
+            value = int(token)
+            if value > 0 and value not in ids:
+                ids.append(value)
+        return ids
+
+    def latest_ids(patterns: tuple[re.Pattern[str], ...]) -> list[int]:
+        for line in reversed(folded):
+            stripped = line.strip()
+            for pattern in patterns:
+                match = pattern.search(stripped)
+                if not match:
                     continue
-                value = int(token)
-                if value > 0 and value not in ids:
-                    ids.append(value)
-    return ids
+                ids = parse_ids(match.group(1))
+                if ids:
+                    return ids
+        return []
+
+    frontier_ids = latest_ids(frontier_patterns)
+    if frontier_ids:
+        return frontier_ids
+
+    fallback_ids = latest_ids((current_open_pattern,))
+    return fallback_ids
 
 
 def _automation_alignment_signal(active_wave_registry_path: Path, active_wave_status: str) -> dict[str, Any]:
