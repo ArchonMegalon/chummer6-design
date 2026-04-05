@@ -209,7 +209,8 @@ def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
         return ids
 
     def latest_ids(patterns: tuple[re.Pattern[str], ...]) -> list[int]:
-        for line in reversed(folded):
+        latest: list[int] = []
+        for line in folded:
             stripped = line.strip()
             for pattern in patterns:
                 match = pattern.search(stripped)
@@ -217,8 +218,8 @@ def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
                     continue
                 ids = parse_ids(match.group(1))
                 if ids:
-                    return ids
-        return []
+                    latest = ids
+        return latest
 
     frontier_ids = latest_ids(frontier_patterns)
     if frontier_ids:
@@ -848,7 +849,7 @@ def _launch_readiness_summary(
     return "Launch posture is still waiting on provider-route evidence."
 
 
-def build_snapshot(as_of: dt.date) -> dict[str, Any]:
+def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[str, Any]:
     scorecard = _load_yaml(PRODUCT / "PRODUCT_HEALTH_SCORECARD.yaml")
     report = _load_json(PRODUCT / "PROGRESS_REPORT.generated.json")
     history = _load_json(PRODUCT / "PROGRESS_HISTORY.generated.json")
@@ -970,7 +971,7 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "contract_name": "chummer.weekly_product_pulse",
         "contract_version": 3,
-        "generated_at": _snapshot_generated_at(report, history, as_of),
+        "generated_at": generated_at or _utc_now_iso(),
         "as_of": as_of.isoformat(),
         "scorecard_source": "products/chummer/PRODUCT_HEALTH_SCORECARD.yaml",
         "progress_report_source": "products/chummer/PROGRESS_REPORT.generated.json",
@@ -1027,12 +1028,8 @@ def build_snapshot(as_of: dt.date) -> dict[str, Any]:
     return payload
 
 
-def _snapshot_generated_at(report: dict[str, Any], history: dict[str, Any], as_of: dt.date) -> str:
-    for source in (history, report):
-        value = str(source.get("generated_at") or "").strip()
-        if value:
-            return value
-    return f"{as_of.isoformat()}T00:00:00Z"
+def _utc_now_iso() -> str:
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def _longest_pole_label(report: dict[str, Any]) -> str:
@@ -1054,7 +1051,14 @@ def main() -> int:
 
     as_of = dt.date.fromisoformat(args.as_of) if args.as_of else dt.date.today()
     out_path = Path(args.out).resolve()
-    payload = build_snapshot(as_of)
+    generated_at_override: str | None = None
+    if args.check and out_path.is_file():
+        existing_payload = _load_json(out_path)
+        candidate_generated_at = str(existing_payload.get("generated_at") or "").strip()
+        if candidate_generated_at:
+            generated_at_override = candidate_generated_at
+
+    payload = build_snapshot(as_of, generated_at=generated_at_override)
     rendered = json.dumps(payload, indent=2, sort_keys=False) + "\n"
 
     if args.check:
