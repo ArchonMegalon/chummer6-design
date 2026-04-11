@@ -17,9 +17,11 @@ for path in \
   products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md \
   products/chummer/SUPPORT_AND_SIGNAL_OODA_LOOP.md \
   products/chummer/USER_JOURNEYS.md \
+  products/chummer/JOURNEY_GATES.generated.json \
   products/chummer/EXPERIENCE_SUCCESS_METRICS.md \
   products/chummer/HORIZONS.md \
   products/chummer/HORIZON_REGISTRY.yaml \
+  products/chummer/horizons/HORIZON_REGISTRY.yaml \
   products/chummer/horizons/README.md \
   products/chummer/horizons/nexus-pan.md \
   products/chummer/horizons/alice.md \
@@ -37,6 +39,8 @@ for path in \
   products/chummer/PRODUCT_HEALTH_SCORECARD.yaml \
   products/chummer/WEEKLY_PRODUCT_PULSE.generated.json \
   products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml \
+  products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md \
+  products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md \
   products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md \
   products/chummer/PUBLIC_LANDING_POLICY.md \
   products/chummer/PUBLIC_DOWNLOADS_POLICY.md \
@@ -167,6 +171,8 @@ python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_post_audit_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_after_post_audit_next20_milestones.py" >/dev/null
@@ -209,6 +215,8 @@ rg -n '^product: chummer$|^version: 1$|^scorecards:$|^  - id: release_health$|^ 
 rg -n '\"contract_name\": \"chummer\\.weekly_product_pulse\"|\"governor_decisions\"|\"next_checkpoint_question\"|\"history_snapshot_count\"' "$repo_root/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^golden_journey_source: GOLDEN_JOURNEY_RELEASE_GATES\\.yaml$|^scorecards:$|^  - id: golden_journey_proof$|^release_gates:$|^  - id: deterministic_rules_truth$|^  - id: session_continuity$|^  - id: campaign_and_dossier_continuity$|^  - id: roaming_workspace_trust$|next_safe_action_clarity|device_role_posture_visibility|^  - id: support_and_closure_honesty$|^  - id: roaming_workspace_gate$|^  - id: golden_journey_gate$' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: release_control$|^version: 1$|^journey_gates:$|^  - id: install_claim_restore_continue$|^  - id: build_explain_publish$|^  - id: campaign_session_recover_recap$|^  - id: recover_from_sync_conflict$|^  - id: report_cluster_release_notify$|^  - id: organize_community_and_close_loop$' "$repo_root/products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml" >/dev/null
+rg -n '^# Product usage telemetry model$|^## Purpose$|^## Default posture$|^## Telemetry tiers$|^### Tier 2: pseudonymous hosted product telemetry$|^## High-value derived metrics$' "$repo_root/products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md" >/dev/null
+rg -n '^# Product usage telemetry event schema$|^## Purpose$|^## Posture$|^## Envelope rule$|^## Exact event names$|^## Daily rollup tables$' "$repo_root/products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md" >/dev/null
 rg -n '^# Privacy and retention boundaries$|^## Purpose$|^## Default rules$|^## Retention domains$|^### Support-case truth$|^### Crash envelopes$|^### Claim and install linkage$|^### Survey and follow-up results$|^### Provider traces and assistant grounding packs$|^## Release and audit gates$' "$repo_root/products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^asset_slots:$|^  - id: hero$' "$repo_root/products/chummer/PUBLIC_LANDING_ASSET_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^routes:$|^  - route: /$|^  - route: /downloads$' "$repo_root/products/chummer/PUBLIC_NAVIGATION.yaml" >/dev/null

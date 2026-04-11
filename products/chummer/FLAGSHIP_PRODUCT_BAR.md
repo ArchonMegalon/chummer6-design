@@ -35,6 +35,31 @@ Every major user intent must have one clear primary route:
 Fallback paths may exist.
 They must not read like the real product while the primary path still feels provisional.
 
+### 1b. Desktop familiarity must still read as Chummer5a
+
+Desktop flagship quality is not satisfied by feature coverage alone.
+The promoted desktop head must still read like Chummer to a veteran user:
+
+* a real desktop menu
+* first-class master index and character roster routes
+* workbench-first startup instead of decorative landing chrome
+* dense builder posture that feels like an instrument rather than a dashboard
+
+### 1c. Install and first-run experience must feel like one product
+
+The promoted desktop path must behave like one coherent Chummer experience:
+
+* guided product installer path first
+* installer or in-app claim and recovery handling
+* no browser ritual to copy or paste a claim code by hand
+* first launch opens the real workbench or restore continuation flow
+
+### 1a. Desktop head authority is explicit
+
+`Chummer.Avalonia` is the default flagship desktop head for the current delivery wave.
+`Chummer.Blazor.Desktop` is only a bounded fallback when the public shelf, platform matrix, and release evidence say so.
+If Blazor is the only shipped desktop head for a lane or the recommended public route, it must meet the flagship bar directly instead of borrowing Avalonia proof.
+
 ### 2. Explainability and trust stay first-class
 
 Flagship grade requires:
@@ -105,6 +130,25 @@ Flagship grade requires:
 * bounded enough to avoid overclaiming
 * aligned enough that install, update, help, and support routes never contradict each other
 
+### 9. Surface design must be systematized, not improvised
+
+Flagship grade requires a shared cross-surface design contract.
+
+That contract lives in `SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md` and is mandatory for:
+
+* desktop workbench
+* mobile/play shell
+* Hub and support surfaces
+* public landing, downloads, and guides
+* artifact preview and publication surfaces
+
+Flagship grade therefore requires:
+
+* one shared token and state language across heads
+* platform-respectful layouts instead of lowest-common-denominator reuse
+* dark and light themes that are both trustworthy
+* screenshot-based critique and revision before promoted UI changes are accepted
+
 ## Repo implications
 
 ### `chummer6-core`
@@ -127,6 +171,7 @@ Flagship grade requires:
 ### `chummer6-ui-kit`
 
 * shared tokens, dense-data primitives, accessibility, and localization posture must enable flagship-quality work across heads
+* shared implementation substrate must make `SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md` cheap to apply instead of leaving every head to reinvent quality locally
 
 ### `chummer6-media-factory`
 
@@ -143,6 +188,7 @@ Public release is not truly complete until flagship bar evidence exists for:
 * desktop build, startup, and support reality
 * rules parity and import confidence
 * explicit rule-environment and amend-package honesty
+* cross-surface design authorship and screenshot-backed quality proof
 * mobile play continuity
 * public/download/help honesty
 * artifact and publication credibility

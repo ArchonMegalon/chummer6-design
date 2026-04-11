@@ -7,16 +7,16 @@ local_repo_base_candidates:
 repo_root_aliases:
   chummer6-core:
     - chummer6-core
-    - chummer-core-engine
+    - chummer6-core
   chummer6-ui:
     - chummer6-ui
-    - chummer-presentation
+    - chummer6-ui
   chummer6-hub:
     - chummer6-hub
-    - chummer.run-services
+    - chummer6-hub
   chummer6-mobile:
     - chummer6-mobile
-    - chummer-play
+    - chummer6-mobile
   chummer6-ui-kit:
     - chummer6-ui-kit
     - chummer-ui-kit
@@ -46,6 +46,8 @@ product_source_groups:
     - products/chummer/WEEKLY_PRODUCT_PULSE.generated.json
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml
+    - products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md
+    - products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md
     - products/chummer/CAMPAIGN_AUTHORITY_AND_PERMISSIONS.md
     - products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md
     - products/chummer/EXPERIENCE_SUCCESS_METRICS.md

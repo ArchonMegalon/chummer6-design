@@ -3,6 +3,7 @@
 ## Mission
 
 `chummer6-ui-kit` owns design tokens, shared shell chrome, accessibility primitives, state badges, dense-data primitives, and cross-head visual building blocks.
+The cross-surface design canon itself lives in `SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md`; `chummer6-ui-kit` owns the reusable substrate that lets other heads satisfy it.
 
 ## Owns
 
@@ -13,6 +14,7 @@
 * accessibility primitives
 * dense-data presentation primitives
 * Chummer-specific reusable UI patterns
+* screenshot-review-friendly states and primitives that let promoted heads prove light/dark, focus, stale, warning, preview, and recovery posture consistently
 
 ## Must not own
 
@@ -28,6 +30,7 @@
 * keep the package-only shared UI boundary healthy for presentation and play
 * preserve deterministic adapter and preview contracts
 * grow the component catalog additively without reopening the shared-boundary question
+* make it cheaper for UI heads to satisfy the cross-surface design contract than to invent local one-off chrome
 
 ## Milestone spine
 
@@ -56,6 +59,7 @@ If it requires domain DTOs or service calls to exist, it probably does not.
 * shared primitives can express active rule-environment posture, package conflicts, preview diffs, and restore warnings without each head inventing its own package UX
 * shared primitives can express edition-authored cues, preview and hazard posture, and recovery messaging without each head reinventing them
 * motion, empty states, and progressive disclosure feel intentional instead of reading like generic admin scaffolding
+* the shared token and primitive layer makes the AI critique loop practical across desktop, mobile, Hub, and public surfaces instead of only inside one head
 
 ## Current reality
 

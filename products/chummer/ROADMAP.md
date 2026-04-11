@@ -10,8 +10,9 @@ Current status on 2026-03-26:
 * the public progress layer is real, and the weekly product pulse now emits a bounded governor snapshot; ETA still stays conservative until measured history depth grows beyond the first recorded snapshots
 * the Next 20 Big Wins wave is now materially closed on public `main`: package-owned `Chummer.Campaign.Contracts`, roaming workspace restore, Build Lab handoff UX, Rules Navigator, interop round-trip truth, legacy migration receipts, the grounded support assistant, organizer/operator surfaces, and creator publication are all part of the repo-local executable and verified surface rather than only canon.
 * the Post-Audit Next 20 Big Wins wave is now materially closed on public `main`, and its closeout is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md`.
-* the successor sequence is now tracked as `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` plus `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
+* the previous successor sequence has now been distilled into the tighter `NEXT_12_BIGGEST_WINS_GUIDE.md` plus `NEXT_12_BIGGEST_WINS_REGISTRY.yaml` wave, and that active wave now carries an added no-step-back parity tranche for milestones `13` through `18` so the control plane focuses on flagship finish without dropping serious legacy or adjacent client jobs.
 * the active audit-driven remediation overlay for that successor wave is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`; it sharpens journey proof, flagship-surface focus, bounded-context discipline, and promotion-trust expectations without replacing the machine-readable registry
+* the active no-step-back parity overlay for that successor wave is `LEGACY_CLIENT_AND_ADJACENT_PARITY.md` plus `LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml`; it makes legacy and adjacent client feature families release-blocking rather than informal migration notes
 * interop and portability are now explicit canon plus runtime/export truth rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 * the additive work after this closeout is no longer “make the missing middle real”; it is campaign breadth, broader public promotion, live operator cadence, and estate-wide adoption depth on top of the now-closed next-20 baseline
 
@@ -19,20 +20,23 @@ Current status on 2026-03-26:
 
 The Next 20 Big Wins wave is materially closed on public `main`.
 The Post-Audit Next 20 Big Wins wave is materially closed on public `main`.
-The current recommended wave is **Next 20 Big Wins After Post-Audit Closeout**.
-It uses `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` as execution text and `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml` for machine-readable progress.
-It takes the now-closed campaign middle and trust baseline and turns them into an indispensable campaign OS, a wider Build and Explain moat, a stronger exchange and publication pillar, and launch-scale trust plus operator depth.
+The current recommended wave is **Next 12 Biggest Wins**.
+The filename stays for continuity, but the active machine-readable wave now spans milestones `1` through `18`: the original flagship 12 plus six explicit no-step-back parity closure milestones.
+It uses `NEXT_12_BIGGEST_WINS_GUIDE.md` as execution text and `NEXT_12_BIGGEST_WINS_REGISTRY.yaml` for machine-readable progress.
+It concentrates the program on flagship desktop finish, no-step-back client parity, indispensable campaign continuity, build plus explain plus exchange leverage, and boring trust plus launch-scale operator truth.
 
 The just-closed front-door wave is recorded in `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md`.
 The just-closed additive follow-on wave is recorded in `NEXT_20_BIG_WINS_EXECUTION_PLAN.md` and `NEXT_20_BIG_WINS_REGISTRY.yaml`.
 The just-closed post-audit wave is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md`, `POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml`, and `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md`.
-The active successor wave is `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md`, with machine-readable progress in `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
+The active successor wave is `NEXT_12_BIGGEST_WINS_GUIDE.md`, with machine-readable progress in `NEXT_12_BIGGEST_WINS_REGISTRY.yaml`.
+The active no-step-back parity overlay for that wave is `LEGACY_CLIENT_AND_ADJACENT_PARITY.md` plus `LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml`.
 The active audit overlay for correcting where design proof still outruns journey proof is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
 The immediate additive shape is:
 
 * make the campaign OS indispensable across session plan, run, recap, downtime, travel, roster movement, and long-lived campaign memory without reintroducing local shadow models
+* close no-step-back parity across Chummer4, Chummer5a, Hero Lab, and serious adjacent SR6 clients by promoting sourcebook/reference, settings/data-authoring, utility/operator, exchange, and import-oracle families into first-class Chummer6 promises
 * widen Build and Explain by making progression planning, team fit, rule-environment diffs, and receipts feel like one grounded product
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose

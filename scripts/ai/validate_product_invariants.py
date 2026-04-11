@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -51,6 +52,8 @@ def main() -> int:
         "START_HERE.md",
         "GLOSSARY.md",
         "GOLDEN_JOURNEY_RELEASE_GATES.yaml",
+        "PRODUCT_USAGE_TELEMETRY_MODEL.md",
+        "PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md",
         "PRIVACY_AND_RETENTION_BOUNDARIES.md",
         "PUBLIC_RELEASE_EXPERIENCE.yaml",
         "ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md",
@@ -271,6 +274,24 @@ def main() -> int:
                 f"WEEKLY_PRODUCT_PULSE.generated.json must expose scorecard weekly_snapshot field '{field}' at the top level."
             )
 
+    blockers_text = (PRODUCT / "GROUP_BLOCKERS.md").read_text(encoding="utf-8")
+    closeout_text = (PRODUCT / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").read_text(encoding="utf-8")
+    red_blockers_match = re.search(
+        r"## RED blockers(?P<section>[\s\S]+?)(?:## GREEN candidates once current blockers clear|$)",
+        blockers_text,
+    )
+    red_blockers_section = red_blockers_match.group("section") if red_blockers_match else ""
+    blk009_active = "### BLK-009" in red_blockers_section
+    blk010_active = "### BLK-010" in red_blockers_section
+    if blk009_active and blk010_active:
+        journey_reason = str(journey_gate_health.get("reason") or "")
+        pulse_reason = str((pulse_snapshot.get("journey_gate_health") or {}).get("reason") or "")
+        banned_claim = "Only external host-proof gaps remain"
+        if banned_claim in journey_reason or banned_claim in pulse_reason:
+            errors.append(
+                "WEEKLY_PRODUCT_PULSE.generated.json must not claim only external host-proof gaps remain while BLK-009 and BLK-010 are still active."
+            )
+
     groups = sync_manifest.get("product_source_groups") or {}
     mirrors = sync_manifest.get("mirrors") or []
     if "journey_community" not in groups:
@@ -341,7 +362,7 @@ def main() -> int:
         ui_root / "Chummer.Blazor" / "Components" / "Shared" / "BuildLabHandoffPanel.razor",
         ui_root / "Chummer.Blazor" / "Components" / "Shared" / "RulesNavigatorPanel.razor",
         ui_root / "Chummer.Blazor" / "Components" / "Shared" / "CreatorPublicationPanel.razor",
-        DOCKER_ROOT / "fleet" / "repos" / "chummer-media-factory" / "src" / "Chummer.Media.Factory.Runtime" / "Assets" / "CreatorPublicationPlannerService.cs",
+        DOCKER_ROOT / "fleet" / "repos" / "chummer-media-factory" / "src" / "Chummer.Media.Contracts" / "Compatibility" / "RunServices" / "MediaFactoryContracts.cs",
         DOCKER_ROOT / "chummercomplete" / "Chummer6" / "scripts" / "verify_public_guide.sh",
         DOCKER_ROOT / "chummercomplete" / "chummer-hub-registry" / "Chummer.Hub.Registry.Contracts" / "InstallLinkingContracts.cs",
     )

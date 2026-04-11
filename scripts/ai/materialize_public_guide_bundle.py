@@ -737,6 +737,18 @@ def _public_release_channel_value(release_experience: dict[str, object], channel
     return labels.get(channel, _humanize_identifier(channel) if channel else "Not currently published")
 
 
+def _public_build_label(version: str) -> str:
+    cleaned = str(version or "").strip()
+    if not cleaned:
+        return ""
+    lowered = cleaned.lower()
+    if lowered in {"local-docker", "local", "dev", "dirty", "snapshot"}:
+        return ""
+    if lowered.startswith("local-") or lowered.endswith("-docker") or lowered.endswith("-dirty"):
+        return ""
+    return cleaned
+
+
 def _public_release_state(value: object) -> str:
     cleaned = str(value or "").strip().lower()
     mapping = {
@@ -803,7 +815,7 @@ def _public_download_summary(artifacts: list[dict[str, object]]) -> str:
     for artifact in artifacts:
         label = str(artifact.get("platformLabel") or artifact.get("platform") or "Published build").strip()
         kind = _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact")
-        summaries.append(f"{label} {kind}")
+        summaries.append(_artifact_label_with_kind(label, kind))
     if len(summaries) == 1:
         return summaries[0] + "."
     return _english_join(summaries) + "."
@@ -831,6 +843,18 @@ def _public_artifact_kind_label(value: str) -> str:
     if "archive" in humanized.lower():
         return "archive package"
     return humanized.lower()
+
+
+def _artifact_label_with_kind(label: str, kind: str) -> str:
+    cleaned_label = " ".join(str(label or "").split()).strip()
+    cleaned_kind = " ".join(str(kind or "").split()).strip().lower()
+    if not cleaned_label:
+        return cleaned_kind or "download"
+    if cleaned_kind and cleaned_kind in cleaned_label.lower():
+        return cleaned_label
+    if not cleaned_kind:
+        return cleaned_label
+    return f"{cleaned_label} {cleaned_kind}".strip()
 
 
 def _public_access_label(value: object) -> str:
@@ -1083,6 +1107,12 @@ def _generate_root(
 def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
+    artifacts = _release_artifacts(release_payload)
+    platform_summary = _public_download_summary(artifacts)
+    version = _public_build_label(str(release_payload.get("version") or "").strip())
+    published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
+    release_status = _public_release_state(str(release_payload.get("status") or "unpublished").strip())
+    release_verification = _public_release_proof_summary(release_payload)
     rows = [
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
@@ -1098,6 +1128,16 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
             rows.append(f"- Current stage: {phase}.")
         if overall is not None and int(overall) < 100:
             rows.append(f"- Guide refinement pass: {overall}% complete.")
+        if version:
+            rows.append(f"- Current build: `{version}`.")
+        if published_at:
+            rows.append(f"- Published: {published_at}.")
+        if release_status:
+            rows.append(f"- Release status: {release_status}.")
+        if platform_summary:
+            rows.append(f"- Current public downloads: {platform_summary}")
+        if release_verification:
+            rows.append(f"- Release verification: {release_verification}")
         rows.append("- The current Linux preview package is published on the public shelf.")
         rows.append("- First-party help, privacy, terms, and contact pages are live.")
         rows.append("")
@@ -1159,7 +1199,7 @@ def _generate_download(
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     channel = str(release_payload.get("channelId") or release_payload.get("channel") or "").strip()
-    version = str(release_payload.get("version") or "").strip()
+    version = _public_build_label(str(release_payload.get("version") or "").strip())
     published_at = str(release_payload.get("publishedAt") or "").strip()
     status = str(release_payload.get("status") or "unpublished").strip()
     current_download = _public_download_summary(artifacts)
@@ -1194,10 +1234,11 @@ def _generate_download(
         "",
         f"- Current stage: {phase}.",
         f"- Release channel: {release_channel}.",
-        f"- Current build: `{version}`." if version else "- Current build: not currently published.",
         f"- Published: {published_label}.",
         f"- Release status: {release_status or 'Not currently published'}.",
     ]
+    if version:
+        rows.append(f"- Current build: `{version}`.")
     if current_download:
         rows.append(f"- Current public download: {current_download}")
     if release_verification:
@@ -1217,7 +1258,7 @@ def _generate_download(
         for artifact in platform_artifacts:
             artifact_kind = _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact")
             platform_name = str(artifact.get("platformLabel") or platform_label).strip()
-            rows.append(f"- {platform_name}: {artifact_kind}.")
+            rows.append(f"- {_artifact_label_with_kind(platform_name, artifact_kind)}.")
             if artifact.get("downloadUrl"):
                 rows.append(f"- Download: `{artifact['downloadUrl']}`")
             if artifact.get("fileName"):
@@ -1241,8 +1282,7 @@ def _generate_download(
             _bullet_lines(
                 [
                     (
-                        f"{str(item.get('platformLabel') or item.get('platform') or 'Published build').strip()}: "
-                        f"{_public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact')} via "
+                        f"{_artifact_label_with_kind(str(item.get('platformLabel') or item.get('platform') or 'Published build').strip(), _public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact'))} via "
                         f"`{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}`"
                     )
                     for item in artifacts
@@ -1490,12 +1530,18 @@ def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
         "registry": str(active_registry_path.relative_to(ROOT)).replace("\\", "/"),
         "status": active_registry_status,
     }
+    asset_paths = sorted(
+        str(path.relative_to(out_dir)).replace("\\", "/")
+        for path in (out_dir / "assets").rglob("*")
+        if path.is_file()
+    )
     generated = {
         "generated_from": str(PRODUCT_ROOT / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "generated_by": "materialize_public_guide_bundle.py",
         "page_count": len(list(out_dir.rglob("*.md"))),
         "status": manifest.get("status") or "ok",
         "active_wave": active_wave,
+        "assets": asset_paths,
         "sources": manifest.get("sources") or {},
     }
     _write(out_dir / "manifest.generated.json", json.dumps(generated, indent=2, sort_keys=True))

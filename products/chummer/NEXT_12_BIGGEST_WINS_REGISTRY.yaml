@@ -93,7 +93,7 @@ milestones:
       - chummer6-ui
       - chummer6-core
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Sourcebook selection, sourcebook metadata, and rule/reference lookup are first-class product lanes rather than support-only folklore.
       - Approved local PDFs, URLs, or site-backed source snapshots can feed a governed rules-reference lane with snippets, provenance, and explicit stale or missing-source posture.
@@ -107,7 +107,7 @@ milestones:
       - chummer6-ui
       - chummer6-core
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Global settings, character settings, source toggles, and rule-environment posture expose one obvious modern route instead of scattered legacy leftovers.
       - Custom-data or amend authoring, XML bridge posture, and translator-era localization tooling all have an explicit Chummer6 successor story.
@@ -121,7 +121,7 @@ milestones:
       - chummer6-ui
       - chummer6-hub
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Dice roller, initiative utilities, roster/watch-folder posture, and dashboard/operator work all have one obvious Chummer6 route.
       - Utility parity is proven on the promoted desktop head and no longer depends on hidden support gestures or missing-window excuses.
@@ -136,7 +136,7 @@ milestones:
       - chummer6-core
       - chummer6-hub
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Sheet viewing, print/export variants, PDF posture, and adjacent exchange outputs such as JSON/Foundry-class exports are explicit product promises.
       - Artifact and exchange posture stays governed by the same portability, provenance, and release-truth lanes as normal Chummer outputs.
@@ -150,7 +150,7 @@ milestones:
       - chummer6-core
       - chummer6-ui
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Legacy and adjacent imports either land in first-class Chummer6 surfaces with explicit receipts or emit honest bounded-loss or blocked receipts.
       - Oracle tests cover Chummer4, Chummer5a, Hero Lab, and the adjacent SR6 client posture strongly enough that no-step-back claims are evidence-backed.
@@ -165,7 +165,7 @@ milestones:
       - chummer6-ui
       - chummer6-hub
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - The serious SR6 expectations exposed by Genesis or CommLink6 such as supplement breadth, authored designers, house-rule posture, and storage continuity have first-class Chummer6 equivalents or bounded preview receipts.
       - SR6-specific tooling feels like a better modern client, not a reduced rebuild of the older ecosystem.

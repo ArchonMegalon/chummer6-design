@@ -1,6 +1,7 @@
 version: 1
 last_reviewed: 2026-04-01
-purpose: Machine-readable registry for future-capability lanes and the foundations they require.
+source_registry: products/chummer/HORIZON_REGISTRY.yaml
+purpose: Derived machine-readable registry for public-guide routing and future-capability lanes. The root HORIZON_REGISTRY.yaml is the canonical source of truth.
 
 foundation_capabilities:
   - id: expert_speed_substrate
@@ -19,68 +20,7 @@ foundation_capabilities:
     summary: Import oracles, user-facing acceptance gates, and machine-readable proof surfaces.
 
 horizons:
-  - id: quicksilver
-    file: quicksilver.md
-    family: expert-speed and command surfaces
-    state: horizon
-    public_guide_allowed: false
-    likely_owners:
-      - chummer6-ui
-      - chummer6-ui-kit
-      - chummer6-core
-    foundation_dependencies:
-      - expert_speed_substrate
-      - evaluation_substrate
-      - edition_expression_substrate
-    why_horizon: The product still needs solid present-tense workbench truth before it should promise elite command-surface speed.
-
-  - id: edition_studio
-    file: edition-studio.md
-    family: ruleset-specific authored heads
-    state: horizon
-    public_guide_allowed: false
-    likely_owners:
-      - chummer6-ui
-      - chummer6-ui-kit
-      - chummer6-core
-    foundation_dependencies:
-      - edition_expression_substrate
-      - expert_speed_substrate
-      - evaluation_substrate
-    why_horizon: Distinct SR4, SR5, and SR6 heads only matter once the shared semantics and shell seams are stable enough to avoid decorative drift.
-
-  - id: onramp
-    file: onramp.md
-    family: guided mastery and teaching
-    state: horizon
-    public_guide_allowed: true
-    likely_owners:
-      - chummer6-ui
-      - chummer6-core
-      - chummer6-hub
-    foundation_dependencies:
-      - guided_mastery_substrate
-      - edition_expression_substrate
-      - evaluation_substrate
-    why_horizon: Chummer needs trustworthy explain, examples, and starter flows before it should promise guided mastery.
-
-  - id: run_control
-    file: run-control.md
-    family: GM operations and campaign control
-    state: horizon
-    public_guide_allowed: true
-    likely_owners:
-      - chummer6-hub
-      - chummer6-mobile
-      - chummer6-core
-      - chummer6-media-factory
-    foundation_dependencies:
-      - gm_operations_substrate
-      - continuity_and_degraded_state_substrate
-      - publication_and_prestige_substrate
-    why_horizon: A GM control center should arrive only after campaign continuity and role-aware truth are boringly reliable.
-
-  - id: nexus_pan
+  - id: nexus-pan
     file: nexus-pan.md
     family: session continuity
     state: horizon
@@ -109,7 +49,7 @@ horizons:
       - evaluation_substrate
     why_horizon: Comparative advice only works when explain and comparison surfaces are already reliable.
 
-  - id: karma_forge
+  - id: karma-forge
     file: karma-forge.md
     family: governed rules evolution
     state: horizon
@@ -123,11 +63,11 @@ horizons:
       - evaluation_substrate
     why_horizon: Alternate-ruleset evolution needs governance and falsifiable parity proof before it should widen the live product.
 
-  - id: knowledge_fabric
+  - id: knowledge-fabric
     file: knowledge-fabric.md
     family: knowledge fabric and explainability
     state: horizon
-    public_guide_allowed: true
+    public_guide_allowed: false
     likely_owners:
       - chummer6-core
       - chummer6-hub
@@ -164,7 +104,7 @@ horizons:
       - publication_and_prestige_substrate
     why_horizon: Explorable location packs need stable campaign, asset, and publication foundations first.
 
-  - id: runbook_press
+  - id: runbook-press
     file: runbook-press.md
     family: creator press
     state: horizon
@@ -182,7 +122,7 @@ horizons:
     file: ghostwire.md
     family: replay and forensics
     state: horizon
-    public_guide_allowed: true
+    public_guide_allowed: false
     likely_owners:
       - chummer6-core
       - chummer6-mobile
@@ -194,11 +134,11 @@ horizons:
       - publication_and_prestige_substrate
     why_horizon: Replay is only safe when the receipt trail remains append-only and reconstruction stays grounded.
 
-  - id: table_pulse
+  - id: table-pulse
     file: table-pulse.md
     family: table coaching and social dynamics
     state: horizon
-    public_guide_allowed: true
+    public_guide_allowed: false
     likely_owners:
       - chummer6-hub
       - chummer6-media-factory
@@ -207,11 +147,11 @@ horizons:
       - publication_and_prestige_substrate
     why_horizon: Coaching analysis only works when consent, privacy, and non-truth boundaries remain provable.
 
-  - id: local_co_processor
+  - id: local-co-processor
     file: local-co-processor.md
     family: optional local acceleration
     state: horizon
-    public_guide_allowed: true
+    public_guide_allowed: false
     likely_owners:
       - fleet
       - executive-assistant

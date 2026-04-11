@@ -124,7 +124,8 @@ def main() -> int:
         if token not in smoke and token not in support_service and token not in support_controller:
             errors.append(f"Support assistant evidence must keep {token} in hub services/tests.")
 
-    if "Known issues" not in downloads_view or "Release notes" not in downloads_view:
+    downloads_view_lower = downloads_view.lower()
+    if "known issues" not in downloads_view_lower or "release notes" not in downloads_view_lower:
         errors.append("Downloads view must expose known-issues and release-notes trust surface language.")
     for token in ("CommunityOperations", "Restore", "SupportCases"):
         if token not in account_view:
@@ -190,14 +191,20 @@ def main() -> int:
             errors.append(f"UI migration compliance tests must keep {token} evidence.")
 
     media_root = DOCKER_ROOT / "fleet" / "repos" / "chummer-media-factory"
-    media_planner = _read(media_root / "src" / "Chummer.Media.Factory.Runtime" / "Assets" / "CreatorPublicationPlannerService.cs")
+    media_contracts = _read(
+        media_root / "src" / "Chummer.Media.Contracts" / "Compatibility" / "RunServices" / "MediaFactoryContracts.cs"
+    )
     media_verify = _read(media_root / "scripts" / "ai" / "verify.sh")
-    for token in ("CreatorPublicationPlan", "PacketFactoryRequest", "PacketAttachmentBatchRequest", "queue_review", "CreatorPublicationProjection"):
-        if token not in media_planner:
-            errors.append(f"Media factory creator planner must keep {token} evidence.")
-    for token in ("CreatorPublicationPlannerService.cs", "queue_review", "ChummerCampaignContractsPackageId"):
+    media_signoff = _read(media_root / "docs" / "MEDIA_CAPABILITY_SIGNOFF.md")
+    for token in ("PacketFactoryRequest", "PacketAttachmentBatchRequest", "PacketFactoryResult", "RouteCinemaResult"):
+        if token not in media_contracts:
+            errors.append(f"Media contracts must keep {token} evidence in the render-only compatibility surface.")
+    for token in ("DocumentPdf", "PortraitImageVariant", "NarrativeBriefVideo", "RouteCinemaResult", "AssetLifecyclePolicy"):
+        if token not in media_signoff:
+            errors.append(f"Media capability signoff must keep {token} evidence.")
+    for token in ("CreatorPublicationPlannerService", "queue_review", "ChummerCampaignContractsPackageId"):
         if token not in media_verify:
-            errors.append(f"Media verify script must keep {token} evidence.")
+            errors.append(f"Media verify script must keep {token} fail-closed boundary evidence.")
 
     registry_root = DOCKER_ROOT / "chummercomplete" / "chummer-hub-registry"
     registry_verify = _read(registry_root / "Chummer.Run.Registry.Verify" / "Program.cs")

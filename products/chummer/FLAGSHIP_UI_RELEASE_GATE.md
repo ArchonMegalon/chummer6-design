@@ -4,6 +4,17 @@ Purpose: define the desktop-first UI audit that blocks release promotion when th
 
 This gate exists because a visually improved shell is not enough. Promotion requires proof that the promoted head behaves like a paid flagship desktop product under real user interaction, dark/light themes, dense-data conditions, and keyboard-driven use.
 
+This gate is also intentionally broader than "shell parity." A polished menu bar is not release truth. The promoted desktop head must provide a trustworthy equivalent for every Chummer5a workflow family that users relied on to build, inspect, validate, save, reload, import, and maintain a runner. High-friction examples such as custom modular cyberlimbs are canonical audit cases, not the full scope of the promise.
+
+## Head authority rules
+
+* `Chummer.Avalonia` is the default flagship desktop head for the promoted desktop wave.
+* Exactly one desktop head may be the primary public CTA for a lane.
+* `Chummer.Blazor.Desktop` is fallback only when the lane also ships Avalonia as the promoted primary head and the shelf, release copy, and evidence all label Blazor as compatibility or bounded fallback.
+* Any gold or flagship-ready desktop claim requires every shipped desktop head, including `Chummer.Blazor.Desktop`, to independently meet the flagship bar even if only one head is the default public CTA.
+* Preview may still ship Blazor Desktop as bounded fallback, but that preview exception does not count as gold.
+* Neither head may inherit the other head's menu, install, workflow, or visual-familiarity proof unless the gate explicitly scopes that proof as shared.
+
 ## Source standards
 
 - W3C WCAG 2.2 is the baseline for keyboard access, focus treatment, hover/focus behavior, and error prevention:
@@ -37,6 +48,7 @@ The promoted desktop head must prove all of the following before release truth c
    - Focus indicators remain visible in light and dark theme variants.
 5. Dark and light theme states are trustworthy.
    - Text, chrome, danger, warning, stale, preview, and focus surfaces remain readable and intentional under both theme variants.
+   - Flagship desktop theme pairs meet WCAG AA contrast for normal text and control labels, and screenshot review does not substitute for missing measurable contrast proof.
 6. Release fixtures and proof assets are physically present.
    - The promoted desktop output contains the bundled demo runner and any release-critical fixtures that the shell claims are available.
 7. Dense-data comfort survives.
@@ -44,10 +56,31 @@ The promoted desktop head must prove all of the following before release truth c
 8. Chummer familiarity survives modernization.
    - The promoted desktop shell still reads like Chummer to a Chummer5a user.
    - A real top menu, immediate toolstrip, dense workbench center, and compact bottom status strip remain visible and usable.
+9. Workflow-family equivalence is real, not implied.
+   - Every Chummer5a workflow family that the product still promises must have a desktop equivalent in the promoted head.
+   - Equivalent means the user can discover, execute, save, reload, and re-find the workflow without falling back to the legacy client.
+   - "Covered in the parity checklist" is necessary but not sufficient. Catalog coverage without executable workflow proof does not pass.
+10. High-friction builder workflows are explicitly proven.
+   - At least one deep audit case from each major builder family must be executable under release proof.
+   - Cyberware and bioware proof must include add/edit/remove posture, legacy import fidelity, and a modular or subsystem-bearing case such as a modular connector plus modular limb payload.
+   - Equivalent audit cases must exist for weapons/accessories, armor/mods, vehicles/mods, magic, resonance, contacts/lifestyles/notes, and rules/profile/settings flows.
+11. Executable desktop exits are proven, not inferred.
+   - The release must publish `DESKTOP_EXECUTABLE_EXIT_GATE.generated.json` and `DESKTOP_WORKFLOW_EXECUTION_GATE.generated.json` as defined in `DESKTOP_EXECUTABLE_EXIT_GATES.md`.
+   - Missing or stale executable-exit receipts block release truth even if shell parity or ledger parity is green.
+12. Visual familiarity is proven, not assumed.
+   - The release must publish `DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json` as defined in `DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.md`.
+   - Loaded-runner tab posture and dense builder-dialog familiarity, especially cyberware/cyberlimb add flows, are release-blocking proof areas.
+   - SR4 and SR6 may adapt control content to their rulesets, but the orientation model must remain familiar to a Chummer5a user.
+
+13. Head posture is unambiguous.
+   - Avalonia must clear the full gate as the flagship head.
+   - Blazor Desktop must also clear the full gate for any gold or flagship-ready claim, even when it is the secondary route.
+   - Preview may still ship Blazor Desktop as bounded fallback only when the shelf, product cut, and platform matrix say so, but that posture does not satisfy gold.
+   - A fallback head that becomes the sole or recommended public route is treated as flagship and must pass the flagship bar directly.
 
 ## Gate structure
 
-Every promoted desktop release must carry four proof lanes:
+Every promoted desktop release must carry the executable exit lanes in `DESKTOP_EXECUTABLE_EXIT_GATES.md` plus the following flagship proof lanes. A gold claim must publish per-head proof records for both desktop heads even when only one is the default public CTA:
 
 ### 1. Deterministic interaction lane
 
@@ -59,6 +92,31 @@ Automated headless UI tests must prove:
 - the bundled demo runner can be loaded from the promoted desktop output
 - core keyboard shortcuts still resolve to the same shell commands
 - the shell preserves the familiarity bridge: classic menu order, toolstrip under menu, and a compact status strip with a visible progress indicator
+- at least one imported deep-builder audit fixture exposes its full workflow-critical state in the promoted head rather than collapsing to shallow summary rows
+
+### 1b. Workflow-equivalence lane
+
+Automated release tests must prove:
+
+- every legacy workflow family named in the parity oracle has a reachable desktop equivalent in the promoted head
+- the parity checklist is backed by executable workflow proof rather than only catalog presence
+- a Chummer5a audit fixture with rich cyberware state surfaces top-level implants, modular connectors, mounted payloads, and child subsystem/plugin state with enough detail for a paying user to inspect and reason about the build
+- the same standard applies to the other major workflow families: gear, armor, vehicles, magic, resonance, contacts, lifestyles, notes, progress, rules, and validation
+
+### 1c. Ruleset parity rollout order
+
+The desktop parity program must advance in this order instead of declaring generic completion too early:
+
+- Chummer5a parity first:
+  - prove the promoted head is a trustworthy desktop equivalent for the Chummer5a workflow families the product still promises
+- SR4 parity second:
+  - use Chummer4 fixtures and workflow oracles to prove the SR4 desktop path explicitly
+  - do not inherit SR4 trust from Chummer5a proof or flatten SR4 into SR5 posture
+- SR6 cumulative workflow depth third:
+  - carry forward the workflow families that make sense under SR6 rules
+  - publish explicit blocked or not-applicable receipts for legacy workflow families that canon does not carry into SR6
+
+The queue, release receipts, and flagship readiness proof must preserve this order so the fleet loop cannot return to `complete` after Chummer5a parity alone.
 
 ### 2. Artifact-presence lane
 
@@ -85,10 +143,22 @@ Those screenshots are reviewed against the shared design contract:
 - visible selection/focus
 - no clipped or hidden command semantics
 - no low-contrast chrome or white-on-white / dark-on-dark regressions
+- decodable image integrity and review resolution high enough to judge real desktop posture instead of tiny or corrupt placeholders
 
 ### 4. Signoff lane
 
 `WORKBENCH_RELEASE_SIGNOFF.md` and the generated release evidence must cite the executable UI gate by name. A green build without this lane is not flagship-proof.
+
+### 5. Visual familiarity lane
+
+The promoted desktop head must publish visual-familiarity proof as defined in `DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.md`.
+
+That lane must explicitly prove:
+
+- legacy-green light/dark readability
+- compact desktop status-strip posture
+- visible loaded-runner tab posture
+- cyberware/cyberlimb workflow-local visual familiarity
 
 ## Failure policy
 
@@ -98,7 +168,15 @@ This gate is strict:
 - If a menu click does not surface visible command choices, the gate fails.
 - If settings or another core command leaves the user in a confusing or apparently frozen posture, the gate fails.
 - If the shipped output claims a bundled demo runner but the file is missing, the gate fails.
-- If dark/light screenshots reveal unreadable contrast or broken state treatment, the gate fails.
+- If dark/light screenshots reveal unreadable contrast or broken state treatment, or if the screenshots are corrupt or undersized, the gate fails.
+- If the promoted head only proves shell chrome while a Chummer5a workflow family still lacks a usable equivalent, the gate fails.
+- If Blazor is labelled fallback but the lane does not also name Avalonia as the primary head, the gate fails.
+- If a gold claim ships any secondary desktop head on thinner proof than the primary head, the gate fails.
+- If Blazor is the only user-facing desktop head or the recommended download and it lacks full flagship proof, the gate fails.
+- If any workflow family is proven only by the other head and no bounded replacement story exists, the gate fails.
+- If the parity checklist claims a workflow family is covered but no executable release proof exists for it, the gate fails.
+- If either executable desktop-exit receipt is missing, stale, or failing, the gate fails.
+- If the visual-familiarity receipt is missing, stale, or failing, the gate fails.
 
 ## Scope
 

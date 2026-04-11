@@ -208,8 +208,7 @@ def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
                 ids.append(value)
         return ids
 
-    def latest_ids(patterns: tuple[re.Pattern[str], ...]) -> list[int]:
-        latest: list[int] = []
+    def first_ids(patterns: tuple[re.Pattern[str], ...]) -> list[int]:
         for line in folded:
             stripped = line.strip()
             for pattern in patterns:
@@ -218,14 +217,16 @@ def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
                     continue
                 ids = parse_ids(match.group(1))
                 if ids:
-                    latest = ids
-        return latest
+                    # Handoff entries are prepended newest-first, so the first
+                    # matching line is the most recent truth.
+                    return ids
+        return []
 
-    frontier_ids = latest_ids(frontier_patterns)
+    frontier_ids = first_ids(frontier_patterns)
     if frontier_ids:
         return frontier_ids
 
-    fallback_ids = latest_ids((current_open_pattern,))
+    fallback_ids = first_ids((current_open_pattern,))
     return fallback_ids
 
 
@@ -280,8 +281,34 @@ def _oldest_blocker_days(blockers_text: str, as_of: dt.date) -> int:
     return max((as_of - reviewed_on).days, 0)
 
 
-def _top_clusters(current_wave: str, report: dict[str, Any], *, next20_closed: bool, post_audit_closed: bool) -> list[dict[str, Any]]:
-    longest_pole = _longest_pole_label(report)
+def _effective_longest_pole_label(report: dict[str, Any], journey_gate_health: dict[str, Any] | None) -> str:
+    journey_gate_health = journey_gate_health or {}
+    blocked_external_only_count = _safe_int(journey_gate_health.get("blocked_external_only_count"))
+    blocked_with_local_count = _safe_int(journey_gate_health.get("blocked_with_local_count"))
+    if blocked_external_only_count > 0 and blocked_with_local_count == 0:
+        blocked_external_only_hosts = [
+            str(item).strip().lower()
+            for item in list(journey_gate_health.get("blocked_external_only_hosts") or [])
+            if str(item).strip()
+        ]
+        if blocked_external_only_hosts == ["windows"]:
+            return "external Windows host proof"
+        if blocked_external_only_hosts:
+            host_label = ", ".join(blocked_external_only_hosts)
+            return f"external {host_label} host proof"
+        return "external host proof"
+    return _longest_pole_label(report)
+
+
+def _top_clusters(
+    current_wave: str,
+    report: dict[str, Any],
+    *,
+    journey_gate_health: dict[str, Any] | None,
+    next20_closed: bool,
+    post_audit_closed: bool,
+) -> list[dict[str, Any]]:
+    longest_pole = _effective_longest_pole_label(report, journey_gate_health)
     wave_folded = str(current_wave or "").strip().lower()
     if "next 12" in wave_folded:
         additive_summary = (
@@ -326,7 +353,7 @@ def _top_clusters(current_wave: str, report: dict[str, Any], *, next20_closed: b
         },
         {
             "cluster_id": "long_pole_visibility",
-            "summary": f"The current longest pole remains {longest_pole}, so release, support, and publication decisions should assume that this lane still sets the pacing risk for the broader public product.",
+            "summary": f"The current longest pole is {longest_pole}, so release, support, and publication decisions should assume that this lane still sets the pacing risk for the broader public product.",
             "source_paths": [
                 "products/chummer/PROGRESS_REPORT.generated.json",
                 "products/chummer/RELEASE_EVIDENCE_PACK.md",
@@ -353,7 +380,7 @@ def _governor_decisions(
     overall = int(report.get("overall_progress_percent") or 0)
     history_count = int(report.get("history_snapshot_count") or 0)
     phase_label = str(report.get("phase_label") or "").strip() or "Scale & stabilize"
-    longest_pole = _longest_pole_label(report)
+    longest_pole = _effective_longest_pole_label(report, journey_gate_health)
     current_wave_folded = str(current_wave or "").strip().lower()
     if "next 12" in current_wave_folded:
         decision_id = f"{as_of.isoformat()}-focus-{current_wave.casefold().replace(' ', '-')}"
@@ -455,6 +482,10 @@ def _journey_gate_health() -> dict[str, Any]:
             "reason": "Fleet journey-gate truth is not materialized yet.",
             "blocked_count": 0,
             "warning_count": 0,
+            "blocked_external_only_count": 0,
+            "blocked_with_local_count": 0,
+            "blocked_external_only_hosts": [],
+            "blocked_external_only_tuples": [],
         }
     payload = _load_json(FLEET_JOURNEY_GATES)
     summary = payload.get("summary") or {}
@@ -463,6 +494,10 @@ def _journey_gate_health() -> dict[str, Any]:
         "reason": str(summary.get("recommended_action") or "Fleet journey-gate summary is available.").strip(),
         "blocked_count": int(summary.get("blocked_count") or 0),
         "warning_count": int(summary.get("warning_count") or 0),
+        "blocked_external_only_count": int(summary.get("blocked_external_only_count") or 0),
+        "blocked_with_local_count": int(summary.get("blocked_with_local_count") or 0),
+        "blocked_external_only_hosts": list(summary.get("blocked_external_only_hosts") or []),
+        "blocked_external_only_tuples": list(summary.get("blocked_external_only_tuples") or []),
     }
 
 
@@ -865,8 +900,8 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
     oldest_blocker_days = _oldest_blocker_days(blockers_text, as_of)
     overall_progress = int(report.get("overall_progress_percent") or 0)
     phase_label = str(report.get("phase_label") or "").strip() or "Scale & stabilize"
-    longest_pole = _longest_pole_label(report)
     journey_gate_health = _journey_gate_health()
+    longest_pole = _effective_longest_pole_label(report, journey_gate_health)
     support_packets = _read_optional_json(FLEET_SUPPORT_CASE_PACKETS)
     status_plane = _read_optional_yaml(FLEET_STATUS_PLANE)
     local_release_proof = _read_optional_json(LOCAL_RELEASE_PROOF)
@@ -887,9 +922,20 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
             else "What is the smallest cross-repo slice that makes campaign spine truth feel like one product across Hub, UI, mobile, and the public trust surface?"
         )
     )
+    blocked_external_only_count = int(journey_gate_health.get("blocked_external_only_count") or 0)
+    blocked_with_local_count = int(journey_gate_health.get("blocked_with_local_count") or 0)
+    blocked_external_only_hosts = [str(item).strip() for item in list(journey_gate_health.get("blocked_external_only_hosts") or []) if str(item).strip()]
+    if blocked_external_only_count > 0 and blocked_with_local_count == 0:
+        host_label = ", ".join(blocked_external_only_hosts) if blocked_external_only_hosts else "external"
+        host_label_display = "Windows" if host_label.casefold() == "windows" else host_label
+        journey_summary = f"journey proof is blocked only by external {host_label_display} host proof on {blocked_external_only_count} tuple(s)"
+        longest_pole_summary = "the longest pole is now external Windows host proof"
+    else:
+        journey_summary = f"journey proof is {journey_gate_health['state']}"
+        longest_pole_summary = f"the longest pole remains {longest_pole}"
     summary = (
-        f"{current_wave} remains the active wave; journey proof is {journey_gate_health['state']}; "
-        f"overall progress is {overall_progress}% in '{phase_label}'; the longest pole remains {longest_pole}; {_closure_health_summary(closure_health)}."
+        f"{current_wave} remains the active wave; {journey_summary}; "
+        f"overall progress is {overall_progress}% in '{phase_label}'; {longest_pole_summary}; {_closure_health_summary(closure_health)}."
     )
 
     release_health_state = "green_or_explained" if not blockers_open else "needs_attention"
@@ -966,7 +1012,13 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
             else "Edition/import confidence needs more history snapshots."
         ),
     }
-    top_clusters = _top_clusters(current_wave, report, next20_closed=next20_closed, post_audit_closed=post_audit_closed)
+    top_clusters = _top_clusters(
+        current_wave,
+        report,
+        journey_gate_health=journey_gate_health,
+        next20_closed=next20_closed,
+        post_audit_closed=post_audit_closed,
+    )
 
     payload: dict[str, Any] = {
         "contract_name": "chummer.weekly_product_pulse",
@@ -1010,7 +1062,7 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
             "overall_progress_percent": overall_progress,
             "phase_label": phase_label,
             "history_snapshot_count": history_count,
-            "longest_pole": longest_pole,
+            "longest_pole": _effective_longest_pole_label(report, journey_gate_health),
             "launch_readiness": launch_readiness,
             "provider_route_stewardship": provider_route_stewardship,
             "journey_gate_source": str(FLEET_JOURNEY_GATES),

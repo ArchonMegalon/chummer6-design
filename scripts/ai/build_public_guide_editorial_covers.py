@@ -498,7 +498,7 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
     panel_zoom = _zoom_value(spec.get("panel_zoom"), 1.0)
     accent = _hex_rgba(str(spec.get("accent") or "#4fd1ff"), 255)
     secondary = _hex_rgba(str(spec.get("accent_secondary") or "#ff7a45"), 255)
-    copy_width = {"hero": 598, "horizon": 506, "part": 510}.get(style, 548)
+    copy_width = _int_value(spec.get("copy_width"), {"hero": 598, "horizon": 506, "part": 510}.get(style, 548))
     rail_width = copy_width + 70
     pad = 72
     background_brightness = max(0.40, min(1.20, _float_value(spec.get("background_brightness"), 0.64)))

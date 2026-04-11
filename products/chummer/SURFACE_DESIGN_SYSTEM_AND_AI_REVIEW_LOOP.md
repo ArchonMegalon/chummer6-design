@@ -123,6 +123,12 @@ The desktop workbench should feel like a serious instrument, not a settings webs
 
 For Chummer specifically, the promoted desktop shell also preserves the legacy familiarity bridge in `CHUMMER5A_FAMILIARITY_BRIDGE.md`.
 
+Desktop install and first-run grammar must read like one product:
+
+* guided installer or in-app recovery first
+* no browser to copy a claim code manually
+* workbench-first continuation instead of dashboard, landing, or mainframe detours
+
 Required Chummer desktop cues:
 
 * a real desktop menu instead of web-style top navigation
