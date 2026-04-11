@@ -1,16 +1,16 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-04-10T00:00:00Z",
+  "generated_at": "2026-04-11T08:53:41Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
   "current_truth": {
     "state": "blocked",
-    "blocked_count": 2,
+    "blocked_count": 3,
     "warning_count": 0,
-    "blocked_reason": "The live journey truth plane is still constrained by open flagship proof and host-proof gaps, so release claims cannot widen beyond the current preview posture.",
-    "next_safe_action": "Refresh the fleet-published JOURNEY_GATES artifact from the canonical journey registry and the latest weekly pulse before widening promotion claims."
+    "blocked_reason": "The live journey truth plane still has blocking golden-journey gaps, so release claims cannot widen beyond the current preview posture.",
+    "next_safe_action": "Resolve the blocking golden-journey gaps before widening promotion claims."
   },
   "required_live_truth_fields": [
     "state",

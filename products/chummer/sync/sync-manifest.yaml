@@ -144,6 +144,14 @@ product_source_groups:
     - products/chummer/DESKTOP_AUTO_UPDATE_SYSTEM.md
     - products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md
     - products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml
+  flagship_desktop_canon:
+    - products/chummer/FLAGSHIP_PRODUCT_BAR.md
+    - products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md
+    - products/chummer/CHUMMER5A_FAMILIARITY_BRIDGE.md
+    - products/chummer/DESKTOP_EXECUTABLE_EXIT_GATES.md
+    - products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY.md
+    - products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
+    - products/chummer/FLAGSHIP_RELEASE_ACCEPTANCE.yaml
   desktop_delivery:
     - products/chummer/DESKTOP_CLIENT_PRODUCT_CUT.md
     - products/chummer/DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml
@@ -268,6 +276,8 @@ mirrors:
     - hub_public_runtime
     - participation
     - release
+    - flagship_desktop_canon
+    - desktop_delivery
     - support_plane
     - external_tools
     - horizons
