@@ -171,6 +171,7 @@ python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
+python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
