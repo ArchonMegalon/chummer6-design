@@ -291,6 +291,23 @@ Good candidates are:
 * this suggestion is not planned
 * this fix is now available on your channel
 
+### Progress email workflow
+
+Reporter-facing progress mail follows `FEEDBACK_PROGRESS_EMAIL_WORKFLOW.yaml`.
+
+The first-wave sender identity is:
+
+* `Wageslave <wageslave@chummer.run>`
+* reply-to `support@chummer.run`
+
+The minimum staged messages are:
+
+* request received
+* audited decision with reason, implementation posture, ETA text, and the explicit `Clad Feedbacker` or `Denied` award
+* fix available on your channel, with a real download or updater route and a direct request to test the release
+
+These notices may queue through EA and Emailit, but they still count as support truth only when Hub case state and Registry release truth agree.
+
 ### Channel-aware fix notices
 
 When a fix is merged but not yet promoted to the reporter's channel, the case may move to `fixed_pending_channel`.

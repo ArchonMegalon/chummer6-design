@@ -1,0 +1,217 @@
+product: chummer
+version: 1
+last_reviewed: 2026-04-13
+program_wave: next_90_day_product_advance
+goal: Convert flagship closeout into repeatable desktop release truth, oracle-backed veteran replacement, boring continuity, and a measured product-governor operating cadence over the next quarter.
+status: in_progress
+
+activation:
+  starts_after:
+    - The current full-product flagship closeout frontier reports zero open milestones.
+    - FLAGSHIP_PRODUCT_READINESS.generated.json is green for desktop_client and the other flagship readiness planes.
+    - The promoted desktop route is honest on Windows, macOS, and Linux.
+  control_plane_rule: Launch this wave on spare Fleet shards immediately, but do not let it steal shards already assigned to the current flagship closeout frontier.
+
+ordering_rule:
+  - Productionize native-host desktop release and promotion first.
+  - Turn Chummer5a parity into oracle-backed release truth second.
+  - Make desktop-native trust, recovery, and workspace continuity boring third.
+  - Keep the product-governor loop measured and weekly instead of heroic and ad hoc.
+
+waves:
+  - id: W6
+    name: Make desktop promotion repeatable
+    status: in_progress
+    milestone_ids:
+      - 101
+      - 102
+  - id: W7
+    name: Prove veteran replacement and mechanical trust
+    status: in_progress
+    milestone_ids:
+      - 103
+      - 104
+  - id: W8
+    name: Make continuity and product-governor boring
+    status: in_progress
+    milestone_ids:
+      - 105
+      - 106
+
+milestones:
+  - id: 101
+    title: Native-host desktop release train and promotion discipline
+    wave: W6
+    owners:
+      - chummer6-ui
+      - chummer6-hub-registry
+      - fleet
+      - chummer6-design
+    status: in_progress
+    exit_criteria:
+      - Windows, macOS, and Linux candidate-to-proof-to-promotion runs behave as one boring release lane with startup smoke, familiarity proof, installer truth, and rollback evidence.
+      - Release channel truth, proof shelf truth, and desktop route truth never disagree by head, platform, architecture, or channel.
+      - Promotion, revoke, and rollback decisions cite signed or notarized receipts instead of ad hoc operator narrative.
+    work_tasks:
+      - id: 101.1
+        owner: fleet
+        title: Turn native-host proof capture and ingest into a repeatable release packet lane.
+      - id: 101.2
+        owner: chummer6-hub-registry
+        title: Publish per-head promotion, fallback, and rollback rationale directly in channel truth.
+      - id: 101.3
+        owner: chummer6-ui
+        title: Keep Avalonia primary-route proof independent from Blazor fallback proof on every promoted tuple.
+      - id: 101.4
+        owner: chummer6-design
+        title: Tighten the desktop promotion language so proof-only, fallback, preview, and flagship claims cannot blur together.
+
+  - id: 102
+    title: Desktop-native claim, update, rollback, and support followthrough
+    wave: W6
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-ui
+      - fleet
+    status: in_progress
+    dependencies:
+      - 101
+    exit_criteria:
+      - Claim, update, rollback, recovery, and support followthrough happen from the installer or app, not as browser ritual.
+      - Support, update, and download surfaces all agree on the user's installed build, channel, fallback posture, and next safe action.
+      - Fix-available, please-test, and recovery mails are version-aware, receipt-bearing, and tied to the same install truth used by the desktop client.
+    work_tasks:
+      - id: 102.1
+        owner: chummer6-hub
+        title: Unify account, claim, install, and support-case recovery into one desktop-native continuation flow.
+      - id: 102.2
+        owner: chummer6-ui
+        title: Surface channel, build, rollback, and support-packet truth inside the desktop heads.
+      - id: 102.3
+        owner: chummer6-hub-registry
+        title: Answer why this head is primary or fallback and why this install is on this channel.
+      - id: 102.4
+        owner: fleet
+        title: Gate the staged reporter mail loop against real install and fix receipts, not only queued support state.
+
+  - id: 103
+    title: Chummer5a parity lab and veteran migration certification
+    wave: W7
+    owners:
+      - chummer6-design
+      - chummer6-ui
+      - executive-assistant
+      - fleet
+    status: in_progress
+    dependencies:
+      - 101
+      - 102
+    exit_criteria:
+      - Screenshot compare packs, first-minute veteran tasks, import-export fixtures, and workflow maps exist for the serious Chummer5a replacement journeys.
+      - The flagship parity registry can advance families beyond covered into task-proven, screenshot-proven, veteran-approved, and gold-ready.
+      - Public migration guidance tells veteran users what stayed familiar, what changed, and what is still bounded without marketing drift.
+    work_tasks:
+      - id: 103.1
+        owner: executive-assistant
+        title: Extract Chummer5a screenshot baselines, workflow packs, and compare artifacts from the oracle repo.
+      - id: 103.2
+        owner: chummer6-ui
+        title: Run screenshot-backed parity review for menu, toolstrip, roster, master index, settings, and import on the promoted desktop head.
+      - id: 103.3
+        owner: chummer6-design
+        title: Move flagship parity families onto the stricter release-truth ladder with veteran-ready evidence requirements.
+      - id: 103.4
+        owner: fleet
+        title: Consume parity-lab evidence in the readiness plane so covered can no longer masquerade as veteran-ready.
+
+  - id: 104
+    title: Engine proof pack, explain budgets, and import-oracle discipline
+    wave: W7
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 103
+    exit_criteria:
+      - Every promoted desktop release carries an engine proof pack with oracle status, explain receipts, and performance budgets.
+      - Import, build, and diagnostics surfaces expose grounded rule-environment receipts and before-after diffs wherever a user or operator needs them.
+      - Mechanical trust does not lag behind surface polish.
+    work_tasks:
+      - id: 104.1
+        owner: chummer6-core
+        title: Build golden oracle suites for creation, advancement, augment, matrix, magic, vehicle, source-toggle, and amend-package rules.
+      - id: 104.2
+        owner: chummer6-core
+        title: Publish a release-bound engine proof pack with load, explain, diff/apply, import, and export-prep budgets.
+      - id: 104.3
+        owner: chummer6-ui
+        title: Surface explain receipts and environment diffs on import, build blockers, and support diagnostics.
+      - id: 104.4
+        owner: chummer6-design
+        title: Tie engine proof-pack evidence into flagship acceptance and parity truth.
+
+  - id: 105
+    title: Workspace restore, entitlement sync, and conflict-safe continuity
+    wave: W8
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-core
+    status: in_progress
+    dependencies:
+      - 102
+      - 104
+    exit_criteria:
+      - Claimed users can restore workspace, entitlement, last context, and safe continuation across desktop and mobile with explicit stale and conflict posture.
+      - Offline, stale, pending, and conflict state remain visible and recoverable instead of hiding in sync folklore.
+      - Ruleset, preset, and amend-package fingerprints stay portable through restore and continuation.
+    work_tasks:
+      - id: 105.1
+        owner: chummer6-hub
+        title: Emit provenance and conflict receipts for roaming workspace and entitlement replication.
+      - id: 105.2
+        owner: chummer6-ui
+        title: Land restore continuation, stale-state visibility, and conflict-choice UX on the primary desktop route.
+      - id: 105.3
+        owner: chummer6-mobile
+        title: Keep travel and offline shells honest about cached, stale, and reconnectable work.
+      - id: 105.4
+        owner: chummer6-core
+        title: Preserve ruleset and amend-environment fingerprints through sync, restore, and replay-safe continuation.
+
+  - id: 106
+    title: Product-governor weekly adoption and measured rollout loop
+    wave: W8
+    owners:
+      - fleet
+      - executive-assistant
+      - chummer6-design
+      - chummer6-hub
+    status: in_progress
+    dependencies:
+      - 101
+      - 102
+      - 103
+      - 104
+      - 105
+    exit_criteria:
+      - Weekly governor packets can justify launch, freeze, canary, rollback, or focus-shift decisions from measured product truth.
+      - Feedback followthrough, fix confirmation, canary evidence, and public status copy all compile from the same readiness and parity surfaces.
+      - Fleet no longer overclaims product reality from empty queue rows or stale milestone coverage.
+    work_tasks:
+      - id: 106.1
+        owner: fleet
+        title: Publish a weekly governor packet with launch, freeze, canary, rollback, and risk-cluster decisions.
+      - id: 106.2
+        owner: executive-assistant
+        title: Synthesize support, parity, and release signals into operator-ready packets and reporter followthrough mail.
+      - id: 106.3
+        owner: chummer6-hub
+        title: Expose install-aware support, status, and recovery surfaces downstream of the same release truth.
+      - id: 106.4
+        owner: chummer6-design
+        title: Keep the successor wave registry current and prune closed work without reopening architecture-cleanup debt.

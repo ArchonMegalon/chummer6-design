@@ -758,6 +758,14 @@ def _public_release_state(value: object) -> str:
     return mapping.get(cleaned, _humanize_identifier(cleaned)) if cleaned else ""
 
 
+def _release_status_slug(value: object) -> str:
+    return str(value or "").strip().lower()
+
+
+def _release_is_published(value: object) -> bool:
+    return _release_status_slug(value) == "published"
+
+
 def _public_release_note(text: object) -> str:
     cleaned = str(text or "").strip()
     if not cleaned:
@@ -796,6 +804,9 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
     cleaned = _public_release_note(release_payload.get("knownIssueSummary"))
     if not cleaned:
         return ""
+    if not _release_is_published(release_payload.get("status")) and _release_artifacts(release_payload):
+        if "shelf is still empty" in cleaned.lower():
+            return "No promoted channel issue bulletin is posted yet because the release channel is still unpublished."
     return cleaned
 
 
@@ -803,6 +814,8 @@ def _public_fix_summary(release_payload: dict[str, object]) -> str:
     cleaned = _public_release_note(release_payload.get("fixAvailabilitySummary"))
     if not cleaned:
         return ""
+    if not _release_is_published(release_payload.get("status")):
+        return "Fix notices stay tentative until the promoted release channel is actually published."
     if cleaned.startswith("Only send fixed notices after"):
         return "Only expect fix notices after the affected download is available on the same public shelf."
     return cleaned
@@ -819,6 +832,27 @@ def _public_download_summary(artifacts: list[dict[str, object]]) -> str:
     if len(summaries) == 1:
         return summaries[0] + "."
     return _english_join(summaries) + "."
+
+
+def _artifact_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
+    grouped = _group_artifacts_by_platform(artifacts)
+    labels: list[str] = []
+    for key, label in (("windows", "Windows"), ("linux", "Linux"), ("macos", "macOS")):
+        if grouped.get(key):
+            labels.append(label)
+    return labels
+
+
+def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]]) -> str:
+    published = _release_is_published(status)
+    platforms = _artifact_platform_labels(artifacts)
+    if published and platforms:
+        return f"Published downloads are currently visible for {_english_join(platforms)}."
+    if published:
+        return "The promoted release channel is published, but no visible downloads are currently attached to the public shelf."
+    if platforms:
+        return f"The current shelf visibly carries {_english_join(platforms)} preview artifacts, but the promoted release channel is still unpublished."
+    return "The promoted release channel is still unpublished, and no preview artifacts are currently visible on the public shelf."
 
 
 def _public_artifact_kind_label(value: str) -> str:
@@ -888,16 +922,26 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
     artifacts = _release_artifacts(release_payload)
     installers = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
     open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
+    published = _release_is_published(release_payload.get("status"))
     rendered = dict(section)
     rendered["heading"] = "Start with the release page and download help"
     if installers:
-        rendered["body"] = "The release page should answer the normal download and setup questions directly: recommended installer, known issues, update status, and the next support step if the path still is not clear."
-        rendered["bullets"] = [
-            "Start with the recommended installer for your platform.",
-            "Alternative builds and manual packages are advanced paths.",
-            "Create an account when you want tracked support, recovery, and linked installs.",
-            "Devices and access is where linked copies and claim paths stay visible later.",
-        ]
+        if published:
+            rendered["body"] = "The release page should answer the normal download and setup questions directly: recommended installer, known issues, update status, and the next support step if the path still is not clear."
+            rendered["bullets"] = [
+                "Start with the recommended installer for your platform.",
+                "Alternative builds and manual packages are advanced paths.",
+                "Create an account when you want tracked support, recovery, and linked installs.",
+                "Devices and access is where linked copies and claim paths stay visible later.",
+            ]
+        else:
+            rendered["body"] = "The release page should answer the current preview-shelf questions directly: which installers are visibly posted, which platforms are still missing, and what support step to take before assuming promotion is complete."
+            rendered["bullets"] = [
+                "Start with a visibly posted preview installer for your platform, not an assumed promoted route.",
+                "Alternative builds and manual packages are still advanced or provisional paths.",
+                "Create an account when you want tracked support, recovery, and linked installs.",
+                "Check the release page before assuming another platform already has a promoted installer.",
+            ]
         return rendered
     primary = artifacts[0] if artifacts else {}
     primary_label = str(primary.get("platformLabel") or "published package").strip() if isinstance(primary, dict) else "published package"
@@ -984,6 +1028,9 @@ def _generate_root(
     landing_manifest: dict[str, object],
     trust_payload: dict[str, object],
     progress: dict[str, object],
+    release_payload: dict[str, object],
+    primary_route_registry: dict[str, object],
+    flagship_parity_registry: dict[str, object],
 ) -> None:
     doc_path = out_dir / "README.md"
     parts = [item for item in (part_registry.get("parts") or []) if isinstance(item, dict)]
@@ -998,6 +1045,53 @@ def _generate_root(
     headline = str(landing_manifest.get("headline") or "").strip()
     subhead = str(landing_manifest.get("subhead") or "").strip()
     proof_line = str(landing_manifest.get("proof_line") or "").strip()
+    artifacts = _release_artifacts(release_payload)
+    grouped_artifacts = _group_artifacts_by_platform(artifacts)
+    published = _release_is_published(release_payload.get("status"))
+    shelf_truth = _public_shelf_truth_line(release_payload.get("status"), artifacts)
+    primary_jobs = [
+        item
+        for item in (primary_route_registry.get("jobs") or [])
+        if isinstance(item, dict) and isinstance(item.get("primary_route"), dict)
+    ]
+    primary_head = ""
+    fallback_heads: list[str] = []
+    if primary_jobs:
+        primary_head = str(primary_jobs[0].get("primary_route", {}).get("head") or "").strip()
+        for item in primary_jobs:
+            for route in item.get("fallback_routes") or []:
+                if not isinstance(route, dict):
+                    continue
+                head = str(route.get("head") or "").strip()
+                if head and head != "web_supporting_surface" and head not in fallback_heads:
+                    fallback_heads.append(head)
+    parity_families = [
+        item
+        for item in (flagship_parity_registry.get("families") or [])
+        if isinstance(item, dict)
+    ]
+    families_below_gold = [
+        str(item.get("id") or "").strip()
+        for item in parity_families
+        if str(item.get("release_status") or "").strip() != "gold_ready"
+    ]
+    platform_notes: list[str] = []
+    if grouped_artifacts.get("linux"):
+        if published:
+            platform_notes.append("Linux installer proof is the strongest currently published desktop lane.")
+        else:
+            platform_notes.append("Linux is the strongest currently proven desktop lane, but the promoted release channel is still unpublished.")
+    if grouped_artifacts.get("windows"):
+        platform_notes.append("Windows artifacts exist in the current shelf data, but flagship promotion still depends on desktop proof and trust evidence.")
+    if grouped_artifacts.get("macos"):
+        platform_notes.append("macOS artifacts exist in the current shelf data, but flagship promotion still depends on desktop proof and trust evidence.")
+    if not platform_notes:
+        platform_notes.append("Desktop promotion proof is still moving, so the public guide stays careful about platform promises.")
+    gold_gap_summary = (
+        "Gold still requires veteran-approved parity, dense-workbench comfort proof, and promoted desktop proof for every promised platform."
+        if families_below_gold
+        else "The parity registry is fully gold-ready, so release truth now depends on live desktop proof and support posture."
+    )
 
     cta_map = {
         "start_here": "- [Start here](START_HERE.md)",
@@ -1013,6 +1107,7 @@ def _generate_root(
             if line and line not in ordered_ctas:
                 ordered_ctas.append(line)
     extra_routes = [
+        "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
         "- [Contact](CONTACT.md)",
@@ -1046,9 +1141,21 @@ def _generate_root(
             "",
             "- I want to try the preview: [Download](DOWNLOAD.md).",
             "- I want the honest current picture: [Status](STATUS.md).",
+            "- I am coming from Chummer5a: [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).",
             "- I want the two-minute product story: [What Chummer6 Is](WHAT_CHUMMER6_IS.md).",
             "- I need support or want to report pain: [Help](HELP.md) and [Contact](CONTACT.md).",
             "- I only care about future ideas: [Horizons](HORIZONS/README.md).",
+            "",
+        ]
+    )
+    rows.extend(
+        [
+            "## Desktop truth",
+            "",
+            f"- Primary desktop route: `{primary_head or 'Chummer.Avalonia'}`.",
+            f"- Fallback desktop route: `{_english_join(fallback_heads) or 'Chummer.Blazor.Desktop'}` only where the shelf and status pages label it as fallback or compatibility.",
+            f"- Current platform posture: {platform_notes[0]}",
+            f"- What gold still requires: {gold_gap_summary}",
             "",
         ]
     )
@@ -1062,7 +1169,7 @@ def _generate_root(
         rows.append(f"- Current stage: {phase}.")
     rows.extend(
         [
-            "- The current Linux preview package is published on the public shelf.",
+            f"- {shelf_truth}",
             "- Help, privacy, terms, contact, and release guidance are live as first-party product pages.",
             (
                 "- More campaign depth, broader platform coverage, and stronger proof trails are still opening next."
@@ -1104,6 +1211,96 @@ def _generate_root(
     _write(doc_path, "\n".join(rows))
 
 
+def _generate_from_chummer5a_to_chummer6(
+    out_dir: Path,
+    primary_route_registry: dict[str, object],
+    flagship_parity_registry: dict[str, object],
+    release_payload: dict[str, object],
+) -> None:
+    artifacts = _release_artifacts(release_payload)
+    grouped_artifacts = _group_artifacts_by_platform(artifacts)
+    jobs = [
+        item
+        for item in (primary_route_registry.get("jobs") or [])
+        if isinstance(item, dict) and isinstance(item.get("primary_route"), dict)
+    ]
+    primary_head = str(jobs[0].get("primary_route", {}).get("head") or "").strip() if jobs else "Chummer.Avalonia"
+    fallback_heads: list[str] = []
+    for item in jobs:
+        for route in item.get("fallback_routes") or []:
+            if not isinstance(route, dict):
+                continue
+            head = str(route.get("head") or "").strip()
+            if head and head != "web_supporting_surface" and head not in fallback_heads:
+                fallback_heads.append(head)
+    parity_families = [
+        item
+        for item in (flagship_parity_registry.get("families") or [])
+        if isinstance(item, dict)
+    ]
+    below_veteran = [
+        str(item.get("id") or "").strip()
+        for item in parity_families
+        if str(item.get("release_status") or "").strip() not in {"veteran_approved", "gold_ready"}
+    ]
+    below_gold = [
+        str(item.get("id") or "").strip()
+        for item in parity_families
+        if str(item.get("release_status") or "").strip() != "gold_ready"
+    ]
+    platform_line = "The current desktop proof is still centered on Linux."
+    if grouped_artifacts.get("windows") and grouped_artifacts.get("macos"):
+        platform_line = "Windows, Linux, and macOS artifacts all appear in the current shelf data, but promotion still depends on release proof."
+    elif grouped_artifacts.get("windows") or grouped_artifacts.get("macos"):
+        platform_line = "Linux plus at least one additional desktop platform appears in the current shelf data, but promotion still depends on release proof."
+
+    rows = [
+        _front_matter("From Chummer5a to Chummer6", "products/chummer/PRIMARY_ROUTE_REGISTRY.yaml"),
+        "# From Chummer5a to Chummer6",
+        "",
+        "This page is for serious Chummer5a users who want the fast answer: what still feels familiar, what is genuinely better, and what is not honest to overclaim yet.",
+        "",
+        "## What stayed familiar",
+        "",
+        "- The promoted desktop route is still supposed to feel like a real workbench, not a dashboard.",
+        "- The flagship shell is still held to a real menu, an immediate toolstrip, a dense central editor, and a compact bottom status strip.",
+        "- Save, open/import, settings, roster, and master-index routes are still expected to be obvious instead of hidden behind novelty navigation.",
+        "",
+        "## What changed",
+        "",
+        "- Chummer6 is organized around deterministic rules receipts, durable state, and clearer recovery paths instead of legacy form sprawl alone.",
+        "- The product is being tightened around one primary desktop route instead of leaving every head to feel equally authoritative.",
+        "- Public status, help, download, and release truth are being treated as first-party pages, not side notes.",
+        "",
+        "## What is better when it lands cleanly",
+        "",
+        "- Explainable rules math is meant to stay attached to the answer.",
+        "- Local-first continuity is supposed to survive bad connectivity and device drift more gracefully.",
+        "- Release, support, and recovery truth are being pushed closer to the product instead of forcing users to reverse-engineer the state from repo or issue trails.",
+        "",
+        "## Desktop truth right now",
+        "",
+        f"- Primary desktop route: `{primary_head}`.",
+        f"- Fallback desktop route: `{_english_join(fallback_heads) or 'Chummer.Blazor.Desktop'}` only when the shelf and status pages label it that way.",
+        f"- Current platform posture: {platform_line}",
+        "- Today this should still be read as a serious preview, not a finished gold replacement.",
+        "",
+        "## What is still not honest to overclaim",
+        "",
+        f"- The flagship parity registry still has {len(below_veteran)} family groups below veteran-approved proof.",
+        f"- The flagship parity registry still has {len(below_gold)} family groups below gold-ready proof.",
+        "- If you need a replacement that is fully signed off as a no-step-back Chummer5a flagship successor, keep reading the status page instead of assuming that bar is closed.",
+        "",
+        "## Read next",
+        "",
+        "- [Status](STATUS.md)",
+        "- [Download](DOWNLOAD.md)",
+        "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+        "- [Help](HELP.md)",
+    ]
+    _write(out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md", "\n".join(rows))
+
+
 def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
@@ -1111,8 +1308,11 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     platform_summary = _public_download_summary(artifacts)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
     published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
-    release_status = _public_release_state(str(release_payload.get("status") or "unpublished").strip())
+    raw_status = str(release_payload.get("status") or "unpublished").strip()
+    release_status = _public_release_state(raw_status)
     release_verification = _public_release_proof_summary(release_payload)
+    published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
+    shelf_truth = _public_shelf_truth_line(raw_status, artifacts)
     rows = [
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
@@ -1131,14 +1331,15 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         if version:
             rows.append(f"- Current build: `{version}`.")
         if published_at:
-            rows.append(f"- Published: {published_at}.")
+            rows.append(f"- {published_label}: {published_at}.")
         if release_status:
             rows.append(f"- Release status: {release_status}.")
         if platform_summary:
-            rows.append(f"- Current public downloads: {platform_summary}")
+            label = "Current public downloads" if _release_is_published(raw_status) else "Preview artifacts currently visible"
+            rows.append(f"- {label}: {platform_summary}")
         if release_verification:
             rows.append(f"- Release verification: {release_verification}")
-        rows.append("- The current Linux preview package is published on the public shelf.")
+        rows.append(f"- {shelf_truth}")
         rows.append("- First-party help, privacy, terms, and contact pages are live.")
         rows.append("")
 
@@ -1212,17 +1413,33 @@ def _generate_download(
     platform_expectations = {
         "windows": (
             "Windows",
-            "No current published Windows download is on the public shelf.",
+            (
+                "No current published Windows download is on the public shelf."
+                if _release_is_published(status)
+                else "No current Windows preview artifact is visible on the shelf."
+            ),
         ),
         "linux": (
             "Linux",
-            "No current published Linux download is on the public shelf.",
+            (
+                "No current published Linux download is on the public shelf."
+                if _release_is_published(status)
+                else "No current Linux preview artifact is visible on the shelf."
+            ),
         ),
         "macos": (
             "macOS",
-            "macOS is not on the public shelf until a signed and notarized `.dmg` is promoted.",
+            (
+                "macOS is not on the public shelf until a signed and notarized `.dmg` is promoted."
+                if _release_is_published(status)
+                else "macOS preview artifacts are not visible on the shelf yet, and gold still requires a signed and notarized `.dmg`."
+            ),
         ),
     }
+    section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
+    timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
+    current_download_label = "Current public download" if _release_is_published(status) else "Preview artifacts currently visible"
+    shelf_truth = _public_shelf_truth_line(status, artifacts)
 
     rows = [
         _front_matter("Download", release_source),
@@ -1230,17 +1447,18 @@ def _generate_download(
         "",
         "This page describes the public preview shelf and the download formats that are actually available today.",
         "",
-        "## Current public download",
+        f"## {section_heading}",
         "",
         f"- Current stage: {phase}.",
         f"- Release channel: {release_channel}.",
-        f"- Published: {published_label}.",
+        f"- {timestamp_label}: {published_label}.",
         f"- Release status: {release_status or 'Not currently published'}.",
     ]
     if version:
         rows.append(f"- Current build: `{version}`.")
     if current_download:
-        rows.append(f"- Current public download: {current_download}")
+        rows.append(f"- {current_download_label}: {current_download}")
+    rows.append(f"- Shelf truth: {shelf_truth}")
     if release_verification:
         rows.append(f"- Release verification: {release_verification}")
     if known_issues:
@@ -1275,9 +1493,15 @@ def _generate_download(
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
-            rows.append("- The current shelf includes at least one installer, so installer-first language is warranted for those published platforms.")
+            if _release_is_published(status):
+                rows.append("- The current shelf includes at least one installer, so installer-first language is warranted for those published platforms.")
+            else:
+                rows.append("- The current preview shelf includes installers, but they should still be read as preview artifacts until the promoted release channel is published.")
         else:
-            rows.append("- The current public shelf is package-first. Setup starts from a downloaded archive, not a promoted installer.")
+            if _release_is_published(status):
+                rows.append("- The current public shelf is package-first. Setup starts from a downloaded archive, not a promoted installer.")
+            else:
+                rows.append("- The current preview shelf is package-first. Setup starts from a downloaded archive, not a promoted installer.")
         rows.extend(
             _bullet_lines(
                 [
@@ -1290,7 +1514,10 @@ def _generate_download(
             )
         )
     else:
-        rows.append("- No published artifacts are visible on the public shelf right now.")
+        if _release_is_published(status):
+            rows.append("- No published artifacts are visible on the public shelf right now.")
+        else:
+            rows.append("- No preview artifacts are currently visible on the public shelf.")
 
     rows.extend(["", "## SHA256", ""])
     if artifacts:
@@ -1299,7 +1526,10 @@ def _generate_download(
             sha256 = str(artifact.get("sha256") or "").strip() or "missing"
             rows.append(f"- {label}: `{sha256}`")
     else:
-        rows.append("- No published artifact checksums are available because the public shelf has no artifacts.")
+        if _release_is_published(status):
+            rows.append("- No published artifact checksums are available because the public shelf has no artifacts.")
+        else:
+            rows.append("- No preview artifact checksums are available because the shelf has no visible artifacts.")
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
@@ -1556,13 +1786,27 @@ def generate_bundle(repo_root: Path, out_dir: Path) -> None:
     horizon_registry = _load_yaml(repo_root / "products" / "chummer" / "HORIZON_REGISTRY.yaml")
     landing_manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_LANDING_MANIFEST.yaml")
     release_experience = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_RELEASE_EXPERIENCE.yaml")
+    primary_route_registry = _load_yaml(repo_root / "products" / "chummer" / "PRIMARY_ROUTE_REGISTRY.yaml")
+    flagship_parity_registry = _load_yaml(repo_root / "products" / "chummer" / "FLAGSHIP_PARITY_REGISTRY.yaml")
     help_copy = _load_text(repo_root / "products" / "chummer" / "PUBLIC_HELP_COPY.md")
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
     required_assets = _required_public_asset_paths(part_registry, horizon_registry)
 
     _materialize_public_assets(repo_root, out_dir, required_assets)
-    _generate_root(out_dir, manifest, page_registry, part_registry, landing_manifest, trust_payload, progress)
+    _generate_root(
+        out_dir,
+        manifest,
+        page_registry,
+        part_registry,
+        landing_manifest,
+        trust_payload,
+        progress,
+        release_payload,
+        primary_route_registry,
+        flagship_parity_registry,
+    )
+    _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
     _generate_status(out_dir, trust_payload, progress, release_payload)
     _generate_help(out_dir, help_copy, trust_payload, release_payload)
     _generate_faq(out_dir, faq_registry)

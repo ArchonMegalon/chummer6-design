@@ -78,11 +78,16 @@ product_source_groups:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml
     - products/chummer/horizons/README.md
+    - products/chummer/horizons/FOUNDATIONS.md
+    - products/chummer/horizons/edition-studio.md
     - products/chummer/horizons/nexus-pan.md
     - products/chummer/horizons/alice.md
     - products/chummer/horizons/karma-forge.md
     - products/chummer/horizons/knowledge-fabric.md
     - products/chummer/horizons/jackpoint.md
+    - products/chummer/horizons/onramp.md
+    - products/chummer/horizons/quicksilver.md
+    - products/chummer/horizons/run-control.md
     - products/chummer/horizons/runsite.md
     - products/chummer/horizons/runbook-press.md
     - products/chummer/horizons/ghostwire.md
@@ -163,6 +168,8 @@ product_source_groups:
     - products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md
     - products/chummer/FEEDBACK_AND_CRASH_AUTOMATION.md
     - products/chummer/FEEDBACK_AND_CRASH_STATUS_MODEL.md
+    - products/chummer/FEEDBACK_LOOP_RELEASE_GATE.yaml
+    - products/chummer/FEEDBACK_PROGRESS_EMAIL_WORKFLOW.yaml
   external_tools:
     - products/chummer/EXTERNAL_TOOLS_PLANE.md
     - products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md

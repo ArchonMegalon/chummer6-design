@@ -71,6 +71,8 @@ for path in \
   products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md \
   products/chummer/FEEDBACK_AND_CRASH_AUTOMATION.md \
   products/chummer/FEEDBACK_AND_CRASH_STATUS_MODEL.md \
+  products/chummer/FEEDBACK_LOOP_RELEASE_GATE.yaml \
+  products/chummer/FEEDBACK_PROGRESS_EMAIL_WORKFLOW.yaml \
   products/chummer/PUBLIC_TRUST_CONTENT.yaml \
   products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md \
   products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md \
@@ -213,6 +215,8 @@ rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## M
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^# Provider and route stewardship$|^## Ownership split$|^## Required stewardship loop$|^## Hygiene checklist$|^## Hard rules$' "$repo_root/products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^scorecards:$|^  - id: release_health$|^  - id: support_and_feedback_closure$|^  - id: campaign_middle_health$|^  - id: control_loop_integrity$|^weekly_snapshot:$' "$repo_root/products/chummer/PRODUCT_HEALTH_SCORECARD.yaml" >/dev/null
+rg -n '^version: 1$|^last_reviewed: 2026-04-12$|closure-honesty contract|^release_blocking: true$|^thresholds:$|^requirements:$|^status_spine:$' "$repo_root/products/chummer/FEEDBACK_LOOP_RELEASE_GATE.yaml" >/dev/null
+rg -n '^version: 1$|^last_reviewed: 2026-04-12$|^purpose: Reporter-facing staged progress email contract|^decision_awards:$|^stages:$|^e2e_gate:$|wageslave@chummer.run|Clad Feedbacker|Denied' "$repo_root/products/chummer/FEEDBACK_PROGRESS_EMAIL_WORKFLOW.yaml" >/dev/null
 rg -n '\"contract_name\": \"chummer\\.weekly_product_pulse\"|\"governor_decisions\"|\"next_checkpoint_question\"|\"history_snapshot_count\"' "$repo_root/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^golden_journey_source: GOLDEN_JOURNEY_RELEASE_GATES\\.yaml$|^scorecards:$|^  - id: golden_journey_proof$|^release_gates:$|^  - id: deterministic_rules_truth$|^  - id: session_continuity$|^  - id: campaign_and_dossier_continuity$|^  - id: roaming_workspace_trust$|next_safe_action_clarity|device_role_posture_visibility|^  - id: support_and_closure_honesty$|^  - id: roaming_workspace_gate$|^  - id: golden_journey_gate$' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: release_control$|^version: 1$|^journey_gates:$|^  - id: install_claim_restore_continue$|^  - id: build_explain_publish$|^  - id: campaign_session_recover_recap$|^  - id: recover_from_sync_conflict$|^  - id: report_cluster_release_notify$|^  - id: organize_community_and_close_loop$' "$repo_root/products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml" >/dev/null
@@ -298,7 +302,7 @@ rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Using Chummer6$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^### Can I actually use this now\?$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^# Download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## Current public download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '^## (Current public download|Current preview shelf)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## Current package format$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## SHA256$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## Recent release verification$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
@@ -319,7 +323,7 @@ rg -n '^## What is real now$' "$downstream_root/README.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^## Current picture$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^# Download$' "$downstream_root/DOWNLOAD.md" >/dev/null
-rg -n '^## Current public download$' "$downstream_root/DOWNLOAD.md" >/dev/null
+rg -n '^## (Current public download|Current preview shelf)$' "$downstream_root/DOWNLOAD.md" >/dev/null
 rg -n '^# How Can I Help\?$' "$downstream_root/HOW_CAN_I_HELP.md" >/dev/null
 rg -n '^# Where To Go Deeper$' "$downstream_root/WHERE_TO_GO_DEEPER.md" >/dev/null
 rg -n '^# What Chummer6 Is$' "$downstream_root/WHAT_CHUMMER6_IS.md" >/dev/null

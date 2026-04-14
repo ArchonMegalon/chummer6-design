@@ -1,0 +1,51 @@
+version: 1
+last_reviewed: 2026-04-12
+purpose: Measurable density and noise-budget contract for the promoted flagship desktop workbench.
+release_blocking: true
+scope:
+  surfaces:
+    - desktop_workbench
+    - flagship_dialogs
+    - dense_reference_and_roster_views
+  heads:
+    - Chummer.Avalonia
+    - Chummer.Blazor.Desktop
+metrics:
+  spacing:
+    shell_outer_margin_max: 8
+    row_spacing_max: 6
+    card_padding_max: 10
+    input_padding_max:
+      horizontal: 8
+      vertical: 6
+    compact_button_min_height_max: 32
+  chrome:
+    hero_banner_height_max: 0
+    card_nesting_depth_max: 2
+    persistent_secondary_badge_cluster_max: 3
+    dashboard_tile_count_in_toolstrip_max: 0
+    decorative_landing_chrome_in_workbench_max: 0
+  workbench_posture:
+    require_top_menu: true
+    require_immediate_toolstrip: true
+    require_workspace_context_strip: true
+    require_bottom_status_strip: true
+    left_navigation_width_min: 240
+    left_navigation_width_max: 360
+    right_inspector_width_min: 240
+    right_inspector_width_max: 360
+    center_pane_must_dominate: true
+  visible_density:
+    dense_list_visible_row_min: 8
+    dense_detail_group_visible_field_min: 6
+    section_rhythm_must_remain_visible: true
+    header_to_content_ratio_max: 0.35
+proof_requirements:
+  - DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json must pass.
+  - Screenshot review must include menu, toolstrip, loaded runner, dense section, and status strip.
+  - Veteran first-minute landmarks must remain visible without overflow-only or hover-only discovery.
+failure_modes:
+  - Decorative dashboard chrome replaces flat workbench actions.
+  - Status strip state is hidden in overflow, drawers, or tooltip-only affordances.
+  - Spacing inflation reduces visible rows below the minimum dense comfort budget.
+  - The flagship shell opens into a landing/dashboard detour instead of a workbench or restore continuation.

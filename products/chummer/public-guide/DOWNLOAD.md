@@ -2,21 +2,22 @@
 
 This page describes the public preview shelf and the download formats that are actually available today.
 
-## Current public download
+## Current preview shelf
 
 - Current stage: Public preview.
 - Release channel: Preview channel.
-- Published: April 11, 2026 at 19:42 UTC.
+- Last refreshed: April 11, 2026 at 19:42 UTC.
 - Release status: Not currently published.
 - Current build: `unpublished`.
-- Current public download: Avalonia Desktop Linux X64 Installer and Blazor Desktop Linux X64 Installer.
-- Release verification: Recent release verification passed across setup and recovery, build and publish, campaign session continuity, and support follow-up.
-- Known issues: No active channel issues are published because the shelf is still empty.
-- Fix availability: Fix notices should stay pending until a published shelf exists.
+- Preview artifacts currently visible: Avalonia Desktop Linux X64 Installer and Blazor Desktop Linux X64 Installer.
+- Shelf truth: The current shelf visibly carries Linux preview artifacts, but the promoted release channel is still unpublished.
+- Release verification: Recent release verification passed across setup and recovery, build and publish, campaign session continuity, support follow-up, and organize community and close loop.
+- Known issues: No promoted channel issue bulletin is posted yet because the release channel is still unpublished.
+- Fix availability: Fix notices stay tentative until the promoted release channel is actually published.
 
 ### Windows
 
-- No current published Windows download is on the public shelf.
+- No current Windows preview artifact is visible on the shelf.
 
 ### Linux
 
@@ -33,11 +34,11 @@ This page describes the public preview shelf and the download formats that are a
 
 ### macOS
 
-- macOS is not on the public shelf until a signed and notarized `.dmg` is promoted.
+- macOS preview artifacts are not visible on the shelf yet, and gold still requires a signed and notarized `.dmg`.
 
 ## Current package format
 
-- The current shelf includes at least one installer, so installer-first language is warranted for those published platforms.
+- The current preview shelf includes installers, but they should still be read as preview artifacts until the promoted release channel is published.
 - Avalonia Desktop Linux X64 Installer via `/downloads/files/chummer-avalonia-linux-x64-installer.deb`
 - Blazor Desktop Linux X64 Installer via `/downloads/files/chummer-blazor-desktop-linux-x64-installer.deb`
 
@@ -50,7 +51,7 @@ This page describes the public preview shelf and the download formats that are a
 
 - Status: Passed.
 - Last checked: April 10, 2026 at 4:40 UTC.
-- Summary: Recent release verification passed across setup and recovery, build and publish, campaign session continuity, and support follow-up.
+- Summary: Recent release verification passed across setup and recovery, build and publish, campaign session continuity, support follow-up, and organize community and close loop.
 
 ### Checked flows
 
@@ -58,3 +59,4 @@ This page describes the public preview shelf and the download formats that are a
 - build, explain, and publish
 - campaign session recovery and recap
 - support reporting and release follow-up
+- organize community and close loop

@@ -24,6 +24,8 @@ The current recommended wave is **Next 12 Biggest Wins**.
 The filename stays for continuity, but the active machine-readable wave now spans milestones `1` through `18`: the original flagship 12 plus six explicit no-step-back parity closure milestones.
 It uses `NEXT_12_BIGGEST_WINS_GUIDE.md` as execution text and `NEXT_12_BIGGEST_WINS_REGISTRY.yaml` for machine-readable progress.
 It concentrates the program on flagship desktop finish, no-step-back client parity, indispensable campaign continuity, build plus explain plus exchange leverage, and boring trust plus launch-scale operator truth.
+The queued successor wave after that closeout is **Next 90-Day Product Advance**.
+It uses `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md` as execution text and `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml` as the staged machine-readable follow-on.
 
 The just-closed front-door wave is recorded in `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md`.
 The just-closed additive follow-on wave is recorded in `NEXT_20_BIG_WINS_EXECUTION_PLAN.md` and `NEXT_20_BIG_WINS_REGISTRY.yaml`.
@@ -31,6 +33,7 @@ The just-closed post-audit wave is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_GUID
 The active successor wave is `NEXT_12_BIGGEST_WINS_GUIDE.md`, with machine-readable progress in `NEXT_12_BIGGEST_WINS_REGISTRY.yaml`.
 The active no-step-back parity overlay for that wave is `LEGACY_CLIENT_AND_ADJACENT_PARITY.md` plus `LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml`.
 The active audit overlay for correcting where design proof still outruns journey proof is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`.
+The queued post-closeout successor wave is `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md`, with machine-readable staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
 The immediate additive shape is:

@@ -60,7 +60,11 @@ modules:
       - fleet
 release_gates:
   - parity_lab
+  - flagship_parity_registry
   - classic_dense_workbench
+  - dense_workbench_budget
+  - veteran_first_minute_gate
+  - primary_route_registry
   - desktop_native_registry_update_flow
   - generated_public_surfaces
 first_wave:
