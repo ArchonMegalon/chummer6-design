@@ -55,6 +55,10 @@ for path in \
   products/chummer/PUBLIC_AUTH_FLOW.md \
   products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md \
   products/chummer/PUBLIC_MEDIA_BRIEFS.yaml \
+  products/chummer/PUBLIC_VIDEO_BRIEFS.yaml \
+  products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml \
+  products/chummer/STRUCTURED_VIDEO_AND_NARRATED_MEDIA_MODEL.md \
+  products/chummer/VIDBOARD_AND_LTD_WOW_FACTOR_WORKFLOWS.md \
   products/chummer/PROGRESS_HISTORY.generated.json \
   products/chummer/PROGRESS_REPORT.generated.html \
   products/chummer/PROGRESS_REPORT.generated.json \
@@ -116,6 +120,7 @@ for path in \
   products/chummer/adrs/ADR-0012-product-governor-and-feedback-loop.md \
   products/chummer/adrs/ADR-0013-campaign-and-control-middle-plane.md \
   products/chummer/adrs/ADR-0014-interop-and-portability-plane.md \
+  products/chummer/adrs/ADR-0016-structured-presenter-video-lane.md \
   products/chummer/PROGRAM_MILESTONES.yaml \
   products/chummer/CONTRACT_SETS.yaml \
   products/chummer/GROUP_BLOCKERS.md \

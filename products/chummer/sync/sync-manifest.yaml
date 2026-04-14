@@ -125,6 +125,8 @@ product_source_groups:
     - products/chummer/PUBLIC_AUTH_FLOW.md
     - products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md
     - products/chummer/PUBLIC_MEDIA_BRIEFS.yaml
+    - products/chummer/PUBLIC_VIDEO_BRIEFS.yaml
+    - products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml
     - products/chummer/PUBLIC_GUIDE_POLICY.md
     - products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml
     - products/chummer/PUBLIC_PART_REGISTRY.yaml

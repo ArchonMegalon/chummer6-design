@@ -1,7 +1,7 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-04-13T20:26:03Z",
+  "generated_at": "2026-04-14T10:47:03Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
@@ -12,10 +12,10 @@
     "blocked_reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
     "warning_reason": "",
     "next_safe_action": "Resolve the blocking golden-journey gaps before widening publish claims.",
-    "evidence_age_hours": 0.0,
+    "evidence_age_hours": 0.01,
     "provenance": {
       "weekly_product_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
-      "weekly_product_pulse_generated_at": "2026-04-13T20:25:52Z",
+      "weekly_product_pulse_generated_at": "2026-04-14T10:46:34Z",
       "golden_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml"
     }
   },
