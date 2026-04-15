@@ -102,7 +102,10 @@ milestones:
         status: complete
         evidence:
           - /docker/chummercomplete/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json now publishes verifier-bound desktopTupleCoverage.desktopRouteTruth rows for Avalonia primary and Blazor fallback on Linux, Windows, and macOS.
+          - /docker/chummercomplete/chummer-hub-registry/.codex-studio/published/releases.json carries matching verifier-bound desktopRouteTruth rows so the compatibility download shelf cannot drift from canonical release-channel truth.
           - /docker/chummercomplete/chummer-hub-registry/scripts/verify_public_release_channel.py fail-closes missing, blank, stale, or non-canonical promotion, fallback, rollback, revoke, update, and install-posture rationale.
+          - /docker/chummercomplete/chummer-hub-registry/scripts/verify_next90_m101_registry_promotion_discipline.py fail-closes canonical registry, Fleet queue staging, release-channel, compatibility-shelf, pipeline-doc, closeout-doc, worklist, and standard verify wiring drift for this completed package.
+          - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.closeout.md records the do-not-reopen rule and exact proof conditions for future shards.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
