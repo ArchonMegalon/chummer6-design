@@ -312,6 +312,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit ba914e9a pins the current M103 veteran proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit de5837b9 tightens the M103 veteran proof token guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 762aaedb pins the M103 veteran proof token guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 8ce865c4 tightens M103 no-reopen proof posture.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, Chummer5a baseline markers, and blocked-helper proof exclusion.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -416,6 +417,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit ea689297 pins M104 explain receipt proof floor so future shards verify the current closed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 5a8e0b2a pins M104 explain receipt guard floor so future shards verify the latest completed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish commit bfd66025 pins M104 explain receipt current guard floor so future shards verify the latest completed-package guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit f9607bb8 tightens M104 generated proof hygiene so receipt proof arrays reject worker-unsafe run-helper citations.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
