@@ -283,6 +283,7 @@ milestones:
           - /docker/EA/docs/chummer5a_parity_lab/SUCCESSOR_HANDOFF_CLOSEOUT.yaml reports status=ea_scope_complete, completed outputs, anti-reopen rules, and delegated non-EA follow-up packages.
           - /docker/EA/.codex-studio/published/CHUMMER5A_PARITY_ORACLE_PACK.generated.json reports status=task_proven with screenshot_corpora, workflow_maps, compare_packs, and import_export_fixture_inventory outputs present.
           - python tests/test_chummer5a_parity_lab_pack.py exits with ran=16 failed=0 in /docker/EA.
+          - /docker/EA commit f252c02 pins the latest M103 parity-lab proof floor into the published receipt, handoff closeout, and direct guard so future shards verify the closed EA package instead of repeating it.
       - id: 103.2
         owner: chummer6-ui
         title: Run screenshot-backed parity review for menu, toolstrip, roster, master index, settings, and import on the promoted desktop head.
