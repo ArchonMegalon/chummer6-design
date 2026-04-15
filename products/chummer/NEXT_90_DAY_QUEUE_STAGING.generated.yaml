@@ -85,6 +85,7 @@ items:
       - /docker/chummercomplete/chummer-core-engine/tests/test_engine_proof_pack_generator.py
       - /docker/chummercomplete/chummer-core-engine/docs/ENGINE_PROOF_PACK.md
       - /docker/chummercomplete/chummer-core-engine commit 86040e30 fail-closes unassigned queue allowed paths or owned surfaces for this completed package.
+      - /docker/chummercomplete/chummer-core-engine commit 35cd27b4 pins successor frontier 3227666051 into the completed M104 proof guard.
     allowed_paths:
       - src
       - tests
