@@ -206,6 +206,9 @@ milestones:
         evidence:
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M103_UI_VETERAN_CERTIFICATION.generated.json reports status=pass with package registry truth, Chummer5a baseline source markers, promoted Avalonia release-channel binding, and distinct screenshot coverage for menu, toolstrip, roster, master index, settings, and import.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh fail-closes queue drift, milestone drift, missing Chummer5a baseline markers, missing or duplicate screenshots, undersized PNGs, and missing promoted primary-route release truth across Linux, Windows, and macOS.
+          - /docker/chummercomplete/chummer6-ui-finish commit fb6eb62e tightens the completed M103 proof guard so future shards verify this package instead of repeating the screenshot-backed parity slice.
+          - /docker/chummercomplete/chummer6-ui-finish commit 3bba8754 further tightens the M103 verifier receipt so registry, queue, promoted-head, Chummer5a baseline, screenshot, standard-verify, and guard evidence stay aligned.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, and Chummer5a baseline markers.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
         owner: chummer6-design
@@ -366,7 +369,7 @@ milestones:
           - /docker/EA/tests/test_chummer_governor_packet_pack.py fail-closes queue, registry, source-anchor, reporter workflow, release-truth, runtime-safety, and stale queue proof-path drift.
           - /docker/EA/feedback/2026-04-15-ea-governor-packets-package-closeout.md records that no EA-owned work remains while Fleet, Hub, Registry, and design sibling lanes stay open.
           - /docker/EA/feedback/2026-04-15-chummer-governor-packets-successor-guard.md records the repeat-prevention guard and direct proof runner result.
-          - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=16 failed=0.
+          - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=17 failed=0.
       - id: 106.3
         owner: chummer6-hub
         title: Expose install-aware support, status, and recovery surfaces downstream of the same release truth.
@@ -399,6 +402,7 @@ milestones:
         evidence:
           - /docker/chummercomplete/chummer.run-services commit cda8849a binds release, fix, support, and publication recipe jobs to stable public proof shelf output refs.
           - /docker/chummercomplete/chummer.run-services commit e25842ac tightens mixed source-pack output anchoring so release bundle refs always bind to an approved artifact-bearing source pack.
+          - /docker/chummercomplete/chummer.run-services commit b9e6b52e tightens recipe-specific public proof shelf route guards so approved local refs cannot cross from release or publication recipes onto the wrong shelf family.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/ArtifactFactoryOrchestrationService.cs rejects unapproved or provider-specific source packs and emits media-factory output bindings for preview, caption, packet, audio, and video formats.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/InternalArtifactFactoryController.cs and Chummer.Run.Api/ServiceCollectionBoundedContextExtensions.cs bind the recipe-backed job launcher to the internal authenticated Hub orchestration endpoint.
           - /docker/chummercomplete/chummer.run-services/Chummer.Tests/ArtifactFactoryOrchestrationServiceTests.cs proves release, support, fix, and publication bundles route through approved source-pack receipts.
