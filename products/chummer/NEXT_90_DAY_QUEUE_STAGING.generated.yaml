@@ -61,6 +61,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 461e3709 pins M102 desktop trust current proof floor.
       - /docker/chummercomplete/chummer.run-services commit 171c2de0 tightens M102 blocked run-helper proof guard.
       - /docker/chummercomplete/chummer.run-services commit 73f1ee9a pins M102 desktop trust proof guard.
+      - /docker/chummercomplete/chummer.run-services commit 74dff34c tightens M102 forbidden command evidence guard.
       - python3 scripts/verify_desktop_native_trust_receipts.py
       - python3 -m unittest tests/test_desktop_native_trust_receipts.py
       - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification" --no-restore
@@ -239,6 +240,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 1d5a811f pins the M105 workspace proof floor guard.
       - /docker/chummercomplete/chummer.run-services commit f02e985f tightens the M105 blocked-helper command guard so queue and registry proof cannot cite active-run OODA helper command output.
       - /docker/chummercomplete/chummer.run-services commit 0f06bcef pins the M105 helper guard proof floor.
+      - /docker/chummercomplete/chummer.run-services commit 1ca535e2 pins the M105 workspace helper proof floor.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
@@ -282,7 +284,7 @@ items:
       - verifier rejects Fleet proof paths outside package allowed path roots
       - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier
       - successor frontier 2376135131 pinned for next90-m106-fleet-governor-packet repeat prevention
-      - local proof floor commit f66dbaa pinned for M106 governor packet repeat prevention
+      - local proof floor commit f490e53 pinned for M106 governor packet repeat prevention
       - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages
     allowed_paths:
       - admin
@@ -322,7 +324,9 @@ items:
       - stale generated support proof gaps fail the standalone verifier
       - weekly/support receipt-count drift fails the standalone verifier
       - weekly/support generated_at freshness fails the standalone verifier
+      - future-dated support and weekly generated_at receipts fail the standalone verifier
       - weekly support-packet source-path drift fails the standalone verifier
+      - design queue source path rejects active-run helper paths
       - weekly governor source-path hygiene and worker command guard fail the standalone verifier
       - no-PYTHONPATH bootstrap guard includes the standalone M102 verifier
       - successor frontier 2454416974 pinned for next90-m102-fleet-reporter-receipts repeat prevention
@@ -330,6 +334,7 @@ items:
       - design-owned queue source proof markers fail the standalone verifier
       - telemetry command proof markers fail the standalone verifier and shared successor authority check
       - distinct queue proof anti-collapse guard prevents broad prose proof lines from satisfying command and negative-proof rows
+      - duplicate queue, design-queue, and registry work-task rows for next90-m102-fleet-reporter-receipts fail the shared successor authority check
     allowed_paths:
       - scripts
       - tests
@@ -371,6 +376,9 @@ items:
       - /docker/chummercomplete/chummer-hub-registry commit 66564d4 pins the M101 mixed-case helper proof guard so future shards verify the current completed-package proof floor instead of repeating it.
       - /docker/chummercomplete/chummer-hub-registry commit 800b65d pins M101 mixed-case helper proof floor so future shards verify the current completed-package proof floor instead of repeating it.
       - /docker/chummercomplete/chummer-hub-registry commit e16f6aa tightens M101 design queue proof guard so future shards verify the current completed-package proof floor instead of repeating it.
+      - /docker/chummercomplete/chummer-hub-registry commit 5c799e0 pins M101 design queue proof floor so future shards verify the current completed-package proof floor instead of repeating it.
+      - /docker/chummercomplete/chummer-hub-registry commit 572b677 pins the repo-local M101 proof receipt and closeout to the 5c799e0 proof floor.
+      - /docker/chummercomplete/chummer-hub-registry commit f2b4ef6 tightens M101 queue scope guard so future shards verify exact allowed paths and owned surfaces instead of repeating or widening this completed package.
     allowed_paths:
       - Chummer.Hub.Registry
       - scripts
@@ -548,7 +556,6 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 410c827f tightens the M105 restore continuity proof ancestry guard.
       - /docker/chummercomplete/chummer6-ui-finish commit aa9b7f9b pins the M105 recent proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit aff84cf0 tightens M105 sibling-package proof isolation.
-      - /docker/chummercomplete/chummer6-ui-finish commit c63b38d2 pins the M105 restore-continuity verifier and receipt to the latest registry-cited proof floor.
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs
@@ -581,7 +588,7 @@ items:
       - /docker/EA/feedback/2026-04-15-ea-governor-packets-package-closeout.md
       - /docker/EA/feedback/2026-04-15-chummer-governor-packets-successor-guard.md
       - /docker/EA/feedback/2026-04-15-ea-governor-packets-terminal-repeat-prevention.md
-      - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=18 failed=0
+      - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=20 failed=0
     allowed_paths:
       - skills
       - tests
@@ -644,6 +651,8 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 45d3d498 tightens M107 artifact factory proof floor.
       - /docker/chummercomplete/chummer.run-services commit c3aaf05a pins M107 artifact factory proof floor.
       - /docker/chummercomplete/chummer.run-services commit 285e97be tightens the current M107 artifact factory proof floor guard.
+      - /docker/chummercomplete/chummer.run-services commit ce1c6611 pins M107 artifact factory proof floor guard.
+      - /docker/chummercomplete/chummer.run-services commit 67ae7dab requires refreshed M107 proof floor.
       - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
     allowed_paths:
       - Chummer.Run.Api
