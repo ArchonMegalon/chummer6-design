@@ -67,6 +67,13 @@ milestones:
       - id: 101.3
         owner: chummer6-ui
         title: Keep Avalonia primary-route proof independent from Blazor fallback proof on every promoted tuple.
+        status: complete
+        landed_commit: 69df9be4
+        evidence:
+          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
+          - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
+          - bash scripts/ai/milestones/next90-m101-ui-release-train-check.sh exits 0.
+          - source assertion check for the M101 guard tokens and generated primaryProofIndependentFromFallback=true exits 0.
       - id: 101.4
         owner: chummer6-design
         title: Tighten the desktop promotion language so proof-only, fallback, preview, and flagship claims cannot blur together.
