@@ -188,6 +188,16 @@ milestones:
       - id: 105.2
         owner: chummer6-ui
         title: Land restore continuation, stale-state visibility, and conflict-choice UX on the primary desktop route.
+        status: complete
+        landed_commit: 7bfb3ee5
+        evidence:
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Presentation/AccessibilitySignoffSmokeTests.cs locks the visible restore-continuation and conflict-safe desktop source markers.
+          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m105-ui-restore-continuity-check.sh fail-closes registry drift, queue drift, missing allowed-path/surface authority, missing desktop source markers, and missing support handoff proof.
+          - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M105_UI_RESTORE_CONTINUITY.generated.json reports status=pass with packageId=next90-m105-ui-restore-continuity and frontierId=3787618287.
+          - bash scripts/ai/milestones/next90-m105-ui-restore-continuity-check.sh exits 0.
       - id: 105.3
         owner: chummer6-mobile
         title: Keep travel and offline shells honest about cached, stale, and reconnectable work.
