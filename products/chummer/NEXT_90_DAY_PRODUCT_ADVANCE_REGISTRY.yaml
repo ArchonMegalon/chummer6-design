@@ -333,6 +333,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit e3612368 pins the M105 restore-continuity receipt proof as the canonical repeat-prevention guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 59926b09 pins the latest M105 restore-continuity proof receipt as the canonical repeat-prevention guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 4faa2339 tightens the M105 verifier against design-owned queue mirror drift and refreshes the repeat-prevention receipt.
+          - /docker/chummercomplete/chummer6-ui-finish commit 85c79fdd pins the M105 mirror-proof commit in the verifier, receipt, and compliance guard so future shards do not repeat the closed desktop slice after queue mirror tightening.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
