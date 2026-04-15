@@ -223,7 +223,6 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 1f4f0e2e requires the current M105 workspace receipt guard floor so future shards verify the latest closed-package guard.
       - /docker/chummercomplete/chummer.run-services commit 29f7ec9b pins the M105 workspace receipt proof floor.
       - /docker/chummercomplete/chummer.run-services commit b4da7025 pins the M105 workspace proof floor guard and rejects active-run handoff paths as queue proof.
-      - /docker/chummercomplete/chummer.run-services commit 46551461 tightens the M105 standard verify entrypoint guard so closed-package proof cannot rely on blocked run-helper references.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
@@ -267,6 +266,7 @@ items:
       - verifier rejects Fleet proof paths outside package allowed path roots
       - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier
       - successor frontier 2376135131 pinned for next90-m106-fleet-governor-packet repeat prevention
+      - local proof floor commit 5e6a468 pinned for M106 governor packet repeat prevention
       - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages
     allowed_paths:
       - admin
@@ -350,6 +350,9 @@ items:
       - /docker/chummercomplete/chummer-hub-registry commit df3587f tightens M101 authority helper proof self-test so future shards prove canonical registry, Fleet queue, and design queue rows all reject active-run helper evidence.
       - /docker/chummercomplete/chummer-hub-registry commit 2cd1872 pins the M101 authority helper proof guard so future shards verify the current completed-package floor instead of repeating it.
       - /docker/chummercomplete/chummer-hub-registry commit d8f3911 pins the M101 authority helper proof floor so future shards verify the latest completed-package guard instead of repeating it.
+      - /docker/chummercomplete/chummer-hub-registry commit 894c200 pins the M101 authority proof floor so future shards verify the latest completed-package guard instead of repeating it.
+      - /docker/chummercomplete/chummer-hub-registry commit 061cc27 tightens the M101 helper proof casing guard so canonical registry, Fleet queue, design queue, proof receipt, and closeout helper-evidence scans are case-insensitive.
+      - /docker/chummercomplete/chummer-hub-registry commit 66564d4 pins the M101 mixed-case helper proof guard so future shards verify the current completed-package proof floor instead of repeating it.
     allowed_paths:
       - Chummer.Hub.Registry
       - scripts
@@ -399,7 +402,6 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit ba914e9a pins the current M103 veteran proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit de5837b9 tightens the M103 veteran proof token guard.
       - /docker/chummercomplete/chummer6-ui-finish commit 762aaedb pins the M103 veteran proof token guard.
-      - /docker/chummercomplete/chummer6-ui-finish commit 8ce865c4 tightens M103 no-reopen proof posture.
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs
       - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh
     allowed_paths:

@@ -119,6 +119,9 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry commit df3587f tightens M101 authority helper proof self-test so future shards prove canonical registry, Fleet queue, and design queue rows all reject active-run helper evidence.
           - /docker/chummercomplete/chummer-hub-registry commit 2cd1872 pins the M101 authority helper proof guard so future shards verify the current completed-package floor instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit d8f3911 pins the M101 authority helper proof floor so future shards verify the latest completed-package guard instead of repeating it.
+          - /docker/chummercomplete/chummer-hub-registry commit 894c200 pins the M101 authority proof floor so future shards verify the latest completed-package guard instead of repeating it.
+          - /docker/chummercomplete/chummer-hub-registry commit 061cc27 tightens the M101 helper proof casing guard so canonical registry, Fleet queue, design queue, proof receipt, and closeout helper-evidence scans are case-insensitive.
+          - /docker/chummercomplete/chummer-hub-registry commit 66564d4 pins the M101 mixed-case helper proof guard so future shards verify the current completed-package proof floor instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
@@ -312,7 +315,6 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit ba914e9a pins the current M103 veteran proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit de5837b9 tightens the M103 veteran proof token guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 762aaedb pins the M103 veteran proof token guard.
-          - /docker/chummercomplete/chummer6-ui-finish commit 8ce865c4 tightens M103 no-reopen proof posture.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, Chummer5a baseline markers, and blocked-helper proof exclusion.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -476,7 +478,6 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 1f4f0e2e requires the current M105 workspace receipt guard floor so future shards verify the latest closed-package guard.
           - /docker/chummercomplete/chummer.run-services commit 29f7ec9b pins the M105 workspace receipt proof floor.
           - /docker/chummercomplete/chummer.run-services commit b4da7025 pins the M105 workspace proof floor guard and rejects active-run handoff paths as queue proof.
-          - /docker/chummercomplete/chummer.run-services commit 46551461 tightens the M105 standard verify entrypoint guard so closed-package proof cannot rely on blocked run-helper references.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py regenerates HUB_LOCAL_RELEASE_PROOF.generated.json with the closed M105 package metadata, workspace_restore:provenance receipt, and entitlement_sync:conflict_receipts receipt.
@@ -583,6 +584,7 @@ milestones:
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
+          - local proof floor commit 5e6a468 is pinned for M106 governor packet repeat prevention so future shards verify the current Fleet guard instead of repeating the completed package.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
