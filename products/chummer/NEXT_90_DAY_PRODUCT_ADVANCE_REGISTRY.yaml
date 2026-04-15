@@ -239,6 +239,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit b8de3f95 tightens the M103 blocked-helper proof guard so closed-package evidence cannot cite run-handoff telemetry artifacts or operator-run command receipts.
           - /docker/chummercomplete/chummer6-ui-finish commit 258fed08 tightens the M103 successor queue header and source-fingerprint guard so future shards cannot verify this closed package against the wrong next-90 queue source.
           - /docker/chummercomplete/chummer6-ui-finish commit 6c3c93e9 pins the M103 queue-header proof commit so future shards verify the latest closed-package guard instead of repeating the completed package.
+          - /docker/chummercomplete/chummer6-ui-finish commit 22758a4c pins the latest M103 queue proof guard so canonical successor proof matches the package verifier.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, Chummer5a baseline markers, and blocked-helper proof exclusion.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
