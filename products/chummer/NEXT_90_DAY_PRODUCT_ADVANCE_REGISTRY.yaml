@@ -212,6 +212,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit fb6eb62e tightens the completed M103 proof guard so future shards verify this package instead of repeating the screenshot-backed parity slice.
           - /docker/chummercomplete/chummer6-ui-finish commit 3bba8754 further tightens the M103 verifier receipt so registry, queue, promoted-head, Chummer5a baseline, screenshot, standard-verify, and guard evidence stay aligned.
           - /docker/chummercomplete/chummer6-ui-finish commit 6eafef39 tightens the M103 verifier against design-owned queue source drift.
+          - /docker/chummercomplete/chummer6-ui-finish commit cb84c37b pins the previously landed M103 successor proof-closure commit into the verifier, receipt, and compliance guard.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, and Chummer5a baseline markers.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -273,6 +274,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh fail-closes missing registry authority, queue closure, required proof files, owned-surface markers, import receipts, build blocker receipts, and support diagnostics diffs.
           - /docker/chummercomplete/chummer6-ui-finish commit b0f5a122 tightens the successor queue proof so the completed M104 package fails closed if allowed_paths or owned_surfaces widen beyond the assigned slice.
           - /docker/chummercomplete/chummer6-ui-finish commit 0a2a321f tightens M104 explain receipt guard wiring so the compliance guard is part of the completed package proof chain.
+          - /docker/chummercomplete/chummer6-ui-finish commit 2c29f1be tightens M104 explain receipt commit proof so the completed package remains bound to the landed implementation commit.
+          - /docker/chummercomplete/chummer6-ui-finish commit 1df92955 tightens M104 explain receipt frontier guard so the completed package remains bound to successor frontier 3352869062.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
