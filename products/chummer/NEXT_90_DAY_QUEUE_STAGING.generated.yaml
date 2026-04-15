@@ -72,6 +72,7 @@ items:
       - /docker/chummercomplete/chummer-core-engine/scripts/generate-engine-proof-pack.py
       - /docker/chummercomplete/chummer-core-engine/tests/test_engine_proof_pack_generator.py
       - /docker/chummercomplete/chummer-core-engine/docs/ENGINE_PROOF_PACK.md
+      - /docker/chummercomplete/chummer-core-engine commit 86040e30 fail-closes unassigned queue allowed paths or owned surfaces for this completed package.
     allowed_paths:
       - src
       - tests
@@ -146,6 +147,7 @@ items:
       - /docker/chummercomplete/chummer-hub-registry/scripts/verify_public_release_channel.py
       - /docker/chummercomplete/chummer-hub-registry/scripts/verify_next90_m101_registry_promotion_discipline.py
       - /docker/chummercomplete/chummer-hub-registry/docs/RELEASE_CHANNEL_PIPELINE.md
+      - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.proof.yaml
       - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.closeout.md
     allowed_paths:
       - Chummer.Hub.Registry

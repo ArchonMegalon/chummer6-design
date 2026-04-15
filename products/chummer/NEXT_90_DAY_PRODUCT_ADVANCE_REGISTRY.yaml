@@ -105,6 +105,7 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry/.codex-studio/published/releases.json carries matching verifier-bound desktopRouteTruth rows so the compatibility download shelf cannot drift from canonical release-channel truth.
           - /docker/chummercomplete/chummer-hub-registry/scripts/verify_public_release_channel.py fail-closes missing, blank, stale, or non-canonical promotion, fallback, rollback, revoke, update, and install-posture rationale.
           - /docker/chummercomplete/chummer-hub-registry/scripts/verify_next90_m101_registry_promotion_discipline.py fail-closes canonical registry, Fleet queue staging, release-channel, compatibility-shelf, pipeline-doc, closeout-doc, worklist, and standard verify wiring drift for this completed package.
+          - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.proof.yaml records the successor frontier id, landed commit, owned surfaces, allowed paths, exact six desktop route-truth tuples, guardrails, and do-not-reopen conditions.
           - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.closeout.md records the do-not-reopen rule and exact proof conditions for future shards.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
@@ -249,6 +250,7 @@ milestones:
         evidence:
           - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json reports successor_wave_authority=passed and unresolved successor_wave_authority/oracle_suites/performance_budgets/release_commands/import_oracle_discipline all empty.
           - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json now requires the next90-m104-core-proof-pack queue row to retain allowed_paths src, tests, docs, and scripts.
+          - /docker/chummercomplete/chummer-core-engine commit 86040e30 fail-closes unassigned queue allowed paths or owned surfaces and records queue_allowed_paths, queue_owned_surfaces, and empty unexpected drift arrays in ENGINE_PROOF_PACK.generated.json.
           - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json now reports missing_queue_proof_anchors=[] after resolving the package proof anchors on disk.
           - /docker/chummercomplete/chummer-core-engine commit cfc465a5 adds a checked-in receipt reproducibility guard so ENGINE_PROOF_PACK.generated.json cannot drift from scripts/generate-engine-proof-pack.py except generated_at.
           - dotnet build Chummer.CoreEngine.Tests/Chummer.CoreEngine.Tests.csproj -c Release --nologo -m:1 && dotnet Chummer.CoreEngine.Tests/bin/Release/net10.0/Chummer.CoreEngine.Tests.dll exits 0.
@@ -359,6 +361,7 @@ milestones:
           - /docker/fleet/tests/test_materialize_weekly_governor_packet.py fail-closes queue-authority drift, stale or missing launch signals, missing source inputs, parity regression, open successor dependencies, and the positive launch-expand path when all dependencies and measured gates are green.
           - python3 -m py_compile scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
           - Direct tmp_path fixture invocation of tests/test_materialize_weekly_governor_packet.py exits 0.
+          - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
       - id: 106.2
         owner: executive-assistant
         title: Synthesize support, parity, and release signals into operator-ready packets and reporter followthrough mail.
