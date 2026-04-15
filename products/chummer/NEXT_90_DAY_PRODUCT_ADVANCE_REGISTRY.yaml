@@ -124,6 +124,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit a3bf058e tightens M101 proof commit resolution so stale proof anchors cannot keep the closed package green.
           - /docker/chummercomplete/chummer6-ui-finish commit 0954e2a1 pins M101 proof resolution guard into verifier, receipt, and compliance proof.
           - /docker/chummercomplete/chummer6-ui-finish commit e519ca4b pins the latest M101 proof anchor into the verifier, receipt, and compliance guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit f3e0e90b tightens the M101 blocked-helper proof guard so closed-package evidence cannot cite active-run telemetry or operator helper commands.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -223,6 +224,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 9e8d494b tightens the M103 successor registry guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 0d2e357e pins the M103 veteran proof successor commit.
           - /docker/chummercomplete/chummer6-ui-finish commit b42416b8 pins the M103 veteran proof hardening commit.
+          - /docker/chummercomplete/chummer6-ui-finish commit 243062ac pins the M103 veteran queue proof commit so future shards verify the closed package instead of repeating it.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, and Chummer5a baseline markers.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -354,6 +356,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 0bed530b pins the M105 restore-continuity mirror guard in the verifier, receipt, and compliance guard so future shards verify the closed desktop slice instead of reopening it.
           - /docker/chummercomplete/chummer6-ui-finish commit b7908ee8 tightens the M105 restore-continuity guard so both canonical and Fleet successor queue rows must carry frontier_id 3787618287.
           - /docker/chummercomplete/chummer6-ui-finish commit 1b590dab tightens the M105 restore-continuity proof guard so registry and queue evidence cannot rely on blocked active-run or operator-telemetry helper commands.
+          - /docker/chummercomplete/chummer6-ui-finish commit b0d32e72 pins the M105 helper-proof guard so future shards verify the closed package instead of repeating it.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
