@@ -474,14 +474,19 @@ milestones:
         evidence:
           - /docker/fleet/scripts/materialize_weekly_governor_packet.py compiles readiness, journey gates, support packets, status-plane truth, weekly pulse decisions, successor dependencies, and package authority into the weekly governor packet.
           - /docker/fleet/scripts/verify_next90_m106_fleet_governor_packet.py verifies the checked-in packet closeout, canonical successor registry, design queue, Fleet queue mirror, repeat-prevention pins, and operator-readable packet without regenerating timestamps.
+          - /docker/fleet/scripts/verify_script_bootstrap_no_pythonpath.py includes the standalone M106 verifier in no-PYTHONPATH bootstrap proof.
           - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json reports package_verification=pass, weekly_input_health=pass, source_input_health=pass, measured_rollout_loop=ready, launch_expand=blocked, freeze_launch=active, rollback=armed, and successor_dependency_status=open for the current successor wave.
           - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md publishes the same decision board, public status copy, measured truth, launch gate ledger, evidence requirements, risk clusters, and source paths as operator-readable packet text.
           - /docker/fleet/tests/test_materialize_weekly_governor_packet.py fail-closes queue-authority drift, stale or missing launch signals, missing source inputs, parity regression, open successor dependencies, and the positive launch-expand path when all dependencies and measured gates are green.
+          - /docker/fleet/tests/test_fleet_script_bootstrap_without_pythonpath.py launches the standalone M106 verifier help without PYTHONPATH.
           - python3 -m py_compile scripts/materialize_weekly_governor_packet.py scripts/verify_next90_m106_fleet_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
+          - python3 -m py_compile scripts/verify_script_bootstrap_no_pythonpath.py tests/test_fleet_script_bootstrap_without_pythonpath.py exits 0.
           - python3 scripts/verify_next90_m106_fleet_governor_packet.py exits 0.
           - Direct tmp_path fixture invocation of tests/test_materialize_weekly_governor_packet.py exits 0.
           - The verifier rebuilds the decision-critical packet projection from live source inputs and rejects stale checked-in decision ledgers.
+          - The verifier requires every measured rollout action to appear in both the decision board and decision gate ledger.
           - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
+          - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
       - id: 106.2
         owner: executive-assistant
