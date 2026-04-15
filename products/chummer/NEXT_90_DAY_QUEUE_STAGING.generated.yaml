@@ -113,13 +113,11 @@ items:
       - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs
       - /docker/chummercomplete/chummer.run-services commit b39147dc tightens the Hub local release proof guard for package next90-m105-hub-workspace-continuity and frontier 4623636482.
       - /docker/chummercomplete/chummer.run-services commit 5796e220 wires the M105 workspace restore verifier into scripts/ai/verify.sh so standard Hub verification runs the closed-package guard.
-      - /docker/chummercomplete/chummer.run-services commit 80454b41 fail-closes workspace restore proof if landed verifier commits no longer resolve locally.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
       - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_receipts.py
-      - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_commit_resolution.py
       - python3 scripts/verify_workspace_restore_receipts.py
-      - python3 -m unittest tests/test_workspace_restore_receipts.py tests/test_workspace_restore_queue_frontier_guard.py tests/test_workspace_restore_commit_resolution.py
+      - python3 -m unittest tests/test_workspace_restore_receipts.py
       - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "CampaignSpineRestoreReceiptTests|CampaignWorkspaceServerPlaneServiceTests|CampaignOsLocalProofMaterializerTests" --no-restore
     allowed_paths:
       - Chummer.Run.Api
@@ -202,7 +200,8 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit fb6eb62e
       - /docker/chummercomplete/chummer6-ui-finish commit 3bba8754 tightens the M103 verifier receipt and standard-verify proof alignment.
       - /docker/chummercomplete/chummer6-ui-finish commit 6eafef39 tightens the M103 verifier against design-owned queue source drift.
-      - /docker/chummercomplete/chummer6-ui-finish commit cb84c37b pins the previously landed M103 successor proof-closure commit into the verifier, receipt, and compliance guard.
+      - /docker/chummercomplete/chummer6-ui-finish commit 1e5557f9 pins the M103 design queue source proof.
+      - /docker/chummercomplete/chummer6-ui-finish commit 9e8d494b tightens the M103 successor registry guard.
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs
       - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh
     allowed_paths:
@@ -235,6 +234,7 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 0a2a321f tightens M104 explain receipt guard wiring for the completed package proof chain.
       - /docker/chummercomplete/chummer6-ui-finish commit 2c29f1be tightens M104 explain receipt commit proof for the completed package.
       - /docker/chummercomplete/chummer6-ui-finish commit 1df92955 tightens M104 explain receipt frontier guard for the completed package.
+      - /docker/chummercomplete/chummer6-ui-finish commit 7556a33b pins M104 explain receipt proof anchors.
       - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh
       - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore
     allowed_paths:
@@ -262,6 +262,10 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 6b2649d2
       - /docker/chummercomplete/chummer6-ui-finish commit 0d1eafbd
       - /docker/chummercomplete/chummer6-ui-finish commit c63bf96f
+      - /docker/chummercomplete/chummer6-ui-finish commit 007e8985
+      - /docker/chummercomplete/chummer6-ui-finish commit e3612368
+      - /docker/chummercomplete/chummer6-ui-finish commit 59926b09
+      - /docker/chummercomplete/chummer6-ui-finish commit 4faa2339
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs

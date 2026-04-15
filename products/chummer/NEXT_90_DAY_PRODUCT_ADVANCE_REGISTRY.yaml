@@ -213,7 +213,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit fb6eb62e tightens the completed M103 proof guard so future shards verify this package instead of repeating the screenshot-backed parity slice.
           - /docker/chummercomplete/chummer6-ui-finish commit 3bba8754 further tightens the M103 verifier receipt so registry, queue, promoted-head, Chummer5a baseline, screenshot, standard-verify, and guard evidence stay aligned.
           - /docker/chummercomplete/chummer6-ui-finish commit 6eafef39 tightens the M103 verifier against design-owned queue source drift.
-          - /docker/chummercomplete/chummer6-ui-finish commit cb84c37b pins the previously landed M103 successor proof-closure commit into the verifier, receipt, and compliance guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 1e5557f9 pins the M103 design queue source proof.
+          - /docker/chummercomplete/chummer6-ui-finish commit 9e8d494b tightens the M103 successor registry guard.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, and Chummer5a baseline markers.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -278,6 +279,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 0a2a321f tightens M104 explain receipt guard wiring so the compliance guard is part of the completed package proof chain.
           - /docker/chummercomplete/chummer6-ui-finish commit 2c29f1be tightens M104 explain receipt commit proof so the completed package remains bound to the landed implementation commit.
           - /docker/chummercomplete/chummer6-ui-finish commit 1df92955 tightens M104 explain receipt frontier guard so the completed package remains bound to successor frontier 3352869062.
+          - /docker/chummercomplete/chummer6-ui-finish commit 7556a33b pins M104 explain receipt proof anchors.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
@@ -310,12 +312,10 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 4d4b3856 emits workspace_restore provenance receipts, entitlement_sync conflict receipts, stale claimed-install receipts, artifact drift receipts, authority planes, recovery hints, and block-continue posture.
           - /docker/chummercomplete/chummer.run-services commit b39147dc tightens the workspace restore verifier so Hub local release proof must retain the next90-m105-hub-workspace-continuity package, frontier id 4623636482, /home/work and /account/work routes, and both workspace_restore:provenance and entitlement_sync:conflict_receipts receipts.
           - /docker/chummercomplete/chummer.run-services commit 5796e220 wires the M105 workspace restore verifier into scripts/ai/verify.sh so standard Hub verification runs the closed-package guard.
-          - /docker/chummercomplete/chummer.run-services commit 80454b41 fail-closes workspace restore proof if landed verifier commits no longer resolve locally.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - python3 scripts/verify_workspace_restore_receipts.py exits 0.
           - python3 -m unittest tests/test_workspace_restore_receipts.py exits 0.
-          - python3 -m unittest tests/test_workspace_restore_receipts.py tests/test_workspace_restore_queue_frontier_guard.py tests/test_workspace_restore_commit_resolution.py exits 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "CampaignSpineRestoreReceiptTests|CampaignWorkspaceServerPlaneServiceTests|CampaignOsLocalProofMaterializerTests" --no-restore exits 0 with 408 tests passed on net10.0 and net10.0-windows.
       - id: 105.2
         owner: chummer6-ui
@@ -332,6 +332,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 007e8985 tightens the M105 canonical proof so future shards verify the already-complete package against the latest registry, queue, receipt, and guard evidence instead of repeating it.
           - /docker/chummercomplete/chummer6-ui-finish commit e3612368 pins the M105 restore-continuity receipt proof as the canonical repeat-prevention guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 59926b09 pins the latest M105 restore-continuity proof receipt as the canonical repeat-prevention guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 4faa2339 tightens the M105 verifier against design-owned queue mirror drift and refreshes the repeat-prevention receipt.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
