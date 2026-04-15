@@ -246,6 +246,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 258fed08 tightens the M103 successor queue header and source-fingerprint guard so future shards cannot verify this closed package against the wrong next-90 queue source.
           - /docker/chummercomplete/chummer6-ui-finish commit 6c3c93e9 pins the M103 queue-header proof commit so future shards verify the latest closed-package guard instead of repeating the completed package.
           - /docker/chummercomplete/chummer6-ui-finish commit 22758a4c pins the latest M103 queue proof guard so canonical successor proof matches the package verifier.
+          - /docker/chummercomplete/chummer6-ui-finish commit fd93bb8a tightens the M103 queue mirror proof guard so Fleet staging and the design-owned queue row cannot drift apart for the completed package.
+          - /docker/chummercomplete/chummer6-ui-finish commit e9f92d0d pins the M103 queue mirror proof guard so future shards verify the latest closed-package anchor instead of repeating this completed package.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, Chummer5a baseline markers, and blocked-helper proof exclusion.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
