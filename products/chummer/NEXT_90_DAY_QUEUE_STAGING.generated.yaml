@@ -209,6 +209,8 @@ items:
       - /docker/chummercomplete/chummer.run-services commit f8f3ce8e requires the latest M105 workspace proof floor.
       - /docker/chummercomplete/chummer.run-services commit 70b6f382 tightens the M105 served workspace proof guard so public served receipts cannot drift from the local proof shelf.
       - /docker/chummercomplete/chummer.run-services commit 0014a763 tightens the M105 active-run proof marker guard to reject forbidden helper evidence case-insensitively.
+      - /docker/chummercomplete/chummer.run-services commit d26e961c tightens the M105 workspace release proof guard so package metadata and receipt routes or surfaces must match the canonical closed-package receipt exactly.
+      - /docker/chummercomplete/chummer.run-services commit 9f723c15 tightens the M105 queue mirror guard so Fleet and design completed-package rows cannot drift while retaining required proof tokens.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
@@ -250,8 +252,8 @@ items:
       - verifier rejects Fleet proof paths outside package allowed path roots
       - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier
       - successor frontier 2376135131 pinned for next90-m106-fleet-governor-packet repeat prevention
-    allowed_paths:
       - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages
+    allowed_paths:
       - admin
       - scripts
       - tests
@@ -280,6 +282,7 @@ items:
       - /docker/fleet/feedback/2026-04-15-next90-m102-fleet-reporter-receipts-closeout.md
       - python3 -m py_compile scripts/materialize_support_case_packets.py scripts/verify_next90_m102_fleet_reporter_receipts.py tests/test_materialize_support_case_packets.py tests/test_verify_next90_m102_fleet_reporter_receipts.py scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py
       - python3 scripts/verify_next90_m102_fleet_reporter_receipts.py exits 0
+      - python3 tests/test_verify_next90_m102_fleet_reporter_receipts.py exits 0
       - installation-bound receipt gating blocks reporter followthrough when installed-build receipt installation id disagrees with the linked install
       - fixed-version receipts and fixed-channel receipts are required before reporter followthrough leaves hold
       - direct tmp_path fixture invocation for receipt-gated support followthrough tests exits 0
@@ -293,6 +296,7 @@ items:
       - successor frontier 2454416974 pinned for next90-m102-fleet-reporter-receipts repeat prevention
       - design-owned queue source row matches the Fleet completed queue proof assignment
       - design-owned queue source proof markers fail the standalone verifier
+      - telemetry command proof markers fail the standalone verifier and shared successor authority check
     allowed_paths:
       - scripts
       - tests
@@ -480,6 +484,7 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 633e6ce9 refreshes the M105 proof-floor guard.
       - /docker/chummercomplete/chummer6-ui-finish commit 6c428f9c pins the M105 current restore-continuity proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit 5e4bd7ad pins the M105 verifier to the registry-cited 6c428f9c proof floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit ce6084fd pins the M105 current local proof guard to f3931a16.
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs
