@@ -1,8 +1,8 @@
 product: chummer
 version: 1
-last_reviewed: 2026-04-13
+last_reviewed: 2026-04-15
 program_wave: next_90_day_product_advance
-goal: Convert flagship closeout into repeatable desktop release truth, oracle-backed veteran replacement, boring continuity, and a measured product-governor operating cadence over the next quarter.
+goal: Convert flagship closeout into repeatable desktop release truth, oracle-backed veteran replacement, boring continuity, first-party artifact proof, premium campaign orientation artifacts, deeper campaign operations, stronger Build/Rules/Exchange moat, creator/community publication, public launch health, and a measured product-governor operating cadence over the next quarter.
 status: in_progress
 
 activation:
@@ -16,6 +16,8 @@ ordering_rule:
   - Productionize native-host desktop release and promotion first.
   - Turn Chummer5a parity into oracle-backed release truth second.
   - Make desktop-native trust, recovery, and workspace continuity boring third.
+  - Turn release, support, build, campaign, and runsite truth into first-party artifact bundles fourth.
+  - Pull the preserved Next Big Wins forward into a broader successor tranche for campaign operations, rules/build/exchange moat, creator/community publication, onboarding, and public launch health.
   - Keep the product-governor loop measured and weekly instead of heroic and ad hoc.
 
 waves:
@@ -37,6 +39,44 @@ waves:
     milestone_ids:
       - 105
       - 106
+  - id: W9
+    name: Make artifact proof and concierge first-party
+    status: in_progress
+    milestone_ids:
+      - 107
+      - 109
+      - 111
+  - id: W10
+    name: Make campaign onboarding and orientation premium
+    status: in_progress
+    milestone_ids:
+      - 108
+      - 110
+  - id: W11
+    name: Make campaign operations indispensable
+    status: in_progress
+    milestone_ids:
+      - 112
+      - 113
+  - id: W12
+    name: Deepen the Build, Rules, and Exchange moat
+    status: in_progress
+    milestone_ids:
+      - 114
+      - 115
+  - id: W13
+    name: Turn publication and community operations into product pillars
+    status: in_progress
+    milestone_ids:
+      - 116
+      - 117
+      - 118
+  - id: W14
+    name: Make onboarding and public launch health measurable
+    status: in_progress
+    milestone_ids:
+      - 119
+      - 120
 
 milestones:
   - id: 101
@@ -68,9 +108,12 @@ milestones:
         owner: chummer6-ui
         title: Keep Avalonia primary-route proof independent from Blazor fallback proof on every promoted tuple.
         status: complete
-        landed_commit: 69df9be4
+        landed_commit: c9c0d84f
         evidence:
-          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
+          - /docker/chummercomplete/chummer6-ui-finish commit c9c0d84f tightens the M101 closeout verifier to prove registry, queue, and release-channel authority together for the independent Avalonia primary route.
+          - /docker/chummercomplete/chummer6-ui-finish commit da549ef8 tightens the completed queue proof-token guard for the already-closed M101 slice.
+          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
           - bash scripts/ai/milestones/next90-m101-ui-release-train-check.sh exits 0.
           - source assertion check for the M101 guard tokens and generated primaryProofIndependentFromFallback=true exits 0.
@@ -115,6 +158,14 @@ milestones:
       - id: 102.4
         owner: fleet
         title: Gate the staged reporter mail loop against real install and fix receipts, not only queued support state.
+        status: complete
+        evidence:
+          - /docker/fleet/scripts/materialize_support_case_packets.py verifies next90-m102-fleet-reporter-receipts against the canonical successor registry and staging queue, then compiles reporter followthrough from support packets only after install truth, installation-bound installed-build receipts, fixed-version receipts, fixed-channel receipts, and release-channel receipts agree.
+          - /docker/fleet/tests/test_materialize_support_case_packets.py covers fixed-version-only gaps, missing installed-build receipt ids, missing receipt facts, installation-bound receipt mismatches, receipt mismatches, recovery-loop receipt gating, channel mismatches, successor package authority, and external-proof request projection.
+          - /docker/fleet/.codex-studio/published/SUPPORT_CASE_PACKETS.generated.json reports successor_package_verification.status=pass and projects reporter_followthrough_plan from install-aware receipt gates.
+          - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .md project fix-available, please-test, recovery, missing-install-receipt, and receipt-mismatch counts from the support packet receipt gates.
+          - python3 -m py_compile scripts/materialize_support_case_packets.py tests/test_materialize_support_case_packets.py scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
+          - direct tmp_path fixture invocation for all tests/test_materialize_support_case_packets.py and tests/test_materialize_weekly_governor_packet.py test functions exits 0.
 
   - id: 103
     title: Chummer5a parity lab and veteran migration certification
@@ -136,9 +187,21 @@ milestones:
       - id: 103.1
         owner: executive-assistant
         title: Extract Chummer5a screenshot baselines, workflow packs, and compare artifacts from the oracle repo.
+        status: complete
+        evidence:
+          - /docker/EA/docs/chummer5a_parity_lab/CHUMMER5A_PARITY_LAB_PACK.yaml reports status=task_proven for owned surfaces parity_lab:capture and veteran_compare_packs.
+          - /docker/EA/docs/chummer5a_parity_lab/SUCCESSOR_HANDOFF_CLOSEOUT.yaml reports status=ea_scope_complete, completed outputs, anti-reopen rules, and delegated non-EA follow-up packages.
+          - /docker/EA/.codex-studio/published/CHUMMER5A_PARITY_ORACLE_PACK.generated.json reports status=task_proven with screenshot_corpora, workflow_maps, compare_packs, and import_export_fixture_inventory outputs present.
+          - python tests/test_chummer5a_parity_lab_pack.py exits with ran=14 failed=0 in /docker/EA.
       - id: 103.2
         owner: chummer6-ui
         title: Run screenshot-backed parity review for menu, toolstrip, roster, master index, settings, and import on the promoted desktop head.
+        status: complete
+        landed_commit: a8e4f92c
+        evidence:
+          - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M103_UI_VETERAN_CERTIFICATION.generated.json reports status=pass with package registry truth, Chummer5a baseline source markers, promoted Avalonia release-channel binding, and distinct screenshot coverage for menu, toolstrip, roster, master index, settings, and import.
+          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh fail-closes queue drift, milestone drift, missing Chummer5a baseline markers, missing or duplicate screenshots, undersized PNGs, and missing promoted primary-route release truth across Linux, Windows, and macOS.
+          - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
         owner: chummer6-design
         title: Move flagship parity families onto the stricter release-truth ladder with veteran-ready evidence requirements.
@@ -164,12 +227,34 @@ milestones:
       - id: 104.1
         owner: chummer6-core
         title: Build golden oracle suites for creation, advancement, augment, matrix, magic, vehicle, source-toggle, and amend-package rules.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json reports status=passed with required oracle suites creation, advancement, augment, matrix, magic, vehicle, source_toggle, and amend_package.
+          - /docker/chummercomplete/chummer-core-engine commit 00800059 adds fail-closed successor authority and oracle/budget generator tests.
+          - /docker/chummercomplete/chummer-core-engine commit fd15fe87 tightens row-scoped successor queue allowed-path authority for src, tests, docs, and scripts.
+          - python3 tests/test_engine_proof_pack_generator.py exits 0.
       - id: 104.2
         owner: chummer6-core
         title: Publish a release-bound engine proof pack with load, explain, diff/apply, import, and export-prep budgets.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json reports successor_wave_authority=passed and unresolved successor_wave_authority/oracle_suites/performance_budgets/release_commands/import_oracle_discipline all empty.
+          - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json now requires the next90-m104-core-proof-pack queue row to retain allowed_paths src, tests, docs, and scripts.
+          - dotnet build Chummer.CoreEngine.Tests/Chummer.CoreEngine.Tests.csproj -c Release --nologo -m:1 && dotnet Chummer.CoreEngine.Tests/bin/Release/net10.0/Chummer.CoreEngine.Tests.dll exits 0.
+          - dotnet run --project Chummer.Benchmarks/Chummer.Benchmarks.csproj -c Release -- --budget-check --budget-file Chummer.Benchmarks/workspace-benchmark-budgets.json exits 0 for load, explain, diff/apply, import, and export-prep workloads.
       - id: 104.3
         owner: chummer6-ui
         title: Surface explain receipts and environment diffs on import, build blockers, and support diagnostics.
+        status: complete
+        landed_commit: 63f57d62
+        evidence:
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopTrustReceiptText.cs surfaces import rule-environment receipts and diagnostics before-after diffs on Avalonia import, support, support-case, and report-issue flows.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Blazor/Components/Shell/DialogTrustReceiptText.cs and DialogHost.razor surface the same grounded import receipt and before-after environment diff on the Blazor fallback dialog host.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Blazor/Components/Shell/SectionPane.razor exposes Build Lab blocker receipts and before-after environment diffs in the desktop fallback build surface.
+          - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M104_UI_EXPLAIN_RECEIPTS.generated.json records registry, queue, owned-surface, required-proof, and source-marker pass evidence for the desktop explain receipt slice.
+          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh fail-closes missing registry authority, queue closure, required proof files, owned-surface markers, import receipts, build blocker receipts, and support diagnostics diffs.
+          - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
+          - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
         owner: chummer6-design
         title: Tie engine proof-pack evidence into flagship acceptance and parity truth.
@@ -198,6 +283,7 @@ milestones:
         landed_commit: 4d4b3856
         evidence:
           - /docker/chummercomplete/chummer.run-services commit 4d4b3856 emits workspace_restore provenance receipts, entitlement_sync conflict receipts, stale claimed-install receipts, artifact drift receipts, authority planes, recovery hints, and block-continue posture.
+          - /docker/chummercomplete/chummer.run-services commit b39147dc tightens the workspace restore verifier so Hub local release proof must retain the next90-m105-hub-workspace-continuity package, frontier id 4623636482, /home/work and /account/work routes, and both workspace_restore:provenance and entitlement_sync:conflict_receipts receipts.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - python3 scripts/verify_workspace_restore_receipts.py exits 0.
@@ -248,6 +334,14 @@ milestones:
       - id: 106.1
         owner: fleet
         title: Publish a weekly governor packet with launch, freeze, canary, rollback, and risk-cluster decisions.
+        status: complete
+        evidence:
+          - /docker/fleet/scripts/materialize_weekly_governor_packet.py compiles readiness, journey gates, support packets, status-plane truth, weekly pulse decisions, successor dependencies, and package authority into the weekly governor packet.
+          - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json reports package_verification=pass, weekly_input_health=pass, source_input_health=pass, measured_rollout_loop=ready, launch_expand=blocked, freeze_launch=active, rollback=armed, and successor_dependency_status=open for the current successor wave.
+          - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md publishes the same decision board, public status copy, measured truth, launch gate ledger, evidence requirements, risk clusters, and source paths as operator-readable packet text.
+          - /docker/fleet/tests/test_materialize_weekly_governor_packet.py fail-closes queue-authority drift, stale or missing launch signals, missing source inputs, parity regression, open successor dependencies, and the positive launch-expand path when all dependencies and measured gates are green.
+          - python3 -m py_compile scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
+          - Direct tmp_path fixture invocation of tests/test_materialize_weekly_governor_packet.py exits 0.
       - id: 106.2
         owner: executive-assistant
         title: Synthesize support, parity, and release signals into operator-ready packets and reporter followthrough mail.
@@ -255,12 +349,499 @@ milestones:
         evidence:
           - /docker/EA/docs/chummer_governor_packets/CHUMMER_GOVERNOR_PACKET_PACK.yaml is task_proven for operator_packets:weekly_governor and reporter_followthrough:release_truth.
           - /docker/EA/docs/chummer_governor_packets/OPERATOR_AND_REPORTER_PACKET_SPECIMENS.yaml projects operator and reporter packet shapes from the same readiness, parity, support, and release-truth anchors.
-          - /docker/EA/tests/test_chummer_governor_packet_pack.py fail-closes queue, registry, source-anchor, reporter workflow, release-truth, and runtime-safety drift.
+          - /docker/EA/docs/chummer_governor_packets/SUCCESSOR_HANDOFF_CLOSEOUT.yaml marks successor frontier 1758984842 ea_scope_complete for the closed EA-owned surfaces and names Fleet, Hub, Registry, and design sibling lanes as non-EA follow-up.
+          - /docker/EA/tests/test_chummer_governor_packet_pack.py fail-closes queue, registry, source-anchor, reporter workflow, release-truth, runtime-safety, and stale queue proof-path drift.
           - /docker/EA/feedback/2026-04-15-ea-governor-packets-package-closeout.md records that no EA-owned work remains while Fleet, Hub, Registry, and design sibling lanes stay open.
-          - python tests/test_chummer_governor_packet_pack.py exits 0 with 14 tests.
+          - /docker/EA/feedback/2026-04-15-chummer-governor-packets-successor-guard.md records the repeat-prevention guard and direct proof runner result.
+          - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=16 failed=0.
       - id: 106.3
         owner: chummer6-hub
         title: Expose install-aware support, status, and recovery surfaces downstream of the same release truth.
       - id: 106.4
         owner: chummer6-design
         title: Keep the successor wave registry current and prune closed work without reopening architecture-cleanup debt.
+
+  - id: 107
+    title: Artifact factory and public proof shelf
+    wave: W9
+    owners:
+      - chummer6-hub
+      - chummer6-media-factory
+      - chummer6-hub-registry
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 101
+      - 102
+      - 106
+    exit_criteria:
+      - Release, fix, support, and publication explainers can ship as approved video, audio, preview, and packet bundles from the same underlying release and support truth.
+      - The public proof shelf and signed-in artifact surfaces can show registry-backed release explainers, preview cards, captions, and sibling packets without inventing local truth.
+      - Media-factory receipts, preview refs, caption refs, and publication refs are first-class evidence rather than provider side effects.
+    work_tasks:
+      - id: 107.1
+        owner: chummer6-hub
+        title: Orchestrate recipe-backed artifact jobs from approved release, support, and publication packs.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer.run-services commit cda8849a binds release, fix, support, and publication recipe jobs to stable public proof shelf output refs.
+          - /docker/chummercomplete/chummer.run-services commit e25842ac tightens mixed source-pack output anchoring so release bundle refs always bind to an approved artifact-bearing source pack.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/ArtifactFactoryOrchestrationService.cs rejects unapproved or provider-specific source packs and emits media-factory output bindings for preview, caption, packet, audio, and video formats.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Tests/ArtifactFactoryOrchestrationServiceTests.cs proves release, support, fix, and publication bundles route through approved source-pack receipts.
+          - /docker/chummercomplete/chummer.run-services/scripts/verify_artifact_factory_orchestration.py fail-closes missing recipe families, internal endpoint auth, public proof shelf bundle refs, and anchored source-pack output selection.
+          - python3 /docker/chummercomplete/chummer.run-services/scripts/verify_artifact_factory_orchestration.py exits 0.
+          - python3 -m unittest /docker/chummercomplete/chummer.run-services/tests/test_artifact_factory_orchestration.py exits 0.
+          - dotnet test /docker/chummercomplete/chummer.run-services/Chummer.Tests/Chummer.Tests.csproj --filter ArtifactFactoryOrchestrationServiceTests --no-restore exits 0.
+      - id: 107.2
+        owner: chummer6-media-factory
+        title: Execute structured video, audio, preview-card, and packet recipes with receipts and retention truth.
+      - id: 107.3
+        owner: chummer6-hub-registry
+        title: Store artifact-family identities, preview refs, caption refs, and publication bindings.
+      - id: 107.4
+        owner: chummer6-design
+        title: Tighten artifact-factory and public-proof language so preview, proof, fallback, and flagship claims cannot blur together.
+
+  - id: 108
+    title: Campaign cold open and mission briefing delivery
+    wave: W10
+    owners:
+      - chummer6-hub
+      - chummer6-media-factory
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 102
+      - 107
+    exit_criteria:
+      - Approved campaign primer and mission packs can emit locale-matched cold-open and briefing bundles with video, audio, preview, and packet siblings.
+      - Campaign home, claimed desktop, and mobile surfaces can launch those artifacts without browser ritual or spoiler drift.
+      - Campaign artifact delivery stays tied to approved primer, mission, and audience truth rather than ad hoc narration.
+    work_tasks:
+      - id: 108.1
+        owner: chummer6-hub
+        title: Compose campaign cold-open and mission-briefing requests from approved campaign packs.
+      - id: 108.2
+        owner: chummer6-media-factory
+        title: Render campaign primer and mission briefing bundles with captions, previews, and fallback audio or packet lanes.
+      - id: 108.3
+        owner: chummer6-ui
+        title: Surface primer and briefing artifacts in campaign home on the primary desktop route.
+      - id: 108.4
+        owner: chummer6-mobile
+        title: Surface primer and briefing artifacts in campaign home on travel and mobile shells.
+      - id: 108.5
+        owner: chummer6-design
+        title: Make campaign cold-open and mission-briefing artifacts first-class campaign OS promises with audience and locale rules.
+
+  - id: 109
+    title: Build Lab explain companion lane
+    wave: W9
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-media-factory
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 104
+      - 107
+    exit_criteria:
+      - Approved Build Lab explain packets can emit localized video, audio, preview, and packet companions from the same rule-environment and explain receipts used by the product.
+      - Compare, import, and blocker surfaces can launch inspectable explain companions without turning media into rules truth.
+      - Build and explain artifacts feel premium while staying grounded in engine-owned proofs.
+    work_tasks:
+      - id: 109.1
+        owner: chummer6-core
+        title: Expose approved Build Lab explain packets, proof anchors, and performance budgets for downstream artifact generation.
+      - id: 109.2
+        owner: chummer6-ui
+        title: Launch explain companions from compare, import, and blocker surfaces on the promoted desktop head.
+      - id: 109.3
+        owner: chummer6-media-factory
+        title: Render build explainer video, audio, preview-card, and packet siblings from approved explain packets.
+      - id: 109.4
+        owner: chummer6-design
+        title: Keep Build and Explain artifact policy grounded in inspectable engine truth.
+
+  - id: 110
+    title: Runsite host and orientation bundle
+    wave: W10
+    owners:
+      - chummer6-hub
+      - chummer6-media-factory
+      - chummer6-mobile
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 105
+      - 107
+      - 108
+    exit_criteria:
+      - Approved runsite packs can emit host clips, route previews, and optional audio or tour siblings for pre-session orientation.
+      - Mobile and campaign surfaces can launch orientation artifacts before live play without turning them into tactical truth.
+      - Runsite host mode stays subordinate to inspectable route, map, and tour artifacts rather than replacing them.
+    work_tasks:
+      - id: 110.1
+        owner: chummer6-hub
+        title: Compose runsite orientation requests from approved runsite packs and route summaries.
+      - id: 110.2
+        owner: chummer6-media-factory
+        title: Render host clips, audio companions, previews, and route-linked bundle receipts.
+      - id: 110.3
+        owner: chummer6-mobile
+        title: Surface orientation entry points and preview-safe pre-session launch flows for campaign members.
+      - id: 110.4
+        owner: chummer6-design
+        title: Keep runsite host mode bounded under route, tour, and inspection truth.
+
+  - id: 111
+    title: Install-aware release and support concierge
+    wave: W9
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-media-factory
+      - fleet
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 101
+      - 102
+      - 106
+      - 107
+    exit_criteria:
+      - Fix confirmation, release explainer, and support closure bundles compile from install-aware channel and support truth instead of queued support state alone.
+      - Help, support, status, and release surfaces can answer what changed, what to do next, and why this build, channel, or action is correct for this user.
+      - Mail, in-product notices, and the public proof shelf all cite the same install-aware release and recovery receipts.
+    work_tasks:
+      - id: 111.1
+        owner: chummer6-hub
+        title: Emit install-aware support and release concierge packets tied to installed build, channel, and support-case truth.
+      - id: 111.2
+        owner: chummer6-hub-registry
+        title: Publish install-aware artifact identities, channel rationale, and recovery proof refs.
+      - id: 111.3
+        owner: chummer6-media-factory
+        title: Render release explainer and support closure bundles with captions and sibling notes.
+      - id: 111.4
+        owner: fleet
+        title: Gate followthrough mail and public proof promotion against the same install-aware receipts.
+      - id: 111.5
+        owner: chummer6-design
+        title: Keep concierge language honest about fixed, fallback, preview, and recovery posture.
+
+  - id: 112
+    title: Campaign memory, downtime, heat, faction, and contact truth
+    wave: W11
+    owners:
+      - chummer6-hub
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 105
+      - 108
+    exit_criteria:
+      - Campaign state covers session plan, run, recap, downtime, aftermath, heat, factions, contacts, reputation, and next-session return without lossy local handoffs.
+      - Campaign consequences are durable governed objects rather than recap prose, local notes, or hidden support folklore.
+      - Desktop and mobile surfaces show what changed, what is stale, and what needs GM or player action without inventing truth.
+    work_tasks:
+      - id: 112.1
+        owner: chummer6-hub
+        title: Promote downtime, aftermath, heat, faction, contact, and reputation state into governed campaign APIs and receipts.
+      - id: 112.2
+        owner: chummer6-core
+        title: Keep campaign consequence rules and rule-environment fingerprints portable through campaign state changes.
+      - id: 112.3
+        owner: chummer6-ui
+        title: Surface campaign memory, consequences, and return-loop actions on the primary desktop route.
+      - id: 112.4
+        owner: chummer6-mobile
+        title: Make travel and mobile campaign continuity explicit for stale, cached, and action-required campaign state.
+      - id: 112.5
+        owner: chummer6-design
+        title: Update campaign OS canon so downtime, heat, faction, and contact truth are first-class product promises.
+
+  - id: 113
+    title: Crew, roster, opposition packets, and GM prep library
+    wave: W11
+    owners:
+      - chummer6-hub
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-media-factory
+      - executive-assistant
+    status: in_progress
+    dependencies:
+      - 108
+      - 112
+    exit_criteria:
+      - GMs and organizers can move dossiers between rosters, campaigns, groups, and events with explicit ownership, permissions, and audit receipts.
+      - Reusable opposition, scene, and prep packets are searchable, governed, campaign-bindable, and renderable into packet or briefing artifacts.
+      - Prep library output stays inspectable and bounded instead of becoming hidden auto-GM truth.
+    work_tasks:
+      - id: 113.1
+        owner: chummer6-hub
+        title: Land crew, roster, campaign-group, and event movement APIs with ownership and audit posture.
+      - id: 113.2
+        owner: chummer6-core
+        title: Define opposition and scene packet contracts with rules-backed stats and bounded-loss receipts.
+      - id: 113.3
+        owner: chummer6-ui
+        title: Add GM prep and roster movement surfaces to the desktop campaign workspace.
+      - id: 113.4
+        owner: chummer6-media-factory
+        title: Render opposition and prep packets into governed packet, preview, and optional briefing artifacts.
+      - id: 113.5
+        owner: executive-assistant
+        title: Produce operator-safe GM prep and roster movement packets from governed campaign truth.
+
+  - id: 114
+    title: Rule-environment studio and explain receipts everywhere
+    wave: W12
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-hub
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 104
+      - 109
+    exit_criteria:
+      - Rule-environment lifecycle, amend-package promotion, before-after diffs, and explain receipts are visible wherever users make mechanical decisions.
+      - Rules Navigator, Build Lab, import, diagnostics, support, and campaign surfaces cite the same grounded rule-environment truth.
+      - Explain receipts remain inspectable engine truth, not media or narration truth.
+    work_tasks:
+      - id: 114.1
+        owner: chummer6-core
+        title: Publish rule-environment studio contracts for amend-package lifecycle, promotion, diff, and explain receipts.
+      - id: 114.2
+        owner: chummer6-ui
+        title: Add rule-environment studio and explain-receipt entry points to desktop mechanical workflows.
+      - id: 114.3
+        owner: chummer6-hub
+        title: Keep campaign, support, and install-aware diagnostics tied to the same rule-environment receipts.
+      - id: 114.4
+        owner: chummer6-design
+        title: Tighten rules and explain canon so media companions can cite but never replace engine truth.
+
+  - id: 115
+    title: Portable dossier, campaign federation, replay, recap, and external exchange
+    wave: W12
+    owners:
+      - chummer6-core
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-ui
+      - chummer6-media-factory
+    status: in_progress
+    dependencies:
+      - 107
+      - 112
+      - 114
+    exit_criteria:
+      - Dossiers, campaigns, recaps, replays, and external exchange outputs carry lineage, portability, provenance, and bounded-loss posture.
+      - Export, import, recap, and federation flows are governed by the same artifact and release-truth lanes as normal Chummer outputs.
+      - Exchange becomes a second pillar without weakening campaign, rules, or publication truth.
+    work_tasks:
+      - id: 115.1
+        owner: chummer6-core
+        title: Define portable dossier, recap, replay, and exchange contracts with loss and compatibility receipts.
+      - id: 115.2
+        owner: chummer6-hub
+        title: Orchestrate campaign federation and replay or recap package flows from governed source packs.
+      - id: 115.3
+        owner: chummer6-hub-registry
+        title: Store lineage, compatibility, provenance, and publication refs for exchange artifacts.
+      - id: 115.4
+        owner: chummer6-ui
+        title: Surface export, replay, recap, and federation actions on the primary desktop route.
+      - id: 115.5
+        owner: chummer6-media-factory
+        title: Render recap, replay, and exchange preview artifacts with receipts and inspectable siblings.
+
+  - id: 116
+    title: Creator publication discovery, lineage, moderation, and trust ranking
+    wave: W13
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-ui
+      - chummer6-media-factory
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 107
+      - 115
+    exit_criteria:
+      - Creator publication supports discovery, lineage, moderation, trust ranking, revocation, and compatibility posture from registry truth.
+      - Creator promo and proof artifacts come from approved manifests and can be revoked or corrected without breaking source truth.
+      - Public and signed-in publication surfaces make provenance and compatibility visible instead of decorative.
+    work_tasks:
+      - id: 116.1
+        owner: chummer6-hub
+        title: Build creator publication discovery, moderation, and submission orchestration from approved artifact manifests.
+      - id: 116.2
+        owner: chummer6-hub-registry
+        title: Publish lineage, moderation, ranking, compatibility, and revocation facts for creator artifacts.
+      - id: 116.3
+        owner: chummer6-ui
+        title: Surface creator publication and discovery flows on desktop without bypassing registry truth.
+      - id: 116.4
+        owner: chummer6-media-factory
+        title: Render creator promo kits from approved manifests with preview, captions, and receipts.
+      - id: 116.5
+        owner: chummer6-design
+        title: Keep creator publication language honest about trust ranking, moderation, and compatibility.
+
+  - id: 117
+    title: Artifact shelf v2 for personal, campaign, creator, and public views
+    wave: W13
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 107
+      - 108
+      - 115
+      - 116
+    exit_criteria:
+      - Personal, campaign, creator, and public artifact shelves show the right proof, preview, captions, sibling packets, audience, locale, retention, and publication state.
+      - Artifact shelves make "look what Chummer makes" visible without auto-playing random media or hiding source truth.
+      - Desktop, mobile, and public surfaces agree on artifact identity and availability.
+    work_tasks:
+      - id: 117.1
+        owner: chummer6-hub
+        title: Build artifact shelf APIs and audience filters for personal, campaign, creator, and public views.
+      - id: 117.2
+        owner: chummer6-hub-registry
+        title: Normalize shelf refs for preview, caption, packet, locale, retention, and publication state.
+      - id: 117.3
+        owner: chummer6-ui
+        title: Add artifact shelf entry points to desktop home, campaign, build, and publication surfaces.
+      - id: 117.4
+        owner: chummer6-mobile
+        title: Add mobile artifact shelf views for campaign, travel, and recap artifacts.
+      - id: 117.5
+        owner: chummer6-design
+        title: Keep shelf policy tied to audience, locale, retention, and inspectable source truth.
+
+  - id: 118
+    title: Organizer, league, convention, and season operations
+    wave: W13
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - executive-assistant
+      - fleet
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 112
+      - 113
+      - 116
+      - 117
+    exit_criteria:
+      - Organizer, league, convention, and season workflows can manage groups, rosters, events, permissions, artifact publication, and support escalation from one governed operations lane.
+      - Community operations remain auditable and bounded instead of becoming operator-only spreadsheets.
+      - Fleet and EA can compile operator packets and followthrough from the same governed state.
+    work_tasks:
+      - id: 118.1
+        owner: chummer6-hub
+        title: Land organizer, league, convention, and season operation contracts with roles, rosters, events, and audit receipts.
+      - id: 118.2
+        owner: chummer6-ui
+        title: Surface organizer operations on desktop without confusing GM, player, creator, and operator roles.
+      - id: 118.3
+        owner: executive-assistant
+        title: Compile organizer packets, event prep, and followthrough from governed operations truth.
+      - id: 118.4
+        owner: fleet
+        title: Add operator-loop checks for organizer health, support risk, and publication readiness.
+      - id: 118.5
+        owner: chummer6-design
+        title: Define role and audit boundaries for community-scale operations.
+
+  - id: 119
+    title: Guided onboarding and starter lane to first playable session
+    wave: W14
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-media-factory
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 102
+      - 108
+      - 112
+      - 117
+    exit_criteria:
+      - New users can reach first playable session through guided install, claim, campaign primer, starter build, briefing, and support-safe recovery without browser ritual.
+      - Starter lane artifacts are localized, inspectable, audience-safe, and tied to campaign and install truth.
+      - Onboarding can measure drop-offs and feed the product-governor loop.
+    work_tasks:
+      - id: 119.1
+        owner: chummer6-hub
+        title: Orchestrate guided first-session onboarding from install, claim, campaign, primer, starter build, and support truth.
+      - id: 119.2
+        owner: chummer6-ui
+        title: Add first playable session flow to desktop home and campaign entry points.
+      - id: 119.3
+        owner: chummer6-mobile
+        title: Add travel/mobile starter continuity for primer, briefing, and recap artifacts.
+      - id: 119.4
+        owner: chummer6-media-factory
+        title: Render starter primer, first-session briefing, and support-safe onboarding companion artifacts.
+      - id: 119.5
+        owner: chummer6-design
+        title: Define first-playable-session success metrics and bounded onboarding claims.
+
+  - id: 120
+    title: Public trust surface v3, adoption health, and launch pulse
+    wave: W14
+    owners:
+      - chummer6-hub
+      - chummer6-hub-registry
+      - fleet
+      - executive-assistant
+      - chummer6-design
+    status: in_progress
+    dependencies:
+      - 101
+      - 106
+      - 111
+      - 116
+      - 117
+      - 119
+    exit_criteria:
+      - Public status, release shelf, proof shelf, adoption health, support pulse, and launch readiness compile from the same registry and governor truth.
+      - Public copy can say what is live, preview, fallback, revoked, fixed, or blocked without marketing drift.
+      - Weekly launch pulse can justify promote, freeze, canary, rollback, or focus shift decisions with user-visible evidence.
+    work_tasks:
+      - id: 120.1
+        owner: chummer6-hub
+        title: Publish public trust, status, release, and proof-shelf surfaces from registry and governor truth.
+      - id: 120.2
+        owner: chummer6-hub-registry
+        title: Normalize adoption health, proof freshness, release channel, and revocation facts for public surfaces.
+      - id: 120.3
+        owner: fleet
+        title: Compile launch pulse, adoption health, support risk, and proof freshness into governor-ready public status packets.
+      - id: 120.4
+        owner: executive-assistant
+        title: Draft reporter, operator, and public followthrough from launch-pulse truth without inventing release claims.
+      - id: 120.5
+        owner: chummer6-design
+        title: Keep public launch health language precise about live, preview, fallback, fixed, revoked, and blocked posture.
