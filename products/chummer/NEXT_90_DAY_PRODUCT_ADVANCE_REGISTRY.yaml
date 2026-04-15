@@ -545,6 +545,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 2d8bc79a refreshes the M105 UI restore continuity receipt after verify-wiring proof tightening.
           - /docker/chummercomplete/chummer6-ui-finish commit 410c827f tightens the M105 restore continuity proof ancestry guard so future shards verify the current completed-package floor.
           - /docker/chummercomplete/chummer6-ui-finish commit aa9b7f9b pins the M105 recent proof floor so the verifier resolves the latest restore-continuity guard commits instead of stopping at older proof anchors.
+          - /docker/chummercomplete/chummer6-ui-finish commit aff84cf0 tightens M105 sibling-package proof isolation so the completed restore-continuity slice cannot be reclosed with M101, M103, M104, or M106 evidence.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
