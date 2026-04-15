@@ -111,6 +111,7 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry commit 5d948b1 pins the latest M101 tuple self-test proof floor into the verifier, proof receipt, and closeout note so future shards verify the closed package instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit e91fe39 tightens the M101 self-test so completed queue proof fails on wrong successor frontier or non-complete package status.
           - /docker/chummercomplete/chummer-hub-registry commit 1586dfc pins the M101 queue authority guard so future shards verify the completed package proof floor instead of repeating it.
+          - /docker/chummercomplete/chummer-hub-registry commit f1d0763 pins the latest M101 queue authority proof so future shards verify the current completed-package floor instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
