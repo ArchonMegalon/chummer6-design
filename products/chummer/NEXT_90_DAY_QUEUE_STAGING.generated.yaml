@@ -156,6 +156,12 @@ items:
     milestone_id: 103
     wave: W7
     repo: chummer6-ui
+    status: complete
+    landed_commit: a8e4f92c
+    proof:
+      - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M103_UI_VETERAN_CERTIFICATION.generated.json
+      - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh
+      - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh
     allowed_paths:
       - Chummer.Avalonia
       - Chummer.Blazor
