@@ -322,6 +322,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 0d1eafbd tightens the M105 support-handoff proof so install and workspace support prefill regressions are part of the closed package receipt.
           - /docker/chummercomplete/chummer6-ui-finish commit c63bf96f tightens the M105 proof chain so registry, queue, support-handoff, and queue-scope guard evidence stay complete together.
           - /docker/chummercomplete/chummer6-ui-finish commit 007e8985 tightens the M105 canonical proof so future shards verify the already-complete package against the latest registry, queue, receipt, and guard evidence instead of repeating it.
+          - /docker/chummercomplete/chummer6-ui-finish commit e3612368 pins the M105 restore-continuity receipt proof as the canonical repeat-prevention guard.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
