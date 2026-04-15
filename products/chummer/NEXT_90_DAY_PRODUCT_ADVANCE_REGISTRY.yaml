@@ -367,6 +367,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 7ddae55e pins the current M104 explain receipt guard so future shards verify the latest closed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 9a4a2ae1 pins M104 proof closure to the 7ddae55e guard so future shards verify the current completed-package floor.
           - /docker/chummercomplete/chummer6-ui-finish commit cb784e7b tightens M104 explain receipt proof floor so future shards verify the current completed-package floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit 7d5e8e61 pins the current M104 explain receipt proof floor so future shards verify the latest completed-package guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 06819ea3 pins the current M104 explain receipt proof floor so future shards verify the latest completed-package guard.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
