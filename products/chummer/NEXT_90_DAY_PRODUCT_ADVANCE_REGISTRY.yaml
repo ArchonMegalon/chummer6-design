@@ -496,6 +496,7 @@ milestones:
           - The verifier rebuilds the decision-critical packet projection from live source inputs and rejects stale checked-in decision ledgers.
           - The verifier requires every measured rollout action to appear in both the decision board and decision gate ledger.
           - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
+          - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
       - id: 106.2
