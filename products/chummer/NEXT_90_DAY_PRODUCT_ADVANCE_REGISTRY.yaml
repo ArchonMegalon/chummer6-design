@@ -630,7 +630,7 @@ milestones:
           - /docker/EA/feedback/2026-04-15-ea-governor-packets-package-closeout.md records that no EA-owned work remains while Fleet, Hub, Registry, and design sibling lanes stay open.
           - /docker/EA/feedback/2026-04-15-chummer-governor-packets-successor-guard.md records the repeat-prevention guard and direct proof runner result.
           - /docker/EA/feedback/2026-04-15-ea-governor-packets-terminal-repeat-prevention.md records the terminal policy that a newer active-run handoff timestamp alone must not append another EA proof note for the same closed package.
-          - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=18 failed=0.
+          - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=20 failed=0.
       - id: 106.3
         owner: chummer6-hub
         title: Expose install-aware support, status, and recovery surfaces downstream of the same release truth.
