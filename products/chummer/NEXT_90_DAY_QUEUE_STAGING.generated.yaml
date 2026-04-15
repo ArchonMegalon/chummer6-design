@@ -97,6 +97,7 @@ items:
   - title: Emit provenance and conflict receipts for workspace restore and continuity
     task: Make roaming workspace, entitlement replication, stale state, and conflict posture explicit and recoverable.
     package_id: next90-m105-hub-workspace-continuity
+    frontier_id: 4623636482
     milestone_id: 105
     wave: W8
     repo: chummer6-hub
