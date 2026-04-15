@@ -576,6 +576,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 94f0c9e1 pins M107 current duplicate queue guard.
       - /docker/chummercomplete/chummer.run-services commit 6c700c38 tightens the M107 artifact-factory proof floor guard.
       - /docker/chummercomplete/chummer.run-services commit f22ce5a5 tightens M107 artifact factory source-pack id normalization.
+      - /docker/chummercomplete/chummer.run-services commit b15c2193 pins M107 source pack id proof.
       - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
     allowed_paths:
       - Chummer.Run.Api
