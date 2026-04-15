@@ -545,6 +545,7 @@ milestones:
         title: Synthesize support, parity, and release signals into operator-ready packets and reporter followthrough mail.
         status: complete
         evidence:
+          - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
           - /docker/EA/docs/chummer_governor_packets/CHUMMER_GOVERNOR_PACKET_PACK.yaml is task_proven for operator_packets:weekly_governor and reporter_followthrough:release_truth.
           - /docker/EA/docs/chummer_governor_packets/OPERATOR_AND_REPORTER_PACKET_SPECIMENS.yaml projects operator and reporter packet shapes from the same readiness, parity, support, and release-truth anchors.
           - /docker/EA/docs/chummer_governor_packets/SUCCESSOR_HANDOFF_CLOSEOUT.yaml marks successor frontier 1758984842 ea_scope_complete for the closed EA-owned surfaces and names Fleet, Hub, Registry, and design sibling lanes as non-EA follow-up.
