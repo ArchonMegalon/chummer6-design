@@ -676,6 +676,9 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit f1ca6c1a pins M107 artifact path guard proof.
           - /docker/chummercomplete/chummer.run-services commit a91ea733 tightens M107 artifact factory receipt refs.
           - /docker/chummercomplete/chummer.run-services commit c31258fa tightens M107 artifact factory proof floor.
+          - /docker/chummercomplete/chummer.run-services commit 45d3d498 tightens M107 artifact factory proof floor.
+          - /docker/chummercomplete/chummer.run-services commit c3aaf05a pins M107 artifact factory proof floor.
+          - /docker/chummercomplete/chummer.run-services commit 285e97be tightens the current M107 artifact factory proof floor guard.
           - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/ArtifactFactoryOrchestrationService.cs rejects unapproved or provider-specific source packs and emits media-factory output bindings for preview, caption, packet, audio, and video formats.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/InternalArtifactFactoryController.cs and Chummer.Run.Api/ServiceCollectionBoundedContextExtensions.cs bind the recipe-backed job launcher to the internal authenticated Hub orchestration endpoint.
