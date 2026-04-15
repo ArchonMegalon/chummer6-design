@@ -431,6 +431,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 9d302a0e tightens M104 explain receipt proof-path scope so completed-package evidence cannot drift outside assigned UI roots or named proof exceptions.
           - /docker/chummercomplete/chummer6-ui-finish commit cb028208 pins M104 explain receipt proof scope so future shards verify the latest completed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 5c19e4e3 pins M104 explain receipt proof floor so future shards verify the current completed-package guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit c92d8dc4 tightens M104 explain receipt proof floor so future shards verify the current completed-package guard.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
