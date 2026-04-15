@@ -109,6 +109,7 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.closeout.md records the do-not-reopen rule and exact proof conditions for future shards.
           - /docker/chummercomplete/chummer-hub-registry commit b404b36 tightens the package verifier so Fleet and design queue staging must both pin successor frontier 3017689961 for this completed package row.
           - /docker/chummercomplete/chummer-hub-registry commit e91fe39 tightens the M101 self-test so completed queue proof fails on wrong successor frontier or non-complete package status.
+          - /docker/chummercomplete/chummer-hub-registry commit 1586dfc pins the M101 queue authority guard so future shards verify the completed package proof floor instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
