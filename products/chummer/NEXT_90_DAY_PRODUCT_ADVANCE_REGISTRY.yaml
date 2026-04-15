@@ -119,6 +119,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 5844ad03 pins successor frontier 2450443084 into the M101 verifier, generated receipt, and compliance guard so future shards do not repeat the closed package under a different frontier.
           - /docker/chummercomplete/chummer6-ui-finish commit 2e87dce3 tightens the M101 verifier against design-owned queue source drift and refreshes the design-owned queue closeout row so the Fleet mirror cannot be the only closure proof.
           - /docker/chummercomplete/chummer6-ui-finish commit c61a8fb5 pins M101 design queue closure tokens into the verifier, generated receipt, and compliance guard so future shards validate the closed successor package instead of reopening it.
+          - /docker/chummercomplete/chummer6-ui-finish commit 79760cc1 refreshes the M101 release train receipt after queue closure proof tightening.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -308,10 +309,13 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 4d4b3856 emits workspace_restore provenance receipts, entitlement_sync conflict receipts, stale claimed-install receipts, artifact drift receipts, authority planes, recovery hints, and block-continue posture.
           - /docker/chummercomplete/chummer.run-services commit b39147dc tightens the workspace restore verifier so Hub local release proof must retain the next90-m105-hub-workspace-continuity package, frontier id 4623636482, /home/work and /account/work routes, and both workspace_restore:provenance and entitlement_sync:conflict_receipts receipts.
           - /docker/chummercomplete/chummer.run-services commit 5796e220 wires the M105 workspace restore verifier into scripts/ai/verify.sh so standard Hub verification runs the closed-package guard.
+      - /docker/chummercomplete/chummer.run-services commit 80454b41 fail-closes workspace restore proof if landed verifier commits no longer resolve locally.
+          - /docker/chummercomplete/chummer.run-services commit 80454b41 fail-closes workspace restore proof if landed verifier commits no longer resolve locally.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - python3 scripts/verify_workspace_restore_receipts.py exits 0.
           - python3 -m unittest tests/test_workspace_restore_receipts.py exits 0.
+          - python3 -m unittest tests/test_workspace_restore_receipts.py tests/test_workspace_restore_queue_frontier_guard.py tests/test_workspace_restore_commit_resolution.py exits 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "CampaignSpineRestoreReceiptTests|CampaignWorkspaceServerPlaneServiceTests|CampaignOsLocalProofMaterializerTests" --no-restore exits 0 with 408 tests passed on net10.0 and net10.0-windows.
       - id: 105.2
         owner: chummer6-ui
