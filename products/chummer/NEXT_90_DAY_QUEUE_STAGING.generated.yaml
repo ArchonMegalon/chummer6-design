@@ -200,6 +200,7 @@ items:
   - title: Surface explain receipts and environment diffs where users need trust
     task: Expose grounded explain receipts and before-after environment diffs on import, build blockers, and support diagnostics.
     package_id: next90-m104-ui-explain-receipts
+    frontier_id: 3352869062
     milestone_id: 104
     wave: W7
     repo: chummer6-ui
