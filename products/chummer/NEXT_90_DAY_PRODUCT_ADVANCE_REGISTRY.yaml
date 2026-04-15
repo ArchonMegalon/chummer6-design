@@ -108,6 +108,7 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.proof.yaml records the successor frontier id, landed commit, owned surfaces, allowed paths, exact six desktop route-truth tuples, guardrails, and do-not-reopen conditions.
           - /docker/chummercomplete/chummer-hub-registry/docs/next90-m101-registry-promotion-discipline.closeout.md records the do-not-reopen rule and exact proof conditions for future shards.
           - /docker/chummercomplete/chummer-hub-registry commit b404b36 tightens the package verifier so Fleet and design queue staging must both pin successor frontier 3017689961 for this completed package row.
+          - /docker/chummercomplete/chummer-hub-registry commit 5d948b1 pins the latest M101 tuple self-test proof floor into the verifier, proof receipt, and closeout note so future shards verify the closed package instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit e91fe39 tightens the M101 self-test so completed queue proof fails on wrong successor frontier or non-complete package status.
           - /docker/chummercomplete/chummer-hub-registry commit 1586dfc pins the M101 queue authority guard so future shards verify the completed package proof floor instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
@@ -133,6 +134,9 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 24eb3732 tightens the M101 queue source-fingerprint proof.
           - /docker/chummercomplete/chummer6-ui-finish commit 48970414 pins M101 queue fingerprint proof guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 2ef1a22d pins M101 latest queue proof guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 8bc1fb02 pins M101 latest queue proof guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 9629b207 pins M101 current queue proof guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit 6c032e2c pins M101 current queue proof floor.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -202,6 +206,8 @@ milestones:
           - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .md project fix-available, please-test, recovery, missing-install-receipt, and receipt-mismatch counts from the support packet receipt gates.
           - python3 -m py_compile scripts/materialize_support_case_packets.py tests/test_materialize_support_case_packets.py scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
           - direct tmp_path fixture invocation for all tests/test_materialize_support_case_packets.py and tests/test_materialize_weekly_governor_packet.py test functions exits 0.
+          - /docker/fleet/scripts/verify_next90_m102_fleet_reporter_receipts.py fail-closes weekly/support generated_at freshness drift so WEEKLY_GOVERNOR_PACKET.generated.json cannot predate the SUPPORT_CASE_PACKETS.generated.json receipt gates it summarizes.
+          - /docker/fleet/scripts/verify_script_bootstrap_no_pythonpath.py includes the standalone M102 verifier in no-PYTHONPATH bootstrap proof so repeat-prevention cannot silently break on import path assumptions.
 
   - id: 103
     title: Chummer5a parity lab and veteran migration certification
@@ -251,6 +257,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 22758a4c pins the latest M103 queue proof guard so canonical successor proof matches the package verifier.
           - /docker/chummercomplete/chummer6-ui-finish commit fd93bb8a tightens the M103 queue mirror proof guard so Fleet staging and the design-owned queue row cannot drift apart for the completed package.
           - /docker/chummercomplete/chummer6-ui-finish commit e9f92d0d pins the M103 queue mirror proof guard so future shards verify the latest closed-package anchor instead of repeating this completed package.
+          - /docker/chummercomplete/chummer6-ui-finish commit a4d93e27 pins the current M103 queue mirror proof so future shards verify the latest closed-package anchor instead of repeating this completed package.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, Chummer5a baseline markers, and blocked-helper proof exclusion.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -409,6 +416,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 1c67a051 pins the M105 restore-continuity proof anchor so future shards verify the closed package instead of repeating it.
           - /docker/chummercomplete/chummer6-ui-finish commit d220fdb7 pins the M105 restore-continuity current proof guard and refreshed receipt.
           - /docker/chummercomplete/chummer6-ui-finish commit 33f5eedd pins the M105 restore-continuity closure verifier to the registry-cited d220fdb7 proof anchor.
+          - /docker/chummercomplete/chummer6-ui-finish commit 46729243 pins the registry-cited 33f5eedd closure verifier in the M105 local verifier, compliance guard, and generated receipt.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
@@ -459,6 +467,7 @@ milestones:
           - python3 scripts/verify_next90_m106_fleet_governor_packet.py exits 0.
           - Direct tmp_path fixture invocation of tests/test_materialize_weekly_governor_packet.py exits 0.
           - The verifier rebuilds the decision-critical packet projection from live source inputs and rejects stale checked-in decision ledgers.
+          - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
       - id: 106.2
         owner: executive-assistant
@@ -517,6 +526,10 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 66b1a1c7 tightens M107 artifact factory duplicate queue proof guard.
           - /docker/chummercomplete/chummer.run-services commit 51623cd3 pins M107 artifact factory duplicate queue guard proof.
           - /docker/chummercomplete/chummer.run-services commit a20aa910 tightens M107 artifact factory public shelf ref safety.
+          - /docker/chummercomplete/chummer.run-services commit 7ce86602 pins M107 artifact factory shelf safety proof.
+          - /docker/chummercomplete/chummer.run-services commit 326db197 tightens M107 artifact factory source-pack proof.
+          - /docker/chummercomplete/chummer.run-services commit bd67b5ff tightens M107 artifact factory structured frontier proof.
+          - /docker/chummercomplete/chummer.run-services commit 6851982b tightens M107 artifact factory proof hygiene.
           - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/ArtifactFactoryOrchestrationService.cs rejects unapproved or provider-specific source packs and emits media-factory output bindings for preview, caption, packet, audio, and video formats.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/InternalArtifactFactoryController.cs and Chummer.Run.Api/ServiceCollectionBoundedContextExtensions.cs bind the recipe-backed job launcher to the internal authenticated Hub orchestration endpoint.
