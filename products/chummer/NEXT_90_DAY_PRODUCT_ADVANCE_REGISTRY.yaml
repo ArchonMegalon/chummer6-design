@@ -303,10 +303,14 @@ milestones:
         evidence:
           - /docker/chummercomplete/chummer6-ui-finish commit 54c27661 tightens the M105 restore continuity verifier and receipt so future shards close against registry, queue, source-marker, and support-handoff truth together.
           - /docker/chummercomplete/chummer6-ui-finish commit 49036853 adds the follow-on M105 closure guard so future successor shards verify this package instead of reopening the already complete desktop slice.
+          - /docker/chummercomplete/chummer6-ui-finish commit c0960ae9 pins the M105 closure guard in Chummer.Tests so the completed desktop slice cannot lose package authority, source-marker, support-handoff, or receipt proof silently.
+          - /docker/chummercomplete/chummer6-ui-finish commit 0d1eafbd tightens the M105 support-handoff proof so install and workspace support prefill regressions are part of the closed package receipt.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/DesktopInstallLinkingRuntimeTests.cs locks the install and workspace support prefill regression paths so restore, stale-state, and conflict-choice context stays in support handoff URLs.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Presentation/AccessibilitySignoffSmokeTests.cs locks the visible restore-continuation and conflict-safe desktop source markers.
+          - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M105RestoreContinuityGuardTests.cs pins the registry, queue, verifier, receipt, desktop marker, and support-handoff guardrails for the already-complete package.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m105-ui-restore-continuity-check.sh fail-closes registry drift, queue drift, missing allowed-path/surface authority, missing desktop source markers, and missing support handoff proof.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M105_UI_RESTORE_CONTINUITY.generated.json reports status=pass with packageId=next90-m105-ui-restore-continuity and frontierId=3787618287.
           - bash scripts/ai/milestones/next90-m105-ui-restore-continuity-check.sh exits 0.
