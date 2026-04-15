@@ -415,6 +415,8 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit f6db9d91 pins the M105 workspace proof floor after the queue guard proof tightening.
           - /docker/chummercomplete/chummer.run-services commit b1270fd0 pins the M105 workspace verifier to the canonical f6db9d91 proof floor.
           - /docker/chummercomplete/chummer.run-services commit 691c625f requires the current M105 workspace proof floor.
+          - /docker/chummercomplete/chummer.run-services commit f8226de9 pins the M105 workspace proof floor.
+          - /docker/chummercomplete/chummer.run-services commit f8f3ce8e requires the latest M105 workspace proof floor.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py regenerates HUB_LOCAL_RELEASE_PROOF.generated.json with the closed M105 package metadata, workspace_restore:provenance receipt, and entitlement_sync:conflict_receipts receipt.
