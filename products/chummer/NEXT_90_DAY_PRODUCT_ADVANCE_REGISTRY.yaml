@@ -59,6 +59,11 @@ milestones:
       - id: 101.2
         owner: chummer6-hub-registry
         title: Publish per-head promotion, fallback, and rollback rationale directly in channel truth.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json now publishes verifier-bound desktopTupleCoverage.desktopRouteTruth rows for Avalonia primary and Blazor fallback on Linux, Windows, and macOS.
+          - /docker/chummercomplete/chummer-hub-registry/scripts/verify_public_release_channel.py fail-closes missing, blank, stale, or non-canonical promotion, fallback, rollback, revoke, update, and install-posture rationale.
+          - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
         title: Keep Avalonia primary-route proof independent from Blazor fallback proof on every promoted tuple.
