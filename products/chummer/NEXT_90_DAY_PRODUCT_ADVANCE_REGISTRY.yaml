@@ -122,8 +122,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit c61a8fb5 pins M101 design queue closure tokens into the verifier, generated receipt, and compliance guard so future shards validate the closed successor package instead of reopening it.
           - /docker/chummercomplete/chummer6-ui-finish commit 79760cc1 refreshes the M101 release train receipt after queue closure proof tightening.
           - /docker/chummercomplete/chummer6-ui-finish commit a3bf058e tightens M101 proof commit resolution so stale proof anchors cannot keep the closed package green.
-          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish commit 0954e2a1 pins M101 proof resolution guard into verifier, receipt, and compliance proof.
+          - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
           - bash scripts/ai/milestones/next90-m101-ui-release-train-check.sh exits 0.
@@ -284,9 +284,10 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 0a2a321f tightens M104 explain receipt guard wiring so the compliance guard is part of the completed package proof chain.
           - /docker/chummercomplete/chummer6-ui-finish commit 2c29f1be tightens M104 explain receipt commit proof so the completed package remains bound to the landed implementation commit.
           - /docker/chummercomplete/chummer6-ui-finish commit 1df92955 tightens M104 explain receipt frontier guard so the completed package remains bound to successor frontier 3352869062.
-          - /docker/chummercomplete/chummer6-ui-finish commit d4d34e1c requires the standard-verify wiring commit as registry and queue proof for the completed M104 desktop explain receipt package.
           - /docker/chummercomplete/chummer6-ui-finish commit 7556a33b pins M104 explain receipt proof anchors.
           - /docker/chummercomplete/chummer6-ui-finish commit d9e5392d wires the M104 explain receipt guard into standard scripts/ai/verify.sh so closed-package proof runs with normal UI verification.
+          - /docker/chummercomplete/chummer6-ui-finish commit d4d34e1c requires the standard-verify wiring commit as registry and queue proof for the completed M104 desktop explain receipt package.
+          - /docker/chummercomplete/chummer6-ui-finish commit cea19d0d tightens M104 explain receipt proof guard so registry, queue, source-marker, and standard-verify proof anchor closure cannot drift.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4
@@ -344,6 +345,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 4faa2339 tightens the M105 verifier against design-owned queue mirror drift and refreshes the repeat-prevention receipt.
           - /docker/chummercomplete/chummer6-ui-finish commit 85c79fdd pins the M105 mirror-proof commit in the verifier, receipt, and compliance guard so future shards do not repeat the closed desktop slice after queue mirror tightening.
           - /docker/chummercomplete/chummer6-ui-finish commit 0bed530b pins the M105 restore-continuity mirror guard in the verifier, receipt, and compliance guard so future shards verify the closed desktop slice instead of reopening it.
+          - /docker/chummercomplete/chummer6-ui-finish commit b7908ee8 tightens the M105 restore-continuity guard so both canonical and Fleet successor queue rows must carry frontier_id 3787618287.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
@@ -442,6 +444,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit cfd5d208 pins the completed M107 artifact-factory proof guard evidence.
           - /docker/chummercomplete/chummer.run-services commit 60125d9e tightens M107 artifact factory proof guard.
           - /docker/chummercomplete/chummer.run-services commit c98a49f2 tightens M107 artifact factory closeout proof.
+          - /docker/chummercomplete/chummer.run-services commit 28d3e13f tightens M107 artifact factory closeout guard.
           - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/ArtifactFactoryOrchestrationService.cs rejects unapproved or provider-specific source packs and emits media-factory output bindings for preview, caption, packet, audio, and video formats.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/InternalArtifactFactoryController.cs and Chummer.Run.Api/ServiceCollectionBoundedContextExtensions.cs bind the recipe-backed job launcher to the internal authenticated Hub orchestration endpoint.
