@@ -122,6 +122,7 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry commit 894c200 pins the M101 authority proof floor so future shards verify the latest completed-package guard instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit 061cc27 tightens the M101 helper proof casing guard so canonical registry, Fleet queue, design queue, proof receipt, and closeout helper-evidence scans are case-insensitive.
           - /docker/chummercomplete/chummer-hub-registry commit 66564d4 pins the M101 mixed-case helper proof guard so future shards verify the current completed-package proof floor instead of repeating it.
+          - /docker/chummercomplete/chummer-hub-registry commit 800b65d pins M101 mixed-case helper proof floor so future shards verify the current completed-package proof floor instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
@@ -420,6 +421,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 5a8e0b2a pins M104 explain receipt guard floor so future shards verify the latest completed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish commit bfd66025 pins M104 explain receipt current guard floor so future shards verify the latest completed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish commit f9607bb8 tightens M104 generated proof hygiene so receipt proof arrays reject worker-unsafe run-helper citations.
+          - /docker/chummercomplete/chummer6-ui-finish commit 9d302a0e tightens M104 explain receipt proof-path scope so completed-package evidence cannot drift outside assigned UI roots or named proof exceptions.
           - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore exits 0.
           - bash scripts/ai/milestones/next90-m104-ui-explain-receipts-check.sh exits 0.
       - id: 104.4

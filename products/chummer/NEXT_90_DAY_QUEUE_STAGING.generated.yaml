@@ -353,6 +353,7 @@ items:
       - /docker/chummercomplete/chummer-hub-registry commit 894c200 pins the M101 authority proof floor so future shards verify the latest completed-package guard instead of repeating it.
       - /docker/chummercomplete/chummer-hub-registry commit 061cc27 tightens the M101 helper proof casing guard so canonical registry, Fleet queue, design queue, proof receipt, and closeout helper-evidence scans are case-insensitive.
       - /docker/chummercomplete/chummer-hub-registry commit 66564d4 pins the M101 mixed-case helper proof guard so future shards verify the current completed-package proof floor instead of repeating it.
+      - /docker/chummercomplete/chummer-hub-registry commit 800b65d pins M101 mixed-case helper proof floor so future shards verify the current completed-package proof floor instead of repeating it.
     allowed_paths:
       - Chummer.Hub.Registry
       - scripts
@@ -462,6 +463,7 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 5a8e0b2a pins M104 explain receipt guard floor for repeat prevention.
       - /docker/chummercomplete/chummer6-ui-finish commit bfd66025 pins M104 explain receipt current guard floor for repeat prevention.
       - /docker/chummercomplete/chummer6-ui-finish commit f9607bb8 tightens M104 generated proof hygiene so receipt proof arrays reject worker-unsafe run-helper citations.
+      - /docker/chummercomplete/chummer6-ui-finish commit 9d302a0e tightens M104 explain receipt proof-path scope for repeat prevention.
       - dotnet test Chummer.Tests/Presentation/Chummer.Presentation.Signoff.Tests.csproj --filter "BlazorShellComponentTests|AccessibilitySignoffSmokeTests" --no-restore
     allowed_paths:
       - Chummer.Avalonia
