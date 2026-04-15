@@ -72,6 +72,17 @@ items:
     milestone_id: 103
     wave: W7
     repo: executive-assistant
+    status: complete
+    proof:
+      - /docker/EA/docs/chummer5a_parity_lab/CHUMMER5A_PARITY_LAB_PACK.yaml
+      - /docker/EA/docs/chummer5a_parity_lab/oracle_baselines.yaml
+      - /docker/EA/docs/chummer5a_parity_lab/veteran_workflow_pack.yaml
+      - /docker/EA/docs/chummer5a_parity_lab/compare_packs.yaml
+      - /docker/EA/docs/chummer5a_parity_lab/import_export_fixture_inventory.yaml
+      - /docker/EA/docs/chummer5a_parity_lab/SUCCESSOR_HANDOFF_CLOSEOUT.yaml
+      - /docker/EA/.codex-studio/published/CHUMMER5A_PARITY_ORACLE_PACK.generated.json
+      - python tests/test_chummer5a_parity_lab_pack.py
+      - python tests/test_chummer5a_parity_lab_pack.py exits with ran=15 failed=0 and blocks operator-owned run-helper proof for the closed EA package.
     allowed_paths:
       - skills
       - tests
