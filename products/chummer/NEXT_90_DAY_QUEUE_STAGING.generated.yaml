@@ -197,6 +197,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 691c625f requires the current M105 workspace proof floor.
       - /docker/chummercomplete/chummer.run-services commit f8226de9 pins the M105 workspace proof floor.
       - /docker/chummercomplete/chummer.run-services commit f8f3ce8e requires the latest M105 workspace proof floor.
+      - /docker/chummercomplete/chummer.run-services commit 70b6f382 tightens the M105 served workspace proof guard so public served receipts cannot drift from the local proof shelf.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
@@ -266,6 +267,7 @@ items:
       - /docker/fleet/.codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md
       - /docker/fleet/feedback/2026-04-15-next90-m102-fleet-reporter-receipts-closeout.md
       - python3 -m py_compile scripts/materialize_support_case_packets.py scripts/verify_next90_m102_fleet_reporter_receipts.py tests/test_materialize_support_case_packets.py tests/test_verify_next90_m102_fleet_reporter_receipts.py scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py
+      - python3 scripts/verify_next90_m102_fleet_reporter_receipts.py exits 0
       - installation-bound receipt gating blocks reporter followthrough when installed-build receipt installation id disagrees with the linked install
       - fixed-version receipts and fixed-channel receipts are required before reporter followthrough leaves hold
       - direct tmp_path fixture invocation for receipt-gated support followthrough tests exits 0
@@ -274,9 +276,11 @@ items:
       - stale generated support proof gaps fail the standalone verifier
       - weekly/support receipt-count drift fails the standalone verifier
       - weekly/support generated_at freshness fails the standalone verifier
+      - weekly governor source-path hygiene and worker command guard fail the standalone verifier
       - no-PYTHONPATH bootstrap guard includes the standalone M102 verifier
       - successor frontier 2454416974 pinned for next90-m102-fleet-reporter-receipts repeat prevention
       - design-owned queue source row matches the Fleet completed queue proof assignment
+      - design-owned queue source proof markers fail the standalone verifier
     allowed_paths:
       - scripts
       - tests
@@ -349,6 +353,8 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 075b292b tightens the M103 registry proof item guard so canonical successor evidence must match completed queue proof.
       - /docker/chummercomplete/chummer6-ui-finish commit d9bfcff5 pins M103 current veteran proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit 783ac00b pins M103 veteran proof floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit 827d3546 pins M103 veteran certification proof floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit 89ab0ec0 pins M103 veteran certification proof floor.
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs
       - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh
     allowed_paths:
@@ -484,6 +490,7 @@ items:
       - /docker/EA/tests/test_chummer_governor_packet_pack.py
       - /docker/EA/feedback/2026-04-15-ea-governor-packets-package-closeout.md
       - /docker/EA/feedback/2026-04-15-chummer-governor-packets-successor-guard.md
+      - /docker/EA/feedback/2026-04-15-ea-governor-packets-terminal-repeat-prevention.md
       - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=17 failed=0
     allowed_paths:
       - skills

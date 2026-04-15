@@ -226,6 +226,7 @@ milestones:
           - python3 -m py_compile scripts/materialize_support_case_packets.py tests/test_materialize_support_case_packets.py scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
           - direct tmp_path fixture invocation for all tests/test_materialize_support_case_packets.py and tests/test_materialize_weekly_governor_packet.py test functions exits 0.
           - /docker/fleet/scripts/verify_next90_m102_fleet_reporter_receipts.py fail-closes weekly/support generated_at freshness drift so WEEKLY_GOVERNOR_PACKET.generated.json cannot predate the SUPPORT_CASE_PACKETS.generated.json receipt gates it summarizes.
+          - python3 scripts/verify_next90_m102_fleet_reporter_receipts.py exits 0.
           - /docker/fleet/scripts/verify_script_bootstrap_no_pythonpath.py includes the standalone M102 verifier in no-PYTHONPATH bootstrap proof so repeat-prevention cannot silently break on import path assumptions.
 
   - id: 103
@@ -283,6 +284,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 075b292b tightens the M103 registry proof item guard so canonical successor evidence must match completed queue proof.
           - /docker/chummercomplete/chummer6-ui-finish commit d9bfcff5 pins M103 current veteran proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 783ac00b pins M103 veteran proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit 827d3546 pins M103 veteran certification proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit 89ab0ec0 pins M103 veteran certification proof floor.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs pins completed queue proof, allowed-path scope, owned-surface scope, promoted Avalonia binding, distinct screenshot proof, Chummer5a baseline markers, and blocked-helper proof exclusion.
           - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh exits 0.
       - id: 103.3
@@ -428,6 +431,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 691c625f requires the current M105 workspace proof floor.
           - /docker/chummercomplete/chummer.run-services commit f8226de9 pins the M105 workspace proof floor.
           - /docker/chummercomplete/chummer.run-services commit f8f3ce8e requires the latest M105 workspace proof floor.
+          - /docker/chummercomplete/chummer.run-services commit 70b6f382 tightens the M105 served workspace proof guard so public served receipts cannot drift from the local proof shelf.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py regenerates HUB_LOCAL_RELEASE_PROOF.generated.json with the closed M105 package metadata, workspace_restore:provenance receipt, and entitlement_sync:conflict_receipts receipt.
@@ -540,6 +544,7 @@ milestones:
           - /docker/EA/tests/test_chummer_governor_packet_pack.py fail-closes queue, registry, source-anchor, reporter workflow, release-truth, runtime-safety, and stale queue proof-path drift.
           - /docker/EA/feedback/2026-04-15-ea-governor-packets-package-closeout.md records that no EA-owned work remains while Fleet, Hub, Registry, and design sibling lanes stay open.
           - /docker/EA/feedback/2026-04-15-chummer-governor-packets-successor-guard.md records the repeat-prevention guard and direct proof runner result.
+          - /docker/EA/feedback/2026-04-15-ea-governor-packets-terminal-repeat-prevention.md records the terminal policy that a newer active-run handoff timestamp alone must not append another EA proof note for the same closed package.
           - python tests/test_chummer_governor_packet_pack.py exits 0 with ran=17 failed=0.
       - id: 106.3
         owner: chummer6-hub
