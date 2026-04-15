@@ -245,6 +245,7 @@ milestones:
           - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json reports successor_wave_authority=passed and unresolved successor_wave_authority/oracle_suites/performance_budgets/release_commands/import_oracle_discipline all empty.
           - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json now requires the next90-m104-core-proof-pack queue row to retain allowed_paths src, tests, docs, and scripts.
           - /docker/chummercomplete/chummer-core-engine/.codex-studio/published/ENGINE_PROOF_PACK.generated.json now reports missing_queue_proof_anchors=[] after resolving the package proof anchors on disk.
+          - /docker/chummercomplete/chummer-core-engine commit cfc465a5 adds a checked-in receipt reproducibility guard so ENGINE_PROOF_PACK.generated.json cannot drift from scripts/generate-engine-proof-pack.py except generated_at.
           - dotnet build Chummer.CoreEngine.Tests/Chummer.CoreEngine.Tests.csproj -c Release --nologo -m:1 && dotnet Chummer.CoreEngine.Tests/bin/Release/net10.0/Chummer.CoreEngine.Tests.dll exits 0.
           - dotnet run --project Chummer.Benchmarks/Chummer.Benchmarks.csproj -c Release -- --budget-check --budget-file Chummer.Benchmarks/workspace-benchmark-budgets.json exits 0 for load, explain, diff/apply, import, and export-prep workloads.
       - id: 104.3
