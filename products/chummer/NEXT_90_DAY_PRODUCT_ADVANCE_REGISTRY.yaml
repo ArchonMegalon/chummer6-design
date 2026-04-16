@@ -779,6 +779,7 @@ milestones:
           - Direct tmp_path fixture invocation of tests/test_materialize_weekly_governor_packet.py exits 0.
           - The verifier rebuilds the decision-critical packet projection from live source inputs and rejects stale checked-in decision ledgers.
           - The verifier rejects checked-in packet freshness drift against generated readiness, journey, support, weekly pulse, and status-plane inputs.
+          - future-dated weekly and source generated_at receipts are rejected so measured rollout truth cannot outrun wall-clock source evidence.
           - The verifier rejects compile manifest freshness drift after weekly packet refresh so published artifact truth cannot stay green from a stale manifest.
           - The verifier rejects support-packet source_sha256 drift against SUPPORT_CASE_PACKETS.generated.json so weekly support truth cannot stay green after receipt-packet edits.
           - The verifier requires every measured rollout action to appear in both the decision board and decision gate ledger.
