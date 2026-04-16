@@ -789,6 +789,7 @@ milestones:
           - successor-wave telemetry summary strings are rejected as worker proof strings so copied ETA, remaining-count, or critical-path prompt context cannot close this package.
           - frontier-detail prompt strings are rejected as worker proof strings so copied frontier priority or detail prompt context cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
+          - control-plane polling prohibition guard is enforced case-insensitively so current handoff text cannot be copied into package proof as a completion signal.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
           - worker-run supervisor launcher guard is enforced case-insensitively so active-run supervisor shell launchers cannot be recited as package proof.
           - run-helper failure proof strings are rejected case-insensitively so forbidden helper output cannot be recited as package proof.
