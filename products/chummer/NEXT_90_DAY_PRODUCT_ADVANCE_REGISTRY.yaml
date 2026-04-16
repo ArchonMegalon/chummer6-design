@@ -554,6 +554,8 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 63313972 pins the M105 workspace proof floor.
           - /docker/chummercomplete/chummer.run-services commit 0b038324 tightens M105 local and served release proof uniqueness so duplicate closed-package rows or duplicate package-scoped receipts cannot keep the package green.
           - /docker/chummercomplete/chummer.run-services commit 447f2a90 pins the M105 workspace uniqueness proof floor so future shards verify the current closed-package guard instead of repeating it.
+          - /docker/chummercomplete/chummer.run-services commit a8f94a63 pins the M105 workspace uniqueness proof floor.
+          - /docker/chummercomplete/chummer.run-services commit 06b0e574 pins the current M105 workspace proof floor guard.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py regenerates HUB_LOCAL_RELEASE_PROOF.generated.json with the closed M105 package metadata, workspace_restore:provenance receipt, and entitlement_sync:conflict_receipts receipt.
