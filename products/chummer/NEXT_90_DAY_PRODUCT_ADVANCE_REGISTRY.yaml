@@ -667,6 +667,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit d882db69 pins the M105 workspace proof floor guard.
           - /docker/chummercomplete/chummer.run-services commit db4fe453 tightens M105 served proof route mirroring so public proof shelves cannot drift from local route receipts.
           - /docker/chummercomplete/chummer.run-services commit 57a5b16d tightens M105 proof commit citation resolution so every registry and queue commit proof citation must resolve locally.
+          - /docker/chummercomplete/chummer.run-services commit 02596ecc tightens M105 proof path scope so registry and queue proof paths must stay inside Chummer.Run.Api, scripts, or tests.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
