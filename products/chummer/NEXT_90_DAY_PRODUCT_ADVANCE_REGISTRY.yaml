@@ -796,6 +796,7 @@ milestones:
           - task-local telemetry field names are rejected as worker proof strings so copied active-run context cannot close this package.
           - successor-wave telemetry summary strings are rejected as worker proof strings so copied ETA, remaining-count, or critical-path prompt context cannot close this package.
           - frontier-detail prompt strings are rejected as worker proof strings so copied frontier priority or detail prompt context cannot close this package.
+          - run-prompt authority labels are rejected as worker proof strings so copied steering focus, assigned package, writable scope, or first-action prompt text cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
           - control-plane polling prohibition guard is enforced case-insensitively so current handoff text cannot be copied into package proof as a completion signal.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
@@ -818,6 +819,7 @@ milestones:
           - local proof floor commit 3e7ee9b is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the current governor packet proof floor.
           - local proof floor commit 17189be is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the future-dated source timestamp guard.
           - local proof floor commit 9d2ea4c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the timestamp guard proof floor.
+          - local proof floor commit bb49fc1 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the run-prompt authority guard.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
