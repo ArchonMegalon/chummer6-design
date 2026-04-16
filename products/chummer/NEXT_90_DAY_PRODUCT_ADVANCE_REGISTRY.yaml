@@ -719,7 +719,8 @@ milestones:
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
-          - local proof floor commit eeafd9e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy completed-package proof without the latest local guard.
+          - local proof floor commit 1ba508e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy completed-package proof without the latest local guard.
+          - local proof floor commit 6d1663c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the dependency-routing guard added for blocked support-packet proof.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
