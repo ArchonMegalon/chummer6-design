@@ -743,6 +743,7 @@ milestones:
           - local proof floor commit 1ba508e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy completed-package proof without the latest local guard.
           - local proof floor commit 6d1663c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the dependency-routing guard added for blocked support-packet proof.
           - local proof floor commit ade57ae is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the task-local telemetry field guard.
+          - local proof floor commit 55d8282 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the source-authority guard.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
