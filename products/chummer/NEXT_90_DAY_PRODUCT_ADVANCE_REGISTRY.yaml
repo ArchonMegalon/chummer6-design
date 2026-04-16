@@ -615,6 +615,8 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 72f96452 pins the M105 workspace task guard proof.
           - /docker/chummercomplete/chummer.run-services commit 664737cb pins the current M105 workspace task guard floor.
           - /docker/chummercomplete/chummer.run-services commit 138d84ef pins the latest M105 workspace task guard floor.
+          - /docker/chummercomplete/chummer.run-services commit 109face0 pins the M105 workspace proof floor.
+          - /docker/chummercomplete/chummer.run-services commit 28b9e40a pins the M105 workspace proof floor guard.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
