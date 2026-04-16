@@ -179,6 +179,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 5403219b stabilizes the M101 release train receipt timestamp so repeated proof checks do not reopen the completed package.
           - /docker/chummercomplete/chummer6-ui-finish commit 871c7f7b pins the M101 release train proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 8b0e1801 pins the current M101 release train proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit eae55383 pins the current M101 release train proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit 287c7538 pins the M101 proof floor to the latest completed-package guard.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -682,6 +684,7 @@ milestones:
           - The verifier requires every measured rollout action to appear in both the decision board and decision gate ledger.
           - status-plane final claim drift blocks launch expansion and measured rollout readiness so the packet cannot promote from green support and parity inputs while whole-product final claim truth has regressed.
           - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
+          - supervisor status polling and active worker run proof strings are rejected case-insensitively so active-run helper evidence cannot be recited as package proof.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
