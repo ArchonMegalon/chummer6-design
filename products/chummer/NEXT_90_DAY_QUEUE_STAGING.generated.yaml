@@ -69,6 +69,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 2c351c92 pins M102 landed proof floor.
       - /docker/chummercomplete/chummer.run-services commit 575daa11 pins M102 desktop trust proof floor.
       - /docker/chummercomplete/chummer.run-services commit bffcad4d tightens M102 proof timestamp stability so generatedAt-only proof refreshes do not reopen the closed desktop-native trust package.
+      - /docker/chummercomplete/chummer.run-services commit 9454feb7 pins M102 timestamp proof floor.
       - python3 scripts/verify_desktop_native_trust_receipts.py
       - python3 -m unittest tests/test_desktop_native_trust_receipts.py
       - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification" --no-restore
@@ -128,6 +129,8 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 31cb7cf7 tightens the M101 release train proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit 5a282824 pins the M101 release train verifier, compliance guard, and generated receipt to proof floor 31cb7cf7.
       - /docker/chummercomplete/chummer6-ui-finish commit 237e039d pins the M101 active-run proof guard floor so future shards verify the latest completed-package guard instead of repeating it.
+      - /docker/chummercomplete/chummer6-ui-finish commit 49a5466c pins M101 latest release train proof floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit 90c0a763 pins the M101 verifier, generated receipt, and compliance guard to proof floor 49a5466c.
       - bash scripts/ai/milestones/next90-m101-ui-release-train-check.sh
       - source assertion check for M101 guard tokens and primaryProofIndependentFromFallback=true
     allowed_paths:
@@ -204,6 +207,7 @@ items:
       - /docker/chummercomplete/chummer-core-engine commit cbce6a19 pins the current 5031ee41 queue proof guard in the generated proof pack, unit tests, and proof-pack documentation.
       - /docker/chummercomplete/chummer-core-engine commit 71441924 pins the current cbce6a19 queue proof floor in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
       - /docker/chummercomplete/chummer-core-engine commit df1330b4 pins the latest 71441924 queue proof floor in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
+      - /docker/chummercomplete/chummer-core-engine commit 6610ff2e tightens the M104 proof pack so the df1330b4 queue proof floor must resolve locally.
     allowed_paths:
       - src
       - tests
@@ -265,6 +269,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 83bbc0d4 tightens the M105 workspace duplicate proof guard.
       - /docker/chummercomplete/chummer.run-services commit 1a0ba130 pins the M105 workspace duplicate proof floor.
       - /docker/chummercomplete/chummer.run-services commit 63313972 pins the M105 workspace proof floor.
+      - /docker/chummercomplete/chummer.run-services commit 0b038324 tightens M105 local and served release proof uniqueness so duplicate closed-package rows or duplicate package-scoped receipts cannot keep the package green.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
