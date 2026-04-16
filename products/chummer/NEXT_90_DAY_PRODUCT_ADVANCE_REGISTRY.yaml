@@ -766,6 +766,7 @@ milestones:
           - task-local telemetry field names are rejected as worker proof strings so copied active-run context cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
+          - run-helper failure proof strings are rejected case-insensitively so forbidden helper output cannot be recited as package proof.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
           - verifier rejects reused closed successor frontier rows outside the Fleet M106 package so future queue rows cannot repeat frontier 2376135131 under a new package id.
@@ -777,6 +778,7 @@ milestones:
           - local proof floor commit 55d8282 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the source-authority guard.
           - local proof floor commit 144eae5 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the worker-run helper guard.
           - local proof floor commit 543dfd5 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the markdown proof-floor guard.
+          - local proof floor commit f16f13b is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the run-helper failure guard.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
