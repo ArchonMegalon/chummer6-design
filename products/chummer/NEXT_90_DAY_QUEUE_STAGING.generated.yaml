@@ -123,6 +123,8 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 7945695d pins the refreshed M101 release train proof receipt into the verifier and compliance guard.
       - /docker/chummercomplete/chummer6-ui-finish commit 9e3d931a pins M101 package identity, allowed scope, owned surfaces, landed commit, and Avalonia independence at the receipt top level.
       - /docker/chummercomplete/chummer6-ui-finish commit 492e8f83 records the M101 top-level package-proof floor in the verifier, compliance guard, and generated receipt.
+      - /docker/chummercomplete/chummer6-ui-finish commit 31cb7cf7 tightens the M101 release train proof floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit 5a282824 pins the M101 release train verifier, compliance guard, and generated receipt to proof floor 31cb7cf7.
       - bash scripts/ai/milestones/next90-m101-ui-release-train-check.sh
       - source assertion check for M101 guard tokens and primaryProofIndependentFromFallback=true
     allowed_paths:
@@ -335,8 +337,11 @@ items:
       - standalone verifier rejects missing receipt-gate names, missing weekly receipt counters, and active-run telemetry helper proof entries
       - generated support-packet proof hygiene requires empty disallowed active-run proof entries
       - stale generated support proof gaps fail the standalone verifier
+      - generated support successor scope drift fails the standalone verifier
+      - generated support successor closure-field drift fails the standalone verifier
       - weekly/support receipt-count drift fails the standalone verifier
       - weekly/support generated_at freshness fails the standalone verifier
+      - weekly support-packet source sha256 drift fails the standalone verifier
       - future-dated support and weekly generated_at receipts fail the standalone verifier
       - weekly support-packet source-path drift fails the standalone verifier
       - design queue source path rejects active-run helper paths
@@ -345,6 +350,7 @@ items:
       - successor frontier 2454416974 pinned for next90-m102-fleet-reporter-receipts repeat prevention
       - design-owned queue source row matches the Fleet completed queue proof assignment
       - design-owned queue source proof markers fail the standalone verifier
+      - successor verifier fail-closes missing Fleet proof anchors and SUPPORT_CASE_PACKETS.generated.json reports missing_registry_proof_anchor_paths=[] and missing_queue_proof_anchor_paths=[]
       - telemetry command proof markers fail the standalone verifier and shared successor authority check
       - distinct queue proof anti-collapse guard prevents broad prose proof lines from satisfying command and negative-proof rows
       - duplicate queue, design-queue, and registry work-task rows for next90-m102-fleet-reporter-receipts fail the shared successor authority check
@@ -445,10 +451,10 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 762aaedb pins the M103 veteran proof token guard.
       - /docker/chummercomplete/chummer6-ui-finish commit 8ce865c4 tightens M103 no-reopen proof posture.
       - /docker/chummercomplete/chummer6-ui-finish commit 55f2efca tightens M103 active-run state-root proof exclusion.
-      - /docker/chummercomplete/chummer6-ui-finish commit 9a6ebd38 pins M103 veteran certification proof floor.
-      - /docker/chummercomplete/chummer6-ui-finish commit b0f424aa tightens M103 scoped proof guard.
       - /docker/chummercomplete/chummer6-ui-finish commit f649825d pins M103 active-run proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit 585ccc78 pins M103 active-run proof floor guard.
+      - /docker/chummercomplete/chummer6-ui-finish commit 9a6ebd38 pins M103 veteran certification proof floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit b0f424aa tightens M103 scoped proof guard.
       - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M103VeteranCertificationGuardTests.cs
       - bash scripts/ai/milestones/next90-m103-ui-veteran-certification-check.sh
     allowed_paths:
@@ -677,6 +683,8 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 285e97be tightens the current M107 artifact factory proof floor guard.
       - /docker/chummercomplete/chummer.run-services commit ce1c6611 pins M107 artifact factory proof floor guard.
       - /docker/chummercomplete/chummer.run-services commit 67ae7dab requires refreshed M107 proof floor.
+      - /docker/chummercomplete/chummer.run-services commit 65ac67a8 pins M107 refreshed artifact factory proof floor.
+      - /docker/chummercomplete/chummer.run-services commit e0121780 tightens M107 artifact factory external URI guard.
       - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
     allowed_paths:
       - Chummer.Run.Api
@@ -782,8 +790,8 @@ items:
     owned_surfaces:
       - runsite_host_mode:mobile
       - campaign_orientation:mobile
-  - title: Emit install-aware release and support concierge packets from installed-build truth
-    task: Compile support closure and release explainer packets from installed build, channel, and support-case truth.
+  - title: Emit install-aware release, support, and public concierge packets from installed-build truth
+    task: Compile support closure and release explainer packets, plus public trust wrapper flows with first-party fallbacks, from installed build, channel, and support-case truth.
     package_id: next90-m111-hub-support-concierge
     milestone_id: 111
     wave: W9
@@ -795,8 +803,9 @@ items:
     owned_surfaces:
       - install_aware_support_concierge
       - release_concierge:hub
+      - public_concierge_wrapper:hub
   - title: Publish install-aware artifact identities and channel rationale for concierge bundles
-    task: Store why this release, fix, or recovery artifact is correct for this installed build and channel.
+    task: Store why this release, fix, recovery artifact, or bounded public concierge asset is correct for this installed build and channel.
     package_id: next90-m111-registry-install-aware-concierge
     milestone_id: 111
     wave: W9
@@ -808,8 +817,9 @@ items:
     owned_surfaces:
       - install_aware_artifact_registry
       - release_channel_truth:concierge
-  - title: Gate followthrough mail and public proof promotion against install-aware receipts
-    task: Promote release and support concierge artifacts only when install-aware recovery receipts and publication refs agree.
+      - public_concierge_assets:registry
+  - title: Gate followthrough mail, public proof promotion, and concierge rollout against install-aware receipts
+    task: Promote release and support concierge artifacts and public trust-surface concierge flows only when install-aware recovery receipts, publication refs, and kill-switch posture agree.
     package_id: next90-m111-fleet-install-aware-followthrough
     milestone_id: 111
     wave: W9
@@ -822,6 +832,7 @@ items:
     owned_surfaces:
       - install_aware_followthrough
       - product_governor:artifact_promotion
+      - product_governor:public_concierge
   - title: Promote campaign consequence state into governed campaign APIs
     task: Land downtime, aftermath, heat, faction, contact, and reputation state with receipts and return-loop actions.
     package_id: next90-m112-hub-campaign-consequence-truth

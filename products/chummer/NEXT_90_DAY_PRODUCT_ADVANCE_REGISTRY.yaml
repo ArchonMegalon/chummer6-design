@@ -170,6 +170,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 7945695d pins the refreshed M101 release train proof receipt into the verifier and compliance guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 9e3d931a pins M101 package identity, allowed scope, owned surfaces, landed commit, and Avalonia independence at the receipt top level.
           - /docker/chummercomplete/chummer6-ui-finish commit 492e8f83 records the M101 top-level package-proof floor in the verifier, compliance guard, and generated receipt.
+          - /docker/chummercomplete/chummer6-ui-finish commit 31cb7cf7 tightens the M101 release train proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit 5a282824 pins the M101 release train verifier, compliance guard, and generated receipt to proof floor 31cb7cf7.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -271,8 +273,12 @@ milestones:
           - python3 -m py_compile scripts/materialize_support_case_packets.py tests/test_materialize_support_case_packets.py scripts/materialize_weekly_governor_packet.py tests/test_materialize_weekly_governor_packet.py exits 0.
           - direct tmp_path fixture invocation for all tests/test_materialize_support_case_packets.py and tests/test_materialize_weekly_governor_packet.py test functions exits 0.
           - /docker/fleet/scripts/verify_next90_m102_fleet_reporter_receipts.py fail-closes weekly/support generated_at freshness drift so WEEKLY_GOVERNOR_PACKET.generated.json cannot predate the SUPPORT_CASE_PACKETS.generated.json receipt gates it summarizes.
+          - /docker/fleet/scripts/verify_next90_m102_fleet_reporter_receipts.py fail-closes weekly support-packet source sha256 drift so WEEKLY_GOVERNOR_PACKET.generated.json must name the exact SUPPORT_CASE_PACKETS.generated.json bytes it summarizes.
+          - /docker/fleet/scripts/verify_next90_m102_fleet_reporter_receipts.py fail-closes future-dated generated_at receipts so support and weekly proof cannot outrun wall-clock truth.
           - python3 scripts/verify_next90_m102_fleet_reporter_receipts.py exits 0.
           - /docker/fleet/scripts/verify_script_bootstrap_no_pythonpath.py includes the standalone M102 verifier in no-PYTHONPATH bootstrap proof so repeat-prevention cannot silently break on import path assumptions.
+          - /docker/fleet/scripts/materialize_support_case_packets.py now fail-closes duplicate next90-m102-fleet-reporter-receipts queue rows, duplicate design-queue rows, and duplicate registry work-task rows so stale closure proof cannot hide behind the first matching row.
+          - /docker/fleet/scripts/materialize_support_case_packets.py now requires generated successor scope-drift, closure-field drift, and missing Fleet proof-anchor markers in both the Fleet queue mirror and design-owned queue source so future shards verify the closed proof floor instead of repeating it.
 
   - id: 103
     title: Chummer5a parity lab and veteran migration certification
@@ -728,6 +734,10 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 45d3d498 tightens M107 artifact factory proof floor.
           - /docker/chummercomplete/chummer.run-services commit c3aaf05a pins M107 artifact factory proof floor.
           - /docker/chummercomplete/chummer.run-services commit 285e97be tightens the current M107 artifact factory proof floor guard.
+          - /docker/chummercomplete/chummer.run-services commit ce1c6611 pins M107 artifact factory proof floor guard.
+          - /docker/chummercomplete/chummer.run-services commit 67ae7dab requires refreshed M107 proof floor.
+          - /docker/chummercomplete/chummer.run-services commit 65ac67a8 pins M107 refreshed artifact factory proof floor.
+          - /docker/chummercomplete/chummer.run-services commit e0121780 tightens M107 artifact factory external URI guard.
           - successor frontier 1421219975 pinned for next90-m107-hub-artifact-factory repeat prevention.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/ArtifactFactoryOrchestrationService.cs rejects unapproved or provider-specific source packs and emits media-factory output bindings for preview, caption, packet, audio, and video formats.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/InternalArtifactFactoryController.cs and Chummer.Run.Api/ServiceCollectionBoundedContextExtensions.cs bind the recipe-backed job launcher to the internal authenticated Hub orchestration endpoint.
@@ -842,7 +852,7 @@ milestones:
         title: Keep runsite host mode bounded under route, tour, and inspection truth.
 
   - id: 111
-    title: Install-aware release and support concierge
+    title: Install-aware release, support, and public concierge
     wave: W9
     owners:
       - chummer6-hub
@@ -858,24 +868,25 @@ milestones:
       - 107
     exit_criteria:
       - Fix confirmation, release explainer, and support closure bundles compile from install-aware channel and support truth instead of queued support state alone.
+      - Public trust surfaces such as downloads, release, and help-entry pages may offer bounded concierge routing with first-party fallbacks, while authenticated and truth-bearing surfaces remain first-party only.
       - Help, support, status, and release surfaces can answer what changed, what to do next, and why this build, channel, or action is correct for this user.
-      - Mail, in-product notices, and the public proof shelf all cite the same install-aware release and recovery receipts.
+      - Mail, in-product notices, public trust surfaces, and the public proof shelf all cite the same install-aware release and recovery receipts.
     work_tasks:
       - id: 111.1
         owner: chummer6-hub
-        title: Emit install-aware support and release concierge packets tied to installed build, channel, and support-case truth.
+        title: Emit install-aware support and release concierge packets plus public trust wrapper routes tied to installed build, channel, and support-case truth.
       - id: 111.2
         owner: chummer6-hub-registry
-        title: Publish install-aware artifact identities, channel rationale, and recovery proof refs.
+        title: Publish install-aware artifact identities, channel rationale, recovery proof refs, and reusable concierge asset references.
       - id: 111.3
         owner: chummer6-media-factory
-        title: Render release explainer and support closure bundles with captions and sibling notes.
+        title: Render release explainer, support closure, and public concierge companion bundles with captions, previews, and sibling notes.
       - id: 111.4
         owner: fleet
-        title: Gate followthrough mail and public proof promotion against the same install-aware receipts.
+        title: Gate followthrough mail, public proof promotion, and public concierge rollout against the same install-aware receipts and kill-switch posture.
       - id: 111.5
         owner: chummer6-design
-        title: Keep concierge language honest about fixed, fallback, preview, and recovery posture.
+        title: Keep public concierge widgets bounded to low-risk public surfaces with honest fixed, fallback, preview, and recovery posture.
 
   - id: 112
     title: Campaign memory, downtime, heat, faction, and contact truth

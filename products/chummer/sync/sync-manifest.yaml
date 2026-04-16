@@ -64,6 +64,9 @@ product_source_groups:
     - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md
     - products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md
     - products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml
+    - products/chummer/NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md
+    - products/chummer/NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml
+    - products/chummer/NEXT_90_DAY_QUEUE_STAGING.generated.yaml
     - products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md
     - products/chummer/PROGRAM_MILESTONES.yaml
     - products/chummer/CONTRACT_SETS.yaml
@@ -127,6 +130,8 @@ product_source_groups:
     - products/chummer/PUBLIC_MEDIA_BRIEFS.yaml
     - products/chummer/PUBLIC_VIDEO_BRIEFS.yaml
     - products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml
+    - products/chummer/PUBLIC_CONCIERGE_AND_TRUST_WIDGET_MODEL.md
+    - products/chummer/PUBLIC_CONCIERGE_WORKFLOWS.yaml
     - products/chummer/PUBLIC_GUIDE_POLICY.md
     - products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml
     - products/chummer/PUBLIC_PART_REGISTRY.yaml
@@ -174,8 +179,10 @@ product_source_groups:
     - products/chummer/FEEDBACK_PROGRESS_EMAIL_WORKFLOW.yaml
   external_tools:
     - products/chummer/EXTERNAL_TOOLS_PLANE.md
+    - products/chummer/EXTERNAL_TOOLS_BLOCKING_POLICY_REWORK.md
     - products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md
     - products/chummer/LTD_CAPABILITY_MAP.md
+    - products/chummer/LTD_STACK_WOW_FACTOR_CHANGE_GUIDE.md
 mirrors:
 - repo: chummer6-core
   product_target: .codex-design/product
