@@ -199,6 +199,8 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit db4fc1e1 tightens M101 worker-context proof guard.
           - /docker/chummercomplete/chummer6-ui-finish commit 4a4079f5 pins the latest M101 release train proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 9b97ab1a tightens M101 primary route-truth proof so Avalonia primary evidence cannot smuggle fallback tokens into proof-bearing fields.
+          - /docker/chummercomplete/chummer6-ui-finish commit f563293f pins M101 primary route proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit c9f49b5b tightens M101 closed-package proof so future shards verify the completed package instead of reopening the Avalonia primary-route slice.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -315,6 +317,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit c0c4dca1 records the M102 desktop trust proof citation.
           - /docker/chummercomplete/chummer.run-services commit 42a3d5a4 pins the M102 desktop trust citation floor.
           - /docker/chummercomplete/chummer.run-services commit af567e58 pins the M102 desktop trust verifier floor.
+          - /docker/chummercomplete/chummer.run-services commit 2620a2f4 requires the M102 desktop trust verifier floor.
           - python3 scripts/verify_desktop_native_trust_receipts.py and python3 -m unittest tests/test_desktop_native_trust_receipts.py exit 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification" --no-restore exits 0 for net10.0 and net10.0-windows.
       - id: 102.2
@@ -654,6 +657,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 9171e3f4 tightens M105 release proof receipt uniqueness so duplicate unscoped workspace or entitlement receipt ids cannot hide beside the closed package receipts.
           - /docker/chummercomplete/chummer.run-services commit a7e826d3 pins the M105 workspace receipt uniqueness proof floor.
           - /docker/chummercomplete/chummer.run-services commit d882db69 pins the M105 workspace proof floor guard.
+          - /docker/chummercomplete/chummer.run-services commit db4fe453 tightens M105 served proof route mirroring so public proof shelves cannot drift from local route receipts.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
@@ -768,12 +772,16 @@ milestones:
           - The verifier rejects compile manifest freshness drift after weekly packet refresh so published artifact truth cannot stay green from a stale manifest.
           - The verifier rejects support-packet source_sha256 drift against SUPPORT_CASE_PACKETS.generated.json so weekly support truth cannot stay green after receipt-packet edits.
           - The verifier requires every measured rollout action to appear in both the decision board and decision gate ledger.
+          - weekly pulse duplicate or ambiguous launch governance actions are rejected so the packet cannot silently choose one launch decision from conflicting pulse rows.
           - status-plane final claim drift blocks launch expansion and measured rollout readiness so the packet cannot promote from green support and parity inputs while whole-product final claim truth has regressed.
           - status_reason distinguishes closed Fleet package proof from blocked rollout gates so future shards do not reopen 106.1 when source, dependency, or sibling gates are the active blockers.
           - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
           - task-local telemetry field names are rejected as worker proof strings so copied active-run context cannot close this package.
+          - successor-wave telemetry summary strings are rejected as worker proof strings so copied ETA, remaining-count, or critical-path prompt context cannot close this package.
+          - frontier-detail prompt strings are rejected as worker proof strings so copied frontier priority or detail prompt context cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
+          - worker-run supervisor launcher guard is enforced case-insensitively so active-run supervisor shell launchers cannot be recited as package proof.
           - run-helper failure proof strings are rejected case-insensitively so forbidden helper output cannot be recited as package proof.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
