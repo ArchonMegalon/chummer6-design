@@ -356,6 +356,7 @@ milestones:
         status: complete
         evidence:
           - /docker/EA/docs/chummer5a_parity_lab/CHUMMER5A_PARITY_LAB_PACK.yaml reports status=task_proven for owned surfaces parity_lab:capture and veteran_compare_packs.
+          - /docker/EA/docs/chummer5a_parity_lab/README.md documents the closed EA proof boundary, append-free terminal policy, and delegated non-EA follow-up packages for repeated M103 assignments.
           - /docker/EA/docs/chummer5a_parity_lab/SUCCESSOR_HANDOFF_CLOSEOUT.yaml reports status=ea_scope_complete, completed outputs, anti-reopen rules, and delegated non-EA follow-up packages.
           - /docker/EA/.codex-studio/published/CHUMMER5A_PARITY_ORACLE_PACK.generated.json reports status=task_proven with screenshot_corpora, workflow_maps, compare_packs, and import_export_fixture_inventory outputs present.
           - python tests/test_chummer5a_parity_lab_pack.py exits with ran=16 failed=0 in /docker/EA.
