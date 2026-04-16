@@ -745,6 +745,7 @@ milestones:
           - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
           - task-local telemetry field names are rejected as worker proof strings so copied active-run context cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
+          - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
           - verifier rejects reused closed successor frontier rows outside the Fleet M106 package so future queue rows cannot repeat frontier 2376135131 under a new package id.
