@@ -675,6 +675,7 @@ milestones:
           - The verifier rejects compile manifest freshness drift after weekly packet refresh so published artifact truth cannot stay green from a stale manifest.
           - The verifier rejects support-packet source_sha256 drift against SUPPORT_CASE_PACKETS.generated.json so weekly support truth cannot stay green after receipt-packet edits.
           - The verifier requires every measured rollout action to appear in both the decision board and decision gate ledger.
+          - status-plane final claim drift blocks launch expansion and measured rollout readiness so the packet cannot promote from green support and parity inputs while whole-product final claim truth has regressed.
           - forbidden worker proof strings are rejected case-insensitively so closed-package evidence stays repo-local.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
