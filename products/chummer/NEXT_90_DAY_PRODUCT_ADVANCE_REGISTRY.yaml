@@ -312,6 +312,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit d3b19c88 pins the M102 materialized proof floor.
           - /docker/chummercomplete/chummer.run-services commit 39af99da pins the M102 materialized proof floor guard.
           - /docker/chummercomplete/chummer.run-services commit 7d86f38e pins the current M102 desktop trust proof floor.
+          - /docker/chummercomplete/chummer.run-services commit c0c4dca1 records the M102 desktop trust proof citation.
           - python3 scripts/verify_desktop_native_trust_receipts.py and python3 -m unittest tests/test_desktop_native_trust_receipts.py exit 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification" --no-restore exits 0 for net10.0 and net10.0-windows.
       - id: 102.2
@@ -646,6 +647,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 6add6cc6 pins the M105 workspace proof floor.
           - /docker/chummercomplete/chummer.run-services commit 4487d01a pins the M105 workspace proof floor guard.
           - /docker/chummercomplete/chummer.run-services commit 9171e3f4 tightens M105 release proof receipt uniqueness so duplicate unscoped workspace or entitlement receipt ids cannot hide beside the closed package receipts.
+          - /docker/chummercomplete/chummer.run-services commit a7e826d3 pins the M105 workspace receipt uniqueness proof floor.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
