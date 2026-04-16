@@ -296,6 +296,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 1870132d pins the latest M102 desktop trust proof floor.
           - /docker/chummercomplete/chummer.run-services commit 6b811ca2 pins the latest M102 desktop trust guard floor.
           - /docker/chummercomplete/chummer.run-services commit b7107364 pins the M102 desktop trust guard floor.
+          - /docker/chummercomplete/chummer.run-services commit f49c64a9 pins the M102 current desktop trust guard floor.
           - python3 scripts/verify_desktop_native_trust_receipts.py and python3 -m unittest tests/test_desktop_native_trust_receipts.py exit 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification" --no-restore exits 0 for net10.0 and net10.0-windows.
       - id: 102.2
@@ -736,6 +737,7 @@ milestones:
           - task-local telemetry field names are rejected as worker proof strings so copied active-run context cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
+          - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
           - local proof floor commit 1ba508e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy completed-package proof without the latest local guard.
