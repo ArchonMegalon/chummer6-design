@@ -292,6 +292,8 @@ items:
       - /docker/chummercomplete/chummer-core-engine commit 36311e16 pins the current ac961fe1 local proof floor in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
       - /docker/chummercomplete/chummer-core-engine commit be5755a6 pins the current db3cc033 queue-cited proof floor in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
       - /docker/chummercomplete/chummer-core-engine commit 8ffec2b1 pins the latest be5755a6 queue proof floor in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
+      - /docker/chummercomplete/chummer-core-engine commit 1bcb9b7e pins the current M104 proof pack guard.
+      - /docker/chummercomplete/chummer-core-engine commit e04d7b88 binds the current M104 proof pack guard into the generator, unit tests, proof-pack documentation, and checked-in receipt.
     allowed_paths:
       - src
       - tests
@@ -450,6 +452,7 @@ items:
       - local proof floor commit 999231f pinned for M106 source-input refresh guard
       - local proof floor commit 25836f6 pinned for M106 source refresh proof floor
       - local proof floor commit 3e7ee9b pinned for M106 governor packet proof floor
+      - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs
       - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages
     allowed_paths:
       - admin
