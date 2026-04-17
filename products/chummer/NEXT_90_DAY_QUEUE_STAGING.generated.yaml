@@ -238,6 +238,7 @@ items:
       - /docker/chummercomplete/chummer6-ui-finish commit 4f103b72 pins M101 current release train proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit deff0535 pins the current M101 release train proof floor.
       - /docker/chummercomplete/chummer6-ui-finish commit 342bff22 pins M101 active-run proof guard floor.
+      - /docker/chummercomplete/chummer6-ui-finish commit 0e894712 pins M101 active-run guard proof floor.
       - bash scripts/ai/milestones/next90-m101-ui-release-train-check.sh
       - source assertion check for M101 guard tokens and primaryProofIndependentFromFallback=true
     allowed_paths:
@@ -352,6 +353,7 @@ items:
       - /docker/chummercomplete/chummer-core-engine commit 44512fcf pins the current bb9af238 proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
       - /docker/chummercomplete/chummer-core-engine commit 5e808a1b pins the current adc72a7e proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
       - /docker/chummercomplete/chummer-core-engine commit c323b4ad pins the current 5e808a1b queue proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
+      - /docker/chummercomplete/chummer-core-engine commit 7a432bc3 pins the current c323b4ad queue proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
     allowed_paths:
       - src
       - tests
@@ -470,6 +472,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 8c718c33 pins the M105 restore conflict proof floor so future shards verify the latest recovery-receipt guard.
       - /docker/chummercomplete/chummer.run-services commit 7391fb1c pins the M105 restore conflict proof guard so future shards verify the current canonical proof floor.
       - /docker/chummercomplete/chummer.run-services commit c8838f8e tightens the M105 local release proof owner metadata so completed workspace continuity proof remains pinned to chummer6-hub.
+      - /docker/chummercomplete/chummer.run-services commit ad34bd41 tightens the M105 queue and registry scalar status proof so contradictory completion states cannot keep the completed package green.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
@@ -1349,4 +1352,3 @@ items:
       - launch_pulse
       - adoption_health:governor
 source_queue_fingerprint: next90-staging-20260415-next-big-wins-widening
-      - /docker/chummercomplete/chummer-core-engine commit 7a432bc3 pins the current c323b4ad queue proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
