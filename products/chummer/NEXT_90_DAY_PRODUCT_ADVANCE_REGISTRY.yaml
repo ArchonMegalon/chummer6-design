@@ -554,6 +554,7 @@ milestones:
           - /docker/chummercomplete/chummer-core-engine commit 6d25fb18 pins the current 06a2e06a proof floor receipt in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
           - /docker/chummercomplete/chummer-core-engine commit cc6cf25b pins the M104 current proof floor guard.
           - /docker/chummercomplete/chummer-core-engine commit bb9af238 pins the current cc6cf25b proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
+          - /docker/chummercomplete/chummer-core-engine commit 44512fcf pins the current bb9af238 proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
           - dotnet build Chummer.CoreEngine.Tests/Chummer.CoreEngine.Tests.csproj -c Release --nologo -m:1 && dotnet Chummer.CoreEngine.Tests/bin/Release/net10.0/Chummer.CoreEngine.Tests.dll exits 0.
           - dotnet run --project Chummer.Benchmarks/Chummer.Benchmarks.csproj -c Release -- --budget-check --budget-file Chummer.Benchmarks/workspace-benchmark-budgets.json exits 0 for load, explain, diff/apply, import, and export-prep workloads.
       - id: 104.3
