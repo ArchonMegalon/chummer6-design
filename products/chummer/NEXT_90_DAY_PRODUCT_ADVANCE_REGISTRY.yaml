@@ -890,6 +890,7 @@ milestones:
           - successor-wave telemetry summary strings are rejected as worker proof strings so copied ETA, remaining-count, or critical-path prompt context cannot close this package.
           - literal successor-wave telemetry labels are rejected as worker proof strings so copied prompt headings cannot close this package without repo-local evidence.
           - frontier-detail prompt strings are rejected as worker proof strings so copied frontier priority or detail prompt context cannot close this package.
+          - frontier-detail body strings are rejected as worker proof strings so copied successor frontier status, owner, dependency, surface, or closeout prompt text cannot close this package.
           - run-prompt authority labels are rejected as worker proof strings so copied steering focus, assigned package, writable scope, or first-action prompt text cannot close this package.
           - execution-discipline prompt strings are rejected as worker proof strings so copied run-control prohibitions cannot be recited as package evidence.
           - runtime handoff header and model metadata strings are rejected as worker proof strings so copied runtime header or model metadata fields cannot close this package.
