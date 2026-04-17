@@ -210,6 +210,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 28533e61 pins M101 Avalonia receipt floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 82334376 pins M101 release train proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 466e0fc0 tightens M101 queue scope proof.
+          - /docker/chummercomplete/chummer6-ui-finish commit b8dcab2d pins M101 queue scope proof floor.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -832,6 +833,7 @@ milestones:
           - literal successor-wave telemetry labels are rejected as worker proof strings so copied prompt headings cannot close this package without repo-local evidence.
           - frontier-detail prompt strings are rejected as worker proof strings so copied frontier priority or detail prompt context cannot close this package.
           - run-prompt authority labels are rejected as worker proof strings so copied steering focus, assigned package, writable scope, or first-action prompt text cannot close this package.
+          - execution-discipline prompt strings are rejected as worker proof strings so copied run-control prohibitions cannot be recited as package evidence.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
           - control-plane polling prohibition guard is enforced case-insensitively so current handoff text cannot be copied into package proof as a completion signal.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
@@ -868,6 +870,7 @@ milestones:
           - local proof floor commit 5193bce is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - local proof floor commit f662ad3 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the shorthand telemetry command guard.
           - local proof floor commit 5882234 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the blocked dependency route guard.
+          - local proof floor commit 6c376e0 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the execution-discipline proof guard.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
