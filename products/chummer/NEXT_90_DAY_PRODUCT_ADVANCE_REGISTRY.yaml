@@ -857,6 +857,7 @@ milestones:
           - python3 scripts/run_next90_m106_weekly_governor_packet_tests.py exits 0.
           - Direct tmp_path fixture invocation of tests/test_materialize_weekly_governor_packet.py exits 0.
           - The verifier rebuilds the decision-critical packet projection from live source inputs and rejects stale checked-in decision ledgers.
+          - markdown Generated timestamp must match JSON generated_at.
           - The verifier rejects checked-in packet freshness drift against generated readiness, journey, support, weekly pulse, and status-plane inputs.
           - future-dated weekly and source generated_at receipts are rejected so measured rollout truth cannot outrun wall-clock source evidence.
           - The verifier rejects compile manifest freshness drift after weekly packet refresh so published artifact truth cannot stay green from a stale manifest.
