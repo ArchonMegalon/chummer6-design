@@ -229,6 +229,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 9846ce73 pins M101 Avalonia artifact proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit a3917b15 pins M101 current release train proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 1c8aa33c tightens M101 closed queue proof guard.
+          - /docker/chummercomplete/chummer6-ui-finish commit f7fcf1a9 tightens M101 queue title proof.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -969,10 +970,12 @@ milestones:
           - local proof floor commit fba96cc is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the helper failure posture guard.
           - local proof floor commit 15efd7c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - local proof floor commit f3bfb8d is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
+          - local proof floor commit d15a7ae is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the queue closeout action guard.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - commit 81e1de8 refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after source input drift from refreshed support, readiness, and journey receipts.
           - commit 15efd7c refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, and journey source input drift.
           - commit f3bfb8d refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, journey, and status-plane source input drift.
+          - commit d15a7ae tightens the M106 queue closeout action guard.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
