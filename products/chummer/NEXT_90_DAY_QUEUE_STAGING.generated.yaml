@@ -294,6 +294,7 @@ items:
       - /docker/chummercomplete/chummer-core-engine/scripts/generate-engine-proof-pack.py
       - /docker/chummercomplete/chummer-core-engine/tests/test_engine_proof_pack_generator.py
       - /docker/chummercomplete/chummer-core-engine/docs/ENGINE_PROOF_PACK.md
+      - /docker/chummercomplete/chummer-core-engine/docs/NEXT90_M104_CORE_PROOF_PACK_CLOSEOUT.md
       - /docker/chummercomplete/chummer-core-engine commit 86040e30 fail-closes unassigned queue allowed paths or owned surfaces for this completed package.
       - /docker/chummercomplete/chummer-core-engine commit 35cd27b4 pins successor frontier 3227666051 into the completed M104 proof guard.
       - /docker/chummercomplete/chummer-core-engine commit 8dd516ef makes failed engine proof pack generation exit nonzero while still writing diagnostic receipts.
@@ -478,6 +479,7 @@ items:
       - /docker/chummercomplete/chummer.run-services commit 7391fb1c pins the M105 restore conflict proof guard so future shards verify the current canonical proof floor.
       - /docker/chummercomplete/chummer.run-services commit c8838f8e tightens the M105 local release proof owner metadata so completed workspace continuity proof remains pinned to chummer6-hub.
       - /docker/chummercomplete/chummer.run-services commit ad34bd41 tightens the M105 queue and registry scalar status proof so contradictory completion states cannot keep the completed package green.
+      - /docker/chummercomplete/chummer.run-services commit 7174e4d8 tightens the M105 steering-focus proof guard so copied successor focus and ETA prompt text cannot close the completed workspace package.
       - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py
       - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py
       - /docker/chummercomplete/chummer.run-services/scripts/ai/verify.sh
