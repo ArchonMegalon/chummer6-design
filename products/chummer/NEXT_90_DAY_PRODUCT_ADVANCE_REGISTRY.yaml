@@ -596,6 +596,7 @@ milestones:
           - /docker/chummercomplete/chummer-core-engine commit 870be707 pins the current af67ecfd handoff proof floor in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
           - /docker/chummercomplete/chummer-core-engine commit 2f430d09 pins the current 498dff3d queue mirror proof floor in the generator, unit tests, and checked-in receipt.
           - /docker/chummercomplete/chummer-core-engine commit b8000b80 tightens the M104 OODA telemetry proof guard so plain governor-loop evidence cannot close the package.
+          - /docker/chummercomplete/chummer-core-engine commit ecbb466c pins the current b8000b80 OODA proof guard in the generated proof pack, unit tests, proof-pack documentation, and checked-in receipt.
           - dotnet build Chummer.CoreEngine.Tests/Chummer.CoreEngine.Tests.csproj -c Release --nologo -m:1 && dotnet Chummer.CoreEngine.Tests/bin/Release/net10.0/Chummer.CoreEngine.Tests.dll exits 0.
           - dotnet run --project Chummer.Benchmarks/Chummer.Benchmarks.csproj -c Release -- --budget-check --budget-file Chummer.Benchmarks/workspace-benchmark-budgets.json exits 0 for load, explain, diff/apply, import, and export-prep workloads.
       - id: 104.3
@@ -784,6 +785,9 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 53da9351 tightens the M105 proof commit citation guard so registry and queue closure evidence cannot cite unresolved local commits.
           - /docker/chummercomplete/chummer.run-services commit f2df11b1 pins the M105 proof citation guard floor so future shards verify the current closed-package guard.
           - /docker/chummercomplete/chummer.run-services commit 0fbc8f96 tightens M105 local release proof package-shape guard so extra copied worker metadata cannot keep the completed workspace package green.
+          - /docker/chummercomplete/chummer.run-services commit 87115e9c pins the M105 workspace proof package-shape guard so future shards verify the current closed-package floor.
+          - /docker/chummercomplete/chummer.run-services commit 14f55d5a pins the M105 current workspace proof floor so future shards verify the latest closed-package guard.
+          - /docker/chummercomplete/chummer.run-services commit f519b944 pins the M105 current workspace proof floor into the package verifier and commit-resolution test.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
@@ -964,9 +968,11 @@ milestones:
           - local proof floor commit 233a52a is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the shard-runtime-handoff guard.
           - local proof floor commit fba96cc is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the helper failure posture guard.
           - local proof floor commit 15efd7c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
+          - local proof floor commit f3bfb8d is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - commit 81e1de8 refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after source input drift from refreshed support, readiness, and journey receipts.
           - commit 15efd7c refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, and journey source input drift.
+          - commit f3bfb8d refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, journey, and status-plane source input drift.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
