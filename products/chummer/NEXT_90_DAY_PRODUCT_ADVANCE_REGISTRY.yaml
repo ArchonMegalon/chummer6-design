@@ -796,6 +796,8 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 14f55d5a pins the M105 current workspace proof floor so future shards verify the latest closed-package guard.
           - /docker/chummercomplete/chummer.run-services commit f519b944 pins the M105 current workspace proof floor into the package verifier and commit-resolution test.
           - /docker/chummercomplete/chummer.run-services commit 125aa82e recovers blank restore conflict summaries and pins the fallback in M105 workspace receipt proof.
+          - /docker/chummercomplete/chummer.run-services commit da9bb74c pins the blank restore conflict summary proof in the package verifier and commit-resolution test.
+          - /docker/chummercomplete/chummer.run-services commit 11a9662f pins the current M105 workspace proof floor into the closed-package verifier.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
