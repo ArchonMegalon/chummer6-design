@@ -357,6 +357,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 41d7ed57 pins the M102 current desktop trust floor.
           - /docker/chummercomplete/chummer.run-services commit bd60fc5a tightens M102 active-run evidence path guard.
           - /docker/chummercomplete/chummer.run-services commit 2791f798 tightens M102 support intake installed-build truth.
+          - /docker/chummercomplete/chummer.run-services commit 93e5075a tightens M102 current proof floor guard.
           - python3 scripts/verify_desktop_native_trust_receipts.py and python3 -m unittest tests/test_desktop_native_trust_receipts.py exit 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification|InstallLinkingControllerBrowserCallbackTests" --no-restore exits 0 for net10.0 and net10.0-windows.
       - id: 102.2
@@ -906,6 +907,7 @@ milestones:
           - local proof floor commit 00e870e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the direct fixture runner guard.
           - local proof floor commit 81e1de8 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed source-input packet floor.
           - local proof floor commit 941c54d is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the handoff frontier metadata guard.
+          - local proof floor commit 6981667 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the worker helper rule guard.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - commit 81e1de8 refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after source input drift from refreshed support, readiness, and journey receipts.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
