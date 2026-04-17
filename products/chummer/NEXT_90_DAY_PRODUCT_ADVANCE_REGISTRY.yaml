@@ -824,13 +824,19 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit da9bb74c pins the blank restore conflict summary proof in the package verifier and commit-resolution test.
           - /docker/chummercomplete/chummer.run-services commit fdac7b2f tightens the M105 closed queue action guard so Fleet and design queue rows must carry verify_closed_package_only plus the package-specific do-not-reopen reason.
           - /docker/chummercomplete/chummer.run-services commit 11a9662f pins the current M105 workspace proof floor into the closed-package verifier.
+          - /docker/chummercomplete/chummer.run-services commit ec1bb219 tightens the M105 queue identity guard so copied title or frontier rows cannot make future shards repeat the closed workspace continuity package.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
+          - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_queue_identity.py fail-closes copied queue rows that reuse the M105 title or successor frontier outside next90-m105-hub-workspace-continuity.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
+          - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_identity.py
           - /docker/chummercomplete/chummer.run-services/scripts/materialize_hub_local_release_proof.py regenerates HUB_LOCAL_RELEASE_PROOF.generated.json with the closed M105 package metadata, workspace_restore:provenance receipt, and entitlement_sync:conflict_receipts receipt.
           - python3 scripts/verify_workspace_restore_receipts.py exits 0.
+          - python3 scripts/verify_workspace_restore_queue_identity.py exits 0.
           - python3 -m unittest tests/test_workspace_restore_receipts.py exits 0.
+          - python3 -m unittest tests/test_workspace_restore_queue_identity.py exits 0.
           - python3 -m unittest tests/test_workspace_restore_receipts.py tests/test_workspace_restore_queue_frontier_guard.py tests/test_workspace_restore_commit_resolution.py exits 0.
+          - python3 -m unittest tests/test_workspace_restore_receipts.py tests/test_workspace_restore_queue_frontier_guard.py tests/test_workspace_restore_commit_resolution.py tests/test_workspace_restore_queue_identity.py exits 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "CampaignSpineRestoreReceiptTests|CampaignWorkspaceServerPlaneServiceTests|CampaignOsLocalProofMaterializerTests" --no-restore exits 0 with 408 tests passed on net10.0 and net10.0-windows.
       - id: 105.2
         owner: chummer6-ui
