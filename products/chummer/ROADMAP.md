@@ -20,6 +20,7 @@ Current status on 2026-03-26:
 
 The Next 20 Big Wins wave is materially closed on public `main`.
 The Post-Audit Next 20 Big Wins wave is materially closed on public `main`.
+The current recommended wave is **Next 12 Biggest Wins**.
 The current closeout wave is **Next 12 Biggest Wins**.
 The filename stays for continuity, but the active machine-readable wave now spans milestones `1` through `18`: the original flagship 12 plus six explicit no-step-back parity closure milestones.
 It uses `NEXT_12_BIGGEST_WINS_GUIDE.md` as execution text and `NEXT_12_BIGGEST_WINS_REGISTRY.yaml` for machine-readable progress.
