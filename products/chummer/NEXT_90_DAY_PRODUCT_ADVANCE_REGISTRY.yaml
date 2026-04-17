@@ -1008,14 +1008,14 @@ milestones:
           - local proof floor commit d15a7ae is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the queue closeout action guard.
           - local proof floor commit ac1c4ac is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the queue closeout proof floor.
           - local proof floor commit b909cc5 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the codexea helper proof guard.
-          - local proof floor commit 024c3c4 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
+          - local proof floor commit 787d27a is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the packet refresh floor.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - commit 81e1de8 refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after source input drift from refreshed support, readiness, and journey receipts.
           - commit 15efd7c refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, and journey source input drift.
           - commit f3bfb8d refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, journey, and status-plane source input drift.
           - commit d15a7ae tightens the M106 queue closeout action guard.
           - commit b909cc5 tightens the M106 codexea helper proof guard.
-          - commit 024c3c4 refreshes the M106 weekly governor packet proof.
+          - commit 787d27a pins the M106 packet refresh floor.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
