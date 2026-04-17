@@ -842,6 +842,7 @@ milestones:
           - local proof floor commit e74a7ec is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the OODA telemetry proof floor.
           - local proof floor commit 8fb8d40 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - local proof floor commit dd5fdb5 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the weekly governor proof floor.
+          - local proof floor commit 52fe086 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the governor packet proof floor.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
