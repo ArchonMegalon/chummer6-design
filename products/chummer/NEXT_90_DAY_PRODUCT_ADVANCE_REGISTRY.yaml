@@ -1472,3 +1472,4 @@ milestones:
       - id: 120.5
         owner: chummer6-design
         title: Keep public launch health language precise about live, preview, fallback, fixed, revoked, and blocked posture.
+          - /docker/chummercomplete/chummer-core-engine commit 7a432bc3 pins the current c323b4ad queue proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.

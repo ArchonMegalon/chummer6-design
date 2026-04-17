@@ -1349,3 +1349,4 @@ items:
       - launch_pulse
       - adoption_health:governor
 source_queue_fingerprint: next90-staging-20260415-next-big-wins-widening
+      - /docker/chummercomplete/chummer-core-engine commit 7a432bc3 pins the current c323b4ad queue proof floor guard in the generator, unit tests, proof-pack documentation, and checked-in receipt.
