@@ -861,6 +861,7 @@ milestones:
           - run-prompt authority labels are rejected as worker proof strings so copied steering focus, assigned package, writable scope, or first-action prompt text cannot close this package.
           - execution-discipline prompt strings are rejected as worker proof strings so copied run-control prohibitions cannot be recited as package evidence.
           - runtime handoff header and model metadata strings are rejected as worker proof strings so copied runtime header or model metadata fields cannot close this package.
+          - runtime handoff frontier metadata strings are rejected as worker proof strings so copied active-run frontier and open-milestone labels cannot close this package.
           - handoff polling phrase guard is enforced case-insensitively so blocked run evidence cannot be recited as package proof.
           - control-plane polling prohibition guard is enforced case-insensitively so current handoff text cannot be copied into package proof as a completion signal.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
