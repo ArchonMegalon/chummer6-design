@@ -896,6 +896,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 741afbb9 tightens the M105 registry-cited proof floor guard so c63b38d2 is a named, scoped, ancestor-checked local proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit e797befd pins the M105 restore-continuity local proof floor guard.
           - /docker/chummercomplete/chummer6-ui-finish commit ca4b3485 pins the M105 restore-continuity verifier, compliance guard, and receipt to local proof floor e797befd.
+          - /docker/chummercomplete/chummer6-ui-finish commit fd0fbfd0 tightens the M105 completed queue action guard so Fleet and design queue rows must carry verify_closed_package_only plus the package-specific do-not-reopen reason.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopHomeWindow.cs keeps restore continuation, stale-state visibility, conflict choices, devices/access, workspace support, and native support fallback visible on the Avalonia desktop home route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Avalonia/DesktopCampaignWorkspaceWindow.cs keeps the same restore, stale-state, conflict-choice, and support fallback posture visible inside the primary campaign workspace route.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Desktop.Runtime/DesktopInstallLinkingRuntime.cs pre-fills install and workspace support packets with restore, stale-state, and conflict-choice context.
