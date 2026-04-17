@@ -904,6 +904,7 @@ milestones:
           - telemetry-ownership handoff prompt strings are rejected as worker proof strings so copied run-control ownership prompts cannot close this package.
           - worker-run supervisor launcher guard is enforced case-insensitively so active-run supervisor shell launchers cannot be recited as package proof.
           - run-helper failure proof strings are rejected case-insensitively so forbidden helper output cannot be recited as package proof.
+          - repeat-prevention worker command guard records helper failure posture so future shards cannot soften helper failure semantics while keeping package proof green.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
           - verifier rejects reused closed successor frontier rows outside the Fleet M106 package so future queue rows cannot repeat frontier 2376135131 under a new package id.
