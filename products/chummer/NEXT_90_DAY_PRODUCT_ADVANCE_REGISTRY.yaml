@@ -130,6 +130,7 @@ milestones:
           - /docker/chummercomplete/chummer-hub-registry commit d1c9a12 pins the M101 queue-scope proof floor into the verifier, proof receipt, and closeout note.
           - /docker/chummercomplete/chummer-hub-registry commit cfb928b pins the M101 queue proof citation floor so canonical registry and queue staging cite the current completed-package proof floor.
           - /docker/chummercomplete/chummer-hub-registry commit 2f7a422 tightens the M101 duplicate route-truth guard so future shards reject repeated desktopTupleCoverage.desktopRouteTruth tuple ids instead of repeating the completed package.
+          - /docker/chummercomplete/chummer-hub-registry commit b3a945b tightens the M101 tuple rationale and encoded helper proof floor so future shards verify the current completed-package proof instead of repeating it.
           - /docker/chummercomplete/chummer-hub-registry commit a4e47da landed the package slice and ./scripts/ai/verify.sh exits 0.
       - id: 101.3
         owner: chummer6-ui
@@ -428,6 +429,7 @@ milestones:
           - /docker/fleet/scripts/verify_script_bootstrap_no_pythonpath.py includes the standalone M102 verifier in no-PYTHONPATH bootstrap proof so repeat-prevention cannot silently break on import path assumptions.
           - /docker/fleet/scripts/materialize_support_case_packets.py now fail-closes duplicate next90-m102-fleet-reporter-receipts queue rows, duplicate design-queue rows, and duplicate registry work-task rows so stale closure proof cannot hide behind the first matching row.
           - /docker/fleet/scripts/materialize_support_case_packets.py now requires generated successor scope-drift, closure-field drift, and missing Fleet proof-anchor markers in both the Fleet queue mirror and design-owned queue source so future shards verify the closed proof floor instead of repeating it.
+          - /docker/fleet/scripts/verify_next90_m102_fleet_reporter_receipts.py now fail-closes runtime handoff metadata proof markers so copied worker-run metadata cannot close the package.
 
   - id: 103
     title: Chummer5a parity lab and veteran migration certification
@@ -946,6 +948,7 @@ milestones:
           - control-plane polling prohibition guard is enforced case-insensitively so current handoff text cannot be copied into package proof as a completion signal.
           - worker-run OODA helper guard is enforced case-insensitively so forbidden run-control citations cannot be recited as package proof.
           - telemetry-ownership handoff prompt strings are rejected as worker proof strings so copied run-control ownership prompts cannot close this package.
+          - worker-safe resume context prompt strings are rejected as worker proof strings so copied runtime handoff resume prompts cannot close this package.
           - worker-run supervisor launcher guard is enforced case-insensitively so active-run supervisor shell launchers cannot be recited as package proof.
           - run-helper failure proof strings are rejected case-insensitively so forbidden helper output cannot be recited as package proof.
           - repeat-prevention worker command guard records helper failure posture so future shards cannot soften helper failure semantics while keeping package proof green.
@@ -992,11 +995,14 @@ milestones:
           - local proof floor commit 15efd7c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - local proof floor commit f3bfb8d is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - local proof floor commit d15a7ae is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the queue closeout action guard.
+          - local proof floor commit ac1c4ac is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the queue closeout proof floor.
+          - local proof floor commit b909cc5 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the codexea helper proof guard.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - commit 81e1de8 refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after source input drift from refreshed support, readiness, and journey receipts.
           - commit 15efd7c refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, and journey source input drift.
           - commit f3bfb8d refreshes WEEKLY_GOVERNOR_PACKET.generated.json and WEEKLY_GOVERNOR_PACKET.generated.md after current support, readiness, journey, and status-plane source input drift.
           - commit d15a7ae tightens the M106 queue closeout action guard.
+          - commit b909cc5 tightens the M106 codexea helper proof guard.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
