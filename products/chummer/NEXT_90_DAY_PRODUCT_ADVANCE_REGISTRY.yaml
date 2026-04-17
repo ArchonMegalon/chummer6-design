@@ -764,6 +764,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit 7174e4d8 tightens the M105 steering-focus proof guard so copied successor focus and ETA prompt text cannot close the completed workspace package.
           - /docker/chummercomplete/chummer.run-services commit 28cfb2be pins the M105 steering proof floor so future shards verify the latest closed-package guard.
           - /docker/chummercomplete/chummer.run-services commit 417946f4 pins the M105 workspace proof floor so future shards verify the current closed-package guard.
+          - /docker/chummercomplete/chummer.run-services commit e0960698 tightens the M105 workspace telemetry proof guard for copied run-control execution-discipline text.
           - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects restore provenance and conflict receipts onto the workspace server plane with canonical workspace_restore and entitlement_sync surfaces.
           - /docker/chummercomplete/chummer.run-services/scripts/verify_workspace_restore_receipts.py fail-closes missing source/proof markers for workspace_restore:provenance and entitlement_sync:conflict_receipts.
           - /docker/chummercomplete/chummer.run-services/tests/test_workspace_restore_queue_frontier_guard.py
