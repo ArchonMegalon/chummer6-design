@@ -217,6 +217,7 @@ milestones:
           - /docker/chummercomplete/chummer6-ui-finish commit 46a9f070 tightens M101 standard verify artifact-identity mutation coverage so Avalonia primary route-truth artifact IDs cannot cite Blazor fallback proof.
           - /docker/chummercomplete/chummer6-ui-finish commit ccc77950 pins M101 artifact mutation proof floor.
           - /docker/chummercomplete/chummer6-ui-finish commit 4f103b72 pins M101 current release train proof floor.
+          - /docker/chummercomplete/chummer6-ui-finish commit deff0535 pins the current M101 release train proof floor.
           - /docker/chummercomplete/chummer6-ui-finish/scripts/ai/milestones/next90-m101-ui-release-train-check.sh now fail-closes missing completed queue proof tokens, missing Blazor fallback route-truth rows, non-fallback fallback posture, non-Avalonia startup-smoke receipts, and artifact-digest mismatch for Windows, macOS, and Linux primary-route proof.
           - /docker/chummercomplete/chummer6-ui-finish/Chummer.Tests/Compliance/Next90M101ReleaseTrainGuardTests.cs pins the completed queue proof-token guard so the package cannot be re-closed without its verifier, generated receipt, compliance proof, and command receipts.
           - /docker/chummercomplete/chummer6-ui-finish/.codex-studio/published/NEXT90_M101_UI_RELEASE_TRAIN.generated.json reports status=pass, primaryProofIndependentFromFallback=true, proofHead=avalonia for linux, windows, and macos, and fallbackRouteRole=fallback for every required tuple.
@@ -355,6 +356,7 @@ milestones:
           - /docker/chummercomplete/chummer.run-services commit cd392a72 pins the M102 current proof floor guard.
           - /docker/chummercomplete/chummer.run-services commit 41d7ed57 pins the M102 current desktop trust floor.
           - /docker/chummercomplete/chummer.run-services commit bd60fc5a tightens M102 active-run evidence path guard.
+          - /docker/chummercomplete/chummer.run-services commit 2791f798 tightens M102 support intake installed-build truth.
           - python3 scripts/verify_desktop_native_trust_receipts.py and python3 -m unittest tests/test_desktop_native_trust_receipts.py exit 0.
           - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter "DesktopInstallRailTests|PublicLandingClaimRecoveryFlowTests|InstallLinkingContinuationVerification|InstallLinkingControllerBrowserCallbackTests" --no-restore exits 0 for net10.0 and net10.0-windows.
       - id: 102.2
