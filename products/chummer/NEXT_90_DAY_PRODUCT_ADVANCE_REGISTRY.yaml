@@ -833,6 +833,7 @@ milestones:
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
           - verifier rejects reused closed successor frontier rows outside the Fleet M106 package so future queue rows cannot repeat frontier 2376135131 under a new package id.
+          - blocked support-packet proof routes exactly to the M102 reporter-receipts dependency package so the closed M106 handoff cannot gain ambiguous dependency routes.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
           - local proof floor commit 1ba508e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy completed-package proof without the latest local guard.
@@ -859,6 +860,7 @@ milestones:
           - local proof floor commit 6c429cb is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the verified closeout proof floor.
           - local proof floor commit 5193bce is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the refreshed packet artifact floor.
           - local proof floor commit f662ad3 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the shorthand telemetry command guard.
+          - local proof floor commit 5882234 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the blocked dependency route guard.
           - commit 26679c7 refreshes .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.json and .codex-studio/published/WEEKLY_GOVERNOR_PACKET.generated.md against current support, readiness, journey, and status-plane source inputs.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
