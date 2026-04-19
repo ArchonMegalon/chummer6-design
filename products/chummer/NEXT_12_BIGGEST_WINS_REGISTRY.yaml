@@ -1,14 +1,14 @@
 product: chummer
 version: 1
-last_reviewed: 2026-04-04
+last_reviewed: 2026-04-15
 program_wave: next_12_biggest_wins
 goal: finish the flagship desktop, close no-step-back client parity, make campaign continuity indispensable, widen build plus explain plus exchange where they deepen daily use, and turn trust plus launch scale into boring product truth.
-status: active
+status: complete
 
 waves:
   - id: W1
     name: Ship the flagship desktop
-    status: planned
+    status: complete
     milestone_ids:
       - 1
       - 2
@@ -55,7 +55,7 @@ milestones:
       - chummer6-hub-registry
       - fleet
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Guided install, linking, update, rollback, recovery, and startup smoke work as one coherent release lane on every promoted desktop platform.
       - Release truth, public shelf truth, and installer truth stay aligned by artifact, head, architecture, and channel.
@@ -79,7 +79,7 @@ milestones:
       - fleet
       - chummer6-ui
       - chummer6-hub-registry
-    status: planned
+    status: complete
     exit_criteria:
       - Avalonia and Blazor promoted heads prove executable menu liveness, workflow execution, visual familiarity, and install behavior on shipped artifacts.
       - Control-plane receipts fail honest when screenshots, startup smoke, or platform/head-specific proof is missing or stale.
@@ -220,7 +220,7 @@ milestones:
       - chummer6-core
       - chummer6-ui
       - chummer6-hub
-    status: planned
+    status: complete
     exit_criteria:
       - Character creation, compare, advancement planning, and crew-fit analysis behave like one grounded build surface.
       - Build decisions reuse campaign constraints, explain receipts, and living dossier truth instead of branching into sidecar planners.
@@ -235,7 +235,7 @@ milestones:
       - chummer6-ui
       - chummer6-hub
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Numbers, workflow blockers, imports, support diagnoses, and campaign constraints expose grounded receipts.
       - Rule-environment before and after diffs are available wherever a user or operator needs to understand why a result changed.
@@ -250,7 +250,7 @@ milestones:
       - chummer6-hub-registry
       - chummer6-media-factory
       - chummer6-ui
-    status: planned
+    status: complete
     exit_criteria:
       - Exchange, replay, recap, and module publication form a real second pillar of product value with lineage, compatibility, and trust proof.
       - Artifact truth survives publication, import, return, and audit without untracked local drift.
@@ -266,7 +266,7 @@ milestones:
       - fleet
       - executive-assistant
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Support can prove which build, channel, fix, and recovery path a user actually has.
       - Public trust pages, support packets, and installer/update surfaces agree on the same install-specific truth.
@@ -282,7 +282,7 @@ milestones:
       - chummer6-hub-registry
       - chummer6-ui
       - chummer6-design
-    status: planned
+    status: complete
     exit_criteria:
       - Creator outputs, modules, primers, replays, and dossiers are discoverable, comparable, moderated, and trust-ranked without clutter collapse.
       - Publication and shelf posture stay explainable by ownership, audience, and provenance.
@@ -298,7 +298,7 @@ milestones:
       - executive-assistant
       - chummer6-design
       - chummer6-hub
-    status: planned
+    status: complete
     exit_criteria:
       - The governor loop can justify launch, freeze, rollback, or focus shifts from measured truth rather than hand-maintained prose.
       - Automation frontiers and implementation loops stay aligned with the active product program instead of drifting after local wins.

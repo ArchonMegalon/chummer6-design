@@ -1,6 +1,6 @@
 # Release Evidence Pack
 
-Last reviewed: 2026-04-01
+Last reviewed: 2026-04-15
 
 Purpose: close `WL-D037` by keeping the final release argument in one canonical location.
 This pack records foundation and wave-closeout truth, but full public-release completeness still depends on the flagship acceptance bar in `FLAGSHIP_RELEASE_ACCEPTANCE.yaml`.
@@ -13,7 +13,8 @@ This pack records foundation and wave-closeout truth, but full public-release co
 - The Account-Aware Front Door wave is materially closed on public `main`; see `ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md` for the post-foundation public-surface closeout record.
 - The Next 20 Big Wins wave is also materially closed on public `main`; `NEXT_20_BIG_WINS_EXECUTION_PLAN.md` and `NEXT_20_BIG_WINS_REGISTRY.yaml` now serve as the preserved additive-wave closeout record, while `NEXT_15_BIG_WINS_EXECUTION_PLAN.md` remains the older historical plan.
 - The Post-Audit Next 20 Big Wins wave is now materially closed on public `main`; see `POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT.md` for the additive follow-on closeout record.
-- The current successor wave is `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE.md` with machine-readable status in `NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml`.
+- The active flagship-closeout wave is `NEXT_12_BIGGEST_WINS_GUIDE.md` with machine-readable status in `NEXT_12_BIGGEST_WINS_REGISTRY.yaml`.
+- The queued successor wave is `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md` with machine-readable staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml` and `NEXT_90_DAY_QUEUE_STAGING.generated.yaml`.
 
 ## Owner-repo evidence
 
@@ -41,7 +42,8 @@ Chummer foundation release is complete at the canonical product/design level.
 The first account-aware install, update, support, and operator-control wave is also materially closed on public `main`.
 The Next 20 Big Wins additive wave is materially closed on public `main`.
 The post-audit next 20 sequence is materially closed on public `main`.
-The current successor wave records the next execution priorities after that closeout.
+The active flagship-closeout wave records the final proof priorities after that closeout.
+The queued Next 90-Day Product Advance wave records the widened successor priorities after flagship closeout: release truth, parity proof, continuity, artifact factory proof, campaign orientation, campaign operations, rules/build/exchange moat, creator and community publication, onboarding, launch health, and measured product-governor cadence.
 The signed-in home cockpit, explicit rule-environment posture, living-dossier runtime object, package-owned campaign-contract adoption, roaming restore packet, Build Lab handoff UX, Rules Navigator, migration receipts, creator publication posture, and the first organizer/operator account surface are now part of the shipped public/account-aware product surface rather than only planned canon.
 The weekly pulse itself now emits a bounded generated snapshot, and interop/portability now has explicit canon plus runtime/export proof instead of implied compatibility drift.
 Public product maturity is still advancing in broader promotion breadth, estate-wide adoption, live operator cadence, and measured production depth rather than in still-missing repo-local canon or package seams.

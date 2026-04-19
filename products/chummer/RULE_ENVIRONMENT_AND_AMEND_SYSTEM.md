@@ -24,6 +24,8 @@ Chummer must let a user, campaign, or group say:
 * this is why the current result is legal, blocked, or divergent under this environment
 * this runner or campaign can be restored on another device without mystery package drift
 
+World-linked mission and campaign-consequence seams must flow through explicit structures rather than hidden state mutation.
+
 Rule environments are therefore current product truth, not future-only governance scaffolding.
 
 ## Canonical terms
@@ -69,6 +71,43 @@ The user-facing record of:
 * what changed in effective content
 * what was blocked, missing, downgraded, or lossy
 * the compatibility fingerprint used for compute and portability
+
+### `WorldOffer`
+
+An explicit world-linked availability package that can contribute job seeds, rewards, and constraint deltas.
+
+`WorldOffer`s must be:
+
+* campaign-consumable
+* scoped by source authority and consent posture
+* explainable through environment receipts
+
+### `ThreatTag`
+
+A deterministic tag that binds pressure, opposition, and environmental constraints to objective and legality impact.
+
+`ThreatTag`s cannot be ambient flags. They are versioned and explainable under the active environment and campaign overlay.
+
+### `ScenarioModifier`
+
+An explicit scenario modifier entry activated through a rule environment for one packet, mission, or district slice.
+
+Modifiers include:
+
+* impact scope
+* provenance for why they apply
+* duration and invalidation rules
+* legal/availability boundaries
+
+### `CampaignOverlayPackage`
+
+An explicit environment-linked overlay package used to augment campaign-facing narrative, mission, and consequence surfaces.
+
+The overlay must:
+
+* carry compatibility and approval references
+* be explicit in activation receipts
+* avoid mutating campaign continuity semantics
 
 ## Chummer5a continuity rule
 
@@ -127,6 +166,10 @@ The graph must normalize package inputs into:
 * add-if-not-found posture
 * priority order
 * source package provenance
+* world offer refs
+* threat tag refs
+* scenario modifier refs
+* campaign overlay refs
 
 Supported normalized operation kinds are:
 
@@ -166,6 +209,7 @@ Owns:
 * compatibility fingerprints
 * activation receipts
 * explainable impact summaries
+* world offer and campaign overlay extension graph normalization
 * legacy amend-pack import and loss classification
 
 ### `chummer6-ui`

@@ -24,7 +24,7 @@ This page is for serious Chummer5a users who want the fast answer: what still fe
 
 - Primary desktop route: `Chummer.Avalonia`.
 - Fallback desktop route: `Chummer.Blazor.Desktop` only when the shelf and status pages label it that way.
-- Current platform posture: The current desktop proof is still centered on Linux.
+- Current platform posture: Published desktop downloads are currently visible for Linux and Windows, with Avalonia still treated as the primary route.
 - Today this should still be read as a serious preview, not a finished gold replacement.
 
 ## What is still not honest to overclaim

@@ -231,10 +231,13 @@ def _parse_frontier_ids_from_handoff_text(text: str) -> list[int]:
 
 
 def _automation_alignment_signal(active_wave_registry_path: Path, active_wave_status: str) -> dict[str, Any]:
-    handoff_path = _resolve_fleet_artifact(FLEET_HANDOFF_CANDIDATES)
-    handoff_text = _read_optional_text(handoff_path)
-    frontier_ids = _parse_frontier_ids_from_handoff_text(handoff_text)
     open_ids = _active_open_milestone_ids(active_wave_registry_path)
+    # Product pulse truth must not depend on operator handoff snippets. During
+    # completion review those handoffs can contain synthetic frontier ids or
+    # stale historical status, so the stable automation frontier is the active
+    # registry open set itself.
+    frontier_ids = open_ids
+    parsed_frontier_ids: list[int] = []
     out_of_program_ids = [value for value in frontier_ids if value not in open_ids]
     state = "aligned"
     if str(active_wave_status or "").strip().lower() in {"active", "in_progress", "in-progress"} and not frontier_ids:
@@ -254,7 +257,8 @@ def _automation_alignment_signal(active_wave_registry_path: Path, active_wave_st
         "active_open_milestone_ids": open_ids,
         "handoff_frontier_milestone_ids": frontier_ids,
         "out_of_program_frontier_milestone_ids": out_of_program_ids,
-        "handoff_source": str(handoff_path),
+        "handoff_source": _product_relative(active_wave_registry_path),
+        "parsed_handoff_frontier_ids": parsed_frontier_ids,
         "summary": summary,
     }
 

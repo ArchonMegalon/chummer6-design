@@ -15,7 +15,7 @@ Use `PRODUCT_HEALTH_SCORECARD.yaml` when the question is "how does whole-product
 ### Reading tracks
 
 1. Public/product story:
-   `VISION.md` -> `PUBLIC_LANDING_POLICY.md` -> `PUBLIC_NAVIGATION.yaml` -> `PUBLIC_LANDING_MANIFEST.yaml` -> `PUBLIC_FEATURE_REGISTRY.yaml` -> `PUBLIC_PROGRESS_PARTS.yaml` -> `PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml` -> `PUBLIC_USER_MODEL.md` -> `PUBLIC_AUTH_FLOW.md` -> `PUBLIC_MEDIA_BRIEFS.yaml` -> `PUBLIC_VIDEO_BRIEFS.yaml` -> `MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml`
+   `VISION.md` -> `PUBLIC_LANDING_POLICY.md` -> `PUBLIC_NAVIGATION.yaml` -> `PUBLIC_LANDING_MANIFEST.yaml` -> `PUBLIC_FEATURE_REGISTRY.yaml` -> `PUBLIC_PROGRESS_PARTS.yaml` -> `PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml` -> `PUBLIC_USER_MODEL.md` -> `PUBLIC_AUTH_FLOW.md` -> `COMPANION_PERSONA_AND_INTERACTION_MODEL.md` -> `COMPANION_PACKET.md` -> `COMPANION_TRIGGER_REGISTRY.yaml` -> `COMPANION_EVENT_SCHEMA.yaml` -> `PUBLIC_MEDIA_BRIEFS.yaml` -> `PUBLIC_VIDEO_BRIEFS.yaml` -> `MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml`
 2. Product middle and control loop:
    `CAMPAIGN_SPINE_AND_CREW_MODEL.md` -> `CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md` -> `ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md` -> `CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md` -> `INTEROP_AND_PORTABILITY_MODEL.md` -> `RULE_ENVIRONMENT_AND_AMEND_SYSTEM.md` -> `USER_JOURNEYS.md` -> `GOLDEN_JOURNEY_RELEASE_GATES.yaml` -> `JOURNEY_GATES.generated.json` -> `PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md` -> `SUPPORT_AND_SIGNAL_OODA_LOOP.md` -> `EXPERIENCE_SUCCESS_METRICS.md`
 3. Repo and contract boundaries:
@@ -129,6 +129,11 @@ Use `PRODUCT_HEALTH_SCORECARD.yaml` when the question is "how does whole-product
 100. `STRUCTURED_VIDEO_AND_NARRATED_MEDIA_MODEL.md`
 101. `VIDBOARD_AND_LTD_WOW_FACTOR_WORKFLOWS.md`
 102. `adrs/ADR-0016-structured-presenter-video-lane.md`
+103. `COMPANION_PERSONA_AND_INTERACTION_MODEL.md`
+104. `COMPANION_PACKET.md`
+105. `COMPANION_TRIGGER_REGISTRY.yaml`
+106. `COMPANION_EVENT_SCHEMA.yaml`
+107. `adrs/ADR-0017-first-party-companion-runtime-and-bounded-voice-mode.md`
 
 `HORIZON_REGISTRY.yaml` is the machine-readable source for horizon existence, order, public-guide eligibility, and eventual build path.
 The current horizon set covers knowledge fabric, spatial/runsite artifacts, creator press, replay/forensics, and bounded table coaching in addition to the earlier continuity and simulation lanes.
@@ -176,6 +181,7 @@ The current horizon set covers knowledge fabric, spatial/runsite artifacts, crea
 `PRIVACY_AND_RETENTION_BOUNDARIES.md` defines the default retention clocks, redaction posture, and ownership split for support, crash, claim/install, survey, provider-trace, and publication telemetry surfaces.
 `PUBLIC_TRUST_CONTENT.yaml` is the canonical trust-content manifest for help, contact, and support statements surfaced at `/help`, `/contact`, and `/downloads`.
 `PUBLIC_VIDEO_BRIEFS.yaml`, `MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml`, `STRUCTURED_VIDEO_AND_NARRATED_MEDIA_MODEL.md`, and `VIDBOARD_AND_LTD_WOW_FACTOR_WORKFLOWS.md` are the media/publication canon that turns owned LTD posture into repeatable artifact-factory workflows rather than isolated vendor notes.
+`COMPANION_PERSONA_AND_INTERACTION_MODEL.md`, `COMPANION_PACKET.md`, `COMPANION_TRIGGER_REGISTRY.yaml`, and `COMPANION_EVENT_SCHEMA.yaml` define the first-party companion identity, trigger truth, runtime packet contract, suppression discipline, and structured event lanes so desktop/mobile shells, public concierge surfaces, EA compile passes, and downstream media packs stay aligned.
 `journeys/*.md` defines the top end-to-end user flows and failure-mode recoveries that multiple repos must preserve.
 `BUILD_LAB_PRODUCT_MODEL.md` defines Build Lab as a flagship Build plus Explain surface rather than leaving it as a downstream milestone label without a canonical product promise.
 `FLAGSHIP_PRODUCT_BAR.md` defines the cross-repo craftsmanship bar for what counts as a premium, public-release-ready Chummer product rather than only a closed wave or green test run.

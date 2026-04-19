@@ -90,8 +90,10 @@ def main() -> int:
                 errors.append("ROADMAP.md must name Next 12 Biggest Wins as the active follow-on wave.")
             if after_post_audit_status not in {"in_progress", "complete"}:
                 errors.append("NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml must be in_progress or complete once the post-audit wave is closed.")
-            if next12_status not in {"active", "in_progress", "in-progress"}:
-                errors.append("NEXT_12_BIGGEST_WINS_REGISTRY.yaml must be active/in_progress once the post-audit wave is closed.")
+            if next12_status not in {"active", "in_progress", "in-progress", "complete"}:
+                errors.append(
+                    "NEXT_12_BIGGEST_WINS_REGISTRY.yaml must be active, in_progress, or complete once the post-audit wave is closed."
+                )
         elif (
             "**Campaign Breadth and Promotion**" not in roadmap
             and "**Post-Audit Next 20 Big Wins**" not in roadmap

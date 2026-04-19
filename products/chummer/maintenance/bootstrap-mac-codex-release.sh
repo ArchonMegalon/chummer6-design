@@ -112,6 +112,7 @@ main() {
   dotnet restore "$project" \
     -r "$rid" \
     -p:ChummerUseLocalCompatibilityTree=true \
+    -p:UseChummerEngineContractsLocalFeed=false \
     -p:ChummerLocalContractsProject="$CHUMMER_LOCAL_CONTRACTS_PROJECT" \
     -p:ChummerLocalRunContractsProject="$CHUMMER_LOCAL_RUN_CONTRACTS_PROJECT" \
     -p:ChummerLocalUiKitProject="$CHUMMER_LOCAL_UI_KIT_PROJECT"
@@ -130,6 +131,7 @@ main() {
     -p:ChummerLocalUiKitProject="$CHUMMER_LOCAL_UI_KIT_PROJECT" \
     -p:ChummerDesktopReleaseVersion="$release_version" \
     -p:ChummerDesktopReleaseChannel="$release_channel" \
+    -p:UseChummerEngineContractsLocalFeed=false \
     -o "$out_dir"
 
   log "packaging dmg"

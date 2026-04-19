@@ -23,13 +23,13 @@ Build characters, inspect rulings, and keep sessions moving with explainable mat
 
 - Primary desktop route: `Chummer.Avalonia`.
 - Fallback desktop route: `Chummer.Blazor.Desktop` only where the shelf and status pages label it as fallback or compatibility.
-- Current platform posture: Linux is the strongest currently proven desktop lane, but the promoted release channel is still unpublished.
+- Current platform posture: Linux installer proof is the strongest currently published desktop lane.
 - What gold still requires: Gold still requires veteran-approved parity, dense-workbench comfort proof, and promoted desktop proof for every promised platform.
 
 ## What is real now
 
 - Current stage: Public preview.
-- The current shelf visibly carries Linux preview artifacts, but the promoted release channel is still unpublished.
+- Published downloads are currently visible for Windows and Linux.
 - Help, privacy, terms, contact, and release guidance are live as first-party product pages.
 - More campaign depth, broader platform coverage, and stronger proof trails are still opening next.
 
