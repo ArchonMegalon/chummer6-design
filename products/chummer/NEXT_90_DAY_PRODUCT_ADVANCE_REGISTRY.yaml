@@ -1095,6 +1095,9 @@ milestones:
           - commit b909cc5 tightens the M106 codexea helper proof guard.
           - commit 787d27a pins the M106 packet refresh floor.
           - commit b467c27 tightens the M106 design queue OODA prompt proof guard.
+          - stale aggregate receipt-gate counts cannot overstate installed-build followthrough without detailed row truth so weekly packet markdown and JSON cannot overstate install-bound followthrough from stale summary aggregates alone.
+          - local proof floor commit fe4c621 is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the receipt-gate row-truth guard.
+          - commit fe4c621 tightens the M106 receipt-gate row-truth guard.
           - do-not-reopen handoff routes remaining M106 work to dependency or sibling packages instead of repeating the Fleet weekly governor packet slice.
       - id: 106.2
         owner: executive-assistant
