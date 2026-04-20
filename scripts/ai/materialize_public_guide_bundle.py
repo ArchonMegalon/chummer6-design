@@ -1090,7 +1090,7 @@ def _generate_root(
     gold_gap_summary = (
         "Gold still requires veteran-approved parity, dense-workbench comfort proof, and promoted desktop proof for every promised platform."
         if families_below_gold
-        else "The parity registry is fully gold-ready, so release truth now depends on live desktop proof and support posture."
+        else "The parity registry is fully gold-ready, so release truth now depends on live desktop proof and a fully proven help experience."
     )
 
     cta_map = {
@@ -1150,12 +1150,12 @@ def _generate_root(
     )
     rows.extend(
         [
-            "## Desktop truth",
+            "## Desktop today",
             "",
             f"- Primary desktop route: `{primary_head or 'Chummer.Avalonia'}`.",
             f"- Fallback desktop route: `{_english_join(fallback_heads) or 'Chummer.Blazor.Desktop'}` only where the shelf and status pages label it as fallback or compatibility.",
-            f"- Current platform posture: {platform_notes[0]}",
-            f"- What gold still requires: {gold_gap_summary}",
+            f"- Best-supported desktop path today: {platform_notes[0]}",
+            f"- What flagship quality still requires: {gold_gap_summary}",
             "",
         ]
     )
@@ -1278,11 +1278,11 @@ def _generate_from_chummer5a_to_chummer6(
         "- Local-first continuity is supposed to survive bad connectivity and device drift more gracefully.",
         "- Release, support, and recovery truth are being pushed closer to the product instead of forcing users to reverse-engineer the state from repo or issue trails.",
         "",
-        "## Desktop truth right now",
+        "## Desktop today",
         "",
         f"- Primary desktop route: `{primary_head}`.",
         f"- Fallback desktop route: `{_english_join(fallback_heads) or 'Chummer.Blazor.Desktop'}` only when the shelf and status pages label it that way.",
-        f"- Current platform posture: {platform_line}",
+        f"- Best-supported desktop path today: {platform_line}",
         "- Today this should still be read as a serious preview, not a finished gold replacement.",
         "",
         "## What is still not honest to overclaim",
@@ -1326,8 +1326,6 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         rows.extend(["## Current picture", ""])
         if phase:
             rows.append(f"- Current stage: {phase}.")
-        if overall is not None and int(overall) < 100:
-            rows.append(f"- Guide refinement pass: {overall}% complete.")
         if version:
             rows.append(f"- Current build: `{version}`.")
         if published_at:

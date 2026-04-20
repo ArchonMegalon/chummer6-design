@@ -4,7 +4,7 @@ version: 1
 guest_readable_channels:
   - stable
   - preview
-release_notes_summary: The current preview centers one clear public download, a visible proof trail, and support guidance that matches the shelf you can actually use today.
+release_notes_summary: The current preview centers one clear public download, a visible proof trail, and help that matches the shelf you can actually use today.
 flagship_grade_summary: A public release is only truly ready when downloads, install/update help, recovery, support, and the product surfaces behind them feel like one premium, honest product rather than a technically functional preview bundle.
 flagship_acceptance_source: FLAGSHIP_RELEASE_ACCEPTANCE.yaml
 desktop_flagship_head: Chummer.Avalonia
