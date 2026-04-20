@@ -19,17 +19,17 @@ Build characters, inspect rulings, and keep sessions moving with explainable mat
 - I need support or want to report pain: [Help](HELP.md) and [Contact](CONTACT.md).
 - I only care about future ideas: [Horizons](HORIZONS/README.md).
 
-## Desktop truth
+## Desktop today
 
 - Primary desktop route: `Chummer.Avalonia`.
 - Fallback desktop route: `Chummer.Blazor.Desktop` only where the shelf and status pages label it as fallback or compatibility.
-- Current platform posture: Linux installer proof is the strongest currently published desktop lane.
-- What gold still requires: Gold still requires veteran-approved parity, dense-workbench comfort proof, and promoted desktop proof for every promised platform.
+- Best-supported desktop path today: Linux installer proof is the strongest currently published desktop lane.
+- What flagship quality still requires: The parity registry is fully gold-ready, so release truth now depends on live desktop proof and a fully proven help experience.
 
 ## What is real now
 
 - Current stage: Public preview.
-- Published downloads are currently visible for Windows and Linux.
+- Published downloads are currently visible for Linux and macOS.
 - Help, privacy, terms, contact, and release guidance are live as first-party product pages.
 - More campaign depth, broader platform coverage, and stronger proof trails are still opening next.
 
