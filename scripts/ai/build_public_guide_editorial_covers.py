@@ -707,7 +707,7 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
             source_path = _resolve_source(repo_root, source_root, str(tile_spec.get("source") or ""), output_root)
             tile = Image.open(source_path).convert("RGB")
             tile = _fit_cover(tile, (tile_width, tile_height), tile_spec.get("focus") or (0.5, 0.5), zoom=float(tile_spec.get("zoom") or 1.0))
-            tile = _contrast(_saturate(_darken(tile, 0.80 if idx == 0 else 0.76), 1.05), 1.06)
+            tile = _contrast(_saturate(_darken(tile, 0.88 if idx == 0 else 0.84), 1.08), 1.08)
             tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18 if idx == 0 else 20)
             shadow_offset = 14 if idx == 0 else 10
             radius = 28 if idx == 0 else 22
@@ -724,7 +724,7 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
             source_path = _resolve_source(repo_root, source_root, str(tile_spec.get("source") or ""), output_root)
             tile = Image.open(source_path).convert("RGB")
             tile = _fit_cover(tile, (tile_width, tile_height), tile_spec.get("focus") or (0.5, 0.5), zoom=float(tile_spec.get("zoom") or 1.0))
-            tile = _contrast(_saturate(_darken(tile, 0.78), 1.05), 1.06)
+            tile = _contrast(_saturate(_darken(tile, 0.86), 1.08), 1.08)
             tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18)
             col = idx % columns
             row = idx // columns

@@ -1,23 +1,22 @@
 # Status
 
-This page is the short public picture of what is usable today.
+This is the blunt answer on what you can use today.
 
-## Current picture
+## Right now
 
-- Current stage: Public preview.
-- Current build: `run-20260420-072339`.
-- Published: April 20, 2026 at 7:23 UTC.
+- Today: Usable preview.
+- Published: April 20, 2026 at 15:29 UTC.
 - Release status: Published.
-- Current public downloads: Avalonia Desktop Linux X64 Installer, Blazor Desktop Linux X64 Installer, Avalonia Desktop macOS ARM64 Installer, Blazor Desktop macOS ARM64 Installer, Avalonia Desktop macOS ARM64 archive package, and Blazor Desktop macOS ARM64 archive package.
-- Release verification: Recent release verification passed across setup and recovery, build and publish, campaign session continuity, support follow-up, and organize community and close loop.
-- Published downloads are currently visible for Linux and macOS.
-- First-party help, privacy, terms, and contact pages are live.
+- Downloads are currently live for Windows, Linux, and macOS.
+- Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.
+- Preview note: This is still a preview, but the current public downloads have recent proof for setup, recovery, offline-ready behavior, release follow-up, and support.
+- Help, contact, privacy, and terms pages are live.
 
-## Start with the release page and download help
+## If install or update goes sideways
 
-The release page should answer the normal download and setup questions directly: recommended installer, known issues, update status, and the next support step if the path still is not clear.
+Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails.
 
 - Start with the recommended installer for your platform.
-- Alternative builds and manual packages are advanced paths.
-- Create an account when you want tracked support, recovery, and linked installs.
-- Devices and access is where linked copies and claim paths stay visible later.
+- Use the other package only if the installer gives you trouble.
+- Create an account if you want your support history, recovery, and downloads tied to one place.
+- If your platform is missing, the status and download pages will say so.
