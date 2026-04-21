@@ -652,7 +652,7 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
     chip_font = _font(label_font_path, 22)
     accent = _hex_rgba(str(spec.get("accent") or "#4fd1ff"), 255)
     secondary = _hex_rgba(str(spec.get("accent_secondary") or "#ff7a45"), 255)
-    copy_width = 548
+    copy_width = _int_value(spec.get("copy_width"), 548)
     pad = 72
 
     canvas = Image.new("RGBA", (width, height), (8, 12, 18, 255))
@@ -680,6 +680,14 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
                 tile_specs.append({"source": str(raw_entry).strip(), "focus": (0.5, 0.5), "zoom": 1.0})
 
     layout = str(spec.get("layout") or "grid").strip().lower()
+    lead_width_ratio = max(0.42, min(0.70, _float_value(spec.get("lead_width_ratio"), 0.58)))
+    top_height_ratio = max(0.38, min(0.66, _float_value(spec.get("top_height_ratio"), 0.52)))
+    lead_tile_brightness = max(0.70, min(1.20, _float_value(spec.get("tile_brightness_lead"), 1.02)))
+    tile_brightness = max(0.70, min(1.20, _float_value(spec.get("tile_brightness"), 0.98)))
+    tile_saturation = max(0.80, min(1.30, _float_value(spec.get("tile_saturation"), 1.10)))
+    tile_contrast = max(0.80, min(1.30, _float_value(spec.get("tile_contrast"), 1.10)))
+    lead_tile_overlay_alpha = max(0, min(48, _int_value(spec.get("tile_overlay_alpha_lead"), 10)))
+    tile_overlay_alpha = max(0, min(48, _int_value(spec.get("tile_overlay_alpha"), 12)))
     gutter = 18
     grid_left = copy_width + 44
     grid_top = 84
@@ -688,9 +696,9 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
 
     if layout == "editorial_cluster" and tile_specs:
         cluster_specs = tile_specs[:6]
-        lead_width = int(grid_width * 0.58)
+        lead_width = int(grid_width * lead_width_ratio)
         side_width = grid_width - lead_width - gutter
-        top_height = int(grid_height * 0.52)
+        top_height = int(grid_height * top_height_ratio)
         small_height = int((top_height - gutter) / 2)
         bottom_height = grid_height - top_height - gutter
         bottom_width = int((grid_width - gutter * 2) / 3)
@@ -707,8 +715,8 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
             source_path = _resolve_source(repo_root, source_root, str(tile_spec.get("source") or ""), output_root)
             tile = Image.open(source_path).convert("RGB")
             tile = _fit_cover(tile, (tile_width, tile_height), tile_spec.get("focus") or (0.5, 0.5), zoom=float(tile_spec.get("zoom") or 1.0))
-            tile = _contrast(_saturate(_darken(tile, 0.88 if idx == 0 else 0.84), 1.08), 1.08)
-            tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18 if idx == 0 else 20)
+            tile = _contrast(_saturate(_darken(tile, lead_tile_brightness if idx == 0 else tile_brightness), tile_saturation), tile_contrast)
+            tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, lead_tile_overlay_alpha if idx == 0 else tile_overlay_alpha)
             shadow_offset = 14 if idx == 0 else 10
             radius = 28 if idx == 0 else 22
             frame.rounded_rectangle((x + shadow_offset, y + shadow_offset, x + tile_width + shadow_offset, y + tile_height + shadow_offset), radius=radius, fill=(0, 0, 0, 118))
@@ -724,8 +732,8 @@ def _draw_mosaic_cover(spec: dict[str, object], *, repo_root: Path, source_root:
             source_path = _resolve_source(repo_root, source_root, str(tile_spec.get("source") or ""), output_root)
             tile = Image.open(source_path).convert("RGB")
             tile = _fit_cover(tile, (tile_width, tile_height), tile_spec.get("focus") or (0.5, 0.5), zoom=float(tile_spec.get("zoom") or 1.0))
-            tile = _contrast(_saturate(_darken(tile, 0.86), 1.08), 1.08)
-            tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, 18)
+            tile = _contrast(_saturate(_darken(tile, tile_brightness), tile_saturation), tile_contrast)
+            tile = _blend_overlay(tile, accent if idx % 2 == 0 else secondary, tile_overlay_alpha)
             col = idx % columns
             row = idx // columns
             row_start = row * columns

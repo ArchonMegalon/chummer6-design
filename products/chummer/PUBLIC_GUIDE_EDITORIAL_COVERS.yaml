@@ -19,16 +19,21 @@ assets:
     accent: "#79d8ff"
     accent_secondary: "#f5b04d"
     focus: [0.56, 0.47]
-    background_brightness: 0.84
-    background_saturation: 1.08
-    background_contrast: 1.08
+    background_focus: [0.57, 0.48]
+    background_zoom: 1.02
+    panel_focus: [0.57, 0.48]
+    panel_zoom: 1.04
+    copy_width: 572
+    background_brightness: 0.92
+    background_saturation: 1.10
+    background_contrast: 1.10
     background_blur_sigma: 10
-    background_overlay_alpha: 84
-    panel_brightness: 1.12
-    panel_saturation: 1.22
-    panel_contrast: 1.12
-    panel_sharpness: 1.10
-    panel_overlay_alpha: 10
+    background_overlay_alpha: 76
+    panel_brightness: 1.18
+    panel_saturation: 1.24
+    panel_contrast: 1.14
+    panel_sharpness: 1.12
+    panel_overlay_alpha: 8
     editorial_finish_sigma: 6
     editorial_finish_opacity: 8
     motif: clinic_ticks
@@ -45,15 +50,21 @@ assets:
       - RECEIPTS
     accent: "#f59e0b"
     accent_secondary: "#4fd1ff"
-    focus: [0.48, 0.47]
-    background_brightness: 0.98
-    background_saturation: 1.10
-    background_contrast: 1.12
-    panel_brightness: 1.16
-    panel_saturation: 1.12
-    panel_contrast: 1.14
-    panel_sharpness: 1.10
-    panel_overlay_alpha: 22
+    focus: [0.56, 0.46]
+    background_focus: [0.56, 0.46]
+    background_zoom: 1.10
+    panel_focus: [0.57, 0.46]
+    panel_zoom: 1.18
+    copy_width: 486
+    background_brightness: 1.02
+    background_saturation: 1.12
+    background_contrast: 1.14
+    background_overlay_alpha: 96
+    panel_brightness: 1.20
+    panel_saturation: 1.15
+    panel_contrast: 1.16
+    panel_sharpness: 1.12
+    panel_overlay_alpha: 18
     editorial_finish_sigma: 6
     editorial_finish_opacity: 10
     motif: hazard_arcs
@@ -78,22 +89,28 @@ assets:
     series_label: CHUMMER6 HORIZON
     index: "03"
     title: KARMA FORGE
-    subtitle: Governed house rules without collapsing into unreadable fork chaos.
+    subtitle: Try house rules without losing track of what changed.
     chips:
       - HOUSE RULES
-      - GOVERNANCE
+      - TRACK CHANGES
       - MIGRATION
     accent: "#ff5b47"
     accent_secondary: "#ffd166"
-    focus: [0.60, 0.45]
-    background_brightness: 0.96
-    background_saturation: 1.08
-    background_contrast: 1.12
-    panel_brightness: 1.14
-    panel_saturation: 1.12
-    panel_contrast: 1.14
-    panel_sharpness: 1.10
-    panel_overlay_alpha: 14
+    focus: [0.58, 0.45]
+    background_focus: [0.58, 0.45]
+    background_zoom: 1.06
+    panel_focus: [0.59, 0.45]
+    panel_zoom: 1.12
+    copy_width: 486
+    background_brightness: 1.00
+    background_saturation: 1.12
+    background_contrast: 1.14
+    background_overlay_alpha: 92
+    panel_brightness: 1.18
+    panel_saturation: 1.14
+    panel_contrast: 1.16
+    panel_sharpness: 1.12
+    panel_overlay_alpha: 10
     editorial_finish_sigma: 6
     editorial_finish_opacity: 10
     motif: forge_lattice
@@ -179,22 +196,23 @@ assets:
       - CONTINUITY
     accent: "#4fd1ff"
     accent_secondary: "#ff7a45"
-    focus: [0.60, 0.46]
-    background_focus: [0.60, 0.46]
-    background_zoom: 1.04
-    background_brightness: 0.88
-    background_saturation: 1.04
-    background_contrast: 1.02
-    panel_focus: [0.62, 0.46]
-    panel_zoom: 1.10
-    panel_brightness: 1.08
-    panel_saturation: 1.02
-    panel_contrast: 1.00
-    panel_sharpness: 0.96
-    panel_overlay_alpha: 22
+    focus: [0.60, 0.54]
+    background_focus: [0.60, 0.54]
+    background_zoom: 1.12
+    background_brightness: 0.96
+    background_saturation: 1.10
+    background_contrast: 1.06
+    background_overlay_alpha: 102
+    panel_focus: [0.61, 0.54]
+    panel_zoom: 1.20
+    panel_brightness: 1.16
+    panel_saturation: 1.10
+    panel_contrast: 1.08
+    panel_sharpness: 1.00
+    panel_overlay_alpha: 14
     editorial_finish_sigma: 4
     editorial_finish_opacity: 8
-    copy_width: 492
+    copy_width: 474
     motif: route_grid
   assets/parts/design.png:
     kind: feature_cover
@@ -343,7 +361,7 @@ assets:
     layout: editorial_cluster
     series_label: CHUMMER6 TOUR
     title: PARTS
-    subtitle: The app, phone companion, updater, and support tools that turn Shadowrun rules into something you can actually use.
+    subtitle: The app, phone companion, updater, and support tools that make Shadowrun rules usable at the table.
     chips:
       - APP TOUR
       - PHONE + TABLE
@@ -351,22 +369,31 @@ assets:
     accent: "#ff7a45"
     accent_secondary: "#57c7ff"
     motif: network_nodes
+    copy_width: 492
+    lead_width_ratio: 0.56
+    top_height_ratio: 0.50
+    tile_brightness_lead: 1.04
+    tile_brightness: 1.00
+    tile_saturation: 1.12
+    tile_contrast: 1.10
+    tile_overlay_alpha_lead: 8
+    tile_overlay_alpha: 10
     tile_sources:
-      - source: products/chummer/public-guide-curated-assets/source-plates/parts/design.png
-        focus: [0.52, 0.52]
-        zoom: 1.04
       - source: products/chummer/public-guide-curated-assets/source-plates/parts/core.png
-        focus: [0.52, 0.46]
-        zoom: 1.16
-      - source: products/chummer/public-guide-curated-assets/source-plates/parts/mobile.png
-        focus: [0.58, 0.42]
-        zoom: 1.24
-      - source: products/chummer/public-guide-curated-assets/source-plates/parts/hub.png
-        focus: [0.54, 0.46]
-        zoom: 1.16
+        focus: [0.51, 0.48]
+        zoom: 1.10
       - source: products/chummer/public-guide-curated-assets/source-plates/parts/ui-kit.png
         focus: [0.58, 0.58]
-        zoom: 1.12
+        zoom: 1.16
+      - source: products/chummer/public-guide-curated-assets/source-plates/parts/media-factory.png
+        focus: [0.40, 0.44]
+        zoom: 1.10
+      - source: products/chummer/public-guide-curated-assets/source-plates/parts/design.png
+        focus: [0.56, 0.52]
+        zoom: 1.08
+      - source: products/chummer/public-guide-curated-assets/source-plates/parts/ui.png
+        focus: [0.52, 0.50]
+        zoom: 1.18
       - source: products/chummer/public-guide-curated-assets/source-plates/parts/hub-registry.png
         focus: [0.66, 0.44]
-        zoom: 1.28
+        zoom: 1.22
