@@ -2,7 +2,7 @@
 
 Purpose: let a Codex session running on a Mac build a public-ready desktop artifact, prove it, and promote it onto the live `chummer.run` downloads shelf through the authenticated HTTP upload endpoint instead of manual server file copies.
 
-If you want the zero-touch signed-in path, open `https://chummer.run/downloads/release-upload` in the browser first, copy the generated one-liner, and paste that into the Mac shell. The signed-in handoff mints a short-lived upload ticket, always serves the current hosted bootstrap, and the upload response prints the install dispatch URL plus the claim code for the promoted artifact.
+If you want the signed-in path, open `https://chummer.run/downloads/release-upload` in the browser first, copy the generated one-liner, and paste that into the Mac shell. The signed-in handoff mints a short-lived upload code, keeps it off the command line, always serves the current hosted bootstrap, and lets the bootstrap prompt for the code only after it has switched to temp-file auth handling.
 
 ## One command
 
@@ -39,14 +39,13 @@ The bootstrap is the public deep link. It now:
 ```bash
 export CHUMMER_APP_SIGN_IDENTITY="Developer ID Application: YOUR ORG (TEAMID)"
 export CHUMMER_NOTARY_PROFILE="chummer-notary"
-export CHUMMER_RELEASE_UPLOAD_TOKEN="..."
 ```
 
 Optional overrides:
 
 ```bash
 export CHUMMER_RELEASE_UPLOAD_URL="https://chummer.run/api/internal/releases/bundles"
-export CHUMMER_PORTAL_DOWNLOADS_VERIFY_URL="https://chummer.run/downloads/releases.json"
+export CHUMMER_PORTAL_DOWNLOADS_VERIFY_URL="https://chummer.run/downloads/RELEASE_CHANNEL.generated.json"
 export CHUMMER_RELEASE_CHANNEL="preview"
 export CHUMMER_RELEASE_APP="avalonia"
 export CHUMMER_RELEASE_RID="osx-arm64"
@@ -81,7 +80,8 @@ For Windows promotion the same endpoint is valid, but the evidence must prove st
 
 Once the upload succeeds:
 
-1. `https://chummer.run/downloads/releases.json` contains the promoted artifact while preserving the other current shelf entries
-2. the direct file URL resolves under `/downloads/files/...`
-3. the signed-in claim-code handoff is live at `/downloads/install/{artifactId}`
-4. the desktop app also ships `Samples/Legacy/Soma-Career.chum5`, bundled from the legacy Chummer5 test fixtures for a real completed-runner import check
+1. `https://chummer.run/downloads/RELEASE_CHANNEL.generated.json` contains the authoritative promoted artifact set
+2. `https://chummer.run/downloads/releases.json` stays coherent as the installer-oriented compatibility view
+3. the direct file URL resolves under `/downloads/files/...`
+4. the signed-in claim-code handoff is live at `/downloads/install/{artifactId}`
+5. the desktop app also ships `Samples/Legacy/Soma-Career.chum5`, bundled from the legacy Chummer5 test fixtures for a real completed-runner import check
