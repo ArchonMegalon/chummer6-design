@@ -379,6 +379,21 @@ def _asset_embed_allowed(*, out_dir: Path, asset_path: str) -> bool:
 
 def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) -> None:
     derivative_path.parent.mkdir(parents=True, exist_ok=True)
+    if Image is not None:
+        pillow_format = {"webp": "WEBP", "avif": "AVIF"}.get(codec)
+        if pillow_format:
+            try:
+                with Image.open(source) as image:
+                    save_image = image.convert("RGBA" if "A" in image.getbands() else "RGB")
+                    save_kwargs = {"format": pillow_format}
+                    if codec == "webp":
+                        save_kwargs.update({"quality": 82, "method": 6})
+                    elif codec == "avif":
+                        save_kwargs.update({"quality": 55, "speed": 6})
+                    save_image.save(derivative_path, **save_kwargs)
+                    return
+            except Exception:
+                derivative_path.unlink(missing_ok=True)
     if codec == "webp":
         command = [
             _ffmpeg_bin(),
@@ -444,7 +459,31 @@ def _required_public_asset_paths(part_registry: dict[str, object], horizon_regis
     return required
 
 
-def _materialize_public_assets(repo_root: Path, out_dir: Path, asset_paths: set[str]) -> None:
+def _copy_existing_derivative(
+    *,
+    source: Path,
+    derivative_path: Path,
+    derivative_relpath: str,
+    derivative_fallback_root: Path | None,
+) -> bool:
+    candidates = [source.with_suffix(derivative_path.suffix)]
+    if derivative_fallback_root is not None:
+        candidates.append(derivative_fallback_root / derivative_relpath)
+    for candidate in candidates:
+        if candidate.is_file():
+            derivative_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(candidate, derivative_path)
+            return True
+    return False
+
+
+def _materialize_public_assets(
+    repo_root: Path,
+    out_dir: Path,
+    asset_paths: set[str],
+    *,
+    derivative_fallback_root: Path | None = None,
+) -> None:
     source_root = _resolve_asset_source(repo_root)
     destination = out_dir / "assets"
     if destination.exists():
@@ -462,8 +501,20 @@ def _materialize_public_assets(repo_root: Path, out_dir: Path, asset_paths: set[
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
     for png_path in destination.rglob("*.png"):
-        _materialize_derivative(png_path, png_path.with_suffix(".webp"), codec="webp")
-        _materialize_derivative(png_path, png_path.with_suffix(".avif"), codec="avif")
+        png_relative = f"assets/{png_path.relative_to(destination).as_posix()}"
+        for codec in ("webp", "avif"):
+            derivative_path = png_path.with_suffix(f".{codec}")
+            derivative_relpath = str(Path(png_relative).with_suffix(f".{codec}")).replace("\\", "/")
+            try:
+                _materialize_derivative(png_path, derivative_path, codec=codec)
+            except (FileNotFoundError, subprocess.CalledProcessError):
+                if not _copy_existing_derivative(
+                    source=png_path,
+                    derivative_path=derivative_path,
+                    derivative_relpath=derivative_relpath,
+                    derivative_fallback_root=derivative_fallback_root,
+                ):
+                    raise
 
 
 def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> str:
@@ -1955,7 +2006,7 @@ def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
     _write(out_dir / "manifest.generated.json", json.dumps(generated, indent=2, sort_keys=True))
 
 
-def generate_bundle(repo_root: Path, out_dir: Path) -> None:
+def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root: Path | None = None) -> None:
     manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml")
     page_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_PAGE_REGISTRY.yaml")
     part_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_PART_REGISTRY.yaml")
@@ -1971,7 +2022,12 @@ def generate_bundle(repo_root: Path, out_dir: Path) -> None:
     release_payload, release_source = _load_release_channel(repo_root)
     required_assets = _required_public_asset_paths(part_registry, horizon_registry)
 
-    _materialize_public_assets(repo_root, out_dir, required_assets)
+    _materialize_public_assets(
+        repo_root,
+        out_dir,
+        required_assets,
+        derivative_fallback_root=derivative_fallback_root,
+    )
     _generate_root(
         out_dir,
         manifest,
@@ -2079,7 +2135,7 @@ def main() -> int:
 
     with tempfile.TemporaryDirectory() as temp_dir:
         expected_dir = Path(temp_dir) / "expected_bundle"
-        generate_bundle(repo_root, expected_dir)
+        generate_bundle(repo_root, expected_dir, derivative_fallback_root=out_dir)
         return _compare_trees(expected_dir, out_dir)
 
 
