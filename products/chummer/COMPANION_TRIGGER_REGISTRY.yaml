@@ -215,6 +215,200 @@ trigger_classes:
       max_impressions_per_day: 1
       requires_material_change: true
 
+  - id: action_budget_warning
+    event_type: action_budget_change
+    owning_domain: runboard
+    summary: Announces when a player or GM is about to spend the remaining action budget on a meaningful defensive or timing choice.
+    source_facts:
+      - action_budget_result
+      - action_affordance_projection
+      - turn_ledger_delta
+    allowed_surfaces:
+      - runboard
+      - mobile_home
+      - play_shell
+    mask_id: handler
+    severity: caution
+    urgency: suggested
+    allowed_tone_modes:
+      - muted
+      - practical
+      - playful
+    allowed_joke_budget: light
+    render_modes:
+      - micro_bark
+      - bark_with_chips
+      - evidence_drawer
+    cta_families:
+      - show_why
+      - spend_now
+      - hold_action
+    evidence_drawer_required: true
+    media_eligible: false
+    ea_compile:
+      eligible: false
+      mode: none
+    suppression:
+      cooldown_scope: trigger_class_per_round
+      cooldown_seconds: 900
+      max_impressions_per_day: 4
+      requires_material_change: true
+
+  - id: campaign_adoption_unknown_history
+    event_type: adoption_guidance
+    owning_domain: campaign_adoption
+    summary: Reassures the user that incomplete legacy history can stay explicit while the ledger starts from today.
+    source_facts:
+      - campaign_adoption_record
+      - migration_confidence_packet
+      - unknown_history_items
+    allowed_surfaces:
+      - campaign_workspace
+      - build_lab
+    mask_id: concierge
+    severity: info
+    urgency: suggested
+    allowed_tone_modes:
+      - muted
+      - practical
+      - playful
+    allowed_joke_budget: none
+    render_modes:
+      - bark_with_chips
+      - evidence_drawer
+    cta_families:
+      - start_from_today
+      - review_unknowns
+      - preserve_legacy_notes
+    evidence_drawer_required: true
+    media_eligible: false
+    ea_compile:
+      eligible: false
+      mode: none
+    suppression:
+      cooldown_scope: trigger_class_per_campaign
+      cooldown_seconds: 21600
+      max_impressions_per_day: 1
+      requires_material_change: true
+
+  - id: goal_pin_progress_update
+    event_type: goal_progress_change
+    owning_domain: living_dossier
+    summary: Calls out meaningful progress on a pinned runner goal after rewards or state changes land.
+    source_facts:
+      - goal_pin
+      - reward_receipt
+      - career_metric_delta
+    allowed_surfaces:
+      - home_cockpit
+      - mobile_home
+      - build_lab
+    mask_id: analyst
+    severity: info
+    urgency: suggested
+    allowed_tone_modes:
+      - muted
+      - practical
+      - playful
+    allowed_joke_budget: light
+    render_modes:
+      - micro_bark
+      - bark_with_chips
+      - evidence_drawer
+    cta_families:
+      - show_goal
+      - show_next_safe_action
+      - review_requirements
+    evidence_drawer_required: false
+    media_eligible: false
+    ea_compile:
+      eligible: true
+      mode: line_variant_pack
+    suppression:
+      cooldown_scope: trigger_class_per_goal_pin
+      cooldown_seconds: 21600
+      max_impressions_per_day: 1
+      requires_material_change: true
+
+  - id: world_tick_consequence_ready
+    event_type: world_consequence_ready
+    owning_domain: black_ledger
+    summary: Announces that an approved run consequence has changed world posture and produced a player-safe feedback artifact.
+    source_facts:
+      - resolution_report
+      - world_tick
+      - player_safe_news_item
+    allowed_surfaces:
+      - campaign_workspace
+      - runboard
+      - mobile_home
+    mask_id: echo
+    severity: celebration
+    urgency: suggested
+    allowed_tone_modes:
+      - muted
+      - practical
+      - playful
+    allowed_joke_budget: light
+    render_modes:
+      - bark_with_chips
+      - evidence_drawer
+      - companion_scene
+    cta_families:
+      - open_news_item
+      - open_world_change
+      - review_next_session
+    evidence_drawer_required: true
+    media_eligible: true
+    media_modes:
+      - companion_scene
+    ea_compile:
+      eligible: true
+      mode: line_variant_pack_and_rare_media_brief
+    suppression:
+      cooldown_scope: trigger_class_per_world_tick
+      cooldown_seconds: 43200
+      max_impressions_per_day: 1
+      requires_material_change: true
+
+  - id: calculation_report_packet_ready
+    event_type: calculation_report_ready
+    owning_domain: support
+    summary: Confirms that a report-this-calculation flow has assembled a useful packet from current explain truth.
+    source_facts:
+      - calculation_report_packet
+      - explain_trace
+      - ruleset_fingerprint
+    allowed_surfaces:
+      - build_lab
+      - compare_view
+      - support_case_detail
+    mask_id: concierge
+    severity: info
+    urgency: suggested
+    allowed_tone_modes:
+      - muted
+      - practical
+      - playful
+    allowed_joke_budget: none
+    render_modes:
+      - bark_with_chips
+      - evidence_drawer
+    cta_families:
+      - review_packet
+      - send_packet
+      - redact_more
+    evidence_drawer_required: true
+    media_eligible: false
+    ea_compile:
+      eligible: false
+      mode: none
+    suppression:
+      cooldown_scope: trigger_class_per_support_case
+      cooldown_seconds: 14400
+      max_impressions_per_day: 1
+      requires_material_change: true
+
   - id: mission_brief_ready
     event_type: mission_cold_open
     owning_domain: publication

@@ -28,6 +28,10 @@ queued_follow_on_gates:
   - id: resolution_report_creates_world_tick_and_player_safe_news_item
     docs:
       - BLACK_LEDGER_MVP_001.md
+  - id: approved_run_resolution_updates_safe_seasonal_honors
+    docs:
+      - NETWORK_REPUTATION_AND_LEADERBOARDS_MODEL.md
+      - SEASONAL_HONORS_AND_REPUTATION_MODEL.md
 
 journey_gates:
   - id: install_claim_restore_continue

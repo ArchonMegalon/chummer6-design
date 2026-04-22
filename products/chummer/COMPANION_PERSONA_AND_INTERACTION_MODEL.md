@@ -18,6 +18,7 @@ This document is the companion-facing sibling to:
 > Chummer should feel like a sharp, trustworthy runner-side handler that notices what matters, tells the user what changed, why it matters, and what safe or interesting action comes next, with style.
 
 The companion is not a chatbot bolted onto a workbench. It is the human-feeling wrapper around Chummer-owned truth.
+Switch should feel contextual, grounded, useful, and sparse.
 
 ## Canonical principle
 
@@ -96,6 +97,9 @@ Switch is not:
 - a replacement for first-party support truth
 - a substitute for release notes or receipts
 - a free-roaming LLM that improvises product behavior
+
+Switch should not behave like "ask me anything" middleware.
+Its highest-value job is to materialize Chummer-owned truth into one good next step at the exact moment a user would otherwise hesitate.
 
 ## Allowed signal sources
 
@@ -201,6 +205,8 @@ Switch may:
 - summarize readiness blockers
 - surface stale dossiers or missing prerequisites
 - route to player-safe or GM-safe views depending on device role
+- flag action-budget posture during live play
+- suggest one safe resolution classification when the session is about to close
 
 ### 5. Improve / support
 Switch may:
@@ -208,6 +214,31 @@ Switch may:
 - explain what information is missing
 - celebrate when a fix is actually live on the user's channel
 - guide the user to update or verify the fix
+- prefill a calculation-report packet from the current explain drawer without inventing missing evidence
+
+## Tiny high-value moments
+
+Switch should materialize the campaign loop in small moments:
+
+```text
+Build Lab:
+  "You pinned Wired Reflexes 2. This path delays it by two runs."
+
+Action tracker:
+  "You can still defend, but it spends your remaining Minor Actions."
+
+Campaign adoption:
+  "You do not need perfect history. Start the ledger from today?"
+
+GM Runboard:
+  "This scene still has unresolved heat. Quiet, messy, or public?"
+
+BLACK LEDGER:
+  "Renraku pressure went up. I drafted a player-safe ticker line."
+
+Support:
+  "This packet includes the ruleset fingerprint and explain trace. No private notes."
+```
 
 ### 6. Public Hub surfaces
 Switch may appear in a bounded public-concierge form on Hub-owned public pages. That public variant may use `FacePop`. It must not replace first-party truth or authenticated runtime behavior.

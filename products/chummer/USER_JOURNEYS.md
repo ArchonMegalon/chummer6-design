@@ -140,6 +140,7 @@ Canonical detail:
 * `journeys/install-and-update.md`
 * `journeys/claim-install-and-close-a-support-case.md`
 * `journeys/organize-a-community-and-close-the-loop.md`
+* `SUPPORT_PACKET_AND_CALCULATION_REPORT_UX.md`
 * `PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md`
 * `SUPPORT_AND_SIGNAL_OODA_LOOP.md`
 

@@ -18,6 +18,7 @@ Current status on 2026-03-26:
 * the active operational-hardening overlay is `REPO_HYGIENE_RELEASE_TRUST_AND_AUTOMATION_SAFETY.md` plus `REPO_HARDENING_CHECKLIST.yaml`; it does not reopen ownership canon, but it makes public repo hygiene, signed release-manifest truth, workflow safety, blast-radius limits, and explicit public support lanes first-class program work
 * the active product-sharpening overlay is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md` plus `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`; it does not widen the architecture, but it makes confidence, readiness, continuity, manual intake, mobile table value, GM next-session posture, and public proof shelf discipline explicit execution work
 * the active loop-materialization overlay is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md` plus `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`; it does not broaden Chummer into a generic living-world simulator, but it makes action budgets, local rulebook anchors, campaign adoption, prep packets, BLACK LEDGER consequence, runner goals, and mission-fit loops concrete release work
+* the named follow-on gate wave for that overlay is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md` plus `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`; it turns the most compelling campaign-memory and consequence ideas into eight explicit proofs instead of leaving them horizon-sized
 
 ## Recommended next initiative
 
@@ -40,6 +41,7 @@ The active no-step-back parity overlay for that wave is `LEGACY_CLIENT_AND_ADJAC
 The active audit overlay for correcting where design proof still outruns journey proof is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`.
 The active product-sharpening overlay for making the architecture emotionally irresistible is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md`, with machine-readable prioritization in `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`.
 The active loop-materialization overlay for turning living-world and campaign-memory ideas into small, shippable proofs is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md`, with machine-readable prioritization in `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`.
+The named gate wave for that materialization pass is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md`, with machine-readable gate staging in `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`.
 The queued post-closeout successor wave is `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md`, with machine-readable staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 

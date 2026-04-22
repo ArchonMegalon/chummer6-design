@@ -21,6 +21,7 @@ It should take the now-hard flagship bar and make it boring:
 The machine-readable control plane for this follow-on wave lives in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The sharper product-centering overlay for this wave lives in `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md` and `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`.
 The loop-materialization overlay for this wave lives in `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md` and `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`.
+The named release-gated proof set for those loops lives in `LOST_POTENTIAL_MATERIALIZATION_WAVE.md` and `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`.
 
 The user-facing test for whether this quarter is actually working is simpler:
 

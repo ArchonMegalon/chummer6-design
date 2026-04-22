@@ -251,3 +251,29 @@ bets:
     exits_when:
       - Tables can inspect strengths, gaps, and suggestions before a job without blocking play.
       - Open-run and prep flows can reuse one governed capability model.
+
+  - id: CRC-019
+    title: Support packet and calculation-report UX
+    priority: 19
+    owners:
+      - chummer6-ui
+      - chummer6-core
+      - chummer6-hub
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - Explain drawers can launch a useful calculation-report packet without making the user reconstruct the math by hand.
+      - Support packets default to clear, redacted, reproducible truth instead of mystery attachments.
+
+  - id: CRC-020
+    title: Switch as contextual emotional glue
+    priority: 20
+    owners:
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-hub
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - Switch surfaces action help, adoption guidance, world consequence, and support packet readiness in sparse, grounded moments.
+      - The companion feels like a handler around Chummer-owned truth rather than a generic chatbot.
