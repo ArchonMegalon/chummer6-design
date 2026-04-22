@@ -19,13 +19,13 @@ repo_root_aliases:
     - chummer6-mobile
   chummer6-ui-kit:
     - chummer6-ui-kit
-    - chummer-ui-kit
+    - chummer6-ui-kit
   chummer6-hub-registry:
     - chummer6-hub-registry
-    - chummer-hub-registry
+    - chummer6-hub-registry
   chummer6-media-factory:
     - chummer6-media-factory
-    - chummer-media-factory
+    - chummer6-media-factory
   fleet:
     - fleet
   executive-assistant:
@@ -77,6 +77,35 @@ product_source_groups:
     - products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md
     - products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md
     - products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md
+  world_state:
+    - products/chummer/WORLD_STATE_AND_MISSION_MARKET_MODEL.md
+    - products/chummer/WORLD_MAP_AND_INTEL_ECONOMY_MODEL.md
+    - products/chummer/WORLD_CONTRACTS_RESERVED.md
+    - products/chummer/INTEL_REPORTING_AND_LORE_CONTRIBUTION_POLICY.md
+    - products/chummer/WORLD_INTEL_CONTRIBUTION_AND_REVIEW_POLICY.md
+    - products/chummer/WORLD_TICK_OPERATOR_PROCESS.md
+    - products/chummer/NEWSREEL_AND_CITY_TICKER_MODEL.md
+    - products/chummer/BLACK_LEDGER_MAP_AND_NEWSREEL_WORKFLOWS.yaml
+    - products/chummer/OPEN_RUNS_AND_SHADOWCASTERS_NETWORK.md
+    - products/chummer/COMMUNITY_RULE_ENVIRONMENTS_AND_APPROVAL.md
+    - products/chummer/RUN_APPLICATION_PREFLIGHT_MODEL.md
+    - products/chummer/QUICKSTART_RUNNER_AND_PREGEN_FLOW.md
+    - products/chummer/GM_OPPOSITION_LIBRARY_AND_PACKET_MODEL.md
+    - products/chummer/VTT_HANDOFF_AND_PLAY_SURFACE_EXPORTS.md
+    - products/chummer/SESSION_ZERO_AND_TABLE_CONTRACT_MODEL.md
+    - products/chummer/BEGINNER_GM_AUTOPILOT.md
+    - products/chummer/SEATTLE_OPEN_RUN_001_VERTICAL_SLICE.md
+    - products/chummer/NETWORK_REPUTATION_AND_LEADERBOARDS_MODEL.md
+    - products/chummer/SEASONAL_HONORS_AND_REPUTATION_MODEL.md
+    - products/chummer/REPUTATION_EVENT_LEDGER_MODEL.md
+    - products/chummer/SEASONAL_HONORS_REGISTRY.yaml
+    - products/chummer/OPEN_RUNS_REPUTATION_AND_SEASONAL_HONORS.yaml
+    - products/chummer/OPEN_RUN_POLICY_PRESETS.yaml
+    - products/chummer/COMMUNITY_RULE_ENVIRONMENT_REGISTRY.yaml
+    - products/chummer/RUN_APPLICATION_PREFLIGHT_CHECKS.yaml
+    - products/chummer/OPPOSITION_PACKET_REGISTRY.yaml
+    - products/chummer/VTT_EXPORT_TARGETS.yaml
+    - products/chummer/INTEL_REPORT_REVIEW_STATES.yaml
   horizons:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml
@@ -86,6 +115,7 @@ product_source_groups:
     - products/chummer/horizons/nexus-pan.md
     - products/chummer/horizons/alice.md
     - products/chummer/horizons/black-ledger.md
+    - products/chummer/horizons/shadowcasters-network.md
     - products/chummer/horizons/karma-forge.md
     - products/chummer/horizons/knowledge-fabric.md
     - products/chummer/horizons/jackpoint.md
@@ -117,6 +147,7 @@ product_source_groups:
     - products/chummer/journeys/publish-a-grounded-artifact.md
   journey_community:
     - products/chummer/journeys/README.md
+    - products/chummer/journeys/find-and-join-an-open-run.md
     - products/chummer/journeys/organize-a-community-and-close-the-loop.md
   public_surface:
     - products/chummer/PUBLIC_LANDING_POLICY.md
@@ -204,6 +235,7 @@ mirrors:
     - release
     - desktop_delivery
     - product_middle
+    - world_state
     - support_plane
     - journey_workbench
     - journey_roaming
@@ -217,6 +249,7 @@ mirrors:
   product_groups:
     - base_governance
     - product_middle
+    - world_state
     - public_surface
     - hub_public_runtime
     - participation
@@ -239,6 +272,7 @@ mirrors:
   product_groups:
     - base_governance
     - product_middle
+    - world_state
     - horizons
     - journey_continuity
     - journey_roaming
@@ -260,6 +294,7 @@ mirrors:
   product_target: .codex-design/product
   product_groups:
     - base_governance
+    - world_state
     - public_surface
     - release
     - desktop_delivery
@@ -278,6 +313,7 @@ mirrors:
     - public_surface
     - external_tools
     - product_middle
+    - world_state
     - horizons
     - journey_publication
   repo_target: .codex-design/repo/IMPLEMENTATION_SCOPE.md
@@ -289,6 +325,7 @@ mirrors:
   product_groups:
     - base_governance
     - product_middle
+    - world_state
     - public_surface
     - hub_public_runtime
     - participation
@@ -313,6 +350,7 @@ mirrors:
   product_groups:
     - base_governance
     - product_middle
+    - world_state
     - public_surface
     - participation
     - release

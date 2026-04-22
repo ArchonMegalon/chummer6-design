@@ -18,6 +18,7 @@ NEXT12_REGISTRY = PRODUCT / "NEXT_12_BIGGEST_WINS_REGISTRY.yaml"
 NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
 ACTIVE_WAVE_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml"
+SUCCESSOR_REGISTRY = PRODUCT / "NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml"
 MAX_PROGRESS_TREND_SAMPLES = 8
 PROVIDER_ROUTE_REVIEW_CADENCE_DAYS = 14
 FLEET_HANDOFF_CANDIDATES = (
@@ -37,8 +38,10 @@ FLEET_STATUS_PLANE_CANDIDATES = (
     ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "STATUS_PLANE.generated.yaml",
 )
 LOCAL_RELEASE_PROOF_CANDIDATES = (
-    ROOT / "chummer.run-services" / ".codex-studio" / "published" / "HUB_LOCAL_RELEASE_PROOF.generated.json",
-    ROOT / "chummer6-hub" / ".codex-studio" / "published" / "HUB_LOCAL_RELEASE_PROOF.generated.json",
+    ROOT.parent / "chummer.run-services" / ".codex-studio" / "published" / "HUB_LOCAL_RELEASE_PROOF.generated.json",
+    ROOT.parent / "chummer6-hub" / ".codex-studio" / "published" / "HUB_LOCAL_RELEASE_PROOF.generated.json",
+    Path("/docker/chummercomplete/chummer.run-services/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json"),
+    Path("/docker/chummercomplete/chummer6-hub/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json"),
     Path("/docker/fleet/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json"),
 )
 
@@ -180,6 +183,100 @@ def _active_open_milestone_ids(registry_path: Path) -> list[int]:
         if milestone_id not in open_ids:
             open_ids.append(milestone_id)
     return sorted(open_ids)
+
+
+def _successor_dependency_posture(
+    registry_path: Path,
+    *,
+    milestone_id: int = 106,
+) -> dict[str, Any]:
+    payload = _read_optional_yaml(registry_path)
+    milestones = payload.get("milestones")
+    if not isinstance(milestones, list):
+        return {
+            "state": "unknown",
+            "milestone_id": milestone_id,
+            "dependency_ids": [],
+            "open_dependency_ids": [],
+            "summary": "Successor dependency posture is unavailable because the registry is missing.",
+        }
+
+    indexed: dict[int, dict[str, Any]] = {}
+    for row in milestones:
+        if not isinstance(row, dict):
+            continue
+        row_id = _safe_int(row.get("id"), default=0)
+        if row_id > 0:
+            indexed[row_id] = row
+
+    milestone = indexed.get(milestone_id)
+    if not milestone:
+        return {
+            "state": "unknown",
+            "milestone_id": milestone_id,
+            "dependency_ids": [],
+            "open_dependency_ids": [],
+            "summary": f"Successor dependency posture is unavailable because milestone {milestone_id} is missing.",
+        }
+
+    dependency_ids = sorted(
+        {
+            _safe_int(dep, default=0)
+            for dep in list(milestone.get("dependencies") or [])
+            if _safe_int(dep, default=0) > 0
+        }
+    )
+    open_dependency_ids: list[int] = []
+    open_dependency_work_task_ids: list[str] = []
+    for dependency_id in dependency_ids:
+        dependency = indexed.get(dependency_id) or {}
+        dependency_status = str(dependency.get("status") or "missing").strip().lower()
+        open_work_task_ids = _open_work_task_ids(dependency)
+        for task_id in open_work_task_ids:
+            if task_id not in open_dependency_work_task_ids:
+                open_dependency_work_task_ids.append(task_id)
+        if dependency_status not in {"complete", "done", "closed"}:
+            open_dependency_ids.append(dependency_id)
+        elif open_work_task_ids:
+            open_dependency_ids.append(dependency_id)
+
+    state = "ready" if dependency_ids and not open_dependency_ids else "blocked" if open_dependency_ids else "none"
+    if open_dependency_work_task_ids:
+        summary = (
+            "Successor launch dependency work tasks remain open in the next-90-day registry: "
+            + ", ".join(open_dependency_work_task_ids)
+            + "."
+        )
+    elif open_dependency_ids:
+        summary = (
+            "Successor launch dependencies remain open in the next-90-day registry: "
+            + ", ".join(str(value) for value in open_dependency_ids)
+            + "."
+        )
+    elif dependency_ids:
+        summary = "Successor launch dependencies are closed in the next-90-day registry."
+    else:
+        summary = f"Milestone {milestone_id} does not declare successor launch dependencies."
+    return {
+        "state": state,
+        "milestone_id": milestone_id,
+        "dependency_ids": dependency_ids,
+        "open_dependency_ids": open_dependency_ids,
+        "open_dependency_work_task_ids": open_dependency_work_task_ids,
+        "summary": summary,
+    }
+
+
+def _open_work_task_ids(milestone: dict[str, Any]) -> list[str]:
+    open_task_ids: list[str] = []
+    for row in list(milestone.get("work_tasks") or []):
+        if not isinstance(row, dict):
+            continue
+        task_id = str(row.get("id") or "").strip()
+        status = str(row.get("status") or "").strip().lower()
+        if task_id and status not in {"complete", "done", "closed"}:
+            open_task_ids.append(task_id)
+    return open_task_ids
 
 
 def _read_optional_text(path: Path) -> str:
@@ -377,6 +474,8 @@ def _governor_decisions(
     closure_health: dict[str, Any] | None,
     provider_route_stewardship: dict[str, Any],
     local_release_proof: dict[str, Any],
+    successor_dependency_posture: dict[str, Any],
+    status_plane: dict[str, Any],
     blocked_journeys: bool,
     next20_closed: bool,
     post_audit_closed: bool,
@@ -423,6 +522,19 @@ def _governor_decisions(
     closure_state = str((closure_health or {}).get("state") or "").strip().lower()
     canary_status = str(provider_route_stewardship.get("canary_status") or "").strip()
     local_release_status = str(local_release_proof.get("status") or "").strip().lower()
+    status_plane_final_claim = str(
+        status_plane.get("whole_product_final_claim_status") or ""
+    ).strip().lower()
+    open_successor_dependencies = [
+        _safe_int(value, default=0)
+        for value in list(successor_dependency_posture.get("open_dependency_ids") or [])
+        if _safe_int(value, default=0) > 0
+    ]
+    open_successor_dependency_work_tasks = [
+        str(value).strip()
+        for value in list(successor_dependency_posture.get("open_dependency_work_task_ids") or [])
+        if str(value).strip()
+    ]
     if blocked_journeys or blocked_count > 0 or journey_state == "blocked":
         control_action = "freeze_launch"
         control_reason = (
@@ -438,10 +550,30 @@ def _governor_decisions(
         control_reason = (
             f"Freeze launch expansion until provider-route canaries return to green (current: {canary_status or 'unknown'})."
         )
+    elif open_successor_dependency_work_tasks:
+        control_action = "freeze_launch"
+        control_reason = (
+            "Freeze launch expansion until successor dependency work task(s) "
+            + ", ".join(open_successor_dependency_work_tasks)
+            + " close in the next-90-day registry."
+        )
+    elif open_successor_dependencies:
+        control_action = "freeze_launch"
+        control_reason = (
+            "Freeze launch expansion until successor dependency milestone(s) "
+            + ", ".join(str(value) for value in open_successor_dependencies)
+            + " close in the next-90-day registry."
+        )
     elif closure_state and closure_state != "clear":
         control_action = "freeze_launch"
         control_reason = (
             f"Freeze launch expansion until support closure returns to clear posture (current: {closure_state})."
+        )
+    elif status_plane_final_claim and status_plane_final_claim != "pass":
+        control_action = "freeze_launch"
+        control_reason = (
+            "Freeze launch expansion until the whole-product final claim returns to pass "
+            f"(current: {status_plane_final_claim})."
         )
     else:
         control_action = "launch_expand"
@@ -473,6 +605,12 @@ def _governor_decisions(
                 f"local_release_proof_status={local_release_status or 'unknown'}",
                 f"provider_canary_status={canary_status or 'unknown'}",
                 f"closure_health_state={closure_state or 'unknown'}",
+                f"successor_dependency_state={str(successor_dependency_posture.get('state') or 'unknown').strip()}",
+                "successor_open_dependency_ids="
+                + ",".join(str(value) for value in open_successor_dependencies),
+                "successor_open_dependency_work_task_ids="
+                + ",".join(open_successor_dependency_work_tasks),
+                f"status_plane_final_claim_status={status_plane_final_claim or 'unknown'}",
             ],
         },
     ]
@@ -867,6 +1005,8 @@ def _launch_readiness_summary(
     local_release_proof: dict[str, Any],
     provider_route_stewardship: dict[str, Any],
     closure_health: dict[str, Any] | None,
+    successor_dependency_posture: dict[str, Any],
+    status_plane: dict[str, Any],
     active_wave_status: str,
 ) -> str:
     if not journey_gate_health and not local_release_proof and closure_health is None and not provider_route_stewardship:
@@ -879,13 +1019,45 @@ def _launch_readiness_summary(
     if str(local_release_proof.get("status") or "").strip().lower() != "passed":
         return "Hold launch expansion pending fresh local release proof on the public edge."
 
+    if str(provider_route_stewardship.get("canary_status") or "") != "Canary green on all active lanes":
+        return "Launch posture is still waiting on provider-route evidence."
+
+    open_successor_dependencies = [
+        _safe_int(value, default=0)
+        for value in list(successor_dependency_posture.get("open_dependency_ids") or [])
+        if _safe_int(value, default=0) > 0
+    ]
+    open_successor_dependency_work_tasks = [
+        str(value).strip()
+        for value in list(successor_dependency_posture.get("open_dependency_work_task_ids") or [])
+        if str(value).strip()
+    ]
+    if open_successor_dependency_work_tasks:
+        return (
+            "Hold launch expansion until successor dependency work task(s) "
+            + ", ".join(open_successor_dependency_work_tasks)
+            + " close in the next-90-day registry."
+        )
+    if open_successor_dependencies:
+        return (
+            "Hold launch expansion until successor dependency milestone(s) "
+            + ", ".join(str(value) for value in open_successor_dependencies)
+            + " close in the next-90-day registry."
+        )
+
     if closure_health is not None and str(closure_health.get("state") or "").strip().lower() != "clear":
         return "Hold launch expansion until support closure returns to a clear posture on the public edge."
 
-    if str(provider_route_stewardship.get("canary_status") or "") == "Canary green on all active lanes":
-        return "Route-canary validation is green; widen launch only while support fallout remains stable."
+    status_plane_final_claim = str(
+        status_plane.get("whole_product_final_claim_status") or ""
+    ).strip().lower()
+    if status_plane_final_claim and status_plane_final_claim != "pass":
+        return (
+            "Hold launch expansion until the whole-product final claim returns to pass "
+            f"(current: {status_plane_final_claim})."
+        )
 
-    return "Launch posture is still waiting on provider-route evidence."
+    return "Route-canary validation is green; widen launch only while support fallout remains stable."
 
 
 def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[str, Any]:
@@ -909,6 +1081,7 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
     support_packets = _read_optional_json(FLEET_SUPPORT_CASE_PACKETS)
     status_plane = _read_optional_yaml(FLEET_STATUS_PLANE)
     local_release_proof = _read_optional_json(LOCAL_RELEASE_PROOF)
+    successor_dependency_posture = _successor_dependency_posture(SUCCESSOR_REGISTRY)
     closure_health = _compute_closure_health(
         _load_json(FLEET_JOURNEY_GATES) if FLEET_JOURNEY_GATES.is_file() else {},
         support_packets,
@@ -974,6 +1147,8 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
         closure_health=closure_health,
         provider_route_stewardship=provider_route_stewardship,
         local_release_proof=local_release_proof,
+        successor_dependency_posture=successor_dependency_posture,
+        status_plane=status_plane,
         blocked_journeys=blocked_journeys,
         next20_closed=next20_closed,
         post_audit_closed=post_audit_closed,
@@ -984,6 +1159,8 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
         local_release_proof=local_release_proof,
         provider_route_stewardship=provider_route_stewardship,
         closure_health=closure_health,
+        successor_dependency_posture=successor_dependency_posture,
+        status_plane=status_plane,
         active_wave_status=active_wave_status,
     )
 
@@ -1069,6 +1246,7 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
             "longest_pole": _effective_longest_pole_label(report, journey_gate_health),
             "launch_readiness": launch_readiness,
             "provider_route_stewardship": provider_route_stewardship,
+            "successor_dependency_posture": successor_dependency_posture,
             "journey_gate_source": str(FLEET_JOURNEY_GATES),
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
             "active_wave_registry": _product_relative(active_wave_registry_path),

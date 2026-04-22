@@ -68,7 +68,7 @@ families:
     release_evidence:
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
   - id: identity_contacts_lifestyles_history
     legacy_parity_status: covered
     release_status: gold_ready
@@ -81,7 +81,7 @@ families:
       - Veteran-orientation proof
     release_evidence:
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
   - id: sourcebooks_reference_and_master_index
     legacy_parity_status: covered
@@ -95,7 +95,7 @@ families:
       - Source-selection and reference-target proof
       - Screenshot parity against legacy dense reference posture
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: settings_and_rules_environment_authoring
@@ -110,7 +110,7 @@ families:
       - Rule-environment explain receipts
       - Veteran re-find proof
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: custom_data_xml_and_translator_bridge
@@ -125,8 +125,8 @@ families:
       - Translator tooling proof
       - Oracle fixtures from chummer5a
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
-      - /docker/chummercomplete/chummer-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: dice_initiative_and_table_utilities
     legacy_parity_status: covered
@@ -138,7 +138,7 @@ families:
       - Utility workflow receipts
       - Veteran first-minute reachability
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
   - id: roster_dashboards_and_multi_character_ops
@@ -152,7 +152,7 @@ families:
       - Roster workflow receipts
       - Operator/dashboard compare packs
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
   - id: sheet_export_print_viewer_and_exchange
@@ -166,7 +166,7 @@ families:
       - Print/export workflow receipts
       - Import/export round-trip fixtures
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: legacy_and_adjacent_import_oracles
@@ -181,8 +181,8 @@ families:
       - Adjacent-client import receipts
       - Divergence reporting
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
-      - /docker/chummercomplete/chummer-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: sr6_supplements_designers_and_house_rules
     legacy_parity_status: covered
@@ -195,6 +195,6 @@ families:
       - SR6 successor proof pack
       - Designer and house-rule receipts
     release_evidence:
-      - /docker/chummercomplete/chummer-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
-      - /docker/chummercomplete/chummer-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json

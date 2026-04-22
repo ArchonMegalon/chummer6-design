@@ -88,3 +88,20 @@ Evidence format:
 | WL-D018-04 | chummer6-ui-kit | `8a30d1ab` | `a86dc7e660747db43ec0db0e6630eaee16de72a86910d372a8bf64d779c8731b` | `a86dc7e660747db43ec0db0e6630eaee16de72a86910d372a8bf64d779c8731b` | `5f2763b97666f040f3c0078491e65bef5f9006eeb70a6e2e0f8cf81d5cc7dd1f` | `5f2763b97666f040f3c0078491e65bef5f9006eeb70a6e2e0f8cf81d5cc7dd1f` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `match/match/match` |
 | WL-D018-04 | chummer6-hub-registry | `db4f4309` | `a86dc7e660747db43ec0db0e6630eaee16de72a86910d372a8bf64d779c8731b` | `a86dc7e660747db43ec0db0e6630eaee16de72a86910d372a8bf64d779c8731b` | `415d37350e276b10deb20ad6d22650e524676f22fe5fde3c7b54b9c3209d46e6` | `415d37350e276b10deb20ad6d22650e524676f22fe5fde3c7b54b9c3209d46e6` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `match/match/match` |
 | WL-D018-04 | chummer6-media-factory | `d9a4beb5` | `a86dc7e660747db43ec0db0e6630eaee16de72a86910d372a8bf64d779c8731b` | `a86dc7e660747db43ec0db0e6630eaee16de72a86910d372a8bf64d779c8731b` | `cec04950299fb013afb070f840c1f083a128669750767a19319c32a3bfefcf55` | `cec04950299fb013afb070f840c1f083a128669750767a19319c32a3bfefcf55` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `match/match/match` |
+
+### WL-D018 Cycle 2026-04-22B (operator: codex, post-republish no-change closeout)
+- WL-D018-03 `done` on `2026-04-22`: republished the drifted local mirrors with `python3 scripts/ai/publish_local_mirrors.py`.
+- WL-D018-04 `done` on `2026-04-22`: reran `python3 scripts/ai/publish_local_mirrors.py --check` and confirmed `changed=0 removed=0` across every configured local mirror target, including `executive-assistant`.
+- This closes the transient `2026-04-22A` drift state: after the republish, no downstream repo still required a refresh or prune before parity evidence was recorded.
+
+| Backlog ID | Target Repo | publish_ref | result |
+|---|---|---|---|
+| WL-D018-04 | chummer6-core | `83909dec` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | chummer6-ui | `eac884dd` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | chummer6-hub | `344e818d` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | chummer6-mobile | `35b6152` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | chummer6-ui-kit | `a6a8d60` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | chummer6-hub-registry | `6efcceb` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | chummer6-media-factory | `205b7e1` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | fleet | `08e23427` | `match` (`changed=0 removed=0`) |
+| WL-D018-04 | executive-assistant | `f3f287c` | `match` (`changed=0 removed=0`) |

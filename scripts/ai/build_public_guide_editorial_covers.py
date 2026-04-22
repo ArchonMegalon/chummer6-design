@@ -229,11 +229,8 @@ def _series_style(spec: dict[str, object]) -> str:
     return "feature"
 
 
-def _apply_editorial_finish(image: Image.Image, *, sigma: float = 10.0, opacity: int = 18) -> Image.Image:
+def _apply_editorial_finish(image: Image.Image, *, sigma: float = 0.0, opacity: int = 0) -> Image.Image:
     base = image.convert("RGBA")
-    noise = Image.effect_noise(base.size, sigma).convert("L")
-    noise = ImageOps.autocontrast(noise)
-    noise_layer = Image.merge("RGBA", (noise, noise, noise, Image.new("L", base.size, opacity)))
     vignette = Image.new("L", base.size, 0)
     vignette_draw = ImageDraw.Draw(vignette)
     width, height = base.size
@@ -241,7 +238,13 @@ def _apply_editorial_finish(image: Image.Image, *, sigma: float = 10.0, opacity:
     vignette = ImageOps.invert(vignette).filter(ImageFilter.GaussianBlur(radius=84))
     vignette_layer = Image.new("RGBA", base.size, (3, 6, 10, 0))
     vignette_layer.putalpha(vignette)
-    return Image.alpha_composite(Image.alpha_composite(base, vignette_layer), noise_layer)
+    combined = Image.alpha_composite(base, vignette_layer)
+    if sigma > 0.0 and opacity > 0:
+        noise = Image.effect_noise(base.size, sigma).convert("L")
+        noise = ImageOps.autocontrast(noise)
+        noise_layer = Image.merge("RGBA", (noise, noise, noise, Image.new("L", base.size, opacity)))
+        combined = Image.alpha_composite(combined, noise_layer)
+    return combined
 
 
 def _tracked_text(draw: ImageDraw.ImageDraw, position: tuple[int, int], text: str, font: ImageFont.FreeTypeFont, fill: tuple[int, int, int, int], tracking: int) -> None:
@@ -509,8 +512,8 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
     panel_saturation = max(0.80, min(1.40, _float_value(spec.get("panel_saturation"), 1.10)))
     panel_contrast = max(0.80, min(1.40, _float_value(spec.get("panel_contrast"), 1.06)))
     panel_sharpness = max(0.80, min(1.40, _float_value(spec.get("panel_sharpness"), 1.18)))
-    editorial_finish_sigma = max(0.0, min(20.0, _float_value(spec.get("editorial_finish_sigma"), 10.0)))
-    editorial_finish_opacity = max(0, min(64, _int_value(spec.get("editorial_finish_opacity"), 18)))
+    editorial_finish_sigma = max(0.0, min(20.0, _float_value(spec.get("editorial_finish_sigma"), 0.0)))
+    editorial_finish_opacity = max(0, min(64, _int_value(spec.get("editorial_finish_opacity"), 0)))
 
     background_source_image = Image.open(background_source_path).convert("RGB")
     panel_source_image = Image.open(panel_source_path).convert("RGB")

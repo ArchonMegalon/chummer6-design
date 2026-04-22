@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -9,7 +10,19 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
-DOCKER_ROOT = ROOT.parents[1]
+
+
+def _resolve_docker_root() -> Path:
+    env_root = str(os.environ.get("CHUMMER_DOCKER_ROOT") or "").strip()
+    candidates = [Path(env_root)] if env_root else []
+    candidates.extend((ROOT.parents[1], Path("/docker")))
+    for candidate in candidates:
+        if (candidate / "chummercomplete").is_dir():
+            return candidate
+    return ROOT.parents[1]
+
+
+DOCKER_ROOT = _resolve_docker_root()
 UI_ROOT_CANDIDATES = (
     DOCKER_ROOT / "chummercomplete" / "chummer6-ui",
     DOCKER_ROOT / "chummercomplete" / "chummer-presentation",

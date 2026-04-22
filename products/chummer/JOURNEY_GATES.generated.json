@@ -1,7 +1,7 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-04-16T19:02:00Z",
+  "generated_at": "2026-04-22T12:18:38Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
@@ -12,10 +12,10 @@
     "blocked_reason": "",
     "warning_reason": "",
     "next_safe_action": "Journey proof is steady on current published evidence.",
-    "evidence_age_hours": 0.0,
+    "evidence_age_hours": 6.14,
     "provenance": {
       "weekly_product_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
-      "weekly_product_pulse_generated_at": "2026-04-16T19:01:44Z",
+      "weekly_product_pulse_generated_at": "2026-04-22T06:10:04Z",
       "golden_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml"
     }
   },
@@ -151,10 +151,39 @@
           },
           {
             "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_PACKET.md",
+            "must_contain": [
+              "CompanionPacket",
+              "requires_user_gesture_for_voice",
+              "fallback_pack_id",
+              "desktop/mobile runtime must still work if EA, LLM, or media lanes are unavailable"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_TRIGGER_REGISTRY.yaml",
+            "must_contain": [
+              "default_runtime_path: first_party_local_fallback",
+              "preview_scout_warning",
+              "restore_conflict_warning",
+              "llm_unavailable_must_not_block_runtime"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
             "path": "products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml",
             "must_contain": [
               "first_run_companion_card",
               "desktop_startup_companion_event_packet"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/LOCALIZATION_PARITY_MATRIX.yaml",
+            "must_contain": [
+              "companion_runtime",
+              "locale_smoke_companion",
+              "voice_opt_in_fallback_smoke"
             ]
           },
           {
@@ -390,6 +419,26 @@
               "build_trap_warning",
               "build_compare_explainer",
               "build_lab"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_PACKET.md",
+            "must_contain": [
+              "The packet is a truth wrapper, not a chat request.",
+              "`CompanionPacket` carries inspectable first-party truth",
+              "allowed_joke_budget",
+              "evidence_drawer_required"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_TRIGGER_REGISTRY.yaml",
+            "must_contain": [
+              "build_archetype_drift",
+              "build_trap_choice_intercept",
+              "compare_variants",
+              "keep_the_chaos"
             ]
           },
           {
@@ -653,6 +702,26 @@
               "campaign_drift_alert",
               "rule_environment_drift",
               "campaign_workspace"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_PACKET.md",
+            "must_contain": [
+              "Every packet should carry a suppression block",
+              "Without explicit suppression semantics, the companion becomes noise.",
+              "campaign_workspace",
+              "runboard"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_TRIGGER_REGISTRY.yaml",
+            "must_contain": [
+              "campaign_rules_changed",
+              "dossier_stale_before_session",
+              "runboard_blocker_tension",
+              "show_blockers"
             ]
           },
           {
@@ -1123,6 +1192,26 @@
               "fix_closure",
               "support_case_state",
               "release_channel_confirmation"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_PACKET.md",
+            "must_contain": [
+              "Most packets should stay text-first.",
+              "fix-confirmation",
+              "required_text_fallback: true",
+              "click_to_play"
+            ]
+          },
+          {
+            "repo": "chummer6-design",
+            "path": "products/chummer/COMPANION_TRIGGER_REGISTRY.yaml",
+            "must_contain": [
+              "support_fix_confirmation",
+              "update_now",
+              "show_fix_receipt",
+              "line_variant_pack_and_rare_media_brief"
             ]
           },
           {

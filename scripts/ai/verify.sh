@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
-repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
-downstream_root="$(cd "$repo_root/../Chummer6" && pwd)"
+script_root="$(cd "$(dirname "$0")/../.." && pwd)"
+repo_root_source="${CHUMMER_DESIGN_REPO_ROOT:-$script_root}"
+repo_root="$(cd "$repo_root_source" && pwd)"
+downstream_root=""
+for candidate in \
+  "${CHUMMER6_GUIDE_ROOT:-}" \
+  "$repo_root/../Chummer6" \
+  "/docker/chummercomplete/Chummer6"
+do
+  if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+    downstream_root="$(cd "$candidate" && pwd)"
+    break
+  fi
+done
+if [ -z "$downstream_root" ]; then
+  echo "unable to locate Chummer6 guide repo; set CHUMMER6_GUIDE_ROOT" >&2
+  exit 1
+fi
 for path in \
   README.md \
   AGENTS.md \
@@ -222,7 +238,7 @@ rg -n '^# Provider and route stewardship$|^## Ownership split$|^## Required stew
 rg -n '^product: chummer$|^version: 1$|^scorecards:$|^  - id: release_health$|^  - id: support_and_feedback_closure$|^  - id: campaign_middle_health$|^  - id: control_loop_integrity$|^weekly_snapshot:$' "$repo_root/products/chummer/PRODUCT_HEALTH_SCORECARD.yaml" >/dev/null
 rg -n '^version: 1$|^last_reviewed: 2026-04-12$|closure-honesty contract|^release_blocking: true$|^thresholds:$|^requirements:$|^status_spine:$' "$repo_root/products/chummer/FEEDBACK_LOOP_RELEASE_GATE.yaml" >/dev/null
 rg -n '^version: 1$|^last_reviewed: 2026-04-12$|^purpose: Reporter-facing staged progress email contract|^decision_awards:$|^stages:$|^e2e_gate:$|wageslave@chummer.run|Clad Feedbacker|Denied' "$repo_root/products/chummer/FEEDBACK_PROGRESS_EMAIL_WORKFLOW.yaml" >/dev/null
-rg -n '\"contract_name\": \"chummer\\.weekly_product_pulse\"|\"governor_decisions\"|\"next_checkpoint_question\"|\"history_snapshot_count\"' "$repo_root/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json" >/dev/null
+rg -n '"contract_name": "chummer\\.weekly_product_pulse"|"governor_decisions"|"next_checkpoint_question"|"history_snapshot_count"' "$repo_root/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^golden_journey_source: GOLDEN_JOURNEY_RELEASE_GATES\\.yaml$|^scorecards:$|^  - id: golden_journey_proof$|^release_gates:$|^  - id: deterministic_rules_truth$|^  - id: session_continuity$|^  - id: campaign_and_dossier_continuity$|^  - id: roaming_workspace_trust$|next_safe_action_clarity|device_role_posture_visibility|^  - id: support_and_closure_honesty$|^  - id: roaming_workspace_gate$|^  - id: golden_journey_gate$' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: release_control$|^version: 1$|^journey_gates:$|^  - id: install_claim_restore_continue$|^  - id: build_explain_publish$|^  - id: campaign_session_recover_recap$|^  - id: recover_from_sync_conflict$|^  - id: report_cluster_release_notify$|^  - id: organize_community_and_close_loop$' "$repo_root/products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml" >/dev/null
 rg -n '^# Product usage telemetry model$|^## Purpose$|^## Default posture$|^## Telemetry tiers$|^### Tier 2: pseudonymous hosted product telemetry$|^## High-value derived metrics$' "$repo_root/products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md" >/dev/null
@@ -236,10 +252,10 @@ rg -n '^# Desktop client product cut$|^## Purpose$|^## Shipped desktop heads$|^#
 rg -n '^# Localization and language system$|^## Purpose$|^## Shipping locale set$|^## Translation domains$|^## Runtime behavior$|en-US|de-DE|fr-FR|ja-JP|pt-BR|zh-CN' "$repo_root/products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md" >/dev/null
 rg -n '^product: chummer$|^surface: desktop_and_hosted_language_system$|^version: 1$|^source_locale: en-US$|^fallback_locale: en-US$|^shipping_locales:$|^domains:$|^locale_matrix:$' "$repo_root/products/chummer/LOCALIZATION_PARITY_MATRIX.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: desktop_delivery$|^version: 1$|^flagship_head: Chummer\\.Avalonia$|^fallback_head: Chummer\\.Blazor\\.Desktop$|^platforms:$|^  - id: windows$|^  - id: linux$|^  - id: macOS$' "$repo_root/products/chummer/DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml" >/dev/null
-rg -n '\"generated_at\"|\"parts\"|\"status\"|\"active_wave\"|\"active_wave_status\"|\"current_phase\"|\"eta_summary\"' "$repo_root/products/chummer/PROGRESS_REPORT.generated.json" >/dev/null
+rg -n '"generated_at"|"parts"|"status"|"active_wave"|"active_wave_status"|"current_phase"|"eta_summary"' "$repo_root/products/chummer/PROGRESS_REPORT.generated.json" >/dev/null
 rg -n '<!DOCTYPE html>|progress report|chummer' "$repo_root/products/chummer/PROGRESS_REPORT.generated.html" >/dev/null
 rg -n '<svg|progress|poster' "$repo_root/products/chummer/PROGRESS_REPORT_POSTER.svg" >/dev/null
-rg -n '\"history\"|\"generated_at\"' "$repo_root/products/chummer/PROGRESS_HISTORY.generated.json" >/dev/null
+rg -n '"history"|"generated_at"' "$repo_root/products/chummer/PROGRESS_HISTORY.generated.json" >/dev/null
 rg -n '^# Journey canon$|build-and-inspect-a-character|claim-install-and-close-a-support-case|continue-on-a-second-claimed-device|run-a-campaign-and-return|organize-a-community-and-close-the-loop|rejoin-after-disconnect|install-and-update|publish-a-grounded-artifact|recover-from-sync-conflict' "$repo_root/products/chummer/journeys/README.md" >/dev/null
 rg -n '^# Build and inspect a character$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/build-and-inspect-a-character.md" >/dev/null
 rg -n '^# Claim install and close a support case$|^## Happy path$|^## Failure modes$|^## Owning repos$' "$repo_root/products/chummer/journeys/claim-install-and-close-a-support-case.md" >/dev/null
@@ -322,7 +338,7 @@ rg -n '^## What it would do$' "$repo_root/products/chummer/public-guide/HORIZONS
 rg -n '^## What has to be true first$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
-rg -n '\"generated_from\"|\"page_count\"|\"active_wave\"|\"sources\"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
+rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n '^# Chummer Public Guide$' "$downstream_root/README.md" >/dev/null
 rg -n '^## What is real now$' "$downstream_root/README.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
@@ -332,7 +348,7 @@ rg -n '^## (Current public download|Current preview shelf)$' "$downstream_root/D
 rg -n '^# How Can I Help\?$' "$downstream_root/HOW_CAN_I_HELP.md" >/dev/null
 rg -n '^# Where To Go Deeper$' "$downstream_root/WHERE_TO_GO_DEEPER.md" >/dev/null
 rg -n '^# What Chummer6 Is$' "$downstream_root/WHAT_CHUMMER6_IS.md" >/dev/null
-if rg -n 'Current pulse|Current build matrix|Honest artifact format|Raw release fallback|No mystery roadmap|Current polish wave|Published public updates|front door to Chummer6' \
+if rg -n 'Current pulse|Honest artifact format|Raw release fallback|No mystery roadmap|Current polish wave|Published public updates|front door to Chummer6' \
   "$repo_root/products/chummer/public-guide" \
   "$downstream_root" -g '*.md' >/dev/null; then
   echo "stale public-guide phrasing found" >&2

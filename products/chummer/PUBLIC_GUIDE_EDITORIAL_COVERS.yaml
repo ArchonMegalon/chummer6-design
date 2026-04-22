@@ -11,11 +11,11 @@ assets:
     source: products/chummer/public-guide-curated-assets/source-plates/hero/chummer6-hero-plate.png
     series_label: CHUMMER6 PUBLIC GUIDE
     title: CHUMMER6
-    subtitle: Shadowrun character software that shows its work.
+    subtitle: The explainable Shadowrun campaign OS.
     chips:
       - BUILD
-      - INSPECT
-      - PLAY
+      - EXPLAIN
+      - RUN
     accent: "#79d8ff"
     accent_secondary: "#f5b04d"
     focus: [0.56, 0.47]
@@ -184,6 +184,62 @@ assets:
     accent_secondary: "#49d6ff"
     focus: [0.58, 0.45]
     motif: pulse_bands
+  assets/horizons/black-ledger.png:
+    kind: feature_cover
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/black-ledger.png
+    series_label: CHUMMER6 HORIZON
+    index: "08"
+    title: BLACK LEDGER
+    subtitle: A living world map where pressure, jobs, and outcomes keep moving between sessions.
+    chips:
+      - WORLD MAP
+      - MISSION MARKET
+      - CITY MEMORY
+    accent: "#ff8a4c"
+    accent_secondary: "#5ce1e6"
+    focus: [0.70, 0.44]
+    background_focus: [0.70, 0.44]
+    background_zoom: 1.16
+    panel_focus: [0.78, 0.41]
+    panel_zoom: 1.42
+    background_brightness: 0.92
+    background_saturation: 1.12
+    background_contrast: 1.10
+    background_overlay_alpha: 112
+    panel_brightness: 1.35
+    panel_saturation: 1.22
+    panel_contrast: 1.38
+    panel_sharpness: 1.25
+    panel_overlay_alpha: 0
+    motif: route_grid
+  assets/horizons/shadowcasters-network.png:
+    kind: feature_cover
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/shadowcasters-network.png
+    series_label: CHUMMER6 HORIZON
+    index: "09"
+    title: SHADOWCASTERS NETWORK
+    subtitle: Open runs, player join requests, scheduling, and closeout on one governed lane.
+    chips:
+      - OPEN RUNS
+      - TABLE FINDING
+      - CLOSEOUT
+    accent: "#6bd4ff"
+    accent_secondary: "#ffcc66"
+    focus: [0.76, 0.40]
+    background_focus: [0.76, 0.40]
+    background_zoom: 1.18
+    panel_focus: [0.80, 0.38]
+    panel_zoom: 1.55
+    background_brightness: 0.98
+    background_saturation: 1.10
+    background_contrast: 1.10
+    background_overlay_alpha: 100
+    panel_brightness: 1.28
+    panel_saturation: 1.18
+    panel_contrast: 1.34
+    panel_sharpness: 1.32
+    panel_overlay_alpha: 0
+    motif: network_nodes
   assets/pages/horizons-index.png:
     kind: feature_cover
     source: products/chummer/public-guide-curated-assets/source-plates/pages/horizons-index.png

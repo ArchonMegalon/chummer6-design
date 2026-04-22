@@ -1,9 +1,9 @@
-source_queue_fingerprint: e29ff7d99811d6cf12eb6f26920ccd095d0ea4ee
+source_queue_fingerprint: e193717e9a5dca62208421956ed3ec13e52a2d76
 work_packages:
-- package_id: design-package-compile-e29ff7d998
-  package_kind: package_compile
-  horizon_family: package-compile
-  title: Compile booster-ready work packages from queue truth
+- package_id: design-wld014-review-template-parity-cycle
+  package_kind: design
+  horizon_family: mirror-parity
+  title: Run the review-template mirror parity cycle and record its disposition
   allowed_lanes:
   - core_authority
   allow_credit_burn: true
@@ -12,9 +12,135 @@ work_packages:
   final_reviewer_lane: core_authority
   landing_lane: core_authority
   allowed_paths:
-  - .codex-studio/published/WORKPACKAGES.generated.yaml
+  - WORKLIST.md
+  - products/chummer/PROGRAM_MILESTONES.yaml
+  - products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md
   denied_paths: []
   owned_surfaces:
-  - package_compile:design
+  - review_template_mirror_parity
+  - review_template_mirror_publish
   dependencies: []
-  max_touched_files: 1
+  max_touched_files: 3
+- package_id: design-wld018-local-mirror-parity-cycle
+  package_kind: design
+  horizon_family: mirror-parity
+  title: Run the repo-local mirror parity cycle and record its disposition
+  allowed_lanes:
+  - core_authority
+  allow_credit_burn: true
+  premium_required: true
+  required_reviewer_lane: core_authority
+  final_reviewer_lane: core_authority
+  landing_lane: core_authority
+  allowed_paths:
+  - WORKLIST.md
+  - products/chummer/PROGRAM_MILESTONES.yaml
+  - products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md
+  denied_paths: []
+  owned_surfaces:
+  - local_mirror_parity
+  - local_mirror_publish
+  dependencies: []
+  max_touched_files: 3
+- package_id: design-wld009-truth-maintenance-ownership
+  package_kind: design
+  horizon_family: truth-maintenance
+  title: Reconcile repo ownership boundaries and forbidden dependencies
+  allowed_lanes:
+  - core_authority
+  allow_credit_burn: true
+  premium_required: true
+  required_reviewer_lane: core_authority
+  final_reviewer_lane: core_authority
+  landing_lane: core_authority
+  allowed_paths:
+  - products/chummer/OWNERSHIP_MATRIX.md
+  - products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md
+  denied_paths: []
+  owned_surfaces:
+  - design_truth_maintenance:ownership
+  dependencies: []
+  max_touched_files: 2
+- package_id: design-wld009-truth-maintenance-contracts
+  package_kind: design
+  horizon_family: truth-maintenance
+  title: Reconcile contract-family ownership, package IDs, and boundary canon
+  allowed_lanes:
+  - core_authority
+  allow_credit_burn: true
+  premium_required: true
+  required_reviewer_lane: core_authority
+  final_reviewer_lane: core_authority
+  landing_lane: core_authority
+  allowed_paths:
+  - products/chummer/CONTRACT_SETS.yaml
+  - products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md
+  denied_paths: []
+  owned_surfaces:
+  - design_truth_maintenance:contracts
+  dependencies: []
+  max_touched_files: 2
+- package_id: design-wld009-truth-maintenance-blockers
+  package_kind: design
+  horizon_family: truth-maintenance
+  title: Reconcile blocker ownership, status, and alignment
+  allowed_lanes:
+  - core_authority
+  allow_credit_burn: true
+  premium_required: true
+  required_reviewer_lane: core_authority
+  final_reviewer_lane: core_authority
+  landing_lane: core_authority
+  allowed_paths:
+  - products/chummer/GROUP_BLOCKERS.md
+  - products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md
+  denied_paths: []
+  owned_surfaces:
+  - design_truth_maintenance:blockers
+  dependencies: []
+  max_touched_files: 2
+- package_id: design-wld009-truth-maintenance-milestones
+  package_kind: design
+  horizon_family: truth-maintenance
+  title: Reconcile milestone truth, last-reviewed coverage, and recurring mapping
+  allowed_lanes:
+  - core_authority
+  allow_credit_burn: true
+  premium_required: true
+  required_reviewer_lane: core_authority
+  final_reviewer_lane: core_authority
+  landing_lane: core_authority
+  allowed_paths:
+  - WORKLIST.md
+  - products/chummer/PROGRAM_MILESTONES.yaml
+  - products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md
+  denied_paths: []
+  owned_surfaces:
+  - design_truth_maintenance:milestones
+  - design_truth_maintenance:recurring_mapping
+  dependencies: []
+  max_touched_files: 3
+- package_id: design-wld009-truth-maintenance-closeout
+  package_kind: design
+  horizon_family: truth-maintenance
+  title: Append the dated truth-maintenance closeout after canon reconciliation completes
+  allowed_lanes:
+  - core_authority
+  allow_credit_burn: true
+  premium_required: true
+  required_reviewer_lane: core_authority
+  final_reviewer_lane: core_authority
+  landing_lane: core_authority
+  allowed_paths:
+  - WORKLIST.md
+  - products/chummer/PROGRAM_MILESTONES.yaml
+  - products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md
+  denied_paths: []
+  owned_surfaces:
+  - design_truth_maintenance:closeout
+  dependencies:
+  - design-wld009-truth-maintenance-ownership
+  - design-wld009-truth-maintenance-contracts
+  - design-wld009-truth-maintenance-blockers
+  - design-wld009-truth-maintenance-milestones
+  max_touched_files: 3

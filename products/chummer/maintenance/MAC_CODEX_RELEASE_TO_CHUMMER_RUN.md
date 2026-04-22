@@ -9,7 +9,7 @@ If you want the zero-touch signed-in path, open `https://chummer.run/downloads/r
 Public bootstrap:
 
 ```bash
-bash <(curl -fsSL https://chummer.run/artifacts/mac-codex-release-pipeline/bootstrap.sh)
+bash <(curl -fsSL https://chummer.run/downloads/release-upload/bootstrap.sh)
 ```
 
 Repo-local checkout fallback:

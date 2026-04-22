@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -11,7 +12,19 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
-DOCKER_ROOT = ROOT.parents[1]
+
+
+def _resolve_docker_root() -> Path:
+    env_root = str(os.environ.get("CHUMMER_DOCKER_ROOT") or "").strip()
+    candidates = [Path(env_root)] if env_root else []
+    candidates.extend((ROOT.parents[1], Path("/docker")))
+    for candidate in candidates:
+        if (candidate / "chummercomplete").is_dir():
+            return candidate
+    return ROOT.parents[1]
+
+
+DOCKER_ROOT = _resolve_docker_root()
 
 
 def load_yaml(path: Path) -> dict:

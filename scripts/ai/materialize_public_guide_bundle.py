@@ -236,6 +236,8 @@ def _candidate_asset_roots(repo_root: Path) -> list[Path]:
     for candidate in (
         repo_root.parent / "Chummer6" / "assets",
         repo_root.parent / "chummer6" / "assets",
+        Path("/docker/chummercomplete/Chummer6/assets"),
+        Path("/docker/chummercomplete/chummer6/assets"),
     ):
         if candidate not in roots:
             roots.append(candidate)
@@ -307,7 +309,11 @@ def _resolve_curated_asset_source(*, repo_root: Path, source_root: Path, raw_val
         )
     elif cleaned.startswith("assets/"):
         candidates.append(source_root / Path(cleaned).relative_to("assets"))
-        candidates.append(repo_root.parent / "Chummer6" / cleaned)
+        candidates.extend(
+            asset_root.parent / cleaned
+            for asset_root in _candidate_asset_roots(repo_root)
+            if asset_root.is_dir()
+        )
     else:
         candidates.append(repo_root / cleaned)
         candidates.append(repo_root.parent / cleaned)
@@ -528,6 +534,8 @@ def _candidate_hub_registry_roots(repo_root: Path) -> list[Path]:
     for candidate in (
         repo_root.parent / "chummer-hub-registry",
         repo_root.parent / "chummer6-hub-registry",
+        Path("/docker/chummercomplete/chummer-hub-registry"),
+        Path("/docker/chummercomplete/chummer6-hub-registry"),
     ):
         if candidate not in roots:
             roots.append(candidate)
@@ -1062,7 +1070,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
     open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
     published = _release_is_published(release_payload.get("status"))
     rendered = dict(section)
-    rendered["heading"] = "If install or update goes sideways"
+    rendered["heading"] = "Start with the release page and download help"
     if installers:
         if published:
             rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails."
@@ -1253,51 +1261,25 @@ def _generate_root(
 
     rows = [
         _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
-        "# Chummer6",
+        "# Chummer Public Guide",
         "",
-        "Use this guide to answer the practical questions first: what Chummer6 is, whether it is worth trying today, what to download, and where to get help.",
+        "Use this guide to answer the practical questions first: what Chummer6 is, what is real today, what to download, and where to get help.",
         "",
+        "## Product promise",
+        "",
+        "Chummer6 is the explainable Shadowrun campaign OS.",
+        "",
+        "Its first must-win job is being the most trustworthy way to build, inspect, and advance a Shadowrun character.",
+        "",
+        "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward.",
+        "",
+        "## What is real now",
+        "",
+        "- Short answer: yes, as an early preview.",
+        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        f"- {desktop_pick_line}",
+        f"- {quality_gap_line}",
     ]
-    if headline or subhead or proof_line:
-        rows.extend(["## What Chummer6 is", ""])
-        rows.extend(
-            [
-                "Chummer6 is Shadowrun character software that tries to show its work instead of hiding the math.",
-                "",
-                "The goal is simple: help you build faster, understand why numbers changed, and keep playing even when setup or connectivity gets messy.",
-                "",
-            ]
-        )
-    rows.extend(
-        [
-            "## Fast answers",
-            "",
-            "- I want to try the preview: [Download](DOWNLOAD.md).",
-            "- I want the honest current picture: [Status](STATUS.md).",
-            "- I am coming from Chummer5a: [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).",
-            "- I want the two-minute product story: [What Chummer6 Is](WHAT_CHUMMER6_IS.md).",
-            "- I need help or want to report a problem: [Help](HELP.md) and [Contact](CONTACT.md).",
-            "- I only care about what may come later: [Horizons](HORIZONS/README.md).",
-            "",
-        ]
-    )
-    rows.extend(
-        [
-            "## Can I use it today?",
-            "",
-            "- Short answer: yes, as an early preview.",
-            f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
-            f"- {desktop_pick_line}",
-            f"- {quality_gap_line}",
-            "",
-        ]
-    )
-    rows.extend(
-        [
-        "## What is live right now",
-        "",
-        ]
-    )
     if phase:
         rows.append(f"- Today: {phase}.")
     rows.extend(
@@ -1309,10 +1291,47 @@ def _generate_root(
             ),
             "- Help, contact, privacy, and terms pages are live.",
             (
-                "- More long-campaign depth and steadier desktop polish are still coming."
+                "- More campaign-ledger depth and steadier desktop polish are still coming."
                 if post_audit_closed and active_registry_status in {"in_progress", "complete"}
                 else "- Broader desktop support and more product polish are still coming."
             ),
+            "",
+        ]
+    )
+    rows.extend(
+        [
+            "## Start here",
+            "",
+            "- [Download](DOWNLOAD.md)",
+            "- [Status](STATUS.md)",
+            "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+            "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
+        ]
+    )
+    rows.extend(
+        [
+            line
+            for line in ordered_ctas
+            if line
+            not in {
+                "- [Start here](START_HERE.md)",
+                "- [Status](STATUS.md)",
+                "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+                "- [Download](DOWNLOAD.md)",
+                "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
+            }
+        ]
+    )
+    rows.extend(
+        [
+            "",
+            "## How can I help?",
+            "",
+            "If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).",
+            "",
+            "- The public participation door is <https://chummer.run/participate>.",
+            "- The cheap baseline stays the default path; guided contribution is extra, not the normal support door.",
+            "- Final landing still goes through review before anything ships.",
             "",
         ]
     )
@@ -1325,21 +1344,11 @@ def _generate_root(
             "",
             "## Why people care",
             "",
-            "- It tries to show why a number changed instead of hiding the math.",
-            "- It is being built to stay calmer when devices or connectivity get weird.",
-            "- The status, downloads, and help story is meant to live in plain sight instead of being scattered.",
+            "- It shows why a number changed instead of hiding the math.",
+            "- It is being built to keep sessions and campaigns recoverable when devices or connectivity drift.",
+            "- The status, downloads, and help story is meant to stay in plain sight instead of being scattered.",
             "",
-            "## Useful next pages",
-            "",
-        ]
-    )
-    rows.extend([line for line in ordered_ctas if line != "- [Start here](START_HERE.md)"])
-    rows.extend(
-        [
-            "",
-            "## Go deeper when you want to",
-            "",
-            "Most people can stop at the pages above. Use these only when you want more detail.",
+            "## Product parts",
             "",
             "- [Parts index](PARTS/README.md): an inside view of how the app is put together.",
             "- [Horizons index](HORIZONS/README.md): future ideas that are not ready today.",
@@ -1488,7 +1497,7 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     overall = progress.get("overall_progress_percent")
     phase = _public_phase_label(progress.get("phase_label"))
     if overall is not None or phase:
-        rows.extend(["## Right now", ""])
+        rows.extend(["## Current picture", ""])
         if phase:
             rows.append(f"- Today: {phase}.")
         if version:
@@ -1586,7 +1595,7 @@ def _generate_download(
             "There is no public macOS download today.",
         ),
     }
-    section_heading = "What is available today"
+    section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
     shelf_truth = _public_shelf_truth_line(status, artifacts)
 
@@ -1626,6 +1635,15 @@ def _generate_download(
     if fix_availability:
         rows.append(f"- Update note: {fix_availability}")
 
+    rows.extend(
+        [
+            "",
+            "## Current build matrix",
+            "",
+            "If you want the raw release shelf and attached artifacts, use GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.",
+        ]
+    )
+
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]
         rows.extend(["", f"### {platform_label}", ""])
@@ -1649,7 +1667,7 @@ def _generate_download(
             if update_feed:
                 rows.append(f"- Update feed: `{update_feed}`")
 
-    rows.extend(["", "## Package formats", ""])
+    rows.extend(["", "## Current package format", ""])
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
@@ -1679,7 +1697,7 @@ def _generate_download(
         else:
             rows.append("- No preview downloads are posted right now.")
 
-    rows.extend(["", "## Checksums", ""])
+    rows.extend(["", "## SHA256", ""])
     if artifacts:
         for artifact in artifacts:
             label = str(artifact.get("platformLabel") or artifact.get("artifactId") or artifact.get("fileName") or "artifact").strip()
@@ -1693,7 +1711,7 @@ def _generate_download(
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
-        rows.extend(["", "## Recent checks", ""])
+        rows.extend(["", "## Recent release verification", ""])
         proof_status = str(release_proof.get("status") or "").strip()
         generated_at = str(release_proof.get("generatedAt") or "").strip()
         if proof_status:
@@ -1926,7 +1944,7 @@ def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
         if path.is_file()
     )
     generated = {
-        "generated_from": str(PRODUCT_ROOT / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
+        "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
         "generated_by": "materialize_public_guide_bundle.py",
         "page_count": len(list(out_dir.rglob("*.md"))),
         "status": manifest.get("status") or "ok",

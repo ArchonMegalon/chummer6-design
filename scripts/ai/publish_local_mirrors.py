@@ -38,6 +38,13 @@ def _local_repo_base_candidates(manifest: dict[str, object], repo_base: Path | N
     shared_base = os.environ.get("CHUMMER_REPO_BASE")
     if shared_base:
         candidates.append(Path(shared_base).expanduser())
+    candidates.extend(
+        (
+            Path("/docker/chummercomplete"),
+            Path("/docker"),
+            Path("/docker/fleet/repos"),
+        )
+    )
 
     configured = manifest.get("local_repo_base_candidates") or []
     if configured and not isinstance(configured, list):

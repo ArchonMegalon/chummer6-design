@@ -95,7 +95,7 @@ horizons:
     file: black-ledger.md
     family: campaign world-state
     state: horizon
-    public_guide_allowed: false
+    public_guide_allowed: true
     likely_owners:
       - chummer6-hub
       - chummer6-core
@@ -109,7 +109,26 @@ horizons:
       - guided_mastery_substrate
       - evaluation_substrate
       - continuity_and_degraded_state_substrate
-    why_horizon: World-state and mission-market effects remain adjacent to campaign truth until GM-only pilot and approval seams are proven.
+    why_horizon: World-state and mission-market effects remain adjacent to campaign truth until practical GM prep, scheduling, and world-memory seams are proven.
+
+  - id: shadowcasters-network
+    file: shadowcasters-network.md
+    family: campaign world-state
+    state: horizon
+    public_guide_allowed: true
+    likely_owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-mobile
+      - fleet
+      - executive-assistant
+      - chummer6-media-factory
+    foundation_dependencies:
+      - publication_and_prestige_substrate
+      - guided_mastery_substrate
+      - evaluation_substrate
+      - continuity_and_degraded_state_substrate
+    why_horizon: Recruitment, community-rule preflight, scheduling, and observer consent only work if run truth stays first-party and the practical table-finding loop proves out before the network widens.
 
   - id: runsite
     file: runsite.md

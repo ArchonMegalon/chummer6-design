@@ -2199,12 +2199,12 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 
 ### WL-D016 Cycle 2026-03-14F (operator: codex, system re-entry)
 - WL-D009-01 `done`: executed required startup reads (`products/chummer/ARCHITECTURE.md`, `WORKLIST.md`, `.codex-studio/published/QUEUE.generated.yaml`, and `AGENTS.md`) and inspected repository state before edits.
-- WL-D009-02 `done`: incorporated required unread feedback in provided oldest-first order: `feedback/2026-03-14-013735-audit-task-11676.md` then `feedback/2026-03-14-013735-audit-task-11679.md`.
-- WL-D009-03 `done`: materialized missing recurring repo-local mirror publication scope by extending `products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md` with executable recurring rows `WL-D018-01..05` while leaving WL-D008 completion evidence intact.
-- WL-D009-04 `done`: mapped the new recurring mirror lane as queued work item `WL-D018` in both `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml` so uncovered-scope and queue-exhaustion findings are backed by explicit milestone-linked backlog.
-- WL-D009-05 `done`: replaced stale generic queue-overlay prompts in `.codex-studio/published/QUEUE.generated.yaml` with explicit executable queue steps `WL-D018-01..05` and removed the stale milestone-coverage re-entry line for already completed WL-D006 scope.
-- WL-D009-06 `done`: revalidated queue/backlog consistency across `WORKLIST.md`, `products/chummer/PROGRAM_MILESTONES.yaml`, `.codex-studio/published/QUEUE.generated.yaml`, and `products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md`; recurring lanes now cover truth maintenance (`WL-D016`), review-template parity (`WL-D017`), and repo-local mirror parity (`WL-D018`).
-- WL-D009-07 `done`: published this dated split-wave delta note; ownership matrix, contract canon, blockers, and milestone phase exit criteria stayed unchanged in this cycle while uncovered mirror scope was materialized into runnable recurring queue work.
+- WL-D009-02 `done`: incorporated required unread feedback in provided oldest-first order (`feedback/2026-03-14-013735-audit-task-11676.md` then `feedback/2026-03-14-013735-audit-task-11679.md`) and revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was required in this cycle.
+- WL-D009-03 `done`: revalidated `products/chummer/CONTRACT_SETS.yaml`; no contract-family ownership or canonical package-ID drift was required, and the feedback only identified uncovered recurring mirror-publication scope that needed to be materialized separately.
+- WL-D009-04 `done`: revalidated `products/chummer/GROUP_BLOCKERS.md`; blocker ownership/status stayed aligned with current split-wave truth, and the uncovered mirror-publication scope was queued as follow-up lane `WL-D018` rather than treated as blocker-state drift.
+- WL-D009-05 `done`: revalidated `products/chummer/PROGRAM_MILESTONES.yaml`; phase/milestone truth and current release-blocker posture stayed unchanged, and the file was refreshed only to map the newly materialized recurring mirror lane `WL-D018` instead of reopening already-complete milestone coverage work.
+- WL-D009-06 `done`: revalidated queue/backlog consistency across `WORKLIST.md`, `products/chummer/PROGRAM_MILESTONES.yaml`, `.codex-studio/published/QUEUE.generated.yaml`, and `products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md`; recurring lanes now cover truth maintenance (`WL-D016`), review-template parity (`WL-D017`), and repo-local mirror parity (`WL-D018`), with stale generic queue prompts removed.
+- WL-D009-07 `done`: published this dated split-wave delta note; ownership matrix, contract canon, blockers, and milestone phase exits remained unchanged in this cycle, while the feedback-identified uncovered mirror scope was materialized into runnable recurring queue work.
 
 ### WL-D016 Cycle 2026-03-14T07:33:16Z (operator: codex, system re-entry)
 - WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
@@ -2221,9 +2221,6 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 ### WL-D016 Cycle 2026-03-14T07:42:53Z (operator: codex, system re-entry)
 - WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
 
-### WL-D016 Cycle 2026-03-14T09:18:08Z (operator: codex, system re-entry)
-- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
-
 ### WL-D016 Cycle 2026-03-14T07:47:54Z (operator: codex, system re-entry)
 - WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
 
@@ -2234,6 +2231,9 @@ Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 - WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
 
 ### WL-D016 Cycle 2026-03-14T07:54:30Z (operator: codex, system re-entry)
+- WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
+
+### WL-D016 Cycle 2026-03-14T09:18:08Z (operator: codex, system re-entry)
 - WL-D009-01 `done`: started the recurring truth-maintenance cycle from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` and recorded cycle date/operator for this execution slice.
 
 ### WL-D016 Cycle 2026-03-14T20:06:48Z (operator: codex, system re-entry)

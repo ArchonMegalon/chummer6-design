@@ -15,6 +15,7 @@ Current status on 2026-03-26:
 * the active no-step-back parity overlay for that closeout wave is `LEGACY_CLIENT_AND_ADJACENT_PARITY.md` plus `LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml`; it makes legacy and adjacent client feature families release-blocking rather than informal migration notes
 * interop and portability are now explicit canon plus runtime/export truth rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 * the additive work after this closeout is no longer “make the missing middle real”; it is campaign breadth, broader public promotion, live operator cadence, and estate-wide adoption depth on top of the now-closed next-20 baseline
+* the active operational-hardening overlay is `REPO_HYGIENE_RELEASE_TRUST_AND_AUTOMATION_SAFETY.md` plus `REPO_HARDENING_CHECKLIST.yaml`; it does not reopen ownership canon, but it makes public repo hygiene, signed release-manifest truth, workflow safety, blast-radius limits, and explicit public support lanes first-class program work
 
 ## Recommended next initiative
 
@@ -46,6 +47,7 @@ The immediate additive shape is:
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
 * raise every major surface to the flagship-grade bar in `FLAGSHIP_PRODUCT_BAR.md`, especially the authored desktop client, ruleset-specific UX, public trust shelf, and live-play continuity
+* make public repo hygiene, release truth, workflow hardening, and automation blast radius machine-verifiable so the live estate cannot drift away from the ownership model
 
 ## Phase A — Canon and package plane
 

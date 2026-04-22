@@ -14,12 +14,12 @@ modules:
   - key: engine
     canonical_repos:
       - chummer6-core
-      - chummer-core-engine
+      - chummer6-core
   - key: dossier-campaign
     canonical_repos:
       - chummer6-core
       - chummer6-hub
-      - chummer.run-services
+      - chummer6-hub
   - key: rules-environment
     canonical_repos:
       - chummer6-core
@@ -39,7 +39,7 @@ modules:
     canonical_repos:
       - chummer6-hub
       - chummer6-ui
-      - chummer.run-services
+      - chummer6-hub
   - key: desktop-flagship
     canonical_repos:
       - chummer6-ui
