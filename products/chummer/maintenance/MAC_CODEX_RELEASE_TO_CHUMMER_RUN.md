@@ -46,6 +46,7 @@ Optional overrides:
 ```bash
 export CHUMMER_RELEASE_UPLOAD_URL="https://chummer.run/api/internal/releases/bundles"
 export CHUMMER_PORTAL_DOWNLOADS_VERIFY_URL="https://chummer.run/downloads/RELEASE_CHANNEL.generated.json"
+export CHUMMER_RELEASE_VERIFY_REQUIRE_COMPATIBILITY_PROJECTION="0"
 export CHUMMER_RELEASE_CHANNEL="preview"
 export CHUMMER_RELEASE_APP="avalonia"
 export CHUMMER_RELEASE_RID="osx-arm64"
@@ -85,3 +86,7 @@ Once the upload succeeds:
 3. the direct file URL resolves under `/downloads/files/...`
 4. the signed-in claim-code handoff is live at `/downloads/install/{artifactId}`
 5. the desktop app also ships `Samples/Legacy/Soma-Career.chum5`, bundled from the legacy Chummer5 test fixtures for a real completed-runner import check
+
+The bootstrap now treats the canonical `RELEASE_CHANNEL.generated.json` projection as the success gate.
+If the compatibility `releases.json` shelf lags briefly after publish, the run logs a warning instead of failing.
+Set `CHUMMER_RELEASE_VERIFY_REQUIRE_COMPATIBILITY_PROJECTION=1` only when you explicitly want compatibility drift to fail the run.

@@ -170,3 +170,84 @@ bets:
     exits_when:
       - Runner career timeline, karma forecast, nuyen envelopes, and contact continuity are real product loops rather than roadmap folklore.
       - The repeat-use value is continuity and anticipation, not manipulative engagement mechanics.
+
+  - id: CRC-013
+    title: Live SR6 action economy and turn assist
+    priority: 13
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - Players and GMs can complete one SR6 combat round with explicit major/minor action budgets and between-turn affordances.
+      - Action-economy state remains explainable with cited receipts instead of table folklore.
+
+  - id: CRC-014
+    title: Source anchors and local rulebook binding
+    priority: 14
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - Explain drawers can cite stable source anchors.
+      - Bound local rulebooks can open to the cited page without cloud PDF hosting.
+
+  - id: CRC-015
+    title: GM Runboard
+    priority: 15
+    owners:
+      - chummer6-ui
+      - chummer6-mobile
+      - chummer6-core
+      - chummer6-hub
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - One surface keeps initiative, action budgets, condition state, objectives, and quick closeout visible together.
+      - The live-play lane is distinct from the long-lived campaign workspace.
+
+  - id: CRC-016
+    title: Prep Packet Factory
+    priority: 16
+    owners:
+      - chummer6-hub
+      - chummer6-ui
+      - chummer6-core
+      - chummer6-media-factory
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - A GM can create one playable job packet with legwork, opposition, complication, and reward posture.
+      - Procedural generation produces playable prep instead of generic content.
+
+  - id: CRC-017
+    title: BLACK LEDGER MVP 001
+    priority: 17
+    owners:
+      - chummer6-hub
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-media-factory
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - One approved `ResolutionReport` can generate one `WorldTick`.
+      - One `WorldTick` can generate one player-safe news item and next-session consequence.
+
+  - id: CRC-018
+    title: Crew and mission fit
+    priority: 18
+    owners:
+      - chummer6-core
+      - chummer6-ui
+      - chummer6-hub
+      - chummer6-design
+    status: proposed
+    exits_when:
+      - Tables can inspect strengths, gaps, and suggestions before a job without blocking play.
+      - Open-run and prep flows can reuse one governed capability model.
