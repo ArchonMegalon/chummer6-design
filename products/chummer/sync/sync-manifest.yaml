@@ -21,11 +21,11 @@ repo_root_aliases:
     - chummer6-ui-kit
     - chummer6-ui-kit
   chummer6-hub-registry:
-    - chummer6-hub-registry
-    - chummer6-hub-registry
+  - chummer6-hub-registry
+  - chummer-hub-registry
   chummer6-media-factory:
-    - chummer6-media-factory
-    - chummer6-media-factory
+  - chummer6-media-factory
+  - chummer-media-factory
   fleet:
     - fleet
   executive-assistant:
