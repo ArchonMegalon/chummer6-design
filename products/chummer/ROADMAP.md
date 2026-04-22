@@ -16,6 +16,7 @@ Current status on 2026-03-26:
 * interop and portability are now explicit canon plus runtime/export truth rather than sidecar compatibility folklore, so portable dossier/campaign flow can be governed as product truth
 * the additive work after this closeout is no longer “make the missing middle real”; it is campaign breadth, broader public promotion, live operator cadence, and estate-wide adoption depth on top of the now-closed next-20 baseline
 * the active operational-hardening overlay is `REPO_HYGIENE_RELEASE_TRUST_AND_AUTOMATION_SAFETY.md` plus `REPO_HARDENING_CHECKLIST.yaml`; it does not reopen ownership canon, but it makes public repo hygiene, signed release-manifest truth, workflow safety, blast-radius limits, and explicit public support lanes first-class program work
+* the active product-sharpening overlay is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md` plus `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`; it does not widen the architecture, but it makes confidence, readiness, continuity, manual intake, mobile table value, GM next-session posture, and public proof shelf discipline explicit execution work
 
 ## Recommended next initiative
 
@@ -36,6 +37,7 @@ The just-closed post-audit wave is recorded in `POST_AUDIT_NEXT_20_BIG_WINS_GUID
 The active flagship-closeout wave is `NEXT_12_BIGGEST_WINS_GUIDE.md`, with machine-readable progress in `NEXT_12_BIGGEST_WINS_REGISTRY.yaml`.
 The active no-step-back parity overlay for that wave is `LEGACY_CLIENT_AND_ADJACENT_PARITY.md` plus `LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml`.
 The active audit overlay for correcting where design proof still outruns journey proof is `CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md`.
+The active product-sharpening overlay for making the architecture emotionally irresistible is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md`, with machine-readable prioritization in `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`.
 The queued post-closeout successor wave is `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md`, with machine-readable staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
@@ -44,6 +46,7 @@ The immediate additive shape is:
 * make the campaign OS indispensable across session plan, run, recap, downtime, travel, roster movement, and long-lived campaign memory without reintroducing local shadow models
 * close no-step-back parity across Chummer4, Chummer5a, Hero Lab, and serious adjacent SR6 clients by promoting sourcebook/reference, settings/data-authoring, utility/operator, exchange, and import-oracle families into first-class Chummer6 promises
 * widen Build and Explain by making progression planning, team fit, rule-environment diffs, and receipts feel like one grounded product
+* sharpen the emotional product hook around confidence, readiness, and continuity so Chummer feels indispensable at the table rather than merely broad on paper
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
 * raise every major surface to the flagship-grade bar in `FLAGSHIP_PRODUCT_BAR.md`, especially the authored desktop client, ruleset-specific UX, public trust shelf, and live-play continuity

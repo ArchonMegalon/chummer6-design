@@ -21,6 +21,7 @@ initiatives:
     status: proposed
     accepts_when:
       - Public repos reject runtime databases, non-example env files, logs, tmp trees, and local caches in CI.
+      - Generic logs or logs/telemetry paths are forbidden unless they are explicitly redacted fixtures or published evidence shelves.
       - Any plausibly exposed operator or signing secret is rotated.
       - Deliberate fixtures are explicit and scrubbed.
 
@@ -80,6 +81,7 @@ initiatives:
     status: proposed
     accepts_when:
       - Third-party GitHub Actions are pinned by commit or removed.
+      - Security workflows target main and use current supported checkout actions.
       - Default workflow permissions are least-privilege.
       - Boundary lint, dependency review, secret scan, build/test, and manifest verification are promotion gates.
 

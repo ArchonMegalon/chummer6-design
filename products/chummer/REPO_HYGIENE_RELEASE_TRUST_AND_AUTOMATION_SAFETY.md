@@ -13,6 +13,7 @@ The next risk is that public repos, release surfaces, and automation lanes becom
 The main hazards now are operational:
 
 * runtime state, local databases, env files, logs, and caches can leak into public repos or drift into accepted local habits
+* telemetry and evidence folders can look like runtime logs unless their fixture/redaction posture is explicit
 * release truth can drift between owning repos, registry channel state, updater feeds, GitHub releases, public guide pages, and `/downloads`
 * repo-local verify scripts can become large alias-sensitive grep programs instead of maintainable boundary checks
 * automation power can outrun machine-enforced safety limits
@@ -43,12 +44,14 @@ Required posture:
 * no checked-in runtime databases except deliberate scrubbed fixtures
 * no checked-in non-example env files
 * no checked-in logs, telemetry dumps, tmp trees, or local package caches
+* generic `logs/` and `logs/telemetry/` paths are forbidden outside explicitly named redacted fixture or evidence lanes
 * CI fails if those artifacts appear again
 * any plausibly exposed secret or operator credential is rotated after a scrub
 
 Accept when:
 
 * `.gitignore` and CI guards reject runtime state and secret-like artifacts
+* redacted fixture/evidence paths are explicit enough that public readers can tell the difference between proof cargo and runtime telemetry
 * history is scrubbed where necessary
 * production/runtime examples remain available as `.example` or explicit fixtures only
 
@@ -93,6 +96,8 @@ Public workflow posture must be pinned and least-privilege.
 Required posture:
 
 * no third-party action pinned to a moving branch such as `@master`
+* CodeQL and other security workflows target `main`, not a stale default branch alias
+* GitHub checkout actions are on current supported majors
 * default workflow permissions are `contents: read`
 * release workflows request only the explicit elevated permissions they need
 * concurrency is set so duplicate waves cancel cleanly
@@ -101,6 +106,7 @@ Required posture:
 Accept when:
 
 * moving-head workflow dependencies are gone
+* security workflows execute on the branch where normal work actually lands
 * branch protection requires the hardening checks above
 
 ### 5. Chummer boring-user-loop proof
