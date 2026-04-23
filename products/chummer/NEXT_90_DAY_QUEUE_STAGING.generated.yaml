@@ -1283,9 +1283,24 @@ items:
       - artifact_factory:receipts
   - title: Compose campaign cold-open and mission-briefing bundles from approved packs
     task: Turn approved campaign primer and mission packs into locale-matched cold-open and briefing requests with audience-safe proof anchors.
+    frontier_id: 1746209281
     package_id: next90-m108-hub-campaign-briefing-bundles
     milestone_id: 108
     wave: W10
+    status: complete
+    landed_commit: 47df6ab
+    completion_action: verify_closed_package_only
+    do_not_reopen_reason: M107 chummer6-media-factory structured recipe execution is complete; future shards must verify the structured media recipe service, contracts, smoke proof, queue row, and registry row instead of reopening this package.
+    proof:
+      - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Factory.Runtime/Assets/StructuredMediaRecipeExecutionService.cs
+      - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Contracts/Compatibility/RunServices/MediaFactoryContracts.cs
+      - /docker/fleet/repos/chummer-media-factory/tests/StructuredMediaRecipeSmoke/Program.cs
+      - /docker/fleet/repos/chummer-media-factory/tests/test_structured_media_recipe_execution.py
+      - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify.sh
+      - /docker/fleet/repos/chummer-media-factory commit 47df6ab executes structured video, audio, preview-card, and packet-bundle recipes with publication, caption, preview, and role receipt rows.
+      - python3 -m unittest tests/test_structured_media_recipe_execution.py exits 0.
+      - dotnet run --project tests/StructuredMediaRecipeSmoke/Chummer.Media.Factory.StructuredMediaRecipeSmoke.csproj --no-restore exits 0.
+      - ./scripts/ai/verify.sh exits 0.
     repo: chummer6-hub
     allowed_paths:
       - Chummer.Run.Api

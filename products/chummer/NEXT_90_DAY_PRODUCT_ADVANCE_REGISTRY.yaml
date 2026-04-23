@@ -1248,6 +1248,16 @@ milestones:
           - dotnet test /docker/chummercomplete/chummer6-hub/Chummer.Tests/Chummer.Tests.csproj --filter ArtifactFactoryOrchestrationServiceTests --no-restore exits 0.
       - id: 107.2
         owner: chummer6-media-factory
+        status: complete
+        evidence:
+          - /docker/fleet/repos/chummer-media-factory commit 47df6ab executes structured media recipes as media-factory-owned render jobs for video, audio, preview-card, and packet-bundle siblings.
+          - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Factory.Runtime/Assets/StructuredMediaRecipeExecutionService.cs validates required sibling roles, enqueues replay-safe structured recipe jobs, and emits role receipt ids plus publication, caption, and preview ref receipt rows.
+          - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Contracts/Compatibility/RunServices/MediaFactoryContracts.cs defines StructuredMediaRecipe request, artifact receipt, bundle receipt, publication ref receipt, caption ref receipt, and preview ref receipt contracts.
+          - /docker/fleet/repos/chummer-media-factory/tests/StructuredMediaRecipeSmoke/Program.cs proves video, audio, preview-card, and packet-bundle execution, shared caption/preview refs, first-class publication/caption/preview receipt rows, and replay-safe dedupe.
+          - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify.sh now gates the structured recipe contract scan, Python guard, and structured recipe smoke project.
+          - python3 -m unittest tests/test_structured_media_recipe_execution.py exits 0.
+          - dotnet run --project tests/StructuredMediaRecipeSmoke/Chummer.Media.Factory.StructuredMediaRecipeSmoke.csproj --no-restore exits 0.
+          - ./scripts/ai/verify.sh exits 0 and refreshes MEDIA_LOCAL_RELEASE_PROOF.generated.json plus ARTIFACT_PUBLICATION_CERTIFICATION.generated.json.
         title: Execute structured video, audio, preview-card, and packet recipes with receipts and retention truth.
       - id: 107.3
         owner: chummer6-hub-registry
