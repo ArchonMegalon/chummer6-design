@@ -2,6 +2,13 @@
 
 Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 
+## 2026-04-23
+
+### WL-D016 Cycle 2026-04-23A (operator: codex, system re-entry)
+- WL-D009-03 `done`: revalidated `products/chummer/CONTRACT_SETS.yaml` against `products/chummer/ARCHITECTURE.md`, `products/chummer/OWNERSHIP_MATRIX.md`, `products/chummer/projects/hub.md`, `products/chummer/projects/ui.md`, `products/chummer/projects/mobile.md`, `products/chummer/projects/media-factory.md`, review templates, `products/chummer/WORLD_CONTRACTS_RESERVED.md`, current package-family references, and `scripts/ai/validate_contract_sets.py`; canonical package IDs remain stable, no unread feedback files were present for this slice, `scripts/ai/set-status.sh` is not present in this repo, `last_reviewed` was refreshed to `2026-04-23`, and `Chummer.World.Contracts` boundary text now consistently states that the family remains initially bounded inside `chummer6-hub` until a later extraction is warranted while UI, mobile, and media-factory consume only approved projections.
+- Evidence: `products/chummer/CONTRACT_SETS.yaml` `sha256=ef85e98d3f373fe1fe21da8d6fb943a21d5fc2ce7613ef281375eaf88dc84d1f`; `products/chummer/ARCHITECTURE.md` `sha256=bd2941f7539376de35b068fb73ac5af581a931ed268b180634b5eaa782e90650`; `products/chummer/OWNERSHIP_MATRIX.md` `sha256=3154662aea966e3ce01cce6e9a7fe41a0e07a2e81284934ef012ed0a213f195f`; `products/chummer/projects/hub.md` `sha256=e7164a0a0143b65cc1111f7087de12f50678b9814a9f31d63b19e840635e5e96`; `products/chummer/projects/ui.md` `sha256=32164847830cddbeb5f1760dc455687937f851cdd8b82f4f2ecb722b14c2b24c`; `products/chummer/projects/mobile.md` `sha256=8d4d7b7ecff9a80ebee3b5e80909c2d04701467cbd923001893dbdad92a2ffb1`; `products/chummer/projects/media-factory.md` `sha256=40da90b49f807694812aa0c33beb6683d05826c2087fa3a36d466e10061cea8d`; review templates updated; validator=`ok`.
+- Verification note: `python3 scripts/ai/validate_contract_sets.py` and `bash scripts/ai/verify.sh` both pass. Generated journey-guide artifacts and repo-local mirrors were refreshed through the existing materializer/publisher scripts so verification closes against current canon rather than stale derived outputs.
+
 ## 2026-04-22
 
 ### WL-D016 Cycle 2026-04-22A (operator: codex, system re-entry)
