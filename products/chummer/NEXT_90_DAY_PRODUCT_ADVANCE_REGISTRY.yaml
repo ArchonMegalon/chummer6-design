@@ -1380,6 +1380,7 @@ milestones:
           - /docker/chummercomplete/chummer-play/docs/next90-m108-mobile-campaign-artifacts.proof.md records the mobile package receipt and no-sibling-scope closure posture.
           - /docker/chummercomplete/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json includes campaign_artifact_launch proof for next90-m108-mobile-campaign-artifacts.
           - /docker/chummercomplete/chummer-play commit bc84b37 stabilizes the mobile package-plane verifier and ./scripts/ai/verify.sh exits 0.
+          - /docker/chummercomplete/chummer-play commit 00a22df adds scripts/verify_next90_m108_mobile_campaign_artifacts.py so completed-package proof fails closed when canonical registry, design queue, Fleet queue, generated proof, landed commit scope, or worker-safe closure wording drifts.
       - id: 108.5
         owner: chummer6-design
         title: Make campaign cold-open and mission-briefing artifacts first-class campaign OS promises with audience and locale rules.
