@@ -1363,6 +1363,17 @@ milestones:
       - id: 108.4
         owner: chummer6-mobile
         title: Surface primer and briefing artifacts in campaign home on travel and mobile shells.
+        status: complete
+        landed_commit: bc84b37
+        evidence:
+          - /docker/chummercomplete/chummer-play/src/Chummer.Play.Core/Application/PlayCampaignWorkspaceServerPlane.cs projects campaign_cold_open and mission_briefing recap-shelf entries with mobile campaign-home ownership, audience, provenance, next-action, and audit copy.
+          - /docker/chummercomplete/chummer-play/src/Chummer.Play.Core/Application/PlayCampaignWorkspaceLiteProjector.cs exposes LaunchPrimer and MissionBriefing summaries, provenance, direct artifact hrefs, and cold_open plus mission_briefing shelf views for the mobile campaign home.
+          - /docker/chummercomplete/chummer-play/src/Chummer.Play.Web/PlayWebApplication.cs routes /artifacts and /artifacts/{artifactId} back into the installable mobile shell while preserving artifactSurface, artifactId, sessionId, and role context.
+          - /docker/chummercomplete/chummer-play/src/Chummer.Play.Web/wwwroot/index.html binds launch-primer and mission-briefing links directly in the mobile workspace shell.
+          - /docker/chummercomplete/chummer-play/src/Chummer.Play.RegressionChecks/Program.cs proves M108 projection and redirect behavior, including campaign_home:artifact_launch and mission_briefing:mobile surfaces.
+          - /docker/chummercomplete/chummer-play/docs/next90-m108-mobile-campaign-artifacts.proof.md records the mobile package receipt and no-sibling-scope closure posture.
+          - /docker/chummercomplete/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json includes campaign_artifact_launch proof for next90-m108-mobile-campaign-artifacts.
+          - /docker/chummercomplete/chummer-play commit bc84b37 stabilizes the mobile package-plane verifier and ./scripts/ai/verify.sh exits 0.
       - id: 108.5
         owner: chummer6-design
         title: Make campaign cold-open and mission-briefing artifacts first-class campaign OS promises with audience and locale rules.
