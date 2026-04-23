@@ -1423,6 +1423,7 @@ milestones:
         evidence:
           - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Application/PlayCampaignWorkspaceServerPlane.cs projects campaign_cold_open and mission_briefing recap-shelf entries with mobile campaign-home ownership, audience, provenance, next-action, and audit copy.
           - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Application/PlayCampaignWorkspaceLiteProjector.cs exposes LaunchPrimer and MissionBriefing summaries, provenance, direct artifact hrefs, and cold_open plus mission_briefing shelf views for the mobile campaign home.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Roaming/RoamingWorkspaceSyncPlanner.cs keeps travel-shell primer and mission-briefing follow-through links on the same canonical artifact surface, preserving claimed-device, session, and role context without a browser detour.
           - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Web/PlayWebApplication.cs routes /artifacts and /artifacts/{artifactId} back into the installable mobile shell while preserving artifactSurface, artifactId, sessionId, and role context.
           - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Web/wwwroot/index.html binds launch-primer and mission-briefing links directly in the mobile workspace shell.
           - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.RegressionChecks/Program.cs proves M108 projection and redirect behavior, including campaign_home:artifact_launch and mission_briefing:mobile surfaces.
@@ -1529,6 +1530,21 @@ milestones:
       - id: 110.1
         owner: chummer6-hub
         title: Compose runsite orientation requests from approved runsite packs and route summaries.
+        status: complete
+        landed_commit: 1f5dd4de
+        evidence:
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/RunsiteOrientationRequestComposerService.cs composes governed runsite orientation bundles from approved packs, route summaries, and preview-safe pre-session truth while keeping route previews route-summary governed.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/InternalRunsiteOrientationController.cs exposes the bounded internal request route and rejects unauthorized or malformed runsite orientation requests.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Tests/RunsiteOrientationRequestComposerServiceTests.cs covers route-summary-governed preview composition, duplicate dedupe rejection, and internal authorization on the request route.
+          - /docker/chummercomplete/chummer.run-services/scripts/verify_runsite_orientation_requests.py fail-closes queue, registry, release-proof, and worker-unsafe proof drift for next90-m110-hub-runsite-orientation-requests.
+          - /docker/chummercomplete/chummer.run-services/tests/test_runsite_orientation_requests.py covers verifier regressions, composed output shape, preview-safe evidence anchors, and release-proof materialization.
+          - /docker/chummercomplete/chummer.run-services/tests/test_hub_local_release_proof_native_support_route.py proves HUB_LOCAL_RELEASE_PROOF materialization carries the completed M110 package plus runsite_orientation_requests and route_summary:artifact_launch receipts.
+          - /docker/chummercomplete/chummer.run-services/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json records the completed package plus runsite orientation proof receipts for repo-local release truth.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/wwwroot/proofs/mac-codex-release/HUB_LOCAL_RELEASE_PROOF.generated.json serves the same completed package and receipt set on the published proof shelf.
+          - /docker/chummercomplete/chummer.run-services commit 1f5dd4de closes the M110 governed runsite orientation request proof package.
+          - python3 scripts/verify_runsite_orientation_requests.py exits 0.
+          - python3 -m unittest tests/test_runsite_orientation_requests.py exits 0.
+          - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter RunsiteOrientationRequestComposerServiceTests --no-restore exits 0.
       - id: 110.2
         owner: chummer6-media-factory
         title: Render host clips, audio companions, previews, and route-linked bundle receipts.
