@@ -1517,7 +1517,7 @@ milestones:
       - chummer6-media-factory
       - chummer6-mobile
       - chummer6-design
-    status: in_progress
+    status: complete
     dependencies:
       - 105
       - 107
@@ -1565,6 +1565,24 @@ milestones:
       - id: 110.3
         owner: chummer6-mobile
         title: Surface orientation entry points and preview-safe pre-session launch flows for campaign members.
+        status: complete
+        landed_commit: 5cc6a03
+        evidence:
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Application/PlayCampaignWorkspaceServerPlane.cs keeps the runsite orientation shelf entry bounded to runsite_host_mode:entry, campaign_orientation:mobile, and pre-session-orientation-only-not-tactical-truth provenance.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Application/PlayCampaignWorkspaceLiteProjector.cs exposes RunsiteOrientationSummary, RunsiteOrientationHref, RunsiteOrientationProvenanceSummary, RunsiteOrientationTruthPosture, and a role-preserving runsite host-mode shelf link that preserves orientationSurface=campaign_orientation.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Application/PlayEntryRecoveryProjector.cs adds direct preview-safe onboarding entry hrefs and summaries for cold-open, mission briefing, and runsite host mode before session.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Core/Roaming/RoamingWorkspaceSyncPlanner.cs keeps RunsiteOrientationFollowThrough and RunsiteOrientationFollowThroughHref attached to the travel shell so restore/device plans preserve claimed-device, session, role, artifactSurface=runsite_host_mode, and orientationSurface=campaign_orientation.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Web/PlayWebApplication.cs redirects /artifacts and /artifacts/{artifactId} back into the installable mobile shell while preserving session, role, device, artifactSurface=runsite_host_mode, artifact identity, and campaign-orientation context.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.Web/wwwroot/index.html binds onboarding, campaign, and travel-shell runsite entry points directly in the mobile shell, preserves active launched-artifact context, and repeats the runsite host truth posture before live play.
+          - /docker/chummercomplete/chummer6-mobile/src/Chummer.Play.RegressionChecks/Program.cs proves runsite orientation projection, redirect behavior, claimed-device preservation, and campaign_orientation:mobile plus runsite_host_mode:entry scope for Player, GameMaster, and Observer roles.
+          - /docker/chummercomplete/chummer6-mobile/scripts/materialize_mobile_local_release_proof.py emits a package_receipts entry for next90-m110-mobile-runsite-orientation-entry inside MOBILE_LOCAL_RELEASE_PROOF.generated.json without reopening the older M108 receipt shape.
+          - /docker/chummercomplete/chummer6-mobile/scripts/verify_next90_m110_mobile_runsite_orientation_entry.py fail-closes canonical queue and registry proof, generated-proof package receipt drift, landed-commit scope drift, and worker-unsafe closure wording for this package.
+          - /docker/chummercomplete/chummer6-mobile/docs/next90-m110-mobile-runsite-orientation-entry.proof.md records the mobile package receipt, concrete checkout root, and do-not-reopen closure posture for the successor entry slice.
+          - /docker/chummercomplete/chummer6-mobile/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json includes a package_receipts entry for next90-m110-mobile-runsite-orientation-entry plus runsite_orientation_launch proof markers.
+          - /docker/chummercomplete/chummer6-mobile commit 5cc6a03 lands the M110 mobile runsite orientation entry package inside the play-shell source, docs, verifier wiring, and generated receipt scope.
+          - /docker/chummercomplete/chummer6-mobile commit ba97b74 tracks the M110 verifier against the implementation landed_commit so future shards verify the same closed package without reopening the entry slice.
+          - python3 scripts/verify_next90_m110_mobile_runsite_orientation_entry.py exits 0.
+          - dotnet run --project src/Chummer.Play.RegressionChecks/Chummer.Play.RegressionChecks.csproj exits 0.
       - id: 110.4
         owner: chummer6-design
         title: Keep runsite host mode bounded under route, tour, and inspection truth.
@@ -1577,6 +1595,21 @@ milestones:
           - /docker/chummercomplete/chummer-design/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py fail-closes missing policy markers, runsite brief or recipe drift, verifier wiring drift, or drift between the M110 design registry row and the design-owned queue row.
           - /docker/chummercomplete/chummer-design/scripts/ai/verify.sh now includes the M110 runsite host-bounds policy doc and validator in standard design-repo verification.
           - /docker/chummercomplete/chummer-design/products/chummer/maintenance/feedback_archive/2026-04-23-next90-m110-design-runsite-host-bounds-closeout.md records the package scope, proof anchors, and do-not-reopen posture for the design-owned runsite host-bounds slice.
+      - id: 110.5
+        owner: chummer6-mobile
+        title: Close the mobile runsite orientation successor package against the canonical queue and local proof receipt.
+        status: complete
+        landed_commit: bc84b37
+        evidence:
+          - /docker/chummercomplete/chummer6-mobile/docs/next90-m110-mobile-runsite-orientation.proof.md records the package scope, concrete checkout root, closure posture, and the dependency on the already-landed `110.3` implementation slice without widening the claimed surface.
+          - /docker/chummercomplete/chummer6-mobile/scripts/verify_next90_m110_mobile_runsite_orientation.py fail-closes canonical queue, design queue, registry, generated-proof package receipt, landed-commit scope, and worker-unsafe proof drift for `next90-m110-mobile-runsite-orientation`.
+          - /docker/chummercomplete/chummer6-mobile/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json includes a `package_receipts` entry for `next90-m110-mobile-runsite-orientation` with `runsite_orientation_launch` markers and the package-owned surfaces `runsite_host_mode:mobile` plus `campaign_orientation:mobile`.
+          - /docker/chummercomplete/chummer6-mobile/scripts/materialize_mobile_local_release_proof.py emits the M110 successor package receipt without reopening the narrower `next90-m110-mobile-runsite-orientation-entry` implementation row.
+          - /docker/chummercomplete/chummer6-mobile commit f95c490 lands the mobile campaign-shell and travel-shell runsite host-mode follow-through that keeps route preview truth inspectable before live play.
+          - /docker/chummercomplete/chummer6-mobile commit bc84b37 stabilizes the closure verifier and release-proof receipt for the completed M110 successor package.
+          - /docker/chummercomplete/chummer-design/products/chummer/NEXT_90_DAY_QUEUE_STAGING.generated.yaml closes `next90-m110-mobile-runsite-orientation` on `verify_closed_package_only` with the package-specific do-not-reopen reason.
+          - /docker/fleet/.codex-studio/published/NEXT_90_DAY_QUEUE_STAGING.generated.yaml mirrors the same completed queue row for worker-safe verification.
+          - python3 scripts/verify_next90_m110_mobile_runsite_orientation.py exits 0.
 
   - id: 111
     title: Install-aware release, support, and public concierge
@@ -1646,9 +1679,11 @@ milestones:
           - /docker/fleet/repos/chummer-media-factory/tests/InstallAwareConciergeSmoke/Program.cs proves every install-aware bundle kind requires video, audio, and preview-card siblings, delimiter-heavy refs cannot collapse job dedupe or receipt ids, duplicate companion refs fail closed, payload scope stays install-aware, bounded sibling notes stay enforced, and replay-safe dedupe keeps rendered timestamps stable.
           - /docker/fleet/repos/chummer-media-factory/tests/test_install_aware_concierge_rendering.py, /docker/fleet/repos/chummer-media-factory/tests/test_m111_install_aware_concierge_proof.py, and /docker/fleet/repos/chummer-media-factory/tests/test_m111_successor_package_authority.py fail-close contract drift, repo-local proof drift, and canonical package-assignment drift for this slice.
           - /docker/fleet/repos/chummer-media-factory/docs/NEXT90_M111_INSTALL_AWARE_CONCIERGE_PROOF_FLOOR.md records the repo-local M111 proof floor, owned surfaces, guard conditions, and worker-safe evidence posture while the package remains open for clean landed-commit closure.
-          - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py emits the M111 package into MEDIA_LOCAL_RELEASE_PROOF.generated.json and ARTIFACT_PUBLICATION_CERTIFICATION.generated.json with the current in-progress status and repo-local proof anchors.
+          - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py emits the M111 package into MEDIA_LOCAL_RELEASE_PROOF.generated.json and ARTIFACT_PUBLICATION_CERTIFICATION.generated.json with the current in-progress status, repo-local proof anchors, and the one-queue-row-per-mirror plus one-registry-task package-authority guard.
+          - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m111_install_aware_concierge.sh gives the package one repo-local verifier entrypoint for the authority tests and smoke proof.
           - python3 -m unittest tests.test_m111_successor_package_authority tests.test_m111_install_aware_concierge_proof tests.test_install_aware_concierge_rendering exits 0.
           - dotnet run --project tests/InstallAwareConciergeSmoke/Chummer.Media.Factory.InstallAwareConciergeSmoke.csproj --configuration Release --nologo --verbosity quiet exits 0.
+          - bash /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m111_install_aware_concierge.sh exits 0.
       - id: 111.4
         owner: fleet
         title: Gate followthrough mail, public proof promotion, and public concierge rollout against the same install-aware receipts and kill-switch posture.
@@ -1699,9 +1734,34 @@ milestones:
       - id: 112.1
         owner: chummer6-hub
         title: Promote downtime, aftermath, heat, faction, contact, and reputation state into governed campaign APIs and receipts.
+        status: complete
+        completion_action: verify_closed_package_only
+        do_not_reopen_reason: M112 chummer6-hub campaign consequence truth is complete; future shards must verify the governed campaign consequence proof, local release proof receipts, registry row, queue row, and design queue row instead of reopening this package.
+        landed_commit: f2b0b5a6
+        evidence:
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/CampaignSpineController.cs exposes governed workspace consequence, consequence-truth, aftermath-recap, downtime-aftermath, campaign-memory, and next-session carry-forward routes on one campaign spine API.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignSpineService.cs persists governed consequence updates, governed aftermath package receipts, and canonical return-loop routes for heat, faction, contact, reputation, downtime, and aftermath state.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs projects campaign consequence truth and downtime-aftermath summaries back onto campaign memory and next-session return surfaces.
+          - /docker/chummercomplete/chummer.run-services/tests/RunServicesVerification/CampaignSpineRestoreVerification.cs and /docker/chummercomplete/chummer.run-services/tests/RunServicesSmoke/Program.cs prove reload durability plus API projection of governed consequence state, package receipts, and return-loop actions.
+          - /docker/chummercomplete/chummer.run-services/scripts/verify_campaign_consequence_truth.py fail-closes queue, registry, local proof, local release proof, and worker-unsafe proof drift for this completed package.
+          - /docker/chummercomplete/chummer.run-services/tests/test_campaign_consequence_truth.py covers the green path plus closure-metadata and release-proof drift for this completed package.
+          - /docker/chummercomplete/chummer.run-services/.codex-studio/published/HUB_CAMPAIGN_OS_LOCAL_PROOF.generated.json and /docker/chummercomplete/chummer.run-services/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json record the package proof plus package-scoped campaign-memory and downtime-aftermath receipts.
       - id: 112.2
         owner: chummer6-core
         title: Keep campaign consequence rules and rule-environment fingerprints portable through campaign state changes.
+        status: complete
+        completion_action: verify_closed_package_only
+        do_not_reopen_reason: M112 chummer6-core campaign consequence portability is complete; future shards must verify the portability contracts, workspace-service fingerprint behavior, package-local verifier, focused receipt tests, registry row, and queue mirrors instead of reopening this slice.
+        landed_commit: 4b02785b
+        evidence:
+          - /docker/chummercomplete/chummer-core-engine/Chummer.Contracts/Workspaces/WorkspacePortabilityContracts.cs defines the canonical portable-rule metadata keys plus the portability receipt fields for `portableRules`, `ruleEnvironmentFingerprint`, and `consequenceStateFingerprint`.
+          - /docker/chummercomplete/chummer-core-engine/Chummer.Application/Workspaces/WorkspaceService.cs stamps portable rules into workspace metadata, preserves governed portable-rule snapshots across campaign state drift, and recomputes rule-environment plus campaign consequence state fingerprints deterministically.
+          - /docker/chummercomplete/chummer-core-engine/Chummer.Infrastructure/Workspaces/FileWorkspaceStore.cs persists workspace envelope metadata so portable rules and both fingerprint fields survive restart-safe workspace reloads.
+          - /docker/chummercomplete/chummer-core-engine/Chummer.Tests/WorkspaceServiceTests.cs covers shifted campaign state, stale fingerprint metadata, partial portable-rule metadata merge, metadata-only portability recovery, and duplicate portable-rule canonicalization.
+          - /docker/chummercomplete/chummer-core-engine/Chummer.Tests/WorkspaceStoreTests.cs proves the persisted workspace envelope keeps portability metadata across store instances.
+          - /docker/chummercomplete/chummer-core-engine/scripts/verify-campaign-consequence-portability.py fail-closes package-local proof if the portability contracts, workspace service logic, persistence seam, tests, or package doc drift.
+          - /docker/chummercomplete/chummer-core-engine/tests/test_campaign_consequence_portability_receipt.py proves the package-local proof receipt is reproducible and that the verifier CLI fails closed on drift.
+          - /docker/chummercomplete/chummer-core-engine/docs/CAMPAIGN_CONSEQUENCE_PORTABILITY.md records the package identity, portability contract, deterministic behavior floor, and verification commands for future shards.
       - id: 112.3
         owner: chummer6-ui
         title: Surface campaign memory, consequences, and return-loop actions on the primary desktop route.
@@ -1711,6 +1771,15 @@ milestones:
       - id: 112.5
         owner: chummer6-design
         title: Update campaign OS canon so downtime, heat, faction, and contact truth are first-class product promises.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer-design/products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md now defines campaign memory and consequence truth as part of the canonical campaign spine, including downtime, aftermath, heat, faction stance, contact truth, reputation, and next-session return state.
+          - /docker/chummercomplete/chummer-design/products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md now promotes campaign-memory packets, return-loop actions, and consequence cues into first-class workspace promises across home, campaign, and device-role surfaces.
+          - /docker/chummercomplete/chummer-design/products/chummer/journeys/run-a-campaign-and-return.md now treats downtime, aftermath, heat, faction stance, contact truth, and reputation as part of the main campaign return-loop happy path and failure posture.
+          - /docker/chummercomplete/chummer-design/products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md now states that lived campaign-OS maturity requires first-class campaign-memory truth for downtime, aftermath, heat, faction posture, contact truth, reputation, and return-loop actions.
+          - /docker/chummercomplete/chummer-design/scripts/ai/validate_next90_m112_design_campaign_canon.py fail-closes campaign-canon doc drift, standard verifier drift, feedback closeout drift, and canonical registry plus design queue drift for this completed package.
+          - /docker/chummercomplete/chummer-design/scripts/ai/verify.sh now requires the M112 validator plus the campaign canon files during standard repo verification.
+          - /docker/chummercomplete/chummer-design/products/chummer/maintenance/feedback_archive/2026-04-23-next90-m112-design-campaign-canon-closeout.md records the package closeout posture and do-not-reopen rule for future shards.
 
   - id: 113
     title: Crew, roster, opposition packets, and GM prep library
@@ -1733,6 +1802,18 @@ milestones:
       - id: 113.1
         owner: chummer6-hub
         title: Land crew, roster, campaign-group, and event movement APIs with ownership and audit posture.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Contracts/CampaignMovementContracts.cs defines dossier movement request, planner, target campaign or event, and receipt contracts that preserve ownership, group, campaign, run, scene, and audit-receipt state on one governed API lane.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Controllers/CampaignSpineController.cs exposes GET `me/workspaces/{workspaceId}/dossier-movement-plan`, GET `me/workspaces/{workspaceId}/dossier-movements`, and POST `me/dossier-movements` beside the existing roster-transfer lane so campaign-group and event movement stay first-class hosted APIs.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Run.Api/Services/Community/CampaignSpineService.cs lands the dossier movement planner, execution, persistence, target event creation, ownership guards, and audit receipt projection while keeping roster transfers and campaign consequences attached to the same governed campaign spine.
+          - /docker/chummercomplete/chummer.run-services/Chummer.Tests/CampaignMovementServiceTests.cs proves dossier movement persists target run plus scene assignment, ownership changes, audit receipts, and reload-safe movement history across the governed campaign workspace.
+          - /docker/chummercomplete/chummer.run-services/tests/RunServicesSmoke/Program.cs proves end-to-end source and target workspace visibility for dossier movement plans, move receipts, target run plus scene receipts, outsider target-owner visibility, and the existing roster-transfer rail on the same shared campaign spine.
+          - /docker/chummercomplete/chummer.run-services/scripts/materialize_next90_m113_hub_roster_ops_proof.py and /docker/chummercomplete/chummer.run-services/.codex-studio/published/NEXT90_M113_HUB_ROSTER_OPS.generated.json record the repo-local proof contract for `crew_roster_ops` and `campaign_group_event_movement` without relying on worker-unsafe telemetry helpers.
+          - /docker/chummercomplete/chummer.run-services/scripts/verify_next90_m113_hub_roster_ops.py and /docker/chummercomplete/chummer.run-services/tests/test_next90_m113_hub_roster_ops.py fail closed on queue or registry drift, missing API markers, missing smoke proof, generated-proof identity drift, and forbidden active-run helper citations for the completed package.
+          - python3 scripts/verify_next90_m113_hub_roster_ops.py exits 0.
+          - python3 -m unittest tests/test_next90_m113_hub_roster_ops.py exits 0.
+          - dotnet test Chummer.Tests/Chummer.Tests.csproj --filter CampaignMovementServiceTests --no-restore exits 0.
       - id: 113.2
         owner: chummer6-core
         title: Define opposition and scene packet contracts with rules-backed stats and bounded-loss receipts.
