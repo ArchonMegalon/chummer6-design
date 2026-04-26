@@ -27,6 +27,9 @@ for path in \
   products/chummer/GLOSSARY.md \
   products/chummer/VISION.md \
   products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md \
+  products/chummer/BUILD_EXPLAIN_ARTIFACT_TRUTH_POLICY.md \
+  products/chummer/RUNSITE_HOST_MODE_POLICY.md \
+  products/chummer/CAMPAIGN_COLD_OPEN_AND_MISSION_BRIEFING_POLICY.md \
   products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md \
   products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md \
   products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md \
@@ -67,6 +70,8 @@ for path in \
   products/chummer/PUBLIC_NAVIGATION.yaml \
   products/chummer/PUBLIC_PROGRESS_PARTS.yaml \
   products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml \
+  products/chummer/PUBLIC_CONCIERGE_AND_TRUST_WIDGET_MODEL.md \
+  products/chummer/PUBLIC_CONCIERGE_WORKFLOWS.yaml \
   products/chummer/PUBLIC_USER_MODEL.md \
   products/chummer/PUBLIC_AUTH_FLOW.md \
   products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md \
@@ -96,6 +101,12 @@ for path in \
   products/chummer/PUBLIC_TRUST_CONTENT.yaml \
   products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md \
   products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md \
+  products/chummer/PRODUCTLIFT_FEEDBACK_ROADMAP_BRIDGE.md \
+  products/chummer/KATTEB_PUBLIC_GUIDE_OPTIMIZATION_LANE.md \
+  products/chummer/PUBLIC_SITE_VISIBILITY_AND_SEARCH_OPTIMIZATION.md \
+  products/chummer/PUBLIC_SIGNAL_TO_CANON_PIPELINE.md \
+  products/chummer/PUBLIC_FEEDBACK_AND_CONTENT_REGISTRY.yaml \
+  products/chummer/PUBLIC_FEEDBACK_TAXONOMY.yaml \
   products/chummer/PUBLIC_GUIDE_POLICY.md \
   products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml \
   products/chummer/PUBLIC_PART_REGISTRY.yaml \
@@ -137,6 +148,7 @@ for path in \
   products/chummer/adrs/ADR-0013-campaign-and-control-middle-plane.md \
   products/chummer/adrs/ADR-0014-interop-and-portability-plane.md \
   products/chummer/adrs/ADR-0016-structured-presenter-video-lane.md \
+  products/chummer/adrs/ADR-0019-productlift-katteb-public-signal-and-guide-optimization.md \
   products/chummer/PROGRAM_MILESTONES.yaml \
   products/chummer/CONTRACT_SETS.yaml \
   products/chummer/GROUP_BLOCKERS.md \
@@ -192,6 +204,7 @@ python3 "$repo_root/scripts/ai/validate_contract_sets.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_sync_manifest.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null
@@ -202,20 +215,26 @@ python3 "$repo_root/scripts/ai/validate_post_audit_next20_milestones.py" >/dev/n
 python3 "$repo_root/scripts/ai/validate_after_post_audit_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_repo_evidence.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_guide_editorial_covers.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m108_design_campaign_briefing_canon.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m109_design_explain_truth_policy.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null
 
 rg -n '^# Start here$|^## Fast path by role$|^## Fast path by question$|^## Reading discipline$' "$repo_root/products/chummer/START_HERE.md" >/dev/null
 rg -n '^# Glossary$|^## Booster$|^## Sponsor session$|^## Proof shelf$|^## Horizon$' "$repo_root/products/chummer/GLOSSARY.md" >/dev/null
-rg -n '^# Campaign spine and crew model$|^## Canonical domain objects$|Chummer\\.Campaign\\.Contracts|replay-safe continuity' "$repo_root/products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md" >/dev/null
+rg -n '^# Campaign spine and crew model$|^## Canonical domain objects$|^### Campaign memory and consequence truth$|DowntimePlan|ContactTruth|Chummer\\.Campaign\\.Contracts|replay-safe continuity' "$repo_root/products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md" >/dev/null
 rg -n '^# Character lifecycle and living dossier$|^## Lifecycle spine$|living dossier|Chummer\\.Campaign\\.Contracts' "$repo_root/products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md" >/dev/null
 rg -n '^# Roaming workspace and entitlement sync$|^## Roaming scopes$|^## Synced product state$|^## Conflict rules$|Chummer\\.Campaign\\.Contracts|Chummer\\.Hub\\.Registry\\.Contracts' "$repo_root/products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md" >/dev/null
-rg -n '^# Campaign workspace and device roles$|^## Core product objects$|^## Device roles$|^## Compounding loops$|what changed for them|campaign workspace' "$repo_root/products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md" >/dev/null
+rg -n '^# Campaign workspace and device roles$|^## Device roles$|^## Compounding loops$|^### Campaign memory packet$|CampaignMemorySummary|what changed for them|campaign workspace' "$repo_root/products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md" >/dev/null
 rg -n '^# Interop and portability model$|^## Product promise$|Chummer\\.Play\\.Contracts\\.Interop|portable export package manifest|migration receipts' "$repo_root/products/chummer/INTEROP_AND_PORTABILITY_MODEL.md" >/dev/null
 rg -n '^# Product control and governor loop$|^## Control-plane objects$|Chummer\\.Control\\.Contracts|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP' "$repo_root/products/chummer/PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md" >/dev/null
 rg -n '^# Support and signal OODA loop$|^## Observe$|^## Close$|Chummer\\.Control\\.Contracts|FEEDBACK_AND_CRASH_REPORTING_SYSTEM' "$repo_root/products/chummer/SUPPORT_AND_SIGNAL_OODA_LOOP.md" >/dev/null
 rg -n '^# User journeys$|Build|Explain|Run|Publish|Improve' "$repo_root/products/chummer/USER_JOURNEYS.md" >/dev/null
+rg -n '^# Run a campaign and return$|^## Happy path$|^## Product promises$|^## Truth order$|campaign memory outranks recap prose' "$repo_root/products/chummer/journeys/run-a-campaign-and-return.md" >/dev/null
 rg -n '^# Experience success metrics$|Build|Explain|Run|Publish|Improve' "$repo_root/products/chummer/EXPERIENCE_SUCCESS_METRICS.md" >/dev/null
 rg -n '^# Long-range roadmap$|^## Phase A — Canon and package plane$|^## Non-blocking public landing and discovery lane$|^## Repo milestone spine$' "$repo_root/products/chummer/ROADMAP.md" >/dev/null
 rg -n '^# Chummer next-wave milestone list$|^## Recommended initiative$|^## Milestones$|^### M0' "$repo_root/products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md" >/dev/null
@@ -231,7 +250,7 @@ rg -n '^# Chummer next 20 big wins after post-audit closeout$|^## Precondition$|
 rg -n '^product: chummer$|^version: 1$|^program_wave: next_20_big_wins_after_post_audit_closeout$|^waves:$|^milestones:$|^  - id: W1$|^  - id: W2$|^  - id: W3$|^  - id: W4$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY.yaml" >/dev/null
 rg -n '^# Chummer next 12 biggest wins$|^## Framing$|^## Ordering rule$|^## Wave 1 - ship the flagship desktop$|^## Wave 5 - turn trust, publication, and launch scale into boring truth$' "$repo_root/products/chummer/NEXT_12_BIGGEST_WINS_GUIDE.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^program_wave: next_12_biggest_wins$|^waves:$|^milestones:$|^  - id: W1$|^  - id: W2$|^  - id: W3$|^  - id: W4$|^  - id: W5$' "$repo_root/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml" >/dev/null
-rg -n '^# Chummer Campaign-OS gap and change guide$|^## Purpose$|^## Main gaps and risks$|^## Team change guide$|^## Priority order$' "$repo_root/products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md" >/dev/null
+rg -n '^# Chummer Campaign-OS gap and change guide$|^## Purpose$|^## Main gaps and risks$|^## Team change guide$|campaign-memory lane|first-class campaign-memory truth|^## Priority order$' "$repo_root/products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md" >/dev/null
 rg -n '^# Lead designer operating model$|^## Mission$|^## Change taxonomy$|^## Mirror discipline$|^## Petition path$' "$repo_root/products/chummer/LEAD_DESIGNER_OPERATING_MODEL.md" >/dev/null
 rg -n '^# Product governor and autopilot loop$|^## Role split$|^## Autopilot loop$|^## Freeze and reroute authority$|PRODUCT_HEALTH_SCORECARD' "$repo_root/products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md" >/dev/null
 rg -n '^# Provider and route stewardship$|^## Ownership split$|^## Required stewardship loop$|^## Hygiene checklist$|^## Hard rules$' "$repo_root/products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md" >/dev/null
@@ -268,6 +287,12 @@ rg -n '^# Publish a grounded artifact$|^## Happy path$|^## Failure modes$' "$rep
 rg -n '^# Recover from sync conflict$|^## Happy path$|^## Failure modes$' "$repo_root/products/chummer/journeys/recover-from-sync-conflict.md" >/dev/null
 
 rg -n '^# Public guide policy' "$repo_root/products/chummer/PUBLIC_GUIDE_POLICY.md" >/dev/null
+rg -n '^# ProductLift feedback, roadmap, and changelog bridge$|ProductLift may collect and project public demand|For any ProductLift item marked `shipped`' "$repo_root/products/chummer/PRODUCTLIFT_FEEDBACK_ROADMAP_BRIDGE.md" >/dev/null
+rg -n '^# Katteb public guide optimization lane$|The generated public guide must never be hand-edited|Every Katteb job must include' "$repo_root/products/chummer/KATTEB_PUBLIC_GUIDE_OPTIMIZATION_LANE.md" >/dev/null
+rg -n '^# Public site visibility and search optimization$|ClickRank may audit and recommend SEO|Do not crawl every generated path' "$repo_root/products/chummer/PUBLIC_SITE_VISIBILITY_AND_SEARCH_OPTIMIZATION.md" >/dev/null
+rg -n '^# Public signal to canon pipeline$|Public signal is input\\. Canon is decided by Chummer\\.|For ProductLift-linked shipped work' "$repo_root/products/chummer/PUBLIC_SIGNAL_TO_CANON_PIPELINE.md" >/dev/null
+rg -n 'productlift_public_feedback|productlift_public_roadmap|productlift_changelog|katteb_public_guide_audit|clickrank_public_site_audit' "$repo_root/products/chummer/PUBLIC_FEEDBACK_AND_CONTENT_REGISTRY.yaml" >/dev/null
+rg -n 'karma_forge_house_rules|community_hub_open_runs|guide_and_docs|internal_meaning: user_available_with_closeout' "$repo_root/products/chummer/PUBLIC_FEEDBACK_TAXONOMY.yaml" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^page_types:$|^  root_story_github_readme:$|^  root_story:$|^  part_page:$|^  faq_page:$|^  deep_source_trail:$' "$repo_root/products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^parts:$|^  - id: design$|^    public_tagline:|^  - id: hub$|^    why_you_care:' "$repo_root/products/chummer/PUBLIC_PART_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^sections:$|What is guided contribution\?|Do I need to join guided contribution to help\?|Will guided-preview access open wider later\?' "$repo_root/products/chummer/PUBLIC_FAQ_REGISTRY.yaml" >/dev/null

@@ -21,3 +21,4 @@ Approved architecture decisions for cross-repo Chummer design live here.
 - [ADR-0016](ADR-0016-structured-presenter-video-lane.md): Structured presenter video is a bounded media lane behind Chummer-owned media-factory adapters rather than direct product truth.
 - [ADR-0017](ADR-0017-first-party-companion-runtime-and-bounded-voice-mode.md): The in-client companion stays first-party, trigger-bound, and explicitly opt-in for voice, while vendor media and public concierge lanes remain downstream helpers.
 - [ADR-0018](ADR-0018-world-state-and-mission-market-layer.md): World-state and mission-market layer remains a future capability above the campaign spine; campaign and control truth stay separate from shared-world effects.
+- [ADR-0019](ADR-0019-productlift-katteb-public-signal-and-guide-optimization.md): ProductLift and Katteb become bounded public signal and public-content projection lanes, not product truth.

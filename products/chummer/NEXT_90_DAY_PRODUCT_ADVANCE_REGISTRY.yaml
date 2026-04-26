@@ -77,6 +77,53 @@ waves:
     milestone_ids:
       - 119
       - 120
+  - id: W15
+    name: Make live table loops and world memory playable
+    status: not_started
+    milestone_ids:
+    - 121
+    - 122
+  - id: W16
+    name: Make public run network and companion runtime real
+    status: not_started
+    milestone_ids:
+    - 123
+    - 124
+  - id: W17
+    name: Turn public signal and horizons into governed implementation lanes
+    status: not_started
+    milestone_ids:
+    - 125
+    - 126
+  - id: W18
+    name: Finish release operations, localization, privacy, and support trust
+    status: not_started
+    milestone_ids:
+    - 127
+    - 128
+  - id: W19
+    name: Finish account/community, provider, and public-guide substrate
+    status: not_started
+    milestone_ids:
+    - 129
+    - 130
+    - 131
+  - id: W20
+    name: Implement rules, source, and deterministic horizon tranche
+    status: not_started
+    milestone_ids:
+    - 132
+    - 134
+  - id: W21
+    name: Implement media, run-network, and table-social horizon tranche
+    status: not_started
+    milestone_ids:
+    - 133
+  - id: W22
+    name: Close backbone, contract, repo-boundary, and final design coverage
+    status: not_started
+    milestone_ids:
+    - 135
 
 milestones:
   - id: 101
@@ -1679,11 +1726,13 @@ milestones:
           - /docker/fleet/repos/chummer-media-factory/tests/InstallAwareConciergeSmoke/Program.cs proves every install-aware bundle kind requires video, audio, and preview-card siblings, delimiter-heavy refs cannot collapse job dedupe or receipt ids, duplicate companion refs fail closed, payload scope stays install-aware, bounded sibling notes stay enforced, and replay-safe dedupe keeps rendered timestamps stable.
           - /docker/fleet/repos/chummer-media-factory/tests/test_install_aware_concierge_rendering.py, /docker/fleet/repos/chummer-media-factory/tests/test_m111_install_aware_concierge_proof.py, and /docker/fleet/repos/chummer-media-factory/tests/test_m111_successor_package_authority.py fail-close contract drift, repo-local proof drift, and canonical package-assignment drift for this slice.
           - /docker/fleet/repos/chummer-media-factory/docs/NEXT90_M111_INSTALL_AWARE_CONCIERGE_PROOF_FLOOR.md records the repo-local M111 proof floor, owned surfaces, guard conditions, and worker-safe evidence posture while the package remains open for clean landed-commit closure.
-          - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py emits the M111 package into MEDIA_LOCAL_RELEASE_PROOF.generated.json and ARTIFACT_PUBLICATION_CERTIFICATION.generated.json with the current in-progress status, repo-local proof anchors, and the one-queue-row-per-mirror plus one-registry-task package-authority guard.
+          - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py emits the M111 package into /docker/fleet/repos/chummer-media-factory/.codex-studio/published/MEDIA_LOCAL_RELEASE_PROOF.generated.json and /docker/fleet/repos/chummer-media-factory/.codex-studio/published/ARTIFACT_PUBLICATION_CERTIFICATION.generated.json with the current in-progress status, repo-local proof anchors, and the one-queue-row-per-mirror plus one-registry-task package-authority guard.
           - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m111_install_aware_concierge.sh gives the package one repo-local verifier entrypoint for the authority tests and smoke proof.
+          - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify.sh calls the dedicated M111 verifier as part of the standard media-factory verify lane, so package proof cannot drift away from the normal repo-local release gate.
           - python3 -m unittest tests.test_m111_successor_package_authority tests.test_m111_install_aware_concierge_proof tests.test_install_aware_concierge_rendering exits 0.
           - dotnet run --project tests/InstallAwareConciergeSmoke/Chummer.Media.Factory.InstallAwareConciergeSmoke.csproj --configuration Release --nologo --verbosity quiet exits 0.
           - bash /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m111_install_aware_concierge.sh exits 0.
+          - bash /docker/fleet/repos/chummer-media-factory/scripts/ai/verify.sh exits 0.
       - id: 111.4
         owner: fleet
         title: Gate followthrough mail, public proof promotion, and public concierge rollout against the same install-aware receipts and kill-switch posture.
@@ -1826,6 +1875,17 @@ milestones:
       - id: 113.5
         owner: executive-assistant
         title: Produce operator-safe GM prep and roster movement packets from governed campaign truth.
+        status: complete
+        evidence:
+          - /docker/EA/docs/chummer_operator_safe_packets/CHUMMER_OPERATOR_SAFE_PACKET_PACK.yaml binds EA output to governed Hub GM-operations readiness, governed opposition packet projection, governed roster movement packet projection, Core bounded-loss posture, and the upstream Hub and UI M113 proof receipts without inventing local shadow campaign state.
+          - /docker/EA/docs/chummer_operator_safe_packets/OPERATOR_SAFE_PACKET_SPECIMENS.yaml shows the GM prep and roster followthrough packet shapes, safe operator actions, and fail-closed hold rules for operator review.
+          - /docker/EA/scripts/materialize_next90_m113_operator_safe_packets.py and /docker/EA/.codex-studio/published/NEXT90_M113_OPERATOR_SAFE_PACKETS.generated.json materialize the governed truth bundle into a repo-local proof receipt that stays independent of worker-unsafe telemetry helpers.
+          - /docker/EA/scripts/verify_next90_m113_operator_safe_packets.py and /docker/EA/tests/test_next90_m113_operator_safe_packets.py fail closed on pack/spec/generated drift, missing upstream governed receipts, forbidden helper-proof markers, and closure-authority drift.
+          - /docker/EA/docs/chummer_operator_safe_packets/SUCCESSOR_HANDOFF_CLOSEOUT.yaml records the closed EA proof boundary, canonical queue and registry authority, and repeat-prevention rule for future shards.
+          - /docker/EA/feedback/2026-04-24-ea-operator-safe-packets-package-closeout.md records the shipped slice, proof commands, and remaining non-EA milestone ownership.
+          - python3 scripts/materialize_next90_m113_operator_safe_packets.py exits 0.
+          - python3 scripts/verify_next90_m113_operator_safe_packets.py exits 0.
+          - python3 tests/test_next90_m113_operator_safe_packets.py exits 0 with ran=6 failed=0.
 
   - id: 114
     title: Rule-environment studio and explain receipts everywhere
@@ -2071,3 +2131,725 @@ milestones:
       - id: 120.5
         owner: chummer6-design
         title: Keep public launch health language precise about live, preview, fallback, fixed, revoked, and blocked posture.
+
+  - id: 121
+    title: Live action economy, source anchors, and GM Runboard
+    wave: W15
+    owners:
+    - chummer6-core
+    - chummer6-ui-kit
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-hub
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 104
+    - 112
+    - 113
+    - 114
+    exit_criteria:
+    - One player and one GM can complete one SR6 combat round with action-budget truth, source anchors, and between-turn affordance
+      receipts visible on promoted surfaces.
+    - The GM Runboard shows initiative, action budgets, condition/effect summaries, scene objectives, heat posture, opposition
+      packet refs, and one-click ResolutionReport handoff without becoming a VTT or second campaign truth source.
+    - Core owns action math and receipts; UI-kit owns reusable primitives; desktop, mobile, and Hub consume package contracts
+      without local rule forks.
+    work_tasks:
+    - id: '121.1'
+      owner: chummer6-core
+      title: Implement ActionBudgetResult, ActionAffordance, TurnLedgerDelta, and source-anchor receipts for the first SR6 combat-round
+        proof.
+    - id: '121.2'
+      owner: chummer6-ui-kit
+      title: Add action-budget bars, condition/effect chips, source-anchor drawers, and Runboard primitives for desktop and
+        mobile consumers.
+    - id: '121.3'
+      owner: chummer6-ui
+      title: Add the desktop GM Runboard route with initiative, action budgets, scene objectives, opposition refs, and ResolutionReport
+        entry.
+    - id: '121.4'
+      owner: chummer6-mobile
+      title: Add player table cards, between-turn affordances, and GM-lite continuity views for live combat confidence.
+    - id: '121.5'
+      owner: chummer6-hub
+      title: Persist session turn-ledger handoff, runboard state, and ResolutionReport draft continuity without owning engine
+        math.
+    - id: '121.6'
+      owner: chummer6-design
+      title: Bind live action economy and GM Runboard proof into journey gates, acceptance language, and no-VTT boundary policy.
+  - id: 122
+    title: Campaign adoption, runner goals, and first BLACK LEDGER consequence
+    wave: W15
+    owners:
+    - chummer6-hub
+    - chummer6-core
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-media-factory
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 107
+    - 112
+    - 113
+    - 121
+    exit_criteria:
+    - An existing table can adopt current campaign state, map runners and crew context, and produce explicit confidence/conflict
+      receipts instead of silent import assumptions.
+    - A runner can pin and update one goal after a reward or downtime event, with campaign and mobile surfaces showing the same
+      goal state and receipt trail.
+    - One GM-approved ResolutionReport creates one WorldTick and one player-safe news item, proving the BLACK LEDGER consequence
+      loop without broad simulation or spoiler drift.
+    work_tasks:
+    - id: '122.1'
+      owner: chummer6-hub
+      title: Implement campaign adoption wizard state, runner-goal persistence, ResolutionReport approval, and first WorldTick/news
+        item flow.
+    - id: '122.2'
+      owner: chummer6-core
+      title: Add deterministic reward, downtime, goal-update, and consequence receipt contracts consumed by adoption and BLACK
+        LEDGER flows.
+    - id: '122.3'
+      owner: chummer6-ui
+      title: Surface campaign adoption, runner goal pins, ResolutionReport closeout, and BLACK LEDGER consequence proof on desktop.
+    - id: '122.4'
+      owner: chummer6-mobile
+      title: Add mobile runner-goal updates and player-safe consequence feed views for campaign return moments.
+    - id: '122.5'
+      owner: chummer6-media-factory
+      title: Render player-safe newsreel and recap preview artifacts from WorldTick receipts without becoming world truth.
+    - id: '122.6'
+      owner: chummer6-design
+      title: Finalize BLACK LEDGER MVP receipt semantics, spoiler policy, and adoption confidence gates in canonical design.
+  - id: 123
+    title: Open Runs and Community Hub table-formation loop
+    wave: W16
+    owners:
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-media-factory
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 112
+    - 117
+    - 118
+    - 122
+    exit_criteria:
+    - A GM can open a run from a job packet or campaign prep item, accept join requests, form a roster, schedule a session,
+      and hand off to the meeting/session space with Chummer-owned receipts.
+    - Players can discover eligible runs, understand rule-environment and join-policy requirements, request seats with compatible
+      runners, and rejoin or observe according to consent policy.
+    - Run closeout can feed ResolutionReport, world tick, newsreel, reputation, and artifact shelves without Discord, calendar,
+      or VTT providers becoming authority.
+    work_tasks:
+    - id: '123.1'
+      owner: chummer6-hub
+      title: Build OpenRun listing, join request, roster, schedule, meeting-handoff, and closeout orchestration.
+    - id: '123.2'
+      owner: chummer6-hub-registry
+      title: Publish OpenRun visibility, compatibility, schedule, publication, and revocation refs for public and cohort surfaces.
+    - id: '123.3'
+      owner: chummer6-ui
+      title: Add desktop Open Runs and GM open-run creation flows tied to campaign, rule-environment, and artifact truth.
+    - id: '123.4'
+      owner: chummer6-mobile
+      title: Add mobile run discovery, join request, rejoin, observer-consent, and session handoff flows.
+    - id: '123.5'
+      owner: chummer6-media-factory
+      title: Render open-run cards, briefing previews, route/share assets, and post-run newsreel siblings from approved manifests.
+    - id: '123.6'
+      owner: chummer6-design
+      title: Bind Community Hub authority, join policy, provider handoff, and closeout rules into canon and release
+        gates.
+  - id: 124
+    title: Switch companion runtime and bounded table-pulse moments
+    wave: W16
+    owners:
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-ui
+    - chummer6-mobile
+    - executive-assistant
+    - chummer6-media-factory
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 106
+    - 111
+    - 121
+    - 122
+    exit_criteria:
+    - CompanionPacket trigger truth is emitted by Chummer-owned domains for install/update/support, build/explain, campaign
+      workspace, runboard, restore, publication, and table-pulse moments.
+    - Desktop and mobile render Switch with tone, suppression, fallback templates, evidence drawers, and action chips without
+      requiring a live model call or letting a chatbot own product truth.
+    - EA and media lanes compile optional wording, localization, and rare media packs from packets only; they never create trigger
+      authority or mutate rules, support, release, campaign, or world truth.
+    work_tasks:
+    - id: '124.1'
+      owner: chummer6-core
+      title: Emit Build Lab, rule-environment, explain, and action-economy CompanionPacket trigger truth from deterministic
+        receipts.
+    - id: '124.2'
+      owner: chummer6-hub
+      title: Emit install, update, support, restore, campaign, publication, and public-hub CompanionPacket truth from hosted
+        domains.
+    - id: '124.3'
+      owner: chummer6-ui
+      title: Implement desktop Switch runtime presentation, action chips, evidence drawer, suppression receipts, and offline
+        fallback templates.
+    - id: '124.4'
+      owner: chummer6-mobile
+      title: Implement mobile Switch runtime masks for table, campaign return, recap, and degraded-network contexts.
+    - id: '124.5'
+      owner: executive-assistant
+      title: Compile Switch tone packs, locale variants, annoyance-budget proposals, and packet-based copy without trigger authority.
+    - id: '124.6'
+      owner: chummer6-media-factory
+      title: Render optional Switch audio, preview, and rare scene assets from approved CompanionPacket media eligibility.
+    - id: '124.7'
+      owner: chummer6-design
+      title: Keep persona, trigger registry, packet schema, suppression policy, and bounded voice/table-pulse rules aligned.
+  - id: 125
+    title: Public signal, visibility, and canon-feedback implementation loop
+    wave: W17
+    owners:
+    - chummer6-hub
+    - chummer6-hub-registry
+    - fleet
+    - executive-assistant
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 106
+    - 111
+    - 120
+    exit_criteria:
+    - ProductLift, Katteb, ClickRank, support, survey, and public-content findings become classified SignalToCanon packets with
+      source, audience, claim-sensitivity, owner, decision, and closeout posture.
+    - Accepted public-site and guide improvements patch Chummer-owned source, metadata config, registry YAML, or article packets
+      before regeneration; generated public output is never the authority.
+    - Fleet can synthesize bounded queue candidates from repeated public-signal clusters while Product Governor and chummer6-design
+      remain the canon decision authority.
+    work_tasks:
+    - id: '125.1'
+      owner: chummer6-hub
+      title: Build public feedback, roadmap, changelog, support, and signal-intake surfaces that emit governed SignalToCanon
+        packets.
+    - id: '125.2'
+      owner: chummer6-hub-registry
+      title: Normalize public metadata, schema, release refs, visibility posture, and crawl-safe route truth for public surfaces.
+    - id: '125.3'
+      owner: fleet
+      title: Add signal-cluster-to-queue synthesis for repeated ProductLift, Katteb, ClickRank, support, and public-guide findings.
+    - id: '125.4'
+      owner: executive-assistant
+      title: Compile weekly public-signal digests, content patch packets, and closeout drafts without owning canon or roadmap
+        status.
+    - id: '125.5'
+      owner: chummer6-design
+      title: Maintain public signal taxonomy, ClickRank/Katteb/ProductLift review gates, and source-truth patch rules.
+  - id: 126
+    title: Horizon handoff gates and bounded research-to-build conversion
+    wave: W17
+    owners:
+    - chummer6-design
+    - fleet
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-media-factory
+    status: not_started
+    dependencies:
+    - 114
+    - 115
+    - 123
+    - 124
+    - 125
+    exit_criteria:
+    - Each public-eligible horizon with demand has an owner handoff gate, bounded research packet, executable proof requirement,
+      and explicit rule for when it may become implementation backlog.
+    - NEXUS-PAN, ALICE, KARMA FORGE, Table Pulse, Open Runs, Community Hub, creator/publication, and media horizons cannot be
+      described as shipped until owner proof exists.
+    - Fleet can schedule horizon-conversion slices only when Chummer-owned canon names the repo owner, allowed surfaces, proof
+      gate, public claim posture, and stop condition.
+    work_tasks:
+    - id: '126.1'
+      owner: chummer6-design
+      title: Add horizon handoff gates, build-path promotion criteria, and public-claim stop rules to the horizon registry and
+        guide canon.
+    - id: '126.2'
+      owner: fleet
+      title: Teach the supervisor to stage bounded horizon-conversion queue slices only after owner handoff gates are satisfied.
+    - id: '126.3'
+      owner: chummer6-core
+      title: Define deterministic proof contracts for ALICE, KARMA FORGE, Table Pulse, rule-environment, and simulation-adjacent
+        horizons.
+    - id: '126.4'
+      owner: chummer6-hub
+      title: Define hosted proof contracts for Open Runs, Community Hub, public signal, community, and account-aware horizon
+        conversions.
+    - id: '126.5'
+      owner: chummer6-ui
+      title: Define desktop proof contracts for horizon entry points that must appear in Build, Runboard, publication, and workspace
+        surfaces.
+    - id: '126.6'
+      owner: chummer6-mobile
+      title: Define mobile proof contracts for NEXUS-PAN, table-pulse, reconnect, recap, and travel-cache horizon conversions.
+    - id: '126.7'
+      owner: chummer6-media-factory
+      title: Define media proof contracts for creator press, route artifacts, narrated recap, preview, and bounded video horizons.
+  - id: 127
+    title: Release pipeline, updater, platform acceptance, and public downloads completion
+    wave: W18
+    owners:
+    - chummer6-ui
+    - chummer6-hub-registry
+    - chummer6-hub
+    - fleet
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 101
+    - 102
+    - 120
+    exit_criteria:
+    - Windows, macOS, and Linux release, installer, auto-update, rollback, revoke, download, proof-shelf, and public channel
+      surfaces compile from one release-truth chain.
+    - Desktop updater and public downloads copy stay consistent about promoted, preview, fallback, fixed, revoked, blocked,
+      and unsupported posture.
+    - Fleet release evidence, platform acceptance, repo hardening, and proof orchestration fail closed when generated status
+      outruns executable proof.
+    work_tasks:
+    - id: '127.1'
+      owner: chummer6-ui
+      title: Complete desktop updater, installer, first-run, rollback, support, and platform proof loops on the primary desktop
+        route.
+    - id: '127.2'
+      owner: chummer6-hub-registry
+      title: Unify release channel, update feed, route truth, revoke, rollback, signing, and compatibility shelf records.
+    - id: '127.3'
+      owner: chummer6-hub
+      title: Keep downloads, install help, account-aware guidance, support recovery, and public release shelf UX bound to registry
+        truth.
+    - id: '127.4'
+      owner: fleet
+      title: Promote platform acceptance, release evidence packs, repo hardening, and external-host proof orchestration into
+        repeatable gates.
+    - id: '127.5'
+      owner: chummer6-design
+      title: Close release-pipeline, desktop-auto-update, public-downloads, repo-hygiene, and release-evidence design coverage.
+  - id: 128
+    title: Localization, accessibility, telemetry, privacy, support, and crash trust completion
+    wave: W18
+    owners:
+    - chummer6-ui-kit
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-hub
+    - fleet
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 105
+    - 106
+    - 111
+    - 121
+    - 124
+    exit_criteria:
+    - Promoted desktop, mobile, Hub, public, support, and artifact surfaces satisfy localization, accessibility, dense-data,
+      telemetry, privacy, retention, and support/crash status contracts.
+    - Telemetry and support signals are privacy-bounded, install-aware, user-visible where appropriate, and useful to product-governor
+      decisions without becoming surveillance or support folklore.
+    - Crash, feedback, fix-available, please-test, recovery, reporter followthrough, and public trust surfaces agree on retention
+      clocks and release/support truth.
+    work_tasks:
+    - id: '128.1'
+      owner: chummer6-ui-kit
+      title: Finish localization-safe, accessibility-safe dense primitives, warning states, focus behavior, and visual-regression
+        catalog coverage.
+    - id: '128.2'
+      owner: chummer6-ui
+      title: Wire desktop localization, telemetry opt-out, crash/feedback intake, support diagnostics, and accessibility proof
+        into promoted workflows.
+    - id: '128.3'
+      owner: chummer6-mobile
+      title: Wire mobile localization, offline/degraded support posture, telemetry opt-out, crash/feedback handoff, and accessibility
+        proof.
+    - id: '128.4'
+      owner: chummer6-hub
+      title: Implement privacy-bounded support, crash, feedback, telemetry rollups, retention clocks, and case-status followthrough.
+    - id: '128.5'
+      owner: fleet
+      title: Add freshness and contradiction monitors for telemetry, privacy, retention, localization, support, and crash proof
+        planes.
+    - id: '128.6'
+      owner: chummer6-design
+      title: Close localization, telemetry, privacy, retention, feedback, crash, support-status, and experience-metrics canon
+        coverage.
+  - id: 129
+    title: Account, identity, channel linking, participation, entitlements, and community ledger completion
+    wave: W19
+    owners:
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-ui
+    - fleet
+    - executive-assistant
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 102
+    - 105
+    - 118
+    - 125
+    exit_criteria:
+    - Accounts, profiles, verified email, linked identities, linked channels, groups, memberships, join codes, boost codes,
+      sponsorship, rewards, and entitlements exist as reusable Hub-owned product truth.
+    - Fleet participant/direct burst remains lane-local for auth execution while Hub owns consent, sponsor-session, group, reward,
+      entitlement, and receipt-ingest truth.
+    - Desktop and public surfaces can explain claim, entitlement, participation, reward, channel, and recovery posture without
+      leaking raw provider auth or control-plane internals.
+    work_tasks:
+    - id: '129.1'
+      owner: chummer6-hub
+      title: Build reusable account, profile, group, membership, join-code, boost-code, reward-journal, and entitlement-journal
+        flows.
+    - id: '129.2'
+      owner: chummer6-hub-registry
+      title: Publish entitlement-backed desktop channel, install guidance, participation receipt, and reward-publication refs.
+    - id: '129.3'
+      owner: chummer6-ui
+      title: Surface account, claim, entitlement, channel, participation, and recovery posture inside desktop without browser-only
+        ritual.
+    - id: '129.4'
+      owner: fleet
+      title: Keep participant-lane auth lane-local while emitting signed contribution receipts and sponsor-session execution
+        metadata.
+    - id: '129.5'
+      owner: executive-assistant
+      title: Compile contribution, participation, entitlement, channel, and reward followthrough packets from Hub/Fleet receipts
+        only.
+    - id: '129.6'
+      owner: chummer6-design
+      title: Close public-auth, identity/channel-linking, participation, account-aware front-door, and community-ledger canon
+        coverage.
+  - id: 130
+    title: External tools, LTD provider stewardship, and governed integration adapter completion
+    wave: W19
+    owners:
+    - executive-assistant
+    - fleet
+    - chummer6-hub
+    - chummer6-media-factory
+    - chummer6-core
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 106
+    - 107
+    - 114
+    - 125
+    exit_criteria:
+    - Every LTD/external tool used by Chummer has an owner, allowed surface, forbidden surface, receipt type, privacy posture,
+      fallback, kill switch, and non-authority boundary.
+    - Provider routing, credit/resource stewardship, public discovery tools, media adapters, text/content tools, survey/interview
+      tools, and automation helpers are useful without becoming product truth.
+    - Core remains deterministic and provider-agnostic; media-factory owns render adapters; Hub owns hosted intake; EA compiles;
+      Fleet schedules and audits provider health.
+    work_tasks:
+    - id: '130.1'
+      owner: executive-assistant
+      title: Maintain LTD capability inventory, provider playbooks, digest workflows, prompt packs, and tool-use receipts without
+        canon authority.
+    - id: '130.2'
+      owner: fleet
+      title: Add provider-health, credit-runway, kill-switch, fallback, and route-stewardship monitors for all governed external
+        tools.
+    - id: '130.3'
+      owner: chummer6-hub
+      title: Implement hosted intake adapters for ProductLift, Deftform, Icanpreneur, surveys, public concierge, and channel
+        handoff without owning provider secrets.
+    - id: '130.4'
+      owner: chummer6-media-factory
+      title: Implement document, preview, image, video, route, archive, and optional assistant-media adapters with manifests
+        and provenance.
+    - id: '130.5'
+      owner: chummer6-core
+      title: Keep deterministic engine APIs provider-agnostic while accepting only approved deterministic inputs and emitting
+        inspectable receipts.
+    - id: '130.6'
+      owner: chummer6-design
+      title: Close external-tools, LTD capability map, provider-route stewardship, and discovery-validation canon coverage.
+  - id: 131
+    title: Public guide, help, FAQ, content export, media briefs, and search visibility completion
+    wave: W19
+    owners:
+    - chummer6-design
+    - chummer6-hub
+    - chummer6-hub-registry
+    - executive-assistant
+    - fleet
+    - chummer6-media-factory
+    status: not_started
+    dependencies:
+    - 107
+    - 111
+    - 120
+    - 125
+    exit_criteria:
+    - Public guide pages, help copy, FAQ, public parts, progress parts, media briefs, video briefs, asset registries, sitemap/crawl
+      policy, and export manifests compile from Chummer-owned source truth.
+    - ClickRank, Katteb, ProductLift, public feedback, and support findings can propose changes, but accepted copy, metadata,
+      schema, media, and guide updates patch source first and regenerate output second.
+    - Public pages never describe horizons, preview heads, support status, rules, releases, or roadmap items as shipped without
+      proof from the release/status/governor chain.
+    work_tasks:
+    - id: '131.1'
+      owner: chummer6-design
+      title: Complete public guide, FAQ, help, part registry, export manifest, media brief, video brief, and visibility source
+        canon.
+    - id: '131.2'
+      owner: chummer6-hub
+      title: Serve public guide, help, feedback, roadmap, changelog, status, downloads, and trust pages from source-backed projections.
+    - id: '131.3'
+      owner: chummer6-hub-registry
+      title: Normalize public page metadata, schema, sitemap, route refs, release refs, and crawl-safe proof shelf records.
+    - id: '131.4'
+      owner: executive-assistant
+      title: Compile Katteb, ClickRank, ProductLift, support, and guide findings into source-patch packets and public closeout
+        drafts.
+    - id: '131.5'
+      owner: fleet
+      title: Verify public-guide regeneration, visibility-source freshness, crawl-budget discipline, and unsupported-claim rejection
+        gates.
+    - id: '131.6'
+      owner: chummer6-media-factory
+      title: Render public guide imagery, share cards, thumbnails, structured video, narrated media, and asset siblings from
+        approved briefs.
+  - id: 132
+    title: 'Deterministic horizon implementation tranche: NEXUS-PAN, ALICE, KARMA FORGE, Knowledge Fabric, and Local Co-Processor'
+    wave: W20
+    owners:
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-ui
+    - chummer6-mobile
+    - fleet
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 114
+    - 115
+    - 126
+    exit_criteria:
+    - NEXUS-PAN, ALICE, KARMA FORGE, Knowledge Fabric, and Local Co-Processor move from horizon storytelling to bounded implementation
+      only through owner handoff gates and executable proof.
+    - Simulation, comparison, house-rule evolution, local acceleration, source anchors, and knowledge-fabric outputs consume
+      deterministic core truth and never invent mechanics or legality.
+    - Desktop, mobile, Hub, registry, and Fleet surfaces can show bounded research/proof status without public shipment drift.
+    work_tasks:
+    - id: '132.1'
+      owner: chummer6-core
+      title: Implement deterministic contracts for NEXUS-PAN replay, ALICE comparisons, KARMA FORGE amend packs, Knowledge Fabric
+        source refs, and Local Co-Processor acceleration.
+    - id: '132.2'
+      owner: chummer6-hub
+      title: Orchestrate hosted research packets, approvals, campaign/account context, and public-signal intake for deterministic
+        horizons.
+    - id: '132.3'
+      owner: chummer6-hub-registry
+      title: Publish horizon proof status, amend-package lineage, compatibility, revocation, and public-claim refs for deterministic
+        horizons.
+    - id: '132.4'
+      owner: chummer6-ui
+      title: Surface ALICE, KARMA FORGE, Knowledge Fabric, and source-anchor horizon entry points on desktop with proof and
+        preview boundaries.
+    - id: '132.5'
+      owner: chummer6-mobile
+      title: Surface NEXUS-PAN reconnect/replay and local co-processor confidence posture on mobile without owning rules truth.
+    - id: '132.6'
+      owner: fleet
+      title: Schedule deterministic horizon slices only after owner handoff gates, proof scopes, and stop conditions are satisfied.
+    - id: '132.7'
+      owner: chummer6-design
+      title: Close deterministic horizon canon, public claim language, owner handoff gates, and build-path promotion criteria.
+  - id: 133
+    title: 'Media and social horizon implementation tranche: JACKPOINT, RUNBOOK PRESS, GHOSTWIRE, RUNSITE, TABLE PULSE, and
+      Community Hub'
+    wave: W21
+    owners:
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-media-factory
+    - chummer6-ui
+    - chummer6-mobile
+    - executive-assistant
+    - fleet
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 107
+    - 110
+    - 116
+    - 117
+    - 123
+    - 124
+    - 126
+    exit_criteria:
+    - JACKPOINT, RUNBOOK PRESS, GHOSTWIRE, RUNSITE, TABLE PULSE, and Community Hub become bounded implementation lanes
+      with first-party manifests, consent, provenance, publication, and revocation truth.
+    - Replay/forensics, route/spatial artifacts, creator press, narrated recap, table coaching, public open-run discovery, and
+      artifact studio outputs remain source-backed and inspectable.
+    - Media and EA may enrich artifacts, but Hub/registry/campaign/rules truth remains canonical and player/GM consent is visible.
+    work_tasks:
+    - id: '133.1'
+      owner: chummer6-hub
+      title: Implement hosted orchestration for JACKPOINT artifact studio, RUNBOOK PRESS creator workflows, RUNSITE packs, TABLE
+        PULSE, GHOSTWIRE, and Community Hub surfaces.
+    - id: '133.2'
+      owner: chummer6-hub-registry
+      title: Publish lineage, publication, moderation, route, consent, replay, recap, revocation, and compatibility refs for
+        media/social horizons.
+    - id: '133.3'
+      owner: chummer6-media-factory
+      title: Render route, preview, narrated recap, creator press, table-pulse, replay/forensics, and open-run media artifacts
+        from approved manifests.
+    - id: '133.4'
+      owner: chummer6-ui
+      title: Surface artifact studio, creator press, replay/forensics, route packs, table-pulse, and Community Hub entry points
+        on desktop.
+    - id: '133.5'
+      owner: chummer6-mobile
+      title: Surface mobile travel, route, recap, observer, table-pulse, and Community Hub horizon moments with consent and
+        offline posture.
+    - id: '133.6'
+      owner: executive-assistant
+      title: Compile media/social horizon packets, table-pulse summaries, recap drafts, and creator-publication followthrough
+        from governed truth only.
+    - id: '133.7'
+      owner: fleet
+      title: Monitor media/social horizon proof freshness, consent gates, unsupported public claims, and provider-health stop
+        conditions.
+    - id: '133.8'
+      owner: chummer6-design
+      title: Close media/social horizon canon, artifact manifest rules, table-pulse consent, and public explainer posture.
+  - id: 134
+    title: Source anchors, local rulebook binding, house-rule discovery, and amend-package marketplace completion
+    wave: W20
+    owners:
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-ui
+    - executive-assistant
+    - chummer6-design
+    status: not_started
+    dependencies:
+    - 109
+    - 114
+    - 125
+    - 132
+    exit_criteria:
+    - Local source anchors, rulebook binding, house-rule discovery, amend package promotion, rollback, compatibility, marketplace/publication,
+      and explain receipts are one governed rule-environment lane.
+    - House-rule demand can flow through public signal and discovery tools into KARMA FORGE candidates without votes overriding
+      Product Governor or engine legality truth.
+    - Desktop and Hub surfaces show before/after impacts, source refs, compatibility hazards, package conflicts, and rollback
+      receipts before any table adopts a rule change.
+    work_tasks:
+    - id: '134.1'
+      owner: chummer6-core
+      title: Implement source-anchor, local rulebook binding, amend graph, compatibility, rollback, and deterministic explain
+        contracts.
+    - id: '134.2'
+      owner: chummer6-hub
+      title: Build house-rule discovery intake, Product Governor triage, approval, campaign adoption, and rollback orchestration.
+    - id: '134.3'
+      owner: chummer6-hub-registry
+      title: Publish amend-package lineage, compatibility, trust, marketplace, revocation, and adoption refs.
+    - id: '134.4'
+      owner: chummer6-ui
+      title: Surface source anchors, rulebook binding, house-rule impact diffs, conflict warnings, and rollback receipts on
+        desktop.
+    - id: '134.5'
+      owner: executive-assistant
+      title: Compile house-rule demand clusters, interview summaries, amend-package drafts, and closeout packets from governed
+        intake.
+    - id: '134.6'
+      owner: chummer6-design
+      title: Close source-anchor, local-rulebook, house-rule discovery, KARMA FORGE, and amend-package policy canon.
+  - id: 135
+    title: Product backbone, contract sets, ownership matrix, repo hygiene, and final design coverage closeout
+    wave: W22
+    owners:
+    - chummer6-design
+    - fleet
+    - chummer6-core
+    - chummer6-hub
+    - chummer6-hub-registry
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-ui-kit
+    - chummer6-media-factory
+    - executive-assistant
+    status: not_started
+    dependencies:
+    - 127
+    - 128
+    - 129
+    - 130
+    - 131
+    - 132
+    - 133
+    - 134
+    exit_criteria:
+    - Every canonical design source family is either implemented, explicitly non-goal/future-only, or represented by a repo-owned
+      executable milestone with queue slice, allowed paths, proof gate, and stop condition.
+    - Product backbone workspace, ownership matrix, contract sets, package boundaries, project scopes, release gates, public
+      promises, horizon posture, and generated proofs agree without hidden super-repos or mirror-only truth.
+    - Fleet can report full-design queued coverage separately from shipped completion and fails closed on missing queue rows,
+      stale mirrors, stale proof, or unsupported public claims.
+    work_tasks:
+    - id: '135.1'
+      owner: chummer6-design
+      title: Materialize a canonical design coverage ledger mapping every source family to implemented, queued, future-only,
+        or non-goal posture.
+    - id: '135.2'
+      owner: fleet
+      title: Add full-design queued-coverage verification, mirror freshness checks, missing-row detection, and status-plane
+        reporting.
+    - id: '135.3'
+      owner: chummer6-core
+      title: Close engine contract-set, package bootstrap, deterministic proof, interop, import/export, and rules-boundary coverage.
+    - id: '135.4'
+      owner: chummer6-hub
+      title: Close hosted bounded-context, campaign, account, support, public, community, and orchestration-boundary coverage.
+    - id: '135.5'
+      owner: chummer6-hub-registry
+      title: Close registry persistence, release-channel, artifact lineage, publication, entitlement, and compatibility-boundary
+        coverage.
+    - id: '135.6'
+      owner: chummer6-ui
+      title: Close desktop workbench, Build Lab, GM Runboard, publication, restore, support, and veteran-familiarity surface
+        coverage.
+    - id: '135.7'
+      owner: chummer6-mobile
+      title: Close mobile play shell, reconnect, replay, travel cache, table cards, recap, and offline/degraded-state coverage.
+    - id: '135.8'
+      owner: chummer6-ui-kit
+      title: Close shared design-system, accessibility, localization, dense-data, state-badge, and visual-regression package
+        coverage.
+    - id: '135.9'
+      owner: chummer6-media-factory
+      title: Close media contracts, render jobs, previews, manifests, archive, provider adapters, and asset lifecycle coverage.
+    - id: '135.10'
+      owner: executive-assistant
+      title: Close EA compile, signal, companion, public copy, operator packet, provider digest, and followthrough coverage
+        without canon authority.

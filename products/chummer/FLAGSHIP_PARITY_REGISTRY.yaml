@@ -33,6 +33,7 @@ policy:
   readiness_planes:
     - Structural closure is necessary, but it is not enough to claim flagship replacement.
     - Desktop families cannot stay `gold_ready` while the published readiness proof still reports `desktop_client` missing or `dense_workbench_ready` below ready.
+    - Core rules/import families cannot stay `gold_ready` when the release-bound engine proof pack drops promoted-desktop oracle coverage, import-certification truth, or performance-budget coverage.
     - Family statuses should match the strongest proof that is actually current, not the most optimistic interpretation of adjacent evidence.
   oracle_rule:
     - "`chummer5a` is the default legacy oracle for screenshot, workflow, and first-minute orientation evidence."
@@ -111,6 +112,7 @@ families:
       - Veteran re-find proof
     release_evidence:
       - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-core/.codex-studio/published/ENGINE_PROOF_PACK.generated.json
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: custom_data_xml_and_translator_bridge
@@ -183,6 +185,7 @@ families:
     release_evidence:
       - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/chummercomplete/chummer6-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-core/.codex-studio/published/ENGINE_PROOF_PACK.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: sr6_supplements_designers_and_house_rules
     legacy_parity_status: covered
@@ -197,4 +200,5 @@ families:
     release_evidence:
       - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
       - /docker/chummercomplete/chummer6-design/products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
+      - /docker/chummercomplete/chummer6-core/.codex-studio/published/ENGINE_PROOF_PACK.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json

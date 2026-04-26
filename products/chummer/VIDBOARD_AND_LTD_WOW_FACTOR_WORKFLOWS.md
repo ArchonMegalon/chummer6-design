@@ -122,6 +122,8 @@ The runsite feels alive before any tokens move.
 - not a tactical live-combat system
 - not real-time surveillance or auto-GMing
 - route overlays remain inspectable outside the clip
+- route overlays and explorable tours remain first-party truth during the clip
+- host narration may not become the only authority for access, pressure, or hotspot claims
 
 ## Workflow 4 - Fix landed / what changed video
 

@@ -22,4 +22,11 @@ python3 "${repo_root}/scripts/ai/materialize_weekly_product_pulse_snapshot.py" \
   --as-of "${as_of}" \
   --out "${repo_root}/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json"
 
+fleet_published_root="${fleet_root}/.codex-studio/published"
+if [ -d "${fleet_published_root}" ]; then
+  install -D -m 0644 \
+    "${repo_root}/products/chummer/WEEKLY_PRODUCT_PULSE.generated.json" \
+    "${fleet_published_root}/WEEKLY_PRODUCT_PULSE.generated.json"
+fi
+
 python3 "${repo_root}/scripts/ai/validate_product_invariants.py" >/dev/null

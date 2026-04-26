@@ -2,15 +2,14 @@
 
 Purpose: let a Codex session running on a Mac build a public-ready desktop artifact, prove it, and promote it onto the live `chummer.run` downloads shelf through the authenticated HTTP upload endpoint instead of manual server file copies.
 
-If you want the signed-in path, open `https://chummer.run/downloads/release-upload` in the browser first, copy the generated one-liner, and paste that into the Mac shell. The signed-in handoff mints a short-lived upload code, keeps it off the command line, always serves the current hosted bootstrap, and lets the bootstrap prompt for the code only after it has switched to temp-file auth handling.
+Use the signed-in path by opening `https://chummer.run/downloads/release-upload` in the browser first, copying the generated `Command` block, and pasting that exact command into the Mac shell. The signed-in handoff mints a short-lived upload code, embeds it in the generated bootstrap command, pins the hosted bootstrap digest, and keeps the published command synchronized with the current hosted bootstrap.
 
 ## One command
 
-Public bootstrap:
+Open `https://chummer.run/downloads/release-upload`, copy the generated `Command` block, and paste that exact command into the Mac release shell.
 
-```bash
-bash <(curl -fsSL https://chummer.run/downloads/release-upload/bootstrap.sh)
-```
+Do not run `https://chummer.run/downloads/release-upload/bootstrap.sh` directly for live promotion; it can pass SHA-256 verification and still stop at upload time because a raw public script has no upload credential.
+Do not paste `curl -fsSL https://chummer.run/downloads/release-upload/bootstrap.command | bash` unless you explicitly attach `?ticket=...` or `?apiToken=...`; terminal curl does not inherit the browser sign-in session.
 
 Repo-local checkout fallback:
 
