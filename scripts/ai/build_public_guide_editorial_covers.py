@@ -468,6 +468,59 @@ def _draw_scene_overlay(
                 draw.rounded_rectangle((x1, y1, x2, y2), radius=10, outline=color, width=2)
 
 
+def _draw_scene_labels(
+    draw: ImageDraw.ImageDraw,
+    *,
+    labels: object,
+    rect: tuple[int, int, int, int],
+    font: ImageFont.FreeTypeFont,
+    accent: tuple[int, int, int, int],
+    secondary: tuple[int, int, int, int],
+) -> None:
+    if not isinstance(labels, list):
+        return
+    left, top, right, bottom = rect
+    width = right - left
+    height = bottom - top
+
+    def point(raw_value: object, fallback: tuple[float, float]) -> tuple[int, int]:
+        if isinstance(raw_value, (list, tuple)) and len(raw_value) >= 2:
+            try:
+                px = max(0.0, min(1.0, float(raw_value[0])))
+                py = max(0.0, min(1.0, float(raw_value[1])))
+                return (left + int(width * px), top + int(height * py))
+            except (TypeError, ValueError):
+                pass
+        return (left + int(width * fallback[0]), top + int(height * fallback[1]))
+
+    for index, raw in enumerate(labels[:5]):
+        if not isinstance(raw, dict):
+            continue
+        text = str(raw.get("text") or "").strip().upper()
+        if not text or len(text) > 18:
+            continue
+        anchor = point(raw.get("anchor"), (0.58, 0.58 + index * 0.05))
+        label = point(raw.get("label"), (0.66, 0.45 + index * 0.08))
+        bbox = draw.textbbox((0, 0), text, font=font)
+        pad_x = 10
+        pad_y = 6
+        box_width = bbox[2] - bbox[0] + pad_x * 2
+        box_height = bbox[3] - bbox[1] + pad_y * 2
+        label_x = max(left + 8, min(right - box_width - 8, label[0]))
+        label_y = max(top + 8, min(bottom - box_height - 8, label[1]))
+        mid_y = label_y + box_height // 2
+        draw.line((anchor[0], anchor[1], label_x, mid_y), fill=(accent[0], accent[1], accent[2], 118), width=2)
+        draw.ellipse((anchor[0] - 5, anchor[1] - 5, anchor[0] + 5, anchor[1] + 5), fill=(secondary[0], secondary[1], secondary[2], 180))
+        draw.rounded_rectangle(
+            (label_x, label_y, label_x + box_width, label_y + box_height),
+            radius=9,
+            fill=(8, 15, 20, 154),
+            outline=(accent[0], accent[1], accent[2], 188),
+            width=1,
+        )
+        draw.text((label_x + pad_x, label_y + pad_y - 1), text, font=font, fill=(232, 247, 250, 228))
+
+
 def _draw_footer(draw: ImageDraw.ImageDraw, *, width: int, height: int, font: ImageFont.FreeTypeFont, accent: tuple[int, int, int, int]) -> None:
     label = "PUBLIC GUIDE"
     text_bbox = draw.textbbox((0, 0), label, font=font)
@@ -577,6 +630,14 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
         rect=(copy_width + 54, 36, width - 40, height - 66),
         accent=(accent[0], accent[1], accent[2], 92 if style == "hero" else 108),
         secondary=(secondary[0], secondary[1], secondary[2], 78 if style == "hero" else 92),
+    )
+    _draw_scene_labels(
+        draw,
+        labels=spec.get("scene_labels"),
+        rect=(copy_width + 54, 36, width - 40, height - 66),
+        font=_font(label_font_path, 20 if style == "hero" else 17),
+        accent=(accent[0], accent[1], accent[2], 255),
+        secondary=(secondary[0], secondary[1], secondary[2], 255),
     )
     seam_points = [(copy_width + 22, 0), (copy_width + 38, 0), (copy_width - 46, height), (copy_width - 62, height)]
     draw.polygon(seam_points, fill=(accent[0], accent[1], accent[2], 170))

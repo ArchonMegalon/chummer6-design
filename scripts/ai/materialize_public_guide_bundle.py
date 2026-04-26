@@ -2000,8 +2000,6 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
                         "The problem",
                         "Bounded product move",
                         "What it would do",
-                        "Foundations",
-                        "What has to be true first",
                         "Why still a horizon",
                         "Why it is not ready yet",
                     },

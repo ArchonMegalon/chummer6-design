@@ -87,7 +87,7 @@ Examples:
 - Horizon frames it as public transparency after corporate violence.
 - Aztechnology frames the Puyallup response as humanitarian relief.
 
-The competing narratives are allowed to differ in voice and framing. They must link back to Chummer-owned pages where visibility rules, source trails, and public-safe claims are enforced.
+The competing narratives are allowed to differ in voice and framing. They must link back to Chummer-owned pages where visibility rules, evidence paths, and public-safe claims are enforced.
 
 ### GM job recruitment
 

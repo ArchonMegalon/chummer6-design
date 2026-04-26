@@ -24,12 +24,6 @@ Players often discover bad builds, illegal interactions, or weak upgrade paths o
 
 Chummer would compare builds, catch trouble before play, and explain tradeoffs without making up rules or legality.
 
-## What has to be true first
-
-* explain views that show their work
-* deterministic runtime data
-* strong comparison flows
-
 ## Why it is not ready yet
 
 Chummer still needs sturdier compare-and-explain views before it should start giving confident build advice.

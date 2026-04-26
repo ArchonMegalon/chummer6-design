@@ -115,6 +115,7 @@ Add these artifact kinds:
 - `public_explainer_video`
 - `release_explainer_video`
 - `support_closure_video`
+- `build_explain_companion_video`
 - `campaign_primer_video`
 - `mission_brief_video`
 - `runsite_orientation_video`
@@ -147,6 +148,12 @@ Each published video artifact should carry:
 - preview required before publication
 - every video has a sibling preview card
 - every public/help/support video has a document or page sibling when the user needs inspectable detail
+
+### Runsite orientation surfaces
+- `runsite_orientation_video` is preview-safe host mode, not route or tactical authority
+- every runsite orientation launch must keep inspectable route, map, or tour siblings visible before playback and reachable during playback
+- approved runsite pack and route summary truth outrank host narration whenever wording drifts
+- runsite orientation clips may not claim live state, combat authority, or hidden tactical instructions that are absent from the approved pack or route summary
 
 ### Text and truth
 - public or help videos may only speak from approved scripts or approved manifest-derived summaries
@@ -219,6 +226,18 @@ Each published video artifact should carry:
 - runsite orientation clips
 - pre-session "what changed" briefings
 
+### Build and Explain surfaces
+- compare companions that summarize anchored deltas from approved explain packets
+- import companions that restate bounded-loss or landed-success receipts without hiding repair steps
+- blocker companions that restate inspectable blocker receipts and next-step actions
+
+These lanes stay subordinate to inspectable engine truth:
+- companion narration may cite packet anchors
+- companion narration may not replace packet inspection
+- approval may permit publication, but it may not authorize unanchored rules claims
+- every rendered companion must preserve the exact packet revision, rule-environment identity, and approval scope it summarizes
+- if revision identity, anchor scope, or approval scope cannot be shown honestly, the launch surface must fail closed to the packet, anchor sheet, or localized text fallback instead of pretending the narration is enough
+
 ### Creator and publication surfaces
 - dossier trailer videos
 - campaign primer teaser videos
@@ -240,7 +259,7 @@ Not allowed:
 
 Before `vidBoard` or any sibling lane becomes a promoted active route, Chummer should prove:
 - the artifacts feel visibly more polished than static-only output for the same workflow
-- the script/source trail survives from Chummer truth into the published asset
+- the script and evidence path survive from Chummer truth into the published asset
 - localization stays intelligible in the shipping locales
 - the preview/sibling packet makes the result inspectable rather than theatrical
 - the lane can be killed without breaking canonical truth or user recovery
@@ -282,6 +301,6 @@ If every surface becomes an avatar video, the product gets cheaper, noisier, and
 The goal is:
 - one polished video where it materially reduces friction
 - a trusted sibling document/page where inspectability matters
-- a clear source trail
+- a clear evidence path
 - strong localization leverage
 - real wow-factor without surrendering product meaning

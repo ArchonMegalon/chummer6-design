@@ -43,17 +43,6 @@ faction pressure
 -> next tick
 ```
 
-## What has to be true first
-
-* `C0` - campaign, run, and Hub-owned receipt boundaries
-* `C1` - campaign authority and player-safe visibility gates
-* `D0` - deterministic projections from Chummer-owned state
-* `D1` - sync and restore behavior for world-linked state
-* `D2` - portability, receipts, and missing-package warnings
-* `E2b` - media artifact source trail and publication review
-* `F1` - public-surface and community trust controls
-* Product Governor review for world-tick, public-news, and artifact publication
-
 ## Why it is not ready yet
 
 BLACK LEDGER only works if Chummer proves three things at once: campaigns stay the center of play, world-linked pressure stays inspectable through receipts and approvals, and organizer, GM, and future faction-seat authority stay cleanly separated.

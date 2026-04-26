@@ -24,19 +24,32 @@ assets:
     panel_focus: [0.57, 0.48]
     panel_zoom: 1.04
     copy_width: 572
-    background_brightness: 0.92
-    background_saturation: 1.10
-    background_contrast: 1.10
+    background_brightness: 1.12
+    background_saturation: 1.18
+    background_contrast: 1.08
     background_blur_sigma: 10
-    background_overlay_alpha: 76
-    panel_brightness: 1.18
-    panel_saturation: 1.24
-    panel_contrast: 1.14
+    background_overlay_alpha: 122
+    panel_brightness: 1.24
+    panel_saturation: 1.28
+    panel_contrast: 1.12
     panel_sharpness: 1.12
-    panel_overlay_alpha: 8
+    panel_overlay_alpha: 4
     editorial_finish_sigma: 6
     editorial_finish_opacity: 8
     motif: clinic_ticks
+    scene_labels:
+      - text: NERVE SYNC
+        anchor: [0.48, 0.58]
+        label: [0.55, 0.50]
+      - text: JOINT SEAL
+        anchor: [0.56, 0.64]
+        label: [0.65, 0.58]
+      - text: GRIP TEST
+        anchor: [0.64, 0.74]
+        label: [0.70, 0.78]
+      - text: PAIN WATCH
+        anchor: [0.42, 0.54]
+        label: [0.28, 0.48]
   assets/horizons/alice.png:
     kind: feature_cover
     source: products/chummer/public-guide-curated-assets/source-plates/horizons/alice.png

@@ -6,7 +6,7 @@ The dedicated media studio.
 
 ## When you care
 
-You care about finished images, teaser media, dossiers, narrated packets, or other polished outputs that still need a clear source trail.
+You care about finished images, teaser media, dossiers, narrated packets, or other polished outputs that still need clear proof of where the material came from.
 
 ## Why you care
 
