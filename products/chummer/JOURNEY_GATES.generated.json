@@ -1,21 +1,21 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-04-25T11:57:07Z",
+  "generated_at": "2026-04-26T17:26:10Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
   "current_truth": {
-    "state": "warning",
+    "state": "ready",
     "blocked_count": 0,
-    "warning_count": 5,
+    "warning_count": 0,
     "blocked_reason": "",
-    "warning_reason": "Close the remaining target-stage warnings before claiming the campaign OS is boringly proven.",
-    "next_safe_action": "Close the remaining target-stage warnings before claiming the campaign OS is boringly proven.",
-    "evidence_age_hours": 0.0,
+    "warning_reason": "",
+    "next_safe_action": "Journey proof is steady on current published evidence.",
+    "evidence_age_hours": 1.57,
     "provenance": {
       "weekly_product_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
-      "weekly_product_pulse_generated_at": "2026-04-25T11:57:04Z",
+      "weekly_product_pulse_generated_at": "2026-04-26T15:52:08Z",
       "golden_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml"
     }
   },

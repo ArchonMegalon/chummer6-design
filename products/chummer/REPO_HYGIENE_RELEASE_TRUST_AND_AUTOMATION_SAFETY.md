@@ -14,7 +14,7 @@ The main hazards now are operational:
 
 * runtime state, local databases, env files, logs, and caches can leak into public repos or drift into accepted local habits
 * telemetry and evidence folders can look like runtime logs unless their fixture/redaction posture is explicit
-* release truth can drift between owning repos, registry channel state, updater feeds, GitHub releases, public guide pages, and `/downloads`
+* release truth can drift between owning repos, registry channel state, updater feeds, public guide pages, `/downloads`, and forbidden GitHub binary shelves
 * repo-local verify scripts can become large alias-sensitive grep programs instead of maintainable boundary checks
 * automation power can outrun machine-enforced safety limits
 * product READMEs can become mixed product pitch, runtime manual, and worker prompt surfaces
@@ -23,7 +23,8 @@ The main hazards now are operational:
 ## Core stance
 
 1. `chummer6-hub-registry` owns canonical promoted release truth.
-   GitHub releases, updater feeds, `/downloads`, and downstream guide shelves are projections from that truth, not competing authorities.
+   `/downloads`, updater feeds, and downstream guide shelves are projections from that truth, not competing authorities.
+   GitHub may reference source, development evidence, or the `chummer.run` download route only; it must not host public client binaries as a download path.
 2. Repo-local `verify.sh` entrypoints may remain as thin smoke wrappers.
    Boundary policy itself should move into shared declarative data plus one reusable boundary-lint tool.
 3. Fleet safety must not depend on model obedience.
@@ -70,8 +71,9 @@ Accept when:
 
 * Fleet verifies the manifest before promotion
 * Registry publishes it as channel truth
-* updater feeds, GitHub releases, `/downloads`, and public guide projections all compile from it
+* updater feeds, `/downloads`, and public guide projections all compile from it
 * promotion fails if those surfaces disagree
+* promotion fails if release automation tries to publish client binaries directly to GitHub instead of routing acquisition through `chummer.run`
 
 ### 3. Shared declarative boundary lint
 
@@ -235,5 +237,6 @@ Safety and proof have to harden before the automation estate gets more authority
 This file does not reopen bounded-context ownership.
 It does not move release truth away from Registry.
 It does not turn GitHub releases into canonical authority.
+It does not allow GitHub releases, GitHub Actions artifacts, repo attachments, or repo-hosted shelves to become public client download sources.
 It does not replace repo-local smoke/build/test entrypoints with one giant central script.
 It does not justify more feature breadth while the boring trust loops are still noisy.

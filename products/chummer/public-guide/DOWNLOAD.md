@@ -12,7 +12,7 @@ This page tells you what you can download right now and which file to start with
 ## Current public download
 
 - Today: Usable preview.
-- Published: April 25, 2026 at 11:38 UTC.
+- Published: April 26, 2026 at 8:49 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows, Linux, and macOS.
 - Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.
@@ -23,7 +23,7 @@ This page tells you what you can download right now and which file to start with
 
 ## Current build matrix
 
-If you want the raw release shelf and attached artifacts, use GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.
+Official client downloads start at chummer.run. GitHub is for source and public development evidence, not installer, archive, update payload, or preview-client downloads.
 
 ### Windows
 
@@ -38,7 +38,7 @@ If you want the raw release shelf and attached artifacts, use GitHub releases: <
 - Avalonia Desktop Linux X64 Installer.
 - Download: `/downloads/files/chummer-avalonia-linux-x64-installer.deb`
 - File: `chummer-avalonia-linux-x64-installer.deb`
-- Size: 32.7 MiB (34259130 bytes)
+- Size: 33.4 MiB (35010278 bytes)
 - Access: Sign-in required.
 - Blazor Desktop Linux X64 Installer.
 - Download: `/downloads/files/chummer-blazor-desktop-linux-x64-installer.deb`
@@ -84,7 +84,7 @@ If you want the raw release shelf and attached artifacts, use GitHub releases: <
 
 ## SHA256
 
-- Avalonia Desktop Linux X64 Installer: `b62a01e934396b0740d60763032201ae55e819e1815df09693a772f4075795a3`
+- Avalonia Desktop Linux X64 Installer: `84d5c3a7065666286c5e3a5feccbc2ee3c04117cf5afaa116c09e1e2d9e44643`
 - Blazor Desktop Linux X64 Installer: `755de1de2a11d363f5f127dd81d9a00a1f33d9b20f6e75adb569d1c97e3faa94`
 - Avalonia Desktop macOS ARM64 Installer: `ca6c25f0cdaf48bddfe83e3e983ff87b8763d973e671100165248c9edcd044bd`
 - Blazor Desktop macOS ARM64 Installer: `8c1f85e688667daf8ad576ab2d3152294f5d27a55b4005e059dff022356a2df4`
@@ -95,7 +95,7 @@ If you want the raw release shelf and attached artifacts, use GitHub releases: <
 ## Recent release verification
 
 - Status: Passed.
-- Last checked: April 23, 2026 at 11:27 UTC.
+- Last checked: April 26, 2026 at 8:49 UTC.
 - Summary: Passed for installs and recovery, campaign session recovery, and support follow-up.
 
 ### What was checked

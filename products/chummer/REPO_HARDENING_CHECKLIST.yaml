@@ -38,7 +38,8 @@ initiatives:
     accepts_when:
       - One canonical manifest binds repo commits, artifact digests, signatures, runtime-bundle fingerprint, and registry receipt.
       - Registry publishes promoted channel truth from that manifest.
-      - GitHub releases, updater feeds, downloads, and public guide projections compile from the same manifest.
+      - Updater feeds, downloads, and public guide projections compile from the same manifest.
+      - GitHub may reference source, evidence, or chummer.run, but must not host public client binaries as download authority.
 
   - id: RH-003
     title: Fleet blast-radius limits

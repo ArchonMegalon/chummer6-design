@@ -1737,7 +1737,7 @@ def _generate_download(
             "",
             "## Current build matrix",
             "",
-            "If you want the raw release shelf and attached artifacts, use GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.",
+            "Official client downloads start at chummer.run. GitHub is for source and public development evidence, not installer, archive, update payload, or preview-client downloads.",
         ]
     )
 
