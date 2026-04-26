@@ -25,6 +25,13 @@ GMs, creators, and publishers need consistent long-form books such as primers, c
 Chummer would help teams turn approved material into primers, handbooks, district guides, campaign books, and convention modules without forcing creators to juggle a pile of third-party dashboards.
 It complements JACKPOINT instead of duplicating it.
 
+## What has to be true first
+
+* approved source packs
+* publication manifests
+* format and render adapters
+* editorial approval flows
+
 ## Why it is not ready yet
 
 Long-form output only matters if the draft, edit trail, and final package stay consistent from first draft to release.

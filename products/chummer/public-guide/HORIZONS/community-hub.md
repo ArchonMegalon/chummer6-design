@@ -44,6 +44,16 @@ The public fantasy is:
 > Chummer gets the table into the session.
 > The outcome changes the city.
 
+## What has to be true first
+
+* BLACK LEDGER job packets and world consequences must already be trustworthy enough to seed open runs
+* campaign and run truth must remain Chummer-owned even when meeting platforms are involved
+* community rule environments, roster fit, and rule-environment preflight must be explainable rather than magical
+* quickstart and mobile-first entry paths must be good enough that “no Windows PC” is not an automatic exclusion
+* a beginner GM must be able to open, staff, prep, schedule, and close a starter run without stitching together five external tools
+* observer and debrief lanes must be strictly consent-gated
+* reputation and seasonal honors must derive from typed source events rather than hidden scoring
+
 ## Why it is not ready yet
 
 This only works if Chummer can prove four things at once:

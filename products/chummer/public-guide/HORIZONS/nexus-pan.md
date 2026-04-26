@@ -26,6 +26,15 @@ Chummer would keep reconnects and shared session state steady enough that player
 It would build on the existing session record instead of creating a separate version of events.
 It would also handle bad signals and device handoffs honestly: clear offline status, safe local continuity, and visible conflict recovery when reconnecting goes wrong.
 
+## What has to be true first
+
+* durable session state
+* reliable sync bundles
+* visible reconnect explanations
+* in-session reliability
+* offline-capable local state
+* explicit stale, pending, and conflicted state
+
 ## Why it is not ready yet
 
 The live release still needs boringly reliable session continuity.
