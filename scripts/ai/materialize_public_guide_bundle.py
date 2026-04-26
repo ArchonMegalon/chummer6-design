@@ -31,6 +31,7 @@ ACTIVE_WAVE_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOU
 NEXT12_REGISTRY = PRODUCT_ROOT / "NEXT_12_BIGGEST_WINS_REGISTRY.yaml"
 NEXT20_REGISTRY = PRODUCT_ROOT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 HUB_REGISTRY_ROOT_ENV = "CHUMMER_HUB_REGISTRY_ROOT"
+HORIZON_PUBLIC_COPY_PACK_PATH = PRODUCT_ROOT / "HORIZON_PUBLIC_COPY_PACK.md"
 IMAGE_CURATION_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_IMAGE_CURATION.yaml"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
@@ -73,6 +74,9 @@ PUBLIC_HORIZON_SECTION_TITLES = {
     "what has to be true first": "What has to be true first",
     "why still a horizon": "Why it is not ready yet",
     "why it is not ready yet": "Why it is not ready yet",
+}
+HORIZON_PUBLIC_COPY_SLUG_OVERRIDES: dict[str, str] = {
+    "community-hub": "shadowcasters-network",
 }
 PUBLIC_COPY_BANNED_PHRASES = (
     "progress snapshot:",
@@ -706,6 +710,82 @@ def _markdown_body(text: str) -> str:
     return "\n".join(lines).strip()
 
 
+def _iter_markdown_sections(
+    text: str,
+    *,
+    heading_prefixes: tuple[str, ...] = ("## ",),
+) -> list[tuple[str, list[str]]]:
+    lines = text.splitlines()
+    current_heading = ""
+    current_lines: list[str] = []
+    sections: list[tuple[str, list[str]]] = []
+
+    def flush() -> None:
+        nonlocal current_heading, current_lines
+        section_lines = list(current_lines)
+        while section_lines and not section_lines[0].strip():
+            section_lines.pop(0)
+        while section_lines and not section_lines[-1].strip():
+            section_lines.pop()
+        if current_heading and section_lines:
+            sections.append((current_heading, section_lines))
+        current_heading = ""
+        current_lines = []
+
+    for line in lines:
+        matched_prefix = next((prefix for prefix in heading_prefixes if line.startswith(prefix)), None)
+        if matched_prefix is not None:
+            flush()
+            current_heading = line[len(matched_prefix):].strip()
+            continue
+        if current_heading:
+            current_lines.append(line)
+
+    flush()
+    return sections
+
+
+def _horizon_copy_heading_keys(heading: str) -> list[str]:
+    raw_heading = str(heading or "").strip()
+    if not raw_heading:
+        return []
+    keys: list[str] = [_slug(raw_heading)]
+
+    # Common style is "TITLE — supporting line". We want to match by horizon
+    # slugs such as "quicksilver" or "nexus-pan" without requiring callers to
+    # use the full prose heading text.
+    first_seg = re.split(r"\s*[—-]\s*", raw_heading, maxsplit=1)[0].strip()
+    slug_first = _slug(first_seg)
+    if slug_first and slug_first not in keys:
+        keys.append(slug_first)
+
+    # Fallbacks for legacy heading conventions and accidental extra separators.
+    alt = raw_heading.split(":")[0].strip()
+    slug_alt = _slug(alt)
+    if slug_alt and slug_alt not in keys:
+        keys.append(slug_alt)
+
+    return keys
+
+
+def _load_horizon_public_copy_pack() -> dict[str, list[str]]:
+    if not HORIZON_PUBLIC_COPY_PACK_PATH.is_file():
+        return {}
+    sections = _iter_markdown_sections(
+        HORIZON_PUBLIC_COPY_PACK_PATH.read_text(encoding="utf-8"),
+        heading_prefixes=("# ",),
+    )
+    copy_by_slug: dict[str, list[str]] = {}
+    for heading, section_lines in sections:
+        if not heading.strip() or heading.lower().startswith("human-facing horizon copy pack"):
+            continue
+        rendered = [_public_copy(line) for line in section_lines]
+        for key in _horizon_copy_heading_keys(heading):
+            if key and key not in copy_by_slug:
+                copy_by_slug[key] = rendered
+    return copy_by_slug
+
+
 def _humanize_identifier(value: str) -> str:
     cleaned = re.sub(r"[_-]+", " ", str(value or "").strip())
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
@@ -1198,44 +1278,31 @@ def _assert_public_bundle_language(out_dir: Path) -> None:
 def _extract_markdown_sections(
     text: str,
     *,
-    allowed_headings: set[str],
+    allowed_headings: set[str] | None,
     heading_map: dict[str, str] | None = None,
+    heading_prefixes: tuple[str, ...] = ("## ",),
 ) -> list[str]:
     body = _markdown_body(text)
     if not body:
         return []
 
-    allowed = {heading.strip().lower() for heading in allowed_headings if heading.strip()}
+    if allowed_headings:
+        allowed = {heading.strip().lower() for heading in allowed_headings if heading.strip()}
+    else:
+        allowed = None
     sections: list[str] = []
-    current_heading = ""
-    current_lines: list[str] = []
 
-    def flush() -> None:
-        nonlocal current_heading, current_lines
-        section_lines = list(current_lines)
-        while section_lines and not section_lines[0].strip():
-            section_lines.pop(0)
-        while section_lines and not section_lines[-1].strip():
-            section_lines.pop()
-        if current_heading and current_heading.lower() in allowed and section_lines:
-            rendered_heading = current_heading
-            if isinstance(heading_map, dict):
-                rendered_heading = heading_map.get(current_heading.lower(), current_heading)
-            sections.extend([f"## {rendered_heading}", ""])
-            sections.extend(_public_copy(line) if line.strip() else "" for line in section_lines)
-            if section_lines[-1].strip():
-                sections.append("")
-        current_heading = ""
-        current_lines = []
-
-    for line in body.splitlines():
-        if line.startswith("## "):
-            flush()
-            current_heading = line[3:].strip()
+    for heading, section_lines in _iter_markdown_sections(body, heading_prefixes=heading_prefixes):
+        if allowed is not None and heading.lower() not in allowed:
             continue
-        if current_heading:
-            current_lines.append(line)
-    flush()
+        rendered_heading = heading
+        if isinstance(heading_map, dict):
+            rendered_heading = heading_map.get(heading.lower(), heading)
+        sections.extend([f"## {rendered_heading}", ""])
+        sections.extend(_public_copy(line) if line.strip() else "" for line in section_lines)
+        if section_lines and section_lines[-1].strip():
+            sections.append("")
+
     return sections
 
 
@@ -1925,7 +1992,12 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
     _write(out_dir / "PARTS" / "README.md", "\n".join(index_rows))
 
 
-def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: dict[str, object]) -> None:
+def _generate_horizon_pages(
+    out_dir: Path,
+    repo_root: Path,
+    horizon_registry: dict[str, object],
+    public_horizon_copy: dict[str, list[str]],
+) -> None:
     horizons = [item for item in (horizon_registry.get("horizons") or []) if isinstance(item, dict)]
     enabled = [item for item in horizons if _boolish((item.get("public_guide") or {}).get("enabled"))]
 
@@ -1968,7 +2040,10 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
         wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
         if wow_promise:
             rows.extend([wow_promise, ""])
-        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=f"{title} horizon art"))
+        horizon_alt = f"{title} horizon art"
+        if slug == "black-ledger":
+            horizon_alt = "BLACK LEDGER city map with augmented-reality overlays"
+        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=horizon_alt))
 
         pain_label = _public_copy(str(horizon.get("pain_label") or "").strip())
         table_scene = _public_copy(str(horizon.get("table_scene") or "").strip())
@@ -1990,26 +2065,49 @@ def _generate_horizon_pages(out_dir: Path, repo_root: Path, horizon_registry: di
                 rows.append(f"- Next: {next_state}.")
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
+        horizon_copy_slug = HORIZON_PUBLIC_COPY_SLUG_OVERRIDES.get(
+            slug,
+            slug,
+        )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            embedded = (
-                _extract_markdown_sections(
-                    _load_text(canon_path),
-                    allowed_headings={
-                        "Table pain",
-                        "The problem",
-                        "Bounded product move",
-                        "What it would do",
-                        "Foundations",
-                        "What has to be true first",
-                        "Why still a horizon",
-                        "Why it is not ready yet",
-                    },
-                    heading_map=PUBLIC_HORIZON_SECTION_TITLES,
+            if horizon_copy_slug in public_horizon_copy:
+                selected_headings = None
+                selected_heading_map = None
+                embedded = list(public_horizon_copy[horizon_copy_slug])
+            elif slug in {"karma-forge", "black-ledger"}:
+                selected_headings = None
+                selected_heading_map = None
+                embedded = (
+                    _extract_markdown_sections(
+                        _load_text(canon_path),
+                        allowed_headings=None,
+                        heading_map=selected_heading_map,
+                    )
+                    if canon_path.is_file()
+                    else []
                 )
-                if canon_path.is_file()
-                else []
-            )
+            else:
+                selected_headings = {
+                    "Table pain",
+                    "The problem",
+                    "Bounded product move",
+                    "What it would do",
+                    "Foundations",
+                    "What has to be true first",
+                    "Why still a horizon",
+                    "Why it is not ready yet",
+                }
+                selected_heading_map = PUBLIC_HORIZON_SECTION_TITLES
+                embedded = (
+                    _extract_markdown_sections(
+                        _load_text(canon_path),
+                        allowed_headings=selected_headings,
+                        heading_map=selected_heading_map,
+                    )
+                    if canon_path.is_file()
+                    else []
+                )
             if embedded:
                 rows.extend([""])
                 rows.extend(embedded)
@@ -2068,6 +2166,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     trust_payload = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_TRUST_CONTENT.yaml")
     horizon_registry = _load_yaml(repo_root / "products" / "chummer" / "HORIZON_REGISTRY.yaml")
     landing_manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_LANDING_MANIFEST.yaml")
+    public_horizon_copy = _load_horizon_public_copy_pack()
     release_experience = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_RELEASE_EXPERIENCE.yaml")
     primary_route_registry = _load_yaml(repo_root / "products" / "chummer" / "PRIMARY_ROUTE_REGISTRY.yaml")
     flagship_parity_registry = _load_yaml(repo_root / "products" / "chummer" / "FLAGSHIP_PARITY_REGISTRY.yaml")
@@ -2101,7 +2200,12 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     _generate_download(out_dir, progress, release_payload, release_source, release_experience)
     _generate_contact(out_dir, trust_payload)
     _generate_part_pages(out_dir, part_registry)
-    _generate_horizon_pages(out_dir, repo_root, horizon_registry)
+    _generate_horizon_pages(
+        out_dir,
+        repo_root,
+        horizon_registry,
+        public_horizon_copy,
+    )
     _generate_trust_pages(out_dir, trust_payload, release_payload)
     _generate_manifest(out_dir, manifest)
     _assert_public_bundle_language(out_dir)
