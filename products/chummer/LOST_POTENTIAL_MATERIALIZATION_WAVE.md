@@ -111,7 +111,7 @@ Campaign state updates.
 References:
 
 * `BLACK_LEDGER_MVP_001.md`
-* `OPEN_RUNS_AND_SHADOWCASTERS_NETWORK.md`
+* `OPEN_RUNS_AND_COMMUNITY_HUB.md`
 
 ### Gate 7 — BLACK LEDGER talks back
 

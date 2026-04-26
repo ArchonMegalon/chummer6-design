@@ -68,7 +68,7 @@ Initial curated crawl set:
 - `/build`
 - `/gm-tools`
 - `/open-runs`
-- `/shadowcasters`
+- `/community-hub`
 - `/black-ledger`
 - `/karma-forge`
 - `/table-pulse`

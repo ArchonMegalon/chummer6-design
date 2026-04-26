@@ -233,7 +233,7 @@ Useful AR labels:
 * `SOURCE PACK`
 * `EXPORT READY`
 
-## SHADOWCASTERS NETWORK
+## COMMUNITY HUB
 
 Current relevance: **C**
 
@@ -310,7 +310,7 @@ Useful AR labels:
 
 1. **BLACK LEDGER** - replace first. The image should be a world-tick map with pins and AR callouts.
 2. **KARMA FORGE** - replace second. The current image misses the governed house-rule promise.
-3. **SHADOWCASTERS NETWORK** - replace third. It needs open-run workflow, not abstract skyline.
+3. **COMMUNITY HUB** - replace third. It needs open-run workflow, not abstract skyline.
 4. **RUNBOOK PRESS** - sharpen artifact publishing semantics.
 5. **ALICE** - add clearer two-build comparison.
 6. **NEXUS-PAN** - add stronger trust-repair/session continuity context.

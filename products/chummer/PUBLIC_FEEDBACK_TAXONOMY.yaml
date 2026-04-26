@@ -28,8 +28,8 @@ categories:
     discovery_lane: icanpreneur
     prescreen: deftform
 
-  - key: shadowcasters_open_runs
-    label: Shadowcasters / Open Runs
+  - key: community_hub_open_runs
+    label: Community Hub / Open Runs
     owner_repo: chummer6-hub
     discovery_lane: productlift_plus_deftform
 

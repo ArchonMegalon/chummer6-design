@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This file defines how Chummer may use Signitic campaigns for BLACK LEDGER, Shadowcasters Network, creator, and release outreach.
+This file defines how Chummer may use Signitic campaigns for BLACK LEDGER, Community Hub, creator, and release outreach.
 
 Signitic is a strong fit for BLACK LEDGER only as a passive propaganda and outreach rail. It may project approved messages through managed email signatures, but it must never own world truth, campaign truth, notification truth, support truth, analytics interpretation, or individual authorization.
 
@@ -27,7 +27,7 @@ Any banner art, ticker card, or landing media amplified by this lane must meet t
 
 ## Core boundary
 
-Signitic may project approved BLACK LEDGER, Shadowcasters, release, creator, and public-trust CTAs through managed email signatures.
+Signitic may project approved BLACK LEDGER, Community Hub, release, creator, and public-trust CTAs through managed email signatures.
 
 Signitic must not own:
 
@@ -45,7 +45,7 @@ Every Signitic CTA must land on a first-party Chummer destination. Hub owns the 
 
 ## Managed-account scope
 
-Use Signitic only for managed Chummer/Fleet/Hub/Shadowcasters/operator accounts.
+Use Signitic only for managed Chummer/Fleet/Hub/Community Hub/operator accounts.
 
 Allowed sender groups:
 
@@ -57,7 +57,7 @@ Allowed sender groups:
 - GM pilot operators
 - BLACK LEDGER organizers
 - faction-seat coordinators
-- Shadowcasters Network operators
+- Community Hub operators
 
 Do not target normal player inboxes or infer private player state from signature campaigns. Segments are role and cohort level only.
 
@@ -95,7 +95,7 @@ When the Mission Market has open jobs, Signitic may amplify GM or player recruit
 
 Allowed CTAs:
 
-- open the Shadowcasters board
+- open the Community Hub board
 - adopt a GM job
 - review open runs
 - schedule a GM clinic
@@ -193,7 +193,7 @@ signitic_segments:
     purpose: world ticks, map review, intel review, and publication approval
   faction_seat_coordinators:
     purpose: faction turns, operation closeout, and public statement review
-  shadowcasters_network:
+  community_hub:
     purpose: open-run recruitment, table adoption, and season updates
 ```
 

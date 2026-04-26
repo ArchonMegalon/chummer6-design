@@ -111,8 +111,8 @@ horizons:
       - continuity_and_degraded_state_substrate
     why_horizon: World-state and mission-market effects remain adjacent to campaign truth until practical GM prep, scheduling, and world-memory seams are proven.
 
-  - id: shadowcasters-network
-    file: shadowcasters-network.md
+  - id: community-hub
+    file: community-hub.md
     family: campaign world-state
     state: horizon
     public_guide_allowed: true

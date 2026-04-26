@@ -89,8 +89,8 @@ product_source_groups:
     - products/chummer/BLACK_LEDGER_ADMIN_WORKBENCH_MODEL.md
     - products/chummer/BLACK_LEDGER_SEASON_OPERATOR_PLAYBOOK.md
     - products/chummer/WORLD_TICK_AND_OPEN_RUN_CLOSEOUT_SOPS.yaml
-    - products/chummer/OPEN_RUNS_AND_SHADOWCASTERS_NETWORK.md
-    - products/chummer/SHADOWCASTERS_OPERATIONS_MODEL.md
+    - products/chummer/OPEN_RUNS_AND_COMMUNITY_HUB.md
+    - products/chummer/COMMUNITY_HUB_OPERATIONS_MODEL.md
     - products/chummer/COMMUNITY_RULE_ENVIRONMENTS_AND_APPROVAL.md
     - products/chummer/RUN_APPLICATION_PREFLIGHT_MODEL.md
     - products/chummer/QUICKSTART_RUNNER_AND_PREGEN_FLOW.md
@@ -121,7 +121,7 @@ product_source_groups:
     - products/chummer/horizons/nexus-pan.md
     - products/chummer/horizons/alice.md
     - products/chummer/horizons/black-ledger.md
-    - products/chummer/horizons/shadowcasters-network.md
+    - products/chummer/horizons/community-hub.md
     - products/chummer/horizons/karma-forge.md
     - products/chummer/horizons/knowledge-fabric.md
     - products/chummer/horizons/jackpoint.md

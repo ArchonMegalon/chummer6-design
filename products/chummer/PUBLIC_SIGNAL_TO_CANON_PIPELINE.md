@@ -30,7 +30,7 @@ ProductLift / Katteb / users
 - house-rule demand
 - open-run demand
 - BLACK LEDGER signal
-- Shadowcasters Network signal
+- Community Hub signal
 - mobile companion signal
 - creator-publishing signal
 - public content optimization
@@ -78,7 +78,7 @@ ProductLift idea: "Let me change gear availability"
   -> ProductLift status update
 ```
 
-## BLACK LEDGER / Shadowcasters demand
+## BLACK LEDGER / Community Hub demand
 
 ```text
 ProductLift idea: "Let GMs post public jobs"

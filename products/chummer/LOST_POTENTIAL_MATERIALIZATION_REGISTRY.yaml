@@ -42,7 +42,7 @@ gates:
     release_gate: gm_closes_run_and_generates_resolution_report
     docs:
       - BLACK_LEDGER_MVP_001.md
-      - OPEN_RUNS_AND_SHADOWCASTERS_NETWORK.md
+      - OPEN_RUNS_AND_COMMUNITY_HUB.md
 
   - id: LPM-007
     title: BLACK LEDGER talks back

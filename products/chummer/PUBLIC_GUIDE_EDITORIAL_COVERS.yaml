@@ -242,12 +242,12 @@ assets:
         label: [0.67, 0.70]
     panel_overlay_alpha: 0
     motif: route_grid
-  assets/horizons/shadowcasters-network.png:
+  assets/horizons/community-hub.png:
     kind: feature_cover
-    source: products/chummer/public-guide-curated-assets/source-plates/horizons/shadowcasters-network.png
+    source: products/chummer/public-guide-curated-assets/source-plates/horizons/community-hub.png
     series_label: CHUMMER6 HORIZON
     index: "09"
-    title: SHADOWCASTERS NETWORK
+    title: COMMUNITY HUB
     subtitle: Open runs, player join requests, scheduling, and closeout on one governed lane.
     chips:
       - OPEN RUNS

@@ -39,7 +39,7 @@ ProductLift public posts / votes / comments
 - Public roadmap projection.
 - Public changelog projection.
 - Voter notification when requested work ships.
-- Public demand collection for Build & Explain, KARMA FORGE, BLACK LEDGER, Shadowcasters Network, Mobile Companion, creator publishing, and guide/help clarity.
+- Public demand collection for Build & Explain, KARMA FORGE, BLACK LEDGER, Community Hub, Mobile Companion, creator publishing, and guide/help clarity.
 - Weekly public signal digest input for EA and the Product Governor.
 
 ## Forbidden uses
@@ -134,7 +134,7 @@ Initial ProductLift boards:
 - Build & Explain
 - KARMA FORGE
 - BLACK LEDGER
-- Shadowcasters Network
+- Community Hub
 - Mobile Companion
 - Creator Publishing
 - Guide and Help

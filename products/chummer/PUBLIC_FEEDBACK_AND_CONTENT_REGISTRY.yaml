@@ -119,7 +119,7 @@ search_visibility_tools:
       - /build
       - /gm-tools
       - /open-runs
-      - /shadowcasters
+      - /community-hub
       - /black-ledger
       - /karma-forge
       - /table-pulse
@@ -191,7 +191,7 @@ content_targets:
     kind: article
     source_refs:
       - products/chummer/BLACK_LEDGER_MVP_001.md
-      - products/chummer/OPEN_RUNS_AND_SHADOWCASTERS_NETWORK.md
+      - products/chummer/OPEN_RUNS_AND_COMMUNITY_HUB.md
     owner_repo: chummer6-hub
     review_required: true
 

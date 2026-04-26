@@ -30,7 +30,7 @@ The generated public guide must never be hand-edited to accept Katteb output.
 - Brand-voice public article drafts.
 - Public FAQ and guide copy improvement suggestions.
 - Public release/support explainer articles.
-- BLACK LEDGER, KARMA FORGE, Shadowcasters Network, Mobile Companion, and creator publishing explainers.
+- BLACK LEDGER, KARMA FORGE, Community Hub, Mobile Companion, and creator publishing explainers.
 - Multilingual public-content draft assistance.
 - Metadata, title, description, and content-gap suggestions.
 

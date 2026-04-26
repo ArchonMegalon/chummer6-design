@@ -39,10 +39,10 @@ assets:
     embed_policy: manual
     review_status: editorial_cover
     source_override: products/chummer/public-guide-curated-assets/assets/horizons/black-ledger.png
-  assets/horizons/shadowcasters-network.png:
+  assets/horizons/community-hub.png:
     embed_policy: manual
     review_status: editorial_cover
-    source_override: products/chummer/public-guide-curated-assets/assets/horizons/shadowcasters-network.png
+    source_override: products/chummer/public-guide-curated-assets/assets/horizons/community-hub.png
   assets/parts/core.png:
     embed_policy: manual
     review_status: editorial_cover
