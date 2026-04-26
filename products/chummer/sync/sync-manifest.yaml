@@ -86,7 +86,11 @@ product_source_groups:
     - products/chummer/WORLD_TICK_OPERATOR_PROCESS.md
     - products/chummer/NEWSREEL_AND_CITY_TICKER_MODEL.md
     - products/chummer/BLACK_LEDGER_MAP_AND_NEWSREEL_WORKFLOWS.yaml
+    - products/chummer/BLACK_LEDGER_ADMIN_WORKBENCH_MODEL.md
+    - products/chummer/BLACK_LEDGER_SEASON_OPERATOR_PLAYBOOK.md
+    - products/chummer/WORLD_TICK_AND_OPEN_RUN_CLOSEOUT_SOPS.yaml
     - products/chummer/OPEN_RUNS_AND_SHADOWCASTERS_NETWORK.md
+    - products/chummer/SHADOWCASTERS_OPERATIONS_MODEL.md
     - products/chummer/COMMUNITY_RULE_ENVIRONMENTS_AND_APPROVAL.md
     - products/chummer/RUN_APPLICATION_PREFLIGHT_MODEL.md
     - products/chummer/QUICKSTART_RUNNER_AND_PREGEN_FLOW.md
@@ -106,6 +110,8 @@ product_source_groups:
     - products/chummer/OPPOSITION_PACKET_REGISTRY.yaml
     - products/chummer/VTT_EXPORT_TARGETS.yaml
     - products/chummer/INTEL_REPORT_REVIEW_STATES.yaml
+    - products/chummer/USER_CONTRIBUTION_PRIVACY_AND_IP_POLICY.md
+    - products/chummer/USER_CONTRIBUTION_VISIBILITY_REGISTRY.yaml
   horizons:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml
@@ -162,6 +168,9 @@ product_source_groups:
     - products/chummer/PUBLIC_MEDIA_BRIEFS.yaml
     - products/chummer/PUBLIC_VIDEO_BRIEFS.yaml
     - products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml
+    - products/chummer/ARTIFACT_FACTORY_PIPELINE_MODEL.md
+    - products/chummer/MEDIA_RECIPE_EXECUTION_AND_CLOSEOUT.yaml
+    - products/chummer/PUBLIC_GROWTH_AND_VISIBILITY_STACK.md
     - products/chummer/PUBLIC_CONCIERGE_AND_TRUST_WIDGET_MODEL.md
     - products/chummer/PUBLIC_CONCIERGE_WORKFLOWS.yaml
     - products/chummer/PUBLIC_GUIDE_POLICY.md
@@ -172,6 +181,8 @@ product_source_groups:
     - products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml
     - products/chummer/HORIZON_SIGNAL_POLICY.md
     - products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md
+    - products/chummer/PRODUCT_ANALYTICS_AND_JOURNEY_PROOF_MODEL.md
+    - products/chummer/JOURNEY_PROOF_EVENTS.yaml
   hub_public_runtime:
     - products/chummer/PUBLIC_LANDING_ASSET_REGISTRY.yaml
     - products/chummer/PUBLIC_NAVIGATION.yaml
@@ -215,6 +226,18 @@ product_source_groups:
     - products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md
     - products/chummer/LTD_CAPABILITY_MAP.md
     - products/chummer/LTD_STACK_WOW_FACTOR_CHANGE_GUIDE.md
+    - products/chummer/LTD_RUNTIME_AND_PROJECTION_REGISTRY.yaml
+    - products/chummer/TEABLE_ADMIN_PROJECTION_AND_INTENT_LAYER.md
+    - products/chummer/ADMIN_INTENT_AND_PROJECTION_RECEIPTS.yaml
+    - products/chummer/EMAILIT_OUTBOUND_DELIVERY_PROVIDER.md
+    - products/chummer/EMAIL_DELIVERY_RECEIPT_MODEL.md
+    - products/chummer/OUTBOUND_NOTIFICATION_TEMPLATE_REGISTRY.yaml
+    - products/chummer/KARMA_FORGE_DISCOVERY_LAB_WORKFLOWS.yaml
+    - products/chummer/TABLE_PULSE_DEBRIEF_STUDIO_WORKFLOWS.yaml
+    - products/chummer/COMPANION_LINE_PACK_AND_TRIGGER_OPERATIONS.md
+    - products/chummer/COMPANION_LINE_PACK_REGISTRY.yaml
+    - products/chummer/PREMIUM_AND_COMMUNITY_PACKAGING_MODEL.md
+    - products/chummer/PREMIUM_CAPABILITY_REGISTRY.yaml
 mirrors:
 - repo: chummer6-core
   product_target: .codex-design/product

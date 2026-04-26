@@ -514,7 +514,7 @@ def _materialize_public_assets(
                     derivative_relpath=derivative_relpath,
                     derivative_fallback_root=derivative_fallback_root,
                 ):
-                    raise
+                    derivative_path.unlink(missing_ok=True)
 
 
 def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> str:
@@ -1088,6 +1088,28 @@ def _artifact_label_with_kind(label: str, kind: str) -> str:
     return f"{cleaned_label} {cleaned_kind}".strip()
 
 
+def _artifact_posture_line(
+    artifact: dict[str, object],
+    *,
+    published: bool,
+    flagship_head: str,
+    fallback_head: str,
+) -> str | None:
+    head = str(artifact.get("head") or "").strip().lower()
+    kind = str(artifact.get("kind") or "").strip().lower()
+    flagship = flagship_head.strip().lower()
+    fallback = fallback_head.strip().lower()
+    if fallback and head == fallback:
+        return "Posture: Compatibility fallback only unless the page or support explicitly recommends it for your case."
+    if kind in {"archive", "zip", "tar.gz", "portable"}:
+        return "Posture: Fallback or recovery package, not an equal flagship default."
+    if not published:
+        return "Posture: Current preview route; posted proof here is scoped to this file and flow, not the whole product."
+    if flagship and head == flagship:
+        return "Posture: Current primary public route for this platform."
+    return None
+
+
 def _public_access_label(value: object) -> str:
     cleaned = str(value or "").strip().lower()
     mapping = {
@@ -1275,13 +1297,21 @@ def _generate_root(
     primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
     fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
     missing_platforms = _missing_platform_labels(artifacts)
+    proof_scope_line = str(
+        landing_manifest.get("product_proof_scope_line")
+        or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
+    ).strip()
+    claim_boundary_line = str(
+        landing_manifest.get("product_flagship_boundary_line")
+        or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
+    ).strip()
     desktop_pick_line = (
-        f"If you see both desktop apps, start with the {primary_app}. Use {_english_join(fallback_apps)} only if a page tells you it is the backup option for your case."
+        f"If you see both desktop apps, start with the {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
         if fallback_apps
         else f"If more than one desktop app is offered, start with the {primary_app}."
     )
     quality_gap_line = (
-        "Some rules coverage and release polish are still moving, so treat this as a real preview rather than a finished replacement."
+        "Some rules coverage and release polish are still moving, so treat this as a preview with inspectable proof rather than a flagship-complete replacement."
         if families_below_gold
         else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
     )
@@ -1328,6 +1358,8 @@ def _generate_root(
         "",
         "- Short answer: yes, as an early preview.",
         f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        f"- {proof_scope_line}",
+        f"- {claim_boundary_line}",
         f"- {desktop_pick_line}",
         f"- {quality_gap_line}",
     ]
@@ -1470,6 +1502,7 @@ def _generate_from_chummer5a_to_chummer6(
         if below_gold
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
     )
+    proof_boundary_line = "Posted proof is scoped to the current files and flows you can inspect today; it is not a blanket flagship claim."
 
     rows = [
         _front_matter("From Chummer5a to Chummer6", "products/chummer/PRIMARY_ROUTE_REGISTRY.yaml"),
@@ -1482,7 +1515,7 @@ def _generate_from_chummer5a_to_chummer6(
         "- It is still aiming for a dense desktop workbench, not a stripped-down dashboard.",
         "- Character editing, file work, settings, and roster tasks are supposed to stay close at hand.",
         (
-            f"- If both desktop apps appear for your platform, the {primary_app} is the main one to try and the {fallback_app} is the backup option."
+            f"- If both desktop apps appear for your platform, the {primary_app} is the main one to try and the {fallback_app} is the fallback path only when the download page or support explicitly tells you to use it."
             if fallback_app
             else f"- If more than one desktop app appears for your platform, start with the {primary_app}."
         ),
@@ -1512,6 +1545,7 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
         f"- {rules_gap_line}",
+        f"- {proof_boundary_line}",
         "- It should still be read as a serious preview, not a finished no-step-back replacement yet.",
         "",
         "## Read next",
@@ -1632,6 +1666,14 @@ def _generate_download(
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
     fix_availability = _public_fix_summary(release_payload)
+    proof_scope_summary = str(
+        release_experience.get("proof_scope_summary")
+        or "Public proof language is scoped to the files, flows, and recent checks posted on the current shelf that you can inspect today; it is not a blanket flagship-grade claim."
+    ).strip()
+    flagship_claim_summary = str(
+        release_experience.get("flagship_claim_summary")
+        or "Flagship wording is reserved for surfaces that currently satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml; preview artifacts, proof cards, artifact explainers, packet siblings, and fallback routes do not earn that claim by proximity."
+    ).strip()
     platform_expectations = {
         "windows": (
             "Windows",
@@ -1649,6 +1691,8 @@ def _generate_download(
     section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
     shelf_truth = _public_shelf_truth_line(status, artifacts)
+    flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
+    fallback_head = str(release_experience.get("desktop_fallback_head") or "Chummer.Blazor.Desktop").strip()
 
     rows = [
         _front_matter("Download", release_source),
@@ -1681,6 +1725,8 @@ def _generate_download(
     rows.append(f"- {shelf_truth}")
     if release_verification:
         rows.append(f"- Recent checks: {release_verification}")
+    rows.append(f"- Proof scope: {proof_scope_summary}")
+    rows.append(f"- Claim boundary: {flagship_claim_summary}")
     if known_issues:
         rows.append(f"- {known_issue_label}: {known_issues}")
     if fix_availability:
@@ -1706,6 +1752,14 @@ def _generate_download(
             artifact_kind = _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact")
             platform_name = str(artifact.get("platformLabel") or platform_label).strip()
             rows.append(f"- {_artifact_label_with_kind(platform_name, artifact_kind)}.")
+            posture_line = _artifact_posture_line(
+                artifact,
+                published=_release_is_published(status),
+                flagship_head=flagship_head,
+                fallback_head=fallback_head,
+            )
+            if posture_line:
+                rows.append(f"- {posture_line}")
             if artifact.get("downloadUrl"):
                 rows.append(f"- Download: `{artifact['downloadUrl']}`")
             if artifact.get("fileName"):
@@ -1723,9 +1777,9 @@ def _generate_download(
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
             if _release_is_published(status):
-                rows.append("- Where an installer exists, start there. Archive packages are the fallback.")
+                rows.append("- Where an installer exists, start there. Archive packages, packet-detail artifacts, and explainer bundles are fallback, recovery, or inspection paths, not equal flagship routes.")
             else:
-                rows.append("- Installers are already visible, but they still count as preview files until the release is published.")
+                rows.append("- Installers are already visible, but they still count as preview files until the release is published; proof artifacts and explainers still stay secondary to that shelf.")
         else:
             if _release_is_published(status):
                 rows.append("- Setup currently starts from a downloaded package because there is no posted installer.")
@@ -2130,7 +2184,12 @@ def main() -> int:
     out_dir = (repo_root / args.out).resolve()
 
     if not args.check:
-        generate_bundle(repo_root, out_dir)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            generated_dir = Path(temp_dir) / "generated_bundle"
+            generate_bundle(repo_root, generated_dir, derivative_fallback_root=out_dir)
+            if out_dir.exists():
+                shutil.rmtree(out_dir)
+            shutil.copytree(generated_dir, out_dir)
         return 0
 
     with tempfile.TemporaryDirectory() as temp_dir:

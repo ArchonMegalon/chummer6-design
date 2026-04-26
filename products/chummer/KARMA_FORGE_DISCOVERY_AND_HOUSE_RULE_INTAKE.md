@@ -32,19 +32,26 @@ Examples of likely signal buckets:
 
 ## Recruitment and intake flow
 
-1. `FacePop` public prompt
+1. ProductLift public idea/vote cluster
+   * public demand collection only; no support, copyrighted source text, or private table material
+2. `FacePop` public prompt
    * “Got a house rule your table depends on? Help us make KARMA FORGE useful instead of chaotic.”
-2. `Deftform` pre-screen
+3. `Deftform` pre-screen
    * role
    * edition
    * table type
    * rule category
    * severity
    * current workaround
-3. `Icanpreneur` adaptive interview
-4. `Lunacal` follow-up for high-signal cases
-5. `MetaSurvey` quant validation after clustering
-6. Product Governor decision
+4. `Icanpreneur` adaptive interview
+5. `Lunacal` follow-up for high-signal cases
+6. `MetaSurvey` quant validation after clustering
+7. `Teable` candidate review board as a projection of Hub-owned demand packets
+8. Product Governor decision
+9. ProductLift, Signitic, or Emailit closeout only after the decision is recorded in Chummer-owned truth
+
+`KARMA_FORGE_DISCOVERY_LAB_WORKFLOWS.yaml` is the machine-readable operating loop for this discovery system.
+Teable may expose candidate rows, curator notes, proposed classifications, and reviewer assignments, but write-backs return as `AdminIntent` for Hub validation.
 
 ## Icanpreneur interview tracks
 
@@ -204,6 +211,7 @@ candidate_decisions:
 10. Product Governor decision
 11. update KARMA FORGE backlog
 12. publish discovery closeout
+13. close ProductLift/Emailit/Signitic voter or participant follow-up through Hub-owned receipts
 
 ### High-signal house-rule follow-up
 
