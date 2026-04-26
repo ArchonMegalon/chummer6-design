@@ -10,6 +10,8 @@ These instructions apply to:
 * horizon art and public-guide media briefs
 * any EA, Fleet, or media-factory prompt that regenerates Chummer6 horizon pages
 
+Use `HORIZON_IMAGE_RELEVANCE_AUDIT.md` as the current per-horizon image critique and replacement backlog.
+
 ## Reader contract
 
 A horizon page is written for a GM, player, organizer, creator, or curious visitor first.

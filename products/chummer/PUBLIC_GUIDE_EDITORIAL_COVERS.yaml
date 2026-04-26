@@ -223,6 +223,23 @@ assets:
     panel_saturation: 1.22
     panel_contrast: 1.38
     panel_sharpness: 1.25
+    motif: network_nodes
+    scene_labels:
+      - text: WORLD TICK
+        anchor: [0.29, 0.48]
+        label: [0.22, 0.25]
+      - text: HEAT +2
+        anchor: [0.66, 0.32]
+        label: [0.72, 0.19]
+      - text: OPEN JOB
+        anchor: [0.79, 0.48]
+        label: [0.73, 0.43]
+      - text: RUN RESOLVED
+        anchor: [0.46, 0.58]
+        label: [0.33, 0.68]
+      - text: INTEL PENDING
+        anchor: [0.63, 0.73]
+        label: [0.67, 0.70]
     panel_overlay_alpha: 0
     motif: route_grid
   assets/horizons/shadowcasters-network.png:
