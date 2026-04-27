@@ -1631,20 +1631,13 @@ It is an artifact studio with receipts.
 
 ## The first slice
 
-The first slice should be:
-
 **Mission briefing packet**
 
-It should generate:
+A GM starts with one clean packet for the table: the player-facing brief is polished, spoiler-safe, and ready to share before the run begins.
 
-1. player-safe briefing text
-2. GM-only notes
-3. source refs
-4. share card
-5. optional narrator/presenter brief
-6. approval state
+Behind it, Chummer keeps the GM notes, source references, share card, optional presenter brief, and approval state together so the packet stays useful without leaking private material.
 
-Success looks like:
+The result is simple:
 
 > A GM can hand players a polished briefing and still show exactly where every claim came from.
 
