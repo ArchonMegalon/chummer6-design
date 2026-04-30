@@ -19,6 +19,7 @@ Current status on 2026-03-26:
 * the active product-sharpening overlay is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md` plus `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`; it does not widen the architecture, but it makes confidence, readiness, continuity, manual intake, mobile table value, GM next-session posture, and public proof shelf discipline explicit execution work
 * the active loop-materialization overlay is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md` plus `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`; it does not broaden Chummer into a generic living-world simulator, but it makes action budgets, local rulebook anchors, campaign adoption, prep packets, BLACK LEDGER consequence, runner goals, and mission-fit loops concrete release work
 * the named follow-on gate wave for that overlay is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md` plus `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`; it turns the most compelling campaign-memory and consequence ideas into eight explicit proofs instead of leaving them horizon-sized
+* the active vision-recovery overlay is `PRODUCT_VISION_RECOVERY_AND_INTEGRATION_GUIDE.md`; it turns the product-vision audit into concrete work around calm-under-pressure payoff, veteran-depth parity, mobile continuity, artifact/community coherence, and bounded integration seams for owned or future-acquired LTDs
 
 ## Recommended next initiative
 
@@ -42,6 +43,7 @@ The active audit overlay for correcting where design proof still outruns journey
 The active product-sharpening overlay for making the architecture emotionally irresistible is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md`, with machine-readable prioritization in `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`.
 The active loop-materialization overlay for turning living-world and campaign-memory ideas into small, shippable proofs is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md`, with machine-readable prioritization in `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`.
 The named gate wave for that materialization pass is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md`, with machine-readable gate staging in `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`.
+The active vision-recovery overlay for turning that audit into concrete product and ecosystem seams is `PRODUCT_VISION_RECOVERY_AND_INTEGRATION_GUIDE.md`, with queued successor-wave staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The queued post-closeout successor wave is `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md`, with machine-readable staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
@@ -52,8 +54,10 @@ The immediate additive shape is:
 * widen Build and Explain by making progression planning, team fit, rule-environment diffs, and receipts feel like one grounded product
 * sharpen the emotional product hook around confidence, readiness, and continuity so Chummer feels indispensable at the table rather than merely broad on paper
 * turn the living-campaign promise into boring, release-gated loops: action help, local source lookup, adoption, runner goals, prep packets, and one GM-approved world consequence loop
+* recover the lost product potential surfaced by the vision audit: calm-under-pressure payoff, veteran-depth dense workflows, trusted mobile return moments, and artifact/community coherence
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
+* keep acquisition-fit or owned-LTD seams explicit for scheduling, publication, route intelligence, coaching, and migration-confidence without letting them become shadow truth owners
 * raise every major surface to the flagship-grade bar in `FLAGSHIP_PRODUCT_BAR.md`, especially the authored desktop client, ruleset-specific UX, public trust shelf, and live-play continuity
 * make public repo hygiene, release truth, workflow hardening, and automation blast radius machine-verifiable so the live estate cannot drift away from the ownership model
 

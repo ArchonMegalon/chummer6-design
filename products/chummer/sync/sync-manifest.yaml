@@ -18,7 +18,7 @@ repo_root_aliases:
     - chummer6-mobile
     - chummer6-mobile
   chummer6-ui-kit:
-    - chummer6-ui-kit
+    - chummer-ui-kit
     - chummer6-ui-kit
   chummer6-hub-registry:
   - chummer6-hub-registry
