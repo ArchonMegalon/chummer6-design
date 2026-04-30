@@ -114,6 +114,19 @@ The gate stack must prove the exact dialogs and sub-workflows that experienced u
 
 If a surface is not directly proven, it should stay open.
 
+The release-blocking dialog-level canon now lives in `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_SPEC.md`.
+Its machine-readable companion is `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_MATRIX.yaml`.
+That spec makes the remaining hard families enumerate every audited element with:
+
+* `present_in_chummer5a`
+* `present_in_chummer6`
+* `visual_parity`
+* `behavioral_parity`
+* `removable_if_not_in_chummer5a`
+* `reason`
+
+Aggregate readiness must not close those families without that exact inventory.
+
 ## Integration posture for owned or future-acquired LTDs
 
 These lanes are product-fit opportunities, not excuses to let external systems become hidden truth owners.
@@ -244,3 +257,6 @@ This overlay maps into successor-wave backlog as:
 
 Those milestones should stay explicitly product-shaped.
 They are not generic strategy placeholders.
+
+The remaining hard parity families also need dialog-level acceptance truth, not only broad family closure language.
+That canon now lives in `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_SPEC.md` and `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_MATRIX.yaml`.

@@ -19,7 +19,7 @@ Current status on 2026-03-26:
 * the active product-sharpening overlay is `CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md` plus `CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml`; it does not widen the architecture, but it makes confidence, readiness, continuity, manual intake, mobile table value, GM next-session posture, and public proof shelf discipline explicit execution work
 * the active loop-materialization overlay is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md` plus `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`; it does not broaden Chummer into a generic living-world simulator, but it makes action budgets, local rulebook anchors, campaign adoption, prep packets, BLACK LEDGER consequence, runner goals, and mission-fit loops concrete release work
 * the named follow-on gate wave for that overlay is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md` plus `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`; it turns the most compelling campaign-memory and consequence ideas into eight explicit proofs instead of leaving them horizon-sized
-* the active vision-recovery overlay is `PRODUCT_VISION_RECOVERY_AND_INTEGRATION_GUIDE.md`; it turns the product-vision audit into concrete work around calm-under-pressure payoff, veteran-depth parity, mobile continuity, artifact/community coherence, and bounded integration seams for owned or future-acquired LTDs
+* the active vision-recovery overlay is `PRODUCT_VISION_RECOVERY_AND_INTEGRATION_GUIDE.md`; it turns the product-vision audit into concrete work around calm-under-pressure payoff, veteran-depth parity, mobile continuity, artifact/community coherence, bounded integration seams for owned or future-acquired LTDs, and exact dialog-level human parity acceptance canon in `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_SPEC.md` plus `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_MATRIX.yaml`
 
 ## Recommended next initiative
 
@@ -55,6 +55,7 @@ The immediate additive shape is:
 * sharpen the emotional product hook around confidence, readiness, and continuity so Chummer feels indispensable at the table rather than merely broad on paper
 * turn the living-campaign promise into boring, release-gated loops: action help, local source lookup, adoption, runner goals, prep packets, and one GM-approved world consequence loop
 * recover the lost product potential surfaced by the vision audit: calm-under-pressure payoff, veteran-depth dense workflows, trusted mobile return moments, and artifact/community coherence
+* close the remaining human-feeling parity families with dialog-level acceptance specs that force yes/no visual and behavioral verdicts plus explicit removal reasons for Chummer6-only extras
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
 * keep acquisition-fit or owned-LTD seams explicit for scheduling, publication, route intelligence, coaching, and migration-confidence without letting them become shadow truth owners

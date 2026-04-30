@@ -45,6 +45,9 @@ The promoted desktop head must still read like Chummer to a veteran user:
 * workbench-first startup instead of decorative landing chrome
 * dense builder posture that feels like an instrument rather than a dashboard
 
+For the remaining hard parity families, familiarity is judged by `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_SPEC.md` and `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_MATRIX.yaml`, not by aggregate desktop readiness alone.
+If those families do not have direct dialog-level screenshot, runtime, and per-element verdict proof, the desktop head is not yet flagship grade.
+
 ### 1c. Install and first-run experience must feel like one product
 
 The promoted desktop path must behave like one coherent Chummer experience:
