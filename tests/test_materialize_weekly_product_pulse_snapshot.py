@@ -79,6 +79,7 @@ def test_launch_readiness_summary_holds_on_open_successor_dependencies() -> None
         journey_gate_health={"blocked_count": 0},
         blocked_journeys=False,
         local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "ready"},
         provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
         closure_health={"state": "clear"},
         successor_dependency_posture={"open_dependency_ids": [101, 102]},
@@ -97,6 +98,7 @@ def test_launch_readiness_summary_holds_on_open_successor_dependency_work_tasks(
         journey_gate_health={"blocked_count": 0},
         blocked_journeys=False,
         local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "ready"},
         provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
         closure_health={"state": "clear"},
         successor_dependency_posture={
@@ -118,6 +120,7 @@ def test_launch_readiness_summary_holds_on_status_plane_final_claim() -> None:
         journey_gate_health={"blocked_count": 0},
         blocked_journeys=False,
         local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "ready"},
         provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
         closure_health={"state": "clear"},
         successor_dependency_posture={"open_dependency_ids": []},
@@ -128,6 +131,24 @@ def test_launch_readiness_summary_holds_on_status_plane_final_claim() -> None:
     assert summary == (
         "Hold launch expansion until the whole-product final claim returns to pass "
         "(current: warning)."
+    )
+
+
+def test_launch_readiness_summary_holds_on_flagship_readiness_gap() -> None:
+    summary = weekly._launch_readiness_summary(
+        journey_gate_health={"blocked_count": 0},
+        blocked_journeys=False,
+        local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "watch"},
+        provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
+        closure_health={"state": "clear"},
+        successor_dependency_posture={"open_dependency_ids": []},
+        status_plane={"whole_product_final_claim_status": "pass"},
+        active_wave_status="in_progress",
+    )
+
+    assert summary == (
+        "Hold launch expansion until published flagship readiness proof returns to ready posture."
     )
 
 
@@ -146,6 +167,7 @@ def test_governor_decisions_freeze_when_successor_dependencies_are_open() -> Non
         closure_health={"state": "clear"},
         provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
         local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "ready", "proof_status": "pass"},
         successor_dependency_posture={"state": "blocked", "open_dependency_ids": [101, 102]},
         status_plane={"whole_product_final_claim_status": "pass"},
         blocked_journeys=False,
@@ -178,6 +200,7 @@ def test_governor_decisions_freeze_when_successor_dependency_work_tasks_are_open
         closure_health={"state": "clear"},
         provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
         local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "ready", "proof_status": "pass"},
         successor_dependency_posture={
             "state": "blocked",
             "open_dependency_ids": [101],
@@ -199,3 +222,55 @@ def test_governor_decisions_freeze_when_successor_dependency_work_tasks_are_open
         "successor_open_dependency_work_task_ids=101.4,102.2"
         in launch_decision["cited_signals"]
     )
+
+
+def test_governor_decisions_freeze_when_flagship_readiness_is_not_ready() -> None:
+    decisions = weekly._governor_decisions(
+        dt.date(2026, 4, 20),
+        {
+            "overall_progress_percent": 91,
+            "history_snapshot_count": 8,
+            "phase_label": "Scale & stabilize",
+        },
+        "Campaign Breadth and Promotion",
+        0,
+        active_wave_status="in_progress",
+        journey_gate_health={"state": "ready", "blocked_count": 0},
+        closure_health={"state": "clear"},
+        provider_route_stewardship={"canary_status": "Canary green on all active lanes"},
+        local_release_proof={"status": "passed"},
+        flagship_readiness={"state": "watch", "proof_status": "fail"},
+        successor_dependency_posture={"state": "ready", "open_dependency_ids": []},
+        status_plane={"whole_product_final_claim_status": "pass"},
+        blocked_journeys=False,
+        next20_closed=False,
+        post_audit_closed=False,
+    )
+
+    launch_decision = decisions[1]
+    assert launch_decision["action"] == "freeze_launch"
+    assert launch_decision["reason"] == (
+        "Freeze launch expansion until published flagship readiness proof returns to ready posture."
+    )
+    assert "flagship_readiness_state=watch" in launch_decision["cited_signals"]
+    assert "flagship_readiness_proof_status=fail" in launch_decision["cited_signals"]
+
+
+def test_flagship_readiness_signal_fails_closed_on_non_green_published_proof() -> None:
+    signal = weekly._flagship_readiness_signal(
+        {
+            "status": "fail",
+            "missing_keys": ["desktop_client"],
+            "warning_keys": ["mobile_play_shell"],
+            "readiness_plane_gap_keys": ["flagship_ready", "public_shelf_ready"],
+        }
+    )
+
+    assert signal["state"] == "watch"
+    assert signal["proof_status"] == "fail"
+    assert signal["coverage_gap_keys"] == ["desktop_client", "mobile_play_shell"]
+    assert signal["readiness_plane_gap_keys"] == [
+        "flagship_ready",
+        "public_shelf_ready",
+    ]
+    assert "Published flagship readiness proof is fail." in signal["reason"]

@@ -25,6 +25,7 @@ def _resolve_docker_root() -> Path:
 
 
 DOCKER_ROOT = _resolve_docker_root()
+FLEET_PUBLISHED = DOCKER_ROOT / "fleet" / ".codex-studio" / "published"
 
 
 def load_yaml(path: Path) -> dict:
@@ -209,6 +210,7 @@ def main() -> int:
             "progress_trend",
             "provider_route_stewardship",
             "automation_alignment",
+            "flagship_product_readiness_status",
         )
         for signal_name in required_supporting_signals:
             if signal_name not in supporting_signals:
@@ -259,6 +261,22 @@ def main() -> int:
             errors.append(
                 "WEEKLY_PRODUCT_PULSE.generated.json automation_alignment must include state, registry, milestone id lists, and summary fields."
             )
+
+    flagship_readiness_proof_path = FLEET_PUBLISHED / "FLAGSHIP_PRODUCT_READINESS.generated.json"
+    if flagship_readiness_proof_path.is_file():
+        flagship_readiness_proof = load_json(flagship_readiness_proof_path)
+        readiness_status = str(flagship_readiness_proof.get("status") or "").strip().lower()
+        pulse_flagship_readiness = pulse_snapshot.get("flagship_readiness") or {}
+        pulse_release_health = pulse_snapshot.get("release_health") or {}
+        if readiness_status and readiness_status != "pass":
+            if str(pulse_flagship_readiness.get("state") or "").strip().lower() == "ready":
+                errors.append(
+                    "WEEKLY_PRODUCT_PULSE.generated.json must not report flagship_readiness ready while FLAGSHIP_PRODUCT_READINESS.generated.json is not pass."
+                )
+            if str(pulse_release_health.get("state") or "").strip().lower() == "green_or_explained":
+                errors.append(
+                    "WEEKLY_PRODUCT_PULSE.generated.json must not report release_health green_or_explained while FLAGSHIP_PRODUCT_READINESS.generated.json is not pass."
+                )
 
     snapshot_payload = pulse_snapshot.get("snapshot") or {}
     if not isinstance(snapshot_payload, dict) or not snapshot_payload.get("governor_decisions"):

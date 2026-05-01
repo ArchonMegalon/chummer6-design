@@ -6,6 +6,7 @@ source_documents:
   - LEGACY_CLIENT_AND_ADJACENT_PARITY.md
   - LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
   - CHUMMER5A_FAMILIARITY_BRIDGE.md
+  - FLAGSHIP_READINESS_PLANES.yaml
   - FLAGSHIP_RELEASE_ACCEPTANCE.yaml
   - FLAGSHIP_UI_RELEASE_GATE.md
   - WHAT_IS_STILL_BELOW_GOLD.md
@@ -35,6 +36,12 @@ policy:
     - Desktop families cannot stay `gold_ready` while the published readiness proof still reports `desktop_client` missing or `dense_workbench_ready` below ready.
     - Core rules/import families cannot stay `gold_ready` when the release-bound engine proof pack drops promoted-desktop oracle coverage, import-certification truth, or performance-budget coverage.
     - Family statuses should match the strongest proof that is actually current, not the most optimistic interpretation of adjacent evidence.
+  divergence_policy:
+    - "`must_match` is the default when a Chummer5A control or flow still carries a real veteran user job."
+    - "`may_improve` is allowed only when directness, speed, trust, and reversibility are preserved or improved."
+    - "`may_remove_if_non_degrading` is allowed only when no real user job becomes slower, riskier, or less inspectable."
+  trust_rule:
+    - No family can honestly stay `gold_ready` when install/update/restore truth, public shelf truth, or custom-data survival truth contradict the promoted desktop bytes.
   oracle_rule:
     - "`chummer5a` is the default legacy oracle for screenshot, workflow, and first-minute orientation evidence."
     - Chummer4 remains the stronger SR4 workflow oracle where canon already says it should.

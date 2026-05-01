@@ -62,6 +62,8 @@ Modernization is allowed when it improves density, readability, or continuity wi
 * operator speed
 * trusted completion of the same user job
 
+Allowed modernization maps to the divergence class `may_improve`.
+
 ### 3. Disallowed modernization
 
 Modernization fails parity if it:
@@ -72,6 +74,8 @@ Modernization fails parity if it:
 * makes source, import, or export truth harder to inspect
 * converts a direct utility into a sidecar or post-hoc explanation-only surface
 
+If a surface trips any of these conditions, it is a `must_match` failure until the replacement route proves equal or better directness, speed, and trust.
+
 ### 4. Chummer6-only extras
 
 A Chummer6-only control may stay only if it does at least one of these:
@@ -81,6 +85,8 @@ A Chummer6-only control may stay only if it does at least one of these:
 * improves continuity between install, live play, recap, and return moments
 
 Otherwise it should be marked `removable_if_not_in_chummer5a = yes`.
+
+This is the divergence class `may_remove_if_non_degrading`.
 
 ### 5. Collapsed modern surfaces
 
@@ -233,3 +239,5 @@ The point is to make sure Chummer6 earns the same trust a serious Chummer5A user
 * fast
 * honest about what differs
 * honest about what can be removed
+* durable across install, update, restore, and migration
+* explainable when a computed value or import result is disputed

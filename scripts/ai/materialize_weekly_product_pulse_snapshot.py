@@ -44,6 +44,10 @@ LOCAL_RELEASE_PROOF_CANDIDATES = (
     Path("/docker/chummercomplete/chummer6-hub/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json"),
     Path("/docker/fleet/.codex-studio/published/HUB_LOCAL_RELEASE_PROOF.generated.json"),
 )
+FLEET_FLAGSHIP_PRODUCT_READINESS_CANDIDATES = (
+    Path("/docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json"),
+    ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS.generated.json",
+)
 
 
 def _resolve_fleet_artifact(candidates: tuple[Path, ...]) -> Path:
@@ -57,6 +61,9 @@ FLEET_JOURNEY_GATES = _resolve_fleet_artifact(FLEET_JOURNEY_GATE_CANDIDATES)
 FLEET_SUPPORT_CASE_PACKETS = _resolve_fleet_artifact(FLEET_SUPPORT_CASE_PACKETS_CANDIDATES)
 FLEET_STATUS_PLANE = _resolve_fleet_artifact(FLEET_STATUS_PLANE_CANDIDATES)
 LOCAL_RELEASE_PROOF = _resolve_fleet_artifact(LOCAL_RELEASE_PROOF_CANDIDATES)
+FLEET_FLAGSHIP_PRODUCT_READINESS = _resolve_fleet_artifact(
+    FLEET_FLAGSHIP_PRODUCT_READINESS_CANDIDATES
+)
 
 
 def _read_optional_yaml(path: Path) -> dict[str, Any]:
@@ -474,6 +481,7 @@ def _governor_decisions(
     closure_health: dict[str, Any] | None,
     provider_route_stewardship: dict[str, Any],
     local_release_proof: dict[str, Any],
+    flagship_readiness: dict[str, Any],
     successor_dependency_posture: dict[str, Any],
     status_plane: dict[str, Any],
     blocked_journeys: bool,
@@ -522,6 +530,10 @@ def _governor_decisions(
     closure_state = str((closure_health or {}).get("state") or "").strip().lower()
     canary_status = str(provider_route_stewardship.get("canary_status") or "").strip()
     local_release_status = str(local_release_proof.get("status") or "").strip().lower()
+    flagship_readiness_state = str(flagship_readiness.get("state") or "").strip().lower()
+    flagship_readiness_proof_status = str(
+        flagship_readiness.get("proof_status") or "unknown"
+    ).strip().lower()
     status_plane_final_claim = str(
         status_plane.get("whole_product_final_claim_status") or ""
     ).strip().lower()
@@ -544,6 +556,11 @@ def _governor_decisions(
         control_action = "freeze_launch"
         control_reason = (
             "Freeze launch expansion until fresh local release proof passes on the public edge."
+        )
+    elif flagship_readiness_state != "ready":
+        control_action = "freeze_launch"
+        control_reason = (
+            "Freeze launch expansion until published flagship readiness proof returns to ready posture."
         )
     elif canary_status != "Canary green on all active lanes":
         control_action = "freeze_launch"
@@ -603,6 +620,8 @@ def _governor_decisions(
                 f"journey_gate_state={journey_state or 'unknown'}",
                 f"journey_gate_blocked_count={blocked_count}",
                 f"local_release_proof_status={local_release_status or 'unknown'}",
+                f"flagship_readiness_state={flagship_readiness_state or 'unknown'}",
+                f"flagship_readiness_proof_status={flagship_readiness_proof_status or 'unknown'}",
                 f"provider_canary_status={canary_status or 'unknown'}",
                 f"closure_health_state={closure_state or 'unknown'}",
                 f"successor_dependency_state={str(successor_dependency_posture.get('state') or 'unknown').strip()}",
@@ -814,6 +833,58 @@ def _compute_progress_trend(history: dict[str, Any]) -> dict[str, Any] | None:
     }
 
 
+def _flagship_readiness_signal(readiness_proof: dict[str, Any]) -> dict[str, Any]:
+    if not readiness_proof:
+        return {
+            "state": "unknown",
+            "reason": "Published flagship readiness proof is not materialized yet.",
+            "proof_status": "unknown",
+            "coverage_gap_keys": [],
+            "readiness_plane_gap_keys": [],
+        }
+
+    proof_status = str(readiness_proof.get("status") or "unknown").strip().lower()
+    coverage_gap_keys = [
+        str(value).strip()
+        for value in list(readiness_proof.get("missing_keys") or [])
+        + list(readiness_proof.get("warning_keys") or [])
+        if str(value).strip()
+    ]
+    readiness_plane_gap_keys = [
+        str(value).strip()
+        for value in list(readiness_proof.get("readiness_plane_gap_keys") or [])
+        if str(value).strip()
+    ]
+
+    if proof_status == "pass" and not coverage_gap_keys and not readiness_plane_gap_keys:
+        return {
+            "state": "ready",
+            "reason": "Published flagship readiness proof passed with no remaining coverage or readiness-plane gaps.",
+            "proof_status": proof_status,
+            "coverage_gap_keys": coverage_gap_keys,
+            "readiness_plane_gap_keys": readiness_plane_gap_keys,
+        }
+
+    reasons: list[str] = []
+    if proof_status and proof_status != "pass":
+        reasons.append(f"Published flagship readiness proof is {proof_status}.")
+    if coverage_gap_keys:
+        reasons.append("Coverage gaps remain: " + ", ".join(coverage_gap_keys) + ".")
+    if readiness_plane_gap_keys:
+        reasons.append(
+            "Readiness-plane gaps remain: " + ", ".join(readiness_plane_gap_keys) + "."
+        )
+    if not reasons:
+        reasons.append("Published flagship readiness proof is not green yet.")
+    return {
+        "state": "watch",
+        "reason": " ".join(reasons),
+        "proof_status": proof_status or "unknown",
+        "coverage_gap_keys": coverage_gap_keys,
+        "readiness_plane_gap_keys": readiness_plane_gap_keys,
+    }
+
+
 def _provider_route_review_due(review_evidence_generated_at: str | None, fallback_review_due: str | None, as_of: dt.date) -> str | None:
     if review_evidence_generated_at:
         parsed = _parse_iso_date(review_evidence_generated_at)
@@ -1003,6 +1074,7 @@ def _launch_readiness_summary(
     journey_gate_health: dict[str, Any],
     blocked_journeys: bool,
     local_release_proof: dict[str, Any],
+    flagship_readiness: dict[str, Any],
     provider_route_stewardship: dict[str, Any],
     closure_health: dict[str, Any] | None,
     successor_dependency_posture: dict[str, Any],
@@ -1018,6 +1090,9 @@ def _launch_readiness_summary(
 
     if str(local_release_proof.get("status") or "").strip().lower() != "passed":
         return "Hold launch expansion pending fresh local release proof on the public edge."
+
+    if str(flagship_readiness.get("state") or "").strip().lower() != "ready":
+        return "Hold launch expansion until published flagship readiness proof returns to ready posture."
 
     if str(provider_route_stewardship.get("canary_status") or "") != "Canary green on all active lanes":
         return "Launch posture is still waiting on provider-route evidence."
@@ -1081,6 +1156,7 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
     support_packets = _read_optional_json(FLEET_SUPPORT_CASE_PACKETS)
     status_plane = _read_optional_yaml(FLEET_STATUS_PLANE)
     local_release_proof = _read_optional_json(LOCAL_RELEASE_PROOF)
+    flagship_product_readiness = _read_optional_json(FLEET_FLAGSHIP_PRODUCT_READINESS)
     successor_dependency_posture = _successor_dependency_posture(SUCCESSOR_REGISTRY)
     closure_health = _compute_closure_health(
         _load_json(FLEET_JOURNEY_GATES) if FLEET_JOURNEY_GATES.is_file() else {},
@@ -1110,17 +1186,40 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
     else:
         journey_summary = f"journey proof is {journey_gate_health['state']}"
         longest_pole_summary = f"the longest pole remains {longest_pole}"
+    flagship_readiness = _flagship_readiness_signal(flagship_product_readiness)
+    if _status_is_active(active_wave_status):
+        wave_summary = f"{current_wave} remains the active wave"
+    else:
+        wave_summary = (
+            f"{current_wave} is materially closed as the latest recommended closeout wave"
+        )
+    flagship_summary = (
+        "flagship replacement readiness is ready"
+        if str(flagship_readiness.get("state") or "").strip().lower() == "ready"
+        else "flagship replacement readiness is still open"
+    )
     summary = (
-        f"{current_wave} remains the active wave; {journey_summary}; "
+        f"{wave_summary}; {journey_summary}; {flagship_summary}; "
         f"overall progress is {overall_progress}% in '{phase_label}'; {longest_pole_summary}; {_closure_health_summary(closure_health)}."
     )
 
-    release_health_state = "green_or_explained" if not blockers_open else "needs_attention"
-    release_health_reason = (
-        "No red blockers are open. Foundation release remains closed and the active work is additive middle-layer and trust-surface depth."
-        if not blockers_open
-        else "At least one red blocker is open, so release posture needs explicit justification before promotion or claim expansion."
+    release_health_state = (
+        "green_or_explained"
+        if not blockers_open and str(flagship_readiness.get("state") or "").strip().lower() == "ready"
+        else "needs_attention"
     )
+    if blockers_open:
+        release_health_reason = (
+            "At least one red blocker is open, so release posture needs explicit justification before promotion or claim expansion."
+        )
+    elif str(flagship_readiness.get("state") or "").strip().lower() != "ready":
+        release_health_reason = (
+            "Published flagship readiness proof is not green, so release posture cannot overclaim even when red blockers are clear."
+        )
+    else:
+        release_health_reason = (
+            "No red blockers are open and published flagship readiness proof is green."
+        )
     release_health = {
         "state": release_health_state,
         "reason": release_health_reason,
@@ -1147,6 +1246,7 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
         closure_health=closure_health,
         provider_route_stewardship=provider_route_stewardship,
         local_release_proof=local_release_proof,
+        flagship_readiness=flagship_readiness,
         successor_dependency_posture=successor_dependency_posture,
         status_plane=status_plane,
         blocked_journeys=blocked_journeys,
@@ -1157,26 +1257,13 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
         blocked_journeys=blocked_journeys,
         journey_gate_health=journey_gate_health,
         local_release_proof=local_release_proof,
+        flagship_readiness=flagship_readiness,
         provider_route_stewardship=provider_route_stewardship,
         closure_health=closure_health,
         successor_dependency_posture=successor_dependency_posture,
         status_plane=status_plane,
         active_wave_status=active_wave_status,
     )
-
-    flagship_readiness_state = (
-        "ready"
-        if not blocked_journeys and str(local_release_proof.get("status") or "").strip().lower() == "passed"
-        else "watch"
-    )
-    flagship_readiness = {
-        "state": flagship_readiness_state,
-        "reason": (
-            "Journey gates are ready and local release proof passed."
-            if flagship_readiness_state == "ready"
-            else "Flagship readiness is still constrained by blocked journey proof or missing local release proof."
-        ),
-    }
     rule_environment_trust = {
         "state": "ready" if str(journey_gate_health.get("state") or "").strip().lower() == "ready" else "watch",
         "reason": (
@@ -1247,6 +1334,10 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
             "launch_readiness": launch_readiness,
             "provider_route_stewardship": provider_route_stewardship,
             "successor_dependency_posture": successor_dependency_posture,
+            "flagship_product_readiness_source": str(FLEET_FLAGSHIP_PRODUCT_READINESS),
+            "flagship_product_readiness_status": str(
+                flagship_product_readiness.get("status") or "unknown"
+            ).strip().lower(),
             "journey_gate_source": str(FLEET_JOURNEY_GATES),
             "post_audit_next20_status": _registry_status(POST_AUDIT_REGISTRY),
             "active_wave_registry": _product_relative(active_wave_registry_path),

@@ -17,6 +17,20 @@ That means five things must become product truth rather than design aspiration:
 4. mobile and companion continuity between sessions
 5. artifact, community, and publication loops that feel like extensions of campaign truth rather than adjacent sidecars
 
+The next user-facing hardening step is to make those truths land through a small number of hero paths rather than through broad canon saturation.
+The new hero-path canon for that lives in:
+
+* `READY_FOR_TONIGHT_MODE.md`
+* `PUBLIC_ONBOARDING_PATHS_FOR_NO_DESKTOP_USERS.md`
+* `ROLE_KITS_AND_STARTER_LOADOUTS.md`
+* `SOURCE_AWARE_EXPLAIN_PUBLIC_TRUST_HOOK.md`
+* `CAMPAIGN_ADOPTION_START_FROM_TODAY_FLOW.md`
+* `FOUNDRY_FIRST_VTT_HANDOFF_PROOF.md`
+* `COMMUNITY_SAFETY_MODERATION_AND_APPEALS.md`
+* `WORLD_BROADCAST_AND_FACTION_PROPAGANDA_CADENCE.md`
+* `CREATOR_DASHBOARD_AND_ADOPTION_ANALYTICS.md`
+* `ACCESSIBILITY_AND_COGNITIVE_LOAD_RELEASE_BAR.md`
+
 ## What users still want or miss
 
 The audit says users still want:
@@ -30,6 +44,15 @@ The audit says users still want:
 
 Those are not abstract UX wishes.
 They are the emotional center of gravity for why Chummer should feel indispensable.
+
+Users will forgive tasteful modernization sooner than they forgive:
+
+* losing a runner, campaign, or custom pack after an update
+* a slower dense workflow than Chummer5A on high-frequency tasks
+* a computed value that cannot explain itself when trust is on the line
+* an install, rollback, restore, or first-launch story that disagrees with the public shelf
+
+That means the design must treat trust, durability, explainability, and reversibility as product value, not as late release polish.
 
 ## Repo-grounded recovery lanes
 
@@ -126,6 +149,82 @@ That spec makes the remaining hard families enumerate every audited element with
 * `reason`
 
 Aggregate readiness must not close those families without that exact inventory.
+
+### 7. Trust and survivability outrank surface mimicry
+
+The flagship replacement standard is not "looks enough like Chummer5A."
+It is "a serious user can move quickly and confidently without hidden risk."
+
+That requires explicit product-health planes for:
+
+* SR5 veteran readiness
+* veteran deep workflow readiness
+* data durability
+* recovery trust
+* rules explainability
+* custom-data survival
+* large-sheet performance
+* public-shelf coherence
+
+Those planes now live in `FLAGSHIP_READINESS_PLANES.yaml` and should publish independently from structural closure.
+
+### 8. Divergence must be explicit, not accidental
+
+Parity review must separate three cases:
+
+* `must_match`
+* `may_improve`
+* `may_remove_if_non_degrading`
+
+The point is not clone worship.
+The point is to make every remaining difference explainable, bounded, and survivable for a veteran user.
+
+## First emotional wins
+
+The product should not assume that users will appreciate the whole operating system before they feel its value.
+
+The first emotional wins now need to be treated as explicit design targets:
+
+* `Ready for Tonight`: "am I ready, what changed, what do I do next?"
+* `Start from Today`: adopt a current campaign without retroactive archaeology
+* `No Desktop Yet`: let a beginner join a run and understand the table before the flagship desktop is required
+* `Source-Aware Explain`: answer "why?" and open a local rulebook page when available
+* `Role Kits`: reduce gear and role paralysis with governed starter loadouts
+* `Foundry First`: prove one external play-surface handoff well enough to stop hand-copying
+* `World Broadcast`: let consequences talk back in a weekly rhythm instead of static lore
+* `Community Safety`: make public and semi-public play sustainable before scale
+* `Creator Dashboard`: make publication feel worth it instead of passive
+* `Accessibility and Cognitive Load`: make navigation and trust legible under pressure
+
+## Repeat-use and ecosystem potential still on the table
+
+The strongest remaining potential is not broader scope.
+It is deeper ritual value.
+
+### 1. Runner passport between communities
+
+Players should be able to carry a governed trust and compatibility object between communities instead of restarting legality and review by hand every time.
+
+That canon now lives in `RUNNER_PASSPORT_AND_CROSS_COMMUNITY_TRUST.md` and `RUNNER_PASSPORT_ACCEPTANCE.yaml`.
+
+### 2. Weekly world dispatch and reactivation
+
+The world should not only remember.
+It should talk back on a cadence that makes users want to return.
+
+That canon now lives in `WORLD_DISPATCH_AND_REACTIVATION_LOOP.md` and `WORLD_DISPATCH_REACTIVATION_GATES.yaml`.
+
+### 3. Creator operating system
+
+Publication should become a living creator lane with compatibility, adoption, breakage, moderation, and update followthrough instead of a passive shelf.
+
+That canon now lives in `CREATOR_OPERATING_SYSTEM.md`.
+
+### 4. LTD-powered cadence and followthrough
+
+The LTD stack is most valuable when it creates recurring recruitment, reminder, publication, clinic, and recovery loops from Chummer-owned truth.
+
+That canon now lives in `LTD_CADENCE_AND_FOLLOWTHROUGH_SYSTEM.md` and `LTD_CADENCE_AND_FOLLOWTHROUGH_REGISTRY.yaml`.
 
 ## Integration posture for owned or future-acquired LTDs
 

@@ -20,6 +20,8 @@ Current status on 2026-03-26:
 * the active loop-materialization overlay is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md` plus `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`; it does not broaden Chummer into a generic living-world simulator, but it makes action budgets, local rulebook anchors, campaign adoption, prep packets, BLACK LEDGER consequence, runner goals, and mission-fit loops concrete release work
 * the named follow-on gate wave for that overlay is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md` plus `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`; it turns the most compelling campaign-memory and consequence ideas into eight explicit proofs instead of leaving them horizon-sized
 * the active vision-recovery overlay is `PRODUCT_VISION_RECOVERY_AND_INTEGRATION_GUIDE.md`; it turns the product-vision audit into concrete work around calm-under-pressure payoff, veteran-depth parity, mobile continuity, artifact/community coherence, bounded integration seams for owned or future-acquired LTDs, and exact dialog-level human parity acceptance canon in `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_SPEC.md` plus `CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_MATRIX.yaml`
+* the active first-emotional-win overlay is the hero-path bundle around `READY_FOR_TONIGHT_MODE.md`, `PUBLIC_ONBOARDING_PATHS_FOR_NO_DESKTOP_USERS.md`, `ROLE_KITS_AND_STARTER_LOADOUTS.md`, `SOURCE_AWARE_EXPLAIN_PUBLIC_TRUST_HOOK.md`, `CAMPAIGN_ADOPTION_START_FROM_TODAY_FLOW.md`, `FOUNDRY_FIRST_VTT_HANDOFF_PROOF.md`, `COMMUNITY_SAFETY_MODERATION_AND_APPEALS.md`, `WORLD_BROADCAST_AND_FACTION_PROPAGANDA_CADENCE.md`, `CREATOR_DASHBOARD_AND_ADOPTION_ANALYTICS.md`, and `ACCESSIBILITY_AND_COGNITIVE_LOAD_RELEASE_BAR.md`; it does not replace the flagship-closeout bar, but it keeps the product from mistaking canon saturation for a felt user win
+* the active ritual-value overlay is the repeat-use bundle around `RUNNER_PASSPORT_AND_CROSS_COMMUNITY_TRUST.md`, `WORLD_DISPATCH_AND_REACTIVATION_LOOP.md`, `CREATOR_OPERATING_SYSTEM.md`, and `LTD_CADENCE_AND_FOLLOWTHROUGH_SYSTEM.md`; it keeps the product from stopping at controlled capability when users would really pay attention to weekly trust, reactivation, creator health, and community portability
 
 ## Recommended next initiative
 
@@ -44,6 +46,7 @@ The active product-sharpening overlay for making the architecture emotionally ir
 The active loop-materialization overlay for turning living-world and campaign-memory ideas into small, shippable proofs is `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md`, with machine-readable prioritization in `LIVING_CAMPAIGN_LOOP_MATERIALIZATION_REGISTRY.yaml`.
 The named gate wave for that materialization pass is `LOST_POTENTIAL_MATERIALIZATION_WAVE.md`, with machine-readable gate staging in `LOST_POTENTIAL_MATERIALIZATION_REGISTRY.yaml`.
 The active vision-recovery overlay for turning that audit into concrete product and ecosystem seams is `PRODUCT_VISION_RECOVERY_AND_INTEGRATION_GUIDE.md`, with queued successor-wave staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
+The active hero-path and participation overlay for making the product emotionally obvious before users learn the full operating system is the `READY_FOR_TONIGHT_MODE.md` bundle, with queued successor-wave staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The queued post-closeout successor wave is `NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md`, with machine-readable staging in `NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`.
 The historical milestone spine for the closed front-door wave remains in `NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md`.
 
@@ -55,6 +58,8 @@ The immediate additive shape is:
 * sharpen the emotional product hook around confidence, readiness, and continuity so Chummer feels indispensable at the table rather than merely broad on paper
 * turn the living-campaign promise into boring, release-gated loops: action help, local source lookup, adoption, runner goals, prep packets, and one GM-approved world consequence loop
 * recover the lost product potential surfaced by the vision audit: calm-under-pressure payoff, veteran-depth dense workflows, trusted mobile return moments, and artifact/community coherence
+* make the first emotional wins impossible to miss: Ready for Tonight, start-from-today adoption, no-desktop participation, source-aware explain, starter role kits, and one excellent Foundry-first handoff
+* make community/world scale feel alive without overbuilding: weekly broadcast cadence, creator adoption feedback, community safety, and explicit accessibility/cognitive-load promises
 * close the remaining human-feeling parity families with dialog-level acceptance specs that force yes/no visual and behavioral verdicts plus explicit removal reasons for Chummer6-only extras
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
 * turn trust, support, operator depth, and launch readiness into measurable, install-aware product posture rather than hand-maintained prose
