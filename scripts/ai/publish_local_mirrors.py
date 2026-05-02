@@ -169,12 +169,14 @@ def _prune_stale_product_files(product_root: Path, expected_rel_paths: set[Path]
     return removed
 
 
-def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None) -> int:
+def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None, repo_filter: str = "") -> int:
     manifest = _load_manifest(MANIFEST_PATH)
     mirrors = manifest.get("mirrors") or []
     if not isinstance(mirrors, list):
         raise ValueError("sync_manifest_mirrors_not_list")
 
+    normalized_repo_filter = str(repo_filter or "").strip()
+    matched_repo_filter = not normalized_repo_filter
     missing_repos: list[tuple[str, str, list[Path]]] = []
     changed_count = 0
     removed_count = 0
@@ -183,6 +185,9 @@ def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None) -> int:
         if not isinstance(mirror, dict):
             continue
         repo_name = str(mirror.get("repo") or "").strip()
+        if normalized_repo_filter and repo_name != normalized_repo_filter:
+            continue
+        matched_repo_filter = True
         repo_root, candidates = _resolve_repo_root(manifest, repo_name, repo_base)
         if repo_root is None:
             missing_repos.append((repo_name or "<missing>", _repo_root_override_var(repo_name), candidates))
@@ -237,6 +242,10 @@ def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None) -> int:
         for rel in mirror_removed:
             print(f"  remove {rel}")
 
+    if normalized_repo_filter and not matched_repo_filter:
+        print(f"unknown repo filter: {normalized_repo_filter}", file=sys.stderr)
+        return 2
+
     if missing_repos:
         print("missing repos:", file=sys.stderr)
         for repo_name, env_var, candidates in missing_repos:
@@ -263,8 +272,14 @@ def main() -> int:
     )
     parser.add_argument("--no-prune", action="store_true", help="Do not remove stale mirrored product files that are no longer in the manifest.")
     parser.add_argument("--repo-base", type=Path, help="Optional base directory containing sibling repos under canonical or legacy local names.")
+    parser.add_argument("--repo", default="", help="Optional repo id from sync-manifest.yaml to publish/check in isolation.")
     args = parser.parse_args()
-    return publish_mirrors(write=not args.check, prune=not args.no_prune, repo_base=args.repo_base)
+    return publish_mirrors(
+        write=not args.check,
+        prune=not args.no_prune,
+        repo_base=args.repo_base,
+        repo_filter=str(args.repo or "").strip(),
+    )
 
 
 if __name__ == "__main__":
