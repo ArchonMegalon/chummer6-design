@@ -69,6 +69,12 @@ Disk-space posture:
 2. The packaging/notarization phase uses `CHUMMER_MAC_RELEASE_PACKAGING_MIN_FREE_GIB` and will prune repo-local `bin/` and `obj/` directories once before failing.
 3. If the Mac work root is tight, point `CHUMMER_MAC_RELEASE_TMPDIR` and `CHUMMER_DESKTOP_INSTALLER_TMPDIR` at a roomier volume so `hdiutil` and DMG repack work stop competing with the checkout root.
 
+Cleanup after every run:
+
+1. After a successful upload or a failed run, delete the local temporary release artifacts again so the Mac SSD does not fill up.
+2. At minimum, clean the per-run work root under `$HOME/work/chummer-release/run-...` plus any custom `CHUMMER_MAC_RELEASE_TMPDIR` and `CHUMMER_DESKTOP_INSTALLER_TMPDIR` trees you pointed at another volume.
+3. Keep those artifacts only when you are actively debugging a packaging, notarization, or upload failure.
+
 ## Promotion gate
 
 The upload endpoint may merge platform slices independently, but it only makes an installer public when the bundle includes:
