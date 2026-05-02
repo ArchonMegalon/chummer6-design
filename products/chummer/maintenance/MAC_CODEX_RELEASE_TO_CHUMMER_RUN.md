@@ -57,7 +57,17 @@ export CHUMMER_HUB_REF="main"
 export CHUMMER_UI_KIT_REF="main"
 export CHUMMER_HUB_REGISTRY_REF="main"
 export CHUMMER_LEGACY_REF="Docker"
+export CHUMMER_MAC_RELEASE_MIN_FREE_GIB="20"
+export CHUMMER_MAC_RELEASE_PACKAGING_MIN_FREE_GIB="8"
+export CHUMMER_MAC_RELEASE_TMPDIR="/Volumes/FastScratch/chummer-release-tmp"
+export CHUMMER_DESKTOP_INSTALLER_TMPDIR="/Volumes/FastScratch/chummer-release-tmp/desktop-installer"
 ```
+
+Disk-space posture:
+
+1. The bootstrap keeps a conservative pre-build free-space gate through `CHUMMER_MAC_RELEASE_MIN_FREE_GIB`.
+2. The packaging/notarization phase uses `CHUMMER_MAC_RELEASE_PACKAGING_MIN_FREE_GIB` and will prune repo-local `bin/` and `obj/` directories once before failing.
+3. If the Mac work root is tight, point `CHUMMER_MAC_RELEASE_TMPDIR` and `CHUMMER_DESKTOP_INSTALLER_TMPDIR` at a roomier volume so `hdiutil` and DMG repack work stop competing with the checkout root.
 
 ## Promotion gate
 
