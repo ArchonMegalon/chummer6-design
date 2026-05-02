@@ -33,6 +33,8 @@ The bootstrap is the public deep link. It now:
 9. verifies the promoted live shelf and prints the resulting `/downloads/install/{artifactId}` handoff URL
 10. prints signed-in claim codes when it was launched from the signed-in release-upload handoff
 
+By default the bootstrap checks out the latest pushed `main` branch for the GitHub-backed Chummer repos it builds from. Override the `CHUMMER_*_REF` variables only when you intentionally want a different branch.
+
 ## Minimum environment variables
 
 ```bash
@@ -49,11 +51,11 @@ export CHUMMER_RELEASE_VERIFY_REQUIRE_COMPATIBILITY_PROJECTION="0"
 export CHUMMER_RELEASE_CHANNEL="preview"
 export CHUMMER_RELEASE_APP="avalonia"
 export CHUMMER_RELEASE_RID="osx-arm64"
-export CHUMMER_UI_REF="fleet/ui"
-export CHUMMER_CORE_REF="fleet/core"
+export CHUMMER_UI_REF="main"
+export CHUMMER_CORE_REF="main"
 export CHUMMER_HUB_REF="main"
-export CHUMMER_UI_KIT_REF="fleet/ui-kit"
-export CHUMMER_HUB_REGISTRY_REF="fleet/hub-registry"
+export CHUMMER_UI_KIT_REF="main"
+export CHUMMER_HUB_REGISTRY_REF="main"
 export CHUMMER_LEGACY_REF="Docker"
 ```
 

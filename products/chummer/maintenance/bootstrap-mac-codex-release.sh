@@ -57,10 +57,10 @@ main() {
   require_cmd xcrun
 
   local work_root="${CHUMMER_MAC_RELEASE_WORK_ROOT:-$HOME/work/chummer-release}"
-  local ui_ref="${CHUMMER_UI_REF:-fleet/ui}"
-  local core_ref="${CHUMMER_CORE_REF:-fleet/core}"
+  local ui_ref="${CHUMMER_UI_REF:-main}"
+  local core_ref="${CHUMMER_CORE_REF:-main}"
   local hub_ref="${CHUMMER_HUB_REF:-main}"
-  local ui_kit_ref="${CHUMMER_UI_KIT_REF:-fleet/ui-kit}"
+  local ui_kit_ref="${CHUMMER_UI_KIT_REF:-main}"
   local app="${CHUMMER_RELEASE_APP:-avalonia}"
   local rid="${CHUMMER_RELEASE_RID:-osx-arm64}"
   local release_channel="${CHUMMER_RELEASE_CHANNEL:-preview}"
