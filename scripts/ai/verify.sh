@@ -28,6 +28,7 @@ for path in \
   products/chummer/VISION.md \
   products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md \
   products/chummer/BUILD_EXPLAIN_ARTIFACT_TRUTH_POLICY.md \
+  products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md \
   products/chummer/RUNSITE_HOST_MODE_POLICY.md \
   products/chummer/CAMPAIGN_COLD_OPEN_AND_MISSION_BRIEFING_POLICY.md \
   products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md \
@@ -220,9 +221,11 @@ python3 "$repo_root/scripts/ai/validate_next90_m109_design_explain_truth_policy.
 python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null
+python3 "$downstream_root/scripts/sync_public_guide_from_design.py" --check >/dev/null
 
 rg -n '^# Start here$|^## Fast path by role$|^## Fast path by question$|^## Reading discipline$' "$repo_root/products/chummer/START_HERE.md" >/dev/null
 rg -n '^# Glossary$|^## Booster$|^## Sponsor session$|^## Proof shelf$|^## Horizon$' "$repo_root/products/chummer/GLOSSARY.md" >/dev/null
@@ -240,6 +243,7 @@ rg -n '^# Long-range roadmap$|^## Phase A — Canon and package plane$|^## Non-b
 rg -n '^# Chummer next-wave milestone list$|^## Recommended initiative$|^## Milestones$|^### M0' "$repo_root/products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md" >/dev/null
 rg -n '^# Account-aware front door closeout$|^## Purpose$|^## Material closeout on public `main`$|^## Language correction$|^## What remains additive$' "$repo_root/products/chummer/ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT.md" >/dev/null
 rg -n '^# Build Lab product model$|^## Purpose$|^## Product promise$|^## Ownership split$|^## Non-goals$' "$repo_root/products/chummer/BUILD_LAB_PRODUCT_MODEL.md" >/dev/null
+rg -n '^# Explain every value and grounded follow-up$|^## Product promise$|^## Truth order$|^## Explain packet contract$|^## Coverage registry$|^## Release gate$|^## Ownership split$' "$repo_root/products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md" >/dev/null
 rg -n '^# Chummer next 15 big wins execution plan$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 1\\. Publish the closeout you already claim$|^### 20\\. Refresh the public story around Build / Explain / Run / Publish / Improve$' "$repo_root/products/chummer/NEXT_15_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
 rg -n '^# Chummer next 20 big wins execution plan$|^## Framing$|^## Wave 0 — close truth drift and make the steering loop real$|^### 20\\. Turn creator publication into a second pillar$|^## Ordering rule$' "$repo_root/products/chummer/NEXT_20_BIG_WINS_EXECUTION_PLAN.md" >/dev/null
 rg -n '^# Chummer post-audit next 20 big wins$|^## Framing$|^## Wave 0 — close the open truth your repos already admit$|^### 20\\. Compress the public story for launch$|^## Ordering rule$' "$repo_root/products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_GUIDE.md" >/dev/null
@@ -332,7 +336,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
   "$repo_root/products/chummer/LTD_CAPABILITY_MAP.md" >/dev/null
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|DESKTOP_CLIENT_PRODUCT_CUT|DESKTOP_PLATFORM_ACCEPTANCE_MATRIX|LOCALIZATION_AND_LANGUAGE_SYSTEM|LOCALIZATION_PARITY_MATRIX|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|NEXT_12_BIGGEST_WINS_GUIDE|NEXT_12_BIGGEST_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
+rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|DESKTOP_CLIENT_PRODUCT_CUT|DESKTOP_PLATFORM_ACCEPTANCE_MATRIX|LOCALIZATION_AND_LANGUAGE_SYSTEM|LOCALIZATION_PARITY_MATRIX|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|NEXT_12_BIGGEST_WINS_GUIDE|NEXT_12_BIGGEST_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n '^# Chummer Public Guide$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## Product promise$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## What is real now$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null

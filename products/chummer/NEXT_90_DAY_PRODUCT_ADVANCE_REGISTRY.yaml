@@ -1188,7 +1188,7 @@ milestones:
           - successor-wave telemetry summary strings are rejected as worker proof strings so copied ETA, remaining-count, or critical-path prompt context cannot close this package.
           - literal successor-wave telemetry labels are rejected as worker proof strings so copied prompt headings cannot close this package without repo-local evidence.
           - frontier-detail prompt strings are rejected as worker proof strings so copied frontier priority or detail prompt context cannot close this package.
-#           - frontier-detail body strings are rejected as worker proof strings so copied successor frontier status, owner, dependency, surface, or closeout prompt text cannot close this package.
+          - frontier-detail body strings are rejected as worker proof strings so copied successor frontier status, owner, dependency, surface, or closeout prompt text cannot close this package.
           - run-prompt authority labels are rejected as worker proof strings so copied steering focus, assigned package, writable scope, or first-action prompt text cannot close this package.
           - execution-discipline prompt strings are rejected as worker proof strings so copied run-control prohibitions cannot be recited as package evidence.
           - runtime handoff header and model metadata strings are rejected as worker proof strings so copied runtime header or model metadata fields cannot close this package.
@@ -1203,10 +1203,10 @@ milestones:
           - repeat-prevention worker command guard records helper failure posture so future shards cannot soften helper failure semantics while keeping package proof green.
           - proof paths outside package allowed path roots are rejected so closed-package evidence cannot drift beyond admin, scripts, tests, and .codex-studio.
           - production verifier rejects non-canonical source path overrides so shadow registry or queue artifacts cannot close this Fleet slice.
-#           - verifier rejects reused closed successor frontier rows outside the Fleet M106 package so future queue rows cannot repeat frontier 2376135131 under a new package id.
+          - verifier rejects reused closed successor frontier rows outside the Fleet M106 package so future queue rows cannot repeat frontier 2376135131 under a new package id.
           - blocked support-packet proof routes exactly to the M102 reporter-receipts dependency package so the closed M106 handoff cannot gain ambiguous dependency routes.
           - no-PYTHONPATH bootstrap guard includes the standalone M106 verifier so repeat-prevention cannot silently break on import path assumptions.
-#           - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
+          - successor frontier 2376135131 is pinned in Fleet weekly governor packet repeat-prevention proof so future shards do not repeat next90-m106-fleet-governor-packet.
           - local proof floor commit 1ba508e is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy completed-package proof without the latest local guard.
           - local proof floor commit 6d1663c is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the dependency-routing guard added for blocked support-packet proof.
           - local proof floor commit ade57ae is pinned in Fleet weekly governor packet repeat-prevention proof so stale clones cannot satisfy the task-local telemetry field guard.
@@ -3399,3 +3399,65 @@ milestones:
     - id: '144.4'
       owner: fleet
       title: Fail closeout when desktop-client readiness is green without matching executable-gate, startup-smoke, and release-channel tuple proof.
+  - id: 145
+    title: Explain every visible value with grounded follow-up and bounded presenter mode
+    wave: W28
+    owners:
+    - chummer6-core
+    - chummer6-ui
+    - chummer6-mobile
+    - chummer6-media-factory
+    - executive-assistant
+    - fleet
+    - chummer6-design
+    status: in_progress
+    dependencies:
+    - 104
+    - 109
+    - 114
+    exit_criteria:
+    - Promoted build, compare, import, and live-play routes expose packet-backed explain drawers for every visible computed
+      value, legality result, or warning in scope; missing coverage, silent fallback, or stale snapshot truth blocks closeout.
+    - Explanation packets carry ordered steps, applied and skipped modifiers, cap/floor/round/override operations,
+      rule-environment identity, source anchors, privacy posture, and bounded counterfactual support for `why`, `why not`,
+      and `what if` questions.
+    - Optional narration, voice, or presenter surfaces compile only from approved explanation packets or counterfactual packets
+      and fall back to first-party text when grounding, provider, or microphone posture is unavailable.
+    - Release proof fails closed when a new promoted visible value, warning, or delta ships without coverage-registry truth,
+      deterministic packet validation, source-anchor posture, or text-first fallback.
+    work_tasks:
+    - id: '145.1'
+      owner: chummer6-core
+      title: Emit explanation packets, coverage-registry truth, and bounded counterfactual packets for every visible mechanical result.
+    - id: '145.2'
+      owner: chummer6-ui
+      title: Wire the desktop explain drawer, source-anchor launch, stale-state handling, and text-first follow-up on promoted workbench routes.
+    - id: '145.3'
+      owner: chummer6-mobile
+      title: Bring quick explain, source-anchor context, and bounded follow-up to mobile and live-play shells.
+    - id: '145.4'
+      owner: executive-assistant
+      title: Compile grounded narration and follow-up packs strictly from explanation-packet and counterfactual truth.
+    - id: '145.5'
+      owner: chummer6-media-factory
+      title: Render optional audio or presenter siblings from approved explanation packets without becoming calculation authority.
+    - id: '145.6'
+      owner: fleet
+      title: Fail closeout when visible values, warnings, or bounded what-if answers ship without explain coverage and fallback proof.
+    - id: '145.7'
+      owner: chummer6-design
+      title: Canonize explain-every-value truth order, source-anchor linkage, and bounded follow-up or presenter posture.
+      status: in_progress
+      evidence:
+      - /docker/chummercomplete/chummer-design/products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md defines the
+        product promise, truth order, packet contract, coverage-registry floor, and release-gated explain-every-value posture.
+      - /docker/chummercomplete/chummer-design/products/chummer/SOURCE_AWARE_EXPLAIN_PUBLIC_TRUST_HOOK.md now promotes
+        explain-every-value plus source-anchor proof from a curated hook to a promoted-route coverage floor.
+      - /docker/chummercomplete/chummer-design/products/chummer/BUILD_LAB_PRODUCT_MODEL.md now treats visible compare values,
+        deltas, and bounded what-if questions as packet-backed explain truth instead of review-only prose.
+      - /docker/chummercomplete/chummer-design/products/chummer/FLAGSHIP_RELEASE_ACCEPTANCE.yaml now requires promoted workbench
+        routes to treat missing explain coverage for visible computed or warning states as release-blocking.
+      - /docker/chummercomplete/chummer-design/products/chummer/README.md and /docker/chummercomplete/chummer-design/products/chummer/sync/sync-manifest.yaml
+        now place the explain-every-value canon on the main read paths and repo-local mirror set.
+      - /docker/chummercomplete/chummer-design/scripts/ai/verify.sh now checks the new canon doc and README reference so the
+        contract cannot quietly disappear from standard design verification.

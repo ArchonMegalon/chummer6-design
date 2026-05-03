@@ -18,6 +18,11 @@ SR6 action economy is valuable product territory:
 
 This is a trust loop, not a VTT replacement.
 
+## Explain contract
+
+This lane is a flagship explain-every-value route under `EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md`.
+Every visible major/minor count, conversion, action affordance, and between-turn warning must support packet-backed quick explain, source-anchor posture, and bounded `why?`, `why not?`, and `what if I spend this now?` follow-up.
+
 ## Core object
 
 ```yaml
@@ -37,6 +42,9 @@ ActionBudgetResult:
   conversions:
     can_spend_four_minor_for_anytime_major: true
     can_hold_converted_major_before_turn: false
+  explanation_packet_ref: action_budget_current_packet
+  counterfactual_actions:
+    - spend_four_minor_for_full_defense
   affordances:
     - action_key: full_defense
       timing: anytime
@@ -62,6 +70,8 @@ You can still:
   Take Cover
   Reload
   Full Defense
+
+[Explain 4 Minor]
 ```
 
 ### Between turns
@@ -89,6 +99,7 @@ Grunt Group A
 * `ActionBudgetResult`
 * `ActionAffordance`
 * `TurnLedgerDelta`
+* `ExplanationPacket` and bounded counterfactual packets for action-budget truth
 * official SR6 edge-case tests for minor action count, turn-start cap, and conversion behavior
 
 `chummer6-ui-kit` may own generic bars, chips, or cards.
@@ -104,4 +115,6 @@ Exit:
 
 * one player and one GM can complete one SR6 combat round
 * action receipts remain visible during and between turns
+* quick explain can defend why an affordance is available, unavailable, or timing-limited
+* a bounded counterfactual such as spending 4 Minor for Full Defense can be previewed without mutating current truth blindly
 * mook/grunt state is summarized without requiring a full tactical map

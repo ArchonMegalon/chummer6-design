@@ -11,6 +11,9 @@ When users ask "why is this value what it is?", Chummer should answer from gover
 No cloud rulebook upload is required.
 No raw local path enters telemetry.
 
+On promoted routes, this cannot be limited to a curated demo handful.
+Every important visible mechanical value should either open the packet-backed explain drawer plus source anchor chain or remain an explicit release-blocking gap.
+
 ## Why it matters
 
 This is one of the strongest trust moves in the whole product:
@@ -26,6 +29,10 @@ This is one of the strongest trust moves in the whole product:
 
 That proof should be treated as a public trust hook, not hidden plumbing.
 
+The stronger follow-on proof is:
+
+`every visible flagship value -> explain packet -> source anchor -> bounded why/why not/what if follow-up`
+
 ## Product surfaces that benefit
 
 * Build Lab
@@ -34,3 +41,4 @@ That proof should be treated as a public trust hook, not hidden plumbing.
 * community rule environments
 * GM dispute handling
 * support packets
+* live-play quick explain and action-economy trust
