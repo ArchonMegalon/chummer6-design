@@ -42,7 +42,7 @@ What is weak:
 
 Better image:
 
-Show a player or GM comparing two runner build ghosts beside a live test subject or sim rig. Keep the clinic grit, but make the split decision visible: two transparent build silhouettes, different gear loadouts, and receipts explaining the tradeoff.
+Show a player or GM using BUILD GHOST to compare two runner build ghosts beside a live test subject or sim rig. Keep the clinic grit, but make the split decision visible: two transparent build silhouettes, different gear loadouts, and receipts explaining the tradeoff.
 
 Useful AR labels:
 

@@ -189,7 +189,7 @@ cards:
   - id: horizon_alice
     bucket: coming_next
     title: ALICE
-    summary: Builders get grounded what-if analysis without trusting fuzzy assistants.
+    summary: Branch the same runner into temporary build ghosts and compare grounded tradeoffs before you commit.
     href: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/alice.md
     badge: Research
     audience: public
@@ -203,7 +203,7 @@ cards:
     fallback_label: Read the horizon brief
     external_ok: true
     pain: We only discover weak builds after they explode in public.
-    payoff: Compare grounded tradeoffs with receipts instead of guesswork.
+    payoff: Compare build ghosts with receipts instead of guessing and hoping the live runner survives the experiment.
   - id: horizon_knowledge_fabric
     bucket: coming_next
     title: KNOWLEDGE FABRIC

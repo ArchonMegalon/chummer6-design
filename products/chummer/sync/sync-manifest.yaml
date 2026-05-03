@@ -78,6 +78,7 @@ product_source_groups:
     - products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md
     - products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md
     - products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md
+    - products/chummer/BUILD_GHOST_MVP_001.md
   world_state:
     - products/chummer/WORLD_STATE_AND_MISSION_MARKET_MODEL.md
     - products/chummer/WORLD_MAP_AND_INTEL_ECONOMY_MODEL.md
@@ -116,6 +117,7 @@ product_source_groups:
   horizons:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml
+    - products/chummer/HORIZON_AND_FEATURE_LTD_INTEGRATION_GUIDE.md
     - products/chummer/horizons/README.md
     - products/chummer/horizons/FOUNDATIONS.md
     - products/chummer/horizons/edition-studio.md
@@ -228,6 +230,7 @@ product_source_groups:
     - products/chummer/LTD_CAPABILITY_MAP.md
     - products/chummer/LTD_STACK_WOW_FACTOR_CHANGE_GUIDE.md
     - products/chummer/LTD_RUNTIME_AND_PROJECTION_REGISTRY.yaml
+    - products/chummer/HORIZON_AND_FEATURE_LTD_INTEGRATION_GUIDE.md
     - products/chummer/TEABLE_ADMIN_PROJECTION_AND_INTENT_LAYER.md
     - products/chummer/ADMIN_INTENT_AND_PROJECTION_RECEIPTS.yaml
     - products/chummer/EMAILIT_OUTBOUND_DELIVERY_PROVIDER.md

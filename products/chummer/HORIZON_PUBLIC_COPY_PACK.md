@@ -1067,6 +1067,12 @@ The devices should not add more.
 
 **ALICE is Chummer’s build-simulation and what-if horizon: the future where players can compare builds, catch trouble, test upgrade paths, and understand tradeoffs before the table discovers the mistake under pressure.**
 
+Its first real product-shaped move should be:
+
+> **BUILD GHOST**
+>
+> Branch this runner, try the change, inspect the delta, and only commit if you trust the result.
+
 Many weak builds are not obvious at creation time.
 
 A player thinks they built a decker.  
@@ -1129,6 +1135,7 @@ Buttons:
 
 - Show math
 - Show receipts
+- Spawn Build Ghost
 - Compare team role fit
 - Fix budget issue
 - Keep my chaos
@@ -1143,6 +1150,7 @@ Compare:
 
 - current build vs snapshot
 - variant A vs variant B
+- live runner vs Ghost A vs Ghost B
 - runner vs campaign rule environment
 - runner vs team needs
 - current build vs upgrade goal
