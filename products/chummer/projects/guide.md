@@ -13,7 +13,7 @@
 - not a milestone source
 - not mirrored into code repos
 - not dispatchable
-- generated guide surfaces must include a "How can I help?" or equivalent support page that introduces boosters and links to the Hub participation endpoint
+- generated guide surfaces must include a "How can I help?" or equivalent support page that explains the optional guided contribution path and links to the public participation endpoint
 
 ## Allowed inputs
 - `PUBLIC_GUIDE_PAGE_REGISTRY.yaml`
