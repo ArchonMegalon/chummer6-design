@@ -1,6 +1,6 @@
 product: chummer
 version: 1
-purpose: Screenshot-first proof policy for public guide pages.
+purpose: Optional screenshot policy for public guide pages.
 pages:
   README.md:
     mandatory: false
@@ -23,37 +23,22 @@ pages:
     placement: none
     purpose: Keep the page list-first and route-focused.
   DOWNLOAD.md:
-    mandatory: true
+    mandatory: false
     preferred_image_type: screenshot
-    placement: inline_proof
-    purpose: Show a real preview app shell before the utility copy drops into package detail.
-    assets:
-      - path: assets/screenshots/download-preview-workspace.png
-        alt: Real Chummer6 preview workspace screenshot
-        caption: Real preview workspace from the current app, captured during an acceptance journey.
+    placement: optional_inline
+    purpose: Screenshots can help, but the page should still work as a simple utility surface without them.
   HELP.md:
-    mandatory: true
+    mandatory: false
     preferred_image_type: screenshot
-    placement: inline_proof
-    purpose: Show a real preview app shell so the help page proves there is working software behind the support copy.
-    assets:
-      - path: assets/screenshots/help-preview-workspace.png
-        alt: Real Chummer6 preview navigation screenshot
-        caption: Real preview shell from a navigation sanity journey, used as proof that the current help flow is attached to a live app.
+    placement: optional_inline
+    purpose: Screenshots can help, but the page should still read clearly as plain support guidance.
   FAQ.md:
     mandatory: false
     preferred_image_type: none
     placement: none
     purpose: Keep the FAQ fast unless one screenshot answers a repeated question better than text.
   FROM_CHUMMER5A_TO_CHUMMER6.md:
-    mandatory: true
+    mandatory: false
     preferred_image_type: screenshot
-    placement: compare_blocks
-    purpose: Migration proof should show familiar surfaces and changed flows, not themed art.
-    assets:
-      - path: assets/screenshots/migration-before.png
-        alt: Chummer journey screenshot before save and reload
-        caption: "Before: a real journey capture from the current workspace flow before the save and reload step."
-      - path: assets/screenshots/migration-after.png
-        alt: Chummer journey screenshot after save and reload
-        caption: "After: the same journey after save and reload, used as concrete migration proof."
+    placement: optional_inline
+    purpose: Migration pages may use screenshots later, but they should not read like public proof packs.

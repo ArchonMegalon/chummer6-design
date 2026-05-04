@@ -79,19 +79,3 @@ assets:
     embed_policy: manual
     review_status: editorial_cover
     source_override: products/chummer/public-guide-curated-assets/assets/pages/parts-index.png
-  assets/screenshots/download-preview-workspace.png:
-    embed_policy: manual
-    review_status: screenshot_proof
-    source_override: products/chummer/public-guide-curated-assets/assets/screenshots/download-preview-workspace.png
-  assets/screenshots/help-preview-workspace.png:
-    embed_policy: manual
-    review_status: screenshot_proof
-    source_override: products/chummer/public-guide-curated-assets/assets/screenshots/help-preview-workspace.png
-  assets/screenshots/migration-before.png:
-    embed_policy: manual
-    review_status: screenshot_proof
-    source_override: products/chummer/public-guide-curated-assets/assets/screenshots/migration-before.png
-  assets/screenshots/migration-after.png:
-    embed_policy: manual
-    review_status: screenshot_proof
-    source_override: products/chummer/public-guide-curated-assets/assets/screenshots/migration-after.png

@@ -61,11 +61,7 @@
     "assets/parts/ui-kit.webp",
     "assets/parts/ui.avif",
     "assets/parts/ui.png",
-    "assets/parts/ui.webp",
-    "assets/screenshots/download-preview-workspace.png",
-    "assets/screenshots/help-preview-workspace.png",
-    "assets/screenshots/migration-after.png",
-    "assets/screenshots/migration-before.png"
+    "assets/parts/ui.webp"
   ],
   "generated_by": "materialize_public_guide_bundle.py",
   "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
