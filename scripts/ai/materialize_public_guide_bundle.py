@@ -439,12 +439,17 @@ def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) 
     subprocess.run(command, check=True, capture_output=True, text=True)
 
 
-def _required_public_asset_paths(part_registry: dict[str, object], horizon_registry: dict[str, object]) -> set[str]:
+def _required_public_asset_paths(
+    part_registry: dict[str, object],
+    horizon_registry: dict[str, object],
+    screenshot_registry: dict[str, object],
+) -> set[str]:
     required = {
         "assets/hero/chummer6-hero.png",
         "assets/pages/parts-index.png",
         "assets/pages/horizons-index.png",
     }
+    required.update(_screenshot_asset_paths(screenshot_registry))
     for item in part_registry.get("parts") or []:
         if not isinstance(item, dict):
             continue
@@ -474,6 +479,8 @@ def _copy_existing_derivative(
     if derivative_fallback_root is not None:
         candidates.append(derivative_fallback_root / derivative_relpath)
     for candidate in candidates:
+        if candidate == derivative_path:
+            continue
         if candidate.is_file():
             derivative_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(candidate, derivative_path)
@@ -553,6 +560,29 @@ def _faq_sections(payload: dict[str, object]) -> list[dict[str, object]]:
     return [section for section in sections if isinstance(section, dict)]
 
 
+def _screenshot_pages(payload: dict[str, object]) -> dict[str, dict[str, object]]:
+    pages = payload.get("pages") or {}
+    if not isinstance(pages, dict):
+        return {}
+    return {
+        str(key).strip(): value
+        for key, value in pages.items()
+        if str(key).strip() and isinstance(value, dict)
+    }
+
+
+def _screenshot_asset_paths(payload: dict[str, object]) -> set[str]:
+    required: set[str] = set()
+    for page in _screenshot_pages(payload).values():
+        for asset in page.get("assets") or []:
+            if not isinstance(asset, dict):
+                continue
+            path = str(asset.get("path") or "").replace("\\", "/").strip()
+            if path.startswith("assets/"):
+                required.add(path)
+    return required
+
+
 def _page_types(payload: dict[str, object]) -> dict[str, dict[str, object]]:
     page_types = payload.get("page_types") or {}
     if not isinstance(page_types, dict):
@@ -578,6 +608,36 @@ def _section_rows(section: dict[str, object], *, level: int = 2) -> list[str]:
         if lines:
             rows.extend(lines)
             rows.append("")
+    return rows
+
+
+def _screenshot_rows(
+    *,
+    doc_path: Path,
+    out_dir: Path,
+    screenshot_registry: dict[str, object],
+    page_name: str,
+) -> list[str]:
+    page = _screenshot_pages(screenshot_registry).get(page_name) or {}
+    rows: list[str] = []
+    rendered_count = 0
+    for asset in page.get("assets") or []:
+        if not isinstance(asset, dict):
+            continue
+        path = str(asset.get("path") or "").replace("\\", "/").strip()
+        alt = str(asset.get("alt") or "Chummer6 screenshot proof").strip() or "Chummer6 screenshot proof"
+        caption = str(asset.get("caption") or "").strip()
+        block = _image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=path, alt=alt)
+        if not block:
+            continue
+        rows.extend(block)
+        if caption:
+            rows.append(f"*{caption}*")
+            rows.append("")
+        rendered_count += 1
+    mandatory = str(page.get("mandatory") or "").strip().lower() in {"true", "yes", "1"}
+    if mandatory and rendered_count == 0:
+        raise ValueError(f"missing mandatory screenshot proof for {page_name}")
     return rows
 
 
@@ -1486,6 +1546,7 @@ def _generate_root(
             "",
             "- [Download builds](DOWNLOAD.md)",
             "- [Status](STATUS.md)",
+            "- [Current status](NOW/current-status.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
             "- [Moving from Chummer5a](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         ]
@@ -1560,6 +1621,7 @@ def _generate_from_chummer5a_to_chummer6(
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
     release_payload: dict[str, object],
+    screenshot_registry: dict[str, object],
 ) -> None:
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
@@ -1618,6 +1680,18 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         "This page is for Chummer5a users who want the blunt answer: what still feels familiar, what gets better, and whether now is the right time to switch.",
         "",
+    ]
+    screenshot_rows = _screenshot_rows(
+        doc_path=out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md",
+        out_dir=out_dir,
+        screenshot_registry=screenshot_registry,
+        page_name="FROM_CHUMMER5A_TO_CHUMMER6.md",
+    )
+    if screenshot_rows:
+        rows.extend(["## Real preview comparison", ""])
+        rows.extend(screenshot_rows)
+    rows.extend(
+        [
         "## What will feel familiar",
         "",
         "- It is still aiming for a dense desktop workbench, not a stripped-down dashboard.",
@@ -1680,7 +1754,8 @@ def _generate_from_chummer5a_to_chummer6(
         "- roster behavior",
         "- settings and account recovery",
         "- import and export paths",
-    ]
+        ]
+    )
     _write(out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md", "\n".join(rows))
 
 
@@ -1751,7 +1826,13 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     _write(out_dir / "STATUS.md", "\n".join(rows))
 
 
-def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:
+def _generate_help(
+    out_dir: Path,
+    help_copy: str,
+    trust_payload: dict[str, object],
+    release_payload: dict[str, object],
+    screenshot_registry: dict[str, object],
+) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     rows = [
@@ -1770,6 +1851,15 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         "- **I need private help:** Use Contact or in-account support instead of posting private details publicly.",
         "",
     ]
+    screenshot_rows = _screenshot_rows(
+        doc_path=out_dir / "HELP.md",
+        out_dir=out_dir,
+        screenshot_registry=screenshot_registry,
+        page_name="HELP.md",
+    )
+    if screenshot_rows:
+        rows.extend(["## Real preview proof", ""])
+        rows.extend(screenshot_rows)
     if isinstance(help_page, dict):
         for section in help_page.get("sections") or []:
             if isinstance(section, dict):
@@ -1812,6 +1902,7 @@ def _generate_download(
     release_payload: dict[str, object],
     release_source: str,
     release_experience: dict[str, object],
+    screenshot_registry: dict[str, object],
 ) -> None:
     phase = _public_phase_label(progress.get("phase_label") or "Current release status")
     artifacts = _release_artifacts(release_payload)
@@ -1869,6 +1960,7 @@ def _generate_download(
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
         rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
     rows.append("- You do not need GitHub for the normal download path.")
+    rows.append("- Raw GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.")
 
     rows.extend(
         [
@@ -1890,6 +1982,15 @@ def _generate_download(
         rows.append(f"- {known_issue_label}: {known_issues}")
     if fix_availability:
         rows.append(f"- Update note: {fix_availability}")
+    screenshot_rows = _screenshot_rows(
+        doc_path=out_dir / "DOWNLOAD.md",
+        out_dir=out_dir,
+        screenshot_registry=screenshot_registry,
+        page_name="DOWNLOAD.md",
+    )
+    if screenshot_rows:
+        rows.extend(["", "## Real preview proof", ""])
+        rows.extend(screenshot_rows)
 
     rows.extend(
         [
@@ -2263,9 +2364,10 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     primary_route_registry = _load_yaml(repo_root / "products" / "chummer" / "PRIMARY_ROUTE_REGISTRY.yaml")
     flagship_parity_registry = _load_yaml(repo_root / "products" / "chummer" / "FLAGSHIP_PARITY_REGISTRY.yaml")
     help_copy = _load_text(repo_root / "products" / "chummer" / "PUBLIC_HELP_COPY.md")
+    screenshot_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_SCREENSHOT_REGISTRY.yaml")
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
-    required_assets = _required_public_asset_paths(part_registry, horizon_registry)
+    required_assets = _required_public_asset_paths(part_registry, horizon_registry, screenshot_registry)
 
     _materialize_public_assets(
         repo_root,
@@ -2285,11 +2387,11 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         primary_route_registry,
         flagship_parity_registry,
     )
-    _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
+    _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload, screenshot_registry)
     _generate_status(out_dir, trust_payload, progress, release_payload)
-    _generate_help(out_dir, help_copy, trust_payload, release_payload)
+    _generate_help(out_dir, help_copy, trust_payload, release_payload, screenshot_registry)
     _generate_faq(out_dir, faq_registry)
-    _generate_download(out_dir, progress, release_payload, release_source, release_experience)
+    _generate_download(out_dir, progress, release_payload, release_source, release_experience, screenshot_registry)
     _generate_contact(out_dir, trust_payload)
     _generate_part_pages(out_dir, part_registry)
     _generate_horizon_pages(

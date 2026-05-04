@@ -348,11 +348,13 @@ rg -n '^## Current picture$' "$repo_root/products/chummer/public-guide/STATUS.md
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^## Quick triage$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^## Product questions in plain language$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n 'assets/screenshots/help-preview-workspace.png' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Using Chummer6$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^### Can I actually use this now\?$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^# Download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## (Current public download|Current preview shelf)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n 'assets/screenshots/download-preview-workspace.png' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## Current package format$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## SHA256$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## Recent release verification$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
@@ -370,6 +372,7 @@ rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n '^# Chummer6$' "$downstream_root/README.md" >/dev/null
 rg -n '^## What is real now$' "$downstream_root/README.md" >/dev/null
+rg -n 'assets/screenshots/migration-before.png' "$repo_root/products/chummer/public-guide/FROM_CHUMMER5A_TO_CHUMMER6.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^## Current picture$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^# Download$' "$downstream_root/DOWNLOAD.md" >/dev/null

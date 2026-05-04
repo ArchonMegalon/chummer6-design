@@ -8,6 +8,7 @@ Start here when you want the right file first.
 - There is no public Linux download today.
 - There is no public macOS download today.
 - You do not need GitHub for the normal download path.
+- Raw GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.
 
 ## Current public download
 
@@ -20,9 +21,16 @@ Start here when you want the right file first.
 - Preview note: This is still a preview, but the current public downloads have recent proof for setup, recovery, offline-ready behavior, release follow-up, and support.
 - Update note: Only expect fix notices after the affected download is available on the same public shelf.
 
+## Real preview proof
+
+![Real Chummer6 preview workspace screenshot](assets/screenshots/download-preview-workspace.png)
+
+*Real preview workspace from the current app, captured during an acceptance journey.*
+
+
 ## Current build matrix
 
-Official client downloads start at chummer.run. GitHub is for source and public development evidence, not installer, archive, update payload, or preview-client downloads.
+Use chummer.run for downloads. Use GitHub only when you want source or a public bug thread.
 
 ### Windows
 
