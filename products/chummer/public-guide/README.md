@@ -1,4 +1,4 @@
-# Chummer Public Guide
+# Chummer6
 
 Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.
 
@@ -25,10 +25,10 @@ The goal is simple: build correctly, explain clearly, run reliably, recover calm
 
 ## Start here
 
-- [Download](DOWNLOAD.md)
+- [Download builds](DOWNLOAD.md)
 - [Status](STATUS.md)
 - [What Chummer6 Is](WHAT_CHUMMER6_IS.md)
-- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)
+- [Moving from Chummer5a](FROM_CHUMMER5A_TO_CHUMMER6.md)
 - [How can I help](HOW_CAN_I_HELP.md)
 - [Help](HELP.md)
 - [FAQ](FAQ.md)

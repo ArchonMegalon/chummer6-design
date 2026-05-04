@@ -337,7 +337,7 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|DESKTOP_CLIENT_PRODUCT_CUT|DESKTOP_PLATFORM_ACCEPTANCE_MATRIX|LOCALIZATION_AND_LANGUAGE_SYSTEM|LOCALIZATION_PARITY_MATRIX|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|NEXT_12_BIGGEST_WINS_GUIDE|NEXT_12_BIGGEST_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n '^# Chummer Public Guide$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^# Chummer6$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## Product promise$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## What is real now$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## Start here$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
@@ -347,7 +347,7 @@ rg -n '^# Status$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/nu
 rg -n '^## Current picture$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^## Quick triage$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
-rg -n '^## Ask from inside Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n '^## Product questions in plain language$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Using Chummer6$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^### Can I actually use this now\?$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
@@ -368,7 +368,7 @@ rg -n '^## What has to be true first$' "$repo_root/products/chummer/public-guide
 rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
-rg -n '^# Chummer Public Guide$' "$downstream_root/README.md" >/dev/null
+rg -n '^# Chummer6$' "$downstream_root/README.md" >/dev/null
 rg -n '^## What is real now$' "$downstream_root/README.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^## Current picture$' "$downstream_root/STATUS.md" >/dev/null

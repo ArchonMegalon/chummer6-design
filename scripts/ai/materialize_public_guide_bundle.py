@@ -1440,8 +1440,8 @@ def _generate_root(
             ordered_ctas.append(line)
 
     rows = [
-        _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
-        "# Chummer Public Guide",
+        _front_matter("Chummer6", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
+        "# Chummer6",
         "",
         "Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.",
         "",
@@ -1484,10 +1484,10 @@ def _generate_root(
         [
             "## Start here",
             "",
-            "- [Download](DOWNLOAD.md)",
+            "- [Download builds](DOWNLOAD.md)",
             "- [Status](STATUS.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-            "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
+            "- [Moving from Chummer5a](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         ]
     )
     rows.extend(
@@ -1669,9 +1669,17 @@ def _generate_from_chummer5a_to_chummer6(
         "## Read next",
         "",
         "- [Status](STATUS.md)",
-        "- [Download](DOWNLOAD.md)",
+        "- [Download builds](DOWNLOAD.md)",
         "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
         "- [Help](HELP.md)",
+        "",
+        "## First things to compare for yourself",
+        "",
+        "- menu and toolbar density",
+        "- the builder flow",
+        "- roster behavior",
+        "- settings and account recovery",
+        "- import and export paths",
     ]
     _write(out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md", "\n".join(rows))
 
@@ -1881,7 +1889,7 @@ def _generate_download(
             "",
             "## Current build matrix",
             "",
-            "Official client downloads start at chummer.run. GitHub is for source and public development evidence, not installer, archive, update payload, or preview-client downloads.",
+            "Use chummer.run for downloads. Use GitHub only when you want source or a public bug thread.",
         ]
     )
 
