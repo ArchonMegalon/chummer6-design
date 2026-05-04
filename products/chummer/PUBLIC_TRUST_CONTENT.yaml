@@ -85,7 +85,7 @@ trust_pages:
       - id: install-linking
         eyebrow: "Install linking"
         heading: "The download file is the same for everyone"
-        body: "When Chummer publishes a download, everyone gets the same file. Chummer does not build a private installer just for your account. If linked handoff is available, the account-aware piece is the short-lived receipt or code that reconnects a local copy back to your account."
+        body: "When Chummer publishes a download, everyone gets the same file. Chummer does not build a private installer just for your account. If linked handoff is available, the account-aware piece is the short-lived handoff code that reconnects a local copy back to your account."
       - id: not-in-hub
         eyebrow: "What stays out"
         heading: "Temporary sign-in tokens and raw secrets stay out of your account record"
@@ -101,7 +101,7 @@ trust_pages:
         bullets:
           - "What we collect is bounded to install-level health and usability fields, not private campaign names or raw runner sheets."
           - "Opting out stops hosted telemetry emission while local install and support history remain on-device."
-          - "Critical support workflows and explicit crash diagnostics are opt-in and receipt-led."
+          - "Critical support workflows and explicit crash diagnostics stay explicit opt-in."
   - id: terms
     eyebrow: "Terms"
     heading: "Preview terms in plain language"
@@ -197,7 +197,7 @@ faq_pages:
           - question: "Do I need an account to download the current preview?"
             answer: "No. The current public preview download is Windows desktop. Linux and macOS are not public yet. Create an account when you want recovery, tracked support, and a cleaner return path when linked downloads are available."
           - question: "Do I get a personalized download?"
-            answer: "No. The published package stays the same for everyone. Any account-aware receipt or handoff is separate from the file itself."
+            answer: "No. The published package stays the same for everyone. Any account-aware handoff is separate from the file itself."
           - question: "Where do I go if install or update goes sideways?"
             answer: "Start with Downloads, then use Contact or Account > Support. GitHub is the advanced public issue path, not the default support door."
       - title: "Participation and support"
