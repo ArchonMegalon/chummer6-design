@@ -41,7 +41,7 @@ It connects:
 - quickstart runners
 - community rule environments
 - join policies
-- scheduling receipts
+- scheduling records
 - meeting handoff
 - campaign pulse
 - resolution reports
