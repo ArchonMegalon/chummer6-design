@@ -239,12 +239,12 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: static markdown instructions only
-  - path: /artifacts/explanation-receipt-trail
+  - path: /artifacts/explanation-trail
     title: Explanation trail detail
     audience: public
     purpose: artifact_detail
     requires_auth: false
-    guest_fallback: /artifacts/explanation-receipt-trail
+    guest_fallback: /artifacts/explanation-trail
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: artifact detail only

@@ -76,7 +76,7 @@ cards:
     microproof: Deterministic engine|Repeatable totals|Clean audit trail
     pain: Engine-backed modifiers
     payoff: Repeatable totals and clean audits
-  - id: receipts_and_provenance
+  - id: explanations_and_provenance
     bucket: why_trust_it
     title: Explanations and provenance
     summary: Every answer stays tied to visible explanations and provenance.
@@ -408,7 +408,7 @@ cards:
     payoff: One truthful bootstrap turns a Mac Codex session into a repeatable public-release lane instead of a manual operator ritual.
     proof_note: "Paste `bash <(curl -fsSL https://chummer.run/downloads/release-upload/bootstrap.sh)` into the Mac shell, then let the bootstrap build, sign, notarize, publish, and verify the release with the current supported chummer.run topology."
     microproof: Clone and pin refs|Codesign and notarize|Publish and verify live shelf
-  - id: artifact_rules_receipt
+  - id: artifact_rules_explanation
     bucket: featured_artifacts
     title: Explanation trail
     summary: The preview shelf already shows how Chummer explains a result instead of hiding the path.
@@ -417,7 +417,7 @@ cards:
     audience: public
     image_family: simulation_bench
     asset_slot: capability_check_rules
-    detail_route: /artifacts/explanation-receipt-trail
+    detail_route: /artifacts/explanation-trail
     action_label: Inspect the explanation trail
     detail_primary_href: /now#real-rules-truth
     detail_primary_label: Inspect the explanation trail
