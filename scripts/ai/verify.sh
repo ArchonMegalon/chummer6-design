@@ -346,7 +346,7 @@ rg -n '^## Product parts$' "$repo_root/products/chummer/public-guide/README.md" 
 rg -n '^# Status$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^## Current picture$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
-rg -n '^## Start with the release page and download help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n '^## Quick triage$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^## Ask from inside Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Using Chummer6$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null

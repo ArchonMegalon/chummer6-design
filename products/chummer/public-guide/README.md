@@ -1,10 +1,10 @@
 # Chummer Public Guide
 
-Use this guide to answer the practical questions first: what Chummer6 is, what is real today, what to download, and where to get help.
+Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.
 
 ## Product promise
 
-Chummer6 is the explainable Shadowrun campaign OS.
+Chummer6 helps Shadowrun players and GMs build runners, explain rulings, and keep campaigns moving without mystery math.
 
 Its first must-win job is being the most trustworthy way to build, inspect, and advance a Shadowrun character.
 
@@ -14,12 +14,12 @@ The goal is simple: build correctly, explain clearly, run reliably, recover calm
 
 - Short answer: yes, as an early preview.
 - Downloads are currently live for Windows.
-- Proof on the public shelf is scoped to the posted files, named flows, and recent checks you can inspect today; it is not a blanket flagship-complete claim and it does not outrank the recommended install route.
-- Preview proof, fallback routes, artifact explainers, and packet-detail artifacts can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar.
 - If you see both desktop apps, start with the Avalonia desktop app. Treat Blazor desktop app as a fallback path only when the download page or support explicitly tells you to use it.
+- Use Avalonia first when the download page offers it.
 - Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.
 - Today: Usable preview.
 - Still missing from the public download page: Linux and macOS.
+- The current shelf should be read as a real preview, not a finished no-step-back release.
 - Help, contact, privacy, and terms pages are live.
 - More campaign-ledger depth and steadier desktop polish are still coming.
 
@@ -37,11 +37,11 @@ The goal is simple: build correctly, explain clearly, run reliably, recover calm
 
 ## How can I help?
 
-If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).
+Use the public participation path when you want to report a problem, flag confusing guide copy, or suggest a future improvement.
 
-- The public participation door is <https://chummer.run/participate>.
-- The cheap baseline stays the default path; guided contribution is extra, not the normal support door.
-- Final landing still goes through review before anything ships.
+- [Open the public participation page](https://chummer.run/participate)
+- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)
+- Guided contribution is optional and still goes through review before anything lands.
 
 ## First contact
 

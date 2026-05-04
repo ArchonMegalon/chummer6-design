@@ -845,6 +845,38 @@ def _public_copy(text: str) -> str:
     return cleaned
 
 
+def _status_closure_readout(
+    front_door_closeout: str,
+    substrate_lane: str,
+    substrate_contract_sets: list[str],
+) -> str:
+    front_door_complete = front_door_closeout == "complete"
+    substrate_active = substrate_lane == "in_progress"
+    if not front_door_complete and not substrate_active:
+        return ""
+
+    closure_bits: list[str] = []
+    if front_door_complete:
+        closure_bits.append("front-door progress is closed")
+    else:
+        closure_bits.append("front-door proof plane is still open")
+
+    if substrate_active:
+        tracked = len(substrate_contract_sets)
+        if tracked:
+            top_sets = ", ".join(substrate_contract_sets[:5])
+            suffix = ", and others" if tracked > 5 else ""
+            closure_bits.append(
+                f"campaign/world/community/admin substrate proof is still active ({top_sets}{suffix})"
+            )
+        else:
+            closure_bits.append("campaign/world/community/admin substrate proof is still active")
+    else:
+        closure_bits.append("campaign/world/community/admin substrate proof is marked closed")
+
+    return " ; ".join(closure_bits) + "."
+
+
 def _public_phase_label(value: object) -> str:
     cleaned = str(value or "").strip()
     if not cleaned:
@@ -1223,10 +1255,10 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
     open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
     published = _release_is_published(release_payload.get("status"))
     rendered = dict(section)
-    rendered["heading"] = "Start with the release page and download help"
+    rendered["heading"] = "Download and install first"
     if installers:
         if published:
-            rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails."
+            rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and the next safe step if setup fails."
             rendered["bullets"] = [
                 "Start with the recommended installer for your platform.",
                 "Use the other package only if the installer gives you trouble.",
@@ -1411,11 +1443,11 @@ def _generate_root(
         _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "# Chummer Public Guide",
         "",
-        "Use this guide to answer the practical questions first: what Chummer6 is, what is real today, what to download, and where to get help.",
+        "Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.",
         "",
         "## Product promise",
         "",
-        "Chummer6 is the explainable Shadowrun campaign OS.",
+        "Chummer6 helps Shadowrun players and GMs build runners, explain rulings, and keep campaigns moving without mystery math.",
         "",
         "Its first must-win job is being the most trustworthy way to build, inspect, and advance a Shadowrun character.",
         "",
@@ -1425,9 +1457,8 @@ def _generate_root(
         "",
         "- Short answer: yes, as an early preview.",
         f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
-        f"- {proof_scope_line}",
-        f"- {claim_boundary_line}",
         f"- {desktop_pick_line}",
+        "- Use Avalonia first when the download page offers it.",
         f"- {quality_gap_line}",
     ]
     if phase:
@@ -1439,6 +1470,7 @@ def _generate_root(
                 if missing_platforms
                 else "- Public downloads are visible on every promised desktop platform."
             ),
+            "- The current shelf should be read as a real preview, not a finished no-step-back release.",
             "- Help, contact, privacy, and terms pages are live.",
             (
                 "- More campaign-ledger depth and steadier desktop polish are still coming."
@@ -1477,11 +1509,11 @@ def _generate_root(
             "",
             "## How can I help?",
             "",
-            "If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).",
+            "Use the public participation path when you want to report a problem, flag confusing guide copy, or suggest a future improvement.",
             "",
-            "- The public participation door is <https://chummer.run/participate>.",
-            "- The cheap baseline stays the default path; guided contribution is extra, not the normal support door.",
-            "- Final landing still goes through review before anything ships.",
+            "- [Open the public participation page](https://chummer.run/participate)",
+            "- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)",
+            "- Guided contribution is optional and still goes through review before anything lands.",
             "",
         ]
     )
@@ -1569,7 +1601,16 @@ def _generate_from_chummer5a_to_chummer6(
         if below_gold
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
     )
-    proof_boundary_line = "Posted proof is scoped to the current files and flows you can inspect today; it is not a blanket flagship claim."
+    switch_now_line = (
+        f"Today you can try preview builds on {_english_join(available_platforms)}."
+        if available_platforms
+        else "There are no public downloads posted right now, so this is not a practical switch yet."
+    )
+    wait_platform_line = (
+        f"If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
+        if missing_platforms
+        else "Public downloads are already visible on every promised desktop platform."
+    )
 
     rows = [
         _front_matter("From Chummer5a to Chummer6", "products/chummer/PRIMARY_ROUTE_REGISTRY.yaml"),
@@ -1593,27 +1634,37 @@ def _generate_from_chummer5a_to_chummer6(
         "- Recovery and continuity are being treated as core product work, not as an afterthought.",
         "- Status, downloads, and help are easier to find without digging around for the current answer.",
         "",
-        "## Should you switch today?",
+        "## What the switch looks like in practice",
         "",
-        (
-            f"- Today you can try preview builds on {_english_join(available_platforms)}."
-            if available_platforms
-            else "- There are no public downloads posted right now, so this is not a practical switch yet."
-        ),
-        (
-            f"- If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
-            if missing_platforms
-            else "- Public downloads are already visible on every promised desktop platform."
-        ),
-        "- If you like trying real previews and helping shape the rough edges, it is worth a serious look.",
-        "- If you need a fully settled, every-platform replacement for Chummer5a right now, wait.",
+        "| If this is what you do in Chummer5a | Expect this in Chummer6 |",
+        "| --- | --- |",
+        "| Build or tweak a runner | A similar dense desktop flow, but with a stronger push to explain why totals changed. |",
+        "| Chase a weird modifier | A clearer receipt trail instead of reconstructing the math from memory. |",
+        "| Come back after a bad install, lost device, or broken update | Recovery, download, and help are treated as product work instead of an afterthought. |",
+        "| Check whether the preview is ready for you | The status page, download shelf, and help page are meant to answer that directly. |",
         "",
         "## What is still rough",
         "",
         f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
         f"- {rules_gap_line}",
-        f"- {proof_boundary_line}",
-        "- It should still be read as a serious preview, not a finished no-step-back replacement yet.",
+        f"- {wait_platform_line}",
+        "- Treat the current shelf as a serious preview, not a fully settled every-platform replacement yet.",
+        "",
+        "## Should you switch today?",
+        "",
+        f"- {switch_now_line}",
+        "",
+        "### If you mostly live on Windows and like testing real previews",
+        "",
+        "- It is worth a serious look.",
+        "",
+        "### If Linux or macOS is your daily route",
+        "",
+        "- Wait until your platform is on the public shelf before making it your main path.",
+        "",
+        "### If you need a settled replacement this week",
+        "",
+        "- Wait if you need a no-drama every-platform swap right now.",
         "",
         "## Read next",
         "",
@@ -1639,6 +1690,21 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
     missing_platforms = _missing_platform_labels(artifacts)
+    closure = (
+        progress.get("closure_semantics")
+        or (progress.get("supporting_signals") or {}).get("closure_semantics")
+        or {}
+    )
+    closure_front_door = str(closure.get("front_door_closeout") or "").strip().lower()
+    closure_substrate = str(closure.get("substrate_proof_lane") or "").strip().lower()
+    closure_substrate_contracts = list(
+        dict.fromkeys(
+            str(item).strip()
+            for item in (progress.get("substrate_contract_sets_in_progress") or (progress.get("supporting_signals") or {}).get("substrate_contract_sets_in_progress") or [])
+            if str(item).strip()
+        )
+    )
+    closure_statement = _status_closure_readout(closure_front_door, closure_substrate, closure_substrate_contracts)
     rows = [
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
@@ -1665,6 +1731,8 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
             rows.append(f"- Recent checks: {release_verification}")
         if known_issues:
             rows.append(f"- {known_issue_label}: {known_issues}")
+        if closure_statement:
+            rows.append(f"- {closure_statement}")
         rows.append("- Help, contact, privacy, and terms pages are live.")
         rows.append("")
 
@@ -1682,7 +1750,16 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         _front_matter("Help", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# Help",
         "",
-        "Start here if installation, updates, sign-in, or bugs are getting in the way.",
+        "If you just need the right file, go to [Download](DOWNLOAD.md). If something broke, start here instead of guessing.",
+        "",
+        "## Quick triage",
+        "",
+        "- **Installer will not start:** Start with the recommended download for your platform, then contact support if setup still fails.",
+        "- **I cannot sign in:** Use the account recovery flow before trying random reinstall steps.",
+        "- **I lost access:** Use recovery email or the account page so identity and device problems stay separate.",
+        "- **An update failed:** Go back to the current download page, then contact support with the version and platform if the retry still fails.",
+        "- **I need to report a bug:** Use [Contact](CONTACT.md) first. Use GitHub only when you want a public bug thread.",
+        "- **I need private help:** Use Contact or in-account support instead of posting private details publicly.",
         "",
     ]
     if isinstance(help_page, dict):
@@ -1765,7 +1842,7 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
-        "This page tells you what you can download right now and which file to start with.",
+        "Start here when you want the right file first.",
         "",
         "## What should I download first?",
         "",
@@ -1776,6 +1853,7 @@ def _generate_download(
     heads_present = {str(item.get("head") or "").strip().lower() for item in artifacts if isinstance(item, dict)}
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
         rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
+    rows.append("- You do not need GitHub for the normal download path.")
 
     rows.extend(
         [
@@ -1792,8 +1870,7 @@ def _generate_download(
     rows.append(f"- {shelf_truth}")
     if release_verification:
         rows.append(f"- Recent checks: {release_verification}")
-    rows.append(f"- Proof scope: {proof_scope_summary}")
-    rows.append(f"- Claim boundary: {flagship_claim_summary}")
+    rows.append("- These are real preview builds, not a finished flagship release yet.")
     if known_issues:
         rows.append(f"- {known_issue_label}: {known_issues}")
     if fix_availability:
@@ -1844,9 +1921,9 @@ def _generate_download(
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
             if _release_is_published(status):
-                rows.append("- Where an installer exists, start there. Archive packages, packet-detail artifacts, and explainer bundles are fallback, recovery, or inspection paths, not equal flagship routes.")
+                rows.append("- Where an installer exists, start there. Archive packages are fallback or recovery paths, not the normal first pick.")
             else:
-                rows.append("- Installers are already visible, but they still count as preview files until the release is published; proof artifacts and explainers still stay secondary to that shelf.")
+                rows.append("- Installers are already visible, but they still count as preview files until the release is published.")
         else:
             if _release_is_published(status):
                 rows.append("- Setup currently starts from a downloaded package because there is no posted installer.")
