@@ -29,5 +29,5 @@ Hub already powers sign-in, landing and home views, participation, and community
 
 ## Go deeper
 
-- ../NOW/current-status.md
-- ../WHERE_TO_GO_DEEPER.md
+- [Current status](../NOW/current-status.md)
+- [Where to go deeper](../WHERE_TO_GO_DEEPER.md)

@@ -29,5 +29,5 @@ Core already anchors the rules engine, and the current work is about keeping it 
 
 ## Go deeper
 
-- ../WHAT_CHUMMER6_IS.md
-- ../WHERE_TO_GO_DEEPER.md
+- [What Chummer6 Is](../WHAT_CHUMMER6_IS.md)
+- [Where to go deeper](../WHERE_TO_GO_DEEPER.md)
