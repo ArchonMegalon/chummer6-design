@@ -208,9 +208,45 @@ def _load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
+def _teaser_first_cleanup(content: str) -> str:
+    replacements = {
+        "Every claim needs a receipt.": "Every claim needs a clear source trail.",
+        "- Show receipts": "- Show breakdown",
+        "The receipts still do the serious work.": "The breakdown still does the serious work.",
+        "- advice without receipts": "- advice without grounded explanations",
+        "5. see receipts": "5. see the breakdown",
+        "**ALICE is where Chummer becomes a build mentor with receipts.**": "**ALICE is where Chummer becomes a build mentor with grounded explanations.**",
+        "Activation receipts": "Activation records",
+        "An activation receipt tells the table:": "An activation record tells the table:",
+        "That receipt is the table’s safety rail.": "That record is the table’s safety rail.",
+        "Here is the receipt.": "Here is the breakdown.",
+        "explicit lossy/blocking receipts": "explicit lossy/blocking notes",
+        "preview receipts": "preview summaries",
+        "player-visible receipts": "player-visible change notes",
+        "explicit lossy receipts where not possible": "explicit lossy notes where not possible",
+        "activation receipts": "activation records",
+        "generate an activation receipt": "generate an activation record",
+        "Every package needs a manifest, fingerprint, and receipt.": "Every package needs a manifest, fingerprint, and change record.",
+        "Rule changes need receipts and rollback semantics so a campaign can recover safely.": "Rule changes need change logs and rollback semantics so a campaign can recover safely.",
+        "Some legacy behavior may import cleanly; some may produce lossy or blocking receipts.": "Some legacy behavior may import cleanly; some may produce lossy or blocking notes.",
+        "preserve activation receipts": "preserve activation records",
+        "packages, reviews, and receipts determine what is real.": "packages, reviews, and change records determine what is real.",
+        "activate with a receipt": "activate with a record",
+        "- scheduling receipts": "- scheduling records",
+        "- scheduling receipt": "- scheduling record",
+        "typed event receipts": "typed event records",
+        "- receipts": "- source trails",
+        "It is an artifact studio with receipts.": "It is an artifact studio with source trails.",
+    }
+    cleaned = content
+    for old, new in replacements.items():
+        cleaned = cleaned.replace(old, new)
+    return cleaned
+
+
 def _write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content.strip() + "\n", encoding="utf-8")
+    path.write_text(_teaser_first_cleanup(content).strip() + "\n", encoding="utf-8")
 
 
 def _ffmpeg_bin() -> str:

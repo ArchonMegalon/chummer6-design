@@ -149,7 +149,7 @@ For complex events:
 - source packets
 - images/cards
 - markers
-- receipts
+- source trails
 - replay links
 - related intel
 
