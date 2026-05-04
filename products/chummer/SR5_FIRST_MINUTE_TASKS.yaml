@@ -7,7 +7,6 @@ scope:
   ruleset: SR5
   heads:
     - Chummer.Avalonia
-    - Chummer.Blazor.Desktop
 user_model: Serious Chummer5a veteran with no coaching and no browser ritual tolerance.
 total_time_budget_seconds: 60
 required_generated_receipt: SR5_FIRST_MINUTE_TASKS.generated.json

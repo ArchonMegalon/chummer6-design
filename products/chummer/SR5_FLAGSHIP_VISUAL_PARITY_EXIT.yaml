@@ -7,7 +7,6 @@ scope:
   ruleset: SR5
   heads:
     - Chummer.Avalonia
-    - Chummer.Blazor.Desktop
 head_policy:
   promoted_head_must_pass_directly: true
   secondary_head_must_also_pass_for_gold_claims: true

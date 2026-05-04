@@ -6,7 +6,6 @@ workspace:
   doctrine_path: PRODUCT_BACKBONE_WORKSPACE.md
 delivery_doctrine:
   flagship_head: Chummer.Avalonia
-  fallback_head: Chummer.Blazor.Desktop
   public_surfaces_mode: generated_from_product_and_release_manifests
   ai_media_role: adjunct_only
   control_plane_rule: fleet_and_ea_consume_workspace_truth_without_forking_the_architecture

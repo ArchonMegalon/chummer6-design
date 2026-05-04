@@ -10,9 +10,8 @@ This gate is also intentionally broader than "shell parity." A polished menu bar
 
 * `Chummer.Avalonia` is the default flagship desktop head for the promoted desktop wave.
 * Exactly one desktop head may be the primary public CTA for a lane.
-* `Chummer.Blazor.Desktop` is fallback only when the lane also ships Avalonia as the promoted primary head and the shelf, release copy, and evidence all label Blazor as compatibility or bounded fallback.
-* Any gold or flagship-ready desktop claim requires every shipped desktop head, including `Chummer.Blazor.Desktop`, to independently meet the flagship bar even if only one head is the default public CTA.
-* Preview may still ship Blazor Desktop as bounded fallback, but that preview exception does not count as gold.
+* No second desktop head is currently on the public shelf.
+* Any future secondary desktop head must independently meet the flagship bar instead of borrowing Avalonia proof.
 * Neither head may inherit the other head's menu, install, workflow, or visual-familiarity proof unless the gate explicitly scopes that proof as shared.
 
 ## Source standards
@@ -83,13 +82,12 @@ The promoted desktop head must prove all of the following before release truth c
 
 14. Head posture is unambiguous.
    - Avalonia must clear the full gate as the flagship head.
-   - Blazor Desktop must also clear the full gate for any gold or flagship-ready claim, even when it is the secondary route.
-   - Preview may still ship Blazor Desktop as bounded fallback only when the shelf, product cut, and platform matrix say so, but that posture does not satisfy gold.
-   - A fallback head that becomes the sole or recommended public route is treated as flagship and must pass the flagship bar directly.
+   - No secondary desktop head is currently part of the promoted route.
+   - If a future secondary head becomes the sole or recommended public route, it is treated as flagship and must pass the flagship bar directly.
 
 ## Gate structure
 
-Every promoted desktop release must carry the executable exit lanes in `DESKTOP_EXECUTABLE_EXIT_GATES.md` plus the following flagship proof lanes. A gold claim must publish per-head proof records for both desktop heads even when only one is the default public CTA:
+Every promoted desktop release must carry the executable exit lanes in `DESKTOP_EXECUTABLE_EXIT_GATES.md` plus the following flagship proof lanes. A gold claim must publish per-head proof records for every shipped desktop head even when only one is the default public CTA:
 
 ### 1. Deterministic interaction lane
 
@@ -204,10 +202,8 @@ This gate is strict:
 - If the shipped output claims a bundled demo runner but the file is missing, the gate fails.
 - If dark/light screenshots reveal unreadable contrast or broken state treatment, or if the screenshots are corrupt or undersized, the gate fails.
 - If the promoted head only proves shell chrome while a Chummer5a workflow family still lacks a usable equivalent, the gate fails.
-- If Blazor is labelled fallback but the lane does not also name Avalonia as the primary head, the gate fails.
 - If a gold claim ships any secondary desktop head on thinner proof than the primary head, the gate fails.
-- If Blazor is the only user-facing desktop head or the recommended download and it lacks full flagship proof, the gate fails.
-- If any workflow family is proven only by the other head and no bounded replacement story exists, the gate fails.
+- If any workflow family is proven only by a non-shipped or non-promoted head and no bounded replacement story exists, the gate fails.
 - If the parity checklist claims a workflow family is covered but no executable release proof exists for it, the gate fails.
 - If either executable desktop-exit receipt is missing, stale, or failing, the gate fails.
 - If the visual-familiarity receipt is missing, stale, or failing, the gate fails.

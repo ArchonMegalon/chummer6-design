@@ -5,7 +5,7 @@ This file defines the convergence target for Chummer's primary engineering home.
 ## Goal
 
 Create one primary product workspace named `chummer-product`.
-It is the main integration home for flagship desktop, deterministic engine, dossier/campaign truth, workspace and sync, registry/update, support/trust, fallback heads, and bounded media/AI adjuncts.
+It is the main integration home for flagship desktop, deterministic engine, dossier/campaign truth, workspace and sync, registry/update, support/trust, desktop delivery, and bounded media/AI adjuncts.
 
 This does not require an immediate monorepo rewrite.
 Repo boundaries may stay where deployment, release, or ownership boundaries are real.
@@ -38,7 +38,7 @@ The primary top-level modules are user-facing product domains, not the repo grap
 ### 2. Desktop flagship first
 
 `Chummer.Avalonia` remains the primary flagship desktop head.
-`Chummer.Blazor.Desktop` remains the bounded fallback desktop head.
+No second desktop head is currently part of the shipped public route.
 
 The promoted desktop route must prove:
 

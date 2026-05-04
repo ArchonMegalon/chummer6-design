@@ -40,7 +40,7 @@ acceptance_axes:
   - id: desktop_familiarity_and_install_continuity
     rule: Desktop install, claim, restore, and workbench continuation preserve Chummer5a familiarity and avoid browser-ritual or dashboard-first detours on the promoted path.
   - id: desktop_head_authority_and_fallback_honesty
-    rule: Avalonia is the default primary desktop head; preview may still label Blazor Desktop as bounded fallback when the release shelf, platform matrix, and public copy explicitly say so, but any gold claim requires every shipped desktop head to independently meet the flagship bar for its promised scope.
+    rule: Avalonia is the default primary desktop head; no second desktop head is currently on the public shelf, and any future shipped head must independently meet the flagship bar for its promised scope.
   - id: dense_workbench_budget
     rule: The promoted desktop head stays within the dense-workbench budget for spacing, chrome, visible rows, and always-visible trust posture.
   - id: authored_ruleset_experience
@@ -78,9 +78,9 @@ surfaces:
       - chummer6-core
     must_prove:
       - One obvious flagship desktop head and install path per promoted platform.
-      - Avalonia is the primary promoted desktop head unless the release matrix explicitly elevates Blazor Desktop to flagship for that lane.
-      - Blazor Desktop only counts as fallback when the shelf labels it compatibility or fallback and Avalonia remains the primary public route.
-      - If Blazor Desktop is the only user-facing desktop head or the recommended download, it must satisfy the same desktop flagship proof lanes as Avalonia for the workflows it promises.
+      - Avalonia is the primary promoted desktop head for the current lane.
+      - No second desktop head is currently part of the public shelf.
+      - If a second desktop head is reintroduced later or becomes the recommended download, it must satisfy the same desktop flagship proof lanes as Avalonia for the workflows it promises.
       - A gold desktop claim is only true when every shipped desktop head independently satisfies startup, install, update, crash-recovery, feedback, workflow, and visual-familiarity proof.
       - The promoted desktop path starts with a guided product installer path instead of a framework chooser or browser ritual.
       - Install, claim, and restore land in the installer or app and open a workbench or restore continuation flow without a dashboard-first detour.
@@ -223,7 +223,7 @@ surfaces:
 whole_product_release_rules:
   - Public release claims must stay within the surfaces that pass this matrix or carry an explicit, bounded preview explanation.
   - Structural completion and flagship replacement truth must be published separately; green milestones, empty uncovered-scope lists, or clean repo graphs are not a substitute for veteran-ready product proof.
-  - A desktop release claim is incomplete if it names Blazor Desktop as available without also stating whether it is fallback or flagship for that lane.
+  - A desktop release claim is incomplete if it names a second desktop head as available without also stating its exact release posture for that lane.
   - A fallback head does not satisfy flagship readiness by association; if it is the only user-facing desktop route or the recommended public route, it must pass the flagship bar directly.
   - A gold claim cannot ship a secondary desktop head on shell-only, visual-only, or borrowed proof; every shipped head must independently clear the flagship bar.
   - Installer bytes, release-channel truth, public shelf truth, in-app update truth, and support truth must agree; if they disagree, the affected release-health planes stay non-ready.

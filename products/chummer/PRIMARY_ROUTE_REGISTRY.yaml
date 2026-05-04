@@ -2,7 +2,6 @@ version: 1
 last_reviewed: 2026-04-16
 purpose: One-primary-route contract for major Chummer jobs so flagship release truth can fail when fallback starts masquerading as the real product.
 default_primary_head: Chummer.Avalonia
-default_bounded_fallback_head: Chummer.Blazor.Desktop
 policy:
   one_primary_route_per_job: true
   fallback_must_be_bounded_and_labeled: true
@@ -22,14 +21,7 @@ jobs:
       - CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - SR5_FLAGSHIP_VISUAL_PARITY_EXIT.generated.json
       - SR5_FIRST_MINUTE_TASKS.generated.json
-    fallback_routes:
-      - repo: chummer6-ui
-        head: Chummer.Blazor.Desktop
-        posture: bounded_fallback
-        reason: temporary_compatibility_or_recovery_only
-        expiry_target: remove_as_primary_dependency_before_sr5_gold
-        label_required_in_public_copy: true
-        condition: compatibility_only_when_the_release_shelf_and_platform_matrix_label_it_explicitly
+    fallback_routes: []
   - id: import_and_open_existing_runner
     release_state: veteran_approved
     primary_route:
@@ -40,14 +32,7 @@ jobs:
       - DESKTOP_EXECUTABLE_EXIT_GATE.generated.json
       - CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - ORACLE_IMPORT_CERTIFICATION.generated.json
-    fallback_routes:
-      - repo: chummer6-ui
-        head: Chummer.Blazor.Desktop
-        posture: bounded_fallback
-        reason: temporary_compatibility_or_recovery_only
-        expiry_target: remove_as_primary_dependency_before_sr5_gold
-        label_required_in_public_copy: true
-        condition: compatibility_only_when_the_release_shelf_and_platform_matrix_label_it_explicitly
+    fallback_routes: []
   - id: settings_and_rules_environment_review
     release_state: task_proven
     primary_route:
@@ -59,14 +44,7 @@ jobs:
       - JOURNEY_GATES.generated.json
       - DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
       - SR5_FIRST_MINUTE_TASKS.generated.json
-    fallback_routes:
-      - repo: chummer6-ui
-        head: Chummer.Blazor.Desktop
-        posture: bounded_fallback
-        reason: temporary_compatibility_or_recovery_only
-        expiry_target: remove_as_primary_dependency_before_sr5_gold
-        label_required_in_public_copy: true
-        condition: compatibility_only_when_the_release_shelf_and_platform_matrix_label_it_explicitly
+    fallback_routes: []
   - id: print_export_and_exchange
     release_state: task_proven
     primary_route:
@@ -76,14 +54,7 @@ jobs:
     required_evidence:
       - CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - JOURNEY_GATES.generated.json
-    fallback_routes:
-      - repo: chummer6-ui
-        head: Chummer.Blazor.Desktop
-        posture: bounded_fallback
-        reason: temporary_compatibility_or_recovery_only
-        expiry_target: remove_as_primary_dependency_before_sr5_gold
-        label_required_in_public_copy: true
-        condition: compatibility_only_when_the_release_shelf_and_platform_matrix_label_it_explicitly
+    fallback_routes: []
   - id: claim_update_and_recovery
     release_state: task_proven
     primary_route:
