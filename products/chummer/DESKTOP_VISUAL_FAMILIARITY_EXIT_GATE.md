@@ -20,6 +20,12 @@ This receipt is required in addition to:
 - `DESKTOP_EXECUTABLE_EXIT_GATE.generated.json`
 - `DESKTOP_WORKFLOW_EXECUTION_GATE.generated.json`
 
+For SR5 flagship claims, the release must also satisfy the stricter source contracts in:
+
+- `SR5_FLAGSHIP_VISUAL_PARITY_EXIT.yaml`
+- `SR5_SCREENSHOT_ORACLE_REGISTRY.yaml`
+- `SR5_FIRST_MINUTE_TASKS.yaml`
+
 ## Required proof areas
 
 ### 1. Shell familiarity posture
@@ -117,6 +123,7 @@ Every required screenshot must also prove:
 - minimum review resolution of `1280x800` for shell/workbench captures
 - minimum review resolution of `900x700` for dialog-local captures
 - deterministic filenames that stay stable across reruns
+- SR5 flagship blocking workflows follow the same-stage Chummer5a oracle pairs named in `SR5_SCREENSHOT_ORACLE_REGISTRY.yaml`
 
 ### 6. Test framework design
 
@@ -138,6 +145,7 @@ The gate fails if any of the following are true:
 - a loaded runner still has no visible tab strip / tab panel posture
 - the cyberware/cyberlimb add flow is only technically present but not visually familiar enough to be trustworthy
 - required screenshot evidence is missing, corrupt, undersized, or unreadable
+- required SR5 screenshot-oracle pairs are missing for the promoted SR5 head
 - required theme contrast assertions are missing or failing
 - required familiarity tests are missing, stale, or failing
 

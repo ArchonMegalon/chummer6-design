@@ -206,6 +206,9 @@ product_source_groups:
     - products/chummer/FLAGSHIP_PRODUCT_BAR.md
     - products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md
     - products/chummer/CHUMMER5A_FAMILIARITY_BRIDGE.md
+    - products/chummer/SR5_FIRST_MINUTE_TASKS.yaml
+    - products/chummer/SR5_SCREENSHOT_ORACLE_REGISTRY.yaml
+    - products/chummer/SR5_FLAGSHIP_VISUAL_PARITY_EXIT.yaml
     - products/chummer/DESKTOP_EXECUTABLE_EXIT_GATES.md
     - products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY.md
     - products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml

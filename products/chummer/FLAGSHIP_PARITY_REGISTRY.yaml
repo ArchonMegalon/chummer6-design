@@ -6,6 +6,9 @@ source_documents:
   - LEGACY_CLIENT_AND_ADJACENT_PARITY.md
   - LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
   - CHUMMER5A_FAMILIARITY_BRIDGE.md
+  - SR5_FIRST_MINUTE_TASKS.yaml
+  - SR5_SCREENSHOT_ORACLE_REGISTRY.yaml
+  - SR5_FLAGSHIP_VISUAL_PARITY_EXIT.yaml
   - FLAGSHIP_READINESS_PLANES.yaml
   - FLAGSHIP_RELEASE_ACCEPTANCE.yaml
   - FLAGSHIP_UI_RELEASE_GATE.md
@@ -56,10 +59,14 @@ families:
       - fleet
     proof_requirements:
       - Veteran first-minute gate
+      - SR5 first-minute task pack
       - Dense workbench budget
       - Desktop visual familiarity exit gate
+      - SR5 visual parity exit
     release_evidence:
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
+      - /docker/chummercomplete/chummer6-ui/.codex-studio/published/SR5_FLAGSHIP_VISUAL_PARITY_EXIT.generated.json
+      - /docker/chummercomplete/chummer6-ui/.codex-studio/published/SR5_FIRST_MINUTE_TASKS.generated.json
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/DESKTOP_EXECUTABLE_EXIT_GATE.generated.json
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: dense_builder_and_career_workflows
@@ -73,8 +80,10 @@ families:
       - Workflow-family execution receipts
       - Chummer5a compare fixtures
       - Veteran task-time benchmarks
+      - SR5 screenshot oracle comparisons for the blocking workflows
     release_evidence:
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
+      - /docker/chummercomplete/chummer6-ui/.codex-studio/published/SR5_FLAGSHIP_VISUAL_PARITY_EXIT.generated.json
       - /docker/chummercomplete/chummer6-ui/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
       - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
   - id: identity_contacts_lifestyles_history

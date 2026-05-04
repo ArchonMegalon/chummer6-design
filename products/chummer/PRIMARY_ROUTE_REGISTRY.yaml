@@ -20,6 +20,8 @@ jobs:
       - DESKTOP_EXECUTABLE_EXIT_GATE.generated.json
       - DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
       - CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
+      - SR5_FLAGSHIP_VISUAL_PARITY_EXIT.generated.json
+      - SR5_FIRST_MINUTE_TASKS.generated.json
     fallback_routes:
       - repo: chummer6-ui
         head: Chummer.Blazor.Desktop
@@ -56,6 +58,7 @@ jobs:
       - CHUMMER5A_DESKTOP_WORKFLOW_PARITY.generated.json
       - JOURNEY_GATES.generated.json
       - DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json
+      - SR5_FIRST_MINUTE_TASKS.generated.json
     fallback_routes:
       - repo: chummer6-ui
         head: Chummer.Blazor.Desktop
