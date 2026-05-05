@@ -1,18 +1,73 @@
 product: chummer
 artifact: creator_publication_analytics_schema
 version: 1
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-05
 fields:
-  - publication_id
-  - publication_version
-  - compatibility_posture
-  - adoption_band
-  - moderation_status
-  - update_request_count
-  - support_issue_count
-  - media_collateral_status
+  - id: publication_id
+    meaning: Stable registry identifier for one creator publication.
+    exposure: internal_and_signed_in
+  - id: publication_version
+    meaning: Current published version tied to the active artifact manifest.
+    exposure: internal_and_signed_in
+  - id: lineage_ref
+    meaning: The revocation-aware lineage or replacement reference for the publication.
+    exposure: internal_and_signed_in
+  - id: compatibility_posture
+    meaning: Receipt-backed fit against the promoted rule environment, package set, and supported artifact lane.
+    exposure: public_and_signed_in
+    allowed_values:
+      - verified_compatible
+      - compatible_with_warnings
+      - blocked
+      - unknown
+    truth_source: registry_compatibility_receipts
+  - id: moderation_status
+    meaning: Governed moderation and appeals state for the publication.
+    exposure: public_and_signed_in
+    allowed_values:
+      - approved
+      - limited
+      - under_review
+      - removed
+      - restored
+    truth_source: moderation_and_appeals_state_machine
+  - id: trust_ranking_posture
+    meaning: Discoverability posture, not endorsement or safety certification.
+    exposure: public_and_signed_in
+    allowed_values:
+      - featured
+      - established
+      - emerging
+      - unranked
+    truth_source: bounded_discovery_inputs
+  - id: trust_ranking_reason_chips
+    meaning: Plain-language reasons that explain the current discoverability posture without exposing private telemetry.
+    exposure: public_and_signed_in
+  - id: adoption_band
+    meaning: Aggregate use band only.
+    exposure: public_and_signed_in
+    allowed_values:
+      - none_reported
+      - low
+      - medium
+      - high
+  - id: update_request_count_band
+    meaning: Banded count of open update requests tied to the publication.
+    exposure: signed_in_only
+  - id: support_issue_count_band
+    meaning: Banded count of open support issues tied to the publication.
+    exposure: signed_in_only
+  - id: media_collateral_status
+    meaning: Readiness of creator-facing promo or preview collateral.
+    exposure: signed_in_only
 privacy_rules:
   - no_private_campaign_names
   - no_private_runner_names
   - no_raw_character_sheet_warehouse
   - no_sensitive_session_telemetry_exposure
+claim_guards:
+  - compatibility_posture_must_not_be_inferred_from_moderation_status
+  - moderation_status_must_not_claim_build_or_rule_environment_fit
+  - trust_ranking_posture_must_not_claim_creator_endorsement_or_platform_safety
+  - adoption_and_support_fields_must_be_banded_before_public_exposure
+  - unknown_compatibility_must_stay_visible_until_receipts_are_current

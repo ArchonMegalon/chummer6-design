@@ -277,6 +277,11 @@ That means:
 * imports classify missing or lossy amend-package carryover explicitly
 * restore and cross-device flows say when a package mismatch would change compute
 
+`RULE_ENVIRONMENT_GROUNDED_MEDIA_POLICY.md` governs any companion card, narrated clip, or presenter lane attached to these receipts.
+Media companions may summarize packet-backed rule-environment truth, but they may not replace inspectable engine receipts, environment badges, or source-anchor follow-through.
+
+Every promoted rule-environment surface must keep `Open activation receipt` or `Open diff receipt` visible whenever a grounded companion can launch.
+
 ## Portability and restore rule
 
 Runner and campaign portability must preserve:
@@ -298,6 +303,7 @@ The current target is not flagship grade until:
 * restore, import, and portability flows expose missing or incompatible packages before wrong compute happens
 * Chummer5a-style amend packs can either compile into the canonical amend graph or emit explicit lossy/blocking receipts
 * the same amend package family can later be governed and promoted without inventing a second representation for Karma Forge
+* optional grounded-media explainers stay subordinate to receipt-backed engine truth instead of turning rule-environment review into polished folklore
 
 ## Non-goals
 

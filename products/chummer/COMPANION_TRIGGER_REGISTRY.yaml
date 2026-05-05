@@ -125,7 +125,17 @@ trigger_classes:
     evidence_drawer_required: true
     media_eligible: true
     media_modes:
+      - bark_with_chips
       - companion_scene
+    media_truth_requirements:
+      - active_rule_environment_digest
+      - compared_rule_environment_digest
+      - diff_receipt_ref
+      - localized_text_fallback
+    forbidden_media_claims:
+      - media_as_only_legality_explanation
+      - recommendation_without_packet_scope
+      - approval_overriding_engine_truth
     ea_compile:
       eligible: true
       mode: line_variant_pack

@@ -1,7 +1,11 @@
-version: 1
-last_reviewed: 2026-04-01
+version: 2
+last_reviewed: 2026-05-05
 source_registry: products/chummer/HORIZON_REGISTRY.yaml
 purpose: Derived machine-readable registry for public-guide routing and future-capability lanes. The root HORIZON_REGISTRY.yaml is the canonical source of truth.
+rules:
+  - Preserve root-registry order exactly for all public-guide-eligible horizons.
+  - Do not widen public eligibility, owner posture, or build-path state beyond the root registry.
+  - Carry enough root-derived fields that downstream public-guide exports do not have to scrape prose to recover build-path, ownership, or handoff truth.
 
 foundation_capabilities:
   - id: expert_speed_substrate
@@ -21,81 +25,218 @@ foundation_capabilities:
 
 horizons:
   - id: nexus-pan
+    title: NEXUS-PAN
     file: nexus-pan.md
+    canon_doc: products/chummer/horizons/nexus-pan.md
+    public_doc: products/chummer/public-guide/HORIZONS/nexus-pan.md
     family: session continuity
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 10
     likely_owners:
       - chummer6-core
       - chummer6-mobile
       - chummer6-hub
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - continuity_and_degraded_state_substrate
       - gm_operations_substrate
+    owner_handoff_gate: Session continuity proof must exist across core, mobile, and hub without second semantic families.
     why_horizon: Reconnect and offline trust still need stronger present-tense proof before a richer PAN layer is safe.
 
   - id: alice
+    title: ALICE
     file: alice.md
+    canon_doc: products/chummer/horizons/alice.md
+    public_doc: products/chummer/public-guide/HORIZONS/alice.md
     family: build and simulation
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 20
     likely_owners:
       - chummer6-core
       - chummer6-ui
       - chummer6-hub
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - expert_speed_substrate
       - guided_mastery_substrate
       - evaluation_substrate
+    owner_handoff_gate: Build-ghost comparison and apply flows must consume core-owned truth and explicit apply receipts rather than assistant-side heuristics or silent runner mutation.
     why_horizon: Comparative advice only works when explain and comparison surfaces are already reliable.
 
+  - id: quicksilver
+    title: QUICKSILVER
+    file: quicksilver.md
+    canon_doc: products/chummer/horizons/quicksilver.md
+    public_doc: products/chummer/public-guide/HORIZONS/quicksilver.md
+    family: expert-speed and command surfaces
+    state: horizon
+    public_guide_allowed: false
+    public_guide_order: 15
+    likely_owners:
+      - chummer6-ui
+      - chummer6-ui-kit
+      - chummer6-core
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
+    foundation_dependencies:
+      - expert_speed_substrate
+    owner_handoff_gate: Expert-speed seams must be deterministic and recoverable before speed features move beyond horizon.
+    why_horizon: Dense and legal workflows are still the priority for expert trust before command-depth accelerants can scale.
+
+  - id: edition-studio
+    title: EDITION STUDIO
+    file: edition-studio.md
+    canon_doc: products/chummer/horizons/edition-studio.md
+    public_doc: products/chummer/public-guide/HORIZONS/edition-studio.md
+    family: ruleset-specific authored heads
+    state: horizon
+    public_guide_allowed: false
+    public_guide_order: 21
+    likely_owners:
+      - chummer6-ui
+      - chummer6-ui-kit
+      - chummer6-core
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
+    foundation_dependencies:
+      - edition_expression_substrate
+    owner_handoff_gate: Edition-specific expression must remain authored and engine-grounded before promotion.
+    why_horizon: Distinct ruleset expression remains unsafe until shared product seams are already trustworthy.
+
+  - id: onramp
+    title: ONRAMP
+    file: onramp.md
+    canon_doc: products/chummer/horizons/onramp.md
+    public_doc: products/chummer/public-guide/HORIZONS/onramp.md
+    family: guided mastery and teaching
+    state: horizon
+    public_guide_allowed: false
+    public_guide_order: 23
+    likely_owners:
+      - chummer6-ui
+      - chummer6-core
+      - chummer6-hub
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
+    foundation_dependencies:
+      - guided_mastery_substrate
+    owner_handoff_gate: Guided mastery can only move beyond horizon once starter legality and recovery behaviors are proven.
+    why_horizon: Chummer needs stable explain and legality behavior before guided-mastery becomes a default flow.
+
   - id: karma-forge
+    title: KARMA FORGE
     file: karma-forge.md
+    canon_doc: products/chummer/horizons/karma-forge.md
+    public_doc: products/chummer/public-guide/HORIZONS/karma-forge.md
     family: governed rules evolution
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 30
     likely_owners:
       - chummer6-core
       - chummer6-hub-registry
       - chummer6-hub
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - edition_expression_substrate
       - evaluation_substrate
+    owner_handoff_gate: Rule evolution must route through governed packages, approvals, and compatibility metadata before promotion.
     why_horizon: Alternate-ruleset evolution needs governance and falsifiable parity proof before it should widen the live product.
 
   - id: knowledge-fabric
+    title: KNOWLEDGE FABRIC
     file: knowledge-fabric.md
+    canon_doc: products/chummer/horizons/knowledge-fabric.md
     family: knowledge fabric and explainability
     state: horizon
     public_guide_allowed: false
+    public_guide_order: 35
     likely_owners:
       - chummer6-core
       - chummer6-hub
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - guided_mastery_substrate
       - evaluation_substrate
+    owner_handoff_gate: Knowledge projections must be visibly derived, cited, and non-authoritative before promotion out of horizon.
     why_horizon: Projected knowledge is only safe once the core explain trail is already trusted.
 
   - id: jackpoint
+    title: JACKPOINT
     file: jackpoint.md
+    canon_doc: products/chummer/horizons/jackpoint.md
+    public_doc: products/chummer/public-guide/HORIZONS/jackpoint.md
     family: artifact studio
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 40
     likely_owners:
       - chummer6-hub
       - chummer6-hub-registry
       - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - gm_operations_substrate
       - publication_and_prestige_substrate
       - continuity_and_degraded_state_substrate
+    owner_handoff_gate: Registry manifests and media receipts must survive format changes before the studio is promoted beyond horizon.
     why_horizon: Premium short-form publication only matters if the source trail and publish pipeline remain intact end to end.
 
+  - id: run-control
+    title: RUN CONTROL
+    file: run-control.md
+    canon_doc: products/chummer/horizons/run-control.md
+    public_doc: products/chummer/public-guide/HORIZONS/run-control.md
+    family: GM operations and campaign control
+    state: horizon
+    public_guide_allowed: false
+    public_guide_order: 45
+    likely_owners:
+      - chummer6-hub
+      - chummer6-mobile
+      - chummer6-core
+      - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
+    foundation_dependencies:
+      - gm_operations_substrate
+    owner_handoff_gate: GM operations control must stay in campaign truth and remain recoverable before promotion.
+    why_horizon: GM control needs reliable campaign-state and reconnect foundations before becoming a default route.
+
   - id: black-ledger
+    title: BLACK LEDGER
     file: black-ledger.md
+    canon_doc: products/chummer/horizons/black-ledger.md
+    public_doc: products/chummer/public-guide/HORIZONS/black-ledger.md
     family: campaign world-state
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 85
     likely_owners:
       - chummer6-hub
       - chummer6-core
@@ -104,18 +245,27 @@ horizons:
       - chummer6-media-factory
       - chummer6-hub-registry
       - executive-assistant
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - publication_and_prestige_substrate
       - guided_mastery_substrate
       - evaluation_substrate
       - continuity_and_degraded_state_substrate
+    owner_handoff_gate: Keep campaign truth and world truth separate; GM or organizer authority must be explicit before shared-city scale features are promoted.
     why_horizon: World-state and mission-market effects remain adjacent to campaign truth until practical GM prep, scheduling, and world-memory seams are proven.
 
   - id: community-hub
+    title: COMMUNITY HUB
     file: community-hub.md
+    canon_doc: products/chummer/horizons/community-hub.md
+    public_doc: products/chummer/public-guide/HORIZONS/community-hub.md
     family: campaign world-state
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 86
     likely_owners:
       - chummer6-hub
       - chummer6-ui
@@ -123,79 +273,126 @@ horizons:
       - fleet
       - executive-assistant
       - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - publication_and_prestige_substrate
       - guided_mastery_substrate
       - evaluation_substrate
       - continuity_and_degraded_state_substrate
+    owner_handoff_gate: Open-run listing, accepted roster, meeting handoff, observer consent, and reputation events must stay Chummer-owned even when third-party meeting or analysis tools are in the loop.
     why_horizon: Recruitment, community-rule preflight, scheduling, and observer consent only work if run truth stays first-party and the practical table-finding loop proves out before the network widens.
 
   - id: runsite
+    title: RUNSITE
     file: runsite.md
+    canon_doc: products/chummer/horizons/runsite.md
+    public_doc: products/chummer/public-guide/HORIZONS/runsite.md
     family: spatial exploration
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 50
     likely_owners:
       - chummer6-hub
       - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - gm_operations_substrate
       - publication_and_prestige_substrate
+    owner_handoff_gate: Spatial artifacts must remain clearly outside live mechanics and combat truth before any promotion.
     why_horizon: Explorable location packs need stable campaign, asset, and publication foundations first.
 
   - id: runbook-press
+    title: RUNBOOK PRESS
     file: runbook-press.md
+    canon_doc: products/chummer/horizons/runbook-press.md
+    public_doc: products/chummer/public-guide/HORIZONS/runbook-press.md
     family: creator press
     state: horizon
     public_guide_allowed: true
+    public_guide_order: 60
     likely_owners:
       - chummer6-hub
       - chummer6-hub-registry
       - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - publication_and_prestige_substrate
       - evaluation_substrate
+    owner_handoff_gate: Publication and compatibility metadata must remain registry-owned before this lane becomes research-ready.
     why_horizon: Long-form outputs only matter if edit trail, manifests, and publication truth stay intact.
 
   - id: ghostwire
+    title: GHOSTWIRE
     file: ghostwire.md
+    canon_doc: products/chummer/horizons/ghostwire.md
     family: replay and forensics
     state: horizon
     public_guide_allowed: false
+    public_guide_order: 70
     likely_owners:
       - chummer6-core
       - chummer6-mobile
       - chummer6-hub
       - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - continuity_and_degraded_state_substrate
       - evaluation_substrate
       - publication_and_prestige_substrate
+    owner_handoff_gate: Replay must prove reducer-safe, receipt-backed reconstruction before it can leave horizon status.
     why_horizon: Replay is only safe when the receipt trail remains append-only and reconstruction stays grounded.
 
   - id: table-pulse
+    title: TABLE PULSE
     file: table-pulse.md
+    canon_doc: products/chummer/horizons/table-pulse.md
     family: table coaching and social dynamics
     state: horizon
     public_guide_allowed: false
+    public_guide_order: 75
     likely_owners:
       - chummer6-hub
       - chummer6-media-factory
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - gm_operations_substrate
       - publication_and_prestige_substrate
+    owner_handoff_gate: Coaching analysis only works when consent, privacy, and non-truth boundaries remain provable.
     why_horizon: Coaching analysis only works when consent, privacy, and non-truth boundaries remain provable.
 
   - id: local-co-processor
+    title: LOCAL CO-PROCESSOR
     file: local-co-processor.md
+    canon_doc: products/chummer/horizons/local-co-processor.md
     family: optional local acceleration
     state: horizon
     public_guide_allowed: false
+    public_guide_order: 80
     likely_owners:
-      - fleet
-      - executive-assistant
+      - chummer6-core
       - chummer6-ui
+      - chummer6-mobile
+    build_path:
+      intent: eventual_product_lane
+      current_state: horizon
+      next_state: bounded_research
     foundation_dependencies:
       - expert_speed_substrate
       - evaluation_substrate
+    owner_handoff_gate: Hosted-first parity must hold before any local acceleration lane is treated as more than optional research.
     why_horizon: Local acceleration is additive only after the canonical online product is already trustworthy.

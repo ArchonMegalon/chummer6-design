@@ -20,11 +20,18 @@ SOURCE_HOOK_PATH = PRODUCT_ROOT / "SOURCE_AWARE_EXPLAIN_PUBLIC_TRUST_HOOK.md"
 SOURCE_BINDING_PATH = PRODUCT_ROOT / "SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md"
 BUILD_LAB_PATH = PRODUCT_ROOT / "BUILD_LAB_PRODUCT_MODEL.md"
 FLAGSHIP_ACCEPTANCE_PATH = PRODUCT_ROOT / "FLAGSHIP_RELEASE_ACCEPTANCE.yaml"
+FLAGSHIP_READINESS_PLANES_PATH = PRODUCT_ROOT / "FLAGSHIP_READINESS_PLANES.yaml"
 FLAGSHIP_BAR_PATH = PRODUCT_ROOT / "FLAGSHIP_PRODUCT_BAR.md"
 GUIDE_PATH = PRODUCT_ROOT / "NEXT_90_DAY_PRODUCT_ADVANCE_GUIDE.md"
 README_PATH = PRODUCT_ROOT / "README.md"
 LIVE_ACTION_PATH = PRODUCT_ROOT / "LIVE_ACTION_ECONOMY_AND_TURN_ASSIST.md"
 SURFACE_DESIGN_PATH = PRODUCT_ROOT / "SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md"
+FEEDBACK_CLOSEOUT_PATH = (
+    PRODUCT_ROOT
+    / "maintenance"
+    / "feedback_archive"
+    / "2026-05-05-next90-m145-design-explain-every-value-canon-closeout.md"
+)
 SYNC_MANIFEST_PATH = PRODUCT_ROOT / "sync" / "sync-manifest.yaml"
 VERIFY_PATH = REPO_ROOT / "scripts" / "ai" / "verify.sh"
 FEEDBACK_PATH = (
@@ -112,10 +119,12 @@ def main() -> int:
     source_binding_text = SOURCE_BINDING_PATH.read_text(encoding="utf-8")
     build_lab_text = BUILD_LAB_PATH.read_text(encoding="utf-8")
     flagship_bar_text = FLAGSHIP_BAR_PATH.read_text(encoding="utf-8")
+    readiness_planes_text = FLAGSHIP_READINESS_PLANES_PATH.read_text(encoding="utf-8")
     guide_text = GUIDE_PATH.read_text(encoding="utf-8")
     live_action_text = LIVE_ACTION_PATH.read_text(encoding="utf-8")
     readme_text = README_PATH.read_text(encoding="utf-8")
     surface_design_text = SURFACE_DESIGN_PATH.read_text(encoding="utf-8")
+    feedback_closeout_text = FEEDBACK_CLOSEOUT_PATH.read_text(encoding="utf-8")
     verify_text = VERIFY_PATH.read_text(encoding="utf-8")
     feedback_text = FEEDBACK_PATH.read_text(encoding="utf-8")
 
@@ -124,6 +133,7 @@ def main() -> int:
         "## Truth order",
         "## Explain packet contract",
         "## Coverage registry",
+        "## Fleet and operator loop binding",
         "## Counterfactual and follow-up model",
         "## Presenter and voice boundaries",
         "## Release gate",
@@ -131,6 +141,14 @@ def main() -> int:
     ):
         if marker not in explain_text:
             errors.append(f"explain_missing_marker:{marker}")
+
+    for marker in (
+        "`FLAGSHIP_READINESS_PLANES.yaml` and `FLAGSHIP_RELEASE_ACCEPTANCE.yaml` must treat explain coverage, source-anchor posture, and bounded follow-up truth as release-health inputs rather than optional polish.",
+        "Fleet-owned closeout and readiness proofs must fail closed when a promoted visible value, warning, or bounded `what if` answer ships without registered explain coverage, packet-backed fallback text, or the required source-anchor class.",
+        "Weekly pulse, flagship readiness, and successor queue closure must cite the same coverage-registry and release-gate truth so a green control plane cannot coexist with silent explain regressions on promoted surfaces.",
+    ):
+        if marker not in explain_text:
+            errors.append(f"explain_missing_fleet_binding_marker:{marker}")
 
     for marker in (
         "Every important visible mechanical value should either open the packet-backed explain drawer plus source anchor chain or remain an explicit release-blocking gap.",
@@ -213,6 +231,16 @@ def main() -> int:
                     errors.append("flagship_acceptance_missing_mobile_explain_evidence_source")
 
     for marker in (
+        "  - id: rules_explainability_ready",
+        "      - chummer6-design",
+        "      - EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md",
+        "      - SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md",
+        "      - Explain coverage-registry, source-anchor class, or bounded follow-up release-gate truth drifts from Fleet closeout evidence",
+    ):
+        if marker not in readiness_planes_text:
+            errors.append(f"readiness_planes_missing_marker:{marker}")
+
+    for marker in (
         "## Wave 28 - make every visible number defend itself",
         "### 145. Explain every visible value with grounded follow-up and bounded presenter mode",
     ):
@@ -225,6 +253,15 @@ def main() -> int:
     ):
         if marker not in readme_text:
             errors.append(f"readme_missing_marker:{marker}")
+
+    for marker in (
+        "This slice closes the design-owned explain-every-value canon.",
+        "`products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md` now includes an explicit `Fleet and operator loop binding` section",
+        "`scripts/ai/validate_next90_m145_design_explain_every_value_canon.py` now fail-closes the package against missing Fleet/readiness-plane binding",
+        "Future shards should verify the proof anchors above, plus the canonical registry and staged queue rows, instead of reopening the design-owned explain canon slice.",
+    ):
+        if marker not in feedback_closeout_text:
+            errors.append(f"feedback_closeout_missing_marker:{marker}")
 
     sync_manifest = _load_yaml(SYNC_MANIFEST_PATH)
     if not isinstance(sync_manifest, dict):
@@ -267,7 +304,7 @@ def main() -> int:
             errors.append("registry_wrong_work_task_owner")
         if work_task.get("title") != EXPECTED_TITLE:
             errors.append("registry_wrong_work_task_title")
-        if work_task.get("status") != "complete":
+        if work_task.get("status") != "done":
             errors.append("registry_wrong_work_task_status")
         evidence = work_task.get("evidence")
         if not isinstance(evidence, list) or len(evidence) < 8:
@@ -286,7 +323,7 @@ def main() -> int:
             errors.append("queue_wrong_frontier")
         if queue_row.get("milestone_id") != EXPECTED_MILESTONE_ID:
             errors.append("queue_wrong_milestone_id")
-        if queue_row.get("status") != "complete":
+        if queue_row.get("status") != "done":
             errors.append("queue_wrong_status")
         if queue_row.get("wave") != "W28":
             errors.append("queue_wrong_wave")

@@ -202,6 +202,7 @@ product_source_groups:
     - products/chummer/DESKTOP_AUTO_UPDATE_SYSTEM.md
     - products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md
     - products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml
+    - products/chummer/FLAGSHIP_READINESS_PLANES.yaml
   flagship_desktop_canon:
     - products/chummer/FLAGSHIP_PRODUCT_BAR.md
     - products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md

@@ -2,6 +2,30 @@
 
 This roadmap carries the program all the way to finished-state vision, not just to the split wave.
 
+## Progress claim rule
+
+`active_wave_status: complete` in generated pulse artifacts means the front-door and registry-facing closeout plane is closed (install/update/public tuple and operator-control truth). It does not mean all campaign-substrate contracts are production-complete.
+
+The product remains in a split-readiness state while `CONTRACT_SETS.yaml` keeps several substrate families in `in_progress`, including:
+
+* `community_rule_environment_vnext`
+* `world_frame_vnext`
+* `mission_market_vnext`
+* `intel_economy_vnext`
+* `world_tick_vnext`
+* `resolution_report_vnext`
+* `world_newsreel_vnext`
+* `opposition_packet_vnext`
+* `open_run_network_vnext`
+* `seasonal_honors_vnext`
+* `journey_proof_vnext`
+* `feedback_signal_ooda_vnext`
+* `admin_projection_and_intent_vnext`
+* `crash_automation_vnext`
+* `account_aware_install_linking_vnext`
+* `desktop_update_vnext`
+* `outbound_notification_vnext`
+
 Current status on 2026-03-26:
 
 * package canon, split completion, explain canon, runtime-bundle canon, hub product-consumer planes, play-shell closure, assistant-plane governance, media capability closure, replay/DR hardening, legacy migration certification, and release-governance closure are materially complete

@@ -27,6 +27,28 @@ enter or import current runners
 * unresolved review items
 * explicit unknown-history markers
 * next best cleanup actions
+* adoption receipt and replay-safe start anchor
+
+## Confidence gates
+
+Adoption confidence is a product verdict, not a vibes score.
+
+- `ready`: current runners, crew context, active jobs, and rule-environment bindings are clear enough to start the ledger immediately.
+- `playable_with_review`: the table can continue from today, but visible warnings and follow-up actions remain attached to the campaign.
+- `blocked`: current truth is too conflicted or incomplete to claim safe-to-play posture.
+
+`blocked` adoption may save work in progress, but it must not unlock campaign return surfaces as if the intake were clean.
+
+## Receipt semantics
+
+The adoption flow must emit one `CampaignAdoptionReceipt` that records:
+
+- the chosen start-from-today anchor
+- known current truth
+- explicit unknown-history markers
+- conflict receipts for ambiguous runner, crew, debt, or rule-environment mappings
+- the confidence gate and why it was assigned
+- the next cleanup actions that would improve the gate later
 
 ## Public promise
 

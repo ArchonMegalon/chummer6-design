@@ -32,6 +32,12 @@ It is:
 
 * "I know what I need to do before the game starts."
 
+The top-level action for every user should be a single CTA:
+
+`Make me ready for this run`
+
+When touched, that CTA should emit the player/GM/organizer verdict above and a small safe next action list.
+
 ## Three views
 
 ### 1. Player readiness

@@ -218,10 +218,17 @@ python3 "$repo_root/scripts/ai/validate_next20_repo_evidence.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_guide_editorial_covers.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m108_design_campaign_briefing_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m109_design_explain_truth_policy.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m114_design_rule_environment_policy.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m129_design_account_community_canon.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m116_design_creator_publication_policy.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m117_design_artifact_shelf_policy.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m118_design_organizer_boundaries.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m119_design_onboarding_metrics.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m121_design_bind_live_action_economy_and_gm_runboard_proof.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m122_design_black_ledger_receipt_semantics.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null

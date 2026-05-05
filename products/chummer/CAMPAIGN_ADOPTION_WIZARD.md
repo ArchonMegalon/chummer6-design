@@ -26,9 +26,12 @@ Chummer should let them keep playing without pretending missing history does not
 ## Output
 
 ```yaml
-CampaignAdoptionRecord:
+CampaignAdoptionReceipt:
+  receipt_ref: adopt_001
   campaign_ref: campaign_ref
+  start_anchor_ref: ledger_start_2026_05_05
   safe_to_play: true
+  confidence_gate: playable_with_review
   confidence_percent: 81
   known:
     runners: 4
@@ -38,6 +41,11 @@ CampaignAdoptionRecord:
   unknowns:
     - exact_karma_spend_history
     - old_gear_legality
+  conflict_receipts:
+    - kind: runner_mapping_conflict
+      severity: warning
+      affected_ref: runner_kite
+      reason: two legacy aliases map to one current dossier
   recommended_next_actions:
     - start_ledger_from_today
     - preserve_legacy_notes
@@ -48,6 +56,17 @@ CampaignAdoptionRecord:
 
 Unknown provenance stays explicit.
 The wizard must never silently invent history just to make import feel clean.
+The wizard must emit a receipt, not only a percentage.
+
+## Confidence gates
+
+- `ready`: enough runner, crew, rules, and active-job truth exists to start the ledger immediately.
+- `playable_with_review`: the table can start from today, but unresolved warnings stay visible on the campaign return path.
+- `blocked`: Chummer may save the intake draft, but it must not present the campaign as safe to adopt until blocking conflicts are resolved.
+
+The confidence gate must be replay-safe and explain why the verdict was earned.
+Unknown history is allowed.
+Unknown current truth is not.
 
 ## Release gate
 

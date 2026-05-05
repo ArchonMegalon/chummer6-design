@@ -245,3 +245,31 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
     assert (
         "Where an installer exists, start there. Archive packages, packet-detail artifacts, and explainer bundles are fallback, recovery, or inspection paths, not equal flagship routes."
     ) in download
+
+
+def test_extract_markdown_sections_can_block_canon_handoff_headings() -> None:
+    rendered = guide._extract_markdown_sections(
+        "\n".join(
+            [
+                "# TEST",
+                "",
+                "## The promise",
+                "Promise text.",
+                "",
+                "## Build path",
+                "Should not render.",
+                "",
+                "## The world map",
+                "Map text.",
+                "",
+            ]
+        ),
+        allowed_headings=None,
+        blocked_headings={"build path"},
+    )
+
+    joined = "\n".join(rendered)
+    assert "Promise text." in joined
+    assert "Map text." in joined
+    assert "Build path" not in joined
+    assert "Should not render." not in joined

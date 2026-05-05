@@ -27,6 +27,17 @@ def fail(errors: list[str]) -> int:
     return 1
 
 
+def markdown_sections(path: Path) -> set[str]:
+    sections: set[str] = set()
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if line.startswith("## "):
+            heading = line[3:].strip().casefold()
+            if heading:
+                sections.add(heading)
+    return sections
+
+
 def main() -> int:
     errors: list[str] = []
     root = load_yaml(ROOT_REGISTRY_PATH)
@@ -42,10 +53,17 @@ def main() -> int:
 
     root_rows = root.get("horizons") or []
     derived_rows = derived.get("horizons") or []
+    required_doc_sections = [
+        str(value).strip()
+        for value in (root.get("required_doc_sections") or [])
+        if str(value).strip()
+    ]
     if not isinstance(root_rows, list) or not isinstance(derived_rows, list):
         errors.append("both horizon registries must contain horizon lists.")
         root_rows = []
         derived_rows = []
+    if not required_doc_sections:
+        errors.append("root registry must declare required_doc_sections.")
 
     root_by_id: dict[str, dict[str, object]] = {}
     derived_by_id: dict[str, dict[str, object]] = {}
@@ -78,12 +96,28 @@ def main() -> int:
         root_enabled = bool((root_row.get("public_guide") or {}).get("enabled"))
         root_signal = bool(root_row.get("public_signal_eligible"))
         derived_allowed = bool(derived_row.get("public_guide_allowed"))
+        canon_doc_raw = str(root_row.get("canon_doc") or "").strip()
+        canon_doc_path = PRODUCT / canon_doc_raw.replace("products/chummer/", "", 1)
         if root_enabled != derived_allowed:
             errors.append(f"{horizon_id}: derived public_guide_allowed must mirror root public_guide.enabled.")
         if root_enabled != root_signal:
             errors.append(f"{horizon_id}: root public_guide.enabled must match public_signal_eligible.")
-        if root_enabled and not str(root_row.get("canon_doc") or "").strip():
-            errors.append(f"{horizon_id}: enabled horizons must keep a canon_doc.")
+        if not canon_doc_raw:
+            errors.append(f"{horizon_id}: horizon rows must keep a canon_doc.")
+            continue
+        if not canon_doc_path.is_file():
+            errors.append(f"{horizon_id}: canon_doc is missing at {canon_doc_raw}.")
+            continue
+        sections = markdown_sections(canon_doc_path)
+        missing_sections = [
+            section for section in required_doc_sections if section.casefold() not in sections
+        ]
+        if missing_sections:
+            errors.append(
+                f"{horizon_id}: canon_doc is missing required sections: {', '.join(missing_sections)}"
+            )
+        if root_enabled and not str(derived_row.get("public_doc") or "").strip():
+            errors.append(f"{horizon_id}: public-guide-eligible horizons must define derived public_doc routing.")
 
     export_sources = export_manifest.get("sources") or {}
     if not isinstance(export_sources, dict) or str(export_sources.get("horizon_registry") or "").strip() != "products/chummer/HORIZON_REGISTRY.yaml":

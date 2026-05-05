@@ -9,6 +9,9 @@ This file defines the minimum public participation path for users who do not yet
 Desktop remains the expert flagship.
 No-desktop users must still be able to discover whether they are welcome, choose a beginner-safe path, and join a run without being blocked before they understand the table.
 
+No-desktop support is not a parity-afterthought.
+It is the first onboarding lane, with one visible path that is explicit about what can happen without desktop and what still requires desktop later.
+
 ## Hero path
 
 ```text
@@ -29,6 +32,7 @@ land on public run
 * table contract acknowledgement
 * schedule and platform readiness check
 * accepted-player handoff and recap receipt
+* receive the `make me ready` verdict and the one remaining missing item, if any
 
 ## Required non-capabilities
 
@@ -41,3 +45,25 @@ No-desktop participation must not:
 ## Acceptance rule
 
 Public scale is not ready until a new player can determine in minutes whether they can join a beginner run without first installing a Windows desktop client.
+
+This lane is explicitly accepted when:
+
+* a mobile visitor can open a public run
+* choose a beginner safe option
+* complete one legality preflight
+* receive a clear next action
+* receive a receipt-like handoff to the table
+
+## Claim boundary
+
+This lane may claim only:
+
+* beginner-safe fit, legality preflight, and table handoff before desktop install
+* explicit clarity about what the player can do now and what still requires desktop later
+* a governed first-session lane measured by `FIRST_PLAYABLE_SESSION_ONBOARDING_METRICS.md`
+
+This lane must not claim:
+
+* desktop parity
+* full forever-runner authoring before first table contact
+* hidden support or organizer intervention as product success

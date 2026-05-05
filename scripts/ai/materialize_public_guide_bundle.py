@@ -75,6 +75,15 @@ PUBLIC_HORIZON_SECTION_TITLES = {
     "why still a horizon": "Why it is not ready yet",
     "why it is not ready yet": "Why it is not ready yet",
 }
+PUBLIC_HORIZON_CANON_BLOCKED_HEADINGS = {
+    "table pain",
+    "bounded product move",
+    "likely owners",
+    "foundations",
+    "build path",
+    "owner handoff gate",
+    "why still a horizon",
+}
 HORIZON_PUBLIC_COPY_SLUG_OVERRIDES: dict[str, str] = {
     "community-hub": "shadowcasters-network",
 }
@@ -1379,6 +1388,7 @@ def _extract_markdown_sections(
     *,
     allowed_headings: set[str] | None,
     heading_map: dict[str, str] | None = None,
+    blocked_headings: set[str] | None = None,
     heading_prefixes: tuple[str, ...] = ("## ",),
 ) -> list[str]:
     body = _markdown_body(text)
@@ -1389,9 +1399,12 @@ def _extract_markdown_sections(
         allowed = {heading.strip().lower() for heading in allowed_headings if heading.strip()}
     else:
         allowed = None
+    blocked = {heading.strip().lower() for heading in (blocked_headings or set()) if heading.strip()}
     sections: list[str] = []
 
     for heading, section_lines in _iter_markdown_sections(body, heading_prefixes=heading_prefixes):
+        if heading.lower() in blocked:
+            continue
         if allowed is not None and heading.lower() not in allowed:
             continue
         rendered_heading = heading
@@ -2191,6 +2204,8 @@ def _generate_horizon_pages(
         "",
         "Use this index when you want to see where Chummer6 could go next after you understand the current product picture.",
         "These are future ideas, not features you can use today.",
+        "This page only lists the horizons that the root `HORIZON_REGISTRY.yaml` marks as public-guide eligible, in that same order.",
+        "If a horizon here gains preview proof, guided preview, or research detail later, that detail must still stay inside the build-path and owner-handoff limits defined by the design canon.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -2253,6 +2268,7 @@ def _generate_horizon_pages(
                         _load_text(canon_path),
                         allowed_headings=None,
                         heading_map=selected_heading_map,
+                        blocked_headings=PUBLIC_HORIZON_CANON_BLOCKED_HEADINGS,
                     )
                     if canon_path.is_file()
                     else []

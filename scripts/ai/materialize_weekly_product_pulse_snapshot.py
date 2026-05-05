@@ -14,6 +14,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
 DEFAULT_OUT = PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json"
+CONTRACT_SETS = PRODUCT / "CONTRACT_SETS.yaml"
 NEXT12_REGISTRY = PRODUCT / "NEXT_12_BIGGEST_WINS_REGISTRY.yaml"
 NEXT20_REGISTRY = PRODUCT / "NEXT_20_BIG_WINS_REGISTRY.yaml"
 POST_AUDIT_REGISTRY = PRODUCT / "POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml"
@@ -190,6 +191,26 @@ def _active_open_milestone_ids(registry_path: Path) -> list[int]:
         if milestone_id not in open_ids:
             open_ids.append(milestone_id)
     return sorted(open_ids)
+
+
+def _contract_sets_in_progress(contract_sets_path: Path) -> list[str]:
+    payload = _read_optional_yaml(contract_sets_path)
+    sets = payload.get("contract_sets")
+    if not isinstance(sets, list):
+        return []
+
+    ids: list[str] = []
+    for row in sets:
+        if not isinstance(row, dict):
+            continue
+        status = str(row.get("status") or "").strip().lower()
+        if status not in {"in_progress", "active", "in-progress"}:
+            continue
+        contract_id = str(row.get("id") or "").strip()
+        if contract_id and contract_id not in ids:
+            ids.append(contract_id)
+
+    return ids
 
 
 def _successor_dependency_posture(
@@ -1142,6 +1163,7 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
     blockers_text = _read_text(PRODUCT / "GROUP_BLOCKERS.md")
     roadmap_text = _read_text(PRODUCT / "ROADMAP.md")
     release_text = _read_text(PRODUCT / "RELEASE_EVIDENCE_PACK.md")
+    contract_sets_in_progress = _contract_sets_in_progress(CONTRACT_SETS)
 
     current_wave = _current_recommended_wave(roadmap_text)
     next20_closed = _registry_status(NEXT20_REGISTRY) == "complete"
@@ -1301,6 +1323,14 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
         "summary": summary,
         "active_wave": current_wave,
         "active_wave_status": active_wave_status,
+        "closure_semantics": {
+            "plane": "dual" if _front_door_closed(release_text) else "single",
+            "front_door_closeout": "complete" if _front_door_closed(release_text) else "in_progress",
+            "substrate_proof_lane": "in_progress" if contract_sets_in_progress else "closed",
+            "front_door_belief": "public release-control plane and public tuple posture are stable on public main",
+            "substrate_belief": "campaign-world-community-admin proof contracts remain in active proof status",
+        },
+        "substrate_contract_sets_in_progress": contract_sets_in_progress,
         "release_health": release_health,
         "flagship_readiness": flagship_readiness,
         "rule_environment_trust": rule_environment_trust,
@@ -1349,6 +1379,8 @@ def build_snapshot(as_of: dt.date, *, generated_at: str | None = None) -> dict[s
     payload["supporting_signals"]["closure_health"] = closure_health or _missing_closure_health()
     payload["supporting_signals"]["adoption_health"] = adoption_health or _missing_adoption_health(history_count)
     payload["supporting_signals"]["progress_trend"] = progress_trend or _missing_progress_trend(as_of)
+    payload["supporting_signals"]["closure_semantics"] = payload["closure_semantics"]
+    payload["supporting_signals"]["substrate_contract_sets_in_progress"] = payload["substrate_contract_sets_in_progress"]
 
     return payload
 

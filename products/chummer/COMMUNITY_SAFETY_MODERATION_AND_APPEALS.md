@@ -32,6 +32,18 @@ Every event family needs:
 * final decision
 * appeal route
 * retention and publication posture
+* a `CommunityScaleAuditPacket` or linked support-case receipt that proves who
+  acted, under which role, on which community scope, and with which evidence
+
+## Audit boundary
+
+Moderation packets may recommend temporary action, frozen publication, or support
+escalation.
+They do not become support closure truth, release truth, or hidden organizer
+superpowers.
+`ORGANIZER_ROLE_AND_AUDIT_BOUNDARIES.md` and
+`COMMUNITY_SCALE_AUDIT_PACKET_SCHEMA.yaml` define the required role and receipt
+boundary for those actions.
 
 ## Product boundary
 

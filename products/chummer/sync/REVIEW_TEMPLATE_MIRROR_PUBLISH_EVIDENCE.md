@@ -650,3 +650,195 @@ Evidence format:
 | Backlog ID | Target Repo | publish_ref | source_sha256 | target_sha256 | result |
 |---|---|---|---|---|---|
 | WL-D007-07 | chummer6-media-factory | `d9a4beb5` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | `34c66309fc15baf95edabb753504628b9c6d80aaea4f772a8df0dbacd750c7b3` | done (drift detected in WL-D014-01 at `2026-03-14T06:40:45Z`; republished drifted target and restored checksum parity in WL-D014-02) |
+
+## Cycle 2026-05-04T16:09:19Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (republished drifted target; checksum parity restored) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T16:36:49Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T17:25:35Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T17:35:15Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T18:05:35Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T18:51:19Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T19:16:49Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T19:47:54Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T19:52:38Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `58b6e618` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T20:02:24Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `2b6adf8a` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T20:12:56Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `da8c647a` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T21:07:44Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `1793a611` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T21:23:15Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `af09e2eb` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T22:00:22Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `af09e2eb` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T22:05:24Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `af09e2eb` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |
+
+## Cycle 2026-05-04T22:55:18Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `5047fe2f` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `52fde1dd` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched) |
+| WL-D007-03 | chummer6-hub | `59a61a46` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `15c32b37` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `919a99f6` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched) |
+| WL-D007-06 | chummer6-hub-registry | `0060d524` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched) |
+| WL-D007-07 | chummer6-media-factory | `1bb18ac1` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched) |

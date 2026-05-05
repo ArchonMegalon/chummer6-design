@@ -20,6 +20,9 @@ policy:
   split_brain_release_truth:
     - Installer bytes, release-channel truth, public shelf truth, in-app update truth, and recovery truth must agree.
     - If they disagree, the affected plane stays non-ready even when individual tests pass.
+  release_plane_reporting:
+    - "`active_wave_status: complete` validates the public front-door closeout plane, not all substrate families."
+    - Campaign/world/community/admin contracts may remain `in_progress` while front-door public proof remains valid and must be labeled as such in pulse and roadmap summaries.
 planes:
   - id: flagship_ready
     owner_repos:
@@ -131,10 +134,13 @@ planes:
       - Install, update, rollback, restore, or first-launch proof is stale, mismatched, or externally contradictory
   - id: rules_explainability_ready
     owner_repos:
+      - chummer6-design
       - chummer6-core
       - executive-assistant
       - fleet
     source_artifacts:
+      - EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md
+      - SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md
       - BUILD_LAB_PRODUCT_MODEL.md
       - FLAGSHIP_RELEASE_ACCEPTANCE.yaml
     proving_artifacts:
@@ -142,6 +148,7 @@ planes:
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
     fail_when:
       - Important computed values cannot be explained where users ask why
+      - Explain coverage-registry, source-anchor class, or bounded follow-up release-gate truth drifts from Fleet closeout evidence
       - Explain/build journeys remain blocked or implicit
   - id: custom_data_survival_ready
     owner_repos:

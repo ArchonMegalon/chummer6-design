@@ -230,6 +230,7 @@ Each published video artifact should carry:
 - compare companions that summarize anchored deltas from approved explain packets
 - import companions that restate bounded-loss or landed-success receipts without hiding repair steps
 - blocker companions that restate inspectable blocker receipts and next-step actions
+- rule-environment companions that summarize activation diffs, campaign drift, restore mismatch, or support follow-through without becoming legality authority
 
 These lanes stay subordinate to inspectable engine truth:
 - companion narration may cite packet anchors
@@ -237,6 +238,12 @@ These lanes stay subordinate to inspectable engine truth:
 - approval may permit publication, but it may not authorize unanchored rules claims
 - every rendered companion must preserve the exact packet revision, rule-environment identity, and approval scope it summarizes
 - if revision identity, anchor scope, or approval scope cannot be shown honestly, the launch surface must fail closed to the packet, anchor sheet, or localized text fallback instead of pretending the narration is enough
+
+### Rule-environment grounded-media surfaces
+- `rule_environment_grounded_companion_video` is the optional media lane for Rules Navigator, Build Lab environment review, campaign drift follow-through, import or restore mismatch review, and diagnostics/support environment follow-through
+- `RULE_ENVIRONMENT_GROUNDED_MEDIA_POLICY.md` sets the truth order for these launches: inspectable packet or receipt first, localized text fallback second, rendered companion last
+- a grounded-media launch may cite active and compared rule-environment badges, diff summaries, and next safe actions
+- it may not become the only visible path to legality posture, amend-package impact, or recovery steps
 
 ### Creator and publication surfaces
 - dossier trailer videos

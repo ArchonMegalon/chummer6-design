@@ -226,6 +226,9 @@ Media-backed moments should be rare and high-trust:
 - fix-confirmation
 - player-safe recap prompt
 
+If a packet covers rule-environment drift, legality, or amend-package impact, it must follow `RULE_ENVIRONMENT_GROUNDED_MEDIA_POLICY.md`.
+That means the packet keeps the active rule-environment digest, compared digest when applicable, and the exact activation or diff receipt ref ahead of any optional media layer.
+
 Example:
 
 ```yaml
@@ -238,7 +241,15 @@ media_eligibility:
   autoplay_policy: click_to_play
   preferred_lane: vidBoard
   required_text_fallback: true
+  truth_order:
+    - receipt_or_packet
+    - rule_environment_identity
+    - source_anchor_scope
+    - localized_text_fallback
+    - optional_media
 ```
+
+Rule-environment packets must fail closed to the evidence drawer or localized text fallback when receipt identity, compared environment scope, or anchor scope cannot be shown honestly.
 
 ## Minimal packet example
 
@@ -319,3 +330,4 @@ This file should remain aligned with:
 - `BUILD_LAB_PRODUCT_MODEL.md`
 - `CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md`
 - `ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md`
+- `RULE_ENVIRONMENT_GROUNDED_MEDIA_POLICY.md`
