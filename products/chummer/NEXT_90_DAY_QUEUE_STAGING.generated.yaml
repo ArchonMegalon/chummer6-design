@@ -4847,9 +4847,20 @@ items:
   work_task_id: '130.2'
   frontier_id: 7382989835
   milestone_id: 130
-  status: not_started
+  status: complete
   wave: W19
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: unlanded
+  do_not_reopen_reason: M130 Fleet provider stewardship monitors are complete; future shards must verify the repo-local provider-health monitor scripts, cached-input fallback, generated proof packet, focused regressions, and canonical queue mirrors instead of reopening provider-health, credit-runway, kill-switch, fallback, or route-stewardship closure through prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m130_fleet_provider_stewardship.py
+  - /docker/fleet/scripts/verify_next90_m130_fleet_provider_stewardship.py
+  - /docker/fleet/tests/test_materialize_next90_m130_fleet_provider_stewardship.py
+  - /docker/fleet/tests/test_verify_next90_m130_fleet_provider_stewardship.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M130_FLEET_PROVIDER_STEWARDSHIP.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M130_FLEET_PROVIDER_STEWARDSHIP.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m130-fleet-provider-stewardship-progress.md
   allowed_paths:
   - scripts
   - tests
