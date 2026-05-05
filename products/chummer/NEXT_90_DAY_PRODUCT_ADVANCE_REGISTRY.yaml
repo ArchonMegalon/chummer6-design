@@ -2544,7 +2544,7 @@ milestones:
       - fleet
       - executive-assistant
       - chummer6-design
-    status: in_progress
+    status: complete
     dependencies:
       - 101
       - 106
@@ -2675,10 +2675,6 @@ milestones:
       owner: chummer6-hub
       title: Implement campaign adoption wizard state, runner-goal persistence, ResolutionReport approval, and first WorldTick/news
         item flow.
-    - id: '122.2'
-      owner: chummer6-core
-      title: Add deterministic reward, downtime, goal-update, and consequence receipt contracts consumed by adoption and BLACK
-        LEDGER flows.
     - id: '122.2'
       owner: chummer6-core
       title: Add deterministic reward, downtime, goal-update, and consequence receipt contracts consumed by adoption and BLACK
@@ -3336,6 +3332,12 @@ milestones:
       owner: fleet
       title: Add full-design queued-coverage verification, mirror freshness checks, missing-row detection, and status-plane
         reporting.
+      status: complete
+      evidence:
+      - /docker/fleet/scripts/materialize_next90_m135_fleet_design_queued_coverage.py now accepts the live generated queue overlay shape and materializes the M135 queued-coverage packet directly from the canonical registry, guide, queue mirrors, mirror evidence, and status plane without false missing-row failures.
+      - /docker/fleet/scripts/verify_next90_m135_fleet_design_queued_coverage.py and /docker/fleet/tests/test_materialize_next90_m135_fleet_design_queued_coverage.py plus /docker/fleet/tests/test_verify_next90_m135_fleet_design_queued_coverage.py now fail closed on queue-overlay drift, verifier drift, and repo-root bootstrap drift so the closure packet cannot silently outrun canon.
+      - /docker/fleet/.codex-studio/published/NEXT90_M135_FLEET_DESIGN_QUEUED_COVERAGE.generated.json publishes the live pass receipt for `next90-m135-fleet-add-full-design-queued-coverage-verification-mirror-fres` while still surfacing remaining runtime blockers owned by design mirror freshness and task 135.1.
+      - /docker/fleet/feedback/2026-05-05-next90-m135-fleet-design-queued-coverage-progress.md records the hardening change, current live blocker set, and do-not-reopen posture for the Fleet-owned closure slice.
     - id: '135.3'
       owner: chummer6-core
       title: Close engine contract-set, package bootstrap, deterministic proof, interop, import/export, and rules-boundary coverage.
