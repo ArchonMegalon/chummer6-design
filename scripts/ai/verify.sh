@@ -221,6 +221,7 @@ python3 "$repo_root/scripts/ai/validate_next90_m109_design_explain_truth_policy.
 python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m129_design_account_community_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null

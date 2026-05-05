@@ -171,6 +171,19 @@ A linked copy may additionally:
 * receive account-aware update/channel guidance
 * receive follow-up surveys after fixes land
 
+## Account-aware front-door rule
+
+`/downloads` stays guest-readable while `/home` and `/account` remain signed-in shells.
+
+Those signed-in shells may summarize:
+
+* claim state for the current install
+* participation and sponsor-session posture
+* reward and entitlement posture
+* linked channel and recovery posture
+
+They must do so from Hub community-ledger plus Registry-backed channel truth rather than from local auth state, browser-session folklore, or mutable installer bytes.
+
 ## Roaming workspace rule
 
 Claiming an install may unlock roaming workspace restore, but restore follows typed scope rules rather than raw file sync.

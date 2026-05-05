@@ -2579,6 +2579,16 @@ milestones:
       owner: chummer6-design
       title: Close public-auth, identity/channel-linking, participation, account-aware front-door, and community-ledger canon
         coverage.
+      status: complete
+      evidence:
+        - /docker/chummercomplete/chummer-design/products/chummer/PUBLIC_AUTH_FLOW.md now states that `/participate` is the guest-readable account-aware front door while `/home` and `/account` remain the signed-in community-ledger shell.
+        - /docker/chummercomplete/chummer-design/products/chummer/PUBLIC_USER_MODEL.md now defines community-ledger relationship states for claim, membership, participation, reward, entitlement, linked-channel, and recovery posture without implying ledger membership for guests.
+        - /docker/chummercomplete/chummer-design/products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md now states that linked identities and linked channels attach to the Hub community ledger and cannot stand in for reward, entitlement, or sponsor-session truth.
+        - /docker/chummercomplete/chummer-design/products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md now binds account-aware front-door posture to Hub community-ledger plus Registry-backed channel truth instead of local auth folklore.
+        - /docker/chummercomplete/chummer-design/products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md, /docker/chummercomplete/chummer-design/products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md, and /docker/chummercomplete/chummer-design/products/chummer/PUBLIC_PART_REGISTRY.yaml now close the public front door, community-ledger split, and Hub surface summary into one canon bundle.
+        - /docker/chummercomplete/chummer-design/scripts/ai/validate_next90_m129_design_account_community_canon.py fail-closes doc drift, standard verifier drift, feedback closeout drift, and canonical registry plus design queue drift for this completed package.
+        - /docker/chummercomplete/chummer-design/scripts/ai/verify.sh now requires the M129 validator during standard repo verification.
+        - /docker/chummercomplete/chummer-design/products/chummer/maintenance/feedback_archive/2026-05-05-next90-m129-design-account-community-canon-closeout.md records the package closeout posture and do-not-reopen rule for future shards.
   - id: 130
     title: External tools, LTD provider stewardship, and governed integration adapter completion
     wave: W19

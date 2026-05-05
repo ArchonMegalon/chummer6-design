@@ -4167,9 +4167,24 @@ items:
   work_task_id: '129.6'
   frontier_id: 3846410661
   milestone_id: 129
-  status: not_started
+  status: complete
   wave: W19
   repo: chummer6-design
+  completion_action: verify_closed_package_only
+  do_not_reopen_reason: M129 chummer6-design public-auth and community-ledger canon is complete; future shards must verify
+    the public-auth, user-model, identity-channel-linking, account-aware front-door, and community-sponsorship canon docs,
+    standard validator wiring, feedback closeout note, and the canonical registry plus design queue rows instead of reopening
+    the account-aware front-door canon slice.
+  proof:
+  - /docker/chummercomplete/chummer-design/products/chummer/PUBLIC_AUTH_FLOW.md
+  - /docker/chummercomplete/chummer-design/products/chummer/PUBLIC_USER_MODEL.md
+  - /docker/chummercomplete/chummer-design/products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md
+  - /docker/chummercomplete/chummer-design/products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md
+  - /docker/chummercomplete/chummer-design/products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md
+  - /docker/chummercomplete/chummer-design/products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md
+  - /docker/chummercomplete/chummer-design/products/chummer/PUBLIC_PART_REGISTRY.yaml
+  - /docker/chummercomplete/chummer-design/scripts/ai/validate_next90_m129_design_account_community_canon.py
+  - /docker/chummercomplete/chummer-design/products/chummer/maintenance/feedback_archive/2026-05-05-next90-m129-design-account-community-canon-closeout.md
   allowed_paths:
   - products
   - scripts
