@@ -3359,6 +3359,24 @@ milestones:
     - id: '135.9'
       owner: chummer6-media-factory
       title: Close media contracts, render jobs, previews, manifests, archive, provider adapters, and asset lifecycle coverage.
+      status: complete
+      evidence:
+      - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py now publishes one
+        repo-wide M135 closure package that pins media contracts, render jobs, previews, manifests, archive posture,
+        provider adapters, and asset lifecycle proof on top of the existing media-factory successor floors.
+      - /docker/fleet/repos/chummer-media-factory/docs/NEXT90_M135_MEDIA_COVERAGE_PROOF_FLOOR.md,
+        /docker/fleet/repos/chummer-media-factory/tests/test_m135_media_coverage_proof.py, and
+        /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m135_media_coverage.sh now fail closed on canonical
+        queue or registry drift, duplicate package rows, stale published proof snapshots, and missing repo-local proof
+        citations for the M135 closure bundle.
+      - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Contracts/Compatibility/RunServices/MediaFactoryContracts.cs,
+        /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Contracts/Rendering/MediaRenderKind.cs,
+        /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Factory.Runtime/Assets/MediaRenderJobService.cs, and
+        /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Factory.Runtime/Assets/StructuredMediaRecipeExecutionService.cs
+        keep contract, render-job, preview, and lifecycle truth explicit for the closure slice without widening ownership.
+      - /docker/fleet/repos/chummer-media-factory/.codex-studio/published/MEDIA_LOCAL_RELEASE_PROOF.generated.json and
+        /docker/fleet/repos/chummer-media-factory/.codex-studio/published/ARTIFACT_PUBLICATION_CERTIFICATION.generated.json
+        now carry the current M135 closure package entry as published proof.
     - id: '135.10'
       owner: executive-assistant
       title: Close EA compile, signal, companion, public copy, operator packet, provider digest, and followthrough coverage

@@ -4544,17 +4544,17 @@ items:
   landed_commit: 7d5a0167
   do_not_reopen_reason: M145 chummer6-media-factory explain presenter siblings is complete; future shards must verify this package via the closure proof floor, package tests, registry row, queue rows, and focused closeout commands instead of reopening this package.
   proof:
-  - /docker/chummercomplete/chummer6-media-factory/src/Chummer.Media.Factory.Runtime/Assets/ExplainPresenterSiblingRenderingService.cs
-  - /docker/chummercomplete/chummer6-media-factory/src/Chummer.Media.Contracts/Compatibility/RunServices/MediaFactoryContracts.cs
-  - /docker/chummercomplete/chummer6-media-factory/src/Chummer.Media.Contracts/README.md
-  - /docker/chummercomplete/chummer6-media-factory/tests/ExplainPresenterSiblingSmoke/Program.cs
-  - /docker/chummercomplete/chummer6-media-factory/tests/test_explain_presenter_sibling_rendering.py
-  - /docker/chummercomplete/chummer6-media-factory/tests/test_m145_successor_package_authority.py
-  - /docker/chummercomplete/chummer6-media-factory/tests/test_m145_explain_presenter_proof.py
-  - /docker/chummercomplete/chummer6-media-factory/docs/NEXT90_M145_EXPLAIN_PRESENTER_SIBLINGS_PROOF_FLOOR.md
-  - /docker/chummercomplete/chummer6-media-factory/scripts/ai/materialize_media_release_proof.py
-  - /docker/chummercomplete/chummer6-media-factory/scripts/ai/verify.sh
-  - /docker/chummercomplete/chummer6-media-factory/scripts/ai/verify_m145_explain_presenter_siblings.sh
+  - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Factory.Runtime/Assets/ExplainPresenterSiblingRenderingService.cs
+  - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Contracts/Compatibility/RunServices/MediaFactoryContracts.cs
+  - /docker/fleet/repos/chummer-media-factory/src/Chummer.Media.Contracts/README.md
+  - /docker/fleet/repos/chummer-media-factory/tests/ExplainPresenterSiblingSmoke/Program.cs
+  - /docker/fleet/repos/chummer-media-factory/tests/test_explain_presenter_sibling_rendering.py
+  - /docker/fleet/repos/chummer-media-factory/tests/test_m145_successor_package_authority.py
+  - /docker/fleet/repos/chummer-media-factory/tests/test_m145_explain_presenter_proof.py
+  - /docker/fleet/repos/chummer-media-factory/docs/NEXT90_M145_EXPLAIN_PRESENTER_SIBLINGS_PROOF_FLOOR.md
+  - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py
+  - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify.sh
+  - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m145_explain_presenter_siblings.sh
   wave: W28
   repo: chummer6-media-factory
   allowed_paths:
@@ -5518,9 +5518,19 @@ items:
   work_task_id: '135.9'
   frontier_id: 4720040715
   milestone_id: 135
-  status: not_started
   wave: W22
   repo: chummer6-media-factory
+  status: complete
+  landed_commit: unlanded
+  completion_action: verify_closed_package_only
+  do_not_reopen_reason: M135 chummer6-media-factory is complete; future shards must verify the repo-local proof floor, release-proof package entry, and canonical queue/registry mirrors instead of reopening the media coverage bundle.
+  proof:
+  - /docker/fleet/repos/chummer-media-factory/docs/NEXT90_M135_MEDIA_COVERAGE_PROOF_FLOOR.md
+  - /docker/fleet/repos/chummer-media-factory/tests/test_m135_media_coverage_proof.py
+  - /docker/fleet/repos/chummer-media-factory/scripts/ai/verify_m135_media_coverage.sh
+  - /docker/fleet/repos/chummer-media-factory/scripts/ai/materialize_media_release_proof.py
+  - /docker/fleet/repos/chummer-media-factory/.codex-studio/published/MEDIA_LOCAL_RELEASE_PROOF.generated.json
+  - /docker/fleet/repos/chummer-media-factory/.codex-studio/published/ARTIFACT_PUBLICATION_CERTIFICATION.generated.json
   allowed_paths:
   - src
   - tests
