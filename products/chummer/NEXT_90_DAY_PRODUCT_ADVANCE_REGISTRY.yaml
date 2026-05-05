@@ -2566,6 +2566,23 @@ milestones:
       - id: 120.3
         owner: fleet
         title: Compile launch pulse, adoption health, support risk, and proof freshness into governor-ready public status packets.
+        package_id: next90-m120-fleet-launch-pulse
+        status: complete
+        landed_commit: '19878082'
+        do_not_reopen_reason: M120 Fleet package 'Compile launch pulse, adoption health, support risk, and proof freshness into
+          governor-ready public status packets.' is complete; future shards must verify the repo-local materializer/verifier, generated
+          proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+        evidence:
+        - /docker/fleet/scripts/materialize_next90_m120_fleet_launch_pulse.py and /docker/fleet/scripts/verify_next90_m120_fleet_launch_pulse.py
+          keep the Fleet package for Compile launch pulse, adoption health, support risk, and proof freshness into governor-ready
+          public status packets. materialized and verifier-checked against canonical queue and registry truth.
+        - /docker/fleet/tests/test_materialize_next90_m120_fleet_launch_pulse.py and /docker/fleet/tests/test_verify_next90_m120_fleet_launch_pulse.py
+          keep focused regression coverage on canonical alignment and package blocking logic for this Fleet package.
+        - /docker/fleet/.codex-studio/published/NEXT90_M120_FLEET_LAUNCH_PULSE.generated.json and /docker/fleet/.codex-studio/published/NEXT90_M120_FLEET_LAUNCH_PULSE.generated.md
+          publish the current Fleet proof packet for this completed work task.
+        - /docker/fleet/feedback/2026-05-05-next90-m120-fleet-launch-pulse-closeout.md records the shipped package proof and closeout
+          posture for this Fleet task.
+        - /docker/fleet commit 19878082 landed this Fleet package closure.
       - id: 120.4
         owner: executive-assistant
         title: Draft reporter, operator, and public followthrough from launch-pulse truth without inventing release claims.

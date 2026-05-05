@@ -3604,9 +3604,22 @@ items:
   package_id: next90-m120-fleet-launch-pulse
   work_task_id: 120.3
   milestone_id: 120
-  status: in_progress
+  status: complete
   wave: W14
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: '19878082'
+  do_not_reopen_reason: M120 Fleet package 'Compile launch pulse and adoption health into governor packets' is complete; future
+    shards must verify the repo-local materializer/verifier, generated proof artifacts, and canonical queue/registry mirrors
+    instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m120_fleet_launch_pulse.py
+  - /docker/fleet/scripts/verify_next90_m120_fleet_launch_pulse.py
+  - /docker/fleet/tests/test_materialize_next90_m120_fleet_launch_pulse.py
+  - /docker/fleet/tests/test_verify_next90_m120_fleet_launch_pulse.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M120_FLEET_LAUNCH_PULSE.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M120_FLEET_LAUNCH_PULSE.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m120-fleet-launch-pulse-closeout.md
   allowed_paths:
   - scripts
   - tests
@@ -4159,9 +4172,22 @@ items:
   work_task_id: '125.3'
   frontier_id: 5150581210
   milestone_id: 125
-  status: not_started
+  status: complete
   wave: W17
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 3c270136
+  do_not_reopen_reason: M125 Fleet package 'Add signal-cluster-to-queue synthesis for repeated ProductLift, Katteb, ClickRank,
+    support, and public-guide findings.' is complete; future shards must verify the repo-local materializer/verifier, generated
+    proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m125_fleet_signal_cluster_queue.py
+  - /docker/fleet/scripts/verify_next90_m125_fleet_signal_cluster_queue.py
+  - /docker/fleet/tests/test_materialize_next90_m125_fleet_signal_cluster_queue.py
+  - /docker/fleet/tests/test_verify_next90_m125_fleet_signal_cluster_queue.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M125_FLEET_SIGNAL_CLUSTER_QUEUE.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M125_FLEET_SIGNAL_CLUSTER_QUEUE.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m125-fleet-signal-cluster-queue-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -4223,9 +4249,22 @@ items:
   work_task_id: '126.2'
   frontier_id: 6039766471
   milestone_id: 126
-  status: not_started
+  status: complete
   wave: W17
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: f963c1fc
+  do_not_reopen_reason: M126 Fleet package 'Teach the supervisor to stage bounded horizon-conversion queue slices only after
+    owner handoff gates are satisfied.' is complete; future shards must verify the repo-local materializer/verifier, generated
+    proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m126_fleet_horizon_handoff_queue.py
+  - /docker/fleet/scripts/verify_next90_m126_fleet_horizon_handoff_queue.py
+  - /docker/fleet/tests/test_materialize_next90_m126_fleet_horizon_handoff_queue.py
+  - /docker/fleet/tests/test_verify_next90_m126_fleet_horizon_handoff_queue.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M126_FLEET_HORIZON_HANDOFF_QUEUE.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M126_FLEET_HORIZON_HANDOFF_QUEUE.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m126-fleet-horizon-handoff-queue-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -4378,7 +4417,10 @@ items:
   wave: W18
   repo: fleet
   completion_action: verify_closed_package_only
-  do_not_reopen_reason: M127 Fleet release-truth gates are complete; future shards must verify the canonical registry row, both queue rows, the generated gate packet, and the focused queue-overlay regressions instead of reopening this release-truth closure guard.
+  landed_commit: eadc2f1c
+  do_not_reopen_reason: M127 Fleet release-truth gates are complete; future shards must verify the canonical registry row,
+    both queue rows, the generated gate packet, and the focused queue-overlay regressions instead of reopening this release-truth
+    closure guard.
   proof:
   - /docker/fleet/scripts/materialize_next90_m127_fleet_release_truth_gates.py
   - /docker/fleet/scripts/verify_next90_m127_fleet_release_truth_gates.py
@@ -4691,9 +4733,22 @@ items:
   work_task_id: '128.5'
   frontier_id: 6911125913
   milestone_id: 128
-  status: not_started
+  status: complete
   wave: W18
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 8946b545
+  do_not_reopen_reason: M128 Fleet package 'Add freshness and contradiction monitors for telemetry, privacy, retention, localization,
+    support, and crash proof planes.' is complete; future shards must verify the repo-local materializer/verifier, generated
+    proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m128_fleet_trust_plane_monitors.py
+  - /docker/fleet/scripts/verify_next90_m128_fleet_trust_plane_monitors.py
+  - /docker/fleet/tests/test_materialize_next90_m128_fleet_trust_plane_monitors.py
+  - /docker/fleet/tests/test_verify_next90_m128_fleet_trust_plane_monitors.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M128_FLEET_TRUST_PLANE_MONITORS.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M128_FLEET_TRUST_PLANE_MONITORS.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m128-fleet-trust-plane-monitors-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -4789,9 +4844,22 @@ items:
   work_task_id: '129.4'
   frontier_id: 7997916353
   milestone_id: 129
-  status: not_started
+  status: complete
   wave: W19
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 2008339d
+  do_not_reopen_reason: M129 Fleet package 'Keep participant-lane auth lane-local while emitting signed contribution receipts
+    and sponsor-session execution metadata.' is complete; future shards must verify the repo-local materializer/verifier,
+    generated proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m129_fleet_participation_lane_receipts.py
+  - /docker/fleet/scripts/verify_next90_m129_fleet_participation_lane_receipts.py
+  - /docker/fleet/tests/test_materialize_next90_m129_fleet_participation_lane_receipts.py
+  - /docker/fleet/tests/test_verify_next90_m129_fleet_participation_lane_receipts.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M129_FLEET_PARTICIPATION_LANE_RECEIPTS.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M129_FLEET_PARTICIPATION_LANE_RECEIPTS.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m129-fleet-participation-lane-receipts-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -4876,8 +4944,10 @@ items:
   wave: W19
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M130 Fleet provider stewardship monitors are complete; future shards must verify the repo-local provider-health monitor scripts, cached-input fallback, generated proof packet, focused regressions, and canonical queue mirrors instead of reopening provider-health, credit-runway, kill-switch, fallback, or route-stewardship closure through prose alone.
+  landed_commit: df0824d7
+  do_not_reopen_reason: M130 Fleet provider stewardship monitors are complete; future shards must verify the repo-local provider-health
+    monitor scripts, cached-input fallback, generated proof packet, focused regressions, and canonical queue mirrors instead
+    of reopening provider-health, credit-runway, kill-switch, fallback, or route-stewardship closure through prose alone.
   proof:
   - /docker/fleet/scripts/materialize_next90_m130_fleet_provider_stewardship.py
   - /docker/fleet/scripts/verify_next90_m130_fleet_provider_stewardship.py
@@ -5033,9 +5103,22 @@ items:
   work_task_id: '131.5'
   frontier_id: 5694544514
   milestone_id: 131
-  status: not_started
+  status: complete
   wave: W19
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 774c3d1e
+  do_not_reopen_reason: M131 Fleet package 'Verify public-guide regeneration, visibility-source freshness, crawl-budget discipline,
+    and unsupported-claim rejection gates.' is complete; future shards must verify the repo-local materializer/verifier, generated
+    proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m131_fleet_public_guide_gates.py
+  - /docker/fleet/scripts/verify_next90_m131_fleet_public_guide_gates.py
+  - /docker/fleet/tests/test_materialize_next90_m131_fleet_public_guide_gates.py
+  - /docker/fleet/tests/test_verify_next90_m131_fleet_public_guide_gates.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M131_FLEET_PUBLIC_GUIDE_GATES.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M131_FLEET_PUBLIC_GUIDE_GATES.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m131-fleet-public-guide-gates-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -5157,8 +5240,10 @@ items:
   wave: W20
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M132 Fleet deterministic horizon queue gating is complete; future shards must verify the repo-local scheduler gate scripts, generated proof packet, focused regressions, and canonical queue mirrors instead of reopening deterministic horizon staging through guide prose alone.
+  landed_commit: b495f946
+  do_not_reopen_reason: M132 Fleet deterministic horizon queue gating is complete; future shards must verify the repo-local
+    scheduler gate scripts, generated proof packet, focused regressions, and canonical queue mirrors instead of reopening
+    deterministic horizon staging through guide prose alone.
   proof:
   - /docker/fleet/scripts/materialize_next90_m132_fleet_deterministic_horizon_queue.py
   - /docker/fleet/scripts/verify_next90_m132_fleet_deterministic_horizon_queue.py
@@ -5301,9 +5386,22 @@ items:
   work_task_id: '133.7'
   frontier_id: 2336165027
   milestone_id: 133
-  status: not_started
+  status: complete
   wave: W21
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 49d89879
+  do_not_reopen_reason: M133 Fleet package 'Monitor media/social horizon proof freshness, consent gates, unsupported public
+    claims, and provider-health stop conditions.' is complete; future shards must verify the repo-local materializer/verifier,
+    generated proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m133_fleet_media_social_horizon_monitors.py
+  - /docker/fleet/scripts/verify_next90_m133_fleet_media_social_horizon_monitors.py
+  - /docker/fleet/tests/test_materialize_next90_m133_fleet_media_social_horizon_monitors.py
+  - /docker/fleet/tests/test_verify_next90_m133_fleet_media_social_horizon_monitors.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M133_FLEET_MEDIA_SOCIAL_HORIZON_MONITORS.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M133_FLEET_MEDIA_SOCIAL_HORIZON_MONITORS.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m133-fleet-media-social-horizon-monitors-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -5448,7 +5546,10 @@ items:
   wave: W22
   repo: fleet
   completion_action: verify_closed_package_only
-  do_not_reopen_reason: M135 Fleet design queued-coverage verification is complete; future shards must verify the canonical registry row, both queue rows, the generated packet, and the focused queue-overlay regressions instead of reopening this closure guard.
+  landed_commit: a4c06b25
+  do_not_reopen_reason: M135 Fleet design queued-coverage verification is complete; future shards must verify the canonical
+    registry row, both queue rows, the generated packet, and the focused queue-overlay regressions instead of reopening this
+    closure guard.
   proof:
   - /docker/fleet/scripts/materialize_next90_m135_fleet_design_queued_coverage.py
   - /docker/fleet/scripts/verify_next90_m135_fleet_design_queued_coverage.py
@@ -5862,9 +5963,23 @@ items:
   work_task_id: '136.6'
   frontier_id: 2277811964
   milestone_id: 136
-  status: not_started
+  status: complete
   wave: W23
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 6c8dd0c1
+  do_not_reopen_reason: M136 Fleet package 'Fail closed on aggregate readiness when family-level parity proof, sub-dialog
+    screenshot packs, dialog-level element inventories, or continuity journey receipts are stale or missing.' is complete;
+    future shards must verify the repo-local materializer/verifier, generated proof artifacts, and canonical queue/registry
+    mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m136_fleet_aggregate_readiness_parity_gates.py
+  - /docker/fleet/scripts/verify_next90_m136_fleet_aggregate_readiness_parity_gates.py
+  - /docker/fleet/tests/test_materialize_next90_m136_fleet_aggregate_readiness_parity_gates.py
+  - /docker/fleet/tests/test_verify_next90_m136_fleet_aggregate_readiness_parity_gates.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M136_FLEET_AGGREGATE_READINESS_PARITY_GATES.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M136_FLEET_AGGREGATE_READINESS_PARITY_GATES.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m136-fleet-aggregate-readiness-parity-gates-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -5914,9 +6029,22 @@ items:
   work_task_id: '136.9'
   frontier_id: 4491585022
   milestone_id: 136
-  status: not_started
+  status: complete
   wave: W23
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 0e17649e
+  do_not_reopen_reason: M136 Fleet package 'Bind the machine-readable human parity matrix into audit/gate consumption so hard
+    families cannot close on prose-only proof.' is complete; future shards must verify the repo-local materializer/verifier,
+    generated proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m136_fleet_parity_matrix_gate_binding.py
+  - /docker/fleet/scripts/verify_next90_m136_fleet_parity_matrix_gate_binding.py
+  - /docker/fleet/tests/test_materialize_next90_m136_fleet_parity_matrix_gate_binding.py
+  - /docker/fleet/tests/test_verify_next90_m136_fleet_parity_matrix_gate_binding.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M136_FLEET_PARITY_MATRIX_GATE_BINDING.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M136_FLEET_PARITY_MATRIX_GATE_BINDING.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m136-fleet-parity-matrix-gate-binding-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -5953,8 +6081,10 @@ items:
   wave: W23
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M136 Fleet derived release-health planes are complete; future shards must verify the repo-local derivation scripts, generated plane packet, focused regressions, and canonical queue mirrors instead of reopening structural-green or flagship-ready closure on prose-only posture.
+  landed_commit: d4978043
+  do_not_reopen_reason: M136 Fleet derived release-health planes are complete; future shards must verify the repo-local derivation
+    scripts, generated plane packet, focused regressions, and canonical queue mirrors instead of reopening structural-green
+    or flagship-ready closure on prose-only posture.
   proof:
   - /docker/fleet/scripts/materialize_next90_m136_fleet_derived_release_health_planes.py
   - /docker/fleet/scripts/verify_next90_m136_fleet_derived_release_health_planes.py
@@ -6048,9 +6178,22 @@ items:
   work_task_id: '136.16'
   frontier_id: 2977536653
   milestone_id: 136
-  status: not_started
+  status: complete
   wave: W23
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 9d5b89a9
+  do_not_reopen_reason: M136 Fleet package 'Fail parity closeout when remaining deltas are not classified as must-match, may-improve,
+    or may-remove-if-non-degrading in the audit artifacts.' is complete; future shards must verify the repo-local materializer/verifier,
+    generated proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m136_fleet_parity_divergence_class_gate.py
+  - /docker/fleet/scripts/verify_next90_m136_fleet_parity_divergence_class_gate.py
+  - /docker/fleet/tests/test_materialize_next90_m136_fleet_parity_divergence_class_gate.py
+  - /docker/fleet/tests/test_verify_next90_m136_fleet_parity_divergence_class_gate.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M136_FLEET_PARITY_DIVERGENCE_CLASS_GATE.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M136_FLEET_PARITY_DIVERGENCE_CLASS_GATE.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m136-fleet-parity-divergence-class-gate-progress.md
   allowed_paths:
   - scripts
   - tests
@@ -6105,8 +6248,10 @@ items:
   wave: W23
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M136 Fleet explicit SR4 and SR6 readiness closeout is complete; future shards must verify the repo-local ruleset-closeout scripts, generated packet, focused regressions, and canonical queue mirrors instead of reopening SR4 or SR6 parity closure through broad desktop readiness inheritance.
+  landed_commit: ae27a569
+  do_not_reopen_reason: M136 Fleet explicit SR4 and SR6 readiness closeout is complete; future shards must verify the repo-local
+    ruleset-closeout scripts, generated packet, focused regressions, and canonical queue mirrors instead of reopening SR4
+    or SR6 parity closure through broad desktop readiness inheritance.
   proof:
   - /docker/fleet/scripts/materialize_next90_m136_fleet_sr4_sr6_readiness_closeout.py
   - /docker/fleet/scripts/verify_next90_m136_fleet_sr4_sr6_readiness_closeout.py
@@ -6237,8 +6382,10 @@ items:
   wave: W24
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M137 Fleet ecosystem seam monitors are complete; future shards must verify the repo-local monitor scripts, generated proof artifacts, and canonical queue mirrors instead of reopening unsupported ecosystem-claim, stale seam-proof, consent-drift, or public-posture monitoring by prose alone.
+  landed_commit: 79a43ac5
+  do_not_reopen_reason: M137 Fleet ecosystem seam monitors are complete; future shards must verify the repo-local monitor
+    scripts, generated proof artifacts, and canonical queue mirrors instead of reopening unsupported ecosystem-claim, stale
+    seam-proof, consent-drift, or public-posture monitoring by prose alone.
   proof:
   - /docker/fleet/scripts/materialize_next90_m137_fleet_ecosystem_seam_monitors.py
   - /docker/fleet/scripts/verify_next90_m137_fleet_ecosystem_seam_monitors.py
@@ -6419,9 +6566,22 @@ items:
   work_task_id: '138.9'
   frontier_id: 4764536356
   milestone_id: 138
-  status: not_started
+  status: complete
   wave: W25
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 8bac3fe6
+  do_not_reopen_reason: M138 Fleet package 'Fail closeout when the 90-second newcomer path, Ready for Tonight verdicts, adoption-confidence
+    receipts, or Foundry-first handoff receipts are stale, missing, or contradicted by public posture.' is complete; future
+    shards must verify the repo-local materializer/verifier, generated proof artifacts, and canonical queue/registry mirrors
+    instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m138_fleet_hero_path_closeout_gates.py
+  - /docker/fleet/scripts/verify_next90_m138_fleet_hero_path_closeout_gates.py
+  - /docker/fleet/tests/test_materialize_next90_m138_fleet_hero_path_closeout_gates.py
+  - /docker/fleet/tests/test_verify_next90_m138_fleet_hero_path_closeout_gates.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M138_FLEET_HERO_PATH_CLOSEOUT_GATES.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M138_FLEET_HERO_PATH_CLOSEOUT_GATES.generated.md
   allowed_paths:
   - scripts
   - tests
@@ -6441,8 +6601,10 @@ items:
   wave: W25
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M138 Fleet newcomer-path projections are complete; future shards must verify the repo-local projection scripts, generated packet, focused regressions, and canonical queue mirrors instead of reopening READY_FOR_TONIGHT, role-kit, VTT-acceptance, or newcomer-path public-truth binding through prose only.
+  landed_commit: aa4c3901
+  do_not_reopen_reason: M138 Fleet newcomer-path projections are complete; future shards must verify the repo-local projection
+    scripts, generated packet, focused regressions, and canonical queue mirrors instead of reopening READY_FOR_TONIGHT, role-kit,
+    VTT-acceptance, or newcomer-path public-truth binding through prose only.
   proof:
   - /docker/fleet/scripts/materialize_next90_m138_fleet_hero_path_projections.py
   - /docker/fleet/scripts/verify_next90_m138_fleet_hero_path_projections.py
@@ -6606,9 +6768,22 @@ items:
   work_task_id: '139.9'
   frontier_id: 3411981369
   milestone_id: 139
-  status: not_started
+  status: complete
   wave: W26
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: 4e533af5
+  do_not_reopen_reason: M139 Fleet package 'Fail closeout when tonight-pack proof, broadcast cadence proof, moderation and
+    appeals states, creator analytics bounds, or accessibility and cognitive-load gates are stale, missing, or contradictory.'
+    is complete; future shards must verify the repo-local materializer/verifier, generated proof artifacts, and canonical
+    queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m139_fleet_operational_trust_closeout_gates.py
+  - /docker/fleet/scripts/verify_next90_m139_fleet_operational_trust_closeout_gates.py
+  - /docker/fleet/tests/test_materialize_next90_m139_fleet_operational_trust_closeout_gates.py
+  - /docker/fleet/tests/test_verify_next90_m139_fleet_operational_trust_closeout_gates.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M139_FLEET_OPERATIONAL_TRUST_CLOSEOUT_GATES.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M139_FLEET_OPERATIONAL_TRUST_CLOSEOUT_GATES.generated.md
   allowed_paths:
   - scripts
   - tests
@@ -6624,9 +6799,22 @@ items:
   work_task_id: '139.10'
   frontier_id: 2565904250
   milestone_id: 139
-  status: not_started
+  status: complete
   wave: W26
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: e35ae17c
+  do_not_reopen_reason: M139 Fleet package 'Bind COMMUNITY_SAFETY_EVENT_AND_APPEAL_STATES, WORLD_BROADCAST_RECIPE_REGISTRY,
+    CREATOR_PUBLICATION_ANALYTICS_SCHEMA, and ACCESSIBILITY_COGNITIVE_LOAD_GATES into machine-readable release-health and
+    public-trust projections.' is complete; future shards must verify the repo-local materializer/verifier, generated proof
+    artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m139_fleet_release_health_public_trust_projections.py
+  - /docker/fleet/scripts/verify_next90_m139_fleet_release_health_public_trust_projections.py
+  - /docker/fleet/tests/test_materialize_next90_m139_fleet_release_health_public_trust_projections.py
+  - /docker/fleet/tests/test_verify_next90_m139_fleet_release_health_public_trust_projections.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M139_FLEET_RELEASE_HEALTH_PUBLIC_TRUST_PROJECTIONS.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M139_FLEET_RELEASE_HEALTH_PUBLIC_TRUST_PROJECTIONS.generated.md
   allowed_paths:
   - scripts
   - tests
@@ -6783,8 +6971,10 @@ items:
   wave: W27
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M140 Fleet portability and cadence closeout gates are complete; future shards must verify the repo-local gate scripts, generated proof packet, and canonical queue mirrors instead of reopening runner-passport, dispatch cadence, creator operating-system, or LTD cadence closure through broad public posture prose.
+  landed_commit: d16124ed
+  do_not_reopen_reason: M140 Fleet portability and cadence closeout gates are complete; future shards must verify the repo-local
+    gate scripts, generated proof packet, and canonical queue mirrors instead of reopening runner-passport, dispatch cadence,
+    creator operating-system, or LTD cadence closure through broad public posture prose.
   proof:
   - /docker/fleet/scripts/materialize_next90_m140_fleet_portability_and_cadence_closeout_gates.py
   - /docker/fleet/scripts/verify_next90_m140_fleet_portability_and_cadence_closeout_gates.py
@@ -6882,8 +7072,10 @@ items:
   wave: W22P
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M141 fleet import-route closeout gate is complete; future shards must verify the repo-local gate scripts, generated proof artifacts, and canonical queue/registry mirrors instead of reopening the translator, XML, Hero Lab, and adjacent import-route parity closeout slice.
+  landed_commit: c099200f
+  do_not_reopen_reason: M141 fleet import-route closeout gate is complete; future shards must verify the repo-local gate scripts,
+    generated proof artifacts, and canonical queue/registry mirrors instead of reopening the translator, XML, Hero Lab, and
+    adjacent import-route parity closeout slice.
   proof:
   - /docker/fleet/scripts/materialize_next90_m141_fleet_import_route_closeout_gates.py
   - /docker/fleet/scripts/verify_next90_m141_fleet_import_route_closeout_gates.py
@@ -6980,8 +7172,10 @@ items:
   wave: W22P
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M142 fleet route-local proof closeout gate is complete; future shards must verify the repo-local gate scripts, generated proof artifacts, and canonical queue/registry mirrors instead of reopening dense workbench, dice or initiative, and identity or lifestyle parity closeout by family prose.
+  landed_commit: c931e462
+  do_not_reopen_reason: M142 fleet route-local proof closeout gate is complete; future shards must verify the repo-local gate
+    scripts, generated proof artifacts, and canonical queue/registry mirrors instead of reopening dense workbench, dice or
+    initiative, and identity or lifestyle parity closeout by family prose.
   proof:
   - /docker/fleet/scripts/materialize_next90_m142_fleet_route_local_proof_closeout_gates.py
   - /docker/fleet/scripts/verify_next90_m142_fleet_route_local_proof_closeout_gates.py
@@ -7093,8 +7287,10 @@ items:
   wave: W22P
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M143 fleet route-local output closeout gate is complete; future shards must verify the repo-local gate scripts, generated proof artifacts, and canonical queue/registry mirrors instead of reopening print or export or exchange and SR6 supplement or house-rule parity closeout by broad family prose.
+  landed_commit: c851228a
+  do_not_reopen_reason: M143 fleet route-local output closeout gate is complete; future shards must verify the repo-local
+    gate scripts, generated proof artifacts, and canonical queue/registry mirrors instead of reopening print or export or
+    exchange and SR6 supplement or house-rule parity closeout by broad family prose.
   proof:
   - /docker/fleet/scripts/materialize_next90_m143_fleet_route_local_output_closeout_gates.py
   - /docker/fleet/scripts/verify_next90_m143_fleet_route_local_output_closeout_gates.py
@@ -7172,8 +7368,10 @@ items:
   wave: W22P
   repo: fleet
   completion_action: verify_closed_package_only
-  landed_commit: unlanded
-  do_not_reopen_reason: M144 fleet desktop proof integrity closeout gate is complete; future shards must verify the repo-local guard scripts, generated proof artifacts, and canonical queue mirrors instead of reopening desktop-client readiness closure while executable-gate, startup-smoke, and release-channel tuple proof drift.
+  landed_commit: 13f25fd6
+  do_not_reopen_reason: M144 fleet desktop proof integrity closeout gate is complete; future shards must verify the repo-local
+    guard scripts, generated proof artifacts, and canonical queue mirrors instead of reopening desktop-client readiness closure
+    while executable-gate, startup-smoke, and release-channel tuple proof drift.
   proof:
   - /docker/fleet/scripts/materialize_next90_m144_fleet_desktop_proof_integrity_closeout_gates.py
   - /docker/fleet/scripts/verify_next90_m144_fleet_desktop_proof_integrity_closeout_gates.py
@@ -7189,4 +7387,4 @@ items:
   - feedback
   owned_surfaces:
   - fail_closeout_when_desktop_client_readiness_is_green_wit:fleet
-source_queue_fingerprint: 54adabd13bfac91400a264ad5189ce5f3b51ad5a
+source_queue_fingerprint: 6184015a25d7f7ae103ae56183e6d62658f83557
