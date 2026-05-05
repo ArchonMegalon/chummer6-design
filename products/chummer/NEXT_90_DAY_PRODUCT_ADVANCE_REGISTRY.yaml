@@ -2921,6 +2921,12 @@ milestones:
       owner: fleet
       title: Promote platform acceptance, release evidence packs, repo hardening, and external-host proof orchestration into
         repeatable gates.
+      status: complete
+      evidence:
+      - /docker/fleet/scripts/materialize_next90_m127_fleet_release_truth_gates.py now accepts the live generated queue overlay shape and materializes one release-truth gate packet from the canonical registry, guide, platform acceptance matrix, public downloads and updater policy, repo hardening truth, external-proof runbook, and flagship readiness packet.
+      - /docker/fleet/scripts/verify_next90_m127_fleet_release_truth_gates.py plus /docker/fleet/tests/test_materialize_next90_m127_fleet_release_truth_gates.py and /docker/fleet/tests/test_verify_next90_m127_fleet_release_truth_gates.py now fail closed on queue-overlay drift, verifier drift, and repo-root bootstrap drift so the closure packet cannot silently outrun canon.
+      - /docker/fleet/.codex-studio/published/NEXT90_M127_FLEET_RELEASE_TRUTH_GATES.generated.json publishes the live pass receipt for `next90-m127-fleet-promote-platform-acceptance-release-evidence-packs-repo` while still surfacing real runtime warnings around preview-platform posture, proposed hardening initiatives, and blocked flagship readiness.
+      - /docker/fleet/feedback/2026-05-05-next90-m127-fleet-release-truth-gates-progress.md records the shipped packet, queue-overlay hardening, live blocked release-gate posture, and do-not-reopen scope for the Fleet-owned slice.
     - id: '127.5'
       owner: chummer6-design
       title: Close release-pipeline, desktop-auto-update, public-downloads, repo-hygiene, and release-evidence design coverage.
