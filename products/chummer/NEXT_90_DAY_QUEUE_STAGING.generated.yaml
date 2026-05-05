@@ -4019,9 +4019,23 @@ items:
   work_task_id: '145.7'
   frontier_id: 1457045707
   milestone_id: 145
-  status: in_progress
+  status: complete
   wave: W28
   repo: chummer6-design
+  completion_action: verify_closed_package_only
+  do_not_reopen_reason: M145 chummer6-design explain-every-value canon is complete; future shards must verify the explain
+    canon docs, validator, feedback closeout note, and canonical registry plus fleet queue rows instead of reopening this
+    source-anchor and bounded-follow-up design slice.
+  proof:
+  - /docker/chummercomplete/chummer-design/products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md
+  - /docker/chummercomplete/chummer-design/products/chummer/SOURCE_AWARE_EXPLAIN_PUBLIC_TRUST_HOOK.md
+  - /docker/chummercomplete/chummer-design/products/chummer/SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md
+  - /docker/chummercomplete/chummer-design/products/chummer/BUILD_LAB_PRODUCT_MODEL.md
+  - /docker/chummercomplete/chummer-design/products/chummer/LIVE_ACTION_ECONOMY_AND_TURN_ASSIST.md
+  - /docker/chummercomplete/chummer-design/products/chummer/FLAGSHIP_PRODUCT_BAR.md
+  - /docker/chummercomplete/chummer-design/products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md
+  - /docker/chummercomplete/chummer-design/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py
+  - /docker/chummercomplete/chummer-design/products/chummer/maintenance/feedback_archive/2026-05-05-next90-m145-design-explain-every-value-canon-closeout.md
   allowed_paths:
   - products
   - scripts

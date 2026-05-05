@@ -27,6 +27,12 @@ LIVE_ACTION_PATH = PRODUCT_ROOT / "LIVE_ACTION_ECONOMY_AND_TURN_ASSIST.md"
 SURFACE_DESIGN_PATH = PRODUCT_ROOT / "SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md"
 SYNC_MANIFEST_PATH = PRODUCT_ROOT / "sync" / "sync-manifest.yaml"
 VERIFY_PATH = REPO_ROOT / "scripts" / "ai" / "verify.sh"
+FEEDBACK_PATH = (
+    PRODUCT_ROOT
+    / "maintenance"
+    / "feedback_archive"
+    / "2026-05-05-next90-m145-design-explain-every-value-canon-closeout.md"
+)
 
 PACKAGE_ID = "next90-m145-design-explain-every-value-canon"
 FRONTIER_ID = 1457045707
@@ -42,6 +48,12 @@ EXPECTED_QUEUE_TITLE = (
 )
 EXPECTED_ALLOWED_PATHS = ["products", "scripts", "feedback"]
 EXPECTED_OWNED_SURFACES = ["explain_every_value_canon:design"]
+EXPECTED_COMPLETION_ACTION = "verify_closed_package_only"
+EXPECTED_DO_NOT_REOPEN_REASON = (
+    "M145 chummer6-design explain-every-value canon is complete; future shards must verify the "
+    "explain canon docs, validator, feedback closeout note, and canonical registry plus fleet "
+    "queue rows instead of reopening this source-anchor and bounded-follow-up design slice."
+)
 
 
 def _load_yaml(path: Path) -> object:
@@ -105,6 +117,7 @@ def main() -> int:
     readme_text = README_PATH.read_text(encoding="utf-8")
     surface_design_text = SURFACE_DESIGN_PATH.read_text(encoding="utf-8")
     verify_text = VERIFY_PATH.read_text(encoding="utf-8")
+    feedback_text = FEEDBACK_PATH.read_text(encoding="utf-8")
 
     for marker in (
         "## Product promise",
@@ -240,7 +253,7 @@ def main() -> int:
     else:
         if milestone.get("title") != "Explain every visible value with grounded follow-up and bounded presenter mode":
             errors.append("registry_wrong_milestone_title")
-        if milestone.get("status") != "in_progress":
+        if milestone.get("status") != "complete":
             errors.append("registry_wrong_milestone_status")
         dependencies = milestone.get("dependencies")
         if dependencies != [104, 109, 114]:
@@ -254,10 +267,10 @@ def main() -> int:
             errors.append("registry_wrong_work_task_owner")
         if work_task.get("title") != EXPECTED_TITLE:
             errors.append("registry_wrong_work_task_title")
-        if work_task.get("status") != "in_progress":
+        if work_task.get("status") != "complete":
             errors.append("registry_wrong_work_task_status")
         evidence = work_task.get("evidence")
-        if not isinstance(evidence, list) or len(evidence) < 6:
+        if not isinstance(evidence, list) or len(evidence) < 8:
             errors.append("registry_missing_work_task_evidence")
 
     queue = _load_yaml(QUEUE_PATH)
@@ -273,16 +286,37 @@ def main() -> int:
             errors.append("queue_wrong_frontier")
         if queue_row.get("milestone_id") != EXPECTED_MILESTONE_ID:
             errors.append("queue_wrong_milestone_id")
-        if queue_row.get("status") != "in_progress":
+        if queue_row.get("status") != "complete":
             errors.append("queue_wrong_status")
         if queue_row.get("wave") != "W28":
             errors.append("queue_wrong_wave")
         if queue_row.get("repo") != "chummer6-design":
             errors.append("queue_wrong_repo")
+        if queue_row.get("completion_action") != EXPECTED_COMPLETION_ACTION:
+            errors.append("queue_wrong_completion_action")
+        if queue_row.get("do_not_reopen_reason") != EXPECTED_DO_NOT_REOPEN_REASON:
+            errors.append("queue_wrong_do_not_reopen_reason")
+        proof = queue_row.get("proof")
+        if not isinstance(proof, list) or len(proof) < 9:
+            errors.append("queue_missing_proof")
         if queue_row.get("allowed_paths") != EXPECTED_ALLOWED_PATHS:
             errors.append("queue_wrong_allowed_paths")
         if queue_row.get("owned_surfaces") != EXPECTED_OWNED_SURFACES:
             errors.append("queue_wrong_owned_surfaces")
+
+    for marker in (
+        PACKAGE_ID,
+        "## What shipped",
+        "Validation run:",
+        "## Do not reopen",
+        str(FRONTIER_ID),
+        "python3 scripts/ai/validate_next90_m145_design_explain_every_value_canon.py",
+        "bash scripts/ai/verify.sh",
+        "EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md",
+        "SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md",
+    ):
+        if marker not in feedback_text:
+            errors.append(f"feedback_missing_marker:{marker}")
 
     if queue_row is not None:
         fleet_queue_path = _resolve_existing_path(FLEET_QUEUE_CANDIDATES)
