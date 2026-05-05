@@ -6370,9 +6370,20 @@ items:
   work_task_id: '138.10'
   frontier_id: 7914546694
   milestone_id: 138
-  status: not_started
+  status: complete
   wave: W25
   repo: fleet
+  completion_action: verify_closed_package_only
+  landed_commit: unlanded
+  do_not_reopen_reason: M138 Fleet newcomer-path projections are complete; future shards must verify the repo-local projection scripts, generated packet, focused regressions, and canonical queue mirrors instead of reopening READY_FOR_TONIGHT, role-kit, VTT-acceptance, or newcomer-path public-truth binding through prose only.
+  proof:
+  - /docker/fleet/scripts/materialize_next90_m138_fleet_hero_path_projections.py
+  - /docker/fleet/scripts/verify_next90_m138_fleet_hero_path_projections.py
+  - /docker/fleet/tests/test_materialize_next90_m138_fleet_hero_path_projections.py
+  - /docker/fleet/tests/test_verify_next90_m138_fleet_hero_path_projections.py
+  - /docker/fleet/.codex-studio/published/NEXT90_M138_FLEET_HERO_PATH_PROJECTIONS.generated.json
+  - /docker/fleet/.codex-studio/published/NEXT90_M138_FLEET_HERO_PATH_PROJECTIONS.generated.md
+  - /docker/fleet/feedback/2026-05-05-next90-m138-fleet-hero-path-projections-closeout.md
   allowed_paths:
   - scripts
   - tests
