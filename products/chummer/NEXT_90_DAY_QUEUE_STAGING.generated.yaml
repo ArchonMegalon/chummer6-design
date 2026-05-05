@@ -3117,9 +3117,28 @@ items:
   package_id: next90-m117-hub-artifact-shelf-v2
   work_task_id: 117.1
   milestone_id: 117
-  status: in_progress
+  status: complete
   wave: W13
   repo: chummer6-hub
+  landed_commit: TO_BE_FILLED_M117_COMMIT
+  completion_action: verify_closed_package_only
+  do_not_reopen_reason: M117 chummer6-hub artifact shelf APIs and audience filters are complete; future shards must verify
+    the artifact-shelf release-proof receipts, canonical registry row, Fleet queue row, and design queue row instead of reopening
+    the signed-in and public artifact shelf slice.
+  proof:
+  - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Controllers/PublicLandingController.cs
+  - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs
+  - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/CampaignSpineService.cs
+  - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/PublicCreatorPublicationDiscoveryService.cs
+  - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/CreatorPublicationRegistryBridge.cs
+  - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Views/PublicLanding/Shelf.cshtml
+  - /docker/chummercomplete/chummer6-hub/tests/RunServicesSmoke/Program.cs
+  - /docker/chummercomplete/chummer6-hub/scripts/materialize_hub_local_release_proof.py
+  - /docker/chummercomplete/chummer6-hub/scripts/verify_next90_m117_hub_artifact_shelf_v2.py
+  - /docker/chummercomplete/chummer6-hub/tests/test_next90_m117_hub_artifact_shelf_v2.py
+  - python3 scripts/verify_next90_m117_hub_artifact_shelf_v2.py
+  - python3 -m unittest tests/test_next90_m117_hub_artifact_shelf_v2.py
+  - bash scripts/ai/run_services_smoke.sh
   allowed_paths:
   - Chummer.Run.Api
   - scripts
@@ -5546,9 +5565,20 @@ items:
   work_task_id: '135.10'
   frontier_id: 4019469848
   milestone_id: 135
-  status: not_started
+  status: complete
   wave: W22
   repo: executive-assistant
+  landed_commit: unlanded
+  completion_action: verify_closed_package_only
+  do_not_reopen_reason: M135 executive-assistant closure coverage is complete; future shards must verify the EA closure bundle, generated proof, source package guards, and canonical queue/registry mirrors instead of reopening the compile, signal, companion, public-copy, operator-packet, provider-digest, and followthrough closure slice.
+  proof:
+  - /docker/EA/docs/chummer_closure_coverage/CHUMMER_CLOSURE_COVERAGE_PACK.yaml
+  - /docker/EA/docs/chummer_closure_coverage/README.md
+  - /docker/EA/docs/chummer_closure_coverage/SUCCESSOR_HANDOFF_CLOSEOUT.yaml
+  - /docker/EA/scripts/materialize_next90_m135_ea_closure_coverage.py
+  - /docker/EA/scripts/verify_next90_m135_ea_closure_coverage.py
+  - /docker/EA/.codex-studio/published/NEXT90_M135_EA_CLOSURE_COVERAGE.generated.json
+  - /docker/EA/feedback/2026-05-05-next90-m135-ea-closure-coverage-progress.md
   allowed_paths:
   - scripts
   - feedback

@@ -2288,7 +2288,7 @@ milestones:
       - chummer6-ui
       - chummer6-mobile
       - chummer6-design
-    status: in_progress
+    status: complete
     dependencies:
       - 107
       - 108
@@ -2302,6 +2302,15 @@ milestones:
       - id: 117.1
         owner: chummer6-hub
         title: Build artifact shelf APIs and audience filters for personal, campaign, creator, and public views.
+        status: complete
+        evidence:
+          - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Controllers/PublicLandingController.cs now serves the governed artifact shelf page, versioned public shelf APIs, compatibility shelf APIs, and public creator-publication detail route from one bounded controller path.
+          - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/CampaignWorkspaceServerPlaneService.cs and /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/CampaignSpineService.cs now stamp recap entries with audience and publication posture before signed-in personal, campaign, creator, and public filters are applied.
+          - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/PublicCreatorPublicationDiscoveryService.cs and /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Services/Community/CreatorPublicationRegistryBridge.cs keep public creator discovery published-only, manifest-authority-backed, and sibling-packet-aware before those packets widen onto the shared shelf.
+          - /docker/chummercomplete/chummer6-hub/Chummer.Run.Api/Views/PublicLanding/Shelf.cshtml keeps audience, publication state, caption, trust, moderation, and next-step posture visible on the governed signed-in and public artifact shelf rails.
+          - /docker/chummercomplete/chummer6-hub/tests/RunServicesSmoke/Program.cs proves personal, campaign, creator, and public artifact views plus the mirrored shelf APIs keep proof, preview, caption, sibling-packet, locale, retention, and publication-state truth attached to the shared artifact lane.
+          - /docker/chummercomplete/chummer6-hub/scripts/materialize_hub_local_release_proof.py, /docker/chummercomplete/chummer6-hub/scripts/verify_next90_m117_hub_artifact_shelf_v2.py, and /docker/chummercomplete/chummer6-hub/tests/test_next90_m117_hub_artifact_shelf_v2.py keep the closed-package queue, registry, and release-proof receipts executable inside the repo.
+          - python3 scripts/verify_next90_m117_hub_artifact_shelf_v2.py exits 0, python3 -m unittest tests/test_next90_m117_hub_artifact_shelf_v2.py exits 0, and bash scripts/ai/run_services_smoke.sh keeps the dedicated M117 verifier on the shared verify lane.
       - id: 117.2
         owner: chummer6-hub-registry
         title: Normalize shelf refs for preview, caption, packet, locale, retention, and publication state.
@@ -3379,8 +3388,14 @@ milestones:
         now carry the current M135 closure package entry as published proof.
     - id: '135.10'
       owner: executive-assistant
-      title: Close EA compile, signal, companion, public copy, operator packet, provider digest, and followthrough coverage
-        without canon authority.
+      title: Close EA compile, signal, companion, public copy, operator packet, provider digest, and followthrough coverage without canon authority.
+      status: complete
+      evidence:
+      - /docker/EA/docs/chummer_closure_coverage/CHUMMER_CLOSURE_COVERAGE_PACK.yaml, /docker/EA/docs/chummer_closure_coverage/SUCCESSOR_HANDOFF_CLOSEOUT.yaml, /docker/EA/scripts/materialize_next90_m135_ea_closure_coverage.py, and /docker/EA/scripts/verify_next90_m135_ea_closure_coverage.py now publish one verify-only EA closure bundle that binds compile, signal, companion, public copy, operator packet, provider digest, and followthrough coverage to existing packet and design truth without widening authority.
+      - /docker/EA/.codex-studio/published/NEXT90_M135_EA_CLOSURE_COVERAGE.generated.json now summarizes the live M106, M113, M118, M120, M129, and M145 source contracts, plus provider-digest and public-copy guard markers, as one fail-closed closure receipt.
+      - /docker/EA/scripts/chummer6_provider_readiness.py and /docker/EA/scripts/chummer6_guide_worker.py remain explicit bounded source surfaces for provider digest and public copy coverage by requiring readiness-state output, overlay checks, anti-planning language guards, blank-CTA guards, and truncated-copy guards instead of freeform copy.
+      - python3 scripts/materialize_next90_m135_ea_closure_coverage.py, python3 scripts/verify_next90_m135_ea_closure_coverage.py, python3 scripts/verify_next90_m113_operator_safe_packets.py, python3 scripts/verify_next90_m118_ea_organizer_packets.py, python3 scripts/verify_next90_m129_ea_participation_followthrough_packets.py, and python3 -m py_compile scripts/chummer6_provider_readiness.py scripts/chummer6_guide_worker.py all exit 0.
+
   - id: 136
     title: Calm-under-pressure payoff, veteran-depth parity, and campaign continuity closure
     wave: W23
