@@ -3786,6 +3786,12 @@ milestones:
     - id: '141.5'
       owner: fleet
       title: Fail closeout when any of the five route or family rows in this milestone remain `no`, blank, stale, or unsupported by direct proof receipts.
+      status: complete
+      evidence:
+      - /docker/fleet/scripts/materialize_next90_m141_fleet_import_route_closeout_gates.py and /docker/fleet/scripts/verify_next90_m141_fleet_import_route_closeout_gates.py now fail closed when the milestone 141 route and family rows drift from direct proof receipts or when the canonical closeout metadata reopens.
+      - /docker/fleet/tests/test_materialize_next90_m141_fleet_import_route_closeout_gates.py and /docker/fleet/tests/test_verify_next90_m141_fleet_import_route_closeout_gates.py now cover append-style queue ingestion, direct field-shape requirements, and canonical closeout metadata so stale rows or reopened packages break the gate.
+      - /docker/fleet/.codex-studio/published/NEXT90_M141_FLEET_IMPORT_ROUTE_CLOSEOUT_GATES.generated.json and /docker/fleet/.codex-studio/published/NEXT90_M141_FLEET_IMPORT_ROUTE_CLOSEOUT_GATES.generated.md record the current pass state for translator, XML amendment, Hero Lab, and the two family rows against screenshot-backed, runtime-backed, and core deterministic import receipts.
+      - python3 scripts/materialize_next90_m141_fleet_import_route_closeout_gates.py, python3 scripts/verify_next90_m141_fleet_import_route_closeout_gates.py --json, and python3 -m unittest tests.test_materialize_next90_m141_fleet_import_route_closeout_gates tests.test_verify_next90_m141_fleet_import_route_closeout_gates all exit 0.
   - id: 142
     title: Direct parity proof for dense workbench, dice utilities, and identity or lifestyle workflows
     wave: W22P
