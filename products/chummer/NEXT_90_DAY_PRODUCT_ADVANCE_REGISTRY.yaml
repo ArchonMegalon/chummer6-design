@@ -2532,6 +2532,23 @@ milestones:
       owner: chummer6-design
       title: Close localization, telemetry, privacy, retention, feedback, crash, support-status, and experience-metrics canon
         coverage.
+      status: complete
+      evidence:
+      - /docker/chummercomplete/chummer-design/products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md and /docker/chummercomplete/chummer-design/products/chummer/LOCALIZATION_PARITY_MATRIX.yaml
+        now keep locale scope, fallback rules, translation domains, and parity-matrix expectations explicit for desktop and hosted surfaces.
+      - /docker/chummercomplete/chummer-design/products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md and /docker/chummercomplete/chummer-design/products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md
+        now keep telemetry value, event-shape, opt-out posture, and bounded hosted product-improvement telemetry canonized in design.
+      - /docker/chummercomplete/chummer-design/products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md now binds telemetry, support,
+        crash, install-linking, survey, and provider traces to explicit privacy, retention, redaction, and release-gate posture.
+      - /docker/chummercomplete/chummer-design/products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md and /docker/chummercomplete/chummer-design/products/chummer/FEEDBACK_AND_CRASH_STATUS_MODEL.md
+        now keep intake, support-case truth, crash handling, and reporter-visible status communication anchored to canonical release truth.
+      - /docker/chummercomplete/chummer-design/products/chummer/EXPERIENCE_SUCCESS_METRICS.md and /docker/chummercomplete/chummer-design/products/chummer/METRICS_AND_SLOS.yaml
+        now close the user-facing experience-metrics and release-scorecard canon for this trust wave.
+      - /docker/chummercomplete/chummer-design/scripts/ai/validate_next90_m128_design_trust_completion_canon.py fail-closes
+        drift in the canon docs, validator wiring, feedback closeout note, canonical registry row, design queue row, and Fleet queue mirror for this completed package.
+      - /docker/chummercomplete/chummer-design/scripts/ai/verify.sh now requires the M128 trust-completion validator during standard design-repo verification.
+      - /docker/chummercomplete/chummer-design/products/chummer/maintenance/feedback_archive/2026-05-05-next90-m128-design-trust-completion-canon-closeout.md
+        records the package scope, validation commands, and do-not-reopen posture for future shards.
   - id: 129
     title: Account, identity, channel linking, participation, entitlements, and community ledger completion
     wave: W19

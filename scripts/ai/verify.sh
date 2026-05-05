@@ -317,6 +317,7 @@ rg -n '^# Public auto-update policy$|^## Public promises$|^## Public split$|paus
 rg -n '^# Account-aware install and support linking$|DownloadReceipt|InstallClaimTicket|Chummer\\.Hub\\.Registry\\.Contracts|Chummer\\.Run\\.Contracts' "$repo_root/products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md" >/dev/null
 rg -n '^# Feedback and crash reporting system$|support/case truth|The assistant is phase 2\\.|Chummer\\.Run\\.Contracts' "$repo_root/products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md" >/dev/null
 rg -n '^# Feedback and signal OODA loop$|^## Signal classes$|^## Decide$|^## Closure rule$|product governor|release freeze or rollback' "$repo_root/products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md" >/dev/null
+python3 "$repo_root/scripts/ai/validate_next90_m128_design_trust_completion_canon.py" >/dev/null
 rg -n '^# Support and feedback status model$|^## Status spine$|released_to_reporter_channel|user_notified|Registry truth' "$repo_root/products/chummer/FEEDBACK_AND_CRASH_STATUS_MODEL.md" >/dev/null
 rg -n '^# Horizon signal policy' "$repo_root/products/chummer/HORIZON_SIGNAL_POLICY.md" >/dev/null
 rg -n '^# Participation and guided contribution workflow$|participant lane|device-auth|contribution receipt|Chummer.Engine.Contracts|Chummer.Ui.Kit' "$repo_root/products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md" >/dev/null
