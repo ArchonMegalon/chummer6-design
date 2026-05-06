@@ -2111,6 +2111,10 @@ milestones:
         title: Publish rule-environment studio contracts for amend-package lifecycle, promotion, diff, and explain receipts.
         status: complete
         landed_commit: TBD_COMMIT
+        completion_action: verify_closed_package_only
+        do_not_reopen_reason: M114 chummer6-core rule-environment studio contracts are complete; future shards must verify the
+          engine rule-environment studio receipt, standalone verifier, canonical registry row, and queue mirrors instead of
+          reopening the contract slice.
         evidence:
           - /docker/chummercomplete/chummer-core-engine/docs/NEXT90_M114_RULE_ENVIRONMENT_STUDIO_CONTRACTS.md
           - /docker/chummercomplete/chummer-core-engine/Chummer.Contracts/Content/RuleEnvironmentStudioContracts.cs
@@ -2317,8 +2321,8 @@ milestones:
         status: complete
         completion_action: verify_closed_package_only
         do_not_reopen_reason: M117 chummer6-hub-registry shelf ref normalization is complete;
-          future shards must verify the registry contract surface, release-channel projection,
-          queue mirrors, and proof hooks instead of reopening this slice.
+          future shards must verify the registry contracts, manifest projection, queue mirrors,
+          and proof hooks instead of reopening this slice.
         evidence:
           - /docker/chummercomplete/chummer-hub-registry/Chummer.Hub.Registry.Contracts/ReleaseChannelContracts.cs defines the normalized preview, caption, packet, locale, retention, shelf, and publication-state fields for artifact-identity, publication-binding, and exchange-lineage registry rows.
           - /docker/chummercomplete/chummer-hub-registry/Chummer.Run.Registry/Services/ReleaseChannelManifestStore.cs preserves the same normalized shelf refs and publication posture when runtime consumers load the published release-channel manifest.
@@ -2499,6 +2503,10 @@ milestones:
         owner: chummer6-mobile
         title: Add travel/mobile starter continuity for primer, briefing, and recap artifacts.
         status: complete
+        completion_action: verify_closed_package_only
+        do_not_reopen_reason: M119 chummer6-mobile starter-lane continuity is complete; future shards must verify the mobile
+          onboarding continuity proof, standalone verifier, generated release proof, canonical registry row, and queue mirrors
+          instead of reopening the mobile starter-lane slice.
         evidence:
           - /docker/chummercomplete/chummer-play/docs/next90-m119-mobile-onboarding-continuity.proof.md
           - /docker/chummercomplete/chummer-play/scripts/verify_next90_m119_mobile_onboarding_continuity.py
@@ -4153,6 +4161,14 @@ milestones:
     - id: '141.2'
       owner: chummer6-core
       title: Bind import-oracle, custom-data, and amend-package flows to deterministic receipts that can be cited by parity and workflow gates.
+      status: complete
+      completion_action: verify_closed_package_only
+      do_not_reopen_reason: M141 chummer6-core import-route deterministic receipt lane is complete; future shards must verify the closed-package receipt, Python guard tests, canonical registry row, and queue mirrors instead of reopening this slice.
+      evidence:
+      - /docker/chummercomplete/chummer-core-engine/Chummer.Contracts/Api/ToolCatalogModels.cs and Chummer.Infrastructure/Xml/XmlToolCatalogService.cs keep the deterministic import-oracle, translator, custom-data/XML bridge, and amend-package receipt contracts wired onto `/api/tools/master-index`.
+      - /docker/chummercomplete/chummer-core-engine/Chummer.Tests/ToolCatalogServiceTests.cs and Chummer.Tests/ApiIntegrationTests.cs pin the service posture and serialized API shape for `customDataXmlBridgeDeterministicReceipt`, `translatorDeterministicReceipt`, `importOracleDeterministicReceipt`, and `amendPackageDeterministicReceipt`.
+      - /docker/chummercomplete/chummer-core-engine/scripts/verify-next90-m141-import-route-receipts.py, tests/test_next90_m141_import_route_receipts.py, docs/NEXT90_M141_IMPORT_ROUTE_RECEIPTS.md, docs/NEXT90_M141_IMPORT_ROUTE_CLOSEOUT.md, and .codex-studio/published/NEXT90_M141_IMPORT_ROUTE_RECEIPTS.generated.json keep the closed-package queue/registry proof, worker-safe guard, and checked-in receipt aligned for this core lane.
+      - python3 tests/test_next90_m141_import_route_receipts.py, python3 scripts/verify-next90-m141-import-route-receipts.py --repo-root . --out .codex-studio/published/NEXT90_M141_IMPORT_ROUTE_RECEIPTS.generated.json --check, and bash scripts/ai/verify.sh fail closed when the package proof or its canonical closure rows drift.
     - id: '141.3'
       owner: chummer6-hub
       title: Keep route, support, and publication surfaces from claiming parity for these routes unless the direct proof receipts are current.
@@ -4246,6 +4262,14 @@ milestones:
     - id: '143.2'
       owner: chummer6-core
       title: Keep export, print, supplement, and rule-environment receipts deterministic enough to prove the workflows rather than just render them.
+      status: complete
+      completion_action: verify_closed_package_only
+      do_not_reopen_reason: M143 chummer6-core deterministic export/print/supplement and rule-environment receipts are complete; future shards must verify the checked-in receipt, focused parity tests, canonical registry row, and queue mirrors instead of reopening this slice.
+      evidence:
+      - /docker/chummercomplete/chummer-core-engine/Chummer.Contracts/Api/ToolCatalogModels.cs, /docker/chummercomplete/chummer-core-engine/Chummer.Contracts/Workspaces/CharacterWorkspaceModels.cs, /docker/chummercomplete/chummer-core-engine/Chummer.Infrastructure/Xml/XmlToolCatalogService.cs, and /docker/chummercomplete/chummer-core-engine/Chummer.Application/Workspaces/WorkspaceService.cs keep the SR6 successor-lane and workspace exchange receipts deterministic and bound to the export/print plus supplement/house-rule parity families.
+      - /docker/chummercomplete/chummer-core-engine/Chummer.CoreEngine.Tests/Program.cs, /docker/chummercomplete/chummer-core-engine/Chummer.Tests/ToolCatalogServiceTests.cs, /docker/chummercomplete/chummer-core-engine/Chummer.Tests/WorkspaceServiceTests.cs, and /docker/chummercomplete/chummer-core-engine/Chummer.Tests/ApiIntegrationTests.cs fail closed when those deterministic receipt contracts drift from the governed parity routes.
+      - /docker/chummercomplete/chummer-core-engine/scripts/verify-next90-m143-export-print-supplement-rule-environment-receipts.py, /docker/chummercomplete/chummer-core-engine/tests/test_next90_m143_export_print_supplement_rule_environment_receipts.py, /docker/chummercomplete/chummer-core-engine/docs/NEXT90_M143_EXPORT_PRINT_SUPPLEMENT_RULE_ENVIRONMENT_RECEIPTS.md, and /docker/chummercomplete/chummer-core-engine/.codex-studio/published/NEXT90_M143_EXPORT_PRINT_SUPPLEMENT_RULE_ENVIRONMENT_RECEIPTS.generated.json record and verify the closed-package receipt for `next90-m143-core-keep-export-print-supplement-and-rule-environment-receipts-deterministi`.
+      - CHUMMER_CORE_ENGINE_TEST_FILTER=parity-m143 dotnet run --project Chummer.CoreEngine.Tests/Chummer.CoreEngine.Tests.csproj -m:1 -p:UseSharedCompilation=false, python3 tests/test_next90_m143_export_print_supplement_rule_environment_receipts.py, and python3 scripts/verify-next90-m143-export-print-supplement-rule-environment-receipts.py --repo-root . --out .codex-studio/published/NEXT90_M143_EXPORT_PRINT_SUPPLEMENT_RULE_ENVIRONMENT_RECEIPTS.generated.json --check all exit 0.
     - id: '143.3'
       owner: chummer6-hub
       title: Bind exchange and outward-facing output routes to visible receipt or bounded-failure posture instead of silent optimistic claims.
