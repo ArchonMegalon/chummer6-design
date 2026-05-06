@@ -2569,6 +2569,7 @@ milestones:
         package_id: next90-m120-fleet-launch-pulse
         status: complete
         landed_commit: '19878082'
+        completion_action: verify_closed_package_only
         do_not_reopen_reason: M120 Fleet package 'Compile launch pulse, adoption health, support risk, and proof freshness into
           governor-ready public status packets.' is complete; future shards must verify the repo-local materializer/verifier, generated
           proof artifacts, and canonical queue/registry mirrors instead of reopening this closure slice by prose alone.
