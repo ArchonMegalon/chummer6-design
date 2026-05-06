@@ -3486,6 +3486,17 @@ milestones:
       owner: chummer6-design
       title: Materialize a canonical design coverage ledger mapping every source family to implemented, queued, future-only,
         or non-goal posture.
+      status: complete
+      evidence:
+      - /docker/chummercomplete/chummer-design/products/chummer/sync/sync-manifest.yaml now carries the canonical
+        source-family groups, repo aliases, and mirror subset ownership that the M135 coverage ledger binds to executable
+        downstream repos.
+      - /docker/chummercomplete/chummer-design/products/chummer/sync/LOCAL_MIRROR_PUBLISH_BACKLOG.md and /docker/chummercomplete/chummer-design/products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md
+        now cover all nine downstream repos, including fleet and executive-assistant, with current parity-cycle timestamps
+        and checksum-backed mirror proof.
+      - /docker/chummercomplete/chummer-design/products/chummer/PROGRAM_MILESTONES.yaml now reflects the 2026-05-06
+        mirror refresh cycle so Fleet can verify ledger freshness against the current canonical review date and checksum
+        instead of stale carry-forward evidence.
     - id: '135.2'
       owner: fleet
       title: Add full-design queued-coverage verification, mirror freshness checks, missing-row detection, and status-plane

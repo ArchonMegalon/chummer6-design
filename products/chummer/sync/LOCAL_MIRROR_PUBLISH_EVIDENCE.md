@@ -105,3 +105,20 @@ Evidence format:
 | WL-D018-04 | chummer6-media-factory | `205b7e1` | `match` (`changed=0 removed=0`) |
 | WL-D018-04 | fleet | `08e23427` | `match` (`changed=0 removed=0`) |
 | WL-D018-04 | executive-assistant | `f3f287c` | `match` (`changed=0 removed=0`) |
+
+### WL-D018 Cycle 2026-05-06A (operator: codex, design coverage ledger closeout refresh)
+- WL-D018-01 `done` at `2026-05-06T03:55:13Z`: reopened the recurring mirror lane to bind M135 design coverage closure to the current downstream mirror inventory.
+- WL-D018-02 `done` at `2026-05-06T03:55:13Z`: revalidated the current `PROGRAM_MILESTONES.yaml` checksum and downstream publish refs for all nine mirror targets, including fleet and executive-assistant.
+- WL-D018-04 `done` at `2026-05-06T03:55:13Z`: no repo-local mirror drift remained after checksum verification; the closeout rows below now carry the current canonical `PROGRAM_MILESTONES.yaml` proof for every repo Fleet expects.
+
+| Backlog ID | Target Repo | publish_ref | program_milestones_source_sha256 | program_milestones_target_sha256 | result |
+|---|---|---|---|---|---|
+| WL-D008-01 | chummer6-core | `83909dec` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-02 | chummer6-ui | `eac884dd` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-03 | chummer6-hub | `344e818d` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-04 | chummer6-mobile | `35b6152` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-05 | chummer6-ui-kit | `a6a8d60` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-06 | chummer6-hub-registry | `6efcceb` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-07 | chummer6-media-factory | `205b7e1` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-08 | fleet | `08e23427` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |
+| WL-D008-09 | executive-assistant | `f3f287c` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | `5a149e9870a45efb4b76ba03e31e72c2e36fc0d3f71c373f630d88c58b052fad` | done (verified at `2026-05-06T03:55:13Z`; current recurring mirror parity remained `match`) |

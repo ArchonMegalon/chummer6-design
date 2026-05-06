@@ -16,6 +16,8 @@ Execution order:
 5. chummer6-ui-kit
 6. chummer6-hub-registry
 7. chummer6-media-factory
+8. fleet
+9. executive-assistant
 
 | Backlog ID | Status | Target Repo | Source of Truth | Mirror Targets (code repo) | Publish Evidence |
 |---|---|---|---|---|---|
@@ -26,6 +28,8 @@ Execution order:
 | WL-D008-05 | done | chummer6-ui-kit | `products/chummer/sync/sync-manifest.yaml` mirror entry for `chummer6-ui-kit` | `.codex-design/product`, `.codex-design/repo/IMPLEMENTATION_SCOPE.md`, `.codex-design/review/REVIEW_CONTEXT.md` | completed at `2026-03-13T10:19:08Z`; republished mirror subset and verified `PROGRAM_MILESTONES.yaml` parity in `LOCAL_MIRROR_PUBLISH_EVIDENCE.md` (publish ref `fadb4e92`) |
 | WL-D008-06 | done | chummer6-hub-registry | `products/chummer/sync/sync-manifest.yaml` mirror entry for `chummer6-hub-registry` | `.codex-design/product`, `.codex-design/repo/IMPLEMENTATION_SCOPE.md`, `.codex-design/review/REVIEW_CONTEXT.md` | completed at `2026-03-13T10:19:08Z`; republished mirror subset and verified `PROGRAM_MILESTONES.yaml` parity in `LOCAL_MIRROR_PUBLISH_EVIDENCE.md` (publish ref `811dc525`) |
 | WL-D008-07 | done | chummer6-media-factory | `products/chummer/sync/sync-manifest.yaml` mirror entry for `chummer6-media-factory` | `.codex-design/product`, `.codex-design/repo/IMPLEMENTATION_SCOPE.md`, `.codex-design/review/REVIEW_CONTEXT.md` | completed at `2026-03-13T10:19:08Z`; republished mirror subset and verified `PROGRAM_MILESTONES.yaml` parity in `LOCAL_MIRROR_PUBLISH_EVIDENCE.md` (publish ref `e5a8e4d0`) |
+| WL-D008-08 | done | fleet | `products/chummer/sync/sync-manifest.yaml` mirror entry for `fleet` | `.codex-design/product`, `.codex-design/repo/IMPLEMENTATION_SCOPE.md`, `.codex-design/review/REVIEW_CONTEXT.md` | refreshed at `2026-05-06T03:55:13Z`; parity and publish refs are recorded in `LOCAL_MIRROR_PUBLISH_EVIDENCE.md` for the current mirror cycle (publish ref `08e23427`) |
+| WL-D008-09 | done | executive-assistant | `products/chummer/sync/sync-manifest.yaml` mirror entry for `executive-assistant` | `.codex-design/product`, `.codex-design/repo/IMPLEMENTATION_SCOPE.md`, `.codex-design/review/REVIEW_CONTEXT.md` | refreshed at `2026-05-06T03:55:13Z`; parity and publish refs are recorded in `LOCAL_MIRROR_PUBLISH_EVIDENCE.md` for the current mirror cycle (publish ref `f3f287c`) |
 
 Completion gate:
 1. Every mirror row from `sync-manifest.yaml` has a corresponding WL-D008 row with status.
@@ -34,7 +38,7 @@ Completion gate:
 4. Any blocked row includes an owner and explicit unblock condition.
 
 Current blockers and owners:
-- None. WL-D008 completed on `2026-03-13T10:19:08Z` after successful republish and parity verification across all seven mirrors.
+- None. WL-D008 now covers all nine downstream mirrors after the `2026-05-06T03:55:13Z` parity refresh cycle.
 
 ## Recurring Lane (WL-D018)
 
@@ -43,7 +47,7 @@ Use these queued rows for every requested recurring mirror cycle after WL-D008 c
 | Backlog ID | Status | Scope | Action |
 |---|---|---|---|
 | WL-D018-01 | queued | cycle startup | Start a recurring local-mirror cycle and capture operator/date in `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`. |
-| WL-D018-02 | queued | parity audit | Compute source and destination checksums for all seven mirror targets from `products/chummer/sync/sync-manifest.yaml` for product/repo/review subset parity. |
+| WL-D018-02 | queued | parity audit | Compute source and destination checksums for all nine mirror targets from `products/chummer/sync/sync-manifest.yaml` for product/repo/review subset parity. |
 | WL-D018-03 | queued | drift republish | Republish only drifted repo-local mirrors (`.codex-design/product`, `.codex-design/repo`, `.codex-design/review`) and capture destination publish refs and post-publish checksums. |
 | WL-D018-04 | queued | no-change closeout | If no drift exists, append explicit no-change parity evidence for each checked mirror target in `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`. |
 | WL-D018-05 | queued | queue reflection | Reflect the cycle disposition in `WORKLIST.md` and `products/chummer/PROGRAM_MILESTONES.yaml` while keeping WL-D008 closed and WL-D018 runnable. |
