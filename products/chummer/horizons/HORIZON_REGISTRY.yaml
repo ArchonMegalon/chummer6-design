@@ -203,6 +203,14 @@ horizons:
       - publication_and_prestige_substrate
       - continuity_and_degraded_state_substrate
     owner_handoff_gate: Registry manifests and media receipts must survive format changes before the studio is promoted beyond horizon.
+    allowed_surfaces:
+      - public_projection
+      - guided_preview
+      - published_artifact
+      - operator_review
+    proof_gate: artifact_provenance_and_render_receipts_required
+    public_claim_posture: source_backed_only
+    stop_condition: Pause JACKPOINT preview or publication posture when provenance, approval, narration, or render receipts drift from the artifact bundle.
     why_horizon: Premium short-form publication only matters if the source trail and publish pipeline remain intact end to end.
 
   - id: run-control
@@ -283,6 +291,14 @@ horizons:
       - evaluation_substrate
       - continuity_and_degraded_state_substrate
     owner_handoff_gate: Open-run listing, accepted roster, meeting handoff, observer consent, and reputation events must stay Chummer-owned even when third-party meeting or analysis tools are in the loop.
+    allowed_surfaces:
+      - public_projection
+      - guided_preview
+      - published_artifact
+      - operator_review
+    proof_gate: roster_consent_schedule_handoff_receipts_required
+    public_claim_posture: source_backed_only
+    stop_condition: Pause COMMUNITY HUB promotion whenever accepted-roster truth, observer consent, scheduling receipts, or meeting handoff receipts stop staying Chummer-owned and repairable.
     why_horizon: Recruitment, community-rule preflight, scheduling, and observer consent only work if run truth stays first-party and the practical table-finding loop proves out before the network widens.
 
   - id: runsite
@@ -305,6 +321,13 @@ horizons:
       - gm_operations_substrate
       - publication_and_prestige_substrate
     owner_handoff_gate: Spatial artifacts must remain clearly outside live mechanics and combat truth before any promotion.
+    allowed_surfaces:
+      - public_projection
+      - guided_preview
+      - published_artifact
+    proof_gate: manifest_permission_preview_receipts_required
+    public_claim_posture: source_backed_only
+    stop_condition: Pause RUNSITE promotion when permission tiers leak, preview receipts drift, or any route pack starts reading like live combat authority.
     why_horizon: Explorable location packs need stable campaign, asset, and publication foundations first.
 
   - id: runbook-press
@@ -328,6 +351,14 @@ horizons:
       - publication_and_prestige_substrate
       - evaluation_substrate
     owner_handoff_gate: Publication and compatibility metadata must remain registry-owned before this lane becomes research-ready.
+    allowed_surfaces:
+      - public_projection
+      - guided_preview
+      - published_artifact
+      - operator_review
+    proof_gate: publication_manifest_editorial_receipts_required
+    public_claim_posture: source_backed_only
+    stop_condition: Pause RUNBOOK PRESS promotion when publication manifests, compatibility metadata, or editorial approval receipts drift from rendered long-form output.
     why_horizon: Long-form outputs only matter if edit trail, manifests, and publication truth stay intact.
 
   - id: ghostwire
@@ -352,6 +383,13 @@ horizons:
       - evaluation_substrate
       - publication_and_prestige_substrate
     owner_handoff_gate: Replay must prove reducer-safe, receipt-backed reconstruction before it can leave horizon status.
+    allowed_surfaces:
+      - operator_review
+      - guided_preview
+      - published_artifact
+    proof_gate: reducer_safe_replay_and_receipt_chain_required
+    public_claim_posture: research_only_until_owner_proof
+    stop_condition: Pause GHOSTWIRE promotion whenever replay cannot prove reducer-safe reconstruction or any after-action output relies on inferred truth instead of receipts.
     why_horizon: Replay is only safe when the receipt trail remains append-only and reconstruction stays grounded.
 
   - id: table-pulse
@@ -373,6 +411,13 @@ horizons:
       - gm_operations_substrate
       - publication_and_prestige_substrate
     owner_handoff_gate: Coaching analysis only works when consent, privacy, and non-truth boundaries remain provable.
+    allowed_surfaces:
+      - operator_review
+      - guided_preview
+      - published_artifact
+    proof_gate: consent_privacy_post_session_receipts_required
+    public_claim_posture: research_only_until_owner_proof
+    stop_condition: Pause TABLE PULSE promotion whenever consent, privacy, retention, or post-session-only boundaries stop being provable end to end.
     why_horizon: Coaching analysis only works when consent, privacy, and non-truth boundaries remain provable.
 
   - id: local-co-processor

@@ -203,6 +203,23 @@ product_source_groups:
     - products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md
     - products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml
     - products/chummer/FLAGSHIP_READINESS_PLANES.yaml
+  fleet_flagship_readiness:
+    - products/chummer/ROADMAP.md
+    - products/chummer/NEXT_12_BIGGEST_WINS_GUIDE.md
+    - products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
+    - products/chummer/CONFIDENCE_READINESS_AND_CONTINUITY_GUIDE.md
+    - products/chummer/CONFIDENCE_READINESS_AND_CONTINUITY_REGISTRY.yaml
+    - products/chummer/FLAGSHIP_PARITY_REGISTRY.yaml
+    - products/chummer/CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_SPEC.md
+    - products/chummer/CHUMMER5A_HUMAN_PARITY_ACCEPTANCE_MATRIX.yaml
+    - products/chummer/VETERAN_FIRST_MINUTE_GATE.yaml
+    - products/chummer/DENSE_WORKBENCH_BUDGET.yaml
+    - products/chummer/PRIMARY_ROUTE_REGISTRY.yaml
+    - products/chummer/SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md
+    - products/chummer/RULE_ENVIRONMENT_AND_AMEND_SYSTEM.md
+    - products/chummer/RULE_ENVIRONMENT_GROUNDED_MEDIA_POLICY.md
+    - products/chummer/KARMA_FORGE_DISCOVERY_AND_HOUSE_RULE_INTAKE.md
+    - products/chummer/HOUSE_RULE_DISCOVERY_REGISTRY.yaml
   flagship_desktop_canon:
     - products/chummer/FLAGSHIP_PRODUCT_BAR.md
     - products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md
@@ -361,6 +378,7 @@ mirrors:
     - hub_public_runtime
     - participation
     - release
+    - fleet_flagship_readiness
     - flagship_desktop_canon
     - desktop_delivery
     - support_plane
