@@ -112,7 +112,7 @@ ClickRank findings must not directly cause:
 ClickRank audit
   -> classify finding
   -> safe technical fix, content improvement, canon-sensitive claim, navigation issue, schema issue, or blocked item
-  -> if content: Katteb drafts against source packet
+  -> if content: guide optimization drafts against source packet
   -> EA normalizes and packages
   -> Product Governor or delegated owner approves
   -> Hub/design source, public registry, metadata config, or article source packet is patched
@@ -129,7 +129,7 @@ Track:
 - pages with stale public claims
 - high-impression / low-click pages
 - pages with support-misroute traffic
-- ProductLift idea pages that need better public content
+- public-idea pages that need better public content
 - crawl budget consumed versus reserved
 - broken links on public launch routes
 - schema/title/meta coverage

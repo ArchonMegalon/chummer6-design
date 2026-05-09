@@ -1,5 +1,65 @@
 # Review Template Mirror Publish Evidence (WL-D007)
 
+## Cycle 2026-05-09T12:50:04Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `d9a8933e` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `4a0e5fd6` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched; at the live canonical mirror path with the current destination repo head) |
+| WL-D007-03 | chummer6-hub | `71d7f117` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `8cc7f65c` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `cb43a68d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched; target resolved via current `chummer-ui-kit` alias) |
+| WL-D007-06 | chummer6-hub-registry | `6c90eb48` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched; target resolved via current `chummer-hub-registry` alias) |
+| WL-D007-07 | chummer6-media-factory | `f6af2c79` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched; target resolved via current `/docker/fleet/repos/chummer-media-factory` alias) |
+
+## Cycle 2026-05-09T12:44:58Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `d9a8933e` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `e9209933` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched; at the live canonical mirror path with the current destination repo head) |
+| WL-D007-03 | chummer6-hub | `71d7f117` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `8cc7f65c` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `cb43a68d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched; target resolved via current `chummer-ui-kit` alias) |
+| WL-D007-06 | chummer6-hub-registry | `6c90eb48` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched; target resolved via current `chummer-hub-registry` alias) |
+| WL-D007-07 | chummer6-media-factory | `f6af2c79` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched; target resolved via current `/docker/fleet/repos/chummer-media-factory` alias) |
+
+## Cycle 2026-05-09T12:35:55Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `d9a8933e` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `4a0e5fd6` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched; at the live canonical mirror path) |
+| WL-D007-03 | chummer6-hub | `71d7f117` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `8cc7f65c` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `cb43a68d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched; target resolved via current `chummer-ui-kit` alias) |
+| WL-D007-06 | chummer6-hub-registry | `6c90eb48` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched; target resolved via current `chummer-hub-registry` alias) |
+| WL-D007-07 | chummer6-media-factory | `f6af2c79` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched; target resolved via current `/docker/fleet/repos/chummer-media-factory` alias) |
+
+## Cycle 2026-05-09T12:30:11Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `d9a8933e` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `4a0e5fd6` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched; at the live canonical mirror path) |
+| WL-D007-03 | chummer6-hub | `71d7f117` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `8cc7f65c` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `cb43a68d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched; target resolved via current `chummer-ui-kit` alias) |
+| WL-D007-06 | chummer6-hub-registry | `6c90eb48` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched; target resolved via current `chummer-hub-registry` alias) |
+| WL-D007-07 | chummer6-media-factory | `f6af2c79` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched; target resolved via current `/docker/fleet/repos/chummer-media-factory` alias) |
+
+## Cycle 2026-05-09T08:08:47Z (WL-D014-01 parity sweep)
+
+| backlog row | repo | publish ref | source sha256 | target sha256 | status |
+| --- | --- | --- | --- | --- | --- |
+| WL-D007-01 | chummer6-core | `d9a8933e` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | `24a430ffa62f1c089e1e893b9a0b1c253e1fa9eb3b2d758ce8c1039b3b726ab3` | done (checksum parity already matched) |
+| WL-D007-02 | chummer6-ui | `4a0e5fd6` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | `5df853dd564a284a1c210876933911fabd79a04a774d90f4922b1ec0e86d3e92` | done (checksum parity already matched; at the live canonical mirror path) |
+| WL-D007-03 | chummer6-hub | `71d7f117` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | `508a55b3d39e0b80384eecc96736e4bd94d1ebe97595b1d0f31d41bb07dbf029` | done (checksum parity already matched) |
+| WL-D007-04 | chummer6-mobile | `8cc7f65c` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | `3192befb688f4fdf58ce7a1054a4329775aaf52b40c19098bd34e2e9da909c91` | done (checksum parity already matched) |
+| WL-D007-05 | chummer6-ui-kit | `cb43a68d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | `4c858b1ba8876c78fac26e92b44b04f9af1a9271de1458e289498eaef2066d7d` | done (checksum parity already matched; target resolved via current `chummer-ui-kit` alias) |
+| WL-D007-06 | chummer6-hub-registry | `6c90eb48` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | `711b6ad527b08f0230200ec2fc4defdb0aa845aeb5c7268a18b6e1776142ec21` | done (checksum parity already matched; target resolved via current `chummer-hub-registry` alias) |
+| WL-D007-07 | chummer6-media-factory | `f6af2c79` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | `05e0a14319c50b8314b4fc4c17e5f3edfa3108e2d5fb0f736becc244f1fd4ac6` | done (checksum parity already matched; target resolved via current `/docker/fleet/repos/chummer-media-factory` alias) |
+
 ## Cycle 2026-05-06T19:39:40Z (WL-D014-01 parity sweep)
 
 | backlog row | repo | publish ref | source sha256 | target sha256 | status |

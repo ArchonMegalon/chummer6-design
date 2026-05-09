@@ -4,11 +4,11 @@ status: accepted_design_posture
 purpose: Machine-readable registry for public feedback, roadmap, changelog, and public-content optimization surfaces.
 
 surfaces:
-  - key: productlift_public_feedback
-    vendor: ProductLift
+  - key: public_feedback
+    vendor: Hosted public mirror
     class: C4
     owner_repo: chummer6-hub
-    policy_source: products/chummer/PRODUCTLIFT_FEEDBACK_ROADMAP_BRIDGE.md
+    policy_source: products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
     public_path: /feedback
     fallback_path: /help/feedback
     role: public_feedback_and_voting
@@ -28,11 +28,11 @@ surfaces:
       - private_logs
       - account_data
 
-  - key: productlift_public_roadmap
-    vendor: ProductLift
+  - key: public_roadmap
+    vendor: Hosted public mirror
     class: C4
     owner_repo: chummer6-hub
-    policy_source: products/chummer/PRODUCTLIFT_FEEDBACK_ROADMAP_BRIDGE.md
+    policy_source: products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
     public_path: /roadmap
     fallback_path: /horizons
     role: roadmap_projection
@@ -44,11 +44,11 @@ surfaces:
       - products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml
       - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml
 
-  - key: productlift_changelog
-    vendor: ProductLift
+  - key: public_changelog
+    vendor: Hosted public mirror
     class: C4
     owner_repo: chummer6-hub
-    policy_source: products/chummer/PRODUCTLIFT_FEEDBACK_ROADMAP_BRIDGE.md
+    policy_source: products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
     public_path: /changelog
     fallback_path: /now
     role: changelog_projection_and_voter_notification
@@ -60,7 +60,7 @@ surfaces:
       - public_closeout_packets
 
   - key: katteb_public_guide_audit
-    vendor: Katteb
+    vendor: Guide optimization lane
     class: D2
     owner_repo: chummer6-hub
     synthesis_repo: executive-assistant
@@ -204,7 +204,7 @@ content_targets:
     review_required: true
 
 closeout_requirements:
-  productlift_shipped_item:
+  public_shipped_item:
     required:
       - closeout_packet
       - release_or_public_availability_proof
