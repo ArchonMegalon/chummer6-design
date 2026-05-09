@@ -1959,7 +1959,7 @@ def _generate_download(
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
         rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
     rows.append("- You do not need GitHub for the normal download path.")
-    rows.append("- Raw GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.")
+    rows.append("- The source repository remains for source history and issue threads, not downloads.")
 
     rows.extend(
         [
