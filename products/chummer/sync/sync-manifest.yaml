@@ -162,7 +162,9 @@ product_source_groups:
     - products/chummer/PUBLIC_LANDING_POLICY.md
     - products/chummer/PUBLIC_DOWNLOADS_POLICY.md
     - products/chummer/PUBLIC_TRUST_CONTENT.yaml
+    - products/chummer/PUBLIC_LAUNCH_BLOCKERS.yaml
     - products/chummer/PUBLIC_LANDING_MANIFEST.yaml
+    - products/chummer/PUBLIC_ROUTE_FAMILY_RECONCILIATION.yaml
     - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
     - products/chummer/PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml
     - products/chummer/PUBLIC_USER_MODEL.md
