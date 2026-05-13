@@ -4,6 +4,15 @@ status: accepted_design_posture
 purpose: Machine-readable registry for public feedback, roadmap, changelog, and public-content optimization surfaces.
 
 surfaces:
+  - key: productlift_public_feedback
+    vendor: ProductLift
+    class: C4
+    owner_repo: chummer6-hub
+    policy_source: products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
+    public_path: /feedback
+    fallback_path: /help/feedback
+    role: public_feedback_projection
+    truth_posture: projection_only
   - key: public_feedback
     vendor: Hosted public mirror
     class: C4
@@ -44,6 +53,15 @@ surfaces:
       - products/chummer/NEXT_20_BIG_WINS_REGISTRY.yaml
       - products/chummer/POST_AUDIT_NEXT_20_BIG_WINS_REGISTRY.yaml
 
+  - key: productlift_public_roadmap
+    vendor: ProductLift
+    class: C4
+    owner_repo: chummer6-hub
+    policy_source: products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
+    public_path: /roadmap
+    role: roadmap_projection
+    truth_posture: projection_only
+
   - key: public_changelog
     vendor: Hosted public mirror
     class: C4
@@ -58,6 +76,15 @@ surfaces:
       - products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml
       - products/chummer/RELEASE_EVIDENCE_PACK.md
       - public_closeout_packets
+
+  - key: productlift_changelog
+    vendor: ProductLift
+    class: C4
+    owner_repo: chummer6-hub
+    policy_source: products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
+    public_path: /changelog
+    role: changelog_projection
+    truth_posture: projection_only
 
   - key: katteb_public_guide_audit
     vendor: Guide optimization lane
