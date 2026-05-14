@@ -23,3 +23,8 @@ verification: Every candidate path must include rollback receipt, rejection proo
 ## verification
 Owner repo: chummer6-hub
 Verification: Gate pass only when submission, impact, candidate, and rollback receipts exist in one evidence bundle and match active run_id.
+
+## public signal mirror
+Owner repo: executive-assistant/chummer6-hub/fleet
+Goal: Allow a public-safe Karma Forge summary to project into the public signal board without exposing private intake detail or making hosted voting authoritative.
+Verification: dry-run product signal bridge emits `signal_type=karma_forge`, keeps Chummer receipt first, and excludes private fields.

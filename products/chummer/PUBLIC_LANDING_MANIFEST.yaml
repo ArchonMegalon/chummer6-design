@@ -26,6 +26,7 @@ secondary_highlights:
   - Rules explanations
   - Local-first continuity
   - Black Ledger turn 1 ran
+  - Public signal board stays first-party
 product_proof_eyebrow: Preview snapshot
 product_proof_intro: Open downloads for the current preview, inspect one visible explanation trail, and see what the posted files, named flows, and seeded Black Ledger world already show today without reading that snapshot as a finished-product claim, a fallback recommendation, or a substitute for the install shelf.
 product_proof_primary_label: Open downloads
@@ -695,6 +696,32 @@ public_routes:
     verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
     verification_pattern: '[HttpGet("/ledger/dispatches/{dispatchId}")]'
     verification_path: /ledger/dispatches/ledger_dispatch_emerald-sprawl-prelude_turn_0001
+  - path: /ledger/turns/{turn}/dispatches
+    title: BLACK LEDGER turn dispatch archive
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/turns/{turn}/dispatches
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: receipt-backed public-safe turn dispatch archive only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/turns/{turn}/dispatches")]'
+    verification_path: /ledger/turns/1/dispatches
+  - path: /ledger/factions/{factionId}/dispatches
+    title: BLACK LEDGER faction dispatch archive
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/factions/{factionId}/dispatches
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: receipt-backed public-safe faction dispatch archive only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/factions/{factionId}/dispatches")]'
+    verification_path: /ledger/factions/ashline-circle/dispatches
   - path: /roadmap/ghostwire
     title: GHOSTWIRE detail
     audience: public
