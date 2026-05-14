@@ -236,6 +236,42 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: bounded play alias only
+  - path: /anarchy
+    title: Shadowrun Anarchy
+    audience: public
+    purpose: dedicated_ruleset_preview
+    requires_auth: false
+    guest_fallback: /anarchy
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: dedicated rules-light route family only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/anarchy")]'
+  - path: /play/anarchy
+    title: Anarchy play shell
+    audience: public
+    purpose: dedicated_ruleset_play_projection
+    requires_auth: false
+    guest_fallback: /play/anarchy
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: rules-light mobile play shell only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/play/anarchy")]'
+  - path: /ledger/anarchy
+    title: Anarchy ledger lane
+    audience: public
+    purpose: dedicated_ruleset_ledger_projection
+    requires_auth: false
+    guest_fallback: /ledger/anarchy
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: receipt-backed Anarchy and Black Ledger integration only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/anarchy")]'
   - path: /session
     title: Legacy session alias
     audience: public
