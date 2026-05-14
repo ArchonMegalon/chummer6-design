@@ -694,6 +694,7 @@ public_routes:
     verification_mode: controller_contract
     verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
     verification_pattern: '[HttpGet("/ledger/dispatches/{dispatchId}")]'
+    verification_path: /ledger/dispatches/ledger_dispatch_emerald-sprawl-prelude_turn_0001
   - path: /roadmap/ghostwire
     title: GHOSTWIRE detail
     audience: public
