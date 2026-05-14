@@ -1,0 +1,27 @@
+verdict: BLACK_LEDGER_TICK_EMAIL_NOT_IMPLEMENTED
+date: "2026-05-14"
+items:
+  - id: TICKMAIL-P0-001
+    title: Add BlackLedgerTickNewsNotificationService
+    owner_repos: [chummer6-hub]
+    severity: P0
+  - id: TICKMAIL-P0-002
+    title: Add recipient resolver with only-user preview fallback
+    owner_repos: [chummer6-hub]
+    severity: P0
+  - id: TICKMAIL-P0-003
+    title: Persist BlackLedgerNewsDeliveryReceipts
+    owner_repos: [chummer6-hub]
+    severity: P0
+  - id: TICKMAIL-P0-004
+    title: Wire WorldTick and PlayerSafeNews to notification service
+    owner_repos: [chummer6-hub, fleet]
+    severity: P0
+  - id: TICKMAIL-P0-005
+    title: Add turn-one catch-up send command
+    owner_repos: [chummer6-hub, fleet]
+    severity: P0
+  - id: TICKMAIL-P0-006
+    title: Add EA delivery integration and suppression receipts
+    owner_repos: [chummer6-hub, executive-assistant]
+    severity: P0
