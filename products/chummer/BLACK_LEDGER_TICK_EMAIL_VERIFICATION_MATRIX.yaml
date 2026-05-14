@@ -1,0 +1,20 @@
+version: black-ledger-tick-news-email-20260514
+gates:
+  - id: TE-001
+    title: Tick news unit tests
+    command: dotnet test Chummer.Tests/Chummer.Tests.csproj --filter BlackLedgerTickNews
+  - id: TE-002
+    title: Recipient resolver tests
+    command: dotnet test Chummer.Tests/Chummer.Tests.csproj --filter BlackLedgerNewsRecipientResolver
+  - id: TE-003
+    title: Delivery integration stub
+    command: python3 -m pytest -q tests/test_black_ledger_tick_news_delivery.py
+  - id: TE-004
+    title: Turn 1 dry run
+    command: python3 scripts/black_ledger_send_tick_news.py --world emerald-sprawl-prelude --turn 1 --dry-run
+  - id: TE-005
+    title: World tick e2e
+    command: python3 scripts/black_ledger_world_tick_e2e.py --world emerald-sprawl-prelude
+  - id: TE-006
+    title: Public forbidden scan
+    command: python3 scripts/public_forbidden_string_scan.py --base-url https://chummer.run
