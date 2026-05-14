@@ -45,4 +45,12 @@ The preview package must support:
 - loading the preseeded world
 - showing turn 1 as already applied
 - rerunning turn 2 in deterministic test mode without a live AI provider
+- exposing turn navigation between `/ledger?turn=1` and `/ledger?turn=2`
+- exposing an authenticated world-state contract at `/api/v1/ledger/worlds/{worldId}`
+- exposing an operator-only deterministic tick materializer at `/api/v1/ledger/worlds/{worldId}/ticks`
 
+## Required preview receipts
+
+- `ledger_tick_0001_preseeded`
+- `ledger_tick_0002_deterministic`
+- a public-safe `stewardship_transfer` preview receipt proving that verified human takeover outranks interim AI stewardship

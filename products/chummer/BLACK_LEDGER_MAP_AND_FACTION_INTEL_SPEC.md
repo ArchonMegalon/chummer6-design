@@ -52,3 +52,11 @@ The homepage Black Ledger slice must show:
 - a privacy note
 - CTA into `/ledger`
 
+## Ledger page additions
+
+The flagship `/ledger` page must also show:
+
+- turn navigation for the seeded live preview and deterministic turn-two preview
+- AI stewardship posts with bounded public summaries
+- a public-safe stewardship transfer preview receipt
+- hash-backed tick receipt metadata for the currently selected turn
