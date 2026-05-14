@@ -188,6 +188,12 @@ product_source_groups:
     - products/chummer/PUBLIC_MEDIA_AND_GUIDE_ASSET_POLICY.md
     - products/chummer/PRODUCT_ANALYTICS_AND_JOURNEY_PROOF_MODEL.md
     - products/chummer/JOURNEY_PROOF_EVENTS.yaml
+    - products/chummer/FLAGSHIP_PUBLIC_FRONT_REDESIGN.md
+    - products/chummer/BLACK_LEDGER_STATS_SPEC.md
+    - products/chummer/KARMA_FORGE_PUBLIC_HUB_SPEC.md
+    - products/chummer/PUBLIC_HOMEPAGE_COMPONENT_MAP.yaml
+    - products/chummer/BLACK_LEDGER_PUBLIC_ROUTE_SPEC.yaml
+    - products/chummer/PUBLIC_VISUAL_SYSTEM_BLACK_LEDGER_GLASS.md
   hub_public_runtime:
     - products/chummer/PUBLIC_LANDING_ASSET_REGISTRY.yaml
     - products/chummer/PUBLIC_NAVIGATION.yaml
