@@ -670,6 +670,30 @@ public_routes:
     verification_mode: controller_contract
     verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
     verification_pattern: '[HttpGet("/ledger/closeouts")]'
+  - path: /ledger/dispatches
+    title: BLACK LEDGER dispatch archive
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/dispatches
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: receipt-backed public-safe dispatch archive only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/dispatches")]'
+  - path: /ledger/dispatches/{dispatchId}
+    title: BLACK LEDGER dispatch detail
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/dispatches/{dispatchId}
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: receipt-backed public-safe dispatch detail only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/dispatches/{dispatchId}")]'
   - path: /roadmap/ghostwire
     title: GHOSTWIRE detail
     audience: public
