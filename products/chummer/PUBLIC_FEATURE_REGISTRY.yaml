@@ -275,7 +275,7 @@ cards:
     detail_route: /roadmap/karma-forge
     render_mode: external_explainer
     action_label: Start KARMA FORGE discovery
-    detail_primary_href: /participate/karma-forge
+    detail_primary_href: /karma-forge
     detail_primary_label: Start KARMA FORGE discovery
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/karma-forge.md
     fallback_label: Read the horizon brief
@@ -353,8 +353,8 @@ cards:
     detail_route: /roadmap/community-hub
     render_mode: external_explainer
     action_label: Read the network horizon
-    detail_primary_href: /roadmap/black-ledger
-    detail_primary_label: See the world-state foundation
+    detail_primary_href: /ledger
+    detail_primary_label: Open the world-state hub
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/community-hub.md
     fallback_label: Read the horizon brief
     external_ok: true
@@ -368,9 +368,9 @@ cards:
     badge: Research
     audience: public
     image_family: boulevard_of_futures
-    detail_route: /roadmap/black-ledger
-    render_mode: external_explainer
-    action_label: See the related artifact preview
+    detail_route: /ledger
+    render_mode: first_party_hub
+    action_label: Open the Black Ledger hub
     detail_primary_href: /artifacts/replay-after-action
     detail_primary_label: See the related artifact preview
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/black-ledger.md
@@ -578,12 +578,12 @@ cards:
     bucket: participate
     title: Start KARMA FORGE discovery
     summary: Turn house-rule pain into governed discovery packets with guided prompts, clear change notes, and governed routing.
-    href: /participate/karma-forge
+    href: /karma-forge
     badge: Public
     audience: public
     image_family: boulevard_of_futures
-    guest_href: /participate/karma-forge
-    registered_href: /participate/karma-forge
+    guest_href: /karma-forge
+    registered_href: /karma-forge
     action_label: Start KARMA FORGE discovery
   - id: participate_booster
     bucket: participate

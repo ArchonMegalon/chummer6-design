@@ -381,6 +381,21 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: governed discovery entry only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/participate/karma-forge")]'
+  - path: /karma-forge
+    title: KARMA FORGE alias
+    audience: public
+    purpose: governed_future_signal_entry
+    requires_auth: false
+    guest_fallback: /participate/karma-forge
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: governed discovery alias only
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/karma-forge")]'
   - path: /participate/karma-forge/submitted/{submissionId}
     title: KARMA FORGE submitted
     audience: public
@@ -582,6 +597,78 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: roadmap detail only
+  - path: /ledger
+    title: BLACK LEDGER hub
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: aggregate-only Black Ledger hub
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger")]'
+  - path: /black-ledger
+    title: BLACK LEDGER alias
+    audience: public
+    purpose: flagship_public_hub_alias
+    requires_auth: false
+    guest_fallback: /ledger
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: aggregate-only Black Ledger alias
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/black-ledger")]'
+  - path: /ledger/stats
+    title: BLACK LEDGER stats
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/stats
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: aggregate-only stat drilldown
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/stats")]'
+  - path: /ledger/factions
+    title: BLACK LEDGER factions
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/factions
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: aggregate-only faction drilldown
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/factions")]'
+  - path: /ledger/packages
+    title: BLACK LEDGER packages
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/packages
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: aggregate-only package drilldown
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/packages")]'
+  - path: /ledger/closeouts
+    title: BLACK LEDGER closeouts
+    audience: public
+    purpose: flagship_public_hub
+    requires_auth: false
+    guest_fallback: /ledger/closeouts
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: proof-backed closeout drilldown
+    verification_mode: controller_contract
+    verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
+    verification_pattern: '[HttpGet("/ledger/closeouts")]'
   - path: /roadmap/ghostwire
     title: GHOSTWIRE detail
     audience: public
