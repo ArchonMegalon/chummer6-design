@@ -1,12 +1,12 @@
 {
   "contract_name": "chummer.weekly_product_pulse",
   "contract_version": 3,
-  "generated_at": "2026-05-14T10:11:22Z",
+  "generated_at": "2026-05-14T15:04:08Z",
   "as_of": "2026-05-14",
   "scorecard_source": "products/chummer/PRODUCT_HEALTH_SCORECARD.yaml",
   "progress_report_source": "products/chummer/PROGRESS_REPORT.generated.json",
   "progress_history_source": "products/chummer/PROGRESS_HISTORY.generated.json",
-  "summary": "Next 12 Biggest Wins is materially closed as the latest recommended closeout wave; journey proof is blocked only by external macos host proof on 3 tuple(s); flagship replacement readiness is still open; overall progress is 99% in 'Public-fit polish'; the longest pole is now external Windows host proof; support closure still needs follow-through.",
+  "summary": "Next 12 Biggest Wins is materially closed as the latest recommended closeout wave; journey proof is blocked; flagship replacement readiness is still open; overall progress is 99% in 'Public-fit polish'; the longest pole remains Core Engine; support closure is clear.",
   "active_wave": "Next 12 Biggest Wins",
   "active_wave_status": "complete",
   "closure_semantics": {
@@ -42,17 +42,17 @@
   },
   "flagship_readiness": {
     "state": "watch",
-    "reason": "Published flagship readiness proof is fail. Coverage gaps remain: desktop_client. Readiness-plane gaps remain: flagship_ready, veteran_deep_workflow_ready, primary_route_ready, dense_workbench_ready, public_shelf_ready, recovery_trust_ready.",
+    "reason": "Published flagship readiness proof is fail. Coverage gaps remain: desktop_client. Readiness-plane gaps remain: flagship_ready, veteran_ready, sr5_veteran_ready, veteran_deep_workflow_ready, dense_workbench_ready, recovery_trust_ready.",
     "proof_status": "fail",
     "coverage_gap_keys": [
       "desktop_client"
     ],
     "readiness_plane_gap_keys": [
       "flagship_ready",
+      "veteran_ready",
+      "sr5_veteran_ready",
       "veteran_deep_workflow_ready",
-      "primary_route_ready",
       "dense_workbench_ready",
-      "public_shelf_ready",
       "recovery_trust_ready"
     ]
   },
@@ -66,17 +66,13 @@
   },
   "journey_gate_health": {
     "state": "blocked",
-    "reason": "Only external host-proof gaps remain: run the missing macos proof lane for 1 desktop tuple(s), ingest receipts, and then republish release truth.",
-    "blocked_count": 3,
-    "warning_count": 0,
-    "blocked_external_only_count": 3,
-    "blocked_with_local_count": 0,
-    "blocked_external_only_hosts": [
-      "macos"
-    ],
-    "blocked_external_only_tuples": [
-      "avalonia:osx-arm64:macos"
-    ]
+    "reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
+    "blocked_count": 1,
+    "warning_count": 4,
+    "blocked_external_only_count": 0,
+    "blocked_with_local_count": 1,
+    "blocked_external_only_hosts": [],
+    "blocked_external_only_tuples": []
   },
   "top_support_or_feedback_clusters": [
     {
@@ -97,7 +93,7 @@
     },
     {
       "cluster_id": "long_pole_visibility",
-      "summary": "The current longest pole is external macos host proof, so release, support, and publication decisions should assume that this lane still sets the pacing risk for the broader public product.",
+      "summary": "The current longest pole is Core Engine, so release, support, and publication decisions should assume that this lane still sets the pacing risk for the broader public product.",
       "source_paths": [
         "products/chummer/PROGRESS_REPORT.generated.json",
         "products/chummer/RELEASE_EVIDENCE_PACK.md"
@@ -111,28 +107,28 @@
     {
       "decision_id": "2026-05-14-focus-next-12-biggest-wins",
       "action": "focus_shift",
-      "reason": "Keep delivery focus on Next 12 Biggest Wins. The pulse shows 99% overall progress in 'Public-fit polish', history depth has reached 28 snapshots, and the pacing risk remains concentrated in external macos host proof while trust/publication/utility closure still needs measured completion on the active registry.",
+      "reason": "Keep delivery focus on Next 12 Biggest Wins. The pulse shows 99% overall progress in 'Public-fit polish', history depth has reached 26 snapshots, and the pacing risk remains concentrated in Core Engine while trust/publication/utility closure still needs measured completion on the active registry.",
       "cited_signals": [
         "overall_progress_percent=99",
-        "history_snapshot_count=28",
+        "history_snapshot_count=26",
         "oldest_blocker_days=0",
         "phase_label=Public-fit polish",
-        "longest_pole=external macos host proof",
+        "longest_pole=Core Engine",
         "active_wave_status=complete"
       ]
     },
     {
       "decision_id": "2026-05-14-launch-governance",
       "action": "freeze_launch",
-      "reason": "Freeze launch expansion while 3 golden journey(s) remain blocked and journey health is blocked.",
+      "reason": "Freeze launch expansion while 1 golden journey(s) remain blocked and journey health is blocked.",
       "cited_signals": [
         "journey_gate_state=blocked",
-        "journey_gate_blocked_count=3",
+        "journey_gate_blocked_count=1",
         "local_release_proof_status=passed",
         "flagship_readiness_state=watch",
         "flagship_readiness_proof_status=fail",
         "provider_canary_status=Canary evidence is still accumulating",
-        "closure_health_state=watch",
+        "closure_health_state=clear",
         "successor_dependency_state=ready",
         "successor_open_dependency_ids=",
         "successor_open_dependency_work_task_ids=",
@@ -149,17 +145,17 @@
     },
     "flagship_readiness": {
       "state": "watch",
-      "reason": "Published flagship readiness proof is fail. Coverage gaps remain: desktop_client. Readiness-plane gaps remain: flagship_ready, veteran_deep_workflow_ready, primary_route_ready, dense_workbench_ready, public_shelf_ready, recovery_trust_ready.",
+      "reason": "Published flagship readiness proof is fail. Coverage gaps remain: desktop_client. Readiness-plane gaps remain: flagship_ready, veteran_ready, sr5_veteran_ready, veteran_deep_workflow_ready, dense_workbench_ready, recovery_trust_ready.",
       "proof_status": "fail",
       "coverage_gap_keys": [
         "desktop_client"
       ],
       "readiness_plane_gap_keys": [
         "flagship_ready",
+        "veteran_ready",
+        "sr5_veteran_ready",
         "veteran_deep_workflow_ready",
-        "primary_route_ready",
         "dense_workbench_ready",
-        "public_shelf_ready",
         "recovery_trust_ready"
       ]
     },
@@ -173,17 +169,13 @@
     },
     "journey_gate_health": {
       "state": "blocked",
-      "reason": "Only external host-proof gaps remain: run the missing macos proof lane for 1 desktop tuple(s), ingest receipts, and then republish release truth.",
-      "blocked_count": 3,
-      "warning_count": 0,
-      "blocked_external_only_count": 3,
-      "blocked_with_local_count": 0,
-      "blocked_external_only_hosts": [
-        "macos"
-      ],
-      "blocked_external_only_tuples": [
-        "avalonia:osx-arm64:macos"
-      ]
+      "reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
+      "blocked_count": 1,
+      "warning_count": 4,
+      "blocked_external_only_count": 0,
+      "blocked_with_local_count": 1,
+      "blocked_external_only_hosts": [],
+      "blocked_external_only_tuples": []
     },
     "top_support_or_feedback_clusters": [
       {
@@ -204,7 +196,7 @@
       },
       {
         "cluster_id": "long_pole_visibility",
-        "summary": "The current longest pole is external macos host proof, so release, support, and publication decisions should assume that this lane still sets the pacing risk for the broader public product.",
+        "summary": "The current longest pole is Core Engine, so release, support, and publication decisions should assume that this lane still sets the pacing risk for the broader public product.",
         "source_paths": [
           "products/chummer/PROGRESS_REPORT.generated.json",
           "products/chummer/RELEASE_EVIDENCE_PACK.md"
@@ -218,28 +210,28 @@
       {
         "decision_id": "2026-05-14-focus-next-12-biggest-wins",
         "action": "focus_shift",
-        "reason": "Keep delivery focus on Next 12 Biggest Wins. The pulse shows 99% overall progress in 'Public-fit polish', history depth has reached 28 snapshots, and the pacing risk remains concentrated in external macos host proof while trust/publication/utility closure still needs measured completion on the active registry.",
+        "reason": "Keep delivery focus on Next 12 Biggest Wins. The pulse shows 99% overall progress in 'Public-fit polish', history depth has reached 26 snapshots, and the pacing risk remains concentrated in Core Engine while trust/publication/utility closure still needs measured completion on the active registry.",
         "cited_signals": [
           "overall_progress_percent=99",
-          "history_snapshot_count=28",
+          "history_snapshot_count=26",
           "oldest_blocker_days=0",
           "phase_label=Public-fit polish",
-          "longest_pole=external macos host proof",
+          "longest_pole=Core Engine",
           "active_wave_status=complete"
         ]
       },
       {
         "decision_id": "2026-05-14-launch-governance",
         "action": "freeze_launch",
-        "reason": "Freeze launch expansion while 3 golden journey(s) remain blocked and journey health is blocked.",
+        "reason": "Freeze launch expansion while 1 golden journey(s) remain blocked and journey health is blocked.",
         "cited_signals": [
           "journey_gate_state=blocked",
-          "journey_gate_blocked_count=3",
+          "journey_gate_blocked_count=1",
           "local_release_proof_status=passed",
           "flagship_readiness_state=watch",
           "flagship_readiness_proof_status=fail",
           "provider_canary_status=Canary evidence is still accumulating",
-          "closure_health_state=watch",
+          "closure_health_state=clear",
           "successor_dependency_state=ready",
           "successor_open_dependency_ids=",
           "successor_open_dependency_work_task_ids=",
@@ -253,9 +245,9 @@
     "current_recommended_wave": "Next 12 Biggest Wins",
     "overall_progress_percent": 99,
     "phase_label": "Public-fit polish",
-    "history_snapshot_count": 28,
-    "longest_pole": "external macos host proof",
-    "launch_readiness": "Hold launch expansion pending route-canary validation. 3 golden journey(s) remain blocked.",
+    "history_snapshot_count": 26,
+    "longest_pole": "Core Engine",
+    "launch_readiness": "Hold launch expansion pending route-canary validation. 1 golden journey(s) remain blocked.",
     "provider_route_stewardship": {
       "default_status": "Pilot defaults are governed",
       "canary_status": "Canary evidence is still accumulating",
@@ -293,32 +285,40 @@
       "summary": "Automation frontier aligns with the active program open milestones."
     },
     "closure_health": {
-      "state": "watch",
+      "state": "clear",
       "open_case_count": 0,
       "waiting_closure_count": 0,
-      "pending_human_response_count": 6,
+      "pending_human_response_count": 0,
       "reported_case_count": 0,
-      "materialized_packet_count": 1,
+      "materialized_packet_count": 0,
       "design_impact_count": 0,
-      "summary": "0 waiting closure / 6 pending human response. 0 open support packets still need closure follow-through."
+      "summary": "0 waiting closure / 0 pending human response. 0 open support packets across 0 reported cases."
     },
     "adoption_health": {
       "state": "clear",
       "local_release_proof_status": "passed",
       "proven_journey_count": 5,
       "proven_route_count": 10,
-      "history_snapshot_count": 28,
-      "summary": "Current local edge proof passed. 5 journey proofs and 10 trust routes are on record. 28 weekly snapshots are on record for the current public trust posture."
+      "history_snapshot_count": 26,
+      "summary": "Current local edge proof passed. 5 journey proofs and 10 trust routes are on record. 26 weekly snapshots are on record for the current public trust posture."
     },
     "progress_trend": {
       "state": "steady",
       "direction": "flat",
       "delta_percent": 0,
-      "from_as_of": "2026-05-10",
-      "to_as_of": "2026-05-11",
-      "summary": "Flat trend 0% from 2026-05-10 to 2026-05-11. Trend window: 2026-05-02 99% -> 2026-05-05 99% -> 2026-05-06 99% -> 2026-05-07 99% -> 2026-05-08 99% -> 2026-05-09 99% -> 2026-05-10 99% -> 2026-05-11 99%.",
+      "from_as_of": "2026-05-08",
+      "to_as_of": "2026-05-09",
+      "summary": "Flat trend 0% from 2026-05-08 to 2026-05-09. Trend window: 2026-04-26 100% -> 2026-05-01 99% -> 2026-05-02 99% -> 2026-05-05 99% -> 2026-05-06 99% -> 2026-05-07 99% -> 2026-05-08 99% -> 2026-05-09 99%.",
       "sample_count": 8,
       "samples": [
+        {
+          "as_of": "2026-04-26",
+          "overall_progress_percent": 100
+        },
+        {
+          "as_of": "2026-05-01",
+          "overall_progress_percent": 99
+        },
         {
           "as_of": "2026-05-02",
           "overall_progress_percent": 99
@@ -341,14 +341,6 @@
         },
         {
           "as_of": "2026-05-09",
-          "overall_progress_percent": 99
-        },
-        {
-          "as_of": "2026-05-10",
-          "overall_progress_percent": 99
-        },
-        {
-          "as_of": "2026-05-11",
           "overall_progress_percent": 99
         }
       ]
