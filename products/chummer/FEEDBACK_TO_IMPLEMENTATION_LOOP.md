@@ -10,6 +10,11 @@ Owner repo: executive-assistant
 Goal: Convert support/signal items into governed EA request packets with severity, scope, and acceptance evidence.
 Verification: `materialize_product_governor_packet` must emit owner, scope, owner intent, and gating policy and include a stable `governor_packet_id` per intake item.
 
+## hosted signal mirror:
+Owner repo: executive-assistant/chummer6-hub/fleet
+Goal: Mirror safe public product signals into the hosted-board projection lane without turning that board into source of truth.
+Verification: `productlift_signal_bridge_e2e.py --dry-run` must emit a `ProductSignalReceipt` and a projection receipt while keeping provider names out of public copy.
+
 ## fleet workpackage:
 Owner repo: fleet
 Goal: Generate workpackage artifacts only for governance-approved package decisions and track closure state.
