@@ -9,3 +9,4 @@ Current posture:
 
 - honestly parked
 - not publicly claimed as shipped
+- public route exists only to make the parked boundary explicit: `/exports/foundry`

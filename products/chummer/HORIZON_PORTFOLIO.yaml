@@ -41,7 +41,7 @@ horizons:
     route: /community
     proof: COMMUNITY_OPEN_RUN_E2E.generated.json
   - id: ghostwire
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /ghostwire
     proof: GHOSTWIRE_AFTER_ACTION_E2E.generated.json
   - id: creator_os
@@ -57,6 +57,6 @@ horizons:
     route: /exports/foundry
     proof: FOUNDRY_HANDOFF_E2E.generated.json
   - id: anarchy
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /anarchy
     proof: ANARCHY_RULESET_PREVIEW_E2E.generated.json

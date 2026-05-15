@@ -477,12 +477,32 @@ public_routes:
   - path: /ghostwire
     title: GHOSTWIRE
     audience: public
-    purpose: after_action_preview
+    purpose: ghostwire_mvp
     requires_auth: false
     guest_fallback: /ghostwire
     must_exist: true
     placeholder_allowed: false
-    placeholder_requirements: public-safe after-action preview only
+    placeholder_requirements: public-safe after-action packet hub only
+  - path: /ghostwire/after-action/{packetId}.md
+    title: GHOSTWIRE packet markdown
+    audience: public
+    purpose: ghostwire_mvp
+    requires_auth: false
+    guest_fallback: /ghostwire/after-action/{packetId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: first-party after-action markdown only
+    verification_path: /ghostwire/after-action/replay_timeline.md
+  - path: /ghostwire/after-action/{packetId}.json
+    title: GHOSTWIRE packet JSON
+    audience: public
+    purpose: ghostwire_mvp
+    requires_auth: false
+    guest_fallback: /ghostwire/after-action/{packetId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: first-party after-action json only
+    verification_path: /ghostwire/after-action/replay_timeline.json
   - path: /passport
     title: Runner Passport
     audience: public
@@ -536,6 +556,35 @@ public_routes:
     verification_mode: controller_contract
     verification_file: Chummer.Run.Api/Controllers/PublicLandingController.cs
     verification_pattern: '[HttpGet("/ledger/anarchy")]'
+  - path: /anarchy/export/runner.json
+    title: Anarchy runner export
+    audience: public
+    purpose: dedicated_ruleset_export
+    requires_auth: false
+    guest_fallback: /anarchy/export/runner.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: first-party anarchy export json only
+    verification_path: /anarchy/export/runner.json
+  - path: /anarchy/receipts/explain.json
+    title: Anarchy explain receipt
+    audience: public
+    purpose: dedicated_ruleset_export
+    requires_auth: false
+    guest_fallback: /anarchy/receipts/explain.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: first-party anarchy explain receipt only
+    verification_path: /anarchy/receipts/explain.json
+  - path: /exports/foundry
+    title: Foundry handoff
+    audience: public
+    purpose: honestly_parked_horizon
+    requires_auth: false
+    guest_fallback: /exports/foundry
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: honestly parked Foundry boundary only
   - path: /session
     title: Legacy session alias
     audience: public
