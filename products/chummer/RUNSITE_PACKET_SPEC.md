@@ -10,3 +10,9 @@ RUNSITE packetizes places into:
 Public route:
 
 - `/runsites`
+- `/runsites/packs/{packId}.md`
+- `/runsites/packs/{packId}.json`
+
+Current state:
+
+- shipped MVP

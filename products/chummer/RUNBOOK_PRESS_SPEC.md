@@ -9,3 +9,9 @@ RUNBOOK PRESS exists to make onboarding:
 Public route:
 
 - `/runbook`
+- `/runbook/primers/{primerId}.md`
+- `/runbook/primers/{primerId}.json`
+
+Current state:
+
+- shipped MVP

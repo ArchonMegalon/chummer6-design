@@ -24,9 +24,9 @@ A horizon is only considered active when it has:
 - Knowledge Fabric: shipped MVP
 - Karma Forge: shipped MVP
 - Black Ledger: shipped MVP
-- JACKPOINT: route-visible preview with proof
-- RUNSITE: route-visible preview with proof
-- RUNBOOK PRESS: route-visible preview with proof
+- JACKPOINT: shipped MVP
+- RUNSITE: shipped MVP
+- RUNBOOK PRESS: shipped MVP
 - Community Hub / Open Run Network: route-visible preview with proof
 - GHOSTWIRE: route-visible preview with proof
 - Creator OS: route-visible preview with proof

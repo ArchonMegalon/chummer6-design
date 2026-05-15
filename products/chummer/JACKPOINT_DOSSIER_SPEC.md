@@ -9,8 +9,14 @@ JACKPOINT turns campaign intel into:
 Public route:
 
 - `/jackpoint`
+- `/jackpoint/briefings/{briefingId}.md`
+- `/jackpoint/briefings/{briefingId}.json`
 
 Boundary:
 
 - player-safe briefing preview only
 - GM-private spoiler variants stay off the public rail
+
+Current state:
+
+- shipped MVP

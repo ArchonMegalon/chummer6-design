@@ -249,9 +249,9 @@ cards:
   - id: real_horizon_packet_previews
     bucket: whats_real_now
     title: Briefings, runsites, and primers
-    summary: The packet horizons now have first-party preview routes for dossiers, runsite packets, and printable primer lanes.
+    summary: The packet horizons now ship first-party dossier, runsite pack, and printable primer routes with markdown and JSON rails.
     href: /jackpoint
-    badge: Preview lane
+    badge: Live now
     audience: public
     image_family: prop_cluster
     action_label: Open packet previews
@@ -340,15 +340,15 @@ cards:
     bucket: coming_next
     title: JACKPOINT
     summary: Dossiers, recaps, and briefings that feel finished without severing provenance.
-    href: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/jackpoint.md
-    badge: Preview lane
+    href: /jackpoint
+    badge: Live now
     audience: public
     image_family: dossier_desk
     detail_route: /roadmap/jackpoint
-    render_mode: external_explainer
-    action_label: See the related artifact preview
-    detail_primary_href: /artifacts/dossier-brief
-    detail_primary_label: See the related artifact preview
+    render_mode: route
+    action_label: Open JACKPOINT
+    detail_primary_href: /jackpoint/briefings/emerald-sprawl-briefing.md
+    detail_primary_label: Open first briefing
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/jackpoint.md
     fallback_label: Read the horizon brief
     external_ok: true
@@ -360,15 +360,15 @@ cards:
     bucket: coming_next
     title: RUNSITE
     summary: Walk the job before the team walks into it.
-    href: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/runsite.md
-    badge: Preview lane
+    href: /runsites
+    badge: Live now
     audience: public
     image_family: facility_exterior
     detail_route: /roadmap/runsite
-    render_mode: external_explainer
-    action_label: See the related artifact preview
-    detail_primary_href: /artifacts/runsite-pack
-    detail_primary_label: See the related artifact preview
+    render_mode: route
+    action_label: Open RUNSITE
+    detail_primary_href: /runsites/packs/redmond-dockyard-pack.md
+    detail_primary_label: Open first runsite pack
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/runsite.md
     fallback_label: Read the horizon brief
     external_ok: true
@@ -380,15 +380,15 @@ cards:
     bucket: coming_next
     title: RUNBOOK PRESS
     summary: Bring new players in without the two-hour lecture.
-    href: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/runbook-press.md
-    badge: Preview lane
+    href: /runbook
+    badge: Live now
     audience: public
     image_family: prop_cluster
     detail_route: /roadmap/runbook-press
-    render_mode: external_explainer
-    action_label: See the related artifact preview
-    detail_primary_href: /artifacts/campaign-primer
-    detail_primary_label: See the related artifact preview
+    render_mode: route
+    action_label: Open RUNBOOK
+    detail_primary_href: /runbook/primers/new-runner-primer.md
+    detail_primary_label: Open first primer
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/runbook-press.md
     fallback_label: Read the horizon brief
     external_ok: true

@@ -25,15 +25,15 @@ horizons:
     route: /ledger
     proof: BLACK_LEDGER_COMMAND_MAP_PUBLISHED
   - id: jackpoint
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /jackpoint
     proof: JACKPOINT_BRIEFING_E2E.generated.json
   - id: runsite
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /runsites
     proof: RUNSITE_PACKET_E2E.generated.json
   - id: runbook_press
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /runbook
     proof: RUNBOOK_PRESS_PRIMER_E2E.generated.json
   - id: community_hub
