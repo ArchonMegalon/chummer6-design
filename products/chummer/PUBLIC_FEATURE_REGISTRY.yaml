@@ -347,8 +347,8 @@ cards:
     detail_route: /roadmap/jackpoint
     render_mode: route
     action_label: Open JACKPOINT
-    detail_primary_href: /jackpoint/briefings/emerald-sprawl-briefing.md
-    detail_primary_label: Open first briefing
+    detail_primary_href: /jackpoint
+    detail_primary_label: Open JACKPOINT
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/jackpoint.md
     fallback_label: Read the horizon brief
     external_ok: true
@@ -367,8 +367,8 @@ cards:
     detail_route: /roadmap/runsite
     render_mode: route
     action_label: Open RUNSITE
-    detail_primary_href: /runsites/packs/redmond-dockyard-pack.md
-    detail_primary_label: Open first runsite pack
+    detail_primary_href: /runsites
+    detail_primary_label: Open RUNSITE
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/runsite.md
     fallback_label: Read the horizon brief
     external_ok: true
@@ -387,8 +387,8 @@ cards:
     detail_route: /roadmap/runbook-press
     render_mode: route
     action_label: Open RUNBOOK
-    detail_primary_href: /runbook/primers/new-runner-primer.md
-    detail_primary_label: Open first primer
+    detail_primary_href: /runbook
+    detail_primary_label: Open RUNBOOK
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/runbook-press.md
     fallback_label: Read the horizon brief
     external_ok: true
