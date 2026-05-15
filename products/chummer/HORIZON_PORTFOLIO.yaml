@@ -1,0 +1,62 @@
+version: 1
+horizons:
+  - id: ready_for_tonight
+    state: route_visible_preview_with_proof
+    route: /ready
+    proof: READY_FOR_TONIGHT_E2E.generated.json
+  - id: nexus_pan
+    state: route_visible_preview_with_proof
+    route: /play/continuity
+    proof: NEXUS_PAN_CONTINUITY_E2E.generated.json
+  - id: alice
+    state: honestly_parked
+    route: /build/ghosts
+    proof: ALICE_BUILD_GHOSTS_E2E.generated.json
+  - id: knowledge_fabric
+    state: route_visible_preview_with_proof
+    route: /rules
+    proof: KNOWLEDGE_FABRIC_SOURCE_SAFE_E2E.generated.json
+  - id: karma_forge
+    state: shipped_mvp
+    route: /participate/karma-forge
+    proof: KARMA_FORGE_PACKAGE_PIPELINE_E2E.generated.json
+  - id: black_ledger
+    state: shipped_mvp
+    route: /ledger
+    proof: BLACK_LEDGER_COMMAND_MAP_PUBLISHED
+  - id: jackpoint
+    state: route_visible_preview_with_proof
+    route: /jackpoint
+    proof: JACKPOINT_BRIEFING_E2E.generated.json
+  - id: runsite
+    state: route_visible_preview_with_proof
+    route: /runsites
+    proof: RUNSITE_PACKET_E2E.generated.json
+  - id: runbook_press
+    state: route_visible_preview_with_proof
+    route: /runbook
+    proof: RUNBOOK_PRESS_PRIMER_E2E.generated.json
+  - id: community_hub
+    state: route_visible_preview_with_proof
+    route: /community
+    proof: COMMUNITY_OPEN_RUN_E2E.generated.json
+  - id: ghostwire
+    state: route_visible_preview_with_proof
+    route: /ghostwire
+    proof: GHOSTWIRE_AFTER_ACTION_E2E.generated.json
+  - id: creator_os
+    state: route_visible_preview_with_proof
+    route: /creator
+    proof: CREATOR_OS_PUBLICATION_E2E.generated.json
+  - id: runner_passport
+    state: route_visible_preview_with_proof
+    route: /passport
+    proof: RUNNER_PASSPORT_E2E.generated.json
+  - id: foundry_handoff
+    state: honestly_parked
+    route: /exports/foundry
+    proof: FOUNDRY_HANDOFF_E2E.generated.json
+  - id: anarchy
+    state: route_visible_preview_with_proof
+    route: /anarchy
+    proof: ANARCHY_RULESET_PREVIEW_E2E.generated.json

@@ -91,6 +91,21 @@ The immediate additive shape is:
 * raise every major surface to the flagship-grade bar in `FLAGSHIP_PRODUCT_BAR.md`, especially the authored desktop client, ruleset-specific UX, public trust shelf, and live-play continuity
 * make public repo hygiene, release truth, workflow hardening, and automation blast radius machine-verifiable so the live estate cannot drift away from the ownership model
 
+## Horizon closure rule
+
+All horizon work now has to collapse into one of these states:
+
+* shipped MVP
+* route-visible preview with proof
+* honestly parked
+* deleted / no longer claimed
+
+The current all-horizons completion map is tracked in:
+
+* `ALL_HORIZONS_PRODUCT_COMPLETION_PLAN.md`
+* `HORIZON_PORTFOLIO.yaml`
+* `MISSED_POTENTIAL_MASTER_MAP.md`
+
 ## Phase A — Canon and package plane
 
 ### A0 — Design repo bootstrap complete

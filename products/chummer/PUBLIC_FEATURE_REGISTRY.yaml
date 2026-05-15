@@ -228,17 +228,53 @@ cards:
     audience: public
     image_family: facility_exterior
     action_label: Open the installer shelf
+  - id: real_ready_for_tonight_preview
+    bucket: whats_real_now
+    title: Ready for Tonight
+    summary: A short route from install to role kit, packet handoff, and session-start posture now exists as a first-party preview.
+    href: /ready
+    badge: Preview lane
+    audience: public
+    image_family: solo_operator
+    action_label: Open Ready for Tonight
+  - id: real_knowledge_fabric_preview
+    bucket: whats_real_now
+    title: Knowledge Fabric
+    summary: Source-aware explain and provenance now have a public first-party preview route instead of staying trapped in deeper docs only.
+    href: /rules
+    badge: Preview lane
+    audience: public
+    image_family: simulation_bench
+    action_label: Open Knowledge Fabric
+  - id: real_horizon_packet_previews
+    bucket: whats_real_now
+    title: Briefings, runsites, and primers
+    summary: The packet horizons now have first-party preview routes for dossiers, runsite packets, and printable primer lanes.
+    href: /jackpoint
+    badge: Preview lane
+    audience: public
+    image_family: prop_cluster
+    action_label: Open packet previews
+  - id: real_community_creator_preview
+    bucket: whats_real_now
+    title: Community, creator, and passport
+    summary: Community Hub, Creator OS, and Runner Passport now have bounded public preview routes with explicit trust boundaries.
+    href: /community
+    badge: Preview lane
+    audience: public
+    image_family: archive_stair
+    action_label: Open community preview
   - id: horizon_nexus_pan
     bucket: coming_next
     title: NEXUS-PAN
     summary: Shared state survives device churn without the table losing trust.
-    href: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/nexus-pan.md
-    badge: Preparing
+    href: /play/continuity
+    badge: Previewing
     audience: public
     image_family: streetfront
     detail_route: /roadmap/nexus-pan
-    render_mode: external_explainer
-    action_label: Compare with current continuity proof
+    render_mode: route
+    action_label: Open continuity preview
     detail_primary_href: /now#real-mobile-prep
     detail_primary_label: Compare with current continuity proof
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/nexus-pan.md
