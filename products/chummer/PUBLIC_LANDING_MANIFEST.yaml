@@ -217,7 +217,7 @@ public_routes:
     guest_fallback: /play/continuity
     must_exist: true
     placeholder_allowed: false
-    placeholder_requirements: public continuity preview only
+    placeholder_requirements: public-safe claimed install, reconnect, and receipt rail only
   - path: /player
     title: Player alias
     audience: public

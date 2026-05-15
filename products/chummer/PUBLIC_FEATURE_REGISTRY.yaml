@@ -195,9 +195,9 @@ cards:
   - id: real_mobile_projection
     bucket: whats_real_now
     title: Mobile and PWA projection
-    summary: The first-party mobile projection keeps installability, reconnect posture, and role-aware entry visible before native shells are complete.
+    summary: The first-party mobile projection now includes continuity receipt rails, PWA handoff JSON, and bounded claimed-install posture alongside role-aware entry.
     href: /mobile
-    badge: Inspectable
+    badge: Live now
     audience: public
     image_family: streetfront
     action_label: Open mobile projection
@@ -267,14 +267,14 @@ cards:
   - id: horizon_nexus_pan
     bucket: coming_next
     title: NEXUS-PAN
-    summary: Shared state survives device churn without the table losing trust.
+    summary: Shared state, claimed installs, and reconnect posture now ship on first-party continuity rails without exposing private device history.
     href: /play/continuity
-    badge: Previewing
+    badge: Live now
     audience: public
     image_family: streetfront
     detail_route: /roadmap/nexus-pan
     render_mode: route
-    action_label: Open continuity preview
+    action_label: Open continuity
     detail_primary_href: /now#real-mobile-prep
     detail_primary_label: Compare with current continuity proof
     fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/nexus-pan.md

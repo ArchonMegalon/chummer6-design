@@ -5,7 +5,7 @@ horizons:
     route: /ready
     proof: READY_FOR_TONIGHT_E2E.generated.json
   - id: nexus_pan
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /play/continuity
     proof: NEXUS_PAN_CONTINUITY_E2E.generated.json
   - id: alice

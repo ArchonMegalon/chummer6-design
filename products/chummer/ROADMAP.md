@@ -83,6 +83,7 @@ The immediate additive shape is:
 * turn the living-campaign promise into boring, release-gated loops: action help, local source lookup, adoption, runner goals, prep packets, and one GM-approved world consequence loop
 * recover the lost product potential surfaced by the vision audit: calm-under-pressure payoff, veteran-depth dense workflows, trusted mobile return moments, and artifact/community coherence
 * make the first emotional wins impossible to miss: Ready for Tonight, start-from-today adoption, no-desktop participation, source-aware explain, starter role kits, and one excellent Foundry-first handoff
+* keep NEXUS-PAN continuity in shipped-MVP posture: claimed installs, reconnect proof, mobile handoff, and signed-in runboard boundaries stay first-party and inspectable
 * make community/world scale feel alive without overbuilding: weekly broadcast cadence, creator adoption feedback, community safety, and explicit accessibility/cognitive-load promises
 * close the remaining human-feeling parity families with dialog-level acceptance specs that force yes/no visual and behavioral verdicts plus explicit removal reasons for Chummer6-only extras
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
