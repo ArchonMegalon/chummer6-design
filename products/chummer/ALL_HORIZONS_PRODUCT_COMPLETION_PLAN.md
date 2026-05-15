@@ -18,7 +18,7 @@ A horizon is only considered active when it has:
 
 ## Current status
 
-- Ready for Tonight: route-visible preview with proof
+- Ready for Tonight: shipped MVP
 - NEXUS-PAN continuity: route-visible preview with proof
 - ALICE build ghosts: honestly parked
 - Knowledge Fabric: route-visible preview with proof

@@ -1,7 +1,7 @@
 version: 1
 horizons:
   - id: ready_for_tonight
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /ready
     proof: READY_FOR_TONIGHT_E2E.generated.json
   - id: nexus_pan

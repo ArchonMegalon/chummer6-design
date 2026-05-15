@@ -260,12 +260,12 @@ public_routes:
   - path: /ready
     title: Ready for Tonight
     audience: public
-    purpose: session_start_preview
+    purpose: session_start_mvp
     requires_auth: false
     guest_fallback: /ready
     must_exist: true
     placeholder_allowed: false
-    placeholder_requirements: route-visible session-start preview only
+    placeholder_requirements: shipped first-party verdict, packet, and handoff rail
   - path: /tonight
     title: Tonight alias
     audience: public

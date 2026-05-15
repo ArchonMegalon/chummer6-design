@@ -231,9 +231,9 @@ cards:
   - id: real_ready_for_tonight_preview
     bucket: whats_real_now
     title: Ready for Tonight
-    summary: A short route from install to role kit, packet handoff, and session-start posture now exists as a first-party preview.
+    summary: Role verdicts, starter loadouts, packet exports, and mobile handoff now exist as a shipped first-party session-start rail.
     href: /ready
-    badge: Preview lane
+    badge: Live now
     audience: public
     image_family: solo_operator
     action_label: Open Ready for Tonight
