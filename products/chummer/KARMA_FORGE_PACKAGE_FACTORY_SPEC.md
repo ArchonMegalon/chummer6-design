@@ -6,6 +6,7 @@ Karma Forge is the governed package-candidate loop:
 - normalize packet
 - compatibility review
 - vote or follow
+- revoke vote or follow
 - package candidate closeout
 
 Primary route:

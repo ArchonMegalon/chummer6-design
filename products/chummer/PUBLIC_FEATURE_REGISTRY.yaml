@@ -240,9 +240,9 @@ cards:
   - id: real_knowledge_fabric_preview
     bucket: whats_real_now
     title: Knowledge Fabric
-    summary: Source-aware explain and provenance now have a public first-party preview route instead of staying trapped in deeper docs only.
+    summary: Source-aware explain now ships with public-safe receipt downloads, provenance, and bounded answer posture on a first-party route.
     href: /rules
-    badge: Preview lane
+    badge: Live now
     audience: public
     image_family: simulation_bench
     action_label: Open Knowledge Fabric

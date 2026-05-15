@@ -10,8 +10,10 @@ Knowledge Fabric keeps rules explanations trustworthy by requiring:
 Public route:
 
 - `/rules`
+- `/rules/receipts`
+- `/rules/receipts/{receiptId}.json`
 
 Boundary:
 
-- preview route with proof
+- shipped MVP with public-safe receipt downloads
 - not a total rules oracle

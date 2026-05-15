@@ -13,7 +13,7 @@ horizons:
     route: /build/ghosts
     proof: ALICE_BUILD_GHOSTS_E2E.generated.json
   - id: knowledge_fabric
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /rules
     proof: KNOWLEDGE_FABRIC_SOURCE_SAFE_E2E.generated.json
   - id: karma_forge
