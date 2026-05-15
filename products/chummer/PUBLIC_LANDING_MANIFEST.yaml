@@ -401,12 +401,32 @@ public_routes:
   - path: /community
     title: Community Hub
     audience: public
-    purpose: community_preview
+    purpose: community_hub_mvp
     requires_auth: false
     guest_fallback: /community
     must_exist: true
     placeholder_allowed: false
-    placeholder_requirements: open-run and moderation-boundary preview only
+    placeholder_requirements: open-run board and moderation packet hub only
+  - path: /community/open-runs/{packetId}.md
+    title: Community Hub packet markdown
+    audience: public
+    purpose: community_hub_mvp
+    requires_auth: false
+    guest_fallback: /community/open-runs/{packetId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: first-party community packet markdown only
+    verification_path: /community/open-runs/open_run_board.md
+  - path: /community/open-runs/{packetId}.json
+    title: Community Hub packet JSON
+    audience: public
+    purpose: community_hub_mvp
+    requires_auth: false
+    guest_fallback: /community/open-runs/{packetId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: first-party community packet json only
+    verification_path: /community/open-runs/open_run_board.json
   - path: /runs
     title: Open Run alias
     audience: public
@@ -428,12 +448,32 @@ public_routes:
   - path: /creator
     title: Creator OS
     audience: public
-    purpose: creator_preview
+    purpose: creator_os_mvp
     requires_auth: false
     guest_fallback: /creator
     must_exist: true
     placeholder_allowed: false
-    placeholder_requirements: governed creator publication preview only
+    placeholder_requirements: governed creator publication hub only
+  - path: /creator/packets/{packetId}.md
+    title: Creator OS packet markdown
+    audience: public
+    purpose: creator_os_mvp
+    requires_auth: false
+    guest_fallback: /creator/packets/{packetId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: governed creator packet markdown only
+    verification_path: /creator/packets/publication_board.md
+  - path: /creator/packets/{packetId}.json
+    title: Creator OS packet JSON
+    audience: public
+    purpose: creator_os_mvp
+    requires_auth: false
+    guest_fallback: /creator/packets/{packetId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: governed creator packet json only
+    verification_path: /creator/packets/publication_board.json
   - path: /ghostwire
     title: GHOSTWIRE
     audience: public
@@ -446,12 +486,32 @@ public_routes:
   - path: /passport
     title: Runner Passport
     audience: public
-    purpose: participation_identity_preview
+    purpose: runner_passport_mvp
     requires_auth: false
     guest_fallback: /passport
     must_exist: true
     placeholder_allowed: false
-    placeholder_requirements: public-safe participation identity preview only
+    placeholder_requirements: public-safe participation identity hub only
+  - path: /passport/receipts/{receiptId}.md
+    title: Runner Passport receipt markdown
+    audience: public
+    purpose: runner_passport_mvp
+    requires_auth: false
+    guest_fallback: /passport/receipts/{receiptId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: runner passport markdown receipt only
+    verification_path: /passport/receipts/runner_return_posture.md
+  - path: /passport/receipts/{receiptId}.json
+    title: Runner Passport receipt JSON
+    audience: public
+    purpose: runner_passport_mvp
+    requires_auth: false
+    guest_fallback: /passport/receipts/{receiptId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: runner passport json receipt only
+    verification_path: /passport/receipts/runner_return_posture.json
   - path: /play/anarchy
     title: Anarchy play shell
     audience: public

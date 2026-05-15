@@ -258,12 +258,12 @@ cards:
   - id: real_community_creator_preview
     bucket: whats_real_now
     title: Community, creator, and passport
-    summary: Community Hub, Creator OS, and Runner Passport now have bounded public preview routes with explicit trust boundaries.
+    summary: Community Hub, Creator OS, and Runner Passport now ship first-party packet and receipt rails with explicit trust boundaries.
     href: /community
-    badge: Preview lane
+    badge: Live now
     audience: public
     image_family: archive_stair
-    action_label: Open community preview
+    action_label: Open community hub
   - id: horizon_nexus_pan
     bucket: coming_next
     title: NEXUS-PAN

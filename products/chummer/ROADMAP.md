@@ -85,6 +85,7 @@ The immediate additive shape is:
 * make the first emotional wins impossible to miss: Ready for Tonight, start-from-today adoption, no-desktop participation, source-aware explain, starter role kits, and one excellent Foundry-first handoff
 * keep NEXUS-PAN continuity in shipped-MVP posture: claimed installs, reconnect proof, mobile handoff, and signed-in runboard boundaries stay first-party and inspectable
 * keep JACKPOINT, RUNSITE, and RUNBOOK PRESS in shipped-MVP posture: dossier, site-pack, and primer rails stay first-party, downloadable, and bounded by Chummer-owned packet truth
+* keep Community Hub, Creator OS, and Runner Passport in shipped-MVP posture: open-run board packets, governed publication packets, and public-safe identity receipts stay first-party and bounded
 * make community/world scale feel alive without overbuilding: weekly broadcast cadence, creator adoption feedback, community safety, and explicit accessibility/cognitive-load promises
 * close the remaining human-feeling parity families with dialog-level acceptance specs that force yes/no visual and behavioral verdicts plus explicit removal reasons for Chummer6-only extras
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story

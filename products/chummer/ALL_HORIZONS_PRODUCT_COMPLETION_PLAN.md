@@ -27,10 +27,10 @@ A horizon is only considered active when it has:
 - JACKPOINT: shipped MVP
 - RUNSITE: shipped MVP
 - RUNBOOK PRESS: shipped MVP
-- Community Hub / Open Run Network: route-visible preview with proof
+- Community Hub / Open Run Network: shipped MVP
 - GHOSTWIRE: route-visible preview with proof
-- Creator OS: route-visible preview with proof
-- Runner Passport: route-visible preview with proof
+- Creator OS: shipped MVP
+- Runner Passport: shipped MVP
 - Foundry handoff: honestly parked
 - Shadowrun Anarchy: route-visible preview with proof
 

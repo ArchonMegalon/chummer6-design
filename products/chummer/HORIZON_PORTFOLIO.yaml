@@ -37,7 +37,7 @@ horizons:
     route: /runbook
     proof: RUNBOOK_PRESS_PRIMER_E2E.generated.json
   - id: community_hub
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /community
     proof: COMMUNITY_OPEN_RUN_E2E.generated.json
   - id: ghostwire
@@ -45,11 +45,11 @@ horizons:
     route: /ghostwire
     proof: GHOSTWIRE_AFTER_ACTION_E2E.generated.json
   - id: creator_os
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /creator
     proof: CREATOR_OS_PUBLICATION_E2E.generated.json
   - id: runner_passport
-    state: route_visible_preview_with_proof
+    state: shipped_mvp
     route: /passport
     proof: RUNNER_PASSPORT_E2E.generated.json
   - id: foundry_handoff
