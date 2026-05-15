@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import shutil
 import sys
@@ -13,6 +14,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = REPO_ROOT / "products" / "chummer" / "sync" / "sync-manifest.yaml"
+WEEKLY_PRODUCT_PULSE_NAME = "WEEKLY_PRODUCT_PULSE.generated.json"
 
 
 def _dedupe_paths(paths: list[Path]) -> list[Path]:
@@ -125,6 +127,18 @@ def _expand_product_sources(manifest: dict[str, object], mirror: dict[str, objec
             continue
         seen.add(source)
         ordered_sources.append(source)
+
+    if str(mirror.get("repo") or "").strip() == "chummer6-ui":
+        for source in (
+            "products/chummer/FLAGSHIP_PRODUCT_BAR.md",
+            "products/chummer/CHUMMER5A_FAMILIARITY_BRIDGE.md",
+            "products/chummer/VETERAN_FIRST_MINUTE_GATE.yaml",
+            "products/chummer/DENSE_WORKBENCH_BUDGET.yaml",
+            "products/chummer/FLAGSHIP_RELEASE_ACCEPTANCE.yaml",
+        ):
+            if source not in seen:
+                seen.add(source)
+                ordered_sources.append(source)
     return ordered_sources
 
 
@@ -140,8 +154,18 @@ def _relative_product_target(source_rel: str, duplicate_basenames: set[str], pro
     return Path(product_target) / relative_source
 
 
+def _normalized_bytes(path: Path) -> bytes:
+    if path.name != WEEKLY_PRODUCT_PULSE_NAME:
+        return path.read_bytes()
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, dict):
+        payload = dict(payload)
+        payload.pop("generated_at", None)
+    return (json.dumps(payload, indent=2, sort_keys=False) + "\n").encode("utf-8")
+
+
 def _copy_file(source: Path, destination: Path, *, write: bool) -> bool:
-    if destination.exists() and source.read_bytes() == destination.read_bytes():
+    if destination.exists() and _normalized_bytes(source) == _normalized_bytes(destination):
         return False
     if write:
         destination.parent.mkdir(parents=True, exist_ok=True)

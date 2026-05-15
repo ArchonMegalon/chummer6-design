@@ -52,6 +52,12 @@ User posts/votes on the public board
   -> voters notified when allowed
 ```
 
+ProductLift idea:
+
+* enters as public demand
+* becomes EA synthesis input
+* never becomes roadmap or release truth on arrival
+
 ## Public guide improvement
 
 ```text
@@ -99,6 +105,10 @@ For public-board-linked shipped work:
 - public changelog entry exists or carries an explicit no-entry reason
 - voter notification is allowed before public-board notification fires
 - public roadmap, guide, support, and release surfaces do not contradict each other
+
+For ProductLift-linked shipped work:
+
+* Chummer-owned release, guide, Hub route, artifact, or closeout proof must exist before voter notification
 
 For guide-optimization-linked content work:
 
