@@ -311,6 +311,26 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: alias into briefing preview only
+  - path: /jackpoint/briefings/{briefingId}.md
+    title: JACKPOINT briefing markdown
+    audience: public
+    purpose: dossier_packet_preview
+    requires_auth: false
+    guest_fallback: /jackpoint/briefings/{briefingId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: player-safe dossier markdown only
+    verification_path: /jackpoint/briefings/emerald-sprawl-briefing.md
+  - path: /jackpoint/briefings/{briefingId}.json
+    title: JACKPOINT briefing JSON
+    audience: public
+    purpose: dossier_packet_preview
+    requires_auth: false
+    guest_fallback: /jackpoint/briefings/{briefingId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: player-safe dossier json only
+    verification_path: /jackpoint/briefings/emerald-sprawl-briefing.json
   - path: /runsites
     title: RUNSITE
     audience: public
@@ -320,6 +340,26 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: runsite packet, pressure, and site-card rail only
+  - path: /runsites/packs/{packId}.md
+    title: RUNSITE pack markdown
+    audience: public
+    purpose: runsite_packet_preview
+    requires_auth: false
+    guest_fallback: /runsites/packs/{packId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: site packet markdown only
+    verification_path: /runsites/packs/redmond-dockyard-pack.md
+  - path: /runsites/packs/{packId}.json
+    title: RUNSITE pack JSON
+    audience: public
+    purpose: runsite_packet_preview
+    requires_auth: false
+    guest_fallback: /runsites/packs/{packId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: site packet json only
+    verification_path: /runsites/packs/redmond-dockyard-pack.json
   - path: /runbook
     title: RUNBOOK PRESS
     audience: public
@@ -329,6 +369,26 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: printable primer and onboarding packet rail only
+  - path: /runbook/primers/{primerId}.md
+    title: RUNBOOK primer markdown
+    audience: public
+    purpose: primer_packet_preview
+    requires_auth: false
+    guest_fallback: /runbook/primers/{primerId}.md
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: printable primer markdown only
+    verification_path: /runbook/primers/new-runner-primer.md
+  - path: /runbook/primers/{primerId}.json
+    title: RUNBOOK primer JSON
+    audience: public
+    purpose: primer_packet_preview
+    requires_auth: false
+    guest_fallback: /runbook/primers/{primerId}.json
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: printable primer json only
+    verification_path: /runbook/primers/new-runner-primer.json
   - path: /primers
     title: Primers alias
     audience: public
