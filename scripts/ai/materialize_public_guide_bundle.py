@@ -716,11 +716,27 @@ def _normalize_artifact(item: dict[str, object]) -> dict[str, object]:
 
 def _release_artifacts(payload: dict[str, object]) -> list[dict[str, object]]:
     artifacts = payload.get("artifacts")
+    coverage = payload.get("desktopTupleCoverage") or {}
+    required_platforms = {
+        _platform_key(str(item))
+        for item in (coverage.get("requiredDesktopPlatforms") or [])
+        if str(item).strip()
+    }
     if isinstance(artifacts, list):
-        return [_normalize_artifact(item) for item in artifacts if isinstance(item, dict)]
+        normalized = [_normalize_artifact(item) for item in artifacts if isinstance(item, dict)]
+        return [
+            item
+            for item in normalized
+            if _artifact_allowed_for_public_guide(item, required_platforms)
+        ]
     downloads = payload.get("downloads")
     if isinstance(downloads, list):
-        return [_normalize_artifact(item) for item in downloads if isinstance(item, dict)]
+        normalized = [_normalize_artifact(item) for item in downloads if isinstance(item, dict)]
+        return [
+            item
+            for item in normalized
+            if _artifact_allowed_for_public_guide(item, required_platforms)
+        ]
     return []
 
 
@@ -743,6 +759,27 @@ def _group_artifacts_by_platform(artifacts: list[dict[str, object]]) -> dict[str
             platform = "unknown"
         grouped.setdefault(platform, []).append(artifact)
     return grouped
+
+
+def _artifact_allowed_for_public_guide(
+    artifact: dict[str, object],
+    required_platforms: set[str],
+) -> bool:
+    platform = _platform_key(str(artifact.get("platform") or artifact.get("platformLabel") or ""))
+    if required_platforms and platform not in required_platforms:
+        return False
+
+    file_name = str(artifact.get("fileName") or "").strip().lower()
+    download_url = str(artifact.get("downloadUrl") or artifact.get("url") or "").strip().lower()
+    subject = file_name or download_url
+
+    if not subject:
+        return False
+
+    if subject.endswith(".exe") and "installer" not in subject:
+        return False
+
+    return True
 
 
 def _format_size_bytes(value: object) -> str:
