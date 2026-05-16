@@ -1,0 +1,20 @@
+{
+  "contract_name": "chummer.ruleset_readiness",
+  "status": "pass",
+  "generated_at_utc": "2026-05-16T17:20:00Z",
+  "source": "/docker/chummercomplete/_completion/full_product_debt_burndown/RULESET_READINESS_CLASSIFIER.generated.json",
+  "rulesets": {
+    "sr4": {
+      "readiness": "full",
+      "release_posture": "governed_preview"
+    },
+    "sr5": {
+      "readiness": "full",
+      "release_posture": "governed_preview"
+    },
+    "sr6": {
+      "readiness": "full",
+      "release_posture": "governed_preview"
+    }
+  }
+}

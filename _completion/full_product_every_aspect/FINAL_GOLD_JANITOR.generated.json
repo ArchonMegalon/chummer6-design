@@ -1,0 +1,11 @@
+{
+  "contract_name": "chummer.full_product_every_aspect.final_gold_janitor",
+  "status": "pass",
+  "generated_at_utc": "2026-05-16T17:20:00Z",
+  "source": "/docker/chummercomplete/_completion/full_product_debt_burndown/FINAL_GLOBAL_JANITOR.generated.json",
+  "public_ux_final_verdict": "FLAGSHIP_FRONT_READY",
+  "route_proof_status": "pass",
+  "public_operator_leak_scan_status": "pass",
+  "feedback_closeout_status": "pass",
+  "dress_rehearsal_status": "pass"
+}

@@ -1,0 +1,16 @@
+version: 1
+source: /docker/chummercomplete/_completion/all_horizons_missed_potential/HORIZON_STATUS_MATRIX.generated.yaml
+verdict: classified
+horizons:
+  ready_for_tonight: shipped_mvp
+  nexus_pan: shipped_mvp
+  knowledge_fabric: shipped_mvp
+  jackpoint: shipped_mvp
+  runsite: shipped_mvp
+  runbook_press: shipped_mvp
+  community_hub: route_visible_preview_with_proof
+  creator_os: route_visible_preview_with_proof
+  runner_passport: route_visible_preview_with_proof
+  ghostwire: route_visible_preview_with_proof
+  anarchy: route_visible_preview_with_proof
+  foundry_handoff: honestly_parked
