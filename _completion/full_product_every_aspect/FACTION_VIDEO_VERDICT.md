@@ -8,4 +8,4 @@ Current truth:
 - this is compliant preview behavior, not gold provider closure
 
 Evidence:
-- `/docker/chummercomplete/_completion/pre_gold_full_product/FINAL_FACTION_VIDEO_VERDICT.md`
+- `/docker/chummercomplete/_completion/pregold_ux_pwa_black_ledger/FINAL_FACTION_VIDEO_VERDICT.md`

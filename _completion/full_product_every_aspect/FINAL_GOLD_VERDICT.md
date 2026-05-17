@@ -3,10 +3,10 @@
 Verdict: `NOT_GOLD`
 
 Why:
-- public estate is strong
+- public estate is strong and the latest UX/PWA/globe package is green
 - non-mac public/runtime/design compliance is broadly green
 - desktop Windows/Linux preview evidence is strong
-- Black Ledger newsreel, onboarding, command-map, and faction-management slices are materially closed
+- Black Ledger newsreel, onboarding, globe, and faction-management slices are materially closed
 
 Still not gold:
 - public docs and release truth still describe preview posture

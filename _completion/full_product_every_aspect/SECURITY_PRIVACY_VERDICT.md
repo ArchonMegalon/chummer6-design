@@ -5,6 +5,7 @@ Verdict: `PASS_WITH_PREVIEW_BOUNDARY`
 Current truth:
 - public operator/provider leak scan is green
 - Black Ledger private-lore no-noise posture has been repeatedly audited green
+- strict private-lore canary leak scan is green on the live site
 - no current non-mac public leak blocker surfaced in the latest reaudit passes
 
 Evidence:

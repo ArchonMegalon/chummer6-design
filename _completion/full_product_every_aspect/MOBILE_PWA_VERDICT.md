@@ -1,11 +1,13 @@
 # Mobile / PWA Verdict
 
-Verdict: `ROUTE_VISIBLE_PREVIEW`
+Verdict: `AUDITED_PREVIEW`
 
 Current truth:
-- route-visible mobile/PWA surface exists
-- previous wave closure proved continuity/mobile receipts
-- this bundle does not upgrade mobile to gold live-play/offline/runtime proof
+- public play shell is live and now has direct manifest/service-worker/offline proof
+- current public copy honestly says `Mobile play shell preview; installability proof pending.`
+- public verification commands now run cleanly from `tests/public/mobile-pwa-public.spec.ts`
+- the lane is no longer only route-visible, but it is still preview-grade rather than gold live-play closure
 
 Evidence:
-- `/docker/chummercomplete/_completion/all_horizons_missed_potential/MOBILE_PWA_E2E.generated.json`
+- `/docker/chummercomplete/_completion/pregold_ux_pwa_black_ledger/FINAL_PWA_GOLD_VERDICT.md`
+- `/docker/chummercomplete/chummer.run-services/mobile-pwa-public.spec.ts`
