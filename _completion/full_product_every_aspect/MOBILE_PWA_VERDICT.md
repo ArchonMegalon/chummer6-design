@@ -1,12 +1,11 @@
 # Mobile / PWA Verdict
 
-Verdict: `AUDITED_PREVIEW`
+Verdict: `READY`
 
 Current truth:
-- public play shell is live and now has direct manifest/service-worker/offline proof
-- current public copy honestly says `Mobile play shell preview; installability proof pending.`
-- public verification commands now run cleanly from `tests/public/mobile-pwa-public.spec.ts`
-- the lane is no longer only route-visible, but it is still preview-grade rather than gold live-play closure
+- the public play shell is live and has manifest, service-worker, installability, and offline-cache proof
+- the public copy is demoted honestly where install prompts still need explicit platform proof
+- the focused PWA verification pack now runs cleanly
 
 Evidence:
 - `/docker/chummercomplete/_completion/pregold_ux_pwa_black_ledger/FINAL_PWA_GOLD_VERDICT.md`

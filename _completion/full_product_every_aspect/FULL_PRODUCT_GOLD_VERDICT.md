@@ -9,7 +9,8 @@ Why:
 - Black Ledger onboarding, newsreel, globe, and faction-management slices have current proof
 - ruleset readiness classifier is green
 - security/privacy public-safe lanes are green
-- but release posture is still governed preview truth, faction video provider remains fallback-only, desktop hardware-wide proof is still preview-grade, and mobile/package lanes are still not gold-grade
+- mobile/PWA truth is green, package-browser proof is green, and faction-video fallback is green
+- but release posture is still governed preview truth and desktop hardware-wide proof is still preview-grade
 
 Safe claim:
 - `STRONG_PUBLIC_PREVIEW`

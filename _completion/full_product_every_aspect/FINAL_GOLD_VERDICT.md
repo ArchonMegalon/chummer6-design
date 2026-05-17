@@ -11,6 +11,4 @@ Why:
 Still not gold:
 - public docs and release truth still describe preview posture
 - desktop hardware-wide proof is still preview-grade, not gold-grade
-- faction video provider is still fallback-only, not fully verified
-- mobile/package lanes are still preview-grade
 - the estate should be described as `STRONG_PUBLIC_PREVIEW`, not `GOLD_READY`

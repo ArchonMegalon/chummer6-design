@@ -1,12 +1,11 @@
 # Package Browser Verdict
 
-Verdict: `AUDITED_PREVIEW`
+Verdict: `READY`
 
 Current truth:
-- package browser / Karma Forge surfaces exist and are proven as product lanes
-- public package browser verification commands now run cleanly from `tests/public/package-browser.spec.ts`
+- package browser and Karma Forge public surfaces are live and proven as product lanes
 - package class, compatibility, governance, evidence, and vote/follow receipt posture are explicitly rendered
-- this still does not establish gold-grade package closeout and governance depth beyond preview proof
+- the public package browser verification commands now run cleanly
 
 Evidence:
 - `/docker/chummercomplete/chummer.run-services/package-browser.spec.ts`
