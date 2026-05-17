@@ -2,7 +2,7 @@
 
 Date: 2026-05-17
 
-Verdict: `NOT_GOLD`
+Verdict: `GOLD_READY_WINDOWS_LINUX`
 
 Why:
 - live public UX is now materially stronger and the pre-gold UX/PWA/globe bundle is green
@@ -10,7 +10,9 @@ Why:
 - ruleset readiness classifier is green
 - security/privacy public-safe lanes are green
 - mobile/PWA truth is green, package-browser proof is green, and faction-video fallback is green
-- but release posture is still governed preview truth and desktop hardware-wide proof is still preview-grade
+- release posture is live `public_stable` / `gold_supported` for Windows/Linux
+- desktop hardware-wide proof is now `DESKTOP_WINDOWS_LINUX_GOLD_READY`
+- this verdict is explicitly scoped to Windows/Linux public release only
 
 Safe claim:
-- `STRONG_PUBLIC_PREVIEW`
+- `GOLD_READY_WINDOWS_LINUX`

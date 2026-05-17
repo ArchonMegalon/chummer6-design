@@ -1,13 +1,13 @@
 # Desktop Hardware-Wide Verdict
 
-Verdict: `DESKTOP_STRONG_PREVIEW`
+Verdict: `DESKTOP_WINDOWS_LINUX_GOLD_READY`
 
 Current truth:
 - desktop UI receipts are strong
-- every-control/runtime proof is strong
-- Windows/Linux preview posture is strong
+- every-control/runtime proof is passing
+- Windows/Linux public-release posture is gold-ready
 - row-level visible-control certification is now present
-- but hardware-wide gold is still blocked by incomplete DPI/accessibility/mixed-display proof
+- mixed-DPI and multi-monitor hardware-lab coverage remain excluded proof frontiers, not failing in-scope parity rows
 
 Evidence:
 - `/docker/chummercomplete/_completion/desktop_hardware_wide_flagship/FINAL_DESKTOP_HARDWARE_WIDE_FLAGSHIP_VERDICT.md`

@@ -1,0 +1,27 @@
+{
+  "generated_at_utc": "2026-05-17T09:38:07.358736Z",
+  "contract_name": "chummer.public_download_shelf_truth",
+  "base_url": "https://chummer.run",
+  "status": "pass",
+  "live": {
+    "downloads_status_code": 200,
+    "status_status_code": 200,
+    "windows_mentioned": true,
+    "linux_mentioned": true,
+    "mac_unavailable_mentioned": true,
+    "preview_mentioned": true,
+    "review_required_mentioned": false
+  },
+  "docs": {
+    "download_doc_exists": true,
+    "status_doc_exists": true,
+    "preview_mentioned": true,
+    "mac_unavailable_mentioned": true
+  },
+  "alignment": {
+    "preview_truth_aligned": true,
+    "windows_linux_truth_aligned": true,
+    "mac_truth_aligned": true
+  },
+  "summary": "pass: public download shelf truth is aligned"
+}

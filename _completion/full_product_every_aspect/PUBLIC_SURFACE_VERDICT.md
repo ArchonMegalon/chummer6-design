@@ -1,6 +1,6 @@
 # Public Surface Verdict
 
-Verdict: `STRONG_PUBLIC_PREVIEW`
+Verdict: `WINDOWS_LINUX_PUBLIC_GOLD_READY`
 
 Current truth:
 - live UX and route proof are strong
@@ -8,10 +8,11 @@ Current truth:
 - the current public UX bundle is `PRE_GOLD_UX_READY`
 - public operator/provider leak scan is green
 - Google sign-in is live again on `chummer.run`
-- status truth no longer claims the live shelf is empty when signed-in guided install routes are available
+- status truth now reports open-public shelf availability and current public build posture
 - Black Ledger public routes are live and proven
-- route proof is not enough for a gold claim by itself
+- combined with public-stable Windows/Linux release truth, this supports a scoped non-mac gold-ready public claim
 
 Evidence:
 - `/docker/chummercomplete/_completion/pregold_ux_pwa_black_ledger/FINAL_PRE_GOLD_UX_VERDICT.md`
 - `/docker/chummercomplete/_completion/reaudit_everything_20260516/PUBLIC_OPERATOR_LEAK_SCAN.generated.json`
+- `/docker/chummercomplete/chummer-design/_completion/gold_readiness_closure/FINAL_GOLD_VERDICT.md`

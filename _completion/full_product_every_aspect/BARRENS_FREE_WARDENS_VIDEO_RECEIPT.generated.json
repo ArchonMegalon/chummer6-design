@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-05-17T11:01:33.063814Z",
+  "faction": "barrens-free-wardens",
+  "provider": "advertisemind",
+  "fallback": "storyboard",
+  "status": "pass",
+  "route": "/ledger/factions/barrens-free-wardens/promo.json",
+  "provider_status": "NEEDS_PROVIDER_VERIFICATION",
+  "render_mode": "fallback_static_storyboard",
+  "formats": [
+    "16:9 storyboard",
+    "9:16 mobile storyboard",
+    "Static fallback card",
+    "Captions required"
+  ]
+}
