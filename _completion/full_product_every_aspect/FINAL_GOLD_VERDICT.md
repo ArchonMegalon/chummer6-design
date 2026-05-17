@@ -6,6 +6,7 @@ Why:
 - public estate is strong and the latest UX/PWA/globe package is green
 - non-mac public/runtime/design compliance is broadly green
 - desktop Windows/Linux preview evidence is strong
+- desktop row-level visible-control certification now exists
 - Black Ledger newsreel, onboarding, globe, and faction-management slices are materially closed
 
 Still not gold:

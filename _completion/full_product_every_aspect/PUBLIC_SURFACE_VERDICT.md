@@ -7,6 +7,8 @@ Current truth:
 - globe-first homepage, Ledger globe, and faction identity surfaces are live
 - the current public UX bundle is `PRE_GOLD_UX_READY`
 - public operator/provider leak scan is green
+- Google sign-in is live again on `chummer.run`
+- status truth no longer claims the live shelf is empty when signed-in guided install routes are available
 - Black Ledger public routes are live and proven
 - route proof is not enough for a gold claim by itself
 
