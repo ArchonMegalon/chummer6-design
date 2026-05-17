@@ -83,6 +83,10 @@ The immediate additive shape is:
 * turn the living-campaign promise into boring, release-gated loops: action help, local source lookup, adoption, runner goals, prep packets, and one GM-approved world consequence loop
 * recover the lost product potential surfaced by the vision audit: calm-under-pressure payoff, veteran-depth dense workflows, trusted mobile return moments, and artifact/community coherence
 * make the first emotional wins impossible to miss: Ready for Tonight, start-from-today adoption, no-desktop participation, source-aware explain, starter role kits, and one excellent Foundry-first handoff
+* keep NEXUS-PAN continuity in shipped-MVP posture: claimed installs, reconnect proof, mobile handoff, and signed-in runboard boundaries stay first-party and inspectable
+* keep JACKPOINT, RUNSITE, and RUNBOOK PRESS in shipped-MVP posture: dossier, site-pack, and primer rails stay first-party, downloadable, and bounded by Chummer-owned packet truth
+* keep Community Hub, Creator OS, and Runner Passport in shipped-MVP posture: open-run board packets, governed publication packets, and public-safe identity receipts stay first-party and bounded
+* keep GHOSTWIRE and Shadowrun Anarchy in shipped-MVP posture: replay packets, after-action reports, dedicated ruleset routes, and first-party export receipts stay honest and bounded while Foundry remains explicitly parked
 * make community/world scale feel alive without overbuilding: weekly broadcast cadence, creator adoption feedback, community safety, and explicit accessibility/cognitive-load promises
 * close the remaining human-feeling parity families with dialog-level acceptance specs that force yes/no visual and behavioral verdicts plus explicit removal reasons for Chummer6-only extras
 * elevate exchange, replay, recap, publication, and artifact shelf truth into a real second pillar instead of a sidecar export story
@@ -90,6 +94,21 @@ The immediate additive shape is:
 * keep acquisition-fit or owned-LTD seams explicit for scheduling, publication, route intelligence, coaching, and migration-confidence without letting them become shadow truth owners
 * raise every major surface to the flagship-grade bar in `FLAGSHIP_PRODUCT_BAR.md`, especially the authored desktop client, ruleset-specific UX, public trust shelf, and live-play continuity
 * make public repo hygiene, release truth, workflow hardening, and automation blast radius machine-verifiable so the live estate cannot drift away from the ownership model
+
+## Horizon closure rule
+
+All horizon work now has to collapse into one of these states:
+
+* shipped MVP
+* route-visible preview with proof
+* honestly parked
+* deleted / no longer claimed
+
+The current all-horizons completion map is tracked in:
+
+* `ALL_HORIZONS_PRODUCT_COMPLETION_PLAN.md`
+* `HORIZON_PORTFOLIO.yaml`
+* `MISSED_POTENTIAL_MASTER_MAP.md`
 
 ## Phase A — Canon and package plane
 

@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-05-17T11:01:32.654952Z",
+  "faction": "rust-market-syndicate",
+  "provider": "advertisemind",
+  "fallback": "storyboard",
+  "status": "pass",
+  "route": "/ledger/factions/rust-market-syndicate/promo.json",
+  "provider_status": "NEEDS_PROVIDER_VERIFICATION",
+  "render_mode": "fallback_static_storyboard",
+  "formats": [
+    "16:9 storyboard",
+    "9:16 mobile storyboard",
+    "Static fallback card",
+    "Captions required"
+  ]
+}

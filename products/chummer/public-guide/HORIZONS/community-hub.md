@@ -16,7 +16,7 @@ Picture the scene: A player finds a beginner-friendly run, applies with a legal 
 - Today: Future concept.
 - Next: Research and prototypes.
 
-**COMMUNITY HUB is Chummer’s open-run and community-play horizon: the future where GMs can publish runs, players can apply with compatible runners, sessions can be scheduled and handed off cleanly, and the outcome can feed the living world.**
+**SHADOWCASTERS NETWORK is Chummer’s open-run and community-play horizon: the future where GMs can publish runs, players can apply with compatible runners, sessions can be scheduled and handed off cleanly, and the outcome can feed the living world.**
 
 Finding a Shadowrun game is still too hard.
 
@@ -26,7 +26,7 @@ Scheduling happens in calendars or chat.
 Meeting links appear at the last minute.
 Publisher truth is not one place.
 
-COMMUNITY HUB turns that into a product flow.
+SHADOWCASTERS NETWORK turns that into a product flow.
 
 ## The promise
 
@@ -102,7 +102,7 @@ The GM accepts.
 
 Chummer schedules, hands off the Discord link, and tracks the run through closeout.
 
-That is COMMUNITY HUB.
+That is SHADOWCASTERS.
 
 ## What it should include
 
@@ -221,7 +221,7 @@ It must not. Use seasonal honors, typed event records, and no public shame board
 
 ## What it is not
 
-COMMUNITY HUB is not:
+SHADOWCASTERS NETWORK is not:
 
 - random matchmaking
 - Discord-owned run truth
@@ -265,4 +265,4 @@ Chummer should not replace them.
 
 It should give them structure.
 
-**COMMUNITY HUB is where Chummer becomes the layer that turns job packets into tables, tables into outcomes, and outcomes into a living world.**
+**SHADOWCASTERS NETWORK is where Chummer becomes the layer that turns job packets into tables, tables into outcomes, and outcomes into a living world.**

@@ -1,0 +1,61 @@
+{
+  "contract_name": "tibor_black_ledger_exit_gate_email",
+  "generated_at_utc": "2026-05-17T09:19:02.852925Z",
+  "status": "pass",
+  "recipient": "tibor.girschele@gmail.com",
+  "dry_run": false,
+  "delivery": {
+    "status": "queued",
+    "dispatch_base_url": "http://172.25.0.2:8080",
+    "payload": {
+      "tool_name": "connector.dispatch",
+      "action_kind": "delivery.send",
+      "payload_json": {
+        "principal_id": "support-progress-principal",
+        "binding_id": "binding-support-progress",
+        "channel": "email",
+        "recipient": "tibor.girschele@gmail.com",
+        "subject": "[Chummer] Black Ledger Turn 1 newsreel + faction promo rail",
+        "content": "Black Ledger exit gate for Tibor.\n\nWorld: Emerald Sprawl: First Pressure\nTurn headline: Turn 1 \u2014 The city is moving.\nNewsreel summary: Turn 1 \u2014 The city is moving.\nLedger route: https://chummer.run/ledger\nTurn 1 page: https://chummer.run/ledger/turns/1\nReplay route: https://chummer.run/ledger/map?replay=turn-1\n\nFaction promo/storyboard rail:\n- Ashline Circle: magic pressure 79 \u00b7 drain magnet index 72 \u00b7 source clarity 48 \u2014 https://chummer.run/ledger/factions/ashline-circle/promo\n- Barrens Free Wardens: survival pressure 81 \u00b7 public trust 69 \u00b7 attrition risk 63 \u2014 https://chummer.run/ledger/factions/barrens-free-wardens/promo\n- Ghostline Network: intel volume 82 \u00b7 false signal suppression 74 \u00b7 proof trail strength 67 \u2014 https://chummer.run/ledger/factions/ghostline-network/promo\n- Glass Tower Compact: license polish 88 \u00b7 proof trail strength 72 \u00b7 public trust 51 \u2014 https://chummer.run/ledger/factions/glass-tower-compact/promo\n- Neon Docks Union: route control 76 \u00b7 vehicle package demand 71 \u00b7 logistics pressure 68 \u2014 https://chummer.run/ledger/factions/neon-docks-union/promo\n- Rust Market Syndicate: debt heat 91 \u00b7 favor load 86 \u00b7 package pressure 83 \u2014 https://chummer.run/ledger/factions/rust-market-syndicate/promo\n\nPublic safety posture:\n- Fictional public-safe seed only.\n- Faction videos are live via first-party storyboard fallback.\n- External provider remains unclaimed until verified.",
+        "metadata": {
+          "purpose": "black_ledger_exit_gate",
+          "world_id": "emerald-sprawl-prelude",
+          "turn_headline": "Turn 1 \u2014 The city is moving.",
+          "recipient": "tibor.girschele@gmail.com",
+          "dry_run": false
+        },
+        "idempotency_key": "tibor-exit-gate-emerald-sprawl-prelude-turn1"
+      }
+    },
+    "response": {
+      "target_ref": "delivery_d7dfb23624d6190a",
+      "output_json": {
+        "delivery_id": "delivery_d7dfb23624d6190a",
+        "status": "queued"
+      },
+      "receipt_json": {
+        "handler_key": "connector.dispatch",
+        "invocation_contract": "tool.v1"
+      }
+    },
+    "principal_id": "support-progress-principal",
+    "binding_id": "binding-support-progress",
+    "idempotency_key": "tibor-exit-gate-emerald-sprawl-prelude-turn1",
+    "delivery_id": "delivery_d7dfb23624d6190a"
+  },
+  "content": {
+    "subject": "[Chummer] Black Ledger Turn 1 newsreel + faction promo rail",
+    "world": {
+      "world_id": "emerald-sprawl-prelude",
+      "public_name": "Emerald Sprawl: First Pressure",
+      "turn_headline": "Turn 1 \u2014 The city is moving.",
+      "summary": "Turn 1 \u2014 The city is moving."
+    },
+    "routes": {
+      "ledger": "https://chummer.run/ledger",
+      "turn_1": "https://chummer.run/ledger/turns/1",
+      "replay": "https://chummer.run/ledger/map?replay=turn-1"
+    },
+    "faction_count": 6
+  }
+}

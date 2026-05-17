@@ -2,6 +2,17 @@
 
 Purpose: dated execution log for WL-D009 split-wave truth maintenance cycles.
 
+## 2026-05-13
+
+### WL-D016 Cycle 2026-05-13A (operator: codex, requested follow-up)
+- WL-D009-01 `done`: reopened the recurring truth-maintenance lane from `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` for the 2026-05-13 follow-up pass.
+- WL-D009-02 `done`: revalidated `products/chummer/OWNERSHIP_MATRIX.md`; no ownership-boundary or forbidden-dependency drift was found (`sha256=3eee98e859e5f81633a4574ee551c5ae847353318dd6bf8694d226307efc1ead`).
+- WL-D009-03 `done`: revalidated `products/chummer/CONTRACT_SETS.yaml`; contract-family ownership and package-boundary canon remained aligned with no drift (`sha256=116434a282f516766a6048e3216c410d5d5f4984f77a3979044476612f641dc0`).
+- WL-D009-04 `done`: revalidated `products/chummer/GROUP_BLOCKERS.md`; blocker ownership and status remained unchanged with no red blockers reopened (`sha256=662e99114d0aed2ab198051a88cb1ab42a50cb09c20654d63c528cc104ccc65f`).
+- WL-D009-05 `done`: refreshed `products/chummer/PROGRAM_MILESTONES.yaml` `last_reviewed` from `2026-05-12` to `2026-05-13` and updated the recurring-lane note so the registry explicitly points at this cycle closeout.
+- WL-D009-06 `done`: revalidated recurring mapping remains executable in `WORKLIST.md` (`sha256=89fc18bc86ad3cfc67c2041f203917fbd729aaba082abdf87a5f1a53a8fa6ea9` before this cycle refresh), `.codex-studio/published/QUEUE.generated.yaml` (`sha256=3636504f701a7580492b256e9d7d560d3380151537fc0613111a4ddf512d774f`), and `products/chummer/sync/TRUTH_MAINTENANCE_BACKLOG.md` (`sha256=232133a57f61af6717a08e3f6b48f69c6c898badd6175790ab5e006c44fa786c`).
+- WL-D009-07 `done`: closed the 2026-05-13 pass as an explicit no-change truth-maintenance cycle; ownership, contracts, blockers, and queue mapping remained stable, and only the recurring-cycle freshness markers moved forward.
+
 ## 2026-04-23
 
 ### WL-D016 Cycle 2026-04-23A (operator: codex, system re-entry)

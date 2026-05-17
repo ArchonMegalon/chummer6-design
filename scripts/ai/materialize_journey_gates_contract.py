@@ -87,14 +87,17 @@ def _journey_rows(registry: dict[str, Any]) -> list[dict[str, Any]]:
     return rendered
 
 
-def build_contract(*, generated_at: str | None = None) -> dict[str, Any]:
+def build_contract(
+    *,
+    generated_at: str | None = None,
+    existing_contract: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     now = _utc_now()
     output_time = _parse_iso(generated_at) or now
     registry = _load_yaml(GOLDEN_PATH)
     pulse = _load_json(PULSE_PATH)
     pulse_truth = pulse.get("journey_gate_health") if isinstance(pulse.get("journey_gate_health"), dict) else {}
     pulse_generated_at = str(pulse.get("generated_at") or "").strip()
-    evidence_age_hours = _evidence_age_hours(pulse_generated_at, output_time)
 
     state = str(pulse_truth.get("state") or "unknown").strip() or "unknown"
     blocked_count = int(pulse_truth.get("blocked_count") or 0)
@@ -103,6 +106,24 @@ def build_contract(*, generated_at: str | None = None) -> dict[str, Any]:
     blocked_reason = pulse_reason if blocked_count > 0 or state == "blocked" else ""
     warning_reason = pulse_reason if warning_count > 0 and not blocked_reason else ""
     next_safe_action = pulse_reason or "Keep golden journey truth current before widening promotion claims."
+    evidence_age_hours = _evidence_age_hours(pulse_generated_at, output_time)
+
+    if existing_contract:
+        existing_truth = existing_contract.get("current_truth")
+        existing_provenance = (
+            existing_truth.get("provenance")
+            if isinstance(existing_truth, dict)
+            else {}
+        )
+        if isinstance(existing_provenance, dict):
+            preserved_pulse_generated_at = str(
+                existing_provenance.get("weekly_product_pulse_generated_at") or ""
+            ).strip()
+            preserved_evidence_age = existing_truth.get("evidence_age_hours") if isinstance(existing_truth, dict) else None
+            if preserved_pulse_generated_at:
+                pulse_generated_at = preserved_pulse_generated_at
+            if preserved_evidence_age is not None:
+                evidence_age_hours = preserved_evidence_age
 
     return {
         "contract_name": "chummer.journey_gates",
@@ -138,13 +159,17 @@ def main() -> int:
 
     out_path = Path(args.out).resolve()
     generated_at_override: str | None = None
+    existing_payload: dict[str, Any] = {}
     if args.check and out_path.is_file():
         existing_payload = _load_json(out_path)
         candidate_generated_at = str(existing_payload.get("generated_at") or "").strip()
         if candidate_generated_at:
             generated_at_override = candidate_generated_at
 
-    payload = build_contract(generated_at=generated_at_override)
+    payload = build_contract(
+        generated_at=generated_at_override,
+        existing_contract=existing_payload if args.check else None,
+    )
     rendered = json.dumps(payload, indent=2, sort_keys=False) + "\n"
 
     if args.check:

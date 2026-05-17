@@ -1,7 +1,7 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-05-09T02:35:40Z",
+  "generated_at": "2026-05-15T15:00:34Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
@@ -15,7 +15,7 @@
     "evidence_age_hours": 0.0,
     "provenance": {
       "weekly_product_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
-      "weekly_product_pulse_generated_at": "2026-05-09T02:35:40Z",
+      "weekly_product_pulse_generated_at": "2026-05-15T15:00:29Z",
       "golden_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml"
     }
   },

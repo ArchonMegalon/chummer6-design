@@ -16,6 +16,7 @@ It puts truth order, source-anchor linkage, bounded follow-up, and presenter sub
 ## What shipped
 
 - `products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md` now includes an explicit `Fleet and operator loop binding` section that makes explain coverage-registry truth, source-anchor posture, and bounded follow-up release-gated control-plane inputs.
+- `products/chummer/SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md` now stays in the proof chain so explain surfaces remain anchored to local-open source posture instead of drifting into hosted authority.
 - `products/chummer/FLAGSHIP_READINESS_PLANES.yaml` now treats `rules_explainability_ready` as design-owned explain canon plus source-anchor posture, and it fail-closes release-health when Fleet evidence drifts from that canon.
 - `products/chummer/NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml` now marks work task `145.7` done with the explain canon, readiness-plane binding, and closeout note as proof anchors.
 - `products/chummer/NEXT_90_DAY_QUEUE_STAGING.generated.yaml` and Fleet's mirrored staged queue now mark `next90-m145-design-explain-every-value-canon` done so successor dispatch no longer treats the design slice as still open.
@@ -24,6 +25,7 @@ It puts truth order, source-anchor linkage, bounded follow-up, and presenter sub
 ## Proof anchors
 
 - `products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md`
+- `products/chummer/SOURCE_ANCHOR_AND_LOCAL_RULEBOOK_BINDING.md`
 - `products/chummer/FLAGSHIP_READINESS_PLANES.yaml`
 - `products/chummer/NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml`
 - `products/chummer/NEXT_90_DAY_QUEUE_STAGING.generated.yaml`
@@ -33,7 +35,10 @@ It puts truth order, source-anchor linkage, bounded follow-up, and presenter sub
 
 ## Verification
 
+Validation run:
+
 - `python3 scripts/ai/validate_next90_m145_design_explain_every_value_canon.py`
+- `bash scripts/ai/verify.sh`
 
 ## Do not reopen
 
