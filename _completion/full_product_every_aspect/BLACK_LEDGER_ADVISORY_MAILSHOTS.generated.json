@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "generated_at_utc": "2026-05-21T13:37:09.333029Z",
+  "recipient_count": 2,
+  "delivery_count": 4,
+  "deliveries": [
+    {
+      "mail_kind": "player_vote",
+      "recipient_user_id": "usr-113f77ba1381",
+      "recipient_email_masked": "t***@gmail.com",
+      "faction_id": "ashline-circle",
+      "delivery_ref": "delivery_f8c94f7febfa4da6",
+      "status": "queued"
+    },
+    {
+      "mail_kind": "gm_vote",
+      "recipient_user_id": "usr-113f77ba1381",
+      "recipient_email_masked": "t***@gmail.com",
+      "faction_id": "ashline-circle",
+      "delivery_ref": "delivery_11236b873c3cf425",
+      "status": "queued"
+    },
+    {
+      "mail_kind": "leader_summary",
+      "recipient_user_id": "usr-113f77ba1381",
+      "recipient_email_masked": "t***@gmail.com",
+      "faction_id": "ashline-circle",
+      "delivery_ref": "delivery_0dd2d39041dbbc48",
+      "status": "queued"
+    },
+    {
+      "mail_kind": "player_vote",
+      "recipient_user_id": "usr-ea8af6d123c0",
+      "recipient_email_masked": "t***@gmail.com",
+      "faction_id": "ashline-circle",
+      "delivery_ref": "delivery_dc023db50916d7fe",
+      "status": "queued"
+    }
+  ]
+}

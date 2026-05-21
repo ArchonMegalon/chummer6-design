@@ -1,0 +1,16 @@
+{
+  "recipient": "tibor.girschele@gmail.com",
+  "status": "queued",
+  "delivery_id": "delivery_1b595684a9b8df35",
+  "response": {
+    "target_ref": "delivery_1b595684a9b8df35",
+    "output_json": {
+      "delivery_id": "delivery_1b595684a9b8df35",
+      "status": "queued"
+    },
+    "receipt_json": {
+      "handler_key": "connector.dispatch",
+      "invocation_contract": "tool.v1"
+    }
+  }
+}

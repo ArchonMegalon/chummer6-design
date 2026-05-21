@@ -1,0 +1,152 @@
+{
+  "contract_name": "black_ledger_inbox_and_mail_rollout",
+  "generated_at_utc": "2026-05-21T10:49:36.670467Z",
+  "status": "pass",
+  "live_store": {
+    "receipt_count": 3,
+    "user_sent_receipt_count": 1,
+    "inbox_entry_count": 14,
+    "user_inbox_entry_count": 14,
+    "latest_user_receipt_event_keys": [
+      "black-ledger-news|emerald-sprawl-prelude|1|ledger_tick_0001_preseeded|user:usr-ea8af6d123c0"
+    ],
+    "latest_user_inbox_kinds": [
+      "newsreel",
+      "validation",
+      "promo",
+      "leader_digest",
+      "promo",
+      "leader_digest",
+      "promo",
+      "leader_digest",
+      "promo",
+      "leader_digest",
+      "promo",
+      "leader_digest",
+      "promo",
+      "leader_digest"
+    ]
+  },
+  "turn1_newsreel_email": {
+    "status": "pass",
+    "delivery_id": "delivery_5a40df341bb00eb9"
+  },
+  "leader_digest_bundle": {
+    "status": "pass",
+    "delivery_id": "delivery_5eed80f183a0aad7",
+    "faction_count": 6
+  },
+  "individual_leader_digests": {
+    "status": "pass",
+    "delivery_count": 6,
+    "deliveries": [
+      {
+        "faction_id": "ashline-circle",
+        "delivery_id": "delivery_226f6b686b9a1947"
+      },
+      {
+        "faction_id": "barrens-free-wardens",
+        "delivery_id": "delivery_893d8cdd3dc90da8"
+      },
+      {
+        "faction_id": "ghostline-network",
+        "delivery_id": "delivery_eb102dea63692373"
+      },
+      {
+        "faction_id": "glass-tower-compact",
+        "delivery_id": "delivery_f239553c74038806"
+      },
+      {
+        "faction_id": "neon-docks-union",
+        "delivery_id": "delivery_7764d446d65b9f11"
+      },
+      {
+        "faction_id": "rust-market-syndicate",
+        "delivery_id": "delivery_90fa9cdfbd5d4a47"
+      }
+    ]
+  },
+  "provider_delivery_statuses": {
+    "delivery_90fa9cdfbd5d4a47": {
+      "label": "rust-market-syndicate",
+      "email_id": "em_4E1tVQ6i1g1n7OF1jdgZxKJryY0",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Rust Market Syndicate leader digest",
+      "created_at": "2026-05-21T10:05:26Z",
+      "updated_at": "2026-05-21T10:05:26Z"
+    },
+    "delivery_7764d446d65b9f11": {
+      "label": "neon-docks-union",
+      "email_id": "em_4E1tVLEuzqE2TUrmPt1UoNyRL4O",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Neon Docks Union leader digest",
+      "created_at": "2026-05-21T10:05:26Z",
+      "updated_at": "2026-05-21T10:05:26Z"
+    },
+    "delivery_f239553c74038806": {
+      "label": "glass-tower-compact",
+      "email_id": "em_4E1tVAWZxFVOGGxIJM2HuvksuvG",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Glass Tower Compact leader digest",
+      "created_at": "2026-05-21T10:05:25Z",
+      "updated_at": "2026-05-21T10:05:25Z"
+    },
+    "delivery_eb102dea63692373": {
+      "label": "ghostline-network",
+      "email_id": "em_4E1tVDRqxcxq2wFF9j7QQWAYBIF",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Ghostline Network leader digest",
+      "created_at": "2026-05-21T10:05:24Z",
+      "updated_at": "2026-05-21T10:05:24Z"
+    },
+    "delivery_893d8cdd3dc90da8": {
+      "label": "barrens-free-wardens",
+      "email_id": "em_4E1tSWuDCkxuoAWaT2LxnHxTXdP",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Barrens Free Wardens leader digest",
+      "created_at": "2026-05-21T10:05:04Z",
+      "updated_at": "2026-05-21T10:05:04Z"
+    },
+    "delivery_226f6b686b9a1947": {
+      "label": "ashline-circle",
+      "email_id": "em_4E1tSWuDCkxagQcNQ70o7kupnmR",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Ashline Circle leader digest",
+      "created_at": "2026-05-21T10:05:04Z",
+      "updated_at": "2026-05-21T10:05:04Z"
+    },
+    "delivery_5eed80f183a0aad7": {
+      "label": "leader_bundle",
+      "email_id": "em_4E1sRk8wMAW4kcKikKXfEQrw9yY",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Black Ledger leader digest bundle",
+      "created_at": "2026-05-21T09:56:44Z",
+      "updated_at": "2026-05-21T09:56:44Z"
+    },
+    "delivery_5a40df341bb00eb9": {
+      "label": "exit_gate_email",
+      "email_id": "em_4E1rc5tBgF5xLnAp6AP4mdDsyJT",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Black Ledger Turn 1 newsreel + faction promo rail",
+      "created_at": "2026-05-21T09:49:53Z",
+      "updated_at": "2026-05-21T09:49:53Z"
+    },
+    "delivery_0a6566bc027b0bc6": {
+      "label": "turn1_newsreel",
+      "email_id": "em_4E1rXOgVLws1NWs6Gs7M6b2dF1f",
+      "status": "delivered",
+      "to": "the.girscheles@gmail.com",
+      "subject": "[Chummer] Black Ledger 0\u21921: World Turn 1 opened the board for Emerald Sprawl: First Pressure",
+      "created_at": "2026-05-21T09:49:15Z",
+      "updated_at": "2026-05-21T09:49:15Z"
+    }
+  }
+}

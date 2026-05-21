@@ -1,0 +1,276 @@
+{
+  "contract_name": "black_ledger_individual_leader_digests",
+  "generated_at_utc": "2026-05-21T11:11:30.737595Z",
+  "status": "pass",
+  "recipient": "tibor.girschele@gmail.com",
+  "dry_run": false,
+  "delivery_count": 6,
+  "deliveries": [
+    {
+      "status": "queued",
+      "faction_id": "ashline-circle",
+      "dispatch_base_url": "http://172.25.0.3:8080",
+      "payload": {
+        "tool_name": "connector.dispatch",
+        "action_kind": "delivery.send",
+        "payload_json": {
+          "principal_id": "support-progress-principal",
+          "binding_id": "binding-support-progress",
+          "channel": "email",
+          "recipient": "tibor.girschele@gmail.com",
+          "subject": "[Chummer] Ashline Circle leader digest",
+          "content": "Ashline Circle leader digest for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nFaction hook: Ashline Circle enters the city through visible pressure, clean public signals, and one promise the board can verify next turn.\nAudience promise: This ad lane can dramatize posture, but it cannot outrun the actual world tick, dispatch receipts, or faction file.\n\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\nLeader validation: https://chummer.run/account/ledger/factions/ashline-circle/leader-briefing\nPromo rail: https://chummer.run/ledger/factions/ashline-circle/promo\nPromo JSON: https://chummer.run/ledger/factions/ashline-circle/promo.json\n\nReview posture:\n- Cross-check the leader brief against the turn packet.\n- Keep promo language subordinate to the same public-safe turn truth.\n- Do not publish private campaign labels or sourcebook text.",
+          "metadata": {
+            "purpose": "black_ledger_individual_leader_digest",
+            "dry_run": false,
+            "faction_id": "ashline-circle",
+            "transition": "Turn 0 -> Turn 1"
+          },
+          "idempotency_key": "black-ledger-leader-digest-ashline-circle-turn1"
+        }
+      },
+      "response": {
+        "target_ref": "delivery_3360259e19cd55e7",
+        "output_json": {
+          "delivery_id": "delivery_3360259e19cd55e7",
+          "status": "queued"
+        },
+        "receipt_json": {
+          "handler_key": "connector.dispatch",
+          "invocation_contract": "tool.v1"
+        }
+      },
+      "delivery_id": "delivery_3360259e19cd55e7",
+      "idempotency_key": "black-ledger-leader-digest-ashline-circle-turn1"
+    },
+    {
+      "status": "queued",
+      "faction_id": "barrens-free-wardens",
+      "dispatch_base_url": "http://172.25.0.3:8080",
+      "payload": {
+        "tool_name": "connector.dispatch",
+        "action_kind": "delivery.send",
+        "payload_json": {
+          "principal_id": "support-progress-principal",
+          "binding_id": "binding-support-progress",
+          "channel": "email",
+          "recipient": "tibor.girschele@gmail.com",
+          "subject": "[Chummer] Barrens Free Wardens leader digest",
+          "content": "Barrens Free Wardens leader digest for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nFaction hook: Barrens Free Wardens enters the city through visible pressure, clean public signals, and one promise the board can verify next turn.\nAudience promise: This ad lane can dramatize posture, but it cannot outrun the actual world tick, dispatch receipts, or faction file.\n\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\nLeader validation: https://chummer.run/account/ledger/factions/barrens-free-wardens/leader-briefing\nPromo rail: https://chummer.run/ledger/factions/barrens-free-wardens/promo\nPromo JSON: https://chummer.run/ledger/factions/barrens-free-wardens/promo.json\n\nReview posture:\n- Cross-check the leader brief against the turn packet.\n- Keep promo language subordinate to the same public-safe turn truth.\n- Do not publish private campaign labels or sourcebook text.",
+          "metadata": {
+            "purpose": "black_ledger_individual_leader_digest",
+            "dry_run": false,
+            "faction_id": "barrens-free-wardens",
+            "transition": "Turn 0 -> Turn 1"
+          },
+          "idempotency_key": "black-ledger-leader-digest-barrens-free-wardens-turn1"
+        }
+      },
+      "response": {
+        "target_ref": "delivery_5e2cabc02306549c",
+        "output_json": {
+          "delivery_id": "delivery_5e2cabc02306549c",
+          "status": "queued"
+        },
+        "receipt_json": {
+          "handler_key": "connector.dispatch",
+          "invocation_contract": "tool.v1"
+        }
+      },
+      "delivery_id": "delivery_5e2cabc02306549c",
+      "idempotency_key": "black-ledger-leader-digest-barrens-free-wardens-turn1"
+    },
+    {
+      "status": "queued",
+      "faction_id": "ghostline-network",
+      "dispatch_base_url": "http://172.25.0.3:8080",
+      "payload": {
+        "tool_name": "connector.dispatch",
+        "action_kind": "delivery.send",
+        "payload_json": {
+          "principal_id": "support-progress-principal",
+          "binding_id": "binding-support-progress",
+          "channel": "email",
+          "recipient": "tibor.girschele@gmail.com",
+          "subject": "[Chummer] Ghostline Network leader digest",
+          "content": "Ghostline Network leader digest for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nFaction hook: Ghostline Network enters the city through visible pressure, clean public signals, and one promise the board can verify next turn.\nAudience promise: This ad lane can dramatize posture, but it cannot outrun the actual world tick, dispatch receipts, or faction file.\n\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\nLeader validation: https://chummer.run/account/ledger/factions/ghostline-network/leader-briefing\nPromo rail: https://chummer.run/ledger/factions/ghostline-network/promo\nPromo JSON: https://chummer.run/ledger/factions/ghostline-network/promo.json\n\nReview posture:\n- Cross-check the leader brief against the turn packet.\n- Keep promo language subordinate to the same public-safe turn truth.\n- Do not publish private campaign labels or sourcebook text.",
+          "metadata": {
+            "purpose": "black_ledger_individual_leader_digest",
+            "dry_run": false,
+            "faction_id": "ghostline-network",
+            "transition": "Turn 0 -> Turn 1"
+          },
+          "idempotency_key": "black-ledger-leader-digest-ghostline-network-turn1"
+        }
+      },
+      "response": {
+        "target_ref": "delivery_7ecaf2b44cdd1f65",
+        "output_json": {
+          "delivery_id": "delivery_7ecaf2b44cdd1f65",
+          "status": "queued"
+        },
+        "receipt_json": {
+          "handler_key": "connector.dispatch",
+          "invocation_contract": "tool.v1"
+        }
+      },
+      "delivery_id": "delivery_7ecaf2b44cdd1f65",
+      "idempotency_key": "black-ledger-leader-digest-ghostline-network-turn1"
+    },
+    {
+      "status": "queued",
+      "faction_id": "glass-tower-compact",
+      "dispatch_base_url": "http://172.25.0.3:8080",
+      "payload": {
+        "tool_name": "connector.dispatch",
+        "action_kind": "delivery.send",
+        "payload_json": {
+          "principal_id": "support-progress-principal",
+          "binding_id": "binding-support-progress",
+          "channel": "email",
+          "recipient": "tibor.girschele@gmail.com",
+          "subject": "[Chummer] Glass Tower Compact leader digest",
+          "content": "Glass Tower Compact leader digest for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nFaction hook: Glass Tower Compact enters the city through visible pressure, clean public signals, and one promise the board can verify next turn.\nAudience promise: This ad lane can dramatize posture, but it cannot outrun the actual world tick, dispatch receipts, or faction file.\n\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\nLeader validation: https://chummer.run/account/ledger/factions/glass-tower-compact/leader-briefing\nPromo rail: https://chummer.run/ledger/factions/glass-tower-compact/promo\nPromo JSON: https://chummer.run/ledger/factions/glass-tower-compact/promo.json\n\nReview posture:\n- Cross-check the leader brief against the turn packet.\n- Keep promo language subordinate to the same public-safe turn truth.\n- Do not publish private campaign labels or sourcebook text.",
+          "metadata": {
+            "purpose": "black_ledger_individual_leader_digest",
+            "dry_run": false,
+            "faction_id": "glass-tower-compact",
+            "transition": "Turn 0 -> Turn 1"
+          },
+          "idempotency_key": "black-ledger-leader-digest-glass-tower-compact-turn1"
+        }
+      },
+      "response": {
+        "target_ref": "delivery_2eccabe1239b0f9e",
+        "output_json": {
+          "delivery_id": "delivery_2eccabe1239b0f9e",
+          "status": "queued"
+        },
+        "receipt_json": {
+          "handler_key": "connector.dispatch",
+          "invocation_contract": "tool.v1"
+        }
+      },
+      "delivery_id": "delivery_2eccabe1239b0f9e",
+      "idempotency_key": "black-ledger-leader-digest-glass-tower-compact-turn1"
+    },
+    {
+      "status": "queued",
+      "faction_id": "neon-docks-union",
+      "dispatch_base_url": "http://172.25.0.3:8080",
+      "payload": {
+        "tool_name": "connector.dispatch",
+        "action_kind": "delivery.send",
+        "payload_json": {
+          "principal_id": "support-progress-principal",
+          "binding_id": "binding-support-progress",
+          "channel": "email",
+          "recipient": "tibor.girschele@gmail.com",
+          "subject": "[Chummer] Neon Docks Union leader digest",
+          "content": "Neon Docks Union leader digest for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nFaction hook: Neon Docks Union enters the city through visible pressure, clean public signals, and one promise the board can verify next turn.\nAudience promise: This ad lane can dramatize posture, but it cannot outrun the actual world tick, dispatch receipts, or faction file.\n\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\nLeader validation: https://chummer.run/account/ledger/factions/neon-docks-union/leader-briefing\nPromo rail: https://chummer.run/ledger/factions/neon-docks-union/promo\nPromo JSON: https://chummer.run/ledger/factions/neon-docks-union/promo.json\n\nReview posture:\n- Cross-check the leader brief against the turn packet.\n- Keep promo language subordinate to the same public-safe turn truth.\n- Do not publish private campaign labels or sourcebook text.",
+          "metadata": {
+            "purpose": "black_ledger_individual_leader_digest",
+            "dry_run": false,
+            "faction_id": "neon-docks-union",
+            "transition": "Turn 0 -> Turn 1"
+          },
+          "idempotency_key": "black-ledger-leader-digest-neon-docks-union-turn1"
+        }
+      },
+      "response": {
+        "target_ref": "delivery_ed55821624721021",
+        "output_json": {
+          "delivery_id": "delivery_ed55821624721021",
+          "status": "queued"
+        },
+        "receipt_json": {
+          "handler_key": "connector.dispatch",
+          "invocation_contract": "tool.v1"
+        }
+      },
+      "delivery_id": "delivery_ed55821624721021",
+      "idempotency_key": "black-ledger-leader-digest-neon-docks-union-turn1"
+    },
+    {
+      "status": "queued",
+      "faction_id": "rust-market-syndicate",
+      "dispatch_base_url": "http://172.25.0.3:8080",
+      "payload": {
+        "tool_name": "connector.dispatch",
+        "action_kind": "delivery.send",
+        "payload_json": {
+          "principal_id": "support-progress-principal",
+          "binding_id": "binding-support-progress",
+          "channel": "email",
+          "recipient": "tibor.girschele@gmail.com",
+          "subject": "[Chummer] Rust Market Syndicate leader digest",
+          "content": "Rust Market Syndicate leader digest for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nFaction hook: Rust Market Syndicate enters the city through visible pressure, clean public signals, and one promise the board can verify next turn.\nAudience promise: This ad lane can dramatize posture, but it cannot outrun the actual world tick, dispatch receipts, or faction file.\n\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\nLeader validation: https://chummer.run/account/ledger/factions/rust-market-syndicate/leader-briefing\nPromo rail: https://chummer.run/ledger/factions/rust-market-syndicate/promo\nPromo JSON: https://chummer.run/ledger/factions/rust-market-syndicate/promo.json\n\nReview posture:\n- Cross-check the leader brief against the turn packet.\n- Keep promo language subordinate to the same public-safe turn truth.\n- Do not publish private campaign labels or sourcebook text.",
+          "metadata": {
+            "purpose": "black_ledger_individual_leader_digest",
+            "dry_run": false,
+            "faction_id": "rust-market-syndicate",
+            "transition": "Turn 0 -> Turn 1"
+          },
+          "idempotency_key": "black-ledger-leader-digest-rust-market-syndicate-turn1"
+        }
+      },
+      "response": {
+        "target_ref": "delivery_f71d8d81abb65e2a",
+        "output_json": {
+          "delivery_id": "delivery_f71d8d81abb65e2a",
+          "status": "queued"
+        },
+        "receipt_json": {
+          "handler_key": "connector.dispatch",
+          "invocation_contract": "tool.v1"
+        }
+      },
+      "delivery_id": "delivery_f71d8d81abb65e2a",
+      "idempotency_key": "black-ledger-leader-digest-rust-market-syndicate-turn1"
+    }
+  ],
+  "content": [
+    {
+      "faction_id": "ashline-circle",
+      "public_name": "Ashline Circle",
+      "subject": "[Chummer] Ashline Circle leader digest",
+      "leader_validation_href": "https://chummer.run/account/ledger/factions/ashline-circle/leader-briefing",
+      "promo_href": "https://chummer.run/ledger/factions/ashline-circle/promo"
+    },
+    {
+      "faction_id": "barrens-free-wardens",
+      "public_name": "Barrens Free Wardens",
+      "subject": "[Chummer] Barrens Free Wardens leader digest",
+      "leader_validation_href": "https://chummer.run/account/ledger/factions/barrens-free-wardens/leader-briefing",
+      "promo_href": "https://chummer.run/ledger/factions/barrens-free-wardens/promo"
+    },
+    {
+      "faction_id": "ghostline-network",
+      "public_name": "Ghostline Network",
+      "subject": "[Chummer] Ghostline Network leader digest",
+      "leader_validation_href": "https://chummer.run/account/ledger/factions/ghostline-network/leader-briefing",
+      "promo_href": "https://chummer.run/ledger/factions/ghostline-network/promo"
+    },
+    {
+      "faction_id": "glass-tower-compact",
+      "public_name": "Glass Tower Compact",
+      "subject": "[Chummer] Glass Tower Compact leader digest",
+      "leader_validation_href": "https://chummer.run/account/ledger/factions/glass-tower-compact/leader-briefing",
+      "promo_href": "https://chummer.run/ledger/factions/glass-tower-compact/promo"
+    },
+    {
+      "faction_id": "neon-docks-union",
+      "public_name": "Neon Docks Union",
+      "subject": "[Chummer] Neon Docks Union leader digest",
+      "leader_validation_href": "https://chummer.run/account/ledger/factions/neon-docks-union/leader-briefing",
+      "promo_href": "https://chummer.run/ledger/factions/neon-docks-union/promo"
+    },
+    {
+      "faction_id": "rust-market-syndicate",
+      "public_name": "Rust Market Syndicate",
+      "subject": "[Chummer] Rust Market Syndicate leader digest",
+      "leader_validation_href": "https://chummer.run/account/ledger/factions/rust-market-syndicate/leader-briefing",
+      "promo_href": "https://chummer.run/ledger/factions/rust-market-syndicate/promo"
+    }
+  ]
+}
