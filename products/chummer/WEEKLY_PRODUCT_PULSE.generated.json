@@ -16,9 +16,10 @@
   },
   "flagship_readiness": {
     "state": "watch",
-    "reason": "Published flagship readiness proof is fail. Coverage gaps remain: fleet_and_operator_loop. Readiness-plane gaps remain: structural_ready, flagship_ready.",
+    "reason": "Published flagship readiness proof is fail. Coverage gaps remain: ui_kit_and_flagship_polish, fleet_and_operator_loop. Readiness-plane gaps remain: structural_ready, flagship_ready.",
     "proof_status": "fail",
     "coverage_gap_keys": [
+      "ui_kit_and_flagship_polish",
       "fleet_and_operator_loop"
     ],
     "readiness_plane_gap_keys": [
@@ -27,8 +28,8 @@
     ]
   },
   "rule_environment_trust": {
-    "state": "watch",
-    "reason": "Rule-environment trust still needs journey-gate closure."
+    "state": "ready",
+    "reason": "Rule-environment trust follows current journey-gate readiness."
   },
   "edition_authorship_and_import_confidence": {
     "state": "monitor",
@@ -115,9 +116,10 @@
     },
     "flagship_readiness": {
       "state": "watch",
-      "reason": "Published flagship readiness proof is fail. Coverage gaps remain: fleet_and_operator_loop. Readiness-plane gaps remain: structural_ready, flagship_ready.",
+      "reason": "Published flagship readiness proof is fail. Coverage gaps remain: ui_kit_and_flagship_polish, fleet_and_operator_loop. Readiness-plane gaps remain: structural_ready, flagship_ready.",
       "proof_status": "fail",
       "coverage_gap_keys": [
+        "ui_kit_and_flagship_polish",
         "fleet_and_operator_loop"
       ],
       "readiness_plane_gap_keys": [
@@ -126,8 +128,8 @@
       ]
     },
     "rule_environment_trust": {
-      "state": "watch",
-      "reason": "Rule-environment trust still needs journey-gate closure."
+      "state": "ready",
+      "reason": "Rule-environment trust follows current journey-gate readiness."
     },
     "edition_authorship_and_import_confidence": {
       "state": "monitor",
