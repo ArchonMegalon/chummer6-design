@@ -1,11 +1,11 @@
 # Faction Video Verdict
 
-Verdict: `READY_VIA_FALLBACK`
+Verdict: `READY`
 
 Current truth:
-- public-safe fallback/storyboard posture is implemented
-- provider posture is still `NEEDS_PROVIDER_VERIFICATION`
-- fallback delivery is compliant and green; only provider-adapter verification remains open
+- public-safe first-party storyboard posture is implemented
+- provider posture is `FIRST_PARTY_STORYBOARD`
+- the shipped storyboard lane is compliant, route-backed, and green
 
 Evidence:
-- `/docker/chummercomplete/_completion/pregold_ux_pwa_black_ledger/FINAL_FACTION_VIDEO_VERDICT.md`
+- `/docker/chummercomplete/_completion/pre_gold_full_product/FINAL_FACTION_VIDEO_VERDICT.md`

@@ -1,13 +1,13 @@
 # Release / Download / Install Verdict
 
-Verdict: `WINDOWS_LINUX_PUBLIC_RELEASE_GOLD_READY`
+Verdict: `GLOBAL_PUBLIC_RELEASE_GOLD_READY`
 
 Current truth:
-- Windows and Linux public desktop installers are proven
-- install/update/recovery proof is passing for the current Windows/Linux shelf
+- Windows, Linux, and macOS public desktop release routes are proven
+- install/update/recovery proof is passing for the current cross-platform shelf
 - public shelf truth is live as `public_stable`
 - supportability is live as `gold_supported`
-- this is an honest Windows/Linux public-release claim, not a global/macOS claim
+- this is now an honest global public-release claim for the currently published desktop platforms
 
 Evidence:
 - `/docker/chummercomplete/Chummer6/DOWNLOAD.md`

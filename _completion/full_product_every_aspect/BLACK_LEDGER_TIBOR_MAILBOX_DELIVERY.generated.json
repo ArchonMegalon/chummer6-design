@@ -1,0 +1,82 @@
+{
+  "contract_name": "black_ledger_tibor_mailbox_delivery",
+  "generated_at_utc": "2026-05-21T11:13:33.542852Z",
+  "recipient": "tibor.girschele@gmail.com",
+  "status": "pass",
+  "expected_count": 8,
+  "matched_count": 8,
+  "deliveries": [
+    {
+      "label": "leader_digest_bundle",
+      "subject": "[Chummer] Black Ledger leader digest bundle",
+      "status": "delivered",
+      "delivery_id": "delivery_1b595684a9b8df35",
+      "email_id": "em_4E21clTg2r3Xmf7MWUVOhNgkYeA",
+      "created_at": "2026-05-21T11:12:12Z",
+      "updated_at": "2026-05-21T11:12:12Z"
+    },
+    {
+      "label": "rust_market_syndicate",
+      "subject": "[Chummer] Rust Market Syndicate leader digest",
+      "status": "delivered",
+      "delivery_id": "delivery_f71d8d81abb65e2a",
+      "email_id": "em_4E21Xc20a5Emu4QvGO4Wpmcjpai",
+      "created_at": "2026-05-21T11:11:30Z",
+      "updated_at": "2026-05-21T11:11:30Z"
+    },
+    {
+      "label": "neon_docks_union",
+      "subject": "[Chummer] Neon Docks Union leader digest",
+      "status": "delivered",
+      "delivery_id": "delivery_ed55821624721021",
+      "email_id": "em_4E21XUEwXryH9g2Jge2eZl5fW7R",
+      "created_at": "2026-05-21T11:11:30Z",
+      "updated_at": "2026-05-21T11:11:30Z"
+    },
+    {
+      "label": "glass_tower_compact",
+      "subject": "[Chummer] Glass Tower Compact leader digest",
+      "status": "delivered",
+      "delivery_id": "delivery_2eccabe1239b0f9e",
+      "email_id": "em_4E21XMRsVehufF92JwlQIXEUGPp",
+      "created_at": "2026-05-21T11:11:29Z",
+      "updated_at": "2026-05-21T11:11:29Z"
+    },
+    {
+      "label": "ghostline_network",
+      "subject": "[Chummer] Ghostline Network leader digest",
+      "status": "delivered",
+      "delivery_id": "delivery_7ecaf2b44cdd1f65",
+      "email_id": "em_4E21XMRsVei4KAEPaGb29VZIl4U",
+      "created_at": "2026-05-21T11:11:28Z",
+      "updated_at": "2026-05-21T11:11:28Z"
+    },
+    {
+      "label": "barrens_free_wardens",
+      "subject": "[Chummer] Barrens Free Wardens leader digest",
+      "status": "delivered",
+      "delivery_id": "delivery_5e2cabc02306549c",
+      "email_id": "em_4E21XEeoTRRiddPZ8LEMnJpL80k",
+      "created_at": "2026-05-21T11:11:28Z",
+      "updated_at": "2026-05-21T11:11:28Z"
+    },
+    {
+      "label": "ashline_circle",
+      "subject": "[Chummer] Ashline Circle leader digest",
+      "status": "delivered",
+      "delivery_id": "delivery_3360259e19cd55e7",
+      "email_id": "em_4E21Ww9POdSYH3uRoI4yGHajwyI",
+      "created_at": "2026-05-21T11:11:25Z",
+      "updated_at": "2026-05-21T11:11:25Z"
+    },
+    {
+      "label": "newsreel_and_promo",
+      "subject": "[Chummer] Black Ledger Turn 1 newsreel + faction promo rail",
+      "status": "delivered",
+      "delivery_id": "delivery_46013267b3e4633d",
+      "email_id": "em_4E21Wz4gP0v9ie7p88J03g4gx2D",
+      "created_at": "2026-05-21T11:11:25Z",
+      "updated_at": "2026-05-21T11:11:25Z"
+    }
+  ]
+}

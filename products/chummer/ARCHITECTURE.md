@@ -78,6 +78,11 @@ Render jobs, manifests, previews, asset lifecycle, and provider adapters belong 
 
 `fleet` may orchestrate work, review, and landing across Chummer repos, but it does not become the canonical source of Chummer architecture.
 
+### Rule 11 — Answerly is bounded support-only infrastructure
+
+`Answerly` may only sit behind Chummer-owned support and optional safe-packet humanization boundaries.
+It must not own rules truth, sourcebook knowledge, or private campaign processing.
+
 Fleet may own:
 
 * cheap-first automation policy

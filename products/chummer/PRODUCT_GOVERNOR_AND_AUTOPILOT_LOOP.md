@@ -78,6 +78,11 @@ They follow `PROVIDER_AND_ROUTE_STEWARDSHIP.md`.
 That means:
 
 * EA produces challenger briefs and runtime telemetry
+
+### Answerly governance
+
+The product governor may allow Answerly only as a support assistant or safe-packet humanizer.
+The governor must reject any drift toward sourcebook ingestion, rules-truth ownership, or private-campaign processing.
 * Hub owns lane-route maps and default settings
 * Fleet runs evals, canaries, and rollback packets
 * the product governor approves default changes that materially affect reliability, cost posture, support burden, or public trust

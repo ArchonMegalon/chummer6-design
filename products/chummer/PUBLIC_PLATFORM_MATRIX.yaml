@@ -1,0 +1,35 @@
+owner: chummer-hub-registry
+source_of_truth: chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json
+platforms:
+  - platform: windows
+    required_rids:
+      - win-x64
+    primary_head: avalonia
+    fallback_head: blazor-desktop
+  - platform: linux
+    required_rids:
+      - linux-x64
+    primary_head: avalonia
+    fallback_head: blazor-desktop
+  - platform: macos
+    required_rids:
+      - osx-arm64
+    primary_head: avalonia
+    fallback_head: blazor-desktop
+required_fields:
+  - platform
+  - rid
+  - head
+  - artifactId
+  - publicInstallRoute
+  - rollbackState
+  - revokeState
+  - startupSmokeRef
+  - downloadUrl
+  - sha256
+  - sizeBytes
+  - availabilityLabel
+truth_rules:
+  - public pages may only advertise platforms present in the generated matrix
+  - fallback artifacts must never be presented as primary installers
+  - rollback and revoke posture must be generated from registry truth

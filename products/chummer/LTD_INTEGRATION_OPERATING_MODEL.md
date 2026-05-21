@@ -23,3 +23,10 @@ Chummer may use lifetime or external tools only through Chummer-owned boundaries
 - stub or live verification where approved
 - Chummer-owned receipt and closeout trail
 - public-copy neutrality
+
+## Answerly classification
+
+- `support_assistant`: `pilot`
+- `rules_humanizer`: `pilot`
+- `rules_backend`: `avoid`
+- `sourcebook_training_without_license_receipt`: `avoid`

@@ -16,6 +16,13 @@
 | `executive-assistant`    | governed synthesis/runtime substrate | provider-aware runtime substrate, petition-packet and design-synthesis helpers, proactive horizon scans, human-edit reflection, bounded replanning, interruption-budget throttling, mirror-status briefs, ownership telemetry derived from mirrored canon | canonical product truth, queue/milestone/blocker truth, support-case truth, release-channel or update-feed truth, hidden guide/help canon, direct landing authority | none                                                                            |
 | `chummer5a`             | legacy oracle                      | migration fixtures, regression corpus, legacy compatibility reference                                   | vNext architecture ownership                                                       | none                                                                            |
 
+## Answerly ownership note
+
+- `chummer6-design` owns the Answerly safety boundary and allowed-job canon.
+- `chummer6-hub` owns adapters, router use, fallback, and output gate.
+- `executive-assistant` owns provider inventory and verification posture.
+- `fleet` owns proof receipts and public safety scans.
+
 ## Program-level stewardship roles
 
 ### Lead designer
@@ -76,6 +83,7 @@ Hub is also the owned intake/orchestration seam for crash automation; Fleet cons
 Hub owns raw support and feedback intake plus user-facing closure, but it does not become the product governor.
 Hub is the initial bounded home of the campaign spine, product-control plane, and world-state/mission-market contract family, but that does not make it the hidden owner of every middle-layer concern in perpetuity.
 Hub owns external admin projection validation, AdminIntent receipts, outbound notification template/suppression truth, delivery receipts, and journey-proof event aggregation. Teable, Emailit, ProductLift, Signitic, and comparable providers may feed those loops only through adapters and receipts.
+Hub also owns signed-in GM session venue pages, membership and GM-role authorization, provider-room handoff posture, and session closeout receipts when an external venue such as BeHuman hosts the live room. The provider remains room-only and must not become campaign or session truth.
 
 ### `chummer6-ui-kit`
 
@@ -164,6 +172,7 @@ Must not own:
 * client-side vendor access
 * duplicate engine semantics
 * raw participant Codex/OpenAI auth caches
+* external venue ownership of campaign/session truth
 
 ### `chummer6-media-factory`
 

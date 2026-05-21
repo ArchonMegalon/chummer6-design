@@ -67,6 +67,7 @@ Claimed installs let support history, fix notices, and gated-channel guidance at
 
 A later optional Hub-side helper that answers from curated help, known-issue, and support-case sources.
 It is not phase 0 and it does not replace the crash, bug, or feedback lanes.
+If that helper uses an external provider such as Answerly, the provider stays bounded to Chummer-owned safe packets and curated support sources only.
 
 ## First implementation order
 

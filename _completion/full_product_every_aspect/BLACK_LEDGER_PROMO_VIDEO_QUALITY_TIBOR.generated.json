@@ -1,0 +1,150 @@
+{
+  "contract_name": "black_ledger_promo_video_quality_tibor",
+  "generated_at_utc": "2026-05-21T11:46:14.950825Z",
+  "status": "pass",
+  "recipient": "tibor.girschele@gmail.com",
+  "render_profile": {
+    "style": "overdriven megacorp recruitment propaganda",
+    "target_resolution": "1920x1080",
+    "target_fps": 30,
+    "nominal_duration_seconds": 12
+  },
+  "video_metrics": [
+    {
+      "faction_id": "ashline-circle",
+      "mp4_name": "ashline-circle-promo.mp4",
+      "mp4_bytes": 410860,
+      "mp4_bit_rate": 270444,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "duration_seconds": 12.0,
+      "webm_name": "ashline-circle-promo.webm",
+      "webm_bytes": 321703,
+      "poster_name": "ashline-circle-promo-poster.png",
+      "poster_bytes": 225988,
+      "live_mp4_href": "https://chummer.run/media/ledger/factions/ashline-circle-promo.mp4",
+      "live_webm_href": "https://chummer.run/media/ledger/factions/ashline-circle-promo.webm",
+      "live_promo_href": "https://chummer.run/ledger/factions/ashline-circle/promo"
+    },
+    {
+      "faction_id": "barrens-free-wardens",
+      "mp4_name": "barrens-free-wardens-promo.mp4",
+      "mp4_bytes": 444196,
+      "mp4_bit_rate": 292668,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "duration_seconds": 12.0,
+      "webm_name": "barrens-free-wardens-promo.webm",
+      "webm_bytes": 380173,
+      "poster_name": "barrens-free-wardens-promo-poster.png",
+      "poster_bytes": 235218,
+      "live_mp4_href": "https://chummer.run/media/ledger/factions/barrens-free-wardens-promo.mp4",
+      "live_webm_href": "https://chummer.run/media/ledger/factions/barrens-free-wardens-promo.webm",
+      "live_promo_href": "https://chummer.run/ledger/factions/barrens-free-wardens/promo"
+    },
+    {
+      "faction_id": "ghostline-network",
+      "mp4_name": "ghostline-network-promo.mp4",
+      "mp4_bytes": 440427,
+      "mp4_bit_rate": 290166,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "duration_seconds": 12.0,
+      "webm_name": "ghostline-network-promo.webm",
+      "webm_bytes": 361731,
+      "poster_name": "ghostline-network-promo-poster.png",
+      "poster_bytes": 220668,
+      "live_mp4_href": "https://chummer.run/media/ledger/factions/ghostline-network-promo.mp4",
+      "live_webm_href": "https://chummer.run/media/ledger/factions/ghostline-network-promo.webm",
+      "live_promo_href": "https://chummer.run/ledger/factions/ghostline-network/promo"
+    },
+    {
+      "faction_id": "glass-tower-compact",
+      "mp4_name": "glass-tower-compact-promo.mp4",
+      "mp4_bytes": 718525,
+      "mp4_bit_rate": 475554,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "duration_seconds": 12.0,
+      "webm_name": "glass-tower-compact-promo.webm",
+      "webm_bytes": 459750,
+      "poster_name": "glass-tower-compact-promo-poster.png",
+      "poster_bytes": 280394,
+      "live_mp4_href": "https://chummer.run/media/ledger/factions/glass-tower-compact-promo.mp4",
+      "live_webm_href": "https://chummer.run/media/ledger/factions/glass-tower-compact-promo.webm",
+      "live_promo_href": "https://chummer.run/ledger/factions/glass-tower-compact/promo"
+    },
+    {
+      "faction_id": "neon-docks-union",
+      "mp4_name": "neon-docks-union-promo.mp4",
+      "mp4_bytes": 462179,
+      "mp4_bit_rate": 304657,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "duration_seconds": 12.0,
+      "webm_name": "neon-docks-union-promo.webm",
+      "webm_bytes": 370229,
+      "poster_name": "neon-docks-union-promo-poster.png",
+      "poster_bytes": 217050,
+      "live_mp4_href": "https://chummer.run/media/ledger/factions/neon-docks-union-promo.mp4",
+      "live_webm_href": "https://chummer.run/media/ledger/factions/neon-docks-union-promo.webm",
+      "live_promo_href": "https://chummer.run/ledger/factions/neon-docks-union/promo"
+    },
+    {
+      "faction_id": "rust-market-syndicate",
+      "mp4_name": "rust-market-syndicate-promo.mp4",
+      "mp4_bytes": 519731,
+      "mp4_bit_rate": 343025,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "duration_seconds": 12.0,
+      "webm_name": "rust-market-syndicate-promo.webm",
+      "webm_bytes": 397970,
+      "poster_name": "rust-market-syndicate-promo-poster.png",
+      "poster_bytes": 271755,
+      "live_mp4_href": "https://chummer.run/media/ledger/factions/rust-market-syndicate-promo.mp4",
+      "live_webm_href": "https://chummer.run/media/ledger/factions/rust-market-syndicate-promo.webm",
+      "live_promo_href": "https://chummer.run/ledger/factions/rust-market-syndicate/promo"
+    }
+  ],
+  "live_delivery_statuses": [
+    {
+      "delivery_id": "delivery_a43cc1b1d2a51672",
+      "status": "delivered",
+      "subject": "[Chummer] Black Ledger leader digest bundle",
+      "to": "tibor.girschele@gmail.com",
+      "email_id": "em_4E25eqJD6a2CJFy9KPH1vj5XXu9",
+      "updated_at": "2026-05-21T11:45:22Z"
+    },
+    {
+      "delivery_id": "delivery_3be0d0ba6660a26c",
+      "status": "delivered",
+      "subject": "[Chummer] Black Ledger Turn 1 newsreel + faction promo rail",
+      "to": "tibor.girschele@gmail.com",
+      "email_id": "em_4E25enNw6CZuBVmZkXxuoGzHiwQ",
+      "updated_at": "2026-05-21T11:45:22Z"
+    },
+    {
+      "delivery_id": "delivery_a43cc1b1d2a51672",
+      "status": "delivered",
+      "subject": "[Chummer] Black Ledger leader digest bundle",
+      "to": "tibor.girschele@gmail.com",
+      "email_id": "em_4E24gm262Jw3jOz5i7u7hBn9tUs",
+      "updated_at": "2026-05-21T11:37:23Z"
+    },
+    {
+      "delivery_id": "delivery_3be0d0ba6660a26c",
+      "status": "delivered",
+      "subject": "[Chummer] Black Ledger Turn 1 newsreel + faction promo rail",
+      "to": "tibor.girschele@gmail.com",
+      "email_id": "em_4E24gm262JwDnH1SEkP48UF4HxT",
+      "updated_at": "2026-05-21T11:37:23Z"
+    }
+  ]
+}

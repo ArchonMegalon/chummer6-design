@@ -40,6 +40,10 @@ horizons:
     state: shipped_mvp
     route: /community
     proof: COMMUNITY_OPEN_RUN_E2E.generated.json
+    additional_routes:
+      - /community/runs/{runId}/venue
+      - /account/campaigns/{campaignId}/sessions/{sessionId}/venue
+    venue_provider_boundary: manual_link_required_fail_closed_create_mode
   - id: ghostwire
     state: shipped_mvp
     route: /ghostwire

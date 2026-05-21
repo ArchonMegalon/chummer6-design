@@ -1,6 +1,6 @@
 # Public Surface Verdict
 
-Verdict: `WINDOWS_LINUX_PUBLIC_GOLD_READY`
+Verdict: `GLOBAL_PUBLIC_RELEASE_GOLD_READY`
 
 Current truth:
 - live UX and route proof are strong
@@ -10,7 +10,7 @@ Current truth:
 - Google sign-in is live again on `chummer.run`
 - status truth now reports open-public shelf availability and current public build posture
 - Black Ledger public routes are live and proven
-- combined with public-stable Windows/Linux release truth, this supports a scoped non-mac gold-ready public claim
+- combined with current public-stable release truth and mac-green desktop proof, this supports the current global public-release gold claim
 
 Evidence:
 - `/docker/chummercomplete/_completion/pregold_ux_pwa_black_ledger/FINAL_PRE_GOLD_UX_VERDICT.md`

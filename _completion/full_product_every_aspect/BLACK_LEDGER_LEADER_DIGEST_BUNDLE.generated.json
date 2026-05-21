@@ -1,0 +1,50 @@
+{
+  "contract_name": "black_ledger_leader_digest_bundle",
+  "generated_at_utc": "2026-05-21T12:28:26.428784Z",
+  "status": "pass",
+  "recipient": "tibor.girschele@gmail.com",
+  "dry_run": false,
+  "delivery": {
+    "status": "queued",
+    "dispatch_base_url": "http://172.25.0.3:8080",
+    "payload": {
+      "tool_name": "connector.dispatch",
+      "action_kind": "delivery.send",
+      "payload_json": {
+        "principal_id": "support-progress-principal",
+        "binding_id": "binding-support-progress",
+        "channel": "email",
+        "recipient": "tibor.girschele@gmail.com",
+        "subject": "[Chummer] Black Ledger leader digest bundle",
+        "content": "Black Ledger leader digest bundle for validation.\n\nTransition: Turn 0 -> Turn 1\nHeadline: World Turn 1 opened the board for Emerald Sprawl: First Pressure\nNewsreel: Turn 0 was operator setup, hidden clocks, and seeded faction posture. Turn 1 is the first public city reaction that players can inspect without touching private table state. Turn 1 \u2014 The city is moving.\nWorld packet: https://chummer.run/account/ledger/worldtick/validation\n\nFaction leader + promo lanes:\n- Ashline Circle\n  Promo: https://chummer.run/ledger/factions/ashline-circle/promo?autoplay=1\n  MP4: https://chummer.run/media/ledger/factions/ashline-circle-promo.mp4?v=1779365690?v=1779365690\n  WebM: https://chummer.run/media/ledger/factions/ashline-circle-promo.webm?v=1779365714?v=1779365690\n  Poster: https://chummer.run/media/ledger/factions/ashline-circle-promo-poster.png?v=1779365714?v=1779365690\n  Leader validation: https://chummer.run/account/ledger/factions/ashline-circle/leader-briefing\n  Hook: Ashline Circle storms the district with theatrical pressure, hard-edged certainty, and one measurable promise the next turn must justify.\n  Promise: The lane is allowed to feel like megacorp propaganda, but it still loses the argument if the world tick, dispatch receipts, and faction file disagree.\n- Barrens Free Wardens\n  Promo: https://chummer.run/ledger/factions/barrens-free-wardens/promo?autoplay=1\n  MP4: https://chummer.run/media/ledger/factions/barrens-free-wardens-promo.mp4?v=1779365722?v=1779365722\n  WebM: https://chummer.run/media/ledger/factions/barrens-free-wardens-promo.webm?v=1779365748?v=1779365722\n  Poster: https://chummer.run/media/ledger/factions/barrens-free-wardens-promo-poster.png?v=1779365748?v=1779365722\n  Leader validation: https://chummer.run/account/ledger/factions/barrens-free-wardens/leader-briefing\n  Hook: Barrens Free Wardens storms the district with theatrical pressure, hard-edged certainty, and one measurable promise the next turn must justify.\n  Promise: The lane is allowed to feel like megacorp propaganda, but it still loses the argument if the world tick, dispatch receipts, and faction file disagree.\n- Ghostline Network\n  Promo: https://chummer.run/ledger/factions/ghostline-network/promo?autoplay=1\n  MP4: https://chummer.run/media/ledger/factions/ghostline-network-promo.mp4?v=1779365755?v=1779365755\n  WebM: https://chummer.run/media/ledger/factions/ghostline-network-promo.webm?v=1779365777?v=1779365755\n  Poster: https://chummer.run/media/ledger/factions/ghostline-network-promo-poster.png?v=1779365777?v=1779365755\n  Leader validation: https://chummer.run/account/ledger/factions/ghostline-network/leader-briefing\n  Hook: Ghostline Network storms the district with theatrical pressure, hard-edged certainty, and one measurable promise the next turn must justify.\n  Promise: The lane is allowed to feel like megacorp propaganda, but it still loses the argument if the world tick, dispatch receipts, and faction file disagree.\n- Glass Tower Compact\n  Promo: https://chummer.run/ledger/factions/glass-tower-compact/promo?autoplay=1\n  MP4: https://chummer.run/media/ledger/factions/glass-tower-compact-promo.mp4?v=1779365784?v=1779365784\n  WebM: https://chummer.run/media/ledger/factions/glass-tower-compact-promo.webm?v=1779365806?v=1779365784\n  Poster: https://chummer.run/media/ledger/factions/glass-tower-compact-promo-poster.png?v=1779365806?v=1779365784\n  Leader validation: https://chummer.run/account/ledger/factions/glass-tower-compact/leader-briefing\n  Hook: Glass Tower Compact storms the district with theatrical pressure, hard-edged certainty, and one measurable promise the next turn must justify.\n  Promise: The lane is allowed to feel like megacorp propaganda, but it still loses the argument if the world tick, dispatch receipts, and faction file disagree.\n- Neon Docks Union\n  Promo: https://chummer.run/ledger/factions/neon-docks-union/promo?autoplay=1\n  MP4: https://chummer.run/media/ledger/factions/neon-docks-union-promo.mp4?v=1779365813?v=1779365813\n  WebM: https://chummer.run/media/ledger/factions/neon-docks-union-promo.webm?v=1779365835?v=1779365813\n  Poster: https://chummer.run/media/ledger/factions/neon-docks-union-promo-poster.png?v=1779365835?v=1779365813\n  Leader validation: https://chummer.run/account/ledger/factions/neon-docks-union/leader-briefing\n  Hook: Neon Docks Union storms the district with theatrical pressure, hard-edged certainty, and one measurable promise the next turn must justify.\n  Promise: The lane is allowed to feel like megacorp propaganda, but it still loses the argument if the world tick, dispatch receipts, and faction file disagree.\n- Rust Market Syndicate\n  Promo: https://chummer.run/ledger/factions/rust-market-syndicate/promo?autoplay=1\n  MP4: https://chummer.run/media/ledger/factions/rust-market-syndicate-promo.mp4?v=1779365842?v=1779365842\n  WebM: https://chummer.run/media/ledger/factions/rust-market-syndicate-promo.webm?v=1779365863?v=1779365842\n  Poster: https://chummer.run/media/ledger/factions/rust-market-syndicate-promo-poster.png?v=1779365863?v=1779365842\n  Leader validation: https://chummer.run/account/ledger/factions/rust-market-syndicate/leader-briefing\n  Hook: Rust Market Syndicate storms the district with theatrical pressure, hard-edged certainty, and one measurable promise the next turn must justify.\n  Promise: The lane is allowed to feel like megacorp propaganda, but it still loses the argument if the world tick, dispatch receipts, and faction file disagree.\n\nReview posture:\n- Every faction should now have a dedicated leader-validation lane.\n- Promo rails stay public-safe and must not outrun the turn packet.\n- Inbox/newsreel, validation packet, and leader brief should be reviewed together.",
+        "metadata": {
+          "purpose": "black_ledger_leader_digest_bundle",
+          "dry_run": false,
+          "faction_count": 6
+        },
+        "idempotency_key": "black-ledger-leader-digest-bundle-turn1-v1779365842-watchfix-tibor.girschele@gmail.com"
+      }
+    },
+    "response": {
+      "target_ref": "delivery_5f8cd871007135a9",
+      "output_json": {
+        "delivery_id": "delivery_5f8cd871007135a9",
+        "status": "queued"
+      },
+      "receipt_json": {
+        "handler_key": "connector.dispatch",
+        "invocation_contract": "tool.v1"
+      }
+    },
+    "delivery_id": "delivery_5f8cd871007135a9",
+    "idempotency_key": "black-ledger-leader-digest-bundle-turn1-v1779365842-watchfix-tibor.girschele@gmail.com"
+  },
+  "content": {
+    "subject": "[Chummer] Black Ledger leader digest bundle",
+    "newsreel": {
+      "transition": "Turn 0 -> Turn 1",
+      "headline": "World Turn 1 opened the board for Emerald Sprawl: First Pressure"
+    },
+    "faction_count": 6
+  }
+}
