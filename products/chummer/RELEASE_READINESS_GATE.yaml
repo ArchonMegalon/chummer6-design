@@ -6,6 +6,7 @@ release_labels:
   - protected_preview
   - public_release_review_required
   - public_release
+  - desktop_gold
   - public_stable
   - blocked
   - revoked

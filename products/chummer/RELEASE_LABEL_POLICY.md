@@ -9,6 +9,7 @@ Allowed labels are finite:
 - `protected_preview`
 - `public_release_review_required`
 - `public_release`
+- `desktop_gold`
 - `public_stable`
 - `blocked`
 - `revoked`
@@ -19,8 +20,9 @@ Resolver rules:
 2. If a promoted primary route is blocked or missing, the release label is `blocked`.
 3. If public artifacts exist but any required proof is stale, failing, missing, review-required, or contradictory, the release label is `public_release_review_required`.
 4. If public artifacts exist and promoted primary routes are installable but stable gates are incomplete, the release label is `public_release`.
-5. Only when every release gate passes may the release label be `public_stable`.
-6. Before any public artifact shelf exists, the release label stays `preview`, `protected_preview`, or `internal`.
+5. If the promoted desktop matrix is gold-clean but non-desktop product gates are still incomplete, the release label is `desktop_gold`.
+6. Only when every release gate passes may the release label be `public_stable`.
+7. Before any public artifact shelf exists, the release label stays `preview`, `protected_preview`, or `internal`.
 
 `public_stable` is forbidden when any of the following are true:
 
@@ -35,6 +37,13 @@ Resolver rules:
 - any public surface contradicts another public surface
 - any promoted platform lacks install/startup proof
 - any promoted import route is review-required
+
+Current public desktop promotion scope:
+
+- Windows `win-x64`
+- Linux `linux-x64`
+
+macOS remains buildable but not publicly promoted until the signed/notarized promotion lane is proven.
 
 Status language:
 
