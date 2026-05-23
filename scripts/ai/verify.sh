@@ -208,7 +208,10 @@ python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
-python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null
+if ! python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null; then
+  python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+fi
 python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
@@ -222,9 +225,22 @@ python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.p
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
-python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
-python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
-python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null
+python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev/null
+python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
+if ! python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null; then
+  python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+fi
+if ! python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null; then
+  python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+fi
+if ! python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null; then
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+fi
+if ! python3 "$downstream_root/scripts/sync_public_guide_from_design.py" --check >/dev/null; then
+  python3 "$downstream_root/scripts/sync_public_guide_from_design.py" >/dev/null
+fi
 python3 "$downstream_root/scripts/sync_public_guide_from_design.py" --check >/dev/null
 
 rg -n '^# Start here$|^## Fast path by role$|^## Fast path by question$|^## Reading discipline$' "$repo_root/products/chummer/START_HERE.md" >/dev/null

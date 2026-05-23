@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 
@@ -245,3 +246,29 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
     assert (
         "Where an installer exists, start there. Archive packages, packet-detail artifacts, and explainer bundles are fallback, recovery, or inspection paths, not equal flagship routes."
     ) in download
+
+
+def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    new_sections = json.loads(
+        (out_dir / "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json").read_text(encoding="utf-8")
+    )
+    alignment = json.loads(
+        (out_dir / "CHUMMER6_GUIDE_GENERATOR_REGISTRY_ALIGNMENT.generated.json").read_text(encoding="utf-8")
+    )
+    verdict = (out_dir / "FINAL_CHUMMER6_DOCS_GENERATION_VERDICT.md").read_text(encoding="utf-8")
+
+    ids = {row["id"] for row in new_sections["sections"]}
+    assert {
+        "table-pulse",
+        "behuman-gm-sessions",
+        "answerly-support-humanizer",
+        "signal-deck",
+        "runner-passport",
+        "living-world-engagement",
+    }.issubset(ids)
+    assert "runner-passport" in alignment["sections_with_shipped_claims"]
+    assert "table-pulse" in alignment["disabled_horizons_with_receipts"]
+    assert "# Chummer6 Docs Generation Verdict" in verdict

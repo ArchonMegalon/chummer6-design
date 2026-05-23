@@ -1,0 +1,136 @@
+version: chummer6-public-guide-new-section-verdict-v1
+sections:
+  - id: table-pulse
+    title: Table Pulse
+    public_guide_verdict: future_concept_disabled_horizon
+    page_class: future_concept_page
+    allowed_public_audience:
+      - players
+      - gms
+      - supporters
+    shipped_claim_allowed: false
+    expected_representation: omitted_with_receipt_until_public_guide_enabled
+    required_proof:
+      - horizon_registry_public_guide_disabled
+    canonical_sources:
+      - products/chummer/HORIZON_REGISTRY.yaml
+      - products/chummer/horizons/table-pulse.md
+      - products/chummer/TABLE_PULSE_HEAT_REACTION_AUDIT_20260523.md
+    forbidden_claims:
+      - shipped live-session feature
+      - public guide ready now
+    notes: >
+      Table Pulse is in canon and queue work, but the horizon remains intentionally disabled for
+      public-guide projection until the public-safe and proof posture is deliberately widened.
+  - id: behuman-gm-sessions
+    title: BeHuman GM Sessions
+    public_guide_verdict: private_operator_surface
+    page_class: event_venue_page
+    allowed_public_audience:
+      - gms
+      - operators
+    shipped_claim_allowed: false
+    expected_representation: omitted_with_receipt_private_by_default
+    required_proof:
+      - provider_verification
+      - manual_link_mode
+    canonical_sources:
+      - products/chummer/BEHUMAN_GM_SESSION_VENUE_SPEC.md
+      - products/chummer/BEHUMAN_EVENT_PROVIDER_BOUNDARY.md
+    forbidden_claims:
+      - public live-room surface
+      - provider-owned session truth
+    notes: >
+      BeHuman may host the room, but Chummer owns the session. The default posture is private and
+      should not be projected as a public reader-facing feature page yet.
+  - id: answerly-support-humanizer
+    title: Answerly Support Assistant
+    public_guide_verdict: help_support_page_content
+    page_class: support_assistant_page
+    allowed_public_audience:
+      - players
+      - supporters
+      - support
+    shipped_claim_allowed: false
+    expected_representation: support_only_with_first_party_fallback
+    required_proof:
+      - support_mode_enabled_or_first_party_fallback
+      - rulesafe_boundary
+    canonical_sources:
+      - products/chummer/ANSWERLY_SUPPORT_AND_HUMANIZER_SPEC.md
+      - products/chummer/ANSWERLY_RULESAFE_BOUNDARY.md
+      - products/chummer/RULES_COACH_ROUTER_SPEC.md
+    forbidden_claims:
+      - rules authority
+      - release truth owner
+      - sourcebook answer engine
+    notes: >
+      Public copy may describe a support assistant, but the generator must keep provider branding,
+      rules authority, and release-truth ownership out of the public guide.
+  - id: signal-deck
+    title: Signal Deck
+    public_guide_verdict: design_canon_only
+    page_class: living_world_surface_page
+    allowed_public_audience:
+      - players
+      - gms
+      - supporters
+    shipped_claim_allowed: false
+    expected_representation: omitted_with_receipt_design_surface_pending
+    required_proof:
+      - redesigned_surface_receipts
+    canonical_sources:
+      - products/chummer/LIVING_WORLD_BIG_REDESIGN_V3_AUDIT_20260523.md
+      - products/chummer/TABLE_PULSE_LIVING_WORLD_STACK_20260523.md
+      - products/chummer/TABLE_PULSE_LIVING_WORLD_DRAMA6_BRIEF_20260523.md
+    forbidden_claims:
+      - shipped notification deck
+      - live player command surface
+    notes: >
+      Signal Deck is a redesign-layer concept with strong product framing, but it is not yet a
+      public-guide-enabled shipped page.
+  - id: runner-passport
+    title: Runner Passport
+    public_guide_verdict: public_route_live
+    page_class: live_session_feature_page
+    allowed_public_audience:
+      - players
+      - gms
+      - supporters
+    shipped_claim_allowed: true
+    expected_representation: omitted_with_receipt_until_page_registry_entry_exists
+    required_proof:
+      - public_route
+      - live_receipt_rails
+    canonical_sources:
+      - products/chummer/RUNNER_PASSPORT_SPEC.md
+      - products/chummer/RUNNER_PASSPORT_AND_CROSS_COMMUNITY_TRUST.md
+    forbidden_claims:
+      - hidden provider-owned reputation truth
+      - surveillance-first identity lane
+    notes: >
+      Runner Passport is live and public-safe, but the current guide shell still needs a dedicated
+      public-page entry before the generator can present it as a first-class route instead of an
+      omitted-with-receipt feature.
+  - id: living-world-engagement
+    title: Living World Engagement
+    public_guide_verdict: design_canon_only
+    page_class: future_concept_page
+    allowed_public_audience:
+      - players
+      - gms
+      - supporters
+    shipped_claim_allowed: false
+    expected_representation: omitted_with_receipt_program_direction_only
+    required_proof:
+      - bounded_engagement_receipts
+    canonical_sources:
+      - products/chummer/LIVING_WORLD_ENGAGEMENT_AUDIT_20260523.md
+      - products/chummer/TABLE_PULSE_LIVING_WORLD_STACK_20260523.md
+    forbidden_claims:
+      - autonomous simulation
+      - shipped persistent world
+    notes: >
+      Living World engagement is a governed between-session program direction. It can be described in
+      design canon and future-facing packets, but the public guide must not flatten it into a shipped
+      always-on world claim.

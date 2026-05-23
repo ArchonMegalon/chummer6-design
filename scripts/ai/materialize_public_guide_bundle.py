@@ -1033,10 +1033,10 @@ def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]])
 def _public_desktop_app_name(value: object) -> str:
     cleaned = str(value or "").strip()
     mapping = {
-        "Chummer.Avalonia": "Avalonia desktop app",
-        "avalonia": "Avalonia desktop app",
-        "Chummer.Blazor.Desktop": "Blazor desktop app",
-        "blazor-desktop": "Blazor desktop app",
+        "Chummer.Avalonia": "Avalonia",
+        "avalonia": "Avalonia",
+        "Chummer.Blazor.Desktop": "Blazor Desktop",
+        "blazor-desktop": "Blazor Desktop",
     }
     return mapping.get(cleaned, cleaned or "desktop app")
 
@@ -2158,6 +2158,124 @@ def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
     _write(out_dir / "manifest.generated.json", json.dumps(generated, indent=2, sort_keys=True))
 
 
+def _new_section_alignment_rows(
+    new_section_verdict: dict[str, object],
+    horizon_registry: dict[str, object],
+) -> list[dict[str, object]]:
+    horizon_rows = horizon_registry.get("horizons") or []
+    horizon_by_id = {
+        str(item.get("id") or "").strip(): item
+        for item in horizon_rows
+        if isinstance(item, dict) and str(item.get("id") or "").strip()
+    }
+    rows: list[dict[str, object]] = []
+    for entry in new_section_verdict.get("sections") or []:
+        if not isinstance(entry, dict):
+            continue
+        section_id = str(entry.get("id") or "").strip()
+        if not section_id:
+            continue
+        verdict = str(entry.get("public_guide_verdict") or "").strip()
+        expected = str(entry.get("expected_representation") or "").strip()
+        horizon = horizon_by_id.get(section_id)
+        horizon_public_enabled = None
+        if isinstance(horizon, dict):
+            public_guide = horizon.get("public_guide") or {}
+            if isinstance(public_guide, dict):
+                horizon_public_enabled = bool(public_guide.get("enabled"))
+        if verdict == "future_concept_disabled_horizon":
+            representation = "omitted_with_receipt"
+        elif verdict == "help_support_page_content":
+            representation = "support_only_with_receipt"
+        elif verdict == "public_route_live":
+            representation = "omitted_with_receipt"
+        else:
+            representation = "omitted_with_receipt"
+        rows.append(
+            {
+                "id": section_id,
+                "title": str(entry.get("title") or section_id).strip(),
+                "public_guide_verdict": verdict,
+                "page_class": str(entry.get("page_class") or "").strip(),
+                "shipped_claim_allowed": bool(entry.get("shipped_claim_allowed")),
+                "expected_representation": expected,
+                "representation_status": representation,
+                "horizon_public_guide_enabled": horizon_public_enabled,
+                "canonical_sources": entry.get("canonical_sources") or [],
+                "required_proof": entry.get("required_proof") or [],
+            }
+        )
+    return rows
+
+
+def _generate_new_section_receipts(
+    out_dir: Path,
+    manifest: dict[str, object],
+    horizon_registry: dict[str, object],
+    new_section_verdict: dict[str, object],
+    release_payload: dict[str, object],
+) -> None:
+    rows = _new_section_alignment_rows(new_section_verdict, horizon_registry)
+    truth_audit = {
+        "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
+        "release_source_status": str(release_payload.get("status") or "").strip(),
+        "windows_artifact_count": sum(
+            1 for artifact in release_payload.get("artifacts") or [] if isinstance(artifact, dict) and str(artifact.get("platform") or "").strip().lower() == "windows"
+        ),
+        "sign_in_required_windows_artifact_count": sum(
+            1
+            for artifact in release_payload.get("artifacts") or []
+            if isinstance(artifact, dict)
+            and str(artifact.get("platform") or "").strip().lower() == "windows"
+            and str(artifact.get("installAccessClass") or "").strip().lower() == "account_required"
+        ),
+        "source_count": len((manifest.get("sources") or {}).keys()) if isinstance(manifest.get("sources") or {}, dict) else 0,
+    }
+    alignment = {
+        "generated_from": "products/chummer/PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml",
+        "new_section_ids": [row["id"] for row in rows],
+        "sections_with_shipped_claims": [row["id"] for row in rows if row["shipped_claim_allowed"]],
+        "disabled_horizons_with_receipts": [
+            row["id"]
+            for row in rows
+            if row["public_guide_verdict"] == "future_concept_disabled_horizon"
+            and row["representation_status"] == "omitted_with_receipt"
+        ],
+        "sections": rows,
+    }
+    not_ready_reasons = []
+    if any(row["representation_status"] == "missing" for row in rows):
+        not_ready_reasons.append("new sections silently omitted without receipt")
+    if any(
+        row["id"] in {"table-pulse", "behuman-gm-sessions"} and row["shipped_claim_allowed"]
+        for row in rows
+    ):
+        not_ready_reasons.append("Table Pulse or BeHuman appears as shipped without implementation proof")
+    if any(row["id"] == "answerly-support-humanizer" and row["shipped_claim_allowed"] for row in rows):
+        not_ready_reasons.append("Answerly appears as shipped truth instead of bounded support")
+    verdict_lines = [
+        "# Chummer6 Docs Generation Verdict",
+        "",
+        "Verdict: NOT_READY" if not_ready_reasons else "Verdict: READY",
+        "",
+        "## New section receipts",
+        "",
+    ]
+    for row in rows:
+        verdict_lines.append(
+            f"- `{row['id']}`: `{row['public_guide_verdict']}` -> `{row['representation_status']}`"
+        )
+    if not_ready_reasons:
+        verdict_lines.extend(["", "## Not ready reasons", ""])
+        verdict_lines.extend(f"- {reason}" for reason in not_ready_reasons)
+    else:
+        verdict_lines.extend(["", "## Acceptance posture", "", "- New sections are either explicitly receipted or intentionally future-labeled."])
+    _write(out_dir / "CHUMMER6_PUBLIC_GUIDE_TRUTH_AUDIT.generated.json", json.dumps(truth_audit, indent=2, sort_keys=True))
+    _write(out_dir / "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json", json.dumps({"sections": rows}, indent=2, sort_keys=True))
+    _write(out_dir / "CHUMMER6_GUIDE_GENERATOR_REGISTRY_ALIGNMENT.generated.json", json.dumps(alignment, indent=2, sort_keys=True))
+    _write(out_dir / "FINAL_CHUMMER6_DOCS_GENERATION_VERDICT.md", "\n".join(verdict_lines))
+
+
 def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root: Path | None = None) -> None:
     manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml")
     page_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_PAGE_REGISTRY.yaml")
@@ -2165,6 +2283,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     faq_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_FAQ_REGISTRY.yaml")
     trust_payload = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_TRUST_CONTENT.yaml")
     horizon_registry = _load_yaml(repo_root / "products" / "chummer" / "HORIZON_REGISTRY.yaml")
+    new_section_verdict = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml")
     landing_manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_LANDING_MANIFEST.yaml")
     public_horizon_copy = _load_horizon_public_copy_pack()
     release_experience = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_RELEASE_EXPERIENCE.yaml")
@@ -2207,6 +2326,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         public_horizon_copy,
     )
     _generate_trust_pages(out_dir, trust_payload, release_payload)
+    _generate_new_section_receipts(out_dir, manifest, horizon_registry, new_section_verdict, release_payload)
     _generate_manifest(out_dir, manifest)
     _assert_public_bundle_language(out_dir)
 
