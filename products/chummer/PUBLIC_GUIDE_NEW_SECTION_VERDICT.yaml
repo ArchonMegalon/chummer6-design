@@ -24,12 +24,12 @@ sections:
       - autonomous table mutation
       - public guide claims of fully shipped table pulse
     notes: >
-      Table Pulse may appear as a public-safe horizon page that explains heat, remote recipient
-      packets, and bounded remote reaction mini-games. The generated guide should also acknowledge
-      that the signed-in command lane is live today on first-party routes, while the broader
-      always-on coaching, transcript, and narrated-summary stack remains future-facing,
-      consent-bounded, and GM-governed rather than reading like a fully shipped universal session
-      feature.
+      Table Pulse should appear as a public-safe split horizon page with two explicit rails.
+      Table Pulse Live may explain world heat, remote recipient packets, bounded remote reaction
+      mini-games, and the signed-in command lane that is live today on first-party routes. Table
+      Pulse Aftermath should stay clearly private, GM-facing, and future-facing for coaching,
+      transcript, narrated-summary, and table-dynamics analysis. The generated guide should not
+      collapse world heat and table-dynamics heat into one ambiguous product promise.
   - id: behuman-gm-sessions
     title: BeHuman GM Sessions
     public_guide_verdict: private_operator_surface
@@ -88,6 +88,7 @@ sections:
     required_proof:
       - first_party_signal_deck_route
       - first_party_signal_deck_receipts
+      - live_receipt_rails
     canonical_sources:
       - products/chummer/SIGNAL_DECK_SPEC.md
       - products/chummer/horizons/table-pulse.md
@@ -135,6 +136,7 @@ sections:
     required_proof:
       - first_party_living_world_route
       - first_party_living_world_receipts
+      - live_receipt_rails
     canonical_sources:
       - products/chummer/LIVING_WORLD_SPEC.md
       - products/chummer/TABLE_PULSE_LIVING_WORLD_STACK_20260523.md

@@ -1,6 +1,6 @@
 # Signal Deck
 
-Signal Deck is the command-facing continuity rail for Table Pulse.
+Signal Deck is the command-facing continuity rail for Table Pulse Live.
 
 It keeps governed pressure, consequence posture, Living Newsroom framing, and aftermath return on one first-party path instead of letting remote reactions dissolve into recap-only copy.
 
@@ -21,7 +21,7 @@ It keeps governed pressure, consequence posture, Living Newsroom framing, and af
 
 Signal Deck is now part of the signed-in command-to-fallout loop:
 
-- Table Pulse inbox
+- Table Pulse Live inbox
 - leader briefing and GM cockpit
 - Living Newsroom watch framing
 - governed aftermath return loops

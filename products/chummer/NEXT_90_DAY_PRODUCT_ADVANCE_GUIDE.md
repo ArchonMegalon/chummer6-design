@@ -225,7 +225,7 @@ Exit: source anchors, rulebook binding, house-rule demand, amend-package promoti
 
 ## Wave 21 - implement media, run-network, and table-social horizon tranche
 
-### 133. Media and social horizon implementation tranche: JACKPOINT, RUNBOOK PRESS, GHOSTWIRE, RUNSITE, TABLE PULSE, and Community Hub
+### 133. Media and social horizon implementation tranche: JACKPOINT, RUNBOOK PRESS, GHOSTWIRE, RUNSITE, TABLE PULSE LIVE, TABLE PULSE AFTERMATH, and Community Hub
 Owners: `chummer6-hub`, `chummer6-hub-registry`, `chummer6-media-factory`, `chummer6-ui`, `chummer6-mobile`, `executive-assistant`, `fleet`, `chummer6-design`
 Exit: media/social horizons become bounded implementation lanes with first-party manifests, consent, provenance, publication, revocation, inspectable artifacts, and unsupported-claim guards.
 

@@ -10,7 +10,7 @@ Project Chummer already has:
 - bounded video posture
 - document rendering posture
 - share-card posture
-- horizon-level media ambitions around `JACKPOINT`, `RUNSITE`, `RUNBOOK PRESS`, and later `TABLE PULSE`
+- horizon-level media ambitions around `JACKPOINT`, `RUNSITE`, `RUNBOOK PRESS`, and later `TABLE PULSE AFTERMATH`
 
 But the current canon does not yet define a first-class presenter-video lane for:
 - multilingual campaign primers
@@ -65,7 +65,7 @@ It may not be used for:
 - add `PUBLIC_VIDEO_BRIEFS.yaml`
 - add a video artifact-family section to the structured media canon
 - update `JACKPOINT`, `RUNSITE`, and `RUNBOOK PRESS` tool posture
-- keep `TABLE PULSE` video use bounded and later
+- keep `TABLE PULSE AFTERMATH` video use bounded and later, and do not let presenter video become `TABLE PULSE LIVE` packet authority
 
 ## Rule
 

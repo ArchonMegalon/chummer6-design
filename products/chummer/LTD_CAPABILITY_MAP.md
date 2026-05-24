@@ -47,8 +47,8 @@ It does not imply that every owned tool must be integrated.
 * `ApiX-Drive` - low-risk automation glue only, never truth
 * `Browserly` - bounded browser capture and reference-pack helper
 * `FacePop` - bounded public trust / concierge widget and moderated testimonial capture lane
-* `hedy.ai` - bounded post-session transcript structure, highlight digest, and GM debrief helper for `TABLE PULSE`
-* `Nonverbia` - post-session coaching and social-dynamics analysis lane
+* `hedy.ai` - bounded post-session transcript structure, highlight digest, and GM debrief helper for `TABLE PULSE AFTERMATH`
+* `Nonverbia` - post-session coaching and social-dynamics analysis lane for `TABLE PULSE AFTERMATH`
 * `Unmixr AI` - candidate voice lane until proven
 
 ## Research / Parked
@@ -180,11 +180,11 @@ Do not chase more generic AI writers, support widgets, no-code databases, meetin
   `FacePop` and `Signitic` are bounded recruitment-entry and passive amplification lanes only.
   `Taja` and `vidBoard` are bounded approved-media lanes for discovery explainers only.
 
-## Table coaching / social dynamics
+## Table Pulse Aftermath coaching / social dynamics
 
 Horizon fit:
 
-* `TABLE PULSE`
+* `TABLE PULSE AFTERMATH`
 
 Current cluster:
 
@@ -197,4 +197,4 @@ Current cluster:
 * bounded `PeekShot`
 
 Working rule:
-These tools may generate post-session coaching views and narrated guidance, but they do not become session truth, discipline systems, moderation truth, or player-scoring authority.
+These tools may generate `Table Pulse Aftermath` coaching views and narrated guidance, but they do not become session truth, discipline systems, moderation truth, or player-scoring authority.

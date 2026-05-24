@@ -108,7 +108,7 @@ Until those moments feel dependable, Chummer remains desk-strong but habit-weak.
 
 ### 5. Artifact and community coherence
 
-JACKPOINT, RUNBOOK PRESS, GHOSTWIRE, RUNSITE, TABLE PULSE, and Community Hub should not read as disconnected horizons.
+JACKPOINT, RUNBOOK PRESS, GHOSTWIRE, RUNSITE, TABLE PULSE LIVE, TABLE PULSE AFTERMATH, and Community Hub should not read as disconnected horizons.
 They should feel like coherent extensions of:
 
 * build truth
@@ -293,7 +293,7 @@ Boundary:
 
 Opportunity:
 
-* TABLE PULSE
+* TABLE PULSE AFTERMATH
 * recap
 * coaching-safe followthrough
 

@@ -536,14 +536,15 @@ horizons:
 - id: table-pulse
   title: TABLE PULSE
   status: horizon
-  family: table_coaching_social_dynamics
+  family: live_heat_and_private_aftermath
   canon_doc: products/chummer/horizons/table-pulse.md
+  public_signal_eligible: true
   public_guide:
     enabled: true
     order: 75
-  pain_label: I know the table drifted, but I cannot say where the energy, pacing, or spotlight balance broke.
-  wow_promise: GMs get opt-in post-session coaching about table dynamics without turning Chummer into surveillance.
-  table_scene: After an online session, the GM opens a coaching packet and sees spotlight balance, pacing heat zones, disengagement markers, and one or two concrete suggestions for the next run.
+  pain_label: I need a live pressure rail during play and a private coaching rail after play, without confusing the two or turning either into surveillance.
+  wow_promise: GMs get a governed live heat-and-reaction rail today and a separate private aftermath coaching rail as the broader Table Pulse promise grows.
+  table_scene: During a run, heat crosses a threshold and the GM receives a governed reaction packet; after the run, the GM can later open a private aftermath packet for pacing, spotlight, and confusion follow-through.
   build_path:
     intent: eventual_product_lane
     current_state: signed_in_command_lane_live
@@ -566,15 +567,17 @@ horizons:
     - MarkupGo
     - PeekShot
   success_signals:
-  - Coaching packets stay explicitly post-session, opt-in, and non-authoritative.
+  - Table Pulse Live stays governed, receipt-backed, and GM-authoritative instead of auto-mutating world truth.
+  - Table Pulse Aftermath stays post-session, opt-in, and non-authoritative.
   - Spotlight and pacing diagnostics help the GM without becoming player scoring or moderation truth.
   artifact_types:
   - table pulse packet
+  - live heat packet
+  - remote reaction receipt
   - spotlight map
   - pacing diagnostic
   - narrated coaching summary
-  public_signal_eligible: false
-  owner_handoff_gate: Coaching analysis must remain opt-in, post-session, privacy-bounded, and clearly separate from session truth before it moves beyond horizon.
+  owner_handoff_gate: Table Pulse Live and Table Pulse Aftermath must stay explicitly separate, with live pressure GM-governed and aftermath analysis privacy-bounded, before the broader product moves beyond horizon.
 - id: local-co-processor
   title: LOCAL CO-PROCESSOR
   status: horizon

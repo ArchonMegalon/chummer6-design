@@ -211,10 +211,29 @@ Do not let any LTD own:
 
 ### TABLE PULSE
 
-Profits from opt-in coaching LTDs, but only after consent and privacy are stable.
+Table Pulse has two rails and the LTD posture must respect the split.
 
-* `Nonverbia` is the strongest primary analysis fit.
-* `hedy.ai` is a bounded structure, digest, and GM debrief helper.
+#### Table Pulse Live
+
+The live rail is the in-world heat, packet, notification, and GM-adjudication system.
+It does not profit from coaching LTDs as truth owners.
+
+Do not let any LTD own:
+
+* live surveillance
+* packet authority
+* GM adjudication truth
+* canonical session truth
+* moderation truth
+* player scoring
+
+#### Table Pulse Aftermath
+
+The aftermath rail is the private coaching, recap, and debrief system.
+It may profit from opt-in coaching LTDs, but only after consent and privacy are stable.
+
+* `Nonverbia` is the strongest primary analysis fit for `Table Pulse Aftermath`.
+* `hedy.ai` is a bounded structure, digest, and GM debrief helper for `Table Pulse Aftermath`.
 * `vidBoard`, `Soundmadeseen`, `Unmixr AI`, `MarkupGo`, and `PeekShot` support bounded recap, narration, render, and preview outputs.
 
 Do not let any LTD own:

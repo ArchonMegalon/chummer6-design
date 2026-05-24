@@ -1,14 +1,14 @@
 # TABLE PULSE
 
-GMs get opt-in post-session coaching about table dynamics without turning Chummer into surveillance.
+GMs get a governed live heat-and-reaction rail today and a separate private aftermath coaching rail as the broader Table Pulse promise grows.
 
 ![TABLE PULSE horizon art](../assets/horizons/table-pulse.png)
 
 ## Why this matters
 
-I know the table drifted, but I cannot say where the energy, pacing, or spotlight balance broke.
+I need a live pressure rail during play and a private coaching rail after play, without confusing the two or turning either into surveillance.
 
-Picture the scene: After an online session, the GM opens a coaching packet and sees spotlight balance, pacing heat zones, disengagement markers, and one or two concrete suggestions for the next run.
+Picture the scene: During a run, heat crosses a threshold and the GM receives a governed reaction packet; after the run, the GM can later open a private aftermath packet for pacing, spotlight, and confusion follow-through.
 
 
 ## Current stage
@@ -16,137 +16,218 @@ Picture the scene: After an online session, the GM opens a coaching packet and s
 - Today: Signed-in command lane is live.
 - Next: Expand bounded coaching and fallout follow-through.
 
-## The problem
+**TABLE PULSE is a two-rail horizon: Table Pulse Live handles governed in-world heat and remote reactions, while Table Pulse Aftermath handles private post-session coaching without turning the table into a surveillance system.**
 
-The GM knows something went off after a session, but cannot clearly reconstruct where pacing dragged, who lost the room, or which scene actually landed.
+Every GM knows the feeling.
 
-## What it would do
+Something drifted.
+One scene landed.
+Another dragged.
+One player carried the table.
+Another disappeared.
 
-TABLE PULSE turns live-session pressure into bounded follow-up packets and post-session coaching.
+The GM remembers the vibe but also needs a separate live pressure rail.
 
-It starts with:
+TABLE PULSE helps the GM handle both moments without pretending they are the same product.
 
-* heat domains and threshold events
-* recipient decision packets
-* GM pulse policy
-* player-safe delivery and mute controls
-* optional narrated summaries
+Not live surveillance.
+Not player scoring.
+Not moderation truth.
+Not discipline automation.
 
-It then widens into:
+One live governed rail. One private coaching rail.
 
-* between-session rumor, order, and Passport hooks
-* remote reaction mini-games for outside players or role-holders
-* public-safe BLACK LEDGER aftermath projection
+## The promise
 
-It is for reflection, pressure handling, and bounded follow-up after play. It is not live
-surveillance, player scoring, or moderation truth.
+**Give the GM live pressure tools and private insight without betraying the table.**
 
-## What is live now
+TABLE PULSE LIVE can help with:
 
-The whole coaching and observer stack is not universally shipped.
+- security, matrix, magic, astral, faction, law, media, or public pressure
+- remote reaction mini-games
+- recipient decision packets
+- GM adjudication and aftermath follow-through
 
-What is live today is the signed-in command lane:
+TABLE PULSE AFTERMATH can help with:
 
-* a Table Pulse packet on the Black Ledger notifications route
-* bounded remote reaction mini-games
-* GM adjudication and leader follow-through
-* Signal Deck and Runner Passport continuity
-* Living Newsroom watch framing
-* governed aftermath return loops
+- pacing heat zones
+- spotlight balance
+- interruption patterns
+- scene energy
+- unresolved threads
+- rules-dispute markers
+- audience-facing recap suggestions
+- GM-private coaching
+- narrated debriefs
 
-So the command-to-fallout loop is real now, while the broader coaching, transcript, and narrated
-summary stack remains future-facing, consent-bounded, and explicitly non-authoritative.
+Only with explicit consent.
 
-## What players and remote users would actually see
+Only post-session by default for the aftermath rail.
 
-The first public-safe version is not a giant dashboard. It is a handful of sharp bounded moments:
+Only as advice, not authority.
 
-* a packet that says a scene generated heat
-* a reason why this player or faction contact received the packet
-* one or two choices that can move pressure, rumor, or favor
-* a receipt that shows whether the GM still must approve fallout
+## What it feels like
 
-Remote users would only see packets they are explicitly allowed to see under campaign policy,
-quiet hours, and recipient rules.
+During or after a session, the GM can enter one of two bounded flows.
 
-## Heat and reaction model
+TABLE PULSE LIVE says:
 
-TABLE PULSE treats heat as a governed pressure signal, not generic drama text.
+```text
+Pressure packet:
+- matrix heat crossed threshold
+- a bounded remote reaction is available
+- GM approval is still required before fallout becomes table truth
+```
 
-Examples:
+TABLE PULSE AFTERMATH says:
 
-* pacing heat
-* spotlight imbalance
-* interruption or confusion spikes
-* faction or public pressure after a noisy result
-* consequence pressure that can spill into BLACK LEDGER
+```text
+Session pulse:
+- rooftop chase had high engagement
+- negotiation scene dragged for 22 minutes
+- two players spoke less than 10% of the time after scene three
+- one unresolved objective was never revisited
 
-Heat does not mutate table truth by itself. It creates a bounded packet that a GM can inspect,
-route, suppress, or turn into a follow-up action.
+Suggestion:
+Next run, open with a short player-facing recap and give the quietest player first meaningful choice.
+```
 
-## Remote reaction mini-games
+Buttons:
 
-The most exciting outside-the-session lane is the remote reaction mini-game family.
+- Generate player-safe recap
+- Mark GM-only
+- Ask for pacing suggestions
+- Ignore this packet
+- Delete media
 
-Core examples:
+The GM stays in control.
 
-* **Intercept** - catch, forward, or suppress a courier or intel lane
-* **Cover Story** - shape the cleanup narrative after a messy outcome
-* **Scramble** - spend time, favor, or logistics to preserve an asset
-* **Temptation** - accept a risky offer that increases pressure for a later edge
-* **Shadow Reply** - send back a coded answer that changes rumor, order, or Passport flavor
+## What it should include
 
-These are:
+### Consent model
 
-* opt-in or policy-allowed
-* receipt-backed
-* bounded in consequence
-* safe to adjudicate outside the main session
+Before any audio/transcript/debrief lane:
 
-They are not:
+- who consents
+- what is recorded/uploaded
+- what is analyzed
+- who can see output
+- retention
+- delete path
+- fallback if someone declines
 
-* direct mutation of live table canon
-* autonomous side campaigns
-* public scoreboards
-* a replacement for the GM
+### Post-session packet
 
-## Likely owners
+Include:
 
-* `chummer6-hub`
-* `chummer6-media-factory`
+- pacing summary
+- spotlight balance
+- scene markers
+- unresolved threads
+- player-safe suggestions
+- GM-private coaching
+- optional replay
 
-## Key tool posture
+### Manual markers
 
-* `Nonverbia` - primary coaching and social-dynamics analysis lane
-* `hedy.ai` - bounded transcript structure, highlight digest, and GM debrief prompt lane
-* `vidBoard` - later bounded player-safe recap and GM-private debrief video lane
-* `Soundmadeseen` - optional narrated coaching summary
-* `Unmixr AI` - bounded candidate voice lane until proven
-* `MarkupGo` - coaching packet render support
-* `PeekShot` - preview/share-safe summary card support
+Even without recording:
 
-See also: `HEDY_AI_TABLE_PULSE_DESIGN.md`
+- highlight
+- rules dispute
+- recap later
+- scene dragged
+- scene landed
+- GM note
 
-## What has to be true first
+### GOD Observer
 
-* explicit consent and upload policy
-* post-session-only analysis and packet rules
-* privacy and retention rules for coaching media
-* share-safe coaching summaries
-* replay and receipt references where available
-* mute, suppression, and quiet-hours proof
-* GM adjudication for outside reactions
+If used, it must be opt-in.
 
-## Hard boundary
+Possible modes:
 
-* not live surveillance
-* not player scoring
-* not moderation truth
-* not discipline automation
-* not durable session truth
+- none
+- manual markers
+- post-session upload
+- transcript assist
+- live debrief assist with all-player consent
 
-## Why it is not ready yet
+### Media output
 
-This only works if it stays consensual, private, and clearly separate from moderation or rules truth.
-Until Chummer can prove those guardrails end to end, TABLE PULSE remains a future-facing horizon
-page rather than a claim that the full heat, remote-user, and mini-game stack is already shipped.
+Optional:
+
+- coaching packet
+- spoken summary
+- GM-private video
+- player-safe recap
+
+## What users want to know
+
+### Does it listen by default?
+
+No.
+
+### Can it score players?
+
+No. That is forbidden.
+
+### Can it moderate disputes?
+
+No. It can help reflect; it does not decide.
+
+### Can it generate recaps?
+
+Yes, if source and consent allow it, and the GM approves.
+
+### Can it help live?
+
+The safe default is post-session. Any live mode must be explicit, consent-gated, and bounded.
+
+## What it is not
+
+TABLE PULSE is not:
+
+- live surveillance
+- default recording
+- player scoring
+- moderation truth
+- session truth
+- a GM replacement
+
+It is not one single heat system.
+
+It is two rails:
+
+- `Table Pulse Live` for governed in-world heat, packets, remote reactions, and GM adjudication
+- `Table Pulse Aftermath` for private coaching, recap, and debrief support
+
+## The first slice
+
+The first aftermath slice should be:
+
+**Manual-marker post-session debrief**
+
+It should let the GM:
+
+1. mark moments during play
+2. end session
+3. see unresolved threads
+4. draft player-safe recap
+5. add private notes
+6. publish or discard
+
+No audio required.
+
+Success looks like:
+
+> A GM gets useful reflection without asking the table to trust a recorder yet.
+
+The first live slice is different:
+
+> A governed pressure packet crosses a threshold, a bounded remote reaction becomes available, and
+> the GM still decides whether fallout becomes table truth.
+
+## The vision
+
+The best GMs improve because they can separate live pressure from private reflection.
+
+**TABLE PULSE is where Chummer gives the GM a governed live pressure rail and a separate private aftermath rail without turning people into scores.**

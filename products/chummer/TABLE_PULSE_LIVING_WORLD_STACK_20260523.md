@@ -15,9 +15,9 @@ Chummer6. It is the product-layer summary above the queue rows:
 
 ## Product Stack
 
-### Layer 1: Table Pulse Core
+### Layer 1: Table Pulse Live Core
 
-Table Pulse is the live-session pressure and response layer.
+Table Pulse Live is the live-session pressure and response layer.
 
 It owns:
 
@@ -31,6 +31,24 @@ It owns:
 Hard boundary:
 
 - no outside action auto-applies to a live session
+
+### Layer 1B: Table Pulse Aftermath
+
+Table Pulse Aftermath is the private coaching and recap rail that stays separate from the live
+pressure lane.
+
+It owns:
+
+- pacing and spotlight follow-through
+- confusion and disengagement diagnostics
+- GM-private recap and coaching packets
+- optional narrated or player-safe aftermath artifacts
+- consent, retention, and review posture for debrief outputs
+
+Hard boundary:
+
+- aftermath packets may inform the GM, but they do not become world truth, moderation truth, or
+  player scoring
 
 ### Layer 2: Living World Engagement
 
@@ -51,7 +69,7 @@ Hard boundary:
 
 ### Layer 3: Opt-Out And Remote Reaction Mini-Games
 
-This layer makes Table Pulse socially safe and playable.
+This layer makes Table Pulse Live socially safe and playable.
 
 It adds:
 
@@ -98,6 +116,16 @@ It adds:
 Hard boundary:
 
 - media derives from receipts and never becomes truth by itself
+
+## Split Rule
+
+Table Pulse must stay explicit about its two rails:
+
+- `Table Pulse Live` handles in-world heat, notifications, remote reactions, and GM adjudication
+- `Table Pulse Aftermath` handles private coaching, recap, and debrief support
+
+They may share receipts, policy, and continuity surfaces, but they should not be described as one
+heat system.
 
 ## Ownership
 

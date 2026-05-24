@@ -201,9 +201,9 @@ At least one horizon has enough owner, tool, and provenance detail to move from 
 
 Public proposals and advisory prioritization routes are collected through governed surfaces without turning votes into canonical truth.
 
-### H5 — Table coaching horizon defined
+### H5 — Table Pulse split horizon defined
 
-`TABLE PULSE` becomes a bounded, privacy-safe post-session coaching lane with explicit owners, tool posture, and non-truth boundaries.
+`TABLE PULSE` becomes a two-rail horizon: `Table Pulse Live` for governed in-world heat and remote reactions, and `Table Pulse Aftermath` for bounded, privacy-safe post-session coaching with explicit owners, tool posture, and non-truth boundaries.
 
 ## Non-blocking participation and bootstrap lane
 

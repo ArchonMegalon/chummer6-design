@@ -1,15 +1,17 @@
-# Hedy AI in Table Pulse
+# Hedy AI in Table Pulse Aftermath
 
 ## Purpose
 
-Define the bounded role `hedy.ai` may play inside `TABLE PULSE`.
+Define the bounded role `hedy.ai` may play inside `TABLE PULSE AFTERMATH`.
 
 This is not a general AI-provider promotion.
-It is a narrow design for post-session coaching packets where `hedy.ai` appears to fit the session-structure and debrief side of the problem better than the deeper social-dynamics interpretation side.
+It is a narrow design for post-session coaching packets where `hedy.ai` appears to fit the
+session-structure and debrief side of `Table Pulse Aftermath` better than the deeper
+social-dynamics interpretation side.
 
 ## Why it fits
 
-`TABLE PULSE` needs two different kinds of help:
+`TABLE PULSE AFTERMATH` needs two different kinds of help:
 
 1. structural session digestion
 2. coaching interpretation
@@ -33,7 +35,7 @@ So the product posture should treat it as a conversation-structure and debrief h
 
 ## Product role
 
-Inside `TABLE PULSE`, `hedy.ai` is a bounded secondary lane for:
+Inside `TABLE PULSE AFTERMATH`, `hedy.ai` is a bounded secondary lane for:
 
 * transcript-to-session-outline extraction
 * highlight and action-item extraction
@@ -77,7 +79,7 @@ All outputs should be short, structured, and receipt-bearing.
    * replay refs when available
    * scene/run metadata when available
    * optional `Nonverbia` coaching analysis
-6. Chummer emits a `TABLE PULSE` packet with provider receipts and confidence notes.
+6. Chummer emits a `TABLE PULSE AFTERMATH` packet with provider receipts and confidence notes.
 
 ## Safe request shapes
 
@@ -138,7 +140,7 @@ Primary owners:
 
 ## Acceptance bar before promotion
 
-Before `hedy.ai` becomes an approved active `TABLE PULSE` lane, Chummer should prove:
+Before `hedy.ai` becomes an approved active `TABLE PULSE AFTERMATH` lane, Chummer should prove:
 
 * it materially improves transcript-to-outline quality or recap usefulness
 * it stays within non-judgmental, non-surveillance boundaries
@@ -180,5 +182,5 @@ Bad signals:
 
 ## Canonical decision
 
-`hedy.ai` is a good fit for `TABLE PULSE` only as a bounded session-structure and debrief helper.
+`hedy.ai` is a good fit for `TABLE PULSE AFTERMATH` only as a bounded session-structure and debrief helper.
 It should complement `Nonverbia`, not replace it, and it must stay firmly outside live surveillance, player scoring, moderation truth, and canonical session memory.

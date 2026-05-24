@@ -17,7 +17,7 @@ meaningful action leaves a receipt.
 
 ## Three-Line Elevator
 
-At the table, Table Pulse converts moments of heat into bounded reaction packets instead
+At the table, Table Pulse Live converts moments of heat into bounded reaction packets instead
 of free-floating chaos.
 
 Between sessions, Living World systems turn those packets into rumors, orders, inbox
@@ -26,6 +26,9 @@ come back.
 
 Across every surface, the rule is simple: AI may suggest, media may dramatize, but only
 governed Chummer receipts and GM approval become truth.
+
+Table Pulse Aftermath is the separate private coaching rail. It is not the same thing as the live
+heat and reaction loop, even when both rails share consent, receipt, and follow-through posture.
 
 ## Audience Fantasy
 
@@ -36,7 +39,7 @@ governed Chummer receipts and GM approval become truth.
 
 ## Stack In One Sentence Each
 
-- `m148` Table Pulse heat reaction: live-session pressure becomes bounded packets,
+- `m148` Table Pulse Live heat reaction: live-session pressure becomes bounded packets,
   notifications, adjudication, and public-safe consequence signals.
 - `m149` living-world engagement loops: those packets become inbox, rumors, orders,
   passport progress, and downtime hooks.

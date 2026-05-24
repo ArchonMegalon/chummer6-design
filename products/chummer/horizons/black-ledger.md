@@ -214,7 +214,7 @@ Use them when you want the theatrical layer instead of the dry faction file:
 * [Glass Tower Compact promo](https://chummer.run/ledger/factions/glass-tower-compact/promo)
 * [Rust Market Syndicate promo](https://chummer.run/ledger/factions/rust-market-syndicate/promo)
 
-Each promo rail is supposed to feel like propaganda with receipts:
+Each promo rail is supposed to feel like a recruitment bulletin with receipts, not a soft teaser:
 
 * a first-party motion-video file
 * captions
@@ -328,7 +328,7 @@ Intel can become:
 * a district activity note
 * a job seed
 * a news item
-* a faction clue
+* a faction pressure lead
 * a creator prompt
 * a private campaign-only hook
 
@@ -599,14 +599,14 @@ They also make faction managers and players care about more than numbers.
 
 ## Table Pulse and GOD Observer
 
-BLACK LEDGER can integrate with Table Pulse — carefully.
+BLACK LEDGER can integrate with Table Pulse — carefully, and with the rail split kept explicit.
 
-Table Pulse is not live surveillance.
-It is not player scoring.
-It is not moderation truth.
-It is not automatic world truth.
+Table Pulse Live is not live surveillance.
+Table Pulse Aftermath is not player scoring.
+Neither rail is moderation truth.
+Neither rail is automatic world truth.
 
-With consent, Table Pulse or a GOD Observer lane can help after a session:
+With consent, Table Pulse Aftermath or a GOD Observer lane can help after a session:
 
 * summarize what happened
 * identify unresolved objectives
@@ -631,6 +631,10 @@ Suggested resolution notes:
 The GM still approves the result.
 
 The world changes only after an authorized human confirms it.
+
+Table Pulse Live is a separate rail. It handles in-world heat packets, bounded remote reactions,
+and GM adjudication during play or immediate aftermath. Table Pulse Aftermath handles the private
+coaching, recap, and debrief side.
 
 ---
 
@@ -838,7 +842,7 @@ Yes. Runs can connect to scheduling tools like Lunacal, then hand off to Discord
 
 ### Does it record sessions?
 
-Not by default. Any Table Pulse or GOD Observer integration is opt-in, consent-gated, and review-based.
+Not by default. Any Table Pulse Aftermath or GOD Observer integration is opt-in, consent-gated, and review-based.
 
 ### Do run results affect future missions?
 

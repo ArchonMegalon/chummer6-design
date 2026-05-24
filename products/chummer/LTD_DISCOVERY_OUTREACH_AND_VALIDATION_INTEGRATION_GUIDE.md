@@ -21,7 +21,7 @@ Secondary use cases:
 
 * GM Companion persona validation
 * BLACK LEDGER faction / world-state validation
-* TABLE PULSE post-session trust and coaching validation
+* TABLE PULSE LIVE and TABLE PULSE AFTERMATH validation
 * creator publication and artifact-workflow validation
 * public launch messaging and onboarding validation
 
@@ -363,7 +363,7 @@ A house-rule candidate is not ready for implementation until:
 * add the design docs and registry
 * add the new tool lanes to the LTD map and external-tools plane
 * define the Deftform pre-screen
-* create Icanpreneur projects for KARMA FORGE, GM Companion, BLACK LEDGER, TABLE PULSE, and creator publishing
+* create Icanpreneur projects for KARMA FORGE, GM Companion, BLACK LEDGER, TABLE PULSE LIVE, TABLE PULSE AFTERMATH, and creator publishing
 * create the NextStep discovery sprint template
 * create the Signitic recruitment campaign
 * draft the FacePop public concierge flow

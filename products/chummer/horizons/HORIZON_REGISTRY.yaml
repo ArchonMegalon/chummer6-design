@@ -175,7 +175,7 @@ horizons:
 
   - id: table-pulse
     file: table-pulse.md
-    family: table coaching and social dynamics
+    family: live heat and private aftermath
     state: horizon
     public_guide_allowed: true
     likely_owners:
@@ -184,7 +184,7 @@ horizons:
     foundation_dependencies:
       - gm_operations_substrate
       - publication_and_prestige_substrate
-    why_horizon: Coaching analysis only works when consent, privacy, and non-truth boundaries remain provable.
+    why_horizon: The live heat rail and the private aftermath rail only work when consent, privacy, GM authority, and non-truth boundaries remain provable.
 
   - id: local-co-processor
     file: local-co-processor.md

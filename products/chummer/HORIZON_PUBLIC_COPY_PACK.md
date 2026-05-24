@@ -2222,9 +2222,9 @@ Trust breaks when nobody can reconstruct the moment.
 
 **GHOSTWIRE is where Chummer remembers the chain of events well enough to explain, recover, and move forward.**
 
-# TABLE PULSE — learn how the session felt
+# TABLE PULSE — split the live rail from the aftermath rail
 
-**TABLE PULSE is Chummer’s post-session table-coaching horizon: the future where a GM can understand pacing, spotlight balance, engagement, and friction without turning the table into a surveillance system.**
+**TABLE PULSE is a two-rail horizon: Table Pulse Live handles governed in-world heat and remote reactions, while Table Pulse Aftermath handles private post-session coaching without turning the table into a surveillance system.**
 
 Every GM knows the feeling.
 
@@ -2234,22 +2234,29 @@ Another dragged.
 One player carried the table.  
 Another disappeared.
 
-The GM remembers the vibe but not the pattern.
+The GM remembers the vibe but also needs a separate live pressure rail.
 
-TABLE PULSE helps the GM reflect after play.
+TABLE PULSE helps the GM handle both moments without pretending they are the same product.
 
 Not live surveillance.  
 Not player scoring.  
 Not moderation truth.  
 Not discipline automation.
 
-A private coaching packet.
+One live governed rail. One private coaching rail.
 
 ## The promise
 
-**Give the GM insight without betraying the table.**
+**Give the GM live pressure tools and private insight without betraying the table.**
 
-TABLE PULSE can help with:
+TABLE PULSE LIVE can help with:
+
+- security, matrix, magic, astral, faction, law, media, or public pressure
+- remote reaction mini-games
+- recipient decision packets
+- GM adjudication and aftermath follow-through
+
+TABLE PULSE AFTERMATH can help with:
 
 - pacing heat zones
 - spotlight balance
@@ -2263,15 +2270,24 @@ TABLE PULSE can help with:
 
 Only with explicit consent.
 
-Only post-session by default.
+Only post-session by default for the aftermath rail.
 
 Only as advice, not authority.
 
 ## What it feels like
 
-After a session, the GM opens a debrief.
+During or after a session, the GM can enter one of two bounded flows.
 
-Chummer says:
+TABLE PULSE LIVE says:
+
+```text
+Pressure packet:
+- matrix heat crossed threshold
+- a bounded remote reaction is available
+- GM approval is still required before fallout becomes table truth
+```
+
+TABLE PULSE AFTERMATH says:
 
 ```text
 Session pulse:
@@ -2385,11 +2401,16 @@ TABLE PULSE is not:
 - session truth
 - a GM replacement
 
-It is coaching.
+It is not one single heat system.
+
+It is two rails:
+
+- `Table Pulse Live` for governed in-world heat, packets, remote reactions, and GM adjudication
+- `Table Pulse Aftermath` for private coaching, recap, and debrief support
 
 ## The first slice
 
-The first slice should be:
+The first aftermath slice should be:
 
 **Manual-marker post-session debrief**
 
@@ -2408,11 +2429,16 @@ Success looks like:
 
 > A GM gets useful reflection without asking the table to trust a recorder yet.
 
+The first live slice is different:
+
+> A governed pressure packet crosses a threshold, a bounded remote reaction becomes available, and
+> the GM still decides whether fallout becomes table truth.
+
 ## The vision
 
-The best GMs improve because they notice patterns.
+The best GMs improve because they can separate live pressure from private reflection.
 
-**TABLE PULSE is where Chummer helps the GM see the session clearly — privately, consensually, and without turning people into scores.**
+**TABLE PULSE is where Chummer gives the GM a governed live pressure rail and a separate private aftermath rail without turning people into scores.**
 
 # LOCAL CO-PROCESSOR — optional local-acceleration, hosted when needed
 

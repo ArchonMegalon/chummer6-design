@@ -9,7 +9,7 @@ The first flagship use is KARMA FORGE house-rule discovery, but the lane also ap
 
 * GM Companion / Switch persona validation
 * BLACK LEDGER world-state validation
-* TABLE PULSE trust and coaching validation
+* TABLE PULSE LIVE and TABLE PULSE AFTERMATH validation
 * creator publication and artifact-workflow validation
 * launch and onboarding message validation
 

@@ -271,7 +271,7 @@ The first voice prompt should be honest and playful, for example:
 - explicitly gated behind a second opt-in
 - only if the product can prove the privacy model and usefulness
 - off by default
-- separate from any future table-audio or `TABLE PULSE` behavior
+- separate from any future table-audio, `TABLE PULSE LIVE`, or `TABLE PULSE AFTERMATH` behavior
 
 ### Voice hard boundaries
 - no microphone access without a user gesture or explicit enablement flow

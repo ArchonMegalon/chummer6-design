@@ -16,7 +16,7 @@ What is already strong:
 - `JACKPOINT` has dossiers, recaps, briefings, evidence rooms, and creator packs.
 - `RUNSITE` has explorable location packs, route overlays, and optional narration.
 - `RUNBOOK PRESS` has long-form primers, guides, and modules.
-- `TABLE PULSE` has bounded post-session coaching and recap posture.
+- `TABLE PULSE AFTERMATH` has bounded post-session coaching and recap posture, while `TABLE PULSE LIVE` remains the separate in-world heat and reaction rail.
 - `chummer6-media-factory` already owns render execution, manifests, provider adapters, previews, and media receipts.
 
 What is still missing:
@@ -99,8 +99,8 @@ Owns:
 ### Bounded
 - `Mootion` - motion-only b-roll and short animated support lane
 - `Unmixr AI` - candidate dubbing and voice lane until proven
-- `hedy.ai` - transcript structure / debrief helper for `TABLE PULSE`, not a live or canonical lane
-- `Nonverbia` - social-dynamics and coaching analysis lane for `TABLE PULSE`, not publication truth
+- `hedy.ai` - transcript structure / debrief helper for `TABLE PULSE AFTERMATH`, not a live or canonical lane
+- `Nonverbia` - social-dynamics and coaching analysis lane for `TABLE PULSE AFTERMATH`, not publication truth
 - `AvoMap` - route and location visualization lane
 - `Crezlo Tours` - explorable tour lane
 - `BrowserAct` - operator fallback for upload, export, publishing, or receipt capture when vendor APIs are weak or absent

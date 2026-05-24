@@ -188,11 +188,11 @@ assets:
     series_label: CHUMMER6 HORIZON
     index: "07"
     title: TABLE PULSE
-    subtitle: Post-session coaching about pacing, energy, and spotlight balance.
+    subtitle: Live world heat and private aftermath coaching on separate rails.
     chips:
-      - PACING
-      - SPOTLIGHT
-      - COACHING
+      - LIVE HEAT
+      - GM CONTROL
+      - AFTERMATH
     accent: "#ff5c7a"
     accent_secondary: "#49d6ff"
     focus: [0.58, 0.45]

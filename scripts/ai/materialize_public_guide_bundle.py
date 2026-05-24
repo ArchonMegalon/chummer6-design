@@ -1724,7 +1724,7 @@ def _generate_root(
         rows.extend(
             [
                 "",
-                "- [Watch the Chummer6 promo video](https://chummer.run/media/promo/chummer6-flagship-promo.mp4)",
+                "- [Watch the Chummer6 flagship war bulletin](https://chummer.run/media/promo/chummer6-flagship-promo.mp4)",
                 "- [Open the Black Ledger command map](https://chummer.run/ledger/map#ledger-map)",
             ]
         )
@@ -2310,19 +2310,7 @@ def _generate_horizon_pages(
         )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            if slug == "table-pulse":
-                selected_headings = None
-                selected_heading_map = None
-                embedded = (
-                    _extract_markdown_sections(
-                        _load_text(canon_path),
-                        allowed_headings=None,
-                        heading_map=selected_heading_map,
-                    )
-                    if canon_path.is_file()
-                    else []
-                )
-            elif horizon_copy_slug in public_horizon_copy:
+            if horizon_copy_slug in public_horizon_copy:
                 selected_headings = None
                 selected_heading_map = None
                 embedded = list(public_horizon_copy[horizon_copy_slug])

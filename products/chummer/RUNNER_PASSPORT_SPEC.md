@@ -22,7 +22,7 @@ Live receipt rails:
 
 Connected lane:
 
-- signed-in Table Pulse inbox can hand governed follow-through back to Runner Passport
+- signed-in Table Pulse Live inbox can hand governed follow-through back to Runner Passport
 - leader briefing and faction command can escalate passport-safe reactions without exposing private identity
 - Living Newsroom can frame the same turn on a public-safe watch package
 - aftermath packages can preserve continuity when fallout resolves off-table

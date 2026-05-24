@@ -22,7 +22,7 @@ It keeps the watch package, faction command, Runner Passport, and aftermath rail
 Living World now connects:
 
 - the public-safe watch package
-- the signed-in Table Pulse inbox
+- the signed-in Table Pulse Live inbox
 - leader briefing and faction command
 - Runner Passport continuity
 - governed aftermath return loops
