@@ -1724,7 +1724,7 @@ def _generate_root(
         rows.extend(
             [
                 "",
-                "- [Watch the Chummer6 promo video](https://chummer.run/ledger#newsreel-player)",
+                "- [Watch the Chummer6 promo video](https://chummer.run/media/promo/chummer6-flagship-promo.mp4)",
                 "- [Open the Black Ledger command map](https://chummer.run/ledger/map#ledger-map)",
             ]
         )

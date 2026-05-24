@@ -2578,9 +2578,9 @@ Chummer should be fast and private where possible, but fair and available everyw
 
 **LOCAL CO-PROCESSOR is the horizon where local power becomes a bonus, never a gate.**
 
-# SHADOWCASTERS NETWORK — find the table, run the job, change the city
+# COMMUNITY HUB — find the table, run the job, change the city
 
-**SHADOWCASTERS NETWORK is Chummer’s open-run and community-play horizon: the future where GMs can publish runs, players can apply with compatible runners, sessions can be scheduled and handed off cleanly, and the outcome can feed the living world.**
+**COMMUNITY HUB is Chummer’s open-run and community-play horizon: the future where GMs can publish runs, players can apply with compatible runners, sessions can be scheduled and handed off cleanly, and the outcome can feed the living world.**
 
 Finding a Shadowrun game is still too hard.
 
@@ -2590,7 +2590,7 @@ Scheduling happens in calendars or chat.
 Meeting links appear at the last minute.  
 Publisher truth is not one place.
 
-SHADOWCASTERS NETWORK turns that into a product flow.
+COMMUNITY HUB turns that into a product flow.
 
 ## The promise
 
@@ -2631,7 +2631,7 @@ Saturday 19:00
 Voice required
 Pregens allowed
 Needs Matrix role
-Uses Shadowcasters Seattle Season 01 rules
+Uses Seattle Season 01 community rules
 ```
 
 They click.
@@ -2666,7 +2666,7 @@ The GM accepts.
 
 Chummer schedules, hands off the Discord link, and tracks the run through closeout.
 
-That is SHADOWCASTERS.
+That is COMMUNITY HUB.
 
 ## What it should include
 
@@ -2785,7 +2785,7 @@ It must not. Use seasonal honors, typed event receipts, and no public shame boar
 
 ## What it is not
 
-SHADOWCASTERS NETWORK is not:
+COMMUNITY HUB is not:
 
 - random matchmaking
 - Discord-owned run truth
@@ -2829,4 +2829,4 @@ Chummer should not replace them.
 
 It should give them structure.
 
-**SHADOWCASTERS NETWORK is where Chummer becomes the layer that turns job packets into tables, tables into outcomes, and outcomes into a living world.**
+**COMMUNITY HUB is where Chummer becomes the layer that turns job packets into tables, tables into outcomes, and outcomes into a living world.**

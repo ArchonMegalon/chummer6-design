@@ -216,8 +216,9 @@ Use them when you want the theatrical layer instead of the dry faction file:
 
 Each promo rail is supposed to feel like propaganda with receipts:
 
-* a playable faction video
+* a first-party motion-video file
 * captions
+* a route-backed JSON brief
 * a storyboard fallback
 * a validation route back into the ledger
 

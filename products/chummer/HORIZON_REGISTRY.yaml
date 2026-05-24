@@ -38,8 +38,8 @@ horizons:
   table_scene: A player reconnects in the middle of a session and gets back in step without the GM rebuilding everything by memory.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-core
   - chummer6-mobile
@@ -74,8 +74,8 @@ horizons:
   table_scene: A player compares two builds and sees the tradeoffs, the math, and the likely trouble spots before the session starts.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-core
   - chummer6-ui
@@ -113,8 +113,8 @@ horizons:
   table_scene: A GM promotes a house-rule pack with visible impact, approval history, and reversible publication state.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-core
   - chummer6-hub
@@ -171,8 +171,8 @@ horizons:
   table_scene: A GM asks a tricky rules question and receives a cited answer built from prepared projections rather than raw rulebook dumping.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-core
   - chummer6-hub
@@ -214,8 +214,8 @@ horizons:
   table_scene: After a run, the GM exports a dossier-plus-recap packet with narration, evidence rooms, and share-safe previews.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-hub
   - chummer6-hub-registry
@@ -267,8 +267,8 @@ horizons:
   table_scene: A GM opens Seattle, sees which districts are hot, picks a job with grounded opposition and consequences, runs it, and later watches the map remember the fallout.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-hub
   - chummer6-core
@@ -539,15 +539,15 @@ horizons:
   family: table_coaching_social_dynamics
   canon_doc: products/chummer/horizons/table-pulse.md
   public_guide:
-    enabled: false
+    enabled: true
     order: 75
   pain_label: I know the table drifted, but I cannot say where the energy, pacing, or spotlight balance broke.
   wow_promise: GMs get opt-in post-session coaching about table dynamics without turning Chummer into surveillance.
   table_scene: After an online session, the GM opens a coaching packet and sees spotlight balance, pacing heat zones, disengagement markers, and one or two concrete suggestions for the next run.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-hub
   - chummer6-media-factory

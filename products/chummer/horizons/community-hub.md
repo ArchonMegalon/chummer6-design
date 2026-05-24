@@ -28,6 +28,8 @@ The public fantasy is:
 > Chummer gets the table into the session.
 > The outcome changes the city.
 
+COMMUNITY HUB is the product name for that lane.
+
 ## Likely owners
 
 * `chummer6-hub`

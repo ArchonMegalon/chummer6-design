@@ -94,7 +94,7 @@ horizons:
   - id: black-ledger
     file: black-ledger.md
     family: campaign world-state
-    state: horizon
+    state: signed_in_command_lane_live
     public_guide_allowed: true
     likely_owners:
       - chummer6-hub
@@ -109,7 +109,7 @@ horizons:
       - guided_mastery_substrate
       - evaluation_substrate
       - continuity_and_degraded_state_substrate
-    why_horizon: World-state and mission-market effects remain adjacent to campaign truth until practical GM prep, scheduling, and world-memory seams are proven.
+    why_horizon: Expand bounded coaching, aftermath follow-through, and world-memory depth now that the signed-in command lane is live.
 
   - id: community-hub
     file: community-hub.md
@@ -177,7 +177,7 @@ horizons:
     file: table-pulse.md
     family: table coaching and social dynamics
     state: horizon
-    public_guide_allowed: false
+    public_guide_allowed: true
     likely_owners:
       - chummer6-hub
       - chummer6-media-factory
