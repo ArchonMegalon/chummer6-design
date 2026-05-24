@@ -10,6 +10,14 @@ proof_scope_summary: Public proof language is scoped to the files, named flows, 
 flagship_claim_summary: Flagship wording is reserved for surfaces that currently satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml; preview artifacts, proof cards, captions, packet siblings, artifact-factory explainers, and fallback routes do not earn that claim by proximity.
 flagship_grade_summary: A public release is only truly ready when downloads, install/update help, recovery, support, and the product surfaces behind them feel like one premium, honest product rather than a technically functional preview bundle.
 flagship_acceptance_source: FLAGSHIP_RELEASE_ACCEPTANCE.yaml
+desktop_platform_matrix_source: DESKTOP_PLATFORM_ACCEPTANCE_MATRIX.yaml
+desktop_gold_acceptance_source: FLAGSHIP_RELEASE_ACCEPTANCE.yaml
+release_label_resolver_rules:
+  - Public labels must resolve from registry-backed release truth before any shelf, help, status, or packet copy is generated.
+  - The strongest allowed public label is bounded by the weakest proof-bearing surface in the same route family.
+  - A fallback, preview, account-gated, or setup-script lane must keep that weaker label even when adjacent proof artifacts look more complete.
+  - Gold or flagship wording is forbidden unless the current platform route, support posture, and desktop-head proof all satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml.
+  - If platform bytes, startup-smoke proof, support posture, and release-copy posture disagree, the resolver must fail closed to preview wording.
 desktop_flagship_head: Chummer.Avalonia
 desktop_fallback_head: Chummer.Blazor.Desktop
 desktop_cut_summary: The current desktop wave treats Avalonia as the primary desktop preview head, keeps Blazor Desktop as the bounded compatibility fallback only while Avalonia remains the promoted primary route, and reserves flagship wording for lanes that independently satisfy flagship acceptance.
