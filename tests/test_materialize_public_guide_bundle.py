@@ -270,5 +270,8 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
         "living-world-engagement",
     }.issubset(ids)
     assert "runner-passport" in alignment["sections_with_shipped_claims"]
-    assert "table-pulse" in alignment["disabled_horizons_with_receipts"]
+    assert "table-pulse" not in alignment["disabled_horizons_with_receipts"]
     assert "# Chummer6 Docs Generation Verdict" in verdict
+    assert (out_dir / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json").is_file()
+    assert (out_dir / "RUNNER_PASSPORT.md").is_file()
+    assert "`runner-passport`: `public_route_live` -> `public_route_live_page`" in verdict

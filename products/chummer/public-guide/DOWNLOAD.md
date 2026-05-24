@@ -11,7 +11,7 @@ This page tells you what you can download right now and which file to start with
 ## Current public download
 
 - Today: Usable preview.
-- Published: May 14, 2026 at 18:02 UTC.
+- Published: May 22, 2026 at 19:33 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows and Linux.
 - Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.

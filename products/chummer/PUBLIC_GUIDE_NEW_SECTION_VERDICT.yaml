@@ -2,26 +2,32 @@ version: chummer6-public-guide-new-section-verdict-v1
 sections:
   - id: table-pulse
     title: Table Pulse
-    public_guide_verdict: future_concept_disabled_horizon
-    page_class: future_concept_page
+    public_guide_verdict: public_safe_horizon_page
+    page_class: horizon_detail_page
     allowed_public_audience:
       - players
       - gms
       - supporters
     shipped_claim_allowed: false
-    expected_representation: omitted_with_receipt_until_public_guide_enabled
+    expected_representation: public_horizon_page_with_receipts_and_future_facing_boundaries
     required_proof:
-      - horizon_registry_public_guide_disabled
+      - horizon_registry_public_guide_enabled
+      - bounded_privacy_and_consent_posture
     canonical_sources:
       - products/chummer/HORIZON_REGISTRY.yaml
       - products/chummer/horizons/table-pulse.md
       - products/chummer/TABLE_PULSE_HEAT_REACTION_AUDIT_20260523.md
+      - products/chummer/TABLE_PULSE_OPTOUT_REMOTE_REACTION_AUDIT_20260523.md
+      - products/chummer/TABLE_PULSE_LIVING_WORLD_STACK_20260523.md
     forbidden_claims:
       - shipped live-session feature
-      - public guide ready now
+      - autonomous table mutation
+      - public guide claims of fully shipped table pulse
     notes: >
-      Table Pulse is in canon and queue work, but the horizon remains intentionally disabled for
-      public-guide projection until the public-safe and proof posture is deliberately widened.
+      Table Pulse may appear as a public-safe horizon page that explains heat, remote recipient
+      packets, and bounded remote reaction mini-games, but it must stay explicitly future-facing,
+      consent-bounded, and GM-governed rather than reading like a fully shipped live session
+      feature.
   - id: behuman-gm-sessions
     title: BeHuman GM Sessions
     public_guide_verdict: private_operator_surface
@@ -98,7 +104,7 @@ sections:
       - gms
       - supporters
     shipped_claim_allowed: true
-    expected_representation: omitted_with_receipt_until_page_registry_entry_exists
+    expected_representation: public_route_live_page_with_receipts
     required_proof:
       - public_route
       - live_receipt_rails
@@ -109,9 +115,8 @@ sections:
       - hidden provider-owned reputation truth
       - surveillance-first identity lane
     notes: >
-      Runner Passport is live and public-safe, but the current guide shell still needs a dedicated
-      public-page entry before the generator can present it as a first-class route instead of an
-      omitted-with-receipt feature.
+      Runner Passport is live and public-safe. The generated guide must carry it as a dedicated
+      first-class route with receipt rails instead of leaving it as an omitted-with-receipt stub.
   - id: living-world-engagement
     title: Living World Engagement
     public_guide_verdict: design_canon_only

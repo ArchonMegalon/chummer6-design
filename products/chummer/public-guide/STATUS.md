@@ -5,7 +5,7 @@ This is the blunt answer on what you can use today.
 ## Current picture
 
 - Today: Usable preview.
-- Published: May 14, 2026 at 18:02 UTC.
+- Published: May 22, 2026 at 19:33 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows and Linux.
 - Still missing from the public download page: macOS.

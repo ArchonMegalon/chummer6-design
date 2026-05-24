@@ -1,5 +1,21 @@
 # TABLE PULSE
 
+GMs get opt-in post-session coaching about table dynamics without turning Chummer into surveillance.
+
+![TABLE PULSE horizon art](../assets/horizons/table-pulse.png)
+
+## Why this matters
+
+I know the table drifted, but I cannot say where the energy, pacing, or spotlight balance broke.
+
+Picture the scene: After an online session, the GM opens a coaching packet and sees spotlight balance, pacing heat zones, disengagement markers, and one or two concrete suggestions for the next run.
+
+
+## Current stage
+
+- Today: Future concept.
+- Next: Research and prototypes.
+
 ## The problem
 
 The GM knows something went off after a session, but cannot clearly reconstruct where pacing dragged, who lost the room, or which scene actually landed.
@@ -111,7 +127,7 @@ See also: `HEDY_AI_TABLE_PULSE_DESIGN.md`
 * not player scoring
 * not moderation truth
 * not discipline automation
-* not canonical session truth
+* not durable session truth
 
 ## Why it is not ready yet
 

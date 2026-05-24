@@ -37,6 +37,7 @@ RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.ge
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
+PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
 
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
@@ -1306,6 +1307,152 @@ def _extract_markdown_sections(
     return sections
 
 
+def _build_release_truth_packet(
+    *,
+    progress: dict[str, object],
+    release_payload: dict[str, object],
+    landing_manifest: dict[str, object],
+    primary_route_registry: dict[str, object],
+    flagship_parity_registry: dict[str, object],
+) -> dict[str, object]:
+    artifacts = _release_artifacts(release_payload)
+    raw_status = str(release_payload.get("status") or "unpublished").strip()
+    phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
+    published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
+    build_label = _public_build_label(str(release_payload.get("version") or "").strip())
+    jobs = [
+        item
+        for item in (primary_route_registry.get("jobs") or [])
+        if isinstance(item, dict) and isinstance(item.get("primary_route"), dict)
+    ]
+    primary_head = str(jobs[0].get("primary_route", {}).get("head") or "").strip() if jobs else "Chummer.Avalonia"
+    fallback_heads: list[str] = []
+    for item in jobs:
+        for route in item.get("fallback_routes") or []:
+            if not isinstance(route, dict):
+                continue
+            head = str(route.get("head") or "").strip()
+            if head and head != "web_supporting_surface" and head not in fallback_heads:
+                fallback_heads.append(head)
+    parity_families = [
+        item
+        for item in (flagship_parity_registry.get("families") or [])
+        if isinstance(item, dict)
+    ]
+    families_below_gold = [
+        str(item.get("id") or "").strip()
+        for item in parity_families
+        if str(item.get("release_status") or "").strip() != "gold_ready"
+    ]
+    primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
+    fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
+    return {
+        "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
+        "phase_label": phase,
+        "published_at": published_at,
+        "build_label": build_label,
+        "release_status": _public_release_state(raw_status),
+        "release_status_slug": _release_status_slug(raw_status),
+        "available_platforms": _artifact_platform_labels(artifacts),
+        "missing_platforms": _missing_platform_labels(artifacts),
+        "shelf_truth_line": _public_shelf_truth_line(raw_status, artifacts),
+        "proof_scope_line": str(
+            landing_manifest.get("product_proof_scope_line")
+            or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
+        ).strip(),
+        "claim_boundary_line": str(
+            landing_manifest.get("product_flagship_boundary_line")
+            or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
+        ).strip(),
+        "desktop_pick_line": (
+            f"If you see both desktop apps, start with the {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
+            if fallback_apps
+            else f"If more than one desktop app is offered, start with the {primary_app}."
+        ),
+        "quality_gap_line": (
+            "Some rules coverage and release polish are still moving, so treat this as a preview with inspectable proof rather than a flagship-complete replacement."
+            if families_below_gold
+            else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
+        ),
+        "release_verification_summary": _public_release_proof_summary(release_payload),
+        "known_issue_summary": _public_known_issue_summary(release_payload),
+        "fix_availability_summary": _public_fix_summary(release_payload),
+        "public_download_authority": "https://chummer.run/downloads",
+        "primary_head": primary_head,
+        "fallback_heads": fallback_heads,
+    }
+
+
+def _generate_release_truth_packet(out_dir: Path, packet: dict[str, object]) -> None:
+    _write(out_dir / PUBLIC_RELEASE_TRUTH_PACKET_NAME, json.dumps(packet, indent=2, sort_keys=True))
+
+
+def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdict: dict[str, object]) -> set[str]:
+    generated: set[str] = set()
+    sections = new_section_verdict.get("sections") or []
+    if not isinstance(sections, list):
+        return generated
+    for entry in sections:
+        if not isinstance(entry, dict):
+            continue
+        section_id = str(entry.get("id") or "").strip()
+        verdict = str(entry.get("public_guide_verdict") or "").strip()
+        if section_id != "runner-passport" or verdict != "public_route_live":
+            continue
+        rows = [
+            _front_matter("Runner Passport", "products/chummer/RUNNER_PASSPORT_SPEC.md"),
+            "# Runner Passport",
+            "",
+            "Runner Passport is the public-safe trust card that lets a runner move between tables without restarting the whole approval story from scratch.",
+            "",
+            "## Public route",
+            "",
+            "- Live route: `/passport`",
+            "- Public posture: trust without surveillance",
+            "- Boundary: not a permanent social score and not a hidden provider-owned reputation engine",
+            "",
+            "## Why this matters",
+            "",
+            "Communities do not just care whether a runner exists. They care whether the runner is legal for the current rules lane, reviewed for the current community, and safe to fast-track into a run without Discord archaeology.",
+            "",
+            "## What it carries",
+            "",
+            "- Runner identity reference",
+            "- Active ruleset and environment fingerprint",
+            "- Approval state and review timestamp",
+            "- Known conflicts or unresolved warnings",
+            "- Quickstart or full-dossier posture",
+            "- Export or play-surface eligibility",
+            "- A bounded validity window",
+            "",
+            "## What it is for",
+            "",
+            "- Open-run application preflight",
+            "- Community rule-environment checks",
+            "- No-desktop participation paths",
+            "- Start-from-today adoption without rebuilding trust by hand",
+            "- Creator or organizer review lanes",
+            "",
+            "## Receipt rails",
+            "",
+            "- `/passport/receipts/runner_return_posture.md`",
+            "- `/passport/receipts/runner_return_posture.json`",
+            "- `/passport/receipts/cross_table_identity_boundary.md`",
+            "- `/passport/receipts/cross_table_identity_boundary.json`",
+            "- `/passport/receipts/privacy_safe_participation_proof.md`",
+            "- `/passport/receipts/privacy_safe_participation_proof.json`",
+            "",
+            "## Read next",
+            "",
+            "- [Black Ledger](HORIZONS/black-ledger.md)",
+            "- [Table Pulse](HORIZONS/table-pulse.md)",
+            "- [Help](HELP.md)",
+        ]
+        _write(out_dir / "RUNNER_PASSPORT.md", "\n".join(rows))
+        generated.add("runner-passport")
+    return generated
+
+
 def _generate_root(
     out_dir: Path,
     manifest: dict[str, object],
@@ -1317,6 +1464,8 @@ def _generate_root(
     release_payload: dict[str, object],
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
+    release_truth_packet: dict[str, object] | None = None,
+    generated_live_route_ids: set[str] | None = None,
 ) -> None:
     doc_path = out_dir / "README.md"
     parts = [item for item in (part_registry.get("parts") or []) if isinstance(item, dict)]
@@ -1333,55 +1482,14 @@ def _generate_root(
     proof_line = str(landing_manifest.get("proof_line") or "").strip()
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
-    published = _release_is_published(release_payload.get("status"))
-    shelf_truth = _public_shelf_truth_line(release_payload.get("status"), artifacts)
-    primary_jobs = [
-        item
-        for item in (primary_route_registry.get("jobs") or [])
-        if isinstance(item, dict) and isinstance(item.get("primary_route"), dict)
-    ]
-    primary_head = ""
-    fallback_heads: list[str] = []
-    if primary_jobs:
-        primary_head = str(primary_jobs[0].get("primary_route", {}).get("head") or "").strip()
-        for item in primary_jobs:
-            for route in item.get("fallback_routes") or []:
-                if not isinstance(route, dict):
-                    continue
-                head = str(route.get("head") or "").strip()
-                if head and head != "web_supporting_surface" and head not in fallback_heads:
-                    fallback_heads.append(head)
-    parity_families = [
-        item
-        for item in (flagship_parity_registry.get("families") or [])
-        if isinstance(item, dict)
-    ]
-    families_below_gold = [
-        str(item.get("id") or "").strip()
-        for item in parity_families
-        if str(item.get("release_status") or "").strip() != "gold_ready"
-    ]
-    primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
-    fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
-    missing_platforms = _missing_platform_labels(artifacts)
-    proof_scope_line = str(
-        landing_manifest.get("product_proof_scope_line")
-        or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
-    ).strip()
-    claim_boundary_line = str(
-        landing_manifest.get("product_flagship_boundary_line")
-        or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
-    ).strip()
-    desktop_pick_line = (
-        f"If you see both desktop apps, start with the {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
-        if fallback_apps
-        else f"If more than one desktop app is offered, start with the {primary_app}."
+    packet = release_truth_packet or _build_release_truth_packet(
+        progress=progress,
+        release_payload=release_payload,
+        landing_manifest=landing_manifest,
+        primary_route_registry=primary_route_registry,
+        flagship_parity_registry=flagship_parity_registry,
     )
-    quality_gap_line = (
-        "Some rules coverage and release polish are still moving, so treat this as a preview with inspectable proof rather than a flagship-complete replacement."
-        if families_below_gold
-        else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
-    )
+    missing_platforms = list(packet.get("missing_platforms") or [])
 
     cta_map = {
         "start_here": "- [Start here](START_HERE.md)",
@@ -1403,6 +1511,8 @@ def _generate_root(
         "- [Contact](CONTACT.md)",
         "- [Future ideas](HORIZONS/README.md)",
     ]
+    if generated_live_route_ids and "runner-passport" in generated_live_route_ids:
+        extra_routes.insert(1, "- [Runner Passport](RUNNER_PASSPORT.md)")
     for line in extra_routes:
         if line not in ordered_ctas:
             ordered_ctas.append(line)
@@ -1424,11 +1534,11 @@ def _generate_root(
         "## What is real now",
         "",
         "- Short answer: yes, as an early preview.",
-        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
-        f"- {proof_scope_line}",
-        f"- {claim_boundary_line}",
-        f"- {desktop_pick_line}",
-        f"- {quality_gap_line}",
+        f"- {str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
+        f"- {str(packet.get('proof_scope_line') or '').strip()}",
+        f"- {str(packet.get('claim_boundary_line') or '').strip()}",
+        f"- {str(packet.get('desktop_pick_line') or '').strip()}",
+        f"- {str(packet.get('quality_gap_line') or '').strip()}",
     ]
     if phase:
         rows.append(f"- Today: {phase}.")
@@ -1489,6 +1599,13 @@ def _generate_root(
     if hero_rows:
         rows.extend(["## First contact", ""])
         rows.extend(hero_rows)
+        rows.extend(
+            [
+                "",
+                "- [Watch the Chummer6 promo video](https://chummer.run/ledger#newsreel-player)",
+                "- [Open the Black Ledger command map](https://chummer.run/ledger/map#ledger-map)",
+            ]
+        )
     rows.extend(
         [
             "",
@@ -2071,7 +2188,19 @@ def _generate_horizon_pages(
         )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            if horizon_copy_slug in public_horizon_copy:
+            if slug == "table-pulse":
+                selected_headings = None
+                selected_heading_map = None
+                embedded = (
+                    _extract_markdown_sections(
+                        _load_text(canon_path),
+                        allowed_headings=None,
+                        heading_map=selected_heading_map,
+                    )
+                    if canon_path.is_file()
+                    else []
+                )
+            elif horizon_copy_slug in public_horizon_copy:
                 selected_headings = None
                 selected_heading_map = None
                 embedded = list(public_horizon_copy[horizon_copy_slug])
@@ -2185,10 +2314,16 @@ def _new_section_alignment_rows(
                 horizon_public_enabled = bool(public_guide.get("enabled"))
         if verdict == "future_concept_disabled_horizon":
             representation = "omitted_with_receipt"
+        elif verdict == "public_safe_horizon_page":
+            representation = (
+                "public_horizon_page"
+                if horizon_public_enabled
+                else "missing"
+            )
         elif verdict == "help_support_page_content":
             representation = "support_only_with_receipt"
         elif verdict == "public_route_live":
-            representation = "omitted_with_receipt"
+            representation = "missing"
         else:
             representation = "omitted_with_receipt"
         rows.append(
@@ -2214,8 +2349,17 @@ def _generate_new_section_receipts(
     horizon_registry: dict[str, object],
     new_section_verdict: dict[str, object],
     release_payload: dict[str, object],
+    generated_live_route_ids: set[str] | None = None,
 ) -> None:
     rows = _new_section_alignment_rows(new_section_verdict, horizon_registry)
+    generated_live_route_ids = generated_live_route_ids or set()
+    for row in rows:
+        if row["id"] == "runner-passport" and row["public_guide_verdict"] == "public_route_live":
+            row["representation_status"] = (
+                "public_route_live_page"
+                if "runner-passport" in generated_live_route_ids and (out_dir / "RUNNER_PASSPORT.md").is_file()
+                else "missing"
+            )
     truth_audit = {
         "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
         "release_source_status": str(release_payload.get("status") or "").strip(),
@@ -2253,6 +2397,8 @@ def _generate_new_section_receipts(
         not_ready_reasons.append("Table Pulse or BeHuman appears as shipped without implementation proof")
     if any(row["id"] == "answerly-support-humanizer" and row["shipped_claim_allowed"] for row in rows):
         not_ready_reasons.append("Answerly appears as shipped truth instead of bounded support")
+    if any(row["public_guide_verdict"] == "public_route_live" and row["representation_status"] != "public_route_live_page" for row in rows):
+        not_ready_reasons.append("live public routes are still missing dedicated public-guide pages")
     verdict_lines = [
         "# Chummer6 Docs Generation Verdict",
         "",
@@ -2293,6 +2439,13 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
     required_assets = _required_public_asset_paths(part_registry, horizon_registry)
+    release_truth_packet = _build_release_truth_packet(
+        progress=progress,
+        release_payload=release_payload,
+        landing_manifest=landing_manifest,
+        primary_route_registry=primary_route_registry,
+        flagship_parity_registry=flagship_parity_registry,
+    )
 
     _materialize_public_assets(
         repo_root,
@@ -2300,6 +2453,8 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         required_assets,
         derivative_fallback_root=derivative_fallback_root,
     )
+    generated_live_route_ids = _generate_live_route_pages(out_dir, repo_root, new_section_verdict)
+    _generate_release_truth_packet(out_dir, release_truth_packet)
     _generate_root(
         out_dir,
         manifest,
@@ -2311,6 +2466,8 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         release_payload,
         primary_route_registry,
         flagship_parity_registry,
+        release_truth_packet=release_truth_packet,
+        generated_live_route_ids=generated_live_route_ids,
     )
     _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
     _generate_status(out_dir, trust_payload, progress, release_payload)
@@ -2326,7 +2483,14 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         public_horizon_copy,
     )
     _generate_trust_pages(out_dir, trust_payload, release_payload)
-    _generate_new_section_receipts(out_dir, manifest, horizon_registry, new_section_verdict, release_payload)
+    _generate_new_section_receipts(
+        out_dir,
+        manifest,
+        horizon_registry,
+        new_section_verdict,
+        release_payload,
+        generated_live_route_ids=generated_live_route_ids,
+    )
     _generate_manifest(out_dir, manifest)
     _assert_public_bundle_language(out_dir)
 

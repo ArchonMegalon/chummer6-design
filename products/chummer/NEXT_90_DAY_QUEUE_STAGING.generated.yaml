@@ -7980,4 +7980,95 @@ items:
   - flagship_rest_soak_receipts:fleet
   - flagship_projection_stability:fleet
   - flagship_repeat_release_confidence:fleet
+- title: Canonize the docs-gold closeout bar from the newest EA generator reaudit so remaining Chummer6 public-guide deltas
+    are explicit, bounded, and fleet-executable instead of lingering as audit prose.
+  task: Canonize the docs-gold closeout bar from the newest EA generator reaudit so remaining Chummer6 public-guide deltas
+    are explicit, bounded, and fleet-executable instead of lingering as audit prose.
+  package_id: next90-m153-design-docs-gold-closeout-canon
+  work_task_id: '153.1'
+  frontier_id: 1531015301
+  milestone_id: 153
+  status: not_started
+  wave: W31
+  repo: chummer6-design
+  allowed_paths:
+  - products/chummer/CHUMMER6_DOCS_EA_GENERATOR_REAUDIT_V2_INTEGRATION_20260524.md
+  - products/chummer/PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml
+  - products/chummer/HORIZON_REGISTRY.yaml
+  - products/chummer/horizons
+  - scripts/ai
+  owned_surfaces:
+  - docs_gold_acceptance_canon:design
+  - new_section_verdict_canon:design
+- title: Generate README, STATUS, DOWNLOAD, FAQ, and adjacent public-guide pages from one release-truth packet so the
+    Chummer6 docs stop drifting between manually phrased surfaces.
+  task: Generate README, STATUS, DOWNLOAD, FAQ, and adjacent public-guide pages from one release-truth packet so the Chummer6
+    docs stop drifting between manually phrased surfaces.
+  package_id: next90-m153-guide-release-truth-unification
+  work_task_id: '153.2'
+  frontier_id: 1532015302
+  milestone_id: 153
+  status: not_started
+  wave: W31
+  repo: Chummer6
+  allowed_paths:
+  - .
+  - scripts
+  owned_surfaces:
+  - generated_release_truth_packet:guide
+  - public_docs_release_truth_alignment:guide
+- title: Surface Runner Passport honestly in the generated Chummer6 guide or emit an explicit omission receipt that stays
+    visible and machine-checked from the same verdict system.
+  task: Surface Runner Passport honestly in the generated Chummer6 guide or emit an explicit omission receipt that stays
+    visible and machine-checked from the same verdict system.
+  package_id: next90-m153-guide-runner-passport-surface-closeout
+  work_task_id: '153.3'
+  frontier_id: 1533015303
+  milestone_id: 153
+  status: not_started
+  wave: W31
+  repo: Chummer6
+  allowed_paths:
+  - .
+  - scripts
+  owned_surfaces:
+  - runner_passport_public_visibility:guide
+  - verdict_backed_omission_receipts:guide
+- title: Upgrade the EA docs generator from blacklist-heavy copy defense to positive semantic section contracts for verdict
+    classes like public_route_live, support_assistant_page, private_operator_surface, and design_canon_only.
+  task: Upgrade the EA docs generator from blacklist-heavy copy defense to positive semantic section contracts for verdict
+    classes like public_route_live, support_assistant_page, private_operator_surface, and design_canon_only.
+  package_id: next90-m153-ea-docs-generator-positive-contracts
+  work_task_id: '153.4'
+  frontier_id: 1534015304
+  milestone_id: 153
+  status: not_started
+  wave: W31
+  repo: executive-assistant
+  allowed_paths:
+  - scripts
+  - skills
+  - docs
+  owned_surfaces:
+  - positive_docs_generation_contracts:ea
+  - verdict_class_semantic_schemas:ea
+- title: Fail-close the final Chummer6 docs generation verdict so docs gold is only published when release truth, verdict
+    representation, and shipped-claim posture all agree.
+  task: Fail-close the final Chummer6 docs generation verdict so docs gold is only published when release truth, verdict
+    representation, and shipped-claim posture all agree.
+  package_id: next90-m153-fleet-docs-gold-closeout-gates
+  work_task_id: '153.5'
+  frontier_id: 1535015305
+  milestone_id: 153
+  status: not_started
+  wave: W31
+  repo: fleet
+  allowed_paths:
+  - scripts
+  - tests
+  - .codex-studio/published
+  - /docker/chummercomplete/chummer-design/products/chummer/CHUMMER6_DOCS_EA_GENERATOR_REAUDIT_V2_INTEGRATION_20260524.md
+  owned_surfaces:
+  - docs_gold_verdict_gate:fleet
+  - public_guide_release_truth_gates:fleet
 source_queue_fingerprint: e350c3be89d2f3ff2b04c700b0b4f43b554b9ad9

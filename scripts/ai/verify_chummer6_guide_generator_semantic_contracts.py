@@ -13,6 +13,10 @@ PAGE_REGISTRY_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_PAGE_REGISTRY.yaml"
 EXPORT_MANIFEST_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"
 
 POSITIVE_PAGE_SCHEMAS = {
+    "horizon_detail_page": {
+        "must_allow_audience": {"players", "gms"},
+        "must_require_verdicts": {"public_safe_horizon_page"},
+    },
     "support_assistant_page": {
         "must_allow_audience": {"players", "support"},
         "must_forbid_claims": {"rules authority", "release truth owner"},
@@ -24,6 +28,8 @@ POSITIVE_PAGE_SCHEMAS = {
     "live_session_feature_page": {
         "must_allow_audience": {"players"},
         "must_require_receipt_hint": "live_receipt_rails",
+        "must_require_expected_representation": "public_route_live_page_with_receipts",
+        "must_require_verdicts": {"public_route_live"},
     },
     "future_concept_page": {
         "must_allow_audience": {"players", "gms"},
@@ -85,6 +91,13 @@ def main() -> int:
         required_receipt_hint = contract.get("must_require_receipt_hint")
         if required_receipt_hint and required_receipt_hint not in required_proof:
             raise ValueError(f"{section_id}: page_class {page_class!r} requires proof hint {required_receipt_hint!r}")
+
+        required_expected_representation = contract.get("must_require_expected_representation")
+        expected_representation = str(entry.get("expected_representation") or "").strip()
+        if required_expected_representation and expected_representation != required_expected_representation:
+            raise ValueError(
+                f"{section_id}: expected_representation {expected_representation!r} does not satisfy {page_class} contract"
+            )
 
         if not forbidden_claims.issuperset(contract.get("must_forbid_claims", set())):
             raise ValueError(f"{section_id}: forbidden_claims does not satisfy {page_class} contract")
