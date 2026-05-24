@@ -39,6 +39,8 @@ It is the short-to-medium-form publishing studio, not a replacement for full boo
 
 JACKPOINT is still a horizon, but it is no longer only prose.
 The public artifact registry already carries first-party preview shapes for dossier briefs and mission-brief video lanes so the publication move stays inspectable before the full studio is promoted.
+The signed-in command lane is already live at `https://chummer.run/jackpoint`.
+That lane currently carries first-party briefing packets on real markdown and JSON routes without pretending the whole long-form publishing roadmap is done.
 
 ## Why it is not ready yet
 

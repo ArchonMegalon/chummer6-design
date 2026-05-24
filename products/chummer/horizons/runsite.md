@@ -36,6 +36,8 @@ RUNSITE is for briefing, planning, and spatial understanding before things go lo
 RUNSITE is still a horizon, but it already has first-party preview proof in the public artifact registry through runsite-pack framing and route-oriented artifact language.
 The spatial lane should now read as an inspectable preview path, not a blank future tease.
 Route overlays, pack inspection, and explorable tours remain the first-party truth surfaces; host clips stay secondary orientation siblings rather than tactical authority.
+The signed-in command lane is already live at `https://chummer.run/runsites`.
+That lane currently carries first-party runsite packs on real markdown and JSON routes without pretending the whole spatial roadmap is done.
 
 ## Why it is not ready yet
 

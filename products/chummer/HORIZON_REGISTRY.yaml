@@ -342,8 +342,8 @@ horizons:
   table_scene: A player finds a beginner-friendly run, applies with a legal runner or quickstart decker, gets scheduled, and the finished session changes the city.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-hub
   - chummer6-ui
@@ -409,8 +409,8 @@ horizons:
   table_scene: A GM sends an explorable safehouse pack with hotspots, floor plans, route overlays, and optional narration before the session.
   build_path:
     intent: eventual_product_lane
-    current_state: horizon
-    next_state: bounded_research
+    current_state: signed_in_command_lane_live
+    next_state: bounded_coaching_expansion
   owning_repos:
   - chummer6-hub
   - chummer6-media-factory

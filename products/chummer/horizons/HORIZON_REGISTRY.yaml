@@ -79,7 +79,7 @@ horizons:
   - id: jackpoint
     file: jackpoint.md
     family: artifact studio
-    state: horizon
+    state: signed_in_command_lane_live
     public_guide_allowed: true
     likely_owners:
       - chummer6-hub
@@ -89,7 +89,7 @@ horizons:
       - gm_operations_substrate
       - publication_and_prestige_substrate
       - continuity_and_degraded_state_substrate
-    why_horizon: Premium short-form publication only matters if the source trail and publish pipeline remain intact end to end.
+    why_horizon: Expand publication depth and editorial follow-through now that the signed-in command lane is live.
 
   - id: black-ledger
     file: black-ledger.md
@@ -114,7 +114,7 @@ horizons:
   - id: community-hub
     file: community-hub.md
     family: campaign world-state
-    state: horizon
+    state: signed_in_command_lane_live
     public_guide_allowed: true
     likely_owners:
       - chummer6-hub
@@ -128,12 +128,12 @@ horizons:
       - guided_mastery_substrate
       - evaluation_substrate
       - continuity_and_degraded_state_substrate
-    why_horizon: Recruitment, community-rule preflight, scheduling, and observer consent only work if run truth stays first-party and the practical table-finding loop proves out before the network widens.
+    why_horizon: Expand scheduling receipts, organizer follow-through, and community closeout depth now that the signed-in command lane is live.
 
   - id: runsite
     file: runsite.md
     family: spatial exploration
-    state: horizon
+    state: signed_in_command_lane_live
     public_guide_allowed: true
     likely_owners:
       - chummer6-hub
@@ -141,7 +141,7 @@ horizons:
     foundation_dependencies:
       - gm_operations_substrate
       - publication_and_prestige_substrate
-    why_horizon: Explorable location packs need stable campaign, asset, and publication foundations first.
+    why_horizon: Expand spatial packet depth and operator receipts now that the signed-in command lane is live.
 
   - id: runbook-press
     file: runbook-press.md
