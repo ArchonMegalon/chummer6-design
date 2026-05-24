@@ -26,9 +26,11 @@ ALLOWED_PAGE_CLASSES = {
     "live_session_feature_page",
     "future_concept_page",
     "living_world_surface_page",
+    "horizon_detail_page",
 }
 ALLOWED_VERDICTS = {
     "future_concept_disabled_horizon",
+    "public_safe_horizon_page",
     "private_operator_surface",
     "help_support_page_content",
     "design_canon_only",

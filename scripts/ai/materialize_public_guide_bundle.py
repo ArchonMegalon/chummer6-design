@@ -47,6 +47,8 @@ PUBLIC_PHASE_LABELS = {
 PUBLIC_HORIZON_STAGE_LABELS = {
     "horizon": "Future concept",
     "bounded_research": "Research and prototypes",
+    "signed_in_command_lane_live": "Signed-in command lane is live",
+    "bounded_coaching_expansion": "Expand bounded coaching and fallout follow-through",
 }
 RELEASE_PROOF_JOURNEY_LABELS = {
     "install_claim_restore_continue": "install, sign back in, restore, and keep going",
@@ -1397,59 +1399,175 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
             continue
         section_id = str(entry.get("id") or "").strip()
         verdict = str(entry.get("public_guide_verdict") or "").strip()
-        if section_id != "runner-passport" or verdict != "public_route_live":
+        if verdict != "public_route_live":
             continue
-        rows = [
-            _front_matter("Runner Passport", "products/chummer/RUNNER_PASSPORT_SPEC.md"),
-            "# Runner Passport",
-            "",
-            "Runner Passport is the public-safe trust card that lets a runner move between tables without restarting the whole approval story from scratch.",
-            "",
-            "## Public route",
-            "",
-            "- Live route: `/passport`",
-            "- Public posture: trust without surveillance",
-            "- Boundary: not a permanent social score and not a hidden provider-owned reputation engine",
-            "",
-            "## Why this matters",
-            "",
-            "Communities do not just care whether a runner exists. They care whether the runner is legal for the current rules lane, reviewed for the current community, and safe to fast-track into a run without Discord archaeology.",
-            "",
-            "## What it carries",
-            "",
-            "- Runner identity reference",
-            "- Active ruleset and environment fingerprint",
-            "- Approval state and review timestamp",
-            "- Known conflicts or unresolved warnings",
-            "- Quickstart or full-dossier posture",
-            "- Export or play-surface eligibility",
-            "- A bounded validity window",
-            "",
-            "## What it is for",
-            "",
-            "- Open-run application preflight",
-            "- Community rule-environment checks",
-            "- No-desktop participation paths",
-            "- Start-from-today adoption without rebuilding trust by hand",
-            "- Creator or organizer review lanes",
-            "",
-            "## Receipt rails",
-            "",
-            "- `/passport/receipts/runner_return_posture.md`",
-            "- `/passport/receipts/runner_return_posture.json`",
-            "- `/passport/receipts/cross_table_identity_boundary.md`",
-            "- `/passport/receipts/cross_table_identity_boundary.json`",
-            "- `/passport/receipts/privacy_safe_participation_proof.md`",
-            "- `/passport/receipts/privacy_safe_participation_proof.json`",
-            "",
-            "## Read next",
-            "",
-            "- [Black Ledger](HORIZONS/black-ledger.md)",
-            "- [Table Pulse](HORIZONS/table-pulse.md)",
-            "- [Help](HELP.md)",
-        ]
-        _write(out_dir / "RUNNER_PASSPORT.md", "\n".join(rows))
-        generated.add("runner-passport")
+        if section_id == "runner-passport":
+            rows = [
+                _front_matter("Runner Passport", "products/chummer/RUNNER_PASSPORT_SPEC.md"),
+                "# Runner Passport",
+                "",
+                "Runner Passport is the public-safe trust card that lets a runner move between tables without restarting the whole approval story from scratch.",
+                "",
+                "## Public route",
+                "",
+                "- Live route: `/passport`",
+                "- Public posture: trust without surveillance",
+                "- Boundary: not a permanent social score and not a hidden provider-owned reputation engine",
+                "",
+                "## Why this matters",
+                "",
+                "Communities do not just care whether a runner exists. They care whether the runner is legal for the current rules lane, reviewed for the current community, and safe to fast-track into a run without Discord archaeology.",
+                "",
+                "## What it carries",
+                "",
+                "- Runner identity reference",
+                "- Active ruleset and environment fingerprint",
+                "- Approval state and review timestamp",
+                "- Known conflicts or unresolved warnings",
+                "- Quickstart or full-dossier posture",
+                "- Export or play-surface eligibility",
+                "- A bounded validity window",
+                "",
+                "## What it is for",
+                "",
+                "- Open-run application preflight",
+                "- Community rule-environment checks",
+                "- No-desktop participation paths",
+                "- Start-from-today adoption without rebuilding trust by hand",
+                "- Creator or organizer review lanes",
+                "",
+                "## Connected lane",
+                "",
+                "Runner Passport is also the continuity rail for the signed-in Table Pulse loop.",
+                "",
+                "It now connects cleanly to:",
+                "",
+                "- the signed-in Table Pulse inbox",
+                "- leader briefing and faction command",
+                "- Living Newsroom watch framing",
+                "- governed aftermath return loops",
+                "",
+                "That means a remote reaction can stay public-safe on the Passport side while still returning to real command, review, and aftermath follow-through on first-party routes.",
+                "",
+                "## Receipt rails",
+                "",
+                "- `/passport/receipts/runner_return_posture.md`",
+                "- `/passport/receipts/runner_return_posture.json`",
+                "- `/passport/receipts/cross_table_identity_boundary.md`",
+                "- `/passport/receipts/cross_table_identity_boundary.json`",
+                "- `/passport/receipts/privacy_safe_participation_proof.md`",
+                "- `/passport/receipts/privacy_safe_participation_proof.json`",
+                "",
+                "## Read next",
+                "",
+                "- [Black Ledger notifications](/account/ledger/notifications)",
+                "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
+                "- [Work aftermath rail](/account/work#aftermath-packages)",
+                "- [Black Ledger](HORIZONS/black-ledger.md)",
+                "- [Table Pulse](HORIZONS/table-pulse.md)",
+                "- [Help](HELP.md)",
+            ]
+            _write(out_dir / "RUNNER_PASSPORT.md", "\n".join(rows))
+            generated.add("runner-passport")
+        elif section_id == "signal-deck":
+            rows = [
+                _front_matter("Signal Deck", "products/chummer/SIGNAL_DECK_SPEC.md"),
+                "# Signal Deck",
+                "",
+                "Signal Deck is the first-party command surface that keeps Table Pulse pressure, consequence posture, Living Newsroom framing, and aftermath continuity on one governed rail.",
+                "",
+                "## Public route",
+                "",
+                "- Live route: `/signal-deck`",
+                "- Public posture: first-party command continuity",
+                "- Boundary: not automatic world authority and not a hidden moderation engine",
+                "",
+                "## What it does",
+                "",
+                "- Keeps governed consequence pressure visible after inbox reactions",
+                "- Holds command posture on first-party routes instead of recap-only copy",
+                "- Connects leader briefing, Living Newsroom, Runner Passport, and aftermath return",
+                "",
+                "## Connected lane",
+                "",
+                "Signal Deck is the command-facing continuity rail for the signed-in Table Pulse loop.",
+                "",
+                "It now connects cleanly to:",
+                "",
+                "- the signed-in Table Pulse inbox",
+                "- leader briefing and GM cockpit",
+                "- Living Newsroom watch framing",
+                "- governed aftermath return loops",
+                "- Runner Passport continuity",
+                "",
+                "## Receipt rails",
+                "",
+                "- `/signal-deck/receipts/pressure_posture.md`",
+                "- `/signal-deck/receipts/pressure_posture.json`",
+                "- `/signal-deck/receipts/command_boundary.md`",
+                "- `/signal-deck/receipts/command_boundary.json`",
+                "- `/signal-deck/receipts/aftermath_return_loop.md`",
+                "- `/signal-deck/receipts/aftermath_return_loop.json`",
+                "",
+                "## Read next",
+                "",
+                "- [Black Ledger notifications](/account/ledger/notifications)",
+                "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
+                "- [Runner Passport](RUNNER_PASSPORT.md)",
+                "- [Work aftermath rail](/account/work#aftermath-packages)",
+                "- [Black Ledger](HORIZONS/black-ledger.md)",
+                "- [Table Pulse](HORIZONS/table-pulse.md)",
+            ]
+            _write(out_dir / "SIGNAL_DECK.md", "\n".join(rows))
+            generated.add("signal-deck")
+        elif section_id == "living-world-engagement":
+            rows = [
+                _front_matter("Living World", "products/chummer/LIVING_WORLD_SPEC.md"),
+                "# Living World",
+                "",
+                "Living World is the first-party between-session continuity route that keeps the watch package, Table Pulse follow-through, Runner Passport, and aftermath rail attached to the same governed turn.",
+                "",
+                "## Public route",
+                "",
+                "- Live route: `/living-world`",
+                "- Public posture: governed between-session continuity",
+                "- Boundary: not autonomous simulation and not detached world authority",
+                "",
+                "## What it does",
+                "",
+                "- Keeps Living Newsroom watch framing attached to the same turn as command follow-through",
+                "- Connects inbox reactions, leader command, Runner Passport, and aftermath return",
+                "- Gives the between-session lane a first-party page instead of leaving it as concept-only copy",
+                "",
+                "## Connected lane",
+                "",
+                "Living World now connects cleanly to:",
+                "",
+                "- the public-safe watch package",
+                "- the signed-in Table Pulse inbox",
+                "- leader briefing and faction command",
+                "- Runner Passport continuity",
+                "- governed aftermath return loops",
+                "",
+                "## Receipt rails",
+                "",
+                "- `/living-world/receipts/watch_package_posture.md`",
+                "- `/living-world/receipts/watch_package_posture.json`",
+                "- `/living-world/receipts/command_followthrough_boundary.md`",
+                "- `/living-world/receipts/command_followthrough_boundary.json`",
+                "- `/living-world/receipts/newsroom_aftermath_loop.md`",
+                "- `/living-world/receipts/newsroom_aftermath_loop.json`",
+                "",
+                "## Read next",
+                "",
+                "- [Signal Deck](SIGNAL_DECK.md)",
+                "- [Runner Passport](RUNNER_PASSPORT.md)",
+                "- [Black Ledger](HORIZONS/black-ledger.md)",
+                "- [Table Pulse](HORIZONS/table-pulse.md)",
+                "- [Work aftermath rail](/account/work#aftermath-packages)",
+            ]
+            _write(out_dir / "LIVING_WORLD.md", "\n".join(rows))
+            generated.add("living-world-engagement")
     return generated
 
 
@@ -1513,6 +1631,10 @@ def _generate_root(
     ]
     if generated_live_route_ids and "runner-passport" in generated_live_route_ids:
         extra_routes.insert(1, "- [Runner Passport](RUNNER_PASSPORT.md)")
+    if generated_live_route_ids and "signal-deck" in generated_live_route_ids:
+        extra_routes.insert(2, "- [Signal Deck](SIGNAL_DECK.md)")
+    if generated_live_route_ids and "living-world-engagement" in generated_live_route_ids:
+        extra_routes.insert(3, "- [Living World](LIVING_WORLD.md)")
     for line in extra_routes:
         if line not in ordered_ctas:
             ordered_ctas.append(line)
@@ -2358,6 +2480,18 @@ def _generate_new_section_receipts(
             row["representation_status"] = (
                 "public_route_live_page"
                 if "runner-passport" in generated_live_route_ids and (out_dir / "RUNNER_PASSPORT.md").is_file()
+                else "missing"
+            )
+        if row["id"] == "signal-deck" and row["public_guide_verdict"] == "public_route_live":
+            row["representation_status"] = (
+                "public_route_live_page"
+                if "signal-deck" in generated_live_route_ids and (out_dir / "SIGNAL_DECK.md").is_file()
+                else "missing"
+            )
+        if row["id"] == "living-world-engagement" and row["public_guide_verdict"] == "public_route_live":
+            row["representation_status"] = (
+                "public_route_live_page"
+                if "living-world-engagement" in generated_live_route_ids and (out_dir / "LIVING_WORLD.md").is_file()
                 else "missing"
             )
     truth_audit = {
