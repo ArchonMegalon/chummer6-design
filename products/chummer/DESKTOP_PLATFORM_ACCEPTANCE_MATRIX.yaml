@@ -52,13 +52,13 @@ platforms:
     updater_mode: in_app_or_installer_handoff
     supportability: secondary
   - id: macOS
-    public_shelf_status: account_gated_setup_script_preview
-    primary_package_kind: setup_script
+    public_shelf_status: public_archive_preview_until_installer_promotion
+    primary_package_kind: archive
     fallback_package_kinds:
-      - none
+      - archive
     startup_smoke_gate: required
     signing_posture: codesign_and_notarization_required
-    updater_mode: claimed_setup_script_then_dmg_handoff
-    supportability: account_gated_setup_script_preview
-    public_manifest_visibility: visible_as_account_gated_setup_script_preview
-    public_promotion_gate: account_gated_setup_script_with_bounded_preview_truth
+    updater_mode: promoted_installer_then_in_app_or_handoff
+    supportability: public_archive_preview
+    public_manifest_visibility: visible_as_public_archive_preview
+    public_promotion_gate: signed_notarized_installer_with_bounded_preview_truth

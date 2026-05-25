@@ -99,7 +99,7 @@ Public promotion requires the codesign, notarization, and release-truth path to 
 Until that gate closes:
 
 * built `.dmg` artifacts count as internal release evidence, smoke evidence, and promotion-prep input
-* public download manifests and public `/downloads` surfaces must not present macOS as currently available
+* public download manifests and public `/downloads` surfaces may list bounded macOS archive previews for inspection, recovery, or support-directed testing, but they must not present macOS as installer-ready or flagship-promoted
 * support copy must say that macOS availability depends on signed/notarized promotion, not on raw build success alone
 
 ## Artifact posture
@@ -130,4 +130,4 @@ For the current wave:
 * compatibility/fallback head: `Chummer.Blazor.Desktop`
 * Windows public lane: installer-first with portable `.exe` fallback allowed
 * Linux public lane: `.deb` first, bounded manual fallback allowed when the installer lane is not yet boring enough
-* macOS lane: public only after signed/notarized `.dmg` promotion, startup-smoke proof, and release-truth close
+* macOS lane: public archive preview may stay visible, but promoted installer-first release waits for signed/notarized `.dmg` promotion, startup-smoke proof, and release-truth close

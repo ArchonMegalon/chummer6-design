@@ -618,17 +618,21 @@ def _normalize_artifact(item: dict[str, object]) -> dict[str, object]:
         file_name = Path(raw_url).name
     platform = str(item.get("platform") or "").strip()
     arch = str(item.get("arch") or "").strip()
+    platform_id = str(item.get("platformId") or "").strip()
     platform_label = str(item.get("platformLabel") or "").strip()
     if not platform_label:
         if platform and arch:
             platform_label = f"{platform.title()} {arch}"
         else:
             platform_label = platform or "Unknown platform"
+    if not platform_id and platform and arch:
+        platform_id = f"{platform.lower()}-{arch.lower()}"
     return {
         "artifactId": str(item.get("artifactId") or item.get("id") or file_name or "artifact").strip(),
         "head": str(item.get("head") or "").strip(),
         "platform": platform,
         "arch": arch,
+        "platformId": platform_id,
         "platformLabel": platform_label,
         "kind": str(item.get("kind") or item.get("flavor") or "").strip(),
         "format": str(item.get("format") or "").strip(),
@@ -1097,6 +1101,57 @@ def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
     return f"Public installers are still missing for {_english_join(missing_platforms)}."
 
 
+def _public_missing_installer_lane_line(missing_platforms: list[str]) -> str:
+    if not missing_platforms:
+        return "Promoted installer coverage is visible on every promised desktop platform."
+    if len(missing_platforms) == 1:
+        return f"Still missing from the promoted installer lane: {missing_platforms[0]}."
+    return f"Still missing from the promoted installer lane: {_english_join(missing_platforms)}."
+
+
+def _public_architecture_scope_line(artifacts: list[dict[str, object]]) -> str:
+    rid_labels = {
+        "win-x64": "Windows x64",
+        "windows-x64": "Windows x64",
+        "win-arm64": "Windows ARM64",
+        "windows-arm64": "Windows ARM64",
+        "linux-x64": "Linux x64",
+        "linux-arm64": "Linux ARM64",
+        "osx-arm64": "macOS ARM64",
+        "macos-arm64": "macOS ARM64",
+        "osx-x64": "macOS x64",
+        "macos-x64": "macOS x64",
+    }
+    visible_rids: list[str] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        platform_id = str(artifact.get("platformId") or "").strip()
+        if platform_id and platform_id not in visible_rids:
+            visible_rids.append(platform_id)
+
+    visible_labels: list[str] = []
+    for rid in visible_rids:
+        label = rid_labels.get(rid)
+        if label and label not in visible_labels:
+            visible_labels.append(label)
+    missing_labels: list[str] = []
+    for rid, label in rid_labels.items():
+        if rid not in {"win-arm64", "windows-arm64", "linux-arm64", "osx-x64", "macos-x64"}:
+            continue
+        if rid in visible_rids or label in missing_labels:
+            continue
+        missing_labels.append(label)
+    if visible_labels and missing_labels:
+        return (
+            f"Current public desktop scope covers {_english_join(visible_labels)} only. "
+            f"No public route is posted for {_english_join(missing_labels)} on the current shelf."
+        )
+    if visible_labels:
+        return f"Current public desktop scope covers {_english_join(visible_labels)}."
+    return "No public desktop architecture route is posted on the current shelf."
+
+
 def _public_desktop_app_name(value: object) -> str:
     cleaned = str(value or "").strip()
     mapping = {
@@ -1445,6 +1500,8 @@ def _build_release_truth_packet(
         "release_verification_summary": _public_release_proof_summary(release_payload),
         "known_issue_summary": _public_known_issue_summary(release_payload),
         "fix_availability_summary": _public_fix_summary(release_payload),
+        "missing_installer_lane_line": _public_missing_installer_lane_line(missing_platforms),
+        "architecture_scope_line": _public_architecture_scope_line(artifacts),
         "public_download_authority": "https://chummer.run/downloads",
         "primary_head": primary_head,
         "fallback_heads": fallback_heads,
@@ -1733,10 +1790,9 @@ def _generate_root(
     rows.extend(
         [
             (
-                f"- Still missing from the public download page: {_english_join(missing_platforms)}."
-                if missing_platforms
-                else "- Public downloads are visible on every promised desktop platform."
+                f"- {str(packet.get('missing_installer_lane_line') or _public_missing_installer_lane_line(missing_platforms)).strip()}"
             ),
+            f"- {str(packet.get('architecture_scope_line') or _public_architecture_scope_line(artifacts)).strip()}",
             "- Help, contact, privacy, and terms pages are live.",
             (
                 "- More campaign-ledger depth and steadier desktop polish are still coming."
@@ -1957,8 +2013,8 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         if release_status:
             rows.append(f"- Release status: {release_status}.")
         rows.append(f"- {shelf_truth}")
-        if missing_platforms:
-            rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
+        rows.append(f"- {_public_missing_installer_lane_line(missing_platforms)}")
+        rows.append(f"- {_public_architecture_scope_line(artifacts)}")
         if release_verification:
             rows.append(f"- Recent checks: {release_verification}")
         if known_issues:
@@ -2052,7 +2108,7 @@ def _generate_download(
         ),
         "macos": (
             "macOS",
-            "There is no public macOS download today.",
+            "There is no public macOS installer today. Only archive previews are posted.",
         ),
     }
     section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
