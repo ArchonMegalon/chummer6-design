@@ -302,6 +302,42 @@ public_routes:
     must_exist: true
     placeholder_allowed: false
     placeholder_requirements: artifact detail only
+  - path: /ledger/newsroom
+    title: Black Ledger newsroom redirect
+    audience: public
+    purpose: public_newsroom_entry
+    requires_auth: false
+    guest_fallback: /ledger/newsroom
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: redirect to the current public-safe newsroom episode only
+  - path: /ledger/newsroom/turn-1-newsreel
+    title: Black Ledger newsroom episode
+    audience: public
+    purpose: public_newsroom_watch
+    requires_auth: false
+    guest_fallback: /ledger/newsroom/turn-1-newsreel
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: public-safe newsroom watch surface with transcript, receipts, and disclosure only
+  - path: /ledger/newsroom/turn-1-newsreel/transcript
+    title: Black Ledger newsroom transcript
+    audience: public
+    purpose: public_newsroom_support_file
+    requires_auth: false
+    guest_fallback: /ledger/newsroom/turn-1-newsreel/transcript
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: redirect to the published VTT for the current public-safe newsroom episode only
+  - path: /ledger/newsroom/turn-1-newsreel/receipts
+    title: Black Ledger newsroom receipts
+    audience: public
+    purpose: public_newsroom_receipts
+    requires_auth: false
+    guest_fallback: /ledger/newsroom/turn-1-newsreel/receipts
+    must_exist: true
+    placeholder_allowed: false
+    placeholder_requirements: public-safe newsroom validation packet only
   - path: /roadmap/nexus-pan
     title: NEXUS-PAN detail
     audience: public
