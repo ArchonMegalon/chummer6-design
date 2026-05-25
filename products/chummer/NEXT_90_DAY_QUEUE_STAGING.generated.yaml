@@ -8071,4 +8071,154 @@ items:
   owned_surfaces:
   - docs_gold_verdict_gate:fleet
   - public_guide_release_truth_gates:fleet
+- title: Fail-close PWA notification assets and actions so push, click, and close stay first-party, route-bounded, and flagship-safe.
+  task: Fail-close PWA notification assets and actions so push, click, and close stay first-party, route-bounded, and flagship-safe.
+  package_id: next90-m154-hub-pwa-notification-asset-and-action-bounds
+  work_task_id: '154.1'
+  frontier_id: 1541015401
+  milestone_id: 154
+  status: not_started
+  wave: W32
+  repo: chummer6-hub
+  allowed_paths:
+  - Chummer.Run.Api/wwwroot/service-worker.js
+  - scripts
+  - tests
+  owned_surfaces:
+  - pwa_notification_asset_bounds:hub
+  - pwa_notification_action_routes:hub
+- title: Add real browser/runtime flagship proof for the PWA command rail instead of relying on source-text assertions alone.
+  task: Add real browser/runtime flagship proof for the PWA command rail instead of relying on source-text assertions alone.
+  package_id: next90-m154-hub-pwa-runtime-browser-proof
+  work_task_id: '154.2'
+  frontier_id: 1542015402
+  milestone_id: 154
+  status: not_started
+  wave: W32
+  repo: chummer6-hub
+  allowed_paths:
+  - tests
+  - scripts
+  - .codex-studio/published
+  owned_surfaces:
+  - pwa_runtime_browser_proof:hub
+  - flagship_pwa_acceptance:hub
+- title: Make the public-guide sync fail on stale destination files and keep mirrored docs trees exact instead of append-only.
+  task: Make the public-guide sync fail on stale destination files and keep mirrored docs trees exact instead of append-only.
+  package_id: next90-m154-guide-public-guide-sync-prune-contract
+  work_task_id: '154.3'
+  frontier_id: 1543015403
+  milestone_id: 154
+  status: not_started
+  wave: W32
+  repo: Chummer6
+  allowed_paths:
+  - scripts
+  - HORIZONS
+  - assets
+  owned_surfaces:
+  - public_guide_sync_prune_contract:guide
+  - stale_docs_rejection:guide
+- title: Collapse duplicated horizon route-stage copy into one proof-backed source so flagship docs cannot drift between canon and copy-pack layers.
+  task: Collapse duplicated horizon route-stage copy into one proof-backed source so flagship docs cannot drift between canon and copy-pack layers.
+  package_id: next90-m154-design-horizon-route-stage-single-source
+  work_task_id: '154.4'
+  frontier_id: 1544015404
+  milestone_id: 154
+  status: not_started
+  wave: W32
+  repo: chummer6-design
+  allowed_paths:
+  - products/chummer/HORIZON_PUBLIC_COPY_PACK.md
+  - products/chummer/HORIZON_REGISTRY.yaml
+  - products/chummer/horizons
+  - scripts/ai
+  owned_surfaces:
+  - horizon_route_stage_single_source:design
+  - flagship_horizon_copy_coherence:design
+- title: Add a fleet-owned flagship gold gate that rejects release claims when PWA runtime proof, docs sync exactness, and route-stage truth disagree.
+  task: Add a fleet-owned flagship gold gate that rejects release claims when PWA runtime proof, docs sync exactness, and route-stage truth disagree.
+  package_id: next90-m154-fleet-flagship-gold-coherence-gates
+  work_task_id: '154.5'
+  frontier_id: 1545015405
+  milestone_id: 154
+  status: not_started
+  wave: W32
+  repo: fleet
+  allowed_paths:
+  - scripts
+  - tests
+  - .codex-studio/published
+  - /docker/chummercomplete/_completion/gold_readiness_closure
+  owned_surfaces:
+  - flagship_gold_coherence_gate:fleet
+  - pwa_docs_route_truth_gate:fleet
+- title: Prevent authenticated command-lane pages from being replayed out of shared PWA caches so offline support does not leak signed-in account surfaces after sign-out.
+  task: Prevent authenticated command-lane pages from being replayed out of shared PWA caches so offline support does not leak signed-in account surfaces after sign-out.
+  package_id: next90-m155-hub-pwa-auth-cache-privacy-bounds
+  work_task_id: '155.1'
+  frontier_id: 1551015501
+  milestone_id: 155
+  status: not_started
+  wave: W33
+  repo: chummer6-hub
+  allowed_paths:
+  - Chummer.Run.Api/wwwroot/service-worker.js
+  - scripts
+  - tests
+  owned_surfaces:
+  - pwa_authenticated_cache_privacy_bounds:hub
+  - offline_account_surface_fail_closed:hub
+- title: Upgrade the PWA flagship proof from route and source-text checks to real browser assertions for role entry, manifest registration, service worker presence, and notification-route behavior.
+  task: Upgrade the PWA flagship proof from route and source-text checks to real browser assertions for role entry, manifest registration, service worker presence, and notification-route behavior.
+  package_id: next90-m155-hub-pwa-runtime-role-contract-proof
+  work_task_id: '155.2'
+  frontier_id: 1552015502
+  milestone_id: 155
+  status: not_started
+  wave: W33
+  repo: chummer6-hub
+  allowed_paths:
+  - tests
+  - scripts
+  - .codex-studio/published
+  owned_surfaces:
+  - pwa_role_route_runtime_contracts:hub
+  - browser_level_pwa_acceptance:hub
+- title: Replace brittle string-rewrite guide shell transforms with structured section-aware rendering so flagship docs cannot silently drift on harmless upstream wording edits.
+  task: Replace brittle string-rewrite guide shell transforms with structured section-aware rendering so flagship docs cannot silently drift on harmless upstream wording edits.
+  package_id: next90-m155-guide-structured-shell-transform-contracts
+  work_task_id: '155.3'
+  frontier_id: 1553015503
+  milestone_id: 155
+  status: not_started
+  wave: W33
+  repo: Chummer6
+  allowed_paths:
+  - scripts
+  - README.md
+  - STATUS.md
+  - HELP.md
+  - FAQ.md
+  - DOWNLOAD.md
+  owned_surfaces:
+  - structured_public_guide_shell_transforms:guide
+  - flagship_shell_transform_drift_guard:guide
+- title: Add a fleet-owned flagship gold privacy-and-proof-depth gate that rejects release claims when authenticated cache bounds, browser-runtime PWA proof, and structured docs-shell rendering are not all green together.
+  task: Add a fleet-owned flagship gold privacy-and-proof-depth gate that rejects release claims when authenticated cache bounds, browser-runtime PWA proof, and structured docs-shell rendering are not all green together.
+  package_id: next90-m155-fleet-flagship-gold-privacy-proof-gates
+  work_task_id: '155.4'
+  frontier_id: 1554015504
+  milestone_id: 155
+  status: not_started
+  wave: W33
+  repo: fleet
+  allowed_paths:
+  - scripts
+  - tests
+  - .codex-studio/published
+  - /docker/chummercomplete/_completion/gold_readiness_closure
+  owned_surfaces:
+  - flagship_gold_privacy_gate:fleet
+  - flagship_gold_proof_depth_gate:fleet
 source_queue_fingerprint: e350c3be89d2f3ff2b04c700b0b4f43b554b9ad9

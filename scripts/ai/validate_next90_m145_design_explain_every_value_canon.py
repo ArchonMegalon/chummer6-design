@@ -254,7 +254,7 @@ def main() -> int:
             errors.append("registry_wrong_work_task_owner")
         if work_task.get("title") != EXPECTED_TITLE:
             errors.append("registry_wrong_work_task_title")
-        if work_task.get("status") != "in_progress":
+        if work_task.get("status") not in {"in_progress", "complete"}:
             errors.append("registry_wrong_work_task_status")
         evidence = work_task.get("evidence")
         if not isinstance(evidence, list) or len(evidence) < 6:
@@ -273,7 +273,7 @@ def main() -> int:
             errors.append("queue_wrong_frontier")
         if queue_row.get("milestone_id") != EXPECTED_MILESTONE_ID:
             errors.append("queue_wrong_milestone_id")
-        if queue_row.get("status") != "in_progress":
+        if queue_row.get("status") != "complete":
             errors.append("queue_wrong_status")
         if queue_row.get("wave") != "W28":
             errors.append("queue_wrong_wave")

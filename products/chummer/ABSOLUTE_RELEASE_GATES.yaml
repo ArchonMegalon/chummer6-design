@@ -1,6 +1,13 @@
 schema: chummer.absolute_release_gates.v1
 run_id: 20260509T093335Z
 generated_at: '2026-05-09T09:40:01Z'
+snapshot_scope: historical_release_gate_snapshot
+current_certification_status: not_current_release_certification
+current_certification_note: >-
+  This file is a historical gate snapshot from 2026-05-09, not a certification
+  of the exact bytes currently on the published shelf. Current release truth must
+  still clear the live desktop tuple coverage and startup-smoke contract in
+  chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json.
 gates:
 - id: gate-public-no-overclaim
   owner: chummer6-design/chummer6-hub/Chummer6

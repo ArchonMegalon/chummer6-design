@@ -14,9 +14,9 @@ The remaining problem is not repo architecture. It is the gap between **structur
 
 The current system risks saying “complete” too early because:
 - Fleet milestone coverage is green, but flagship readiness requires stricter lived-product proof.
-- `FLAGSHIP_PARITY_REGISTRY.yaml` marks all in-scope families `gold_ready`, but those statuses depend on generated proof artifacts that must remain current, visible, and reproducible.
+- `FLAGSHIP_PARITY_REGISTRY.yaml` now has to keep the flagship families below `gold_ready` until the published desktop tuple truth, public migration copy, and packaged release proof all agree.
 - `DENSE_WORKBENCH_BUDGET.yaml` and `VETERAN_FIRST_MINUTE_GATE.yaml` are excellent, but they must be enforced in CI and release promotion, not just cited.
-- `Chummer6/DOWNLOAD.md` still says the promoted release channel is unpublished and only Linux preview artifacts are visible, while design says Windows is the primary promoted desktop preview lane.
+- Release-facing desktop truth can still drift if generated public-guide copy falls back to raw artifact presence instead of promoted desktop tuple coverage.
 - The Avalonia client is the named flagship head, but it must not feel noisy, spacious, dashboard-like, or web-shell-like. It must feel like a modern dense Chummer desktop tool.
 
 The next program phase should be called:

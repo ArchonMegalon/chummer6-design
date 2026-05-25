@@ -179,7 +179,7 @@ def main() -> int:
             errors.append(f"trust_missing_marker:{marker}")
 
     for marker in (
-        "Downloads are currently live for Windows, Linux, and macOS.",
+        "Downloads are currently live for Windows and Linux, but macOS still lacks the promoted desktop installer proof this release says they need.",
         "Portable `.exe` handoff is a bounded fallback, not the primary public CTA.",
         "A current public download is Windows desktop",
     ):

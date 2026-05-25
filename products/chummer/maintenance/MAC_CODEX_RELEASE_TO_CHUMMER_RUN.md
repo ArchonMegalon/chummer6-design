@@ -107,3 +107,26 @@ Once the upload succeeds:
 The bootstrap now treats the canonical `RELEASE_CHANNEL.generated.json` projection as the success gate.
 If the compatibility `releases.json` shelf lags briefly after publish, the run logs a warning instead of failing.
 Set `CHUMMER_RELEASE_VERIFY_REQUIRE_COMPATIBILITY_PROJECTION=1` only when you explicitly want compatibility drift to fail the run.
+
+## Final public-stable closeout
+
+If macOS is the last missing required desktop tuple, do not hand-edit the published registry shelf.
+
+From a Mac host that just minted a fresh passing `public_stable` startup-smoke receipt for
+`chummer-avalonia-osx-arm64-installer.dmg`, run:
+
+```bash
+cd /docker/chummercomplete
+chmod +x chummer-hub-registry/scripts/release/refresh_public_desktop_truth_after_mac_smoke.sh
+chummer-hub-registry/scripts/release/refresh_public_desktop_truth_after_mac_smoke.sh
+```
+
+That wrapper will:
+
+1. refuse to continue unless the mac startup-smoke receipt is passing, fresh, `public_stable`, and digest-bound to the current `.dmg`
+2. rerun the canonical desktop truth refresh
+3. keep pruning any installer bytes that do not make it into manifest truth
+4. resync the public guide/docs after the shelf changes
+
+The current Linux control session can only close Windows and Linux honestly.
+macOS promotion still requires a real fresh `public_stable` receipt from a Mac host.

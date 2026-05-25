@@ -225,6 +225,7 @@ python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.p
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
+python3 -m unittest "$repo_root/scripts/ai/test_materialize_public_guide_bundle_release_truth.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null; then

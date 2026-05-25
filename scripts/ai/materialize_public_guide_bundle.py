@@ -967,9 +967,7 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
         if "macos" in lowered or "osx" in lowered:
             platforms.append("macOS")
         if platforms:
-            if len(platforms) == 1:
-                return f"There is still no public {platforms[0]} download."
-            return f"Public downloads are still missing for {_english_join(platforms)}."
+            return _public_missing_installer_warning_line(platforms)
         return "Some promised desktop downloads are still missing."
     if not _release_is_published(release_payload.get("status")) and _release_artifacts(release_payload):
         if "shelf is still empty" in cleaned.lower():
@@ -984,7 +982,7 @@ def _public_fix_summary(release_payload: dict[str, object]) -> str:
     if not _release_is_published(release_payload.get("status")):
         return "Fix notices stay tentative until the promoted release channel is actually published."
     if "required desktop tuple coverage is complete" in cleaned.lower():
-        return "That warning will stay in place until the missing desktop downloads are posted."
+        return "That warning will stay in place until the missing desktop installer proof is posted."
     if cleaned.startswith("Only send fixed notices after"):
         return "Only expect fix notices after the affected download is available on the same public shelf."
     return cleaned
@@ -1001,6 +999,39 @@ def _public_download_summary(artifacts: list[dict[str, object]]) -> str:
     if len(summaries) == 1:
         return summaries[0] + "."
     return _english_join(summaries) + "."
+
+
+def _desktop_tuple_coverage(release_payload: dict[str, object]) -> dict[str, object]:
+    coverage = release_payload.get("desktopTupleCoverage")
+    return coverage if isinstance(coverage, dict) else {}
+
+
+def _promoted_platform_labels(release_payload: dict[str, object], artifacts: list[dict[str, object]]) -> list[str]:
+    coverage = _desktop_tuple_coverage(release_payload)
+    promoted = {
+        str(item).strip()
+        for item in (coverage.get("promotedPlatformHeadRidTuples") or [])
+        if isinstance(item, str) and item.strip()
+    }
+    labels: list[str] = []
+    for key, label in (("windows", "Windows"), ("linux", "Linux"), ("macos", "macOS")):
+        if any(entry.endswith(f":{key}") for entry in promoted):
+            labels.append(label)
+    return labels or _artifact_platform_labels(artifacts)
+
+
+def _missing_required_platform_labels(release_payload: dict[str, object], artifacts: list[dict[str, object]]) -> list[str]:
+    coverage = _desktop_tuple_coverage(release_payload)
+    missing = {
+        str(item).strip()
+        for item in (coverage.get("missingRequiredPlatformHeadRidTuples") or [])
+        if isinstance(item, str) and item.strip()
+    }
+    labels: list[str] = []
+    for key, label in (("windows", "Windows"), ("linux", "Linux"), ("macos", "macOS")):
+        if any(entry.endswith(f":{key}") for entry in missing):
+            labels.append(label)
+    return labels or _missing_platform_labels(artifacts)
 
 
 def _artifact_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
@@ -1021,9 +1052,22 @@ def _missing_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
     return labels
 
 
-def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]]) -> str:
+def _public_shelf_truth_line(
+    status: object,
+    artifacts: list[dict[str, object]],
+    available_platforms: list[str] | None = None,
+    missing_platforms: list[str] | None = None,
+) -> str:
     published = _release_is_published(status)
-    platforms = _artifact_platform_labels(artifacts)
+    platforms = list(available_platforms or _artifact_platform_labels(artifacts))
+    missing = list(missing_platforms or [])
+    if published and platforms and missing:
+        missing_verb = "lacks" if len(missing) == 1 else "lack"
+        return (
+            f"Downloads are currently live for {_english_join(platforms)}, "
+            f"but {_english_join(missing)} still {missing_verb} the promoted desktop installer proof this release says "
+            "they need."
+        )
     if published and platforms:
         return f"Downloads are currently live for {_english_join(platforms)}."
     if published:
@@ -1031,6 +1075,26 @@ def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]])
     if platforms:
         return f"Preview downloads are visible for {_english_join(platforms)}, but the main release is not published yet."
     return "No downloads are posted right now."
+
+
+def _public_preview_builds_line(available_platforms: list[str]) -> str:
+    if available_platforms:
+        return f"Today you can try preview builds on {_english_join(available_platforms)}."
+    return "There are no public downloads posted right now, so this is not a practical switch yet."
+
+
+def _public_wait_before_switch_line(missing_platforms: list[str]) -> str:
+    if missing_platforms:
+        return f"If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
+    return "Public downloads are already visible on every promised desktop platform."
+
+
+def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
+    if not missing_platforms:
+        return ""
+    if len(missing_platforms) == 1:
+        return f"There is still no public {missing_platforms[0]} installer."
+    return f"Public installers are still missing for {_english_join(missing_platforms)}."
 
 
 def _public_desktop_app_name(value: object) -> str:
@@ -1348,6 +1412,8 @@ def _build_release_truth_packet(
     ]
     primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
     fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
+    available_platforms = _promoted_platform_labels(release_payload, artifacts)
+    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
     return {
         "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
         "phase_label": phase,
@@ -1355,9 +1421,9 @@ def _build_release_truth_packet(
         "build_label": build_label,
         "release_status": _public_release_state(raw_status),
         "release_status_slug": _release_status_slug(raw_status),
-        "available_platforms": _artifact_platform_labels(artifacts),
-        "missing_platforms": _missing_platform_labels(artifacts),
-        "shelf_truth_line": _public_shelf_truth_line(raw_status, artifacts),
+        "available_platforms": available_platforms,
+        "missing_platforms": missing_platforms,
+        "shelf_truth_line": _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms),
         "proof_scope_line": str(
             landing_manifest.get("product_proof_scope_line")
             or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
@@ -1801,8 +1867,8 @@ def _generate_from_chummer5a_to_chummer6(
     ]
     primary_app = _public_desktop_app_name(primary_head)
     fallback_app = _english_join([_public_desktop_app_name(item) for item in fallback_heads])
-    available_platforms = _artifact_platform_labels(artifacts)
-    missing_platforms = _missing_platform_labels(artifacts)
+    available_platforms = _promoted_platform_labels(release_payload, artifacts)
+    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
     rules_gap_line = (
         "Some rules coverage is still moving, so keep treating this as a preview."
         if below_gold
@@ -1834,22 +1900,14 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         "## Should you switch today?",
         "",
-        (
-            f"- Today you can try preview builds on {_english_join(available_platforms)}."
-            if available_platforms
-            else "- There are no public downloads posted right now, so this is not a practical switch yet."
-        ),
-        (
-            f"- If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
-            if missing_platforms
-            else "- Public downloads are already visible on every promised desktop platform."
-        ),
+        f"- {_public_preview_builds_line(available_platforms)}",
+        f"- {_public_wait_before_switch_line(missing_platforms)}",
         "- If you like trying real previews and helping shape the rough edges, it is worth a serious look.",
         "- If you need a fully settled, every-platform replacement for Chummer5a right now, wait.",
         "",
         "## What is still rough",
         "",
-        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts, available_platforms, missing_platforms)}",
         f"- {rules_gap_line}",
         f"- {proof_boundary_line}",
         "- It should still be read as a serious preview, not a finished no-step-back replacement yet.",
@@ -1868,16 +1926,17 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     artifacts = _release_artifacts(release_payload)
+    available_platforms = _promoted_platform_labels(release_payload, artifacts)
+    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
     published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
     raw_status = str(release_payload.get("status") or "unpublished").strip()
     release_status = _public_release_state(raw_status)
     release_verification = _public_release_proof_summary(release_payload)
     published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
-    shelf_truth = _public_shelf_truth_line(raw_status, artifacts)
+    shelf_truth = _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms)
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
-    missing_platforms = _missing_platform_labels(artifacts)
     rows = [
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
@@ -1962,6 +2021,8 @@ def _generate_download(
 ) -> None:
     phase = _public_phase_label(progress.get("phase_label") or "Current release status")
     artifacts = _release_artifacts(release_payload)
+    available_platforms = _promoted_platform_labels(release_payload, artifacts)
+    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
     published_at = str(release_payload.get("publishedAt") or "").strip()
@@ -1996,7 +2057,7 @@ def _generate_download(
     }
     section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
-    shelf_truth = _public_shelf_truth_line(status, artifacts)
+    shelf_truth = _public_shelf_truth_line(status, artifacts, available_platforms, missing_platforms)
     flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
     fallback_head = str(release_experience.get("desktop_fallback_head") or "Chummer.Blazor.Desktop").strip()
 
@@ -2310,11 +2371,7 @@ def _generate_horizon_pages(
         )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            if horizon_copy_slug in public_horizon_copy:
-                selected_headings = None
-                selected_heading_map = None
-                embedded = list(public_horizon_copy[horizon_copy_slug])
-            elif slug in {"karma-forge", "black-ledger"}:
+            if slug in {"karma-forge", "black-ledger", "table-pulse"}:
                 selected_headings = None
                 selected_heading_map = None
                 embedded = (
@@ -2326,6 +2383,10 @@ def _generate_horizon_pages(
                     if canon_path.is_file()
                     else []
                 )
+            elif horizon_copy_slug in public_horizon_copy:
+                selected_headings = None
+                selected_heading_map = None
+                embedded = list(public_horizon_copy[horizon_copy_slug])
             else:
                 selected_headings = {
                     "Table pain",
