@@ -8,6 +8,10 @@ current_certification_note: >-
   of the exact bytes currently on the published shelf. Current release truth must
   still clear the live desktop tuple coverage and startup-smoke contract in
   chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json.
+  The current preview macOS ARM64 proof lane did later complete successfully in
+  run-20260525-210241, but that newer preview success is separate from this
+  historical whole-product gate snapshot and does not by itself certify
+  public-stable flagship desktop closure.
 gates:
 - id: gate-public-no-overclaim
   owner: chummer6-design/chummer6-hub/Chummer6

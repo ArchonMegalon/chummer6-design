@@ -35,6 +35,10 @@ HORIZON_PUBLIC_COPY_PACK_PATH = PRODUCT_ROOT / "HORIZON_PUBLIC_COPY_PACK.md"
 IMAGE_CURATION_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_IMAGE_CURATION.yaml"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
+PORTAL_RELEASE_CHANNEL_CANDIDATES = (
+    Path("/docker/chummercomplete/chummer.run-services/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json"),
+    Path("/docker/chummercomplete/.clean-main/chummer6-hub-publish/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json"),
+)
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
 PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
@@ -601,14 +605,32 @@ def _candidate_hub_registry_roots(repo_root: Path) -> list[Path]:
 
 
 def _load_release_channel(repo_root: Path) -> tuple[dict[str, object], str]:
+    candidates: list[tuple[Path, str]] = []
     for root in _candidate_hub_registry_roots(repo_root):
         canonical = root / RELEASE_CHANNEL_RELATIVE_PATH
         if canonical.is_file():
-            return _load_json(canonical), f"{root.name}/{RELEASE_CHANNEL_RELATIVE_PATH.as_posix()}"
+            candidates.append((canonical, f"{root.name}/{RELEASE_CHANNEL_RELATIVE_PATH.as_posix()}"))
         compat = root / RELEASE_CHANNEL_COMPAT_RELATIVE_PATH
         if compat.is_file():
-            return _load_json(compat), f"{root.name}/{RELEASE_CHANNEL_COMPAT_RELATIVE_PATH.as_posix()}"
-    return {}, "release-channel projection unavailable"
+            candidates.append((compat, f"{root.name}/{RELEASE_CHANNEL_COMPAT_RELATIVE_PATH.as_posix()}"))
+    for candidate in PORTAL_RELEASE_CHANNEL_CANDIDATES:
+        if candidate.is_file():
+            candidates.append((candidate, candidate.as_posix()))
+
+    best_payload: dict[str, object] = {}
+    best_label = "release-channel projection unavailable"
+    best_score: tuple[int, str] | None = None
+    for path, label in candidates:
+        payload = _load_json(path)
+        status = 1 if _release_is_published(payload.get("status")) else 0
+        published_at = str(payload.get("publishedAt") or "").strip()
+        score = (status, published_at)
+        if best_score is None or score > best_score:
+            best_payload = payload
+            best_label = label
+            best_score = score
+
+    return best_payload, best_label
 
 
 def _normalize_artifact(item: dict[str, object]) -> dict[str, object]:
@@ -1026,6 +1048,11 @@ def _promoted_platform_labels(release_payload: dict[str, object], artifacts: lis
 
 def _missing_required_platform_labels(release_payload: dict[str, object], artifacts: list[dict[str, object]]) -> list[str]:
     coverage = _desktop_tuple_coverage(release_payload)
+    required_platforms = [
+        str(item).strip()
+        for item in (coverage.get("requiredDesktopPlatforms") or [])
+        if isinstance(item, str) and item.strip()
+    ]
     missing = {
         str(item).strip()
         for item in (coverage.get("missingRequiredPlatformHeadRidTuples") or [])
@@ -1035,7 +1062,9 @@ def _missing_required_platform_labels(release_payload: dict[str, object], artifa
     for key, label in (("windows", "Windows"), ("linux", "Linux"), ("macos", "macOS")):
         if any(entry.endswith(f":{key}") for entry in missing):
             labels.append(label)
-    return labels or _missing_platform_labels(artifacts)
+    if required_platforms or missing:
+        return labels
+    return _missing_platform_labels(artifacts)
 
 
 def _artifact_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
@@ -1691,6 +1720,47 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
             ]
             _write(out_dir / "LIVING_WORLD.md", "\n".join(rows))
             generated.add("living-world-engagement")
+    rows = [
+        _front_matter("Black Ledger Newsroom", "products/chummer/BLACK_LEDGER_NEWSROOM_CANON.md"),
+        "# Black Ledger Newsroom",
+        "",
+        "Black Ledger Newsroom turns public-safe Chummer receipts into believable in-world video bulletins.",
+        "",
+        "It should feel like a real broadcast from the Chummer world, not a website animation.",
+        "",
+        "## Public routes",
+        "",
+        "- Latest bulletin rail: `/ledger/newsroom`",
+        "- Episode watch route: `/ledger/newsroom/turn-1-newsreel`",
+        "- Transcript route: `/ledger/newsroom/turn-1-newsreel/transcript`",
+        "- Receipt packet route: `/ledger/newsroom/turn-1-newsreel/receipts`",
+        "",
+        "## What it has to do",
+        "",
+        "- Keep a host, lower thirds, captions, audio, and first-party media assets on one governed public rail.",
+        "- Turn public-safe receipts into a bounded newsroom bulletin instead of loose promo fragments.",
+        "- Keep transcript and receipt links adjacent to the watch surface so the story stays inspectable.",
+        "- Make clear when footage is reconstructed from public-safe receipts instead of literal capture.",
+        "",
+        "## Hard boundaries",
+        "",
+        "- No private campaign details.",
+        "- No runner names without consent.",
+        "- No GM secrets.",
+        "- No sourcebook text.",
+        "- No real person or public figure likenesses.",
+        "- No provider branding or unproven product claims.",
+        "",
+        "## Read next",
+        "",
+        "- [Living World](LIVING_WORLD.md)",
+        "- [Signal Deck](SIGNAL_DECK.md)",
+        "- [Runner Passport](RUNNER_PASSPORT.md)",
+        "- [Black Ledger](HORIZONS/black-ledger.md)",
+        "- [Help](HELP.md)",
+    ]
+    _write(out_dir / "BLACK_LEDGER_NEWSROOM.md", "\n".join(rows))
+    generated.add("black-ledger-newsroom")
     return generated
 
 
@@ -1758,6 +1828,8 @@ def _generate_root(
         extra_routes.insert(2, "- [Signal Deck](SIGNAL_DECK.md)")
     if generated_live_route_ids and "living-world-engagement" in generated_live_route_ids:
         extra_routes.insert(3, "- [Living World](LIVING_WORLD.md)")
+    if generated_live_route_ids and "black-ledger-newsroom" in generated_live_route_ids:
+        extra_routes.insert(4, "- [Black Ledger Newsroom](BLACK_LEDGER_NEWSROOM.md)")
     for line in extra_routes:
         if line not in ordered_ctas:
             ordered_ctas.append(line)
