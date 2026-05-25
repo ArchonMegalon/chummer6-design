@@ -8,7 +8,7 @@ This file exists to stop structural closure from masquerading as flagship replac
 
 Desktop release truth is still below gold.
 
-- Preview macOS ARM64 release truth is now proven end to end by preview run `run-20260525-210241`, including packaging, startup smoke, upload, live canonical verification, and live release projection verification for the Avalonia and Blazor Desktop heads.
+- Preview macOS ARM64 release truth is now proven end to end by two consecutive successful preview runs, `run-20260525-210241` and the newer `run-20260525-213014`, including packaging, startup smoke, upload, live canonical verification, and live release projection verification for the Avalonia and Blazor Desktop heads.
 - That preview proof does not close flagship desktop gold by itself.
 - The current gold blocker is still the public-stable desktop lane: the published public-stable shelf does not yet carry a promoted macOS Avalonia installer tuple, and broader public architecture coverage still falls short of any honest `all architectures` claim.
 - Public migration/download guidance must distinguish the now-proven macOS ARM64 preview lane from the still-incomplete public-stable flagship desktop lane.
