@@ -69,6 +69,13 @@ Disk-space posture:
 2. The packaging/notarization phase uses `CHUMMER_MAC_RELEASE_PACKAGING_MIN_FREE_GIB` and will prune repo-local `bin/` and `obj/` directories once before failing.
 3. If the Mac work root is tight, point `CHUMMER_MAC_RELEASE_TMPDIR` and `CHUMMER_DESKTOP_INSTALLER_TMPDIR` at a roomier volume so `hdiutil` and DMG repack work stop competing with the checkout root.
 
+Preflight-capacity aborts:
+
+1. If the run stops before clone/build/package because the work root or temporary packaging root is below the hard free-space floor, that is classified as `preflight_capacity_abort`.
+2. The bootstrap writes `release-evidence/preflight-capacity-abort.json` inside the per-run work root.
+3. That receipt is an audit artifact only. It does **not** count as clone, packaging, startup-smoke, manifest, or upload evidence, and it must not be used toward macOS promotion.
+4. The hard minimum is still `20 GiB` by default, but the practical rerun target should be `25-30 GiB` free so DMG repack and notarization work have headroom instead of barely clearing preflight.
+
 Cleanup after every run:
 
 1. After a successful upload or a failed run, delete the local temporary release artifacts again so the Mac SSD does not fill up.
@@ -91,6 +98,8 @@ For macOS that evidence must prove:
 2. `startupSmokeStatus=pass`
 3. `signingStatus=pass`
 4. `notarizationStatus=pass`
+
+If the run only produced `release-evidence/preflight-capacity-abort.json`, none of the promotion-gate evidence above exists yet. Treat that run as a capacity abort, not a packaging attempt.
 
 For Windows promotion the same endpoint is valid, but the evidence must prove startup smoke and signing before the public shelf can expose the installer.
 

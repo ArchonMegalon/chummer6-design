@@ -14,6 +14,106 @@ require_cmd() {
   command -v "$1" >/dev/null 2>&1 || die "required command missing: $1"
 }
 
+free_space_kib() {
+  local path="$1"
+  df -Pk "$path" | awk 'NR==2 { print $4 }'
+}
+
+format_gib_from_kib() {
+  python3 - "$1" <<'PY'
+import sys
+value = int(sys.argv[1])
+print(f"{value / 1024 / 1024:.1f} GiB")
+PY
+}
+
+recommended_headroom_gib() {
+  python3 - "$1" <<'PY'
+import sys
+minimum = int(sys.argv[1])
+print(max(minimum + 5, 25))
+PY
+}
+
+write_preflight_capacity_abort_receipt() {
+  local checked_path="$1"
+  local label="$2"
+  local minimum_gib="$3"
+  local available_kib="$4"
+
+  local evidence_root="${work_root:-$checked_path}"
+  local evidence_dir="$evidence_root/release-evidence"
+  local receipt_path="$evidence_dir/preflight-capacity-abort.json"
+  local recommended_gib
+  recommended_gib="$(recommended_headroom_gib "$minimum_gib")"
+
+  mkdir -p "$evidence_dir"
+  python3 - "$receipt_path" "$evidence_root" "$checked_path" "$label" "$minimum_gib" "$available_kib" "$recommended_gib" "${release_version:-}" "${release_channel:-}" "${rid:-}" "${app:-}" <<'PY'
+from __future__ import annotations
+
+import datetime as dt
+import json
+import sys
+from pathlib import Path
+
+receipt_path = Path(sys.argv[1])
+work_root = str(sys.argv[2]).strip()
+checked_path = str(sys.argv[3]).strip()
+label = str(sys.argv[4]).strip()
+required_gib = int(sys.argv[5])
+available_kib = int(sys.argv[6])
+recommended_gib = int(sys.argv[7])
+release_version = str(sys.argv[8]).strip()
+release_channel = str(sys.argv[9]).strip()
+rid = str(sys.argv[10]).strip()
+app = str(sys.argv[11]).strip()
+
+available_gib = round(available_kib / 1024 / 1024, 1)
+payload = {
+    "contractName": "chummer6.mac_release_preflight_abort",
+    "status": "abort",
+    "abortClass": "preflight_capacity_abort",
+    "reason": "insufficient_disk_space",
+    "recordedAtUtc": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+    "workRoot": work_root,
+    "checkedPath": checked_path,
+    "checkedPathLabel": label,
+    "requiredFreeGiB": required_gib,
+    "availableFreeKiB": available_kib,
+    "availableFreeGiB": available_gib,
+    "recommendedFreeGiB": recommended_gib,
+    "headroomShortfallGiB": round(max(required_gib - available_gib, 0.0), 1),
+    "releaseVersion": release_version,
+    "releaseChannel": release_channel,
+    "rid": rid,
+    "appHeads": [app] if app else [],
+    "countsAsCloneEvidence": False,
+    "countsAsPackagingEvidence": False,
+    "countsAsStartupSmokeEvidence": False,
+    "countsAsManifestEvidence": False,
+    "countsAsUploadEvidence": False,
+    "operatorAction": "free_disk_space_and_rerun",
+}
+receipt_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+print(receipt_path)
+PY
+}
+
+require_min_free_space_gib() {
+  local path="$1"
+  local label="$2"
+  local minimum_gib="$3"
+  local available_kib minimum_kib abort_receipt_path recommended_gib
+  available_kib="$(free_space_kib "$path")"
+  minimum_kib=$(( minimum_gib * 1024 * 1024 ))
+  if (( available_kib < minimum_kib )); then
+    abort_receipt_path="$(write_preflight_capacity_abort_receipt "$path" "$label" "$minimum_gib" "$available_kib")"
+    recommended_gib="$(recommended_headroom_gib "$minimum_gib")"
+    log "wrote preflight capacity-abort receipt: $abort_receipt_path"
+    die "$label needs at least ${minimum_gib} GiB free before macOS packaging/notarization work. Available at $path: $(format_gib_from_kib "$available_kib"). This run stopped before clone/build/packaging/startup-smoke/upload and does not count as release evidence. Free more space and rerun; practical headroom target: ${recommended_gib} GiB. Receipt: $abort_receipt_path"
+  fi
+}
+
 clone_or_update() {
   local repo_url="$1"
   local target_dir="$2"
@@ -242,6 +342,7 @@ main() {
   local publish_mode
   publish_mode="$(infer_publish_mode)"
   local verify_url="${CHUMMER_PORTAL_DOWNLOADS_VERIFY_URL:-https://chummer.run/downloads/releases.json}"
+  local minimum_free_gib="${CHUMMER_MAC_RELEASE_MIN_FREE_GIB:-20}"
 
   local sign_identity="${CHUMMER_APP_SIGN_IDENTITY:-}"
   local notary_profile="${CHUMMER_NOTARY_PROFILE:-}"
@@ -253,7 +354,8 @@ main() {
   local hub_repo="$work_root/.c/hub"
   local ui_kit_repo="$work_root/.c/ui"
 
-  mkdir -p "$work_root" "$work_root/.c"
+  mkdir -p "$work_root" "$work_root/.c" "$work_root/tmp" "$work_root/tmp/desktop-installer"
+  require_min_free_space_gib "$work_root" "release work root" "$minimum_free_gib"
 
   clone_or_update "https://github.com/ArchonMegalon/chummer6-ui.git" "$ui_repo" "$ui_ref"
   clone_or_update "https://github.com/ArchonMegalon/chummer6-core.git" "$core_repo" "$core_ref"
