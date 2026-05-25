@@ -78,6 +78,11 @@ for path in \
   products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md \
   products/chummer/PUBLIC_MEDIA_BRIEFS.yaml \
   products/chummer/PUBLIC_VIDEO_BRIEFS.yaml \
+  products/chummer/BLACK_LEDGER_NEWSROOM_CANON.md \
+  products/chummer/BLACK_LEDGER_ANCHOR_BIBLE.yaml \
+  products/chummer/BLACK_LEDGER_BROADCAST_STYLE_GUIDE.md \
+  products/chummer/BLACK_LEDGER_NEWSROOM_EDITORIAL_POLICY.md \
+  products/chummer/BLACK_LEDGER_NEWSROOM_QUALITY_GATES.yaml \
   products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml \
   products/chummer/STRUCTURED_VIDEO_AND_NARRATED_MEDIA_MODEL.md \
   products/chummer/VIDBOARD_AND_LTD_WOW_FACTOR_WORKFLOWS.md \
@@ -194,6 +199,7 @@ for path in \
   products/chummer/public-guide/FAQ.md \
   products/chummer/public-guide/DOWNLOAD.md \
   products/chummer/public-guide/CONTACT.md \
+  products/chummer/public-guide/BLACK_LEDGER_NEWSROOM.md \
   products/chummer/public-guide/PARTS/README.md \
   products/chummer/public-guide/HORIZONS/README.md \
   products/chummer/public-guide/TRUST/help.md \
@@ -225,6 +231,7 @@ python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.p
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
+python3 "$repo_root/scripts/ai/verify_newsroom_design_canon.py" >/dev/null
 python3 -m unittest "$repo_root/scripts/ai/test_materialize_public_guide_bundle_release_truth.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
@@ -321,7 +328,7 @@ rg -n '^# Public help copy$|^## Public feedback lane$|^## Guided contribution la
 rg -n '^product: chummer$|^version: 1$|^target_repo: Chummer6$|^sources:$|^rules:$|^pages:$' "$repo_root/products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml" >/dev/null
 rg -n '^# Public landing policy$|product homepage, proof shelf, and invitation surface|provider names and LTD names are implementation details' "$repo_root/products/chummer/PUBLIC_LANDING_POLICY.md" >/dev/null
 rg -n '^# Public downloads policy$|^## CTA labels$|guest-readable|claim-ticket creation|installer-first' "$repo_root/products/chummer/PUBLIC_DOWNLOADS_POLICY.md" >/dev/null
-rg -n '^product: chummer$|^surface: chummer.run$|^headline: Shadowrun rules truth, with receipts\.$|^auth_routes:$|^registered_overlays:$|/login\?next=/home' "$repo_root/products/chummer/PUBLIC_LANDING_MANIFEST.yaml" >/dev/null
+rg -n '^product: chummer$|^surface: chummer.run$|^headline: Shadowrun rules truth, with receipts\.$|^auth_routes:$|^registered_overlays:$|/login\?next=/home|/ledger/newsroom$|/ledger/newsroom/turn-1-newsreel$|/ledger/newsroom/turn-1-newsreel/transcript$|/ledger/newsroom/turn-1-newsreel/receipts$|/login\?next=/participate/codex' "$repo_root/products/chummer/PUBLIC_LANDING_MANIFEST.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^cards:$|^    title: Publish$|^    title: Improve$|^  - id: horizon_karma_forge$|^    badge: Booster first$' "$repo_root/products/chummer/PUBLIC_FEATURE_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^version: 2$|mode: raster_campaign_only|landing.hero|landing.product_workflows.run' "$repo_root/products/chummer/PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml" >/dev/null
 rg -n '^# Public user model$|^### Guest$|^### Registered user$|guided_participation_opt_in|Linked identities|Linked channels|EA remains the orchestrator brain|First-wave auth posture' "$repo_root/products/chummer/PUBLIC_USER_MODEL.md" >/dev/null
