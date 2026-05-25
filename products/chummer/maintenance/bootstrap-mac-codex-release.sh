@@ -181,6 +181,47 @@ infer_publish_mode() {
   printf 'none'
 }
 
+capture_post_publish_manifest_projection() {
+  local verify_url="$1"
+  local dist_dir="$2"
+  local projection_dir="$dist_dir/post-publish-manifest"
+  local live_manifest="$projection_dir/releases.json"
+  local live_canonical_manifest="$projection_dir/RELEASE_CHANNEL.generated.json"
+
+  mkdir -p "$projection_dir"
+  log "capturing post-publish live manifest projection"
+  curl --fail --silent --show-error --location "$verify_url" -o "$live_manifest"
+  curl --fail --silent --show-error --location "${verify_url%/releases.json}/RELEASE_CHANNEL.generated.json" -o "$live_canonical_manifest"
+
+  python3 - "$dist_dir/RELEASE_CHANNEL.generated.json" "$live_canonical_manifest" <<'PY'
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+local_payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+live_payload = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
+
+local_ids = sorted(
+    str(item.get("artifactId") or "").strip()
+    for item in local_payload.get("artifacts") or []
+    if isinstance(item, dict) and str(item.get("artifactId") or "").strip()
+)
+live_ids = sorted(
+    str(item.get("artifactId") or "").strip()
+    for item in live_payload.get("artifacts") or []
+    if isinstance(item, dict) and str(item.get("artifactId") or "").strip()
+)
+if local_ids != live_ids:
+    raise SystemExit(
+        "Local canonical manifest reflects the just-built bundle fragment only if the live canonical artifact ids match. "
+        f"local={local_ids} live={live_ids}"
+    )
+print("Local canonical manifest reflects the just-built bundle fragment.")
+PY
+}
+
 main() {
   require_cmd git
   require_cmd dotnet
@@ -366,8 +407,11 @@ main() {
 
   log "verifying local bundle manifest"
   bash scripts/verify-releases-manifest.sh "$dist_dir/releases.json"
+  log "verifying local canonical release manifest"
+  bash scripts/verify-releases-manifest.sh "$dist_dir/RELEASE_CHANNEL.generated.json"
 
   if [[ "$publish_mode" != "none" ]]; then
+    capture_post_publish_manifest_projection "$verify_url" "$dist_dir"
     log "verifying live manifest at $verify_url"
     bash scripts/verify-releases-manifest.sh "$verify_url"
   fi
