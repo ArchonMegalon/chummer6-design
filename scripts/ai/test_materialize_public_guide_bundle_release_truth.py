@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import importlib.util
+import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -48,6 +50,68 @@ class ReleaseTruthWordingTests(unittest.TestCase):
             MODULE._public_missing_installer_warning_line(["Linux", "macOS"]),
             "Public installers are still missing for Linux and macOS.",
         )
+
+    def test_missing_required_platform_labels_stays_empty_for_explicit_mac_only_preview_contract(self) -> None:
+        release_payload = {
+            "desktopTupleCoverage": {
+                "requiredDesktopPlatforms": ["macos"],
+                "missingRequiredPlatformHeadRidTuples": [],
+            }
+        }
+        artifacts = [
+            {
+                "platform": "macos",
+                "arch": "arm64",
+                "platformId": "osx-arm64",
+                "platformLabel": "macOS ARM64",
+            }
+        ]
+        self.assertEqual(MODULE._missing_required_platform_labels(release_payload, artifacts), [])
+
+    def test_load_release_channel_prefers_newest_published_candidate(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            stale_registry_root = root / "registry"
+            stale_registry_root.joinpath(".codex-studio", "published").mkdir(parents=True, exist_ok=True)
+            stale_manifest = stale_registry_root / ".codex-studio" / "published" / "RELEASE_CHANNEL.generated.json"
+            stale_manifest.write_text(
+                json.dumps(
+                    {
+                        "status": "published",
+                        "publishedAt": "2026-05-25T07:28:45Z",
+                        "channelId": "public_stable",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            live_manifest = root / "portal-release-channel.json"
+            live_manifest.write_text(
+                json.dumps(
+                    {
+                        "status": "published",
+                        "publishedAt": "2026-05-25T21:04:33Z",
+                        "channelId": "preview",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            original_candidates = MODULE.PORTAL_RELEASE_CHANNEL_CANDIDATES
+            original_root_env = MODULE.os.environ.get(MODULE.HUB_REGISTRY_ROOT_ENV)
+            try:
+                MODULE.PORTAL_RELEASE_CHANNEL_CANDIDATES = (live_manifest,)
+                MODULE.os.environ[MODULE.HUB_REGISTRY_ROOT_ENV] = str(stale_registry_root)
+                payload, label = MODULE._load_release_channel(root)
+            finally:
+                MODULE.PORTAL_RELEASE_CHANNEL_CANDIDATES = original_candidates
+                if original_root_env is None:
+                    MODULE.os.environ.pop(MODULE.HUB_REGISTRY_ROOT_ENV, None)
+                else:
+                    MODULE.os.environ[MODULE.HUB_REGISTRY_ROOT_ENV] = original_root_env
+
+        self.assertEqual(payload.get("channelId"), "preview")
+        self.assertEqual(label, live_manifest.as_posix())
 
 
 if __name__ == "__main__":
