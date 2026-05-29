@@ -1,23 +1,22 @@
 # What Is Still Below Gold
 
-Last reviewed: 2026-05-25
+Last reviewed: 2026-05-26
 
 This file exists to stop structural closure from masquerading as flagship replacement truth.
 
 ## Current whole-product blockers
 
-Desktop release truth is still below gold.
+No current whole-product blockers are keeping the promoted desktop release lane below gold.
 
-- Preview macOS ARM64 release truth is now proven end to end by two consecutive successful preview runs, `run-20260525-210241` and the newer `run-20260525-213014`, including packaging, startup smoke, upload, live canonical verification, and live release projection verification for the Avalonia and Blazor Desktop heads.
-- That preview proof does not close flagship desktop gold by itself.
-- The current gold blocker is still the public-stable desktop lane: the published public-stable shelf does not yet carry a promoted macOS Avalonia installer tuple, and broader public architecture coverage still falls short of any honest `all architectures` claim.
-- Public migration/download guidance must distinguish the now-proven macOS ARM64 preview lane from the still-incomplete public-stable flagship desktop lane.
+- Public-stable release truth now carries the promoted Avalonia desktop tuples for Linux, Windows, and macOS, with fresh startup-smoke and executable-exit proof bound into the published release lane.
+- The flagship UI release gate, desktop executable exit gate, desktop workflow execution gate, and desktop visual familiarity gate are all current and passing against the same promoted desktop bytes.
+- Keep this file fail-closed: reopen it only if public-stable tuple coverage, startup-smoke truth, or packaged desktop proof drifts below the current release wave.
 
 ## Families below gold
 
-Every in-scope family is currently capped below `gold_ready`.
+No in-scope flagship parity family is currently below `gold_ready`.
 
-`FLAGSHIP_PARITY_REGISTRY.yaml` now keeps the flagship replacement families at `veteran_approved` until the release lane can honestly claim packaged desktop replacement quality across the promised promoted Avalonia tuples.
+`FLAGSHIP_PARITY_REGISTRY.yaml` is now allowed to mark every in-scope family `gold_ready` because the promoted public-stable desktop lane, packaged-head receipts, and release-bound readiness proof now agree.
 
 ## Regression watch
 

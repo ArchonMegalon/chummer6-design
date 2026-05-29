@@ -48,7 +48,7 @@ policy:
 families:
   - id: shell_workbench_orientation
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-design
       - chummer6-ui
@@ -64,7 +64,7 @@ families:
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: dense_builder_and_career_workflows
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-ui
       - chummer6-core
@@ -79,7 +79,7 @@ families:
       - /docker/chummercomplete/chummer6-design/products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml
   - id: identity_contacts_lifestyles_history
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-ui
       - chummer6-core
@@ -93,7 +93,7 @@ families:
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
   - id: sourcebooks_reference_and_master_index
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-core
       - chummer6-ui
@@ -108,7 +108,7 @@ families:
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: settings_and_rules_environment_authoring
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-core
       - chummer6-ui
@@ -124,7 +124,7 @@ families:
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: custom_data_xml_and_translator_bridge
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-core
       - chummer6-ui
@@ -139,7 +139,7 @@ families:
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: dice_initiative_and_table_utilities
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-ui
       - chummer6-core
@@ -152,7 +152,7 @@ families:
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
   - id: roster_dashboards_and_multi_character_ops
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-ui
       - chummer6-hub
@@ -166,7 +166,7 @@ families:
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
   - id: sheet_export_print_viewer_and_exchange
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-ui
       - chummer6-core
@@ -180,7 +180,7 @@ families:
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: legacy_and_adjacent_import_oracles
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-core
       - chummer5a
@@ -196,7 +196,7 @@ families:
       - /docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json
   - id: sr6_supplements_designers_and_house_rules
     legacy_parity_status: covered
-    release_status: veteran_approved
+    release_status: gold_ready
     owner_repos:
       - chummer6-core
       - chummer6-ui

@@ -1,0 +1,11 @@
+{
+  "target_ref": "delivery_c87bd10622fd68dc",
+  "output_json": {
+    "delivery_id": "delivery_c87bd10622fd68dc",
+    "status": "queued"
+  },
+  "receipt_json": {
+    "handler_key": "connector.dispatch",
+    "invocation_contract": "tool.v1"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "target_ref": "delivery_e4961fb53f14b18b",
+  "output_json": {
+    "delivery_id": "delivery_e4961fb53f14b18b",
+    "status": "queued"
+  },
+  "receipt_json": {
+    "handler_key": "connector.dispatch",
+    "invocation_contract": "tool.v1"
+  }
+}

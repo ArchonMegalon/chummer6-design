@@ -74,6 +74,7 @@ product_source_groups:
     - products/chummer/GROUP_BLOCKERS.md
     - products/chummer/OWNERSHIP_MATRIX.md
   product_middle:
+    - products/chummer/BUILD_GHOST_MVP_001.md
     - products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md
     - products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md
     - products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md
