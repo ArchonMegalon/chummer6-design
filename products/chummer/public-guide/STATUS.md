@@ -5,13 +5,13 @@ This is the blunt answer on what you can use today.
 ## Current picture
 
 - Today: Usable preview.
-- Published: May 25, 2026 at 21:04 UTC.
+- Published: May 29, 2026 at 8:34 UTC.
 - Release status: Published.
-- Downloads are currently live for macOS.
-- Promoted installer coverage is visible on every promised desktop platform.
-- Current public desktop scope covers macOS ARM64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.
+- Downloads are currently live for Linux, but Windows and macOS still lack the promoted desktop installer proof this release says they need.
+- Still missing from the promoted installer lane: Windows and macOS.
+- Current public desktop scope covers Linux x64, macOS ARM64, and Windows x64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.
 - Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.
-- Preview note: This is still a preview, but the current public downloads have recent proof for setup, recovery, offline-ready behavior, release follow-up, and support.
+- Current warning: Public installers are still missing for Windows and macOS.
 - Help, contact, privacy, and terms pages are live.
 
 ## Start with the release page and download help
