@@ -6,7 +6,7 @@ This page is for Chummer5a users who want the blunt answer: what still feels fam
 
 - It is still aiming for a dense desktop workbench, not a stripped-down dashboard.
 - Character editing, file work, settings, and roster tasks are supposed to stay close at hand.
-- If both desktop apps appear for your platform, the Avalonia is the main one to try and the Blazor Desktop is the fallback path only when the download page or support explicitly tells you to use it.
+- If more than one desktop app appears for your platform, start with the Avalonia desktop app.
 
 ## What gets better
 
@@ -14,23 +14,49 @@ This page is for Chummer5a users who want the blunt answer: what still feels fam
 - Recovery and continuity are being treated as core product work, not as an afterthought.
 - Status, downloads, and help are easier to find without digging around for the current answer.
 
-## Should you switch today?
+## What the switch looks like in practice
 
-- Today you can try preview builds on Linux.
-- If you rely on Windows and macOS as your main platform, wait before switching full time.
-- If you like trying real previews and helping shape the rough edges, it is worth a serious look.
-- If you need a fully settled, every-platform replacement for Chummer5a right now, wait.
+| If this is what you do in Chummer5a | Expect this in Chummer6 |
+| --- | --- |
+| Build or tweak a runner | A similar dense desktop flow, but with a stronger push to explain why totals changed. |
+| Chase a weird modifier | A clearer receipt trail instead of reconstructing the math from memory. |
+| Come back after a bad install, lost device, or broken update | Recovery, download, and help are treated as product work instead of an afterthought. |
+| Check whether the preview is ready for you | The status page, download shelf, and help page are meant to answer that directly. |
 
 ## What is still rough
 
-- Downloads are currently live for Linux, but Windows and macOS still lack the promoted desktop installer proof this release says they need.
+- Downloads are currently live for Windows and Linux.
 - Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish.
-- Posted proof is scoped to the current files and flows you can inspect today; it is not a blanket flagship claim.
-- It should still be read as a serious preview, not a finished no-step-back replacement yet.
+- If you rely on macOS as your main platform, wait before switching full time.
+- Treat the current shelf as a serious preview, not a fully settled every-platform replacement yet.
+
+## Should you switch today?
+
+- Today you can try preview builds on Windows and Linux.
+
+### If you mostly live on Windows and like testing real previews
+
+- It is worth a serious look.
+
+### If Linux or macOS is your daily route
+
+- Wait until your platform is on the public shelf before making it your main path.
+
+### If you need a settled replacement this week
+
+- Wait if you need a no-drama every-platform swap right now.
 
 ## Read next
 
 - [Status](STATUS.md)
-- [Download](DOWNLOAD.md)
+- [Download builds](DOWNLOAD.md)
 - [What Chummer6 Is](WHAT_CHUMMER6_IS.md)
 - [Help](HELP.md)
+
+## First things to compare for yourself
+
+- menu and toolbar density
+- the builder flow
+- roster behavior
+- settings and account recovery
+- import and export paths

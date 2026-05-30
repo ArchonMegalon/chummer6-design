@@ -23,6 +23,100 @@ REQUIRED_LIVE_TRUTH_FIELDS = [
     "evidence_age_hours",
     "provenance",
 ]
+UX_PRINCIPLES = [
+    {
+        "id": "onboarding",
+        "promise": "The first real action is obvious, and fallback paths never masquerade as the default.",
+        "surfaces": {
+            "desktop_ui": "Install or open the workbench, then build or restore without browser ritual.",
+            "hub_public": "Downloads, account, status, and support all point at the same next safe action.",
+            "mobile_live": "Join, rejoin, or resume starts from the live table state instead of a shrunk desktop ritual.",
+        },
+    },
+    {
+        "id": "safety",
+        "promise": "Users see rule, state, and consequence posture before they commit live work.",
+        "surfaces": {
+            "desktop_ui": "Ruleset, legality, explain, import drift, and publish-preview cues are visible before commit.",
+            "hub_public": "Community-rule preflight, release posture, and support boundaries stay explicit before users trust hosted copy.",
+            "mobile_live": "Live, stale, offline, pending, and conflict posture are visible before a player or GM acts.",
+        },
+    },
+    {
+        "id": "closure",
+        "promise": "A finished action produces visible state change, receipt, or trustworthy completion copy.",
+        "surfaces": {
+            "desktop_ui": "Save, export, publish, and feedback flows end with a durable result instead of disappearing into silent success.",
+            "hub_public": "Public status, support follow-up, and publication truth describe the same closed-or-open state.",
+            "mobile_live": "Session closeout, accepted roster changes, and recap-ready updates visibly land in campaign truth.",
+        },
+    },
+    {
+        "id": "recovery",
+        "promise": "Failure states always expose one next safe action and one bounded fallback.",
+        "surfaces": {
+            "desktop_ui": "Crash, update, restore, import, and sync-repair flows tell the user how to continue without guesswork.",
+            "hub_public": "Help, relinking, download, and support routes explain recovery without implying hidden operator magic.",
+            "mobile_live": "Reconnect, replay, and conflict repair protect table continuity and explain what changed.",
+        },
+    },
+]
+JOURNEY_HANDOFFS = {
+    "install_claim_restore_continue": {
+        "principles": ["onboarding", "closure", "recovery"],
+        "summary": "Install, claim, restore, and continue must read as one journey across the installer, hosted account posture, and claimed-device recovery state.",
+        "surface_handoffs": {
+            "desktop_ui": "The promoted install path opens the real workbench or restore continuation flow without a dashboard-first detour.",
+            "hub_public": "Downloads, account, help, and status describe the same release, claim, and next-safe-action posture.",
+            "mobile_live": "Claimed-device continuation restores the right runner, campaign, and rule-environment context instead of raw sync mystery.",
+        },
+    },
+    "build_explain_publish": {
+        "principles": ["onboarding", "safety", "closure"],
+        "summary": "Build, explain, and publish share one truth chain: author the runner, inspect the reason, then release grounded artifacts without losing provenance.",
+        "surface_handoffs": {
+            "desktop_ui": "Dense builder and explain work stays primary, with preview-first publication and visible rule-environment posture.",
+            "hub_public": "Hosted dossier, publication, and support surfaces may project the result, but never fork the underlying truth.",
+            "mobile_live": "Quick inspection and field-share moments stay bounded and point back to the canonical authoring and provenance path when needed.",
+        },
+    },
+    "campaign_session_recover_recap": {
+        "principles": ["safety", "closure", "recovery"],
+        "summary": "Session truth, campaign memory, and recap closeout must survive live pressure, reconnects, and after-action review without silent state drift.",
+        "surface_handoffs": {
+            "desktop_ui": "GM prep, ledger actions, and recap authoring keep the same campaign memory and rule-environment truth that the live table uses.",
+            "hub_public": "Campaign, account, and scheduling surfaces hand into the active session with roster, entitlement, and continuity posture intact.",
+            "mobile_live": "Resume, replay, and recap entry are first-class flows that keep live state visible while the table is under pressure.",
+        },
+    },
+    "recover_from_sync_conflict": {
+        "principles": ["safety", "recovery"],
+        "summary": "Conflict recovery must surface what diverged, what wins, and the next safe repair action before any client keeps computing.",
+        "surface_handoffs": {
+            "desktop_ui": "Conflict detail and repair tools stay visible where the user can compare local and shared state safely.",
+            "hub_public": "Hosted status and support routes explain the conflict posture without pretending the repair already happened elsewhere.",
+            "mobile_live": "A live device shows stale, pending, and repaired state explicitly before a player or GM commits another action.",
+        },
+    },
+    "report_cluster_release_notify": {
+        "principles": ["closure", "recovery"],
+        "summary": "Reporting, triage, release follow-up, and user-visible fix status must close the same problem on every surface.",
+        "surface_handoffs": {
+            "desktop_ui": "Crash, bug, and update entry points preserve the local context needed to explain, reproduce, and verify the fix.",
+            "hub_public": "Status, support packets, and release notes use one closure vocabulary and one next-safe-action story.",
+            "mobile_live": "Table-impacting issues route into the same support and fix-follow-up loop without losing session context.",
+        },
+    },
+    "organize_community_and_close_loop": {
+        "principles": ["onboarding", "safety", "closure"],
+        "summary": "Community discovery, preflight, scheduling, and closeout must feel like one governed route instead of stitched external tools.",
+        "surface_handoffs": {
+            "desktop_ui": "When a runner or packet needs deeper prep, desktop remains the canonical fix-up surface before the event starts.",
+            "hub_public": "Discovery, rules preflight, scheduling, and organizer follow-up keep the same table and community truth.",
+            "mobile_live": "Accepted players and GMs can confirm fit, arrive, and close the loop from the device already in use at the table.",
+        },
+    },
+}
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -126,6 +220,14 @@ def build_contract(*, generated_at: str | None = None) -> dict[str, Any]:
             },
         },
         "required_live_truth_fields": REQUIRED_LIVE_TRUTH_FIELDS,
+        "ux_principle_map": {
+            "surface_axis_refs": ["primary_path_clarity", "trust_and_recovery"],
+            "principles": UX_PRINCIPLES,
+            "journey_handoffs": [
+                {"journey_id": journey_id, **handoff}
+                for journey_id, handoff in JOURNEY_HANDOFFS.items()
+            ],
+        },
         "journeys": _journey_rows(registry),
     }
 

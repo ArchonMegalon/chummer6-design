@@ -23,6 +23,7 @@ EXPECTED_IDS = {
     "report_cluster_release_notify",
     "organize_community_and_close_loop",
 }
+EXPECTED_PRINCIPLES = {"onboarding", "safety", "closure", "recovery"}
 
 
 def load_json(path: Path) -> dict:
@@ -129,6 +130,62 @@ def main() -> int:
     live_fields = contract.get("required_live_truth_fields") or []
     if not isinstance(live_fields, list) or not required_fields.issubset({str(item or "").strip() for item in live_fields}):
         errors.append("required_live_truth_fields must include the full lived-truth field set.")
+
+    ux_principle_map = contract.get("ux_principle_map") or {}
+    if not isinstance(ux_principle_map, dict):
+        errors.append("ux_principle_map must be an object.")
+        ux_principle_map = {}
+    principle_rows = ux_principle_map.get("principles") or []
+    if not isinstance(principle_rows, list):
+        errors.append("ux_principle_map.principles must be a list.")
+        principle_rows = []
+    principle_ids = {
+        str(item.get("id") or "").strip()
+        for item in principle_rows
+        if isinstance(item, dict) and str(item.get("id") or "").strip()
+    }
+    if principle_ids != EXPECTED_PRINCIPLES:
+        missing = sorted(EXPECTED_PRINCIPLES - principle_ids)
+        extra = sorted(principle_ids - EXPECTED_PRINCIPLES)
+        if missing:
+            errors.append(f"ux_principle_map is missing expected principles: {', '.join(missing)}")
+        if extra:
+            errors.append(f"ux_principle_map has unexpected principles: {', '.join(extra)}")
+    handoff_rows = ux_principle_map.get("journey_handoffs") or []
+    if not isinstance(handoff_rows, list):
+        errors.append("ux_principle_map.journey_handoffs must be a list.")
+        handoff_rows = []
+    handoff_ids = {
+        str(item.get("journey_id") or "").strip()
+        for item in handoff_rows
+        if isinstance(item, dict) and str(item.get("journey_id") or "").strip()
+    }
+    if handoff_ids != EXPECTED_IDS:
+        missing = sorted(EXPECTED_IDS - handoff_ids)
+        extra = sorted(handoff_ids - EXPECTED_IDS)
+        if missing:
+            errors.append(f"ux_principle_map is missing journey handoffs: {', '.join(missing)}")
+        if extra:
+            errors.append(f"ux_principle_map has unexpected journey handoffs: {', '.join(extra)}")
+    for handoff in handoff_rows:
+        if not isinstance(handoff, dict):
+            errors.append("each journey_handoffs entry must be an object.")
+            continue
+        journey_id = str(handoff.get("journey_id") or "").strip() or "<unknown>"
+        principles = handoff.get("principles") or []
+        if not isinstance(principles, list) or not principles:
+            errors.append(f"{journey_id} must define principles.")
+        elif not set(map(str, principles)).issubset(EXPECTED_PRINCIPLES):
+            errors.append(f"{journey_id} references an unknown UX principle.")
+        surface_handoffs = handoff.get("surface_handoffs") or {}
+        if not isinstance(surface_handoffs, dict):
+            errors.append(f"{journey_id} surface_handoffs must be an object.")
+        else:
+            for key in ("desktop_ui", "hub_public", "mobile_live"):
+                if not str(surface_handoffs.get(key) or "").strip():
+                    errors.append(f"{journey_id} must define surface_handoffs.{key}.")
+        if not str(handoff.get("summary") or "").strip():
+            errors.append(f"{journey_id} must define a summary.")
 
     for row in rows:
         if not isinstance(row, dict):
