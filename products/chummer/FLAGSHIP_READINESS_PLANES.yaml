@@ -142,6 +142,7 @@ planes:
       - /docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json
     fail_when:
       - Important computed values cannot be explained where users ask why
+      - Explain coverage-registry, source-anchor class, or bounded follow-up release-gate truth drifts from Fleet closeout evidence
       - Explain/build journeys remain blocked or implicit
   - id: custom_data_survival_ready
     owner_repos:
