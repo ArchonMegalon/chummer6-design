@@ -962,11 +962,20 @@ def _provider_route_stewardship_signal(
     summary_payload = runtime_healing.get("summary") if isinstance(runtime_healing.get("summary"), dict) else {}
 
     public_target_count = _safe_int(deployment.get("public_target_count"))
+    projects = status_plane.get("projects")
+    if public_target_count == 0 and isinstance(projects, list):
+        public_target_count = sum(
+            1
+            for project in projects
+            if isinstance(project, dict)
+            and str(project.get("deployment_access_posture") or "").strip().casefold() == "public"
+            and str(project.get("deployment_promotion_stage") or "").strip().casefold()
+            in {"promoted_preview", "public_stable", "promoted"}
+        )
     degraded_service_count = _safe_int(summary_payload.get("degraded_service_count"))
     alert_state = str(summary_payload.get("alert_state") or "").strip().lower()
     canary_healthy = degraded_service_count == 0 and alert_state == "healthy" and public_target_count > 0
 
-    projects = status_plane.get("projects")
     if isinstance(projects, list):
         hub_is_public_pilot = any(
             isinstance(project, dict)
