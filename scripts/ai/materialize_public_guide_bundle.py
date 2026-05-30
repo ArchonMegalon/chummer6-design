@@ -593,12 +593,18 @@ def _candidate_hub_registry_roots(repo_root: Path) -> list[Path]:
     env_root = os.environ.get(HUB_REGISTRY_ROOT_ENV, "").strip()
     if env_root:
         roots.append(Path(env_root))
-    for candidate in (
+    candidates = [
         repo_root.parent / "chummer-hub-registry",
         repo_root.parent / "chummer6-hub-registry",
-        Path("/docker/chummercomplete/chummer-hub-registry"),
-        Path("/docker/chummercomplete/chummer6-hub-registry"),
-    ):
+    ]
+    if repo_root.resolve().as_posix().startswith("/docker/chummercomplete/"):
+        candidates.extend(
+            [
+                Path("/docker/chummercomplete/chummer-hub-registry"),
+                Path("/docker/chummercomplete/chummer6-hub-registry"),
+            ]
+        )
+    for candidate in candidates:
         if candidate not in roots:
             roots.append(candidate)
     return roots

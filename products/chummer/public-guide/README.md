@@ -1,10 +1,10 @@
-# Chummer6
+# Chummer Public Guide
 
-Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.
+Use this guide to answer the practical questions first: what Chummer6 is, what is real today, what to download, and where to get help.
 
 ## Product promise
 
-Chummer6 helps Shadowrun players and GMs build runners, explain rulings, and keep campaigns moving without mystery math.
+Chummer6 is the explainable Shadowrun campaign OS.
 
 Its first must-win job is being the most trustworthy way to build, inspect, and advance a Shadowrun character.
 
@@ -13,24 +13,28 @@ The goal is simple: build correctly, explain clearly, run reliably, recover calm
 ## What is real now
 
 - Short answer: yes, as an early preview.
-- Downloads are currently live for Windows and Linux.
-- If more than one desktop app is offered, start with the Avalonia desktop app.
-- Use Avalonia first when the download page offers it.
+- Downloads are currently live for Windows, Linux, and macOS.
+- Proof on the public shelf is scoped to the posted files, named flows, and recent checks you can inspect today; it is not a blanket flagship-complete claim and it does not outrank the recommended install route.
+- Preview proof, fallback routes, artifact explainers, and packet-detail artifacts can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar.
+- If you see both desktop apps, start with the Avalonia. Treat Blazor Desktop as a fallback path only when the download page or support explicitly tells you to use it.
 - Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.
 - Today: Usable preview.
-- Still missing from the public download page: macOS.
-- The current shelf should be read as a real preview, not a finished no-step-back release.
+- Promoted installer coverage is visible on every promised desktop platform.
+- Current public desktop scope covers Linux x64, macOS ARM64, and Windows x64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.
 - Help, contact, privacy, and terms pages are live.
 - More campaign-ledger depth and steadier desktop polish are still coming.
 
 ## Start here
 
-- [Download builds](DOWNLOAD.md)
+- [Download](DOWNLOAD.md)
 - [Status](STATUS.md)
-- [Current status](NOW/current-status.md)
 - [What Chummer6 Is](WHAT_CHUMMER6_IS.md)
-- [Moving from Chummer5a](FROM_CHUMMER5A_TO_CHUMMER6.md)
+- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)
 - [How can I help](HOW_CAN_I_HELP.md)
+- [Runner Passport](RUNNER_PASSPORT.md)
+- [Signal Deck](SIGNAL_DECK.md)
+- [Living World](LIVING_WORLD.md)
+- [Black Ledger Newsroom](BLACK_LEDGER_NEWSROOM.md)
 - [Help](HELP.md)
 - [FAQ](FAQ.md)
 - [Contact](CONTACT.md)
@@ -38,16 +42,19 @@ The goal is simple: build correctly, explain clearly, run reliably, recover calm
 
 ## How can I help?
 
-Use the public participation path when you want to report a problem, flag confusing guide copy, or suggest a future improvement.
+If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).
 
-- [Open the public participation page](https://chummer.run/participate)
-- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)
-- Guided contribution is optional and still goes through review before anything lands.
+- The public participation door is <https://chummer.run/participate>.
+- The cheap baseline stays the default path; guided contribution is extra, not the normal support door.
+- Final landing still goes through review before anything ships.
 
 ## First contact
 
 ![Chummer6 flagship hero art](assets/hero/chummer6-hero.png)
 
+
+- [Watch the Chummer6 flagship war bulletin](https://chummer.run/media/promo/chummer6-flagship-promo.mp4)
+- [Open the Black Ledger command map](https://chummer.run/ledger/map#ledger-map)
 
 ## Why people care
 
