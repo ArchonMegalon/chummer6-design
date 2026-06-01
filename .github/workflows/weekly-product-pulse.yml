@@ -25,6 +25,48 @@ jobs:
           path: fleet
           fetch-depth: 0
 
+      - name: Checkout run services
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer6-hub
+          path: chummercomplete/chummer.run-services
+
+      - name: Checkout core engine
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer6-core
+          path: chummercomplete/chummer-core-engine
+
+      - name: Checkout play services
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer-play
+          path: chummercomplete/chummer-play
+
+      - name: Checkout UI
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer6-ui
+          path: chummercomplete/chummer6-ui
+
+      - name: Checkout media factory
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer6-media-factory
+          path: fleet/repos/chummer-media-factory
+
+      - name: Checkout public guide
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/Chummer6
+          path: chummercomplete/Chummer6
+
+      - name: Checkout hub registry
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer6-hub-registry
+          path: chummercomplete/chummer-hub-registry
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -34,11 +76,15 @@ jobs:
         run: python -m pip install pyyaml
 
       - name: Materialize weekly pulse
+        env:
+          CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
         run: |
           bash design/scripts/ai/materialize_weekly_product_pulse.sh "$GITHUB_WORKSPACE/fleet" "$(date -u +%F)"
 
       - name: Verify design canon
         working-directory: design
+        env:
+          CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
         run: bash scripts/ai/verify.sh
 
       - name: Commit refreshed pulse
