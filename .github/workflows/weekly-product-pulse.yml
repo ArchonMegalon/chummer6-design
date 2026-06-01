@@ -12,9 +12,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: weekly-product-pulse-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   materialize:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout design
         uses: actions/checkout@v5
@@ -137,6 +142,7 @@ jobs:
         run: bash scripts/ai/verify.sh
 
       - name: Commit refreshed pulse
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         working-directory: design
         run: |
           if git diff --quiet -- products/chummer/PROGRESS_REPORT.generated.json products/chummer/PROGRESS_REPORT.generated.html products/chummer/PROGRESS_REPORT_POSTER.svg products/chummer/PROGRESS_HISTORY.generated.json products/chummer/WEEKLY_PRODUCT_PULSE.generated.json; then
