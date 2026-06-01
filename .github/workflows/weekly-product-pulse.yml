@@ -49,6 +49,12 @@ jobs:
           repository: ArchonMegalon/chummer6-ui
           path: chummercomplete/chummer6-ui
 
+      - name: Checkout UI kit
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/chummer6-ui-kit
+          path: chummercomplete/chummer-ui-kit
+
       - name: Checkout media factory
         uses: actions/checkout@v4
         with:
@@ -66,6 +72,12 @@ jobs:
         with:
           repository: ArchonMegalon/chummer6-hub-registry
           path: chummercomplete/chummer-hub-registry
+
+      - name: Checkout executive assistant
+        uses: actions/checkout@v4
+        with:
+          repository: ArchonMegalon/executive-assistant
+          path: executive-assistant
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -89,6 +101,14 @@ jobs:
         env:
           CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
           CHUMMER6_GUIDE_ROOT: ${{ github.workspace }}/chummercomplete/Chummer6
+          CHUMMER6_CORE_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer-core-engine
+          CHUMMER6_UI_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer6-ui
+          CHUMMER6_HUB_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer.run-services
+          CHUMMER6_MOBILE_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer-play
+          CHUMMER6_UI_KIT_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer-ui-kit
+          CHUMMER6_HUB_REGISTRY_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer-hub-registry
+          CHUMMER6_MEDIA_FACTORY_REPO_ROOT: ${{ github.workspace }}/fleet/repos/chummer-media-factory
+          EXECUTIVE_ASSISTANT_REPO_ROOT: ${{ github.workspace }}/executive-assistant
         run: bash scripts/ai/verify.sh
 
       - name: Commit refreshed pulse
