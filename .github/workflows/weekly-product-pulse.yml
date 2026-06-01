@@ -98,8 +98,21 @@ jobs:
       - name: Materialize weekly pulse
         env:
           CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
+          CHUMMER6_GUIDE_ROOT: ${{ github.workspace }}/chummercomplete/Chummer6
+          CHUMMER6_GUIDE_ASSET_SOURCE: ${{ github.workspace }}/chummercomplete/Chummer6/assets
         run: |
           bash design/scripts/ai/materialize_weekly_product_pulse.sh "$GITHUB_WORKSPACE/fleet" "$(date -u +%F)"
+
+      - name: Pre-sync generated guide outputs
+        env:
+          CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
+          CHUMMER6_GUIDE_ROOT: ${{ github.workspace }}/chummercomplete/Chummer6
+          CHUMMER6_GUIDE_ASSET_SOURCE: ${{ github.workspace }}/chummercomplete/Chummer6/assets
+        run: |
+          python3 design/scripts/ai/materialize_journey_gates_contract.py
+          python3 design/scripts/ai/materialize_public_guide_bundle.py
+          python3 chummercomplete/Chummer6/scripts/sync_public_guide_from_design.py \
+            --source design/products/chummer/public-guide
 
       - name: Verify design canon
         working-directory: design
