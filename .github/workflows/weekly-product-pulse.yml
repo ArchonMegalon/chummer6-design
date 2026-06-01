@@ -101,6 +101,7 @@ jobs:
         env:
           CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
           CHUMMER6_GUIDE_ROOT: ${{ github.workspace }}/chummercomplete/Chummer6
+          CHUMMER6_GUIDE_ASSET_SOURCE: ${{ github.workspace }}/chummercomplete/Chummer6/assets
           CHUMMER6_CORE_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer-core-engine
           CHUMMER6_UI_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer6-ui
           CHUMMER6_HUB_REPO_ROOT: ${{ github.workspace }}/chummercomplete/chummer.run-services

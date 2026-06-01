@@ -244,6 +244,9 @@ def _candidate_asset_roots(repo_root: Path) -> list[Path]:
     env_root = os.environ.get(CHUMMER6_ASSET_SOURCE_ENV, "").strip()
     if env_root:
         roots.append(Path(env_root))
+    guide_root = os.environ.get("CHUMMER6_GUIDE_ROOT", "").strip()
+    if guide_root:
+        roots.append(Path(guide_root) / "assets")
     for candidate in (
         repo_root.parent / "Chummer6" / "assets",
         repo_root.parent / "chummer6" / "assets",
