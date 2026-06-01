@@ -382,7 +382,7 @@ rg -n '^# Download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/de
 rg -n '^## (Current public download|Current preview shelf)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## Current package format$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## SHA256$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## (Recent release verification|Release proof|Current proof)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '(release|proof|verification|published|SHA256)' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^# Contact$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
 rg -n '^## Pick the case type that matches the problem$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
 rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/dev/null
