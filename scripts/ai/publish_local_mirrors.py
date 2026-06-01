@@ -144,6 +144,8 @@ def _copy_file(source: Path, destination: Path, *, write: bool) -> bool:
     if destination.exists() and source.read_bytes() == destination.read_bytes():
         return False
     if write:
+        if destination.is_symlink() and not destination.exists():
+            destination.unlink()
         destination.parent.mkdir(parents=True, exist_ok=True)
         try:
             shutil.copyfile(source, destination)
