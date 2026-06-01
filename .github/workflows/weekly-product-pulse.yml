@@ -1,6 +1,10 @@
 name: Weekly Product Pulse
 
 on:
+  push:
+    branches:
+      - main
+  pull_request:
   schedule:
     - cron: "0 6 * * 1"
   workflow_dispatch:
@@ -13,74 +17,74 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout design
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: design
           fetch-depth: 0
 
       - name: Checkout fleet
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/fleet
           path: fleet
           fetch-depth: 0
 
       - name: Checkout run services
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-hub
           path: chummercomplete/chummer.run-services
 
       - name: Checkout core engine
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-core
           path: chummercomplete/chummer-core-engine
 
       - name: Checkout play services
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-mobile
           path: chummercomplete/chummer-play
 
       - name: Checkout UI
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-ui
           path: chummercomplete/chummer6-ui
 
       - name: Checkout UI kit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-ui-kit
           path: chummercomplete/chummer-ui-kit
 
       - name: Checkout media factory
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-media-factory
           path: fleet/repos/chummer-media-factory
 
       - name: Checkout public guide
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/Chummer6
           path: chummercomplete/Chummer6
 
       - name: Checkout hub registry
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/chummer6-hub-registry
           path: chummercomplete/chummer-hub-registry
 
       - name: Checkout executive assistant
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ArchonMegalon/executive-assistant
           path: executive-assistant
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
