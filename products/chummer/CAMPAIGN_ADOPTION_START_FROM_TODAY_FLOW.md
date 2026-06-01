@@ -27,6 +27,7 @@ enter or import current runners
 * unresolved review items
 * explicit unknown-history markers
 * next best cleanup actions
+* adoption receipt and replay-safe start anchor
 
 ## Public promise
 

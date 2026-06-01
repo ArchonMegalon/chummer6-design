@@ -29,6 +29,7 @@ land on public run
 * table contract acknowledgement
 * schedule and platform readiness check
 * accepted-player handoff and recap receipt
+* receive the `make me ready` verdict and the one remaining missing item, if any
 
 ## Required non-capabilities
 

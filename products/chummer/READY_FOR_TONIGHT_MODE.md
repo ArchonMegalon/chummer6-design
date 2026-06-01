@@ -43,6 +43,7 @@ The player view should answer:
 * what gear, ammo, spells, programs, and temporary states matter tonight
 * what changed because of the last run
 * where do I join the table
+* `Make me ready for this run`
 
 ### 2. GM readiness
 
