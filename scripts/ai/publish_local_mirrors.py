@@ -145,7 +145,11 @@ def _copy_file(source: Path, destination: Path, *, write: bool) -> bool:
         return False
     if write:
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, destination)
+        try:
+            shutil.copyfile(source, destination)
+        except FileNotFoundError:
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, destination)
     return True
 
 
