@@ -65,6 +65,9 @@ def main() -> int:
     required_readme_refs = {
         "START_HERE.md",
         "GLOSSARY.md",
+        "PRODUCT_SPINE_REDESIGN.md",
+        "PRODUCT_SPINE.yaml",
+        "FINAL_GOLD_GRAPH.generated.json",
         "GOLDEN_JOURNEY_RELEASE_GATES.yaml",
         "PRODUCT_USAGE_TELEMETRY_MODEL.md",
         "PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md",

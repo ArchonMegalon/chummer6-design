@@ -27,6 +27,9 @@ for path in \
   products/chummer/START_HERE.md \
   products/chummer/GLOSSARY.md \
   products/chummer/VISION.md \
+  products/chummer/PRODUCT_SPINE_REDESIGN.md \
+  products/chummer/PRODUCT_SPINE.yaml \
+  products/chummer/FINAL_GOLD_GRAPH.generated.json \
   products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md \
   products/chummer/BUILD_EXPLAIN_ARTIFACT_TRUTH_POLICY.md \
   products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md \
@@ -214,6 +217,7 @@ python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_product_spine.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" >/dev/null

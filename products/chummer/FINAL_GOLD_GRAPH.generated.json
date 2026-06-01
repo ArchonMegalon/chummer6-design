@@ -1,0 +1,98 @@
+{
+  "contract_name": "chummer.final_gold_graph",
+  "contract_version": 1,
+  "product": "chummer",
+  "status": "pass",
+  "verdict": "GOLD_READY",
+  "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
+  "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
+  "live_release": {
+    "version": "run-20260601-070650",
+    "channel": "public_stable",
+    "status": "published",
+    "rollout_state": "public_stable",
+    "status_endpoint": "https://chummer.run/status",
+    "release_manifest_endpoint": "https://chummer.run/downloads/releases.json"
+  },
+  "required_loops": [
+    "build_correctly",
+    "run_reliably",
+    "remember_campaign",
+    "explain_everything",
+    "publish_projections"
+  ],
+  "required_surfaces": [
+    "runner_workbench",
+    "gm_cockpit",
+    "campaign_memory",
+    "living_city",
+    "publishing_studio",
+    "admin_proof"
+  ],
+  "required_truth_domains": [
+    "rules_truth",
+    "character_truth",
+    "campaign_truth",
+    "world_state_truth",
+    "media_projection_truth"
+  ],
+  "required_horizon_lanes": [
+    "nexus-pan",
+    "alice",
+    "karma-forge",
+    "jackpoint",
+    "runsite",
+    "runbook-press",
+    "table-pulse",
+    "black-ledger",
+    "community-hub"
+  ],
+  "projection_adapter_policy": {
+    "status": "pass",
+    "adapters_are_projection_only": true,
+    "adapters": [
+      "rafter",
+      "pixefy",
+      "magicfit"
+    ]
+  },
+  "proof_inputs": [
+    {
+      "kind": "design_spine",
+      "path": "products/chummer/PRODUCT_SPINE.yaml",
+      "status": "pass"
+    },
+    {
+      "kind": "journey_gates",
+      "path": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
+      "status": "pass"
+    },
+    {
+      "kind": "horizon_registry",
+      "path": "products/chummer/HORIZON_REGISTRY.yaml",
+      "status": "pass"
+    },
+    {
+      "kind": "fleet_gold_verdict",
+      "path": "/docker/fleet/_completion/full_product_reaudit_v18/FINAL_GOLD_VERDICT.md",
+      "status": "pass"
+    },
+    {
+      "kind": "fleet_gold_janitor",
+      "path": "/docker/fleet/_completion/full_product_reaudit_v18/FINAL_GOLD_JANITOR.generated.json",
+      "status": "pass"
+    },
+    {
+      "kind": "live_status",
+      "path": "https://chummer.run/status",
+      "status": "pass"
+    },
+    {
+      "kind": "live_release_manifest",
+      "path": "https://chummer.run/downloads/releases.json",
+      "status": "pass"
+    }
+  ],
+  "blocking_findings": [],
+  "principle": "One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself."
+}

@@ -49,10 +49,6 @@ COMMUNITY HUB is the product name for that lane.
 The signed-in command lane is already live at `https://chummer.run/community`.
 That lane currently carries governed open-run packets, venue handoff, and community closeout without pretending the whole long-range community roadmap is done.
 
-That is a core goal. Quickstart runners and mobile-first application paths should reduce the Windows-only chokepoint.
-
-No. Chummer owns campaign logic. Discord can remain the community and meeting surface.
-
 ## What has to be true first
 
 * BLACK LEDGER job packets and world consequences must already be trustworthy enough to seed open runs
