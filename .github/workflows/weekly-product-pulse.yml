@@ -129,6 +129,7 @@ jobs:
           CHUMMER6_MEDIA_FACTORY_REPO_ROOT: ${{ github.workspace }}/fleet/repos/chummer-media-factory
           EXECUTIVE_ASSISTANT_REPO_ROOT: ${{ github.workspace }}/executive-assistant
           FLEET_REPO_ROOT: ${{ github.workspace }}/fleet
+          CHUMMER_DESIGN_SKIP_LOCAL_MIRROR_CHECK: "1"
         run: bash scripts/ai/verify.sh
 
       - name: Commit refreshed pulse

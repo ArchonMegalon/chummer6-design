@@ -243,8 +243,10 @@ if ! python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py
   python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" >/dev/null
   python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
 fi
-if ! python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null; then
-  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+if [ "${CHUMMER_DESIGN_SKIP_LOCAL_MIRROR_CHECK:-}" != "1" ]; then
+  if ! python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null; then
+    python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+  fi
 fi
 if ! python3 "$downstream_root/scripts/sync_public_guide_from_design.py" --check >/dev/null; then
   python3 "$downstream_root/scripts/sync_public_guide_from_design.py" >/dev/null
