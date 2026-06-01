@@ -85,6 +85,7 @@ jobs:
         working-directory: design
         env:
           CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
+          CHUMMER6_GUIDE_ROOT: ${{ github.workspace }}/chummercomplete/Chummer6
         run: bash scripts/ai/verify.sh
 
       - name: Commit refreshed pulse
