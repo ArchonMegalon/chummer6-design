@@ -85,7 +85,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: python -m pip install pyyaml
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ripgrep
+          python -m pip install pyyaml
 
       - name: Prepare mirror directories
         run: |
