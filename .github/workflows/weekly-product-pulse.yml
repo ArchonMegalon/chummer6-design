@@ -75,6 +75,9 @@ jobs:
       - name: Install dependencies
         run: python -m pip install pyyaml
 
+      - name: Prepare mirror directories
+        run: mkdir -p fleet/.codex-design/product fleet/.codex-studio/published
+
       - name: Materialize weekly pulse
         env:
           CHUMMER_DOCKER_ROOT: ${{ github.workspace }}
