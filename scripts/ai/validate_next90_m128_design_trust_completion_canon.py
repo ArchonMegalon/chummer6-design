@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+import os
 from pathlib import Path
 
 import yaml
@@ -12,10 +13,13 @@ PRODUCT_ROOT = REPO_ROOT / "products" / "chummer"
 REGISTRY_PATH = PRODUCT_ROOT / "NEXT_90_DAY_PRODUCT_ADVANCE_REGISTRY.yaml"
 QUEUE_PATH = PRODUCT_ROOT / "NEXT_90_DAY_QUEUE_STAGING.generated.yaml"
 VERIFY_PATH = REPO_ROOT / "scripts" / "ai" / "verify.sh"
-FLEET_QUEUE_CANDIDATES = (
+FLEET_QUEUE_CANDIDATES = tuple(path for path in (
+    Path(os.environ["FLEET_QUEUE_STAGING_PATH"]) if os.environ.get("FLEET_QUEUE_STAGING_PATH") else None,
+    Path(os.environ["FLEET_REPO_ROOT"]) / ".codex-studio" / "published" / "NEXT_90_DAY_QUEUE_STAGING.generated.yaml"
+    if os.environ.get("FLEET_REPO_ROOT") else None,
     REPO_ROOT.parents[1] / "fleet" / ".codex-studio" / "published" / "NEXT_90_DAY_QUEUE_STAGING.generated.yaml",
     Path("/docker/fleet/.codex-studio/published/NEXT_90_DAY_QUEUE_STAGING.generated.yaml"),
-)
+) if path is not None)
 FEEDBACK_PATH = (
     PRODUCT_ROOT
     / "maintenance"
