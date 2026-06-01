@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+trap 'echo "verify.sh failed at line $LINENO: $BASH_COMMAND" >&2' ERR
 script_root="$(cd "$(dirname "$0")/../.." && pwd)"
 repo_root_source="${CHUMMER_DESIGN_REPO_ROOT:-$script_root}"
 repo_root="$(cd "$repo_root_source" && pwd)"
