@@ -13,8 +13,8 @@ Picture the scene: During a run, heat crosses a threshold and the GM receives a 
 
 ## Current stage
 
-- Today: Future concept.
-- Next: Research and prototypes.
+- Today: Shipped split live/aftermath lane.
+- Next: Flagship depth hardening.
 
 ## The problem
 
@@ -64,7 +64,7 @@ or moderation truth system.
 
 The whole coaching and observer stack is not universally shipped.
 
-What is live today is Table Pulse Live on the signed-in command lane:
+What is live today is the first-party Table Pulse lane:
 
 * a Table Pulse packet on the Black Ledger notifications route
 * bounded remote reaction mini-games
@@ -72,6 +72,9 @@ What is live today is Table Pulse Live on the signed-in command lane:
 * Signal Deck and Runner Passport continuity
 * Living Newsroom watch framing
 * governed aftermath return loops
+
+The public route is live at `https://chummer.run/table-pulse`.
+The named receipt lane is live at `https://chummer.run/table-pulse/receipts/live-and-aftermath.json`.
 
 So the command-to-fallout loop is real now, while Table Pulse Aftermath and the broader coaching,
 transcript, and narrated-summary stack remain future-facing, consent-bounded, and explicitly
@@ -212,7 +215,7 @@ See also: `HEDY_AI_TABLE_PULSE_DESIGN.md`
 * not discipline automation
 * not durable session truth
 
-## Why it is not ready yet
+## Current boundary
 
 This only works if the two rails stay separate:
 
@@ -220,6 +223,5 @@ This only works if the two rails stay separate:
 * Table Pulse Aftermath must remain private, consent-bounded, and clearly separate from moderation
 or rules truth
 
-Until Chummer can prove those guardrails end to end, TABLE PULSE remains a split horizon page with
-one live rail and one future-facing rail rather than a claim that the full coaching, transcript,
-remote-user, and mini-game stack is already universally shipped.
+That separation is now part of the shipped contract. What is still not universally shipped is the
+broader coaching, transcript, narrated-summary, and observer-analysis expansion around those rails.

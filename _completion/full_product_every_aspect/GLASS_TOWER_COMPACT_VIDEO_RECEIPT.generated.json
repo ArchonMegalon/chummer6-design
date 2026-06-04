@@ -1,16 +1,20 @@
 {
-  "generated_at_utc": "2026-05-17T11:01:32.545767Z",
+  "generated_at_utc": "2026-06-04T07:43:01.190943Z",
   "faction": "glass-tower-compact",
-  "provider": "advertisemind",
+  "provider": "MagicFit",
   "fallback": "storyboard",
   "status": "pass",
   "route": "/ledger/factions/glass-tower-compact/promo.json",
-  "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-  "render_mode": "fallback_static_storyboard",
+  "provider_status": "VERIFIED_PROVIDER",
+  "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+  "magicfit_route_required": true,
   "formats": [
-    "16:9 storyboard",
-    "9:16 mobile storyboard",
-    "Static fallback card",
-    "Captions required"
-  ]
+    "MagicFit-rendered 16:9 MP4",
+    "MagicFit-rendered 16:9 WebM",
+    "Storyboard fallback",
+    "Captions required",
+    "Narration mixed in post"
+  ],
+  "storyboard_frame_count": 3,
+  "screenplay_scene_count": 5
 }

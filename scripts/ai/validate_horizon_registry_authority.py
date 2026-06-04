@@ -27,6 +27,19 @@ def fail(errors: list[str]) -> int:
     return 1
 
 
+def iter_missing_required_sections(root_row: dict[str, object], canon_doc_path: Path, required_sections: list[str]) -> list[str]:
+    if not canon_doc_path.exists():
+        return [f"{root_row.get('id')}: canon_doc is missing at {canon_doc_path.as_posix()}."]
+
+    text = canon_doc_path.read_text(encoding="utf-8")
+    missing: list[str] = []
+    for section in required_sections:
+        heading = f"## {section}"
+        if heading not in text:
+            missing.append(section)
+    return missing
+
+
 def main() -> int:
     errors: list[str] = []
     root = load_yaml(ROOT_REGISTRY_PATH)
@@ -42,10 +55,14 @@ def main() -> int:
 
     root_rows = root.get("horizons") or []
     derived_rows = derived.get("horizons") or []
+    required_sections = root.get("required_doc_sections") or []
     if not isinstance(root_rows, list) or not isinstance(derived_rows, list):
         errors.append("both horizon registries must contain horizon lists.")
         root_rows = []
         derived_rows = []
+    if not isinstance(required_sections, list):
+        errors.append("root registry required_doc_sections must be a list when present.")
+        required_sections = []
 
     root_by_id: dict[str, dict[str, object]] = {}
     derived_by_id: dict[str, dict[str, object]] = {}
@@ -82,8 +99,13 @@ def main() -> int:
             errors.append(f"{horizon_id}: derived public_guide_allowed must mirror root public_guide.enabled.")
         if root_enabled != root_signal:
             errors.append(f"{horizon_id}: root public_guide.enabled must match public_signal_eligible.")
-        if root_enabled and not str(root_row.get("canon_doc") or "").strip():
+        canon_doc = str(root_row.get("canon_doc") or "").strip()
+        if root_enabled and not canon_doc:
             errors.append(f"{horizon_id}: enabled horizons must keep a canon_doc.")
+        if canon_doc:
+            missing_sections = iter_missing_required_sections(root_row, ROOT / canon_doc, [str(item) for item in required_sections if str(item).strip()])
+            if missing_sections:
+                errors.append(f"{horizon_id}: missing required sections in canon_doc: {', '.join(missing_sections)}")
 
     export_sources = export_manifest.get("sources") or {}
     if not isinstance(export_sources, dict) or str(export_sources.get("horizon_registry") or "").strip() != "products/chummer/HORIZON_REGISTRY.yaml":

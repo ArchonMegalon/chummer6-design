@@ -20,7 +20,7 @@ This audit covers:
 * canonical horizons listed in `HORIZON_REGISTRY.yaml`
 * active feature systems listed in `LTD_RUNTIME_AND_PROJECTION_REGISTRY.yaml`
 
-This audit does not promote parked horizon drafts such as `edition-studio`, `onramp`, `quicksilver`, or `run-control`.
+This audit does not promote parked horizon drafts such as `edition-studio`.
 Those files stay out of scope until they return to the machine-readable horizon canon.
 
 ## Working rules
@@ -45,6 +45,7 @@ Every canonical horizon in `HORIZON_REGISTRY.yaml` is covered here:
 * `runsite` - strongest spatial, explorable-tour, route, and orientation LTD fit
 * `runbook-press` - strongest long-form authoring, render, and explainer LTD fit
 * `ghostwire` - strongest replay-surface, report, and narrated after-action LTD fit
+* `quicksilver` - strongest speed-surface, command-deck, and jump-target fit
 * `table-pulse` - strongest opt-in coaching and debrief LTD fit
 * `local-co-processor` - strongest parity-helper and operator-guidance fit, with no external truth owner
 

@@ -1,102 +1,126 @@
 {
-  "generated_at_utc": "2026-05-17T11:01:33.064199Z",
+  "generated_at_utc": "2026-06-04T07:43:01.620384Z",
   "status": "pass",
   "receipts": [
     {
-      "generated_at_utc": "2026-05-17T11:01:32.545767Z",
+      "generated_at_utc": "2026-06-04T07:43:01.190943Z",
       "faction": "glass-tower-compact",
-      "provider": "advertisemind",
+      "provider": "MagicFit",
       "fallback": "storyboard",
       "status": "pass",
       "route": "/ledger/factions/glass-tower-compact/promo.json",
-      "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-      "render_mode": "fallback_static_storyboard",
+      "provider_status": "VERIFIED_PROVIDER",
+      "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+      "magicfit_route_required": true,
       "formats": [
-        "16:9 storyboard",
-        "9:16 mobile storyboard",
-        "Static fallback card",
-        "Captions required"
-      ]
+        "MagicFit-rendered 16:9 MP4",
+        "MagicFit-rendered 16:9 WebM",
+        "Storyboard fallback",
+        "Captions required",
+        "Narration mixed in post"
+      ],
+      "storyboard_frame_count": 3,
+      "screenplay_scene_count": 5
     },
     {
-      "generated_at_utc": "2026-05-17T11:01:32.654952Z",
+      "generated_at_utc": "2026-06-04T07:43:01.286629Z",
       "faction": "rust-market-syndicate",
-      "provider": "advertisemind",
+      "provider": "MagicFit",
       "fallback": "storyboard",
       "status": "pass",
       "route": "/ledger/factions/rust-market-syndicate/promo.json",
-      "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-      "render_mode": "fallback_static_storyboard",
+      "provider_status": "VERIFIED_PROVIDER",
+      "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+      "magicfit_route_required": true,
       "formats": [
-        "16:9 storyboard",
-        "9:16 mobile storyboard",
-        "Static fallback card",
-        "Captions required"
-      ]
+        "MagicFit-rendered 16:9 MP4",
+        "MagicFit-rendered 16:9 WebM",
+        "Storyboard fallback",
+        "Captions required",
+        "Narration mixed in post"
+      ],
+      "storyboard_frame_count": 3,
+      "screenplay_scene_count": 5
     },
     {
-      "generated_at_utc": "2026-05-17T11:01:32.788853Z",
+      "generated_at_utc": "2026-06-04T07:43:01.379348Z",
       "faction": "ashline-circle",
-      "provider": "advertisemind",
+      "provider": "MagicFit",
       "fallback": "storyboard",
       "status": "pass",
       "route": "/ledger/factions/ashline-circle/promo.json",
-      "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-      "render_mode": "fallback_static_storyboard",
+      "provider_status": "VERIFIED_PROVIDER",
+      "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+      "magicfit_route_required": true,
       "formats": [
-        "16:9 storyboard",
-        "9:16 mobile storyboard",
-        "Static fallback card",
-        "Captions required"
-      ]
+        "MagicFit-rendered 16:9 MP4",
+        "MagicFit-rendered 16:9 WebM",
+        "Storyboard fallback",
+        "Captions required",
+        "Narration mixed in post"
+      ],
+      "storyboard_frame_count": 3,
+      "screenplay_scene_count": 5
     },
     {
-      "generated_at_utc": "2026-05-17T11:01:32.875760Z",
+      "generated_at_utc": "2026-06-04T07:43:01.475240Z",
       "faction": "neon-docks-union",
-      "provider": "advertisemind",
+      "provider": "MagicFit",
       "fallback": "storyboard",
       "status": "pass",
       "route": "/ledger/factions/neon-docks-union/promo.json",
-      "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-      "render_mode": "fallback_static_storyboard",
+      "provider_status": "VERIFIED_PROVIDER",
+      "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+      "magicfit_route_required": true,
       "formats": [
-        "16:9 storyboard",
-        "9:16 mobile storyboard",
-        "Static fallback card",
-        "Captions required"
-      ]
+        "MagicFit-rendered 16:9 MP4",
+        "MagicFit-rendered 16:9 WebM",
+        "Storyboard fallback",
+        "Captions required",
+        "Narration mixed in post"
+      ],
+      "storyboard_frame_count": 3,
+      "screenplay_scene_count": 5
     },
     {
-      "generated_at_utc": "2026-05-17T11:01:32.973184Z",
+      "generated_at_utc": "2026-06-04T07:43:01.546019Z",
       "faction": "ghostline-network",
-      "provider": "advertisemind",
+      "provider": "MagicFit",
       "fallback": "storyboard",
       "status": "pass",
       "route": "/ledger/factions/ghostline-network/promo.json",
-      "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-      "render_mode": "fallback_static_storyboard",
+      "provider_status": "VERIFIED_PROVIDER",
+      "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+      "magicfit_route_required": true,
       "formats": [
-        "16:9 storyboard",
-        "9:16 mobile storyboard",
-        "Static fallback card",
-        "Captions required"
-      ]
+        "MagicFit-rendered 16:9 MP4",
+        "MagicFit-rendered 16:9 WebM",
+        "Storyboard fallback",
+        "Captions required",
+        "Narration mixed in post"
+      ],
+      "storyboard_frame_count": 3,
+      "screenplay_scene_count": 5
     },
     {
-      "generated_at_utc": "2026-05-17T11:01:33.063814Z",
+      "generated_at_utc": "2026-06-04T07:43:01.620113Z",
       "faction": "barrens-free-wardens",
-      "provider": "advertisemind",
+      "provider": "MagicFit",
       "fallback": "storyboard",
       "status": "pass",
       "route": "/ledger/factions/barrens-free-wardens/promo.json",
-      "provider_status": "NEEDS_PROVIDER_VERIFICATION",
-      "render_mode": "fallback_static_storyboard",
+      "provider_status": "VERIFIED_PROVIDER",
+      "render_mode": "magicfit_cinematic_faction_promo_with_narration",
+      "magicfit_route_required": true,
       "formats": [
-        "16:9 storyboard",
-        "9:16 mobile storyboard",
-        "Static fallback card",
-        "Captions required"
-      ]
+        "MagicFit-rendered 16:9 MP4",
+        "MagicFit-rendered 16:9 WebM",
+        "Storyboard fallback",
+        "Captions required",
+        "Narration mixed in post"
+      ],
+      "storyboard_frame_count": 3,
+      "screenplay_scene_count": 5
     }
   ]
 }

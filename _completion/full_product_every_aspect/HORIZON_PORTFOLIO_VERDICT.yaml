@@ -4,13 +4,17 @@ verdict: classified
 horizons:
   ready_for_tonight: shipped_mvp
   nexus_pan: shipped_mvp
+  alice: shipped_mvp
   knowledge_fabric: shipped_mvp
   jackpoint: shipped_mvp
   runsite: shipped_mvp
   runbook_press: shipped_mvp
+  table_pulse: shipped_mvp
   community_hub: route_visible_preview_with_proof
   creator_os: route_visible_preview_with_proof
   runner_passport: route_visible_preview_with_proof
   ghostwire: route_visible_preview_with_proof
   anarchy: route_visible_preview_with_proof
+  karma_forge: shipped_mvp
+  black_ledger: shipped_mvp
   foundry_handoff: honestly_parked

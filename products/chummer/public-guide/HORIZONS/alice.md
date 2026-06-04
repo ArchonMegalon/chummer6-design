@@ -16,6 +16,16 @@ Picture the scene: A player compares two builds and sees the tradeoffs, the math
 - Today: Signed-in command lane is live.
 - Next: Expand bounded coaching and fallout follow-through.
 
+## What is live now
+
+The first shipped ALICE slice is the Build Ghost compare bench:
+
+- a public-safe ALICE route that explains the boundary and routes users into first-party compare work
+- signed-in build handoffs that keep tradeoffs, progression outcomes, runtime compatibility, source hints, and apply or discard follow-through on one governed rail
+- first-party compare artifacts such as compare briefs, what-if packets, and apply or discard receipts
+
+This is not an assistant-side build oracle. The shipped lane is a Chummer-owned compare and handoff surface with bounded public framing.
+
 **ALICE is Chummer’s build-simulation and what-if horizon: the future where players can compare builds, catch trouble, test upgrade paths, and understand tradeoffs before the table discovers the mistake under pressure.**
 
 Many weak builds are not obvious at creation time.
@@ -200,6 +210,11 @@ It should let a user:
 Success looks like:
 
 > A player understands why one legal build is worse for their intended run before the session starts.
+
+## Current boundary
+
+The live ALICE lane still does not mean Chummer can invent mechanics, override legality, or turn a public explainer into runtime truth.
+The public entry, the signed-in compare bench, and the first-party receipts are live now; deeper simulation and coaching can widen later.
 
 ## The vision
 

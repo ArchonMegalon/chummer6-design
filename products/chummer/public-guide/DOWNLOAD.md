@@ -11,7 +11,7 @@ This page tells you what you can download right now and which file to start with
 ## Current public download
 
 - Today: Usable preview.
-- Published: June 2, 2026 at 7:22 UTC.
+- Published: June 3, 2026 at 7:11 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows, Linux, and macOS.
 - Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.
@@ -64,7 +64,7 @@ Official client downloads start at chummer.run. GitHub is for source and public 
 ## Recent release verification
 
 - Status: Passed.
-- Last checked: June 1, 2026 at 13:11 UTC.
+- Last checked: June 2, 2026 at 17:14 UTC.
 - Summary: Passed for installs and recovery, campaign session recovery, and support follow-up.
 
 ### What was checked
