@@ -16,10 +16,6 @@ Picture the scene: A player finds a beginner-friendly run, applies with a legal 
 - Today: shipped mvp.
 - Next: flagship depth hardening.
 
-That is a core goal. Quickstart runners and mobile-first application paths should reduce the Windows-only chokepoint.
-
-No. Chummer owns campaign logic. Discord can remain the community and meeting surface.
-
 ## The problem
 
 Finding a table still means juggling community rules, approvals, chats, calendars, meeting links, roster notes, and after-session follow-up just to get the right people to the table and close the loop afterward.
