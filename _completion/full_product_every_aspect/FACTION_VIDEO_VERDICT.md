@@ -3,9 +3,10 @@
 Verdict: `READY`
 
 Current truth:
-- public-safe first-party storyboard posture is implemented
-- provider posture is `FIRST_PARTY_STORYBOARD`
-- the shipped storyboard lane is compliant, route-backed, and green
+- live public faction promos are provider-verified and route-backed
+- provider posture is `VERIFIED_PROVIDER`
+- render mode is `magicfit_cinematic_faction_promo_with_narration`
+- narration provider is `unmixr-short-tts`
 
 Evidence:
-- `/docker/chummercomplete/_completion/pre_gold_full_product/FINAL_FACTION_VIDEO_VERDICT.md`
+- `/docker/chummercomplete/chummer.run-services/.codex-studio/published/BLACK_LEDGER_FACTION_VIDEO_CARD_PROOF.generated.json`

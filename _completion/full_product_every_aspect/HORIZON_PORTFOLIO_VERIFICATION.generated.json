@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-06-04T10:32:34.863922Z",
+  "generated_at_utc": "2026-06-05T14:36:18.032683Z",
   "contract_name": "chummer.horizon_portfolio_verdicts",
   "status": "pass",
   "source": "/docker/chummercomplete/_completion/all_horizons_missed_potential/HORIZON_STATUS_MATRIX.generated.yaml",
-  "horizon_count": 15,
+  "horizon_count": 20,
   "invalid_rows": []
 }

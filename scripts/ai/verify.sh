@@ -393,10 +393,10 @@ rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/d
 rg -n '^# Horizons$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
 rg -n '^# NEXUS-PAN$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^## Current stage$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
+rg -n '^## Why this matters$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^## The problem$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## What it would do$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^## What has to be true first$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
+! rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n '^# Chummer Public Guide$' "$downstream_root/README.md" >/dev/null

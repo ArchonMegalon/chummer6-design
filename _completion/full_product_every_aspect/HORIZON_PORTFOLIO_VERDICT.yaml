@@ -10,11 +10,15 @@ horizons:
   runsite: shipped_mvp
   runbook_press: shipped_mvp
   table_pulse: shipped_mvp
-  community_hub: route_visible_preview_with_proof
-  creator_os: route_visible_preview_with_proof
-  runner_passport: route_visible_preview_with_proof
-  ghostwire: route_visible_preview_with_proof
-  anarchy: route_visible_preview_with_proof
+  community_hub: shipped_mvp
+  creator_os: shipped_mvp
+  runner_passport: shipped_mvp
+  ghostwire: shipped_mvp
+  anarchy: shipped_mvp
   karma_forge: shipped_mvp
   black_ledger: shipped_mvp
-  foundry_handoff: honestly_parked
+  quicksilver: shipped_mvp
+  onramp: shipped_mvp
+  edition_studio: shipped_mvp
+  local_co_processor: shipped_mvp
+  run_control: shipped_mvp
