@@ -13,10 +13,10 @@ Picture the scene: A creator turns approved Chummer material into a district gui
 
 ## Current stage
 
-- Today: Shipped first-party long-form publishing lane.
-- Next: Flagship depth hardening.
+- Today: shipped mvp.
+- Next: flagship depth hardening.
 
-**RUNBOOK PRESS is Chummer’s long-form publishing lane: approved Chummer material can already become primers, handbooks, district guides, campaign books, convention modules, and creator-ready publications on first-party rails.**
+**RUNBOOK PRESS is Chummer’s long-form publishing horizon: the future where approved Chummer material can become primers, handbooks, district guides, campaign books, convention modules, and creator-ready publications without duct-taping ten unrelated tools together.**
 
 Short recaps are not enough.
 
@@ -31,9 +31,6 @@ Shadowcasters needs onboarding handbooks.
 RUNBOOK PRESS is the long-form publishing lane.
 
 Short recaps are not enough.
-
-The public lane is live at `https://chummer.run/runbook`.
-The first-party primer rails are live on markdown and JSON packet routes.
 
 ## The promise
 

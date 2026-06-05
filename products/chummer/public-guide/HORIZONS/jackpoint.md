@@ -13,10 +13,10 @@ Picture the scene: After a run, the GM exports a dossier-plus-recap packet with 
 
 ## Current stage
 
-- Today: Shipped first-party briefing lane.
-- Next: Flagship depth hardening.
+- Today: shipped mvp.
+- Next: flagship depth hardening.
 
-**JACKPOINT is Chummer’s short-to-medium-form artifact studio: campaigns already produce public-safe dossiers, mission briefings, and recap packets on first-party rails without losing source trail.**
+**JACKPOINT is Chummer’s short-to-medium-form artifact studio: the future where campaigns produce polished dossiers, mission briefings, recaps, evidence rooms, and narrated packets without losing source trail.**
 
 Tables create material constantly.
 
@@ -36,13 +36,8 @@ JACKPOINT should do the opposite.
 
 It makes artifacts feel good **because** they are grounded.
 
-The public lane is live at `https://chummer.run/jackpoint`.
-The named receipt lane is live at `https://chummer.run/jackpoint/receipts/briefing-network.json`.
-The signed-in desk is live at `https://chummer.run/account/jackpoint`.
-Typed publication APIs are live for the same rail:
-
-- `/api/v1/campaign-spine/me/publications`
-- `/api/v1/campaign-spine/me/publications/{publicationId}`
+The signed-in command lane is already live at `https://chummer.run/jackpoint`.
+That lane currently carries first-party briefing packets on real markdown and JSON routes without pretending the whole long-form publishing roadmap is done.
 
 ## The promise
 

@@ -1,32 +1,28 @@
 # LOCAL CO-PROCESSOR
 
-Optional local acceleration without turning Chummer into a mystery dependency.
+Local acceleration improves privacy and responsiveness where available without becoming mandatory infrastructure.
+
+![LOCAL CO-PROCESSOR horizon art](../assets/horizons/local-co-processor.png)
+
+## Why this matters
+
+Some tasks would be cheaper or faster locally, but the product cannot assume local compute exists.
+
+Picture the scene: A creator with a strong local machine opts into accelerated explain or media assistance while the same workflow still works hosted-only for everyone else.
+
 
 ## Current stage
 
-- Today: Shipped first-party optional-acceleration lane.
-- Next: Flagship depth hardening.
+- Today: shipped mvp.
+- Next: flagship depth hardening.
 
-## What it does now
+## The problem
 
-LOCAL CO-PROCESSOR is the bounded profile lane for optional local help where it improves privacy, responsiveness, or cost.
+Some explain, search, and media-assist workloads would be cheaper, faster, or more private with optional local acceleration, but the product cannot require every user to run local compute.
 
-It currently ships:
+## What has to be true first
 
-* a public route at `/local-co-processor`
-* a named receipt at `/local-co-processor/receipts/optional-acceleration.json`
-* capability and policy packets
-* a signed-in profile desk at `/account/local-co-processor`
-* typed capability and policy APIs
-
-Hosted-first parity stays required.
-If local help is unavailable, Chummer still works on hosted first-party rails.
-
-## Boundary
-
-LOCAL CO-PROCESSOR does not claim:
-
-* mandatory local runtime
-* local truth authority
-* hidden provider prerequisites
-* a split where hosted users lose the core workflow
+* portable deterministic engine host strategy
+* hosted-first parity
+* explicit non-mandatory local runtime policy
+* disableable local acceleration paths

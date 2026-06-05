@@ -13,8 +13,8 @@ Picture the scene: During a run, heat crosses a threshold and the GM receives a 
 
 ## Current stage
 
-- Today: Shipped split live/aftermath lane.
-- Next: Flagship depth hardening.
+- Today: shipped mvp.
+- Next: Expand bounded coaching and fallout follow-through.
 
 ## The problem
 
@@ -62,9 +62,11 @@ or moderation truth system.
 
 ## What is live now
 
-The whole coaching and observer stack is not universally shipped.
+The whole coaching and observer stack is not universally shipped, but Table Pulse is no longer just one live rail plus a future page.
 
-What is live today is the first-party Table Pulse lane:
+What is live today is:
+
+* Table Pulse Live on the signed-in command lane:
 
 * a Table Pulse packet on the Black Ledger notifications route
 * bounded remote reaction mini-games
@@ -73,12 +75,15 @@ What is live today is the first-party Table Pulse lane:
 * Living Newsroom watch framing
 * governed aftermath return loops
 
-The public route is live at `https://chummer.run/table-pulse`.
-The named receipt lane is live at `https://chummer.run/table-pulse/receipts/live-and-aftermath.json`.
+* Table Pulse Aftermath on the signed-in aftermath rail:
 
-So the command-to-fallout loop is real now, while Table Pulse Aftermath and the broader coaching,
-transcript, and narrated-summary stack remain future-facing, consent-bounded, and explicitly
-non-authoritative.
+* workspace aftermath recap package generation
+* downtime aftermath and campaign-memory follow-through
+* receipt-backed return-lane packets that keep recap, carry-forward, and next-session cues together
+
+So the live rail and the GM-private aftermath rail are both real now, while the broader coaching,
+transcript, narrated-summary, and observer-analysis stack remain future-facing, consent-bounded,
+and explicitly non-authoritative.
 
 ## What players and remote users would actually see
 

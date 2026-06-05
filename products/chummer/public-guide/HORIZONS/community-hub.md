@@ -13,18 +13,22 @@ Picture the scene: A player finds a beginner-friendly run, applies with a legal 
 
 ## Current stage
 
-- Today: Shipped first-party open-run and closeout lane.
-- Next: Flagship depth hardening.
+- Today: shipped mvp.
+- Next: flagship depth hardening.
+
+That is a core goal. Quickstart runners and mobile-first application paths should reduce the Windows-only chokepoint.
+
+No. Chummer owns campaign logic. Discord can remain the community and meeting surface.
 
 ## The problem
 
 Finding a table still means juggling community rules, approvals, chats, calendars, meeting links, roster notes, and after-session follow-up just to get the right people to the table and close the loop afterward.
 
-## What it does now
+## What it would do
 
-COMMUNITY HUB turns BLACK LEDGER and campaign prep into a practical recruitment, scheduling, prep, and closeout layer.
+COMMUNITY HUB would turn BLACK LEDGER and campaign prep into a practical recruitment, scheduling, prep, and closeout layer.
 
-It lets a GM:
+It would let a GM:
 
 * publish an open run from a job packet, custom run, or creator module
 * accept join requests tied to player accounts and runner dossiers or approved quickstarts
@@ -37,23 +41,18 @@ It lets a GM:
 * collect a resolution report that feeds the living world back into BLACK LEDGER
 * optionally award seasonal honors and runner-legends from typed, spoiler-safe events
 
-The real current path is:
+The public fantasy is:
 
-> A GM opens a run from Chummer.
-> The right players find it through first-party board and preflight rails.
+> A GM opens a run on the map.
+> The right players find it.
 > Chummer gets the table into the session.
-> The outcome closes back into the same first-party lane.
+> The outcome changes the city.
 
 COMMUNITY HUB is the product name for that lane.
 
-The public lane is live at `https://chummer.run/community`.
-The named receipt lane is live at `https://chummer.run/community/receipts/open-run-network.json`.
-The signed-in board is live at `https://chummer.run/account/community`.
-The typed open-run APIs are live too:
-
-* `/api/v1/campaign-spine/me/open-runs`
-* `/api/v1/campaign-spine/me/open-runs/{openRunId}`
-* `/api/v1/campaign-spine/me/workspaces/{workspaceId}/open-runs`
+The public route is live at `https://chummer.run/community`.
+The named signed-in command lane now ships at `https://chummer.run/account/community`.
+Those lanes currently carry governed open-run board posture, venue handoff, join review, scheduling, and community closeout without pretending the whole long-range community roadmap is done.
 
 ## What has to be true first
 
@@ -64,14 +63,3 @@ The typed open-run APIs are live too:
 * a beginner GM must be able to open, staff, prep, schedule, and close a starter run without stitching together five external tools
 * observer and debrief lanes must be strictly consent-gated
 * reputation and seasonal honors must derive from typed source events rather than hidden scoring
-
-## Boundary
-
-This lane only works if Chummer keeps four things true at once:
-
-1. open-run listings, roster truth, and meeting handoff stay in one trustworthy system,
-2. community-rule environments, quickstarts, and preflight make it easier to join instead of adding another review maze,
-3. third-party scheduling, meeting, and play surfaces never outrank Chummer-owned receipts,
-4. observer and debrief assistance never slips into hidden surveillance, and seasonal honors stay motivating without turning into a toxic ranking game.
-
-Those are the boundaries for the shipped lane. COMMUNITY HUB does not hand run truth, roster truth, or closeout truth to chat tools, meeting tools, or public boards.

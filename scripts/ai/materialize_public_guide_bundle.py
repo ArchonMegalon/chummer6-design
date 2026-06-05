@@ -249,6 +249,16 @@ def _candidate_asset_roots(repo_root: Path) -> list[Path]:
     if guide_root:
         roots.append(Path(guide_root) / "assets")
     for candidate in (
+        repo_root / "products" / "chummer" / "public-guide-curated-assets" / "assets",
+        repo_root / "products" / "chummer" / "public-guide" / "assets",
+        repo_root / "chummer-design" / "products" / "chummer" / "public-guide-curated-assets" / "assets",
+        repo_root / "chummer-design" / "products" / "chummer" / "public-guide" / "assets",
+        repo_root.parent / "chummer-design" / "products" / "chummer" / "public-guide-curated-assets" / "assets",
+        repo_root.parent / "chummer-design" / "products" / "chummer" / "public-guide" / "assets",
+    ):
+        if candidate not in roots:
+            roots.append(candidate)
+    for candidate in (
         repo_root.parent / "Chummer6" / "assets",
         repo_root.parent / "chummer6" / "assets",
         Path("/docker/chummercomplete/Chummer6/assets"),

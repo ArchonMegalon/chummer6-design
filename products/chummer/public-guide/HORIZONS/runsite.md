@@ -13,10 +13,10 @@ Picture the scene: A GM sends an explorable safehouse pack with hotspots, floor 
 
 ## Current stage
 
-- Today: Shipped first-party prep lane.
-- Next: Flagship depth hardening.
+- Today: shipped mvp.
+- Next: flagship depth hardening.
 
-**RUNSITE is Chummer’s spatial-prep lane: mission locations are already inspectable, understandable, and briefing-ready on first-party rails before the action starts.**
+**RUNSITE is Chummer’s spatial-prep horizon: the future where mission locations become explorable, understandable, and briefing-ready before the action starts.**
 
 GMs describe spaces.
 Players misread them.
@@ -26,16 +26,8 @@ RUNSITE fixes that.
 
 It helps the table understand the space before it starts.
 
-The public lane is live at `https://chummer.run/runsites`.
-The named receipt lane is live at `https://chummer.run/runsites/receipts/prep-network.json`.
-The signed-in prep bench is live at `https://chummer.run/account/runsites`.
-Typed workspace and run APIs are live for the same rail:
-
-- `/api/v1/campaign-spine/me/workspace-digests`
-- `/api/v1/campaign-spine/me/workspaces/{workspaceId}`
-- `/api/v1/campaign-spine/me/workspaces/{workspaceId}/prep-library`
-- `/api/v1/campaign-spine/me/runs`
-- `/api/v1/campaign-spine/me/runs/{runId}`
+The signed-in command lane is already live at `https://chummer.run/runsites`.
+That lane currently carries first-party runsite packs on real markdown and JSON routes without pretending the whole spatial roadmap is done.
 
 ## The promise
 
