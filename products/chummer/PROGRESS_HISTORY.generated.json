@@ -1,8 +1,8 @@
 {
   "contract_name": "fleet.public_progress_history",
   "contract_version": "2026-03-23",
-  "generated_at": "2026-06-04T14:11:41Z",
-  "snapshot_count": 38,
+  "generated_at": "2026-06-08T10:59:33Z",
+  "snapshot_count": 39,
   "snapshots": [
     {
       "as_of": "2026-03-23",
@@ -2549,6 +2549,12 @@
           "eta_source": "history_velocity"
         }
       ]
+    },
+    {
+      "as_of": "2026-06-08",
+      "overall_progress_percent": 100,
+      "phase_label": "In progress",
+      "parts": []
     }
   ]
 }
