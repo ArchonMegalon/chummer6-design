@@ -220,8 +220,8 @@ gold_graph_policy:
     - products/chummer/PRODUCT_SPINE.yaml
     - products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml
     - products/chummer/HORIZON_REGISTRY.yaml
-    - /docker/fleet/_completion/full_product_reaudit_v18/FINAL_GOLD_VERDICT.md
-    - /docker/fleet/_completion/full_product_reaudit_v18/FINAL_GOLD_JANITOR.generated.json
+    - /docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_VERDICT.md
+    - /docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_JANITOR.generated.json
     - https://chummer.run/status
     - https://chummer.run/downloads/releases.json
   principle: One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself.

@@ -74,12 +74,12 @@
     },
     {
       "kind": "fleet_gold_verdict",
-      "path": "/docker/fleet/_completion/full_product_reaudit_v18/FINAL_GOLD_VERDICT.md",
+      "path": "/docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_VERDICT.md",
       "status": "pass"
     },
     {
       "kind": "fleet_gold_janitor",
-      "path": "/docker/fleet/_completion/full_product_reaudit_v18/FINAL_GOLD_JANITOR.generated.json",
+      "path": "/docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_JANITOR.generated.json",
       "status": "pass"
     },
     {

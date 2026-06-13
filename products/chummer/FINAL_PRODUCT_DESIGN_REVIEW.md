@@ -1,0 +1,49 @@
+# Final Product Design Review
+
+Date: 2026-06-13
+Verdict: `DESIGN_READY`
+
+## Scope
+
+- Public flagship posture: Home, Downloads, Status, Help, and install handoff surfaces.
+- Live world surfaces: Black Ledger entrypoints and map.
+- Desktop successor workflow: Chummer5A successor surfaces.
+- Media and provider lanes that are actively shipped.
+
+## Surface Hierarchy
+
+- [x] Homepage starts with value in first screen (Black Ledger intent visible immediately).
+- [x] Surface list is explicit: Install > What Works > Worlds > Help > Support.
+- [x] Non-flagship surfaces are visually and copy-wise distinguished.
+- [x] Proof-heavy routes are available, but never the first visible default for new users.
+
+## Installation and First-Run
+
+- [x] Install path is a single obvious path before account framing.
+- [x] Account creation is optional and framed as continuity, not prerequisite.
+- [x] Signed-in continuity routes are present for recovery and support handoff.
+- [x] Manual/advanced package options are secondary and not default.
+
+## Status and Support
+
+- [x] Status page copy is customer-safe and explains one clear next action.
+- [x] Proof details are available in deeper reports without crowding the short status path.
+- [x] Support, restore, and update states have explicit handoff links.
+
+## Desktop
+
+- [x] Public launch flow presents a known flagship target for character work first.
+- [x] Desktop actions in public surfaces stay on visible action verbs and non-blocked defaults.
+- [x] Legacy or preview behavior is explicitly marked and not blended into flagship flow.
+
+## Black Ledger
+
+- [x] Main ledger page has a visible world state lane with readable status.
+- [x] Route supports quick understanding of pressure and major world events.
+- [x] Optional cinematic route exists in a bounded media path.
+
+## Product Modes
+
+- [x] Desktop, Hub, Black Ledger, Media, Table Pulse, and support each keep a separate, bounded mission and copy tone.
+- [x] Account routing, proof routing, and media routing are not overloaded into one mixed surface.
+- [x] Design review evidence is available without requiring provider internals.
