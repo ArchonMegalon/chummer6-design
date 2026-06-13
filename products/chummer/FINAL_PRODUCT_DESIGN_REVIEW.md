@@ -41,6 +41,20 @@ Verdict: `DESIGN_READY`
 - [x] Main ledger page has a visible world state lane with readable status.
 - [x] Route supports quick understanding of pressure and major world events.
 - [x] Optional cinematic route exists in a bounded media path.
+- [x] Black Ledger has a large command-map centerpiece on the map route, with faction, pressure, and newsroom/video cues visible before deeper proof routes.
+
+## Human Acceptance
+
+- [x] First impression communicates Chummer in under five seconds: campaign command, install path, and living-world value are visible without reading proof artifacts.
+- [x] Public copy is free of proof-dashboard language in primary Home, Downloads, Status, Help, and Black Ledger paths.
+- [x] Downloads keep account setup optional and framed as continuity, not a required pre-download step.
+- [x] Desktop surfaces do not present inert actions as ready; preview or legacy behavior is named before users commit to it.
+
+## Media Acceptance
+
+- [x] Black Ledger media is accepted as a live command experience when desktop and mobile screenshots show a large command-map centerpiece, readable faction markers, pressure signals, and newsroom/video cues.
+- [x] Media receipts stay behind proof/report links; the primary user journey shows the experience instead of asking users to trust provider receipts.
+- [x] Provider and proof lanes stay out of the primary user journey unless the user explicitly opens status, proof, or operator reports.
 
 ## Product Modes
 
