@@ -1302,7 +1302,7 @@ milestones:
           - /docker/chummercomplete/chummer-design/scripts/ai/publish_local_mirrors.py remains the pruning and mirror-parity authority for repo-local `.codex-design` subsets, and the refreshed mirror publish keeps Fleet and sibling repos on the same successor-wave canon without reopening unrelated architecture-cleanup debt.
 
   - id: 107
-    title: Artifact factory and public proof gallery
+    title: Artifact factory and public detail gallery
     wave: W9
     owners:
       - chummer6-hub
