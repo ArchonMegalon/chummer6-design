@@ -1,6 +1,6 @@
 # Final Product Design Review
 
-Date: 2026-06-13
+Date: 2026-06-14
 Verdict: `DESIGN_READY`
 
 ## Scope
@@ -9,6 +9,13 @@ Verdict: `DESIGN_READY`
 - Live world surfaces: Black Ledger entrypoints and map.
 - Desktop successor workflow: Chummer5A successor surfaces.
 - Media and provider lanes that are actively shipped.
+
+## Release Parity
+
+- [x] Reviewed public copy is deployed on Home, Downloads, and Status.
+- [x] Public `/ledger` entry resolves through the shipped command-map entry route.
+- [x] Live surface parity receipt is passing against the currently deployed site.
+- [x] Gold and design receipts are regenerated from the deployed state, not only checked-in source.
 
 ## Surface Hierarchy
 

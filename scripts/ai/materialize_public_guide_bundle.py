@@ -968,6 +968,7 @@ def _public_release_note(text: object) -> str:
         cleaned = cleaned.replace(raw, label)
     replacements = (
         ("Local release proof passed for:", "Recent release verification passed for"),
+        ("Current release checks are clear", "No blocking release caveat is mirrored"),
         ("Claimed-device", "Device"),
         ("claimed-device", "device"),
         ("recent install", "recent setup"),
