@@ -110,6 +110,12 @@ If account context is needed, it must travel through a separate claim object or 
 
 The installed artifact stays the same in both cases.
 
+## Account-aware front-door rule
+
+`/downloads` stays guest-readable while `/home` and `/account` remain signed-in shells.
+
+The signed-in layer may explain participation and sponsor-session posture, but it must still rest on Hub community-ledger plus Registry-backed channel truth.
+
 ## Claim and grant lifecycle
 
 ### First launch

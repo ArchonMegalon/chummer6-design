@@ -2698,6 +2698,17 @@ milestones:
       owner: chummer6-design
       title: Close public-auth, identity/channel-linking, participation, account-aware front-door, and community-ledger canon
         coverage.
+      status: complete
+      evidence:
+      - products/chummer/PUBLIC_AUTH_FLOW.md
+      - products/chummer/PUBLIC_USER_MODEL.md
+      - products/chummer/IDENTITY_AND_CHANNEL_LINKING_MODEL.md
+      - products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md
+      - products/chummer/NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR.md
+      - products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md
+      - products/chummer/PUBLIC_PART_REGISTRY.yaml
+      - scripts/ai/validate_next90_m129_design_account_community_canon.py
+      - products/chummer/maintenance/feedback_archive/2026-05-05-next90-m129-design-account-community-canon-closeout.md
   - id: 130
     title: External tools, LTD provider stewardship, and governed integration adapter completion
     wave: W19
