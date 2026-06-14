@@ -10,7 +10,7 @@ This page tells you what you can download right now and which file to start with
 
 ## Current public download
 
-- Today: Usable preview.
+- Today: Public Stable.
 - Published: June 13, 2026 at 18:49 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows, Linux, and macOS.

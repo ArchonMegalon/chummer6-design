@@ -4,7 +4,7 @@ This is the blunt answer on what you can use today.
 
 ## Current picture
 
-- Today: Usable preview.
+- Today: Public Stable.
 - Published: June 13, 2026 at 18:49 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows, Linux, and macOS.

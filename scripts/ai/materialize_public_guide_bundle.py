@@ -46,8 +46,8 @@ PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generat
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
 PUBLIC_PHASE_LABELS = {
-    "in progress": "Usable preview",
-    "public-fit polish": "Usable preview",
+    "in progress": "Public Stable",
+    "public-fit polish": "Public Stable",
 }
 PUBLIC_HORIZON_STAGE_LABELS = {
     "horizon": "Future concept",
