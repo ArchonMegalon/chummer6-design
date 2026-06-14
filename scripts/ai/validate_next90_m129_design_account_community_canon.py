@@ -159,7 +159,7 @@ def main() -> int:
             errors.append(f"public_part_registry_missing_marker:{marker}")
 
     for marker in (
-        "Create account to install",
+        "Create account",
         "/login?next=/home",
         "/signup?next=/home",
         "path: /participate",

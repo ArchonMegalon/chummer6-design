@@ -2,7 +2,7 @@ version: v4
 purpose: Public launch blockers for the V4 gold janitor audit.
 blockers:
   - id: BLK-001
-    blocking_if_true: Live homepage or downloads posture keeps `Create account to install` as the primary acquisition CTA while public canon says `Open downloads`.
+    blocking_if_true: Live homepage or downloads posture keeps account-creation language as the primary acquisition CTA while public canon says `Open downloads`.
     verification:
       - python3 scripts/diff_public_manifest_live.py --base-url https://chummer.run
   - id: BLK-002
