@@ -20,7 +20,7 @@ Verdict: `DESIGN_READY`
 ## Surface Hierarchy
 
 - [x] Homepage starts with value in first screen (Black Ledger intent visible immediately).
-- [x] Surface list is explicit: Install > What Works > Worlds > Help > Support.
+- [x] Surface list is explicit: Install > What Works > Ledger > Help > Support.
 - [x] Non-flagship surfaces are visually and copy-wise distinguished.
 - [x] Proof-heavy routes are available, but never the first visible default for new users.
 
