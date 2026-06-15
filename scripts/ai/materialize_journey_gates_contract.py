@@ -65,6 +65,14 @@ JOURNEY_HANDOFFS = {
     "install_claim_restore_continue": {
         "principles": ["onboarding", "closure", "recovery"],
         "summary": "Install, claim, restore, and continue must read as one journey across the installer, hosted account posture, and claimed-device recovery state.",
+        "supporting_contracts": [
+            "FAILURE_MODE_JOURNEY_SCRIPTS.md",
+            "ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md",
+            "LONG_RUNNING_ACTION_SAFETY_CONTRACT.md",
+        ],
+        "failure_mode_script": "Improve: install, update, restore, and support routes expose one next safe action, one bounded fallback, and one honest closure state.",
+        "first_run_and_no_data_story": "First-run opens the real install or restore route. No-data recovery distinguishes empty state from blocked restore, missing rule packs, or relink posture.",
+        "long_running_action_safety": "Retry, cancel, rollback, or safe fallback must be named for install, restore, migration, and support submission lanes.",
         "surface_handoffs": {
             "desktop_ui": "The promoted install path opens the real workbench or restore continuation flow without a dashboard-first detour.",
             "hub_public": "Downloads, account, help, and status describe the same release, claim, and next-safe-action posture.",
@@ -74,6 +82,14 @@ JOURNEY_HANDOFFS = {
     "build_explain_publish": {
         "principles": ["onboarding", "safety", "closure"],
         "summary": "Build, explain, and publish share one truth chain: author the runner, inspect the reason, then release grounded artifacts without losing provenance.",
+        "supporting_contracts": [
+            "FAILURE_MODE_JOURNEY_SCRIPTS.md",
+            "ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md",
+            "LONG_RUNNING_ACTION_SAFETY_CONTRACT.md",
+        ],
+        "failure_mode_script": "Build, explain, and publish flows must keep preview, provenance, and explain packets available when legality, import, render, or publication fails.",
+        "first_run_and_no_data_story": "First build starts with the active ruleset visible. Empty or missing data states say whether the user has no runner, an incompatible import, or a blocked publish preview.",
+        "long_running_action_safety": "Import, migration, compare, render, and publish routes must name retry, cancel, rollback, or safe fallback before mutation begins.",
         "surface_handoffs": {
             "desktop_ui": "Dense builder and explain work stays primary, with preview-first publication and visible rule-environment posture.",
             "hub_public": "Hosted dossier, publication, and support surfaces may project the result, but never fork the underlying truth.",
@@ -83,6 +99,14 @@ JOURNEY_HANDOFFS = {
     "campaign_session_recover_recap": {
         "principles": ["safety", "closure", "recovery"],
         "summary": "Session truth, campaign memory, and recap closeout must survive live pressure, reconnects, and after-action review without silent state drift.",
+        "supporting_contracts": [
+            "FAILURE_MODE_JOURNEY_SCRIPTS.md",
+            "ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md",
+            "LONG_RUNNING_ACTION_SAFETY_CONTRACT.md",
+        ],
+        "failure_mode_script": "Run, reconnect, replay, and recap routes must surface stale, blocked, and conflict states with repair and support handoff instead of silent drift.",
+        "first_run_and_no_data_story": "Live empty state distinguishes no current session from missing campaign truth, missing rule packs, or rejected roster state.",
+        "long_running_action_safety": "Reconnect, sync, replay, and closeout lanes must name retry, cancel, rollback, or read-only safe fallback.",
         "surface_handoffs": {
             "desktop_ui": "GM prep, ledger actions, and recap authoring keep the same campaign memory and rule-environment truth that the live table uses.",
             "hub_public": "Campaign, account, and scheduling surfaces hand into the active session with roster, entitlement, and continuity posture intact.",
@@ -92,6 +116,14 @@ JOURNEY_HANDOFFS = {
     "recover_from_sync_conflict": {
         "principles": ["safety", "recovery"],
         "summary": "Conflict recovery must surface what diverged, what wins, and the next safe repair action before any client keeps computing.",
+        "supporting_contracts": [
+            "FAILURE_MODE_JOURNEY_SCRIPTS.md",
+            "ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md",
+            "LONG_RUNNING_ACTION_SAFETY_CONTRACT.md",
+        ],
+        "failure_mode_script": "Conflict routes must say what diverged, what can be retried or rolled back, and when support takes over.",
+        "first_run_and_no_data_story": "No-data conflict states must not read like a clean first run.",
+        "long_running_action_safety": "Conflict repair must never use silent last-write-wins; it must name retry, rollback, or safe fallback.",
         "surface_handoffs": {
             "desktop_ui": "Conflict detail and repair tools stay visible where the user can compare local and shared state safely.",
             "hub_public": "Hosted status and support routes explain the conflict posture without pretending the repair already happened elsewhere.",
@@ -101,6 +133,14 @@ JOURNEY_HANDOFFS = {
     "report_cluster_release_notify": {
         "principles": ["closure", "recovery"],
         "summary": "Reporting, triage, release follow-up, and user-visible fix status must close the same problem on every surface.",
+        "supporting_contracts": [
+            "FAILURE_MODE_JOURNEY_SCRIPTS.md",
+            "ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md",
+            "LONG_RUNNING_ACTION_SAFETY_CONTRACT.md",
+        ],
+        "failure_mode_script": "Improve routes must preserve the report packet, use one closure vocabulary, and keep the user on the current release truth.",
+        "first_run_and_no_data_story": "Support empty states say whether the route is public, account-linked, blocked, or awaiting release truth.",
+        "long_running_action_safety": "Support submission and fix-follow-up lanes must name retry, cancel, and safe fallback behavior.",
         "surface_handoffs": {
             "desktop_ui": "Crash, bug, and update entry points preserve the local context needed to explain, reproduce, and verify the fix.",
             "hub_public": "Status, support packets, and release notes use one closure vocabulary and one next-safe-action story.",
@@ -110,6 +150,14 @@ JOURNEY_HANDOFFS = {
     "organize_community_and_close_loop": {
         "principles": ["onboarding", "safety", "closure"],
         "summary": "Community discovery, preflight, scheduling, and closeout must feel like one governed route instead of stitched external tools.",
+        "supporting_contracts": [
+            "FAILURE_MODE_JOURNEY_SCRIPTS.md",
+            "ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md",
+            "LONG_RUNNING_ACTION_SAFETY_CONTRACT.md",
+        ],
+        "failure_mode_script": "Join, preflight, schedule, and closeout routes must preserve fit, roster, and schedule truth when they warn, fail, or block.",
+        "first_run_and_no_data_story": "First community entry explains discovery and preflight. Empty states distinguish no runs, blocked fit, and missing runner readiness.",
+        "long_running_action_safety": "Scheduling and closeout lanes must name retry, cancel, rollback, or safe fallback before changing roster or meeting truth.",
         "surface_handoffs": {
             "desktop_ui": "When a runner or packet needs deeper prep, desktop remains the canonical fix-up surface before the event starts.",
             "hub_public": "Discovery, rules preflight, scheduling, and organizer follow-up keep the same table and community truth.",

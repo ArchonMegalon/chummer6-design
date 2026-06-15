@@ -101,6 +101,16 @@ for path in \
   products/chummer/PUBLIC_AUTO_UPDATE_POLICY.md \
   products/chummer/LOCALIZATION_AND_LANGUAGE_SYSTEM.md \
   products/chummer/LOCALIZATION_PARITY_MATRIX.yaml \
+  products/chummer/ERROR_TAXONOMY_AND_ESCALATION_MATRIX.yaml \
+  products/chummer/ACCESSIBILITY_AND_COPY_SAFETY_RELEASE_CHECKLIST.md \
+  products/chummer/CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml \
+  products/chummer/FAILURE_MODE_JOURNEY_SCRIPTS.md \
+  products/chummer/FLAGSHIP_RESPONSIVENESS_BUDGETS.yaml \
+  products/chummer/KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md \
+  products/chummer/ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md \
+  products/chummer/LONG_RUNNING_ACTION_SAFETY_CONTRACT.md \
+  products/chummer/CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md \
+  products/chummer/HORIZON_PROMOTION_RULES.md \
   products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md \
   products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md \
   products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md \
@@ -219,6 +229,12 @@ python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_spine.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
+rg -n 'ERROR_TAXONOMY_AND_ESCALATION_MATRIX.yaml|KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md' "$repo_root/products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md" >/dev/null
+rg -n 'ACCESSIBILITY_AND_COPY_SAFETY_RELEASE_CHECKLIST.md|CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml|ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md|LONG_RUNNING_ACTION_SAFETY_CONTRACT.md|HORIZON_PROMOTION_RULES.md' "$repo_root/products/chummer/FLAGSHIP_RELEASE_ACCEPTANCE.yaml" >/dev/null
+rg -n 'ERROR_TAXONOMY_AND_ESCALATION_MATRIX.yaml|CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml|FLAGSHIP_RESPONSIVENESS_BUDGETS.yaml|KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
+rg -n 'FAILURE_MODE_JOURNEY_SCRIPTS.md|ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md|LONG_RUNNING_ACTION_SAFETY_CONTRACT.md' "$repo_root/products/chummer/USER_JOURNEYS.md" >/dev/null
+rg -n 'first_run_complete_without_confusion|no_data_recovery_exposes_next_safe_action|long_running_actions_expose_retry_cancel_or_safe_fallback' "$repo_root/products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml" >/dev/null
+rg -n 'KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md|ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md|LONG_RUNNING_ACTION_SAFETY_CONTRACT.md|CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml' "$repo_root/products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" >/dev/null
   python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
@@ -354,6 +370,7 @@ rg -n '^# Participation and guided contribution workflow$|participant lane|devic
 rg -n '^# Community Sponsorship Backlog$|Hub = account / community / ledger / entitlement plane|Fleet = sponsored worker / execution plane|EA = provider / lane / telemetry plane' "$repo_root/products/chummer/COMMUNITY_SPONSORSHIP_BACKLOG.md" >/dev/null
 rg -n '^# TABLE PULSE' "$repo_root/products/chummer/horizons/table-pulse.md" >/dev/null
 rg -n '^  title: TABLE PULSE$' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
+rg -n 'HORIZON_PROMOTION_RULES.md' "$repo_root/products/chummer/README.md" "$repo_root/products/chummer/START_HERE.md" >/dev/null
 rg -n '^# Release Evidence Pack$|No red blockers remain|chummer6-core|chummer6-ui|chummer6-mobile|chummer6-media-factory' "$repo_root/products/chummer/RELEASE_EVIDENCE_PACK.md" >/dev/null
 rg -n '^# ADR-0010:|Registry-Backed and UI-Applied' "$repo_root/products/chummer/adrs/ADR-0010-desktop-auto-update-plane.md" >/dev/null
 rg -n '^# ADR-0011:|claimable installs instead' "$repo_root/products/chummer/adrs/ADR-0011-no-personalized-binaries-claimable-installs.md" >/dev/null

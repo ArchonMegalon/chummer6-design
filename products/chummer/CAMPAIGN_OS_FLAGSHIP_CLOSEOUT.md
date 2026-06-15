@@ -14,15 +14,16 @@ Chummer6 is not finished.
 The remaining blocker truth is already explicit:
 
 - `BLK-009` flagship localization proof is cleared
-- `BLK-010` campaign-OS lived-system proof is now narrowed to the external Windows install/startup-smoke lane plus receipt republication from that proof
+- `BLK-010` campaign-OS lived-system proof is cleared
 
-Everything else is secondary until the remaining Windows proof lane is materially closed.
+There are no current red blockers in `GROUP_BLOCKERS.md`.
+This file now exists to preserve the closeout order that was required to reach that state, and to stop future release summaries from skipping the same sequence when similar blockers reappear.
 
 ## Closeout order
 
 ### 1. Prove the missing Windows desktop tuples on a Windows host
 
-Close the external Windows proof lane first.
+This was the first required closeout lane before `BLK-010` could clear.
 
 That means:
 
@@ -32,7 +33,7 @@ That means:
 
 ### 2. Keep the lived Campaign OS truth aligned
 
-Close `BLK-010` second.
+This was the second required closeout lane before whole-product completion claims were honest.
 
 That means the product story, install/claim/restore path, campaign continuity, publication, closure, and public/support posture must line up as one lived system instead of one coherent architecture plus partial receipts.
 
@@ -57,7 +58,7 @@ They do not outrank executable Windows proof or lived-system proof.
 
 ## Fleet execution rule
 
-Until `BLK-010` closes:
+Whenever a future blocker reopens:
 
 - do not claim Chummer6 is finished
 - do not let horizons read like shipment promises

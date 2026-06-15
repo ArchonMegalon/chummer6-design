@@ -1,12 +1,12 @@
 {
   "contract_name": "chummer.weekly_product_pulse",
   "contract_version": 3,
-  "generated_at": "2026-06-15T12:18:25Z",
+  "generated_at": "2026-06-15T19:41:24Z",
   "as_of": "2026-06-15",
   "scorecard_source": "products/chummer/PRODUCT_HEALTH_SCORECARD.yaml",
   "progress_report_source": "products/chummer/PROGRESS_REPORT.generated.json",
   "progress_history_source": "products/chummer/PROGRESS_HISTORY.generated.json",
-  "summary": "Next 12 Biggest Wins is materially closed as the latest recommended closeout wave; journey proof is unknown; flagship replacement readiness is still open; overall progress is 100% in 'In progress'; the longest pole remains No active release pole; support closure evidence is partial..",
+  "summary": "Next 12 Biggest Wins is materially closed as the latest recommended closeout wave; journey proof is ready; flagship replacement readiness is still open; overall progress is 100% in 'In progress'; the longest pole remains No active release pole; support closure is clear.",
   "active_wave": "Next 12 Biggest Wins",
   "active_wave_status": "complete",
   "release_health": {
@@ -15,23 +15,35 @@
     "front_door_wave_closed": true
   },
   "flagship_readiness": {
-    "state": "unknown",
-    "reason": "Published flagship readiness proof is not materialized yet.",
-    "proof_status": "unknown",
-    "coverage_gap_keys": [],
-    "readiness_plane_gap_keys": []
+    "state": "watch",
+    "reason": "Published flagship readiness proof is fail. Coverage gaps remain: desktop_client, horizons_and_public_surface, fleet_and_operator_loop. Readiness-plane gaps remain: structural_ready, flagship_ready, veteran_deep_workflow_ready, dense_workbench_ready, feedback_loop_ready, public_shelf_ready, recovery_trust_ready.",
+    "proof_status": "fail",
+    "coverage_gap_keys": [
+      "desktop_client",
+      "horizons_and_public_surface",
+      "fleet_and_operator_loop"
+    ],
+    "readiness_plane_gap_keys": [
+      "structural_ready",
+      "flagship_ready",
+      "veteran_deep_workflow_ready",
+      "dense_workbench_ready",
+      "feedback_loop_ready",
+      "public_shelf_ready",
+      "recovery_trust_ready"
+    ]
   },
   "rule_environment_trust": {
-    "state": "watch",
-    "reason": "Rule-environment trust still needs journey-gate closure."
+    "state": "ready",
+    "reason": "Rule-environment trust follows current journey-gate readiness."
   },
   "edition_authorship_and_import_confidence": {
     "state": "monitor",
     "reason": "Edition/import confidence is monitored through ongoing history-backed pulse snapshots."
   },
   "journey_gate_health": {
-    "state": "unknown",
-    "reason": "Fleet journey-gate truth is not materialized yet.",
+    "state": "ready",
+    "reason": "Journey proof is steady on current published evidence.",
     "blocked_count": 0,
     "warning_count": 0,
     "blocked_external_only_count": 0,
@@ -85,19 +97,19 @@
     {
       "decision_id": "2026-06-15-launch-governance",
       "action": "freeze_launch",
-      "reason": "Freeze launch expansion until fresh local release proof passes on the public edge.",
+      "reason": "Freeze launch expansion until published flagship readiness proof returns to ready posture.",
       "cited_signals": [
-        "journey_gate_state=unknown",
+        "journey_gate_state=ready",
         "journey_gate_blocked_count=0",
-        "local_release_proof_status=unknown",
-        "flagship_readiness_state=unknown",
-        "flagship_readiness_proof_status=unknown",
-        "provider_canary_status=Canary evidence is still accumulating",
-        "closure_health_state=unknown",
+        "local_release_proof_status=passed",
+        "flagship_readiness_state=watch",
+        "flagship_readiness_proof_status=fail",
+        "provider_canary_status=Canary green on all active lanes",
+        "closure_health_state=clear",
         "successor_dependency_state=ready",
         "successor_open_dependency_ids=",
         "successor_open_dependency_work_task_ids=",
-        "status_plane_final_claim_status=unknown"
+        "status_plane_final_claim_status=pass"
       ]
     }
   ],
@@ -109,23 +121,35 @@
       "front_door_wave_closed": true
     },
     "flagship_readiness": {
-      "state": "unknown",
-      "reason": "Published flagship readiness proof is not materialized yet.",
-      "proof_status": "unknown",
-      "coverage_gap_keys": [],
-      "readiness_plane_gap_keys": []
+      "state": "watch",
+      "reason": "Published flagship readiness proof is fail. Coverage gaps remain: desktop_client, horizons_and_public_surface, fleet_and_operator_loop. Readiness-plane gaps remain: structural_ready, flagship_ready, veteran_deep_workflow_ready, dense_workbench_ready, feedback_loop_ready, public_shelf_ready, recovery_trust_ready.",
+      "proof_status": "fail",
+      "coverage_gap_keys": [
+        "desktop_client",
+        "horizons_and_public_surface",
+        "fleet_and_operator_loop"
+      ],
+      "readiness_plane_gap_keys": [
+        "structural_ready",
+        "flagship_ready",
+        "veteran_deep_workflow_ready",
+        "dense_workbench_ready",
+        "feedback_loop_ready",
+        "public_shelf_ready",
+        "recovery_trust_ready"
+      ]
     },
     "rule_environment_trust": {
-      "state": "watch",
-      "reason": "Rule-environment trust still needs journey-gate closure."
+      "state": "ready",
+      "reason": "Rule-environment trust follows current journey-gate readiness."
     },
     "edition_authorship_and_import_confidence": {
       "state": "monitor",
       "reason": "Edition/import confidence is monitored through ongoing history-backed pulse snapshots."
     },
     "journey_gate_health": {
-      "state": "unknown",
-      "reason": "Fleet journey-gate truth is not materialized yet.",
+      "state": "ready",
+      "reason": "Journey proof is steady on current published evidence.",
       "blocked_count": 0,
       "warning_count": 0,
       "blocked_external_only_count": 0,
@@ -179,19 +203,19 @@
       {
         "decision_id": "2026-06-15-launch-governance",
         "action": "freeze_launch",
-        "reason": "Freeze launch expansion until fresh local release proof passes on the public edge.",
+        "reason": "Freeze launch expansion until published flagship readiness proof returns to ready posture.",
         "cited_signals": [
-          "journey_gate_state=unknown",
+          "journey_gate_state=ready",
           "journey_gate_blocked_count=0",
-          "local_release_proof_status=unknown",
-          "flagship_readiness_state=unknown",
-          "flagship_readiness_proof_status=unknown",
-          "provider_canary_status=Canary evidence is still accumulating",
-          "closure_health_state=unknown",
+          "local_release_proof_status=passed",
+          "flagship_readiness_state=watch",
+          "flagship_readiness_proof_status=fail",
+          "provider_canary_status=Canary green on all active lanes",
+          "closure_health_state=clear",
           "successor_dependency_state=ready",
           "successor_open_dependency_ids=",
           "successor_open_dependency_work_task_ids=",
-          "status_plane_final_claim_status=unknown"
+          "status_plane_final_claim_status=pass"
         ]
       }
     ],
@@ -203,12 +227,12 @@
     "phase_label": "In progress",
     "history_snapshot_count": 39,
     "longest_pole": "No active release pole",
-    "launch_readiness": "Hold launch expansion pending fresh local release proof on the public edge.",
+    "launch_readiness": "Hold launch expansion until published flagship readiness proof returns to ready posture.",
     "provider_route_stewardship": {
-      "default_status": "Pilot defaults are not yet governed",
-      "canary_status": "Canary evidence is still accumulating",
-      "review_due": "2026-06-29",
-      "next_decision": "Hold broad promotion until public route canary coverage exists."
+      "default_status": "Pilot defaults are governed",
+      "canary_status": "Canary green on all active lanes",
+      "review_due": "2026-06-26",
+      "next_decision": "Promote once canaries stay green and support fallout remains clear through the next route review."
     },
     "successor_dependency_posture": {
       "state": "ready",
@@ -225,7 +249,7 @@
       "summary": "Successor launch dependencies are closed in the next-90-day registry."
     },
     "flagship_product_readiness_source": "/docker/fleet/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json",
-    "flagship_product_readiness_status": "unknown",
+    "flagship_product_readiness_status": "fail",
     "journey_gate_source": "/docker/fleet/.codex-studio/published/JOURNEY_GATES.generated.json",
     "post_audit_next20_status": "complete",
     "active_wave_registry": "products/chummer/NEXT_12_BIGGEST_WINS_REGISTRY.yaml",
@@ -241,22 +265,22 @@
       "summary": "Automation frontier aligns with the active program open milestones."
     },
     "closure_health": {
-      "state": "unknown",
+      "state": "clear",
       "open_case_count": 0,
       "waiting_closure_count": 0,
       "pending_human_response_count": 0,
       "reported_case_count": 0,
       "materialized_packet_count": 0,
       "design_impact_count": 0,
-      "summary": "Support closure evidence is not yet measurable from the current public evidence payload."
+      "summary": "0 waiting closure / 0 pending human response. 0 open support packets across 0 reported cases."
     },
     "adoption_health": {
-      "state": "early",
-      "local_release_proof_status": "unknown",
-      "proven_journey_count": 0,
-      "proven_route_count": 0,
+      "state": "clear",
+      "local_release_proof_status": "passed",
+      "proven_journey_count": 5,
+      "proven_route_count": 10,
       "history_snapshot_count": 39,
-      "summary": "Current local edge proof is unknown. Journey-proof evidence is still accumulating. 39 weekly snapshots are on record for the current public trust posture."
+      "summary": "Current local edge proof passed. 5 journey proofs and 10 trust routes are on record. 39 weekly snapshots are on record for the current public trust posture."
     },
     "progress_trend": {
       "state": "steady",
