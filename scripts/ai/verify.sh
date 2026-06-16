@@ -25,6 +25,8 @@ for path in \
   WORKLIST.md \
   products/chummer/README.md \
   products/chummer/START_HERE.md \
+  products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.json \
+  products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md \
   products/chummer/GLOSSARY.md \
   products/chummer/VISION.md \
   products/chummer/PRODUCT_SPINE_REDESIGN.md \
@@ -239,6 +241,10 @@ if ! python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --che
   python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" >/dev/null
   python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
 fi
+if ! python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py" --check >/dev/null; then
+  python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+fi
 python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
@@ -255,6 +261,7 @@ python3 "$repo_root/scripts/ai/validate_next90_m129_design_account_community_can
 python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_newsroom_design_canon.py" >/dev/null
 python3 -m unittest "$repo_root/scripts/ai/test_materialize_public_guide_bundle_release_truth.py" >/dev/null
+python3 -m unittest "$repo_root/scripts/ai/test_materialize_human_only_release_boundaries.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null; then

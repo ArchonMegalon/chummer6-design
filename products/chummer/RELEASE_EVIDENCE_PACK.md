@@ -36,6 +36,14 @@ This pack records foundation and wave-closeout truth, but full public-release co
 - local parity proof: `python3 scripts/ai/publish_local_mirrors.py --check`
 - historical audit trails remain in `products/chummer/sync/REVIEW_TEMPLATE_MIRROR_PUBLISH_EVIDENCE.md`, `products/chummer/sync/LOCAL_MIRROR_PUBLISH_EVIDENCE.md`, and `products/chummer/maintenance/TRUTH_MAINTENANCE_LOG.md`
 
+## Human-only boundaries
+
+- `HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md` is the canonical product-level handoff for anything automation cannot honestly clear.
+- Today that boundary is rule-authority review, not repo-local drift:
+  - `SR4` remains blocked on reviewed row-level mapping, reviewed errata posture, fuller authority fixtures, and human signoff.
+  - `SR6` remains blocked on reviewed row-level mapping, selected source baseline, reviewed errata posture, fuller authority fixtures, fuller explain-provider authority, and human signoff.
+- Those boundaries are real, explicit, and intentionally not papered over by green repo hygiene or release-surface proof.
+
 ## Promotion posture
 
 Chummer foundation release is complete at the canonical product/design level.
