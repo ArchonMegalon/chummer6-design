@@ -408,7 +408,7 @@ rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Using Chummer6$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^### Can I actually use this now\?$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^# Download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## (Current public download|Current preview shelf)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '^## (Current release download|Current public download|Current preview shelf)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## Current package format$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## SHA256$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '(release|proof|verification|published|SHA256)' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
@@ -429,7 +429,7 @@ rg -n '^## What is real now$' "$downstream_root/README.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^## Current picture$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^# Download$' "$downstream_root/DOWNLOAD.md" >/dev/null
-rg -n '^## (Current public download|Current preview shelf)$' "$downstream_root/DOWNLOAD.md" >/dev/null
+rg -n '^## (Current release download|Current public download|Current preview shelf)$' "$downstream_root/DOWNLOAD.md" >/dev/null
 rg -n '^# How Can I Help\?$' "$downstream_root/HOW_CAN_I_HELP.md" >/dev/null
 rg -n '^# Where To Go Deeper$' "$downstream_root/WHERE_TO_GO_DEEPER.md" >/dev/null
 rg -n '^# What Chummer6 Is$' "$downstream_root/WHAT_CHUMMER6_IS.md" >/dev/null

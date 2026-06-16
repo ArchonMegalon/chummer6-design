@@ -27,7 +27,7 @@
       ],
       "review_fields": {
         "errata_decision": "not_applicable",
-        "generated": "2026-06-16T09:58:56Z",
+        "generated": "2026-06-16T09:46:03Z",
         "ready_token_approved": "false",
         "review_timestamp": "pending",
         "reviewer": "pending",
@@ -186,7 +186,7 @@
       ],
       "review_fields": {
         "errata_decision": "pending",
-        "generated": "2026-06-16T09:58:57Z",
+        "generated": "2026-06-16T09:46:04Z",
         "ready_token_approved": "false",
         "review_timestamp": "pending",
         "reviewer": "pending",
@@ -260,12 +260,12 @@
   ],
   "contract_name": "chummer.human_only_release_boundaries",
   "contract_version": 1,
-  "generated_at": "2026-06-16T09:59:00Z",
+  "generated_at": "2026-06-16T09:46:05Z",
   "human_action_count": 2,
   "human_action_required": true,
   "source_receipt": "chummer-core-engine/.codex-studio/published/FULL_PRODUCT_RULE_AUTHORITY_COMPLETION.generated.json",
   "source_receipt_final_verdict": "NOT_READY",
-  "source_receipt_generated_at": "2026-06-16T09:59:00Z",
+  "source_receipt_generated_at": "2026-06-16T09:46:05Z",
   "summary": "2 human-only rule-authority boundary or boundaries remain.",
   "verdict": "PENDING_HUMAN_ACTION"
 }

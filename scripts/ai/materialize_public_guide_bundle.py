@@ -46,8 +46,9 @@ PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generat
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
 PUBLIC_PHASE_LABELS = {
-    "in progress": "Public Stable",
-    "public-fit polish": "Public Stable",
+    "in progress": "Current release build",
+    "public-fit polish": "Current release build",
+    "public stable": "Current release build",
 }
 PUBLIC_HORIZON_STAGE_LABELS = {
     "horizon": "Future concept",
@@ -2204,7 +2205,7 @@ def _generate_download(
             "There is no public macOS installer today. Only archive previews are posted.",
         ),
     }
-    section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
+    section_heading = "Current release download" if _release_is_published(status) else "Current preview shelf"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
     shelf_truth = _public_shelf_truth_line(status, artifacts, available_platforms, missing_platforms)
     flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
