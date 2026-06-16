@@ -1,8 +1,8 @@
 {
-  "architecture_scope_line": "Current public desktop scope covers Linux x64, macOS ARM64, and Windows x64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.",
+  "architecture_scope_line": "Current public desktop scope covers Linux x64 and Windows x64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.",
   "available_platforms": [
-    "Linux",
-    "macOS"
+    "Windows",
+    "Linux"
   ],
   "build_label": "",
   "claim_boundary_line": "Preview evidence and fallback routes can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar.",
@@ -10,13 +10,11 @@
   "fallback_heads": [
     "Chummer.Blazor.Desktop"
   ],
-  "fix_availability_summary": "That warning will stay in place until the missing desktop installer proof is posted.",
+  "fix_availability_summary": "Verify fix availability against the live channel artifact before closing support loops.",
   "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
-  "known_issue_summary": "Proof freshness is missing or stale on this shelf, so preview publication is visible but not yet gold-ready.",
-  "missing_installer_lane_line": "Still missing from the promoted installer lane: Windows.",
-  "missing_platforms": [
-    "Windows"
-  ],
+  "known_issue_summary": "The preview shelf is visible, but known-issue review should stay front-and-center until proof is refreshed.",
+  "missing_installer_lane_line": "Promoted installer coverage is visible on every promised desktop platform.",
+  "missing_platforms": [],
   "phase_label": "Current release build",
   "primary_head": "Chummer.Avalonia",
   "proof_scope_line": "Evidence on the public shelf is scoped to the posted files, named flows, and recent checks you can inspect today; downloads remain the primary route for trying Chummer.",
@@ -25,6 +23,6 @@
   "quality_gap_line": "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.",
   "release_status": "Published",
   "release_status_slug": "published",
-  "release_verification_summary": "Passed for installs and recovery, campaign session recovery, and support follow-up.",
-  "shelf_truth_line": "Downloads are currently live for Linux and macOS, but Windows still lacks the promoted desktop installer proof this release says they need."
+  "release_verification_summary": "Treat the current release as review-required until release proof and support closure checks pass.",
+  "shelf_truth_line": "Downloads are currently live for Windows and Linux."
 }
