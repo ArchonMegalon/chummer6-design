@@ -76,15 +76,16 @@ def _normalize_blocker(row: dict[str, Any]) -> dict[str, Any]:
 
 def build_contract(*, payload: dict[str, Any] | None = None, generated_at: str | None = None) -> dict[str, Any]:
     source_payload = payload if payload is not None else _load_json(SOURCE_RECEIPT)
+    source_generated_at = str(source_payload.get("generated_at_utc") or "").strip()
     blockers = [_normalize_blocker(row) for row in (source_payload.get("blockers") or []) if isinstance(row, dict)]
     active_blockers = [row for row in blockers if row.get("pending_review") or not row.get("review_ready")]
 
     return {
         "contract_name": "chummer.human_only_release_boundaries",
         "contract_version": 1,
-        "generated_at": generated_at or _utc_now_iso(),
+        "generated_at": generated_at or source_generated_at or _utc_now_iso(),
         "source_receipt": _relative(SOURCE_RECEIPT),
-        "source_receipt_generated_at": str(source_payload.get("generated_at_utc") or "").strip(),
+        "source_receipt_generated_at": source_generated_at,
         "source_receipt_final_verdict": str(source_payload.get("final_verdict") or "").strip(),
         "human_action_required": bool(active_blockers),
         "human_action_count": len(active_blockers),
