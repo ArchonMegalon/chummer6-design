@@ -66,6 +66,9 @@ def _normalize_blocker(row: dict[str, Any]) -> dict[str, Any]:
             "generated": str(fields.get("Generated") or "").strip(),
         },
         "remaining_gates": remaining_gates,
+        "preferred_signoff_path": [str(item).strip() for item in (row.get("preferred_signoff_path") or []) if str(item).strip()],
+        "suggested_errata_decision": str(row.get("suggested_errata_decision") or "").strip(),
+        "spot_check_plan": row.get("spot_check_plan") or [],
         "blocker_receipts": {
             key: _relative(Path(str(value).strip()))
             for key, value in blocker_receipts.items()
@@ -152,6 +155,26 @@ def render_markdown(contract: dict[str, Any]) -> str:
         )
         for gate in blocker.get("remaining_gates") or []:
             lines.append(f"- {gate}")
+        preferred_signoff_path = blocker.get("preferred_signoff_path") or []
+        if preferred_signoff_path:
+            lines.extend(["", "Preferred signoff path:"])
+            for step in preferred_signoff_path:
+                lines.append(f"- {step}")
+        suggested_errata = str(blocker.get("suggested_errata_decision") or "").strip()
+        if suggested_errata:
+            lines.extend(["", f"Suggested errata decision: `{suggested_errata}`"])
+        spot_check_plan = blocker.get("spot_check_plan") or []
+        if spot_check_plan:
+            lines.extend(["", "Bounded spot checks:"])
+            for item in spot_check_plan:
+                if "row_count" in item:
+                    lines.append(
+                        f"- `{item.get('focus')}` rows=`{item.get('row_count')}` sha256=`{item.get('sha256')}`"
+                    )
+                else:
+                    lines.append(
+                        f"- `{item.get('focus')}` page=`{item.get('page')}` line=`{item.get('line')}` line_sha256=`{item.get('line_sha256')}`"
+                    )
         lines.extend(
             [
                 "",
