@@ -45,6 +45,11 @@ Current public desktop promotion scope:
 
 macOS remains buildable but not publicly promoted until the signed/notarized promotion lane is proven.
 
+Rolling-release rule for that scope:
+
+- every successful mainline build in the current public promotion scope must become the public downloadable release automatically
+- leaving an older Windows/Linux public shelf live after a newer successful mainline bundle exists is a release-pipeline failure
+
 Status language:
 
 - Say `fixed` only when the public channel artifact contains the fix.
