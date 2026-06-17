@@ -5,7 +5,7 @@ This is the blunt answer on what you can use today.
 ## Current picture
 
 - Today: Current release build.
-- Published: June 17, 2026 at 3:54 UTC.
+- Published: June 17, 2026 at 7:01 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows and Linux.
 - Promoted installer coverage is visible on every promised desktop platform.
