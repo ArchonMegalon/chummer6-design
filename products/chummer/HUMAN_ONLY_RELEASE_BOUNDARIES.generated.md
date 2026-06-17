@@ -1,6 +1,6 @@
 # Human-only release boundaries
 
-Generated: 2026-06-16T18:25:17Z
+Generated: 2026-06-16T09:46:05Z
 Source receipt: `chummer-core-engine/.codex-studio/published/FULL_PRODUCT_RULE_AUTHORITY_COMPLETION.generated.json`
 Source verdict: `NOT_READY`
 Verdict: `PENDING_HUMAN_ACTION`
