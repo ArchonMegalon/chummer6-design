@@ -1609,35 +1609,35 @@ def _generate_start_here_page(out_dir: Path) -> None:
     rows.extend(
         [
             "",
-            "Start with what you need tonight. You do not need the repo map first.",
+            "Start with what you need now. You do not need the full repo map first.",
             "",
             "## I am new or rusty",
             "",
-            "Use the guided first-run and recovery path before you open the whole workbench.",
+            "Open Onramp first and keep the guided route for setup, recovery, and first steps.",
             "",
             "Start here: [Onramp](ONRAMP.md)",
             "",
             "## I want to try Chummer",
             "",
-            "Get the right file for your platform and see the honest preview status.",
+            "Take the direct path to the right file for your platform and the current preview status.",
             "",
             "Start here: [Download](DOWNLOAD.md)",
             "",
             "## I want to know what works today",
             "",
-            "See the current release picture, what is available, and what is still being polished.",
+            "Check what is truly live, what is available, and what is still being polished.",
             "",
             "Start here: [Status](STATUS.md)",
             "",
             "## I want to understand the pitch",
             "",
-            "Read the short product story and the reason Chummer6 is different from a plain builder.",
+            "Read the short product story and the practical difference from a plain builder.",
             "",
             "Start here: [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
             "",
-            "## I want the cool campaign layer",
+            "## I want the campaign layer",
             "",
-            "Explore the living-world, campaign, dossier, and newsroom ideas after you know the current product picture.",
+            "Open campaign and horizon paths once you are comfortable with the current product picture.",
             "",
             "Start here: [Worlds and future work](HORIZONS/README.md)",
             "",
@@ -1649,7 +1649,7 @@ def _generate_start_here_page(out_dir: Path) -> None:
             "",
             "## I want to report or contribute",
             "",
-            "Use the public bug, feedback, or optional guided contribution path.",
+            "Use the contribution lane for direct feedback or structured bug reports.",
             "",
             "Start here: [How can I help?](HOW_CAN_I_HELP.md)",
         ]
@@ -1987,29 +1987,31 @@ def _generate_root(
         "",
         "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward.",
         "",
-        "## What can I do today?",
+        "## What should you do now?",
         "",
-        "- Try the current preview on the platforms listed below.",
-        f"- {str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
-        "- Public wording stays tied to files and flows that are actually available now.",
-        f"- {str(packet.get('proof_scope_line') or '').strip()}",
-        f"- {str(packet.get('claim_boundary_line') or '').strip()}",
-        f"- {str(packet.get('desktop_pick_line') or '').strip()}",
-        f"- {str(packet.get('quality_gap_line') or '').strip()}",
+        "Try the current preview where you already have a path, then check what changed in the release shelf before making your next move.",
+        "",
+        f"{str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
+        (
+            f"{str(packet.get('proof_scope_line') or '').strip()} "
+            f"{str(packet.get('claim_boundary_line') or '').strip()}"
+        ).strip(),
+        (
+            f"{str(packet.get('desktop_pick_line') or '').strip()} "
+            f"{str(packet.get('quality_gap_line') or '').strip()}"
+        ).strip(),
     ]
     if phase:
-        rows.append(f"- Today: {phase}.")
+        rows.append(f"Today: {phase}.")
     rows.extend(
         [
+            f"{str(packet.get('missing_installer_lane_line') or _public_missing_installer_lane_line(missing_platforms)).strip()}",
+            f"{str(packet.get('architecture_scope_line') or _public_architecture_scope_line(artifacts)).strip()}",
+            "Help, contact, privacy, and terms pages are live.",
             (
-                f"- {str(packet.get('missing_installer_lane_line') or _public_missing_installer_lane_line(missing_platforms)).strip()}"
-            ),
-            f"- {str(packet.get('architecture_scope_line') or _public_architecture_scope_line(artifacts)).strip()}",
-            "- Help, contact, privacy, and terms pages are live.",
-            (
-                "- More campaign-ledger depth and steadier desktop polish are still coming."
+                "More campaign-ledger depth and steadier desktop polish are still coming."
                 if post_audit_closed and active_registry_status in {"in_progress", "complete"}
-                else "- Broader desktop support and more product polish are still coming."
+                else "Broader desktop support and more product polish are still coming."
             ),
             "",
         ]
@@ -2018,29 +2020,27 @@ def _generate_root(
         [
             "## Start here",
             "",
+            "Start with [Start Here](START_HERE.md).",
+            "Then move to [Onramp](ONRAMP.md), [Download](DOWNLOAD.md), [Status](STATUS.md), [What Chummer6 Is](WHAT_CHUMMER6_IS.md), and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).",
+        ]
+    )
+    extra_cta_links = [
+        link.lstrip("- ").strip()
+        for link in ordered_ctas
+        if link
+        not in {
             "- [Start Here](START_HERE.md)",
             "- [Onramp](ONRAMP.md)",
-            "- [Download](DOWNLOAD.md)",
             "- [Status](STATUS.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+            "- [Download](DOWNLOAD.md)",
             "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
-        ]
-    )
-    rows.extend(
-        [
-            line
-            for line in ordered_ctas
-            if line
-            not in {
-                "- [Start Here](START_HERE.md)",
-                "- [Onramp](ONRAMP.md)",
-                "- [Status](STATUS.md)",
-                "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-                "- [Download](DOWNLOAD.md)",
-                "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
-            }
-        ]
-    )
+        }
+    ]
+    if extra_cta_links:
+        rows.extend(
+            ["", f"More paths: {', '.join(extra_cta_links)}."]
+        )
     rows.extend(
         [
             "",
