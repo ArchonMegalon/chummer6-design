@@ -1,53 +1,21 @@
 # Onramp
 
-Onramp is the practical, first-run lane for Chummer6.
+Onramp is the practical first-run lane for Chummer6.  
+It is not a horizon.
 
-Use it when you want a clear starter step, a fast recovery path, or a calm way back into the right workspace.
+Use this page when you are new, returning, or blocked.
 
-It is not a horizon. Onramp is operational guidance for setup, recovery, and your next real action.
+If you installed today and want to build immediately, this is the safest first step.
+If you are coming back after a break, this brings you back to the right state.
+If setup, sign-in, or recovery is still blocked, this maps your next move in one pass.
 
-## Why this page exists
+You are not expected to solve everything here. You are expected to leave onramp in a usable state.
 
-Many users come with one of three needs:
-
-- You are new and want the safest way to start.
-- You are returning and want to continue from your current state.
-- You are blocked and need the next step before going back to gameplay.
-
-This page exists to route those situations to the same principle: one clear action, then return to the workbench.
-
-## What Onramp handles first
-
-- Starter workspace setup
-- Installation and update friction points
-- Restore, account, or first-run state recovery
-- Why a warning appeared and what to do next
-
-## What Onramp does not do
-
-Onramp does not replace your judgment. It also does not pretend to be a one-click solve for campaign ambiguity.
-
-It guides you to:
-
-- which lane to use now,
-- what can wait,
-- what must be fixed before continuing.
-
-## Where you can use it
-
-You will see Onramp from Start Here, Download setup, first-run flows, and recovery paths in the app.
-
-In every case, the goal is the same: get you to a useful state, quickly and without guesswork.
-
-## What happens next
-
-Onramp closes when you are back in the main builder path.
-
-If the action still needs help, it routes you to support, rather than into unrelated planning pages.
+When it is working, Onramp sends you to one of three places:
+first-run setup moves into [Download](DOWNLOAD.md),
+the live-table decision point is [Status](STATUS.md),
+and blockers move to [Help](HELP.md).
 
 ## Read next
 
-- [Download](DOWNLOAD.md)
-- [Status](STATUS.md)
-- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)
-- [Help](HELP.md)
+After a successful first run, the map is: [Download](DOWNLOAD.md), [Status](STATUS.md), [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Help](HELP.md) if anything still fails.

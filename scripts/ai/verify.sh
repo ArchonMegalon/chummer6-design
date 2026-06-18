@@ -252,6 +252,7 @@ python3 "$repo_root/scripts/ai/validate_post_audit_next20_milestones.py" >/dev/n
 python3 "$repo_root/scripts/ai/validate_after_post_audit_next20_milestones.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_repo_evidence.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_guide_editorial_covers.py" >/dev/null
+python3 "$repo_root/scripts/ai/verify_video_assets_have_audio.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m108_design_campaign_briefing_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m109_design_explain_truth_policy.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py" >/dev/null

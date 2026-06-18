@@ -1982,6 +1982,7 @@ def _generate_root(
             f"{str(packet.get('proof_scope_line') or '').strip()} "
             f"{str(packet.get('claim_boundary_line') or '').strip()}"
         ).strip(),
+        "Public wording stays tied to files and flows that are actually available now.",
         (
             f"{str(packet.get('desktop_pick_line') or '').strip()} "
             f"{str(packet.get('quality_gap_line') or '').strip()}"
@@ -2007,7 +2008,7 @@ def _generate_root(
             "## Start here",
             "",
             "Start with [Start Here](START_HERE.md).",
-            "Then move to [Onramp](ONRAMP.md), [Download](DOWNLOAD.md), [Status](STATUS.md), [What Chummer6 Is](WHAT_CHUMMER6_IS.md), and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).",
+            "Move to [Onramp](ONRAMP.md), [Download](DOWNLOAD.md), [Status](STATUS.md), [What Chummer6 Is](WHAT_CHUMMER6_IS.md), and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md) when those are your next step.",
         ]
     )
     extra_cta_links = [
@@ -2025,7 +2026,10 @@ def _generate_root(
     ]
     if extra_cta_links:
         rows.extend(
-            ["", f"More paths: {', '.join(extra_cta_links)}."]
+            [
+                "",
+                f"When you are ready for more, use: {', '.join(extra_cta_links)}.",
+            ]
         )
     rows.extend(
         [
@@ -2034,9 +2038,9 @@ def _generate_root(
             "",
             "If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).",
             "",
-            "- The public participation door is <https://chummer.run/participate>.",
-            "- The cheap baseline stays the default path; guided contribution is extra, not the normal support door.",
-            "- Final landing still goes through review before anything ships.",
+            "The public participation door is <https://chummer.run/participate>.",
+            "The baseline path stays default, and guided contribution is optional.",
+            "Final shipping stays behind review and release checks.",
             "",
         ]
     )
@@ -2047,8 +2051,13 @@ def _generate_root(
         rows.extend(
             [
                 "",
-                "- [Watch the Chummer6 flagship war bulletin](https://chummer.run/media/promo/chummer6-flagship-promo.mp4)",
-                "- [Open the Black Ledger command map](https://chummer.run/ledger/map#ledger-map)",
+                (
+                    "Watch the flagship war bulletin: "
+                    "https://chummer.run/media/promo/chummer6-flagship-promo.mp4, "
+                    "MP4 with AAC audio. Captions are at "
+                    "https://chummer.run/media/promo/chummer6-flagship-promo.vtt."
+                ),
+                "Open the Black Ledger command map: https://chummer.run/ledger/map#ledger-map",
             ]
         )
     rows.extend(
@@ -2056,15 +2065,15 @@ def _generate_root(
             "",
             "## Why people care",
             "",
-            "- It shows why a number changed instead of hiding the math.",
-            "- It gives new or rusty users a guided Onramp without trapping experts in tutorial copy.",
-            "- It is being built to keep sessions and campaigns recoverable when devices or connectivity drift.",
-            "- The campaign layers are meant to feel alive without taking authority away from the GM or the rules engine.",
+            "It shows why a number changed instead of hiding the math.",
+            "It gives new users a clear Onramp while staying useful for experienced players too.",
+            "It is being built to keep sessions recoverable when devices, updates, or connectivity drift.",
+            "Campaign layers are designed to expand the table story without replacing GM or rules authority.",
             "",
             "## Worlds and deeper parts",
             "",
-            "- [Parts index](PARTS/README.md): the deeper product parts when you want to understand how Chummer fits together.",
-            "- [Worlds and future work](HORIZONS/README.md): larger campaign layers, some with early slices now and some still future-facing.",
+            "Use [Parts index](PARTS/README.md) when you want the full structure.",
+            "Use [Worlds and future work](HORIZONS/README.md) for longer-running campaign lanes and what is live versus still emerging.",
         ]
     )
 
@@ -2078,8 +2087,8 @@ def _generate_root(
                     "",
                     _public_copy(intro),
                     "",
-                    "- Start with [Help](HELP.md) if install, updates, sign-in, or bugs are getting in the way.",
-                    "- Use [Contact](CONTACT.md) when you want to report a problem or send feedback.",
+                    "Start with [Help](HELP.md) if install, updates, sign-in, or bugs are getting in the way.",
+                    "Use [Contact](CONTACT.md) when you want to report a concrete issue or send feedback.",
                 ]
             )
 
