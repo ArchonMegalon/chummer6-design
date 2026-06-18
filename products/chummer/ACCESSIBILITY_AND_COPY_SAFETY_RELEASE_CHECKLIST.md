@@ -46,6 +46,9 @@ It keeps labels, focus order, contrast, motor access, and emergency language fro
 * Copy avoids unbounded promises such as `fixed` or `safe` without evidence.
 * Locale-sensitive phrasing avoids slang, hidden negation, or ambiguous pronouns on critical routes.
 * Support, release, and in-product copy do not contradict each other about availability or next action.
+* Normal user-facing copy uses Chummer-owned surface names instead of provider, LTD, prompt, generation, or automation terms.
+* AI/synthetic/provider disclosure appears only when needed for consent, privacy, safety, copyright, or trust.
+* Explanatory text is removed or shortened when the workflow can be made self-evident through layout, labels, and state.
 
 ## Release rule
 
