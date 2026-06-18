@@ -302,6 +302,25 @@ def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
     assert "Start here: [Onramp](ONRAMP.md)" in start_here
 
 
+def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    readme = (out_dir / "README.md").read_text(encoding="utf-8")
+    start_here = (out_dir / "START_HERE.md").read_text(encoding="utf-8")
+    help_page = (out_dir / "HELP.md").read_text(encoding="utf-8")
+    campaign_tools = (out_dir / "HORIZONS" / "README.md").read_text(encoding="utf-8")
+
+    assert "How can I help" not in readme
+    assert "How can I help" not in start_here
+    assert "Worlds and future work" not in readme
+    assert "Worlds and future work" not in start_here
+    assert "# Campaign tools" in campaign_tools
+    assert "## Ask Chummer first" in help_page
+    assert "Show me" in help_page
+    assert "provider" not in help_page.lower()
+
+
 def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: Path) -> None:
     out_dir = tmp_path / "bundle"
     guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)

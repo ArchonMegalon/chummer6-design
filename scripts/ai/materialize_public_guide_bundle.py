@@ -1624,7 +1624,7 @@ def _generate_start_here_page(out_dir: Path, repo_root: Path) -> None:
             "",
             "## I want to report or contribute",
             "",
-            "Start here: [How can I help?](HOW_CAN_I_HELP.md)",
+            "Start here: [Contact](CONTACT.md)",
         ]
 
     rows = [
@@ -1925,7 +1925,7 @@ def _generate_root(
         "start_here": "- [Start Here](START_HERE.md)",
         "current_status": "- [Status](STATUS.md)",
         "what_chummer6_is": "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-        "participate": "- [How can I help](HOW_CAN_I_HELP.md)",
+        "participate": "- [Contact](CONTACT.md)",
         "download": "- [Download](DOWNLOAD.md)",
     }
     ordered_ctas: list[str] = []
@@ -1940,7 +1940,7 @@ def _generate_root(
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
         "- [Contact](CONTACT.md)",
-        "- [Worlds and future work](HORIZONS/README.md)",
+        "- [Campaign tools](HORIZONS/README.md)",
     ]
     if generated_live_route_ids and "runner-passport" in generated_live_route_ids:
         extra_routes.insert(1, "- [Runner Passport](RUNNER_PASSPORT.md)")
@@ -2031,7 +2031,7 @@ def _generate_root(
             "",
             "## Account and contribution paths",
             "",
-            "If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).",
+            "For support or concrete feedback, start with [Contact](CONTACT.md).",
             "",
             "The public participation door is <https://chummer.run/participate>.",
             "The baseline path stays default, and guided contribution is optional.",
@@ -2064,10 +2064,10 @@ def _generate_root(
             "It is being built to keep sessions recoverable when devices, updates, or connectivity drift.",
             "Campaign layers are designed to expand the table story without replacing GM or rules authority.",
             "",
-            "## Worlds and deeper parts",
+            "## Campaign tools",
             "",
             "Use [Parts index](PARTS/README.md) when you want the full structure.",
-            "Use [Worlds and future work](HORIZONS/README.md) for longer-running campaign lanes and what is live versus still emerging.",
+            "Use [Campaign tools](HORIZONS/README.md) for longer-running campaign lanes and what is live versus still emerging.",
         ]
     )
 
@@ -2585,8 +2585,8 @@ def _generate_horizon_pages(
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
-        _front_matter("Worlds and future work", "products/chummer/HORIZON_REGISTRY.yaml"),
-        "# Worlds and future work",
+        _front_matter("Campaign tools", "products/chummer/HORIZON_REGISTRY.yaml"),
+        "# Campaign tools",
         "",
         "Use this index when you want the larger campaign picture: living-world tools, dossiers, table control, publishing, and long-term ideas around the character builder.",
         "Some pages describe early slices that already exist. Others are future-facing. Start with the current status when you need the exact availability picture.",
@@ -2602,14 +2602,14 @@ def _generate_horizon_pages(
 
         doc_path = out_dir / "HORIZONS" / f"{slug}.md"
         rows = [
-            _front_matter(f"Horizon: {title}", "products/chummer/HORIZON_REGISTRY.yaml"),
+            _front_matter(title, "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
             "",
         ]
         wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
         if wow_promise:
             rows.extend([wow_promise, ""])
-        horizon_alt = f"{title} horizon art"
+        horizon_alt = f"{title} feature art"
         if slug == "black-ledger":
             horizon_alt = "BLACK LEDGER city map with augmented-reality overlays"
         rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=horizon_alt))

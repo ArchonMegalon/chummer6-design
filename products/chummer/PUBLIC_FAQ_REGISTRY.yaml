@@ -23,7 +23,7 @@ sections:
   - id: participation_and_preview
     title: Helping and feedback
     entries:
-      - question: How can I help?
+      - question: How do I report something?
         required: true
         answer: Start with bug reports, documentation feedback, and feature requests. If you want to help more directly, there is also an optional guided contribution path.
       - question: What is guided contribution?

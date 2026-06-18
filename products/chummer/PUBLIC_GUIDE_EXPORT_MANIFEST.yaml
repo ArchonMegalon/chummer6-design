@@ -24,6 +24,7 @@ sources:
   public_feedback_registry: products/chummer/PUBLIC_FEEDBACK_AND_CONTENT_REGISTRY.yaml
   public_feedback_taxonomy: products/chummer/PUBLIC_FEEDBACK_TAXONOMY.yaml
   instant_help_maintenance: products/chummer/INSTANT_HELP_MAINTENANCE_MODEL.md
+  subscribr_script_factory: products/chummer/SUBSCRIBR_SCRIPT_FACTORY_PROVIDER_BOUNDARY.md
   public_guide_new_section_verdict: products/chummer/PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml
 rules:
 - Downstream generators must not define or retain a private hardcoded horizon catalog.
@@ -38,6 +39,7 @@ rules:
 - New large feature or redesign sections must either route through an explicit public-guide verdict in PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml or stay out of generated output with a machine-readable omission receipt.
 - Downstream generators must emit a proof artifact showing whether Table Pulse, BeHuman GM sessions, Chummer Instant Help, Answerly support, Signal Deck, Runner Passport, and Living World engagement are represented, omitted intentionally, or blocked by canon posture.
 - Chummer Instant Help is a support and maintenance page family, not a horizon; horizon generators must not add it to any horizon catalog.
+- Subscribr is a private script/pre-production provider lane, not a horizon or public runtime surface; public guide output must not expose it as a user-facing feature or publication authority.
 - Deep-source pages may link to repo scopes and implementation detail, but first-contact pages must not.
 - Downstream media lanes must treat PUBLIC_GUIDE_IMAGE_CURATION.yaml manual editorial-cover source overrides as the strongest local canon unless an explicit reopen path is requested.
 - ProductLift-backed `/feedback`, `/roadmap`, and `/changelog` pages are public projections only; they must keep first-party fallback paths and may not become support, release, or roadmap truth.

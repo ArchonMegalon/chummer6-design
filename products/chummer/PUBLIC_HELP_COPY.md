@@ -7,11 +7,10 @@ If you want to help without touching premium participation at all, use the publi
 * file a public bug
 * send lightweight product feedback
 * flag confusing public copy
-* suggest a future lane
-* point at a horizon that sounds more useful than the current list
+* suggest a future product lane
 * suggest or vote on a public ProductLift idea when it is not support, account, install, crash, private campaign, or copyrighted rules text
 
-That keeps feedback public and legible instead of making normal humans spelunk through design canon.
+That keeps feedback public and legible.
 
 ProductLift feedback is public. Do not post private logs, account data, campaign spoilers, copyrighted source text, crash dumps, or support requests there. Use Chummer Help for support.
 
@@ -27,6 +26,7 @@ Most support should start inside Chummer or on the help page:
 * send a private report if the issue is still unresolved
 
 No normal Chummer help path should require a call, calendar slot, or vendor account.
+The user should not need to know which provider, model, or support adapter helped.
 
 ## Private crash lane
 
