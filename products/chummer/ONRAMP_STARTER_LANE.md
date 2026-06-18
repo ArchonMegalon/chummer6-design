@@ -1,81 +1,51 @@
-# Onramp Starter Lane
+# Onramp
 
-Onramp is Chummer's first-run and recovery path: the practical route for someone who wants a table-ready runner, a clear next step, or a calm way back when setup gets stuck.
+Onramp is the practical, first-run lane for Chummer6.
 
-It is not a horizon. It is maintenance-level product guidance for first run, recovery, and getting back to the real workbench.
+Use it when you want a clear starter step, a fast recovery path, or a calm way back into the right workspace.
 
-## What You Might Need
+It is not a horizon. Onramp is operational guidance for setup, recovery, and your next real action.
 
-### I am new. Where do I start?
+## Why this page exists
 
-Start with a guided starter workspace, not the full parts map.
+Many users come with one of three needs:
 
-Onramp answers the questions a new player usually has first:
+- You are new and want the safest way to start.
+- You are returning and want to continue from your current state.
+- You are blocked and need the next step before going back to gameplay.
 
-- What kind of runner am I trying to play?
-- What is the next safe choice?
-- Why did Chummer warn me?
-- What has to be fixed before this runner is table-ready?
-- What can I ignore until later?
+This page exists to route those situations to the same principle: one clear action, then return to the workbench.
 
-### I know Chummer already. Why open this?
+## What Onramp handles first
 
-For veterans, Onramp stays out of the way and points straight to the useful places:
+- Starter workspace setup
+- Installation and update friction points
+- Restore, account, or first-run state recovery
+- Why a warning appeared and what to do next
 
-- the real workbench
-- legality and explanations
-- recovery
-- what is preview-only today
-- how to continue a runner instead of starting from scratch
+## What Onramp does not do
 
-### I am blocked. What now?
+Onramp does not replace your judgment. It also does not pretend to be a one-click solve for campaign ambiguity.
 
-Onramp is also the recovery route. If setup, account linking, restore, or first-run state gets stuck, it should show the next useful action instead of sending the user into project details.
+It guides you to:
 
-## Where It Opens
+- which lane to use now,
+- what can wait,
+- what must be fixed before continuing.
 
-The public app should make Onramp reachable from:
+## Where you can use it
 
-- Start Here
-- Download and setup help
-- first run
-- signed-in account recovery
-- the starter workspace
+You will see Onramp from Start Here, Download setup, first-run flows, and recovery paths in the app.
 
-Wherever it opens, the promise is the same: Onramp gives the next useful action, then hands the user back to the real Chummer workbench.
+In every case, the goal is the same: get you to a useful state, quickly and without guesswork.
 
-## What It Does And Does Not Do
+## What happens next
 
-Onramp can guide, explain, and recover.
+Onramp closes when you are back in the main builder path.
 
-It does not:
+If the action still needs help, it routes you to support, rather than into unrelated planning pages.
 
-- auto-build a character and hide the rules
-- choose for the user without explanation
-- invent legality guidance beyond Chummer-owned mechanics
-- pretend every table conflict is solved
-- trap expert users in beginner copy
-
-## Tone
-
-Good Onramp copy is short, direct, and practical:
-
-- Start with a safe starter path, then open the full builder when you are ready.
-- This warning matters now. These three choices can wait.
-- Your runner is not table-ready yet because this availability conflict needs a GM decision.
-
-Avoid roadmap language, magic-tool language, and copy that implies Chummer knows what the player meant without showing the reasoning.
-
-## What Makes It Feel Premium
-
-- The first answer is always a next action, not a lecture.
-- Veteran users can skip the guided path.
-- New users see fewer choices, but never fake choices.
-- Warnings explain what matters now.
-- Recovery does not shame the user for being stuck.
-- The path ends in the real Chummer workbench, not a tutorial island.
-
-## Read Next
+## Read next
 
 - [Download](DOWNLOAD.md)
 - [Status](STATUS.md)

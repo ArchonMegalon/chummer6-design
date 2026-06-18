@@ -1591,11 +1591,45 @@ def _generate_onramp_page(out_dir: Path, repo_root: Path) -> None:
     _write(doc_path, "\n".join(rows))
 
 
-def _generate_start_here_page(out_dir: Path) -> None:
+def _generate_start_here_page(out_dir: Path, repo_root: Path) -> None:
     doc_path = out_dir / "START_HERE.md"
+    source_rows = _load_text(repo_root / "products" / "chummer" / "START_HERE.md").splitlines()
+    if not source_rows:
+        source_rows = [
+            "# Start Here",
+            "",
+            "## I am new or rusty",
+            "",
+            "Start here: [Onramp](ONRAMP.md)",
+            "",
+            "## I want to try Chummer",
+            "",
+            "Start here: [Download](DOWNLOAD.md)",
+            "",
+            "## I want to know what works today",
+            "",
+            "Start here: [Status](STATUS.md)",
+            "",
+            "## I want to understand the pitch",
+            "",
+            "Start here: [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+            "",
+            "## I want the campaign layer",
+            "",
+            "Start here: [Worlds and future work](HORIZONS/README.md)",
+            "",
+            "## I want help or recovery",
+            "",
+            "Start here: [Help](HELP.md)",
+            "",
+            "## I want to report or contribute",
+            "",
+            "Start here: [How can I help?](HOW_CAN_I_HELP.md)",
+        ]
+
     rows = [
         _front_matter("Start Here", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
-        "# Start Here",
+        *source_rows,
         "",
     ]
     rows.extend(
@@ -1605,54 +1639,6 @@ def _generate_start_here_page(out_dir: Path) -> None:
             asset_path="assets/pages/start-here.png",
             alt="Start here banner",
         )
-    )
-    rows.extend(
-        [
-            "",
-            "Start with what you need now. You do not need the full repo map first.",
-            "",
-            "## I am new or rusty",
-            "",
-            "Open Onramp first and keep the guided route for setup, recovery, and first steps.",
-            "",
-            "Start here: [Onramp](ONRAMP.md)",
-            "",
-            "## I want to try Chummer",
-            "",
-            "Take the direct path to the right file for your platform and the current preview status.",
-            "",
-            "Start here: [Download](DOWNLOAD.md)",
-            "",
-            "## I want to know what works today",
-            "",
-            "Check what is truly live, what is available, and what is still being polished.",
-            "",
-            "Start here: [Status](STATUS.md)",
-            "",
-            "## I want to understand the pitch",
-            "",
-            "Read the short product story and the practical difference from a plain builder.",
-            "",
-            "Start here: [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-            "",
-            "## I want the campaign layer",
-            "",
-            "Open campaign and horizon paths once you are comfortable with the current product picture.",
-            "",
-            "Start here: [Worlds and future work](HORIZONS/README.md)",
-            "",
-            "## I want help or recovery",
-            "",
-            "Use this when install, updates, sign-in, recovery, or bugs get in the way.",
-            "",
-            "Start here: [Help](HELP.md)",
-            "",
-            "## I want to report or contribute",
-            "",
-            "Use the contribution lane for direct feedback or structured bug reports.",
-            "",
-            "Start here: [How can I help?](HOW_CAN_I_HELP.md)",
-        ]
     )
     _write(doc_path, "\n".join(rows))
 
@@ -2924,7 +2910,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         derivative_fallback_root=derivative_fallback_root,
     )
     _generate_onramp_page(out_dir, repo_root)
-    _generate_start_here_page(out_dir)
+    _generate_start_here_page(out_dir, repo_root)
     generated_live_route_ids = _generate_live_route_pages(out_dir, repo_root, new_section_verdict)
     _generate_release_truth_packet(out_dir, release_truth_packet)
     _generate_root(
