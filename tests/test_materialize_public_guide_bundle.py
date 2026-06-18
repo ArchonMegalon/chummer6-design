@@ -285,6 +285,21 @@ def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: P
 
     assert "Origin Dossier" in alice
     assert "blank-state build help" in alice
-    assert "GM allowance notes" in alice
+    assert "GM allowance and requirement notes" in alice
     assert "voice-selection controls" in alice
     assert "shipped mvp" not in alice.lower()
+
+
+def test_generate_bundle_carries_horizon_explanation_videos(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    runsite = (out_dir / "HORIZONS" / "runsite.md").read_text(encoding="utf-8")
+    community = (out_dir / "HORIZONS" / "community-hub.md").read_text(encoding="utf-8")
+    nexus = (out_dir / "HORIZONS" / "nexus-pan.md").read_text(encoding="utf-8")
+
+    assert "## Explanation video" in runsite
+    assert "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4" in runsite
+    assert "MP4 with AAC audio" in runsite
+    assert "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4" in community
+    assert "https://chummer.run/media/horizons/nexus-pan-epic-90s.mp4" in nexus

@@ -467,6 +467,7 @@ def _required_public_asset_paths(part_registry: dict[str, object], horizon_regis
         "assets/hero/chummer6-hero.png",
         "assets/pages/parts-index.png",
         "assets/pages/horizons-index.png",
+        "assets/horizons/onramp.png",
     }
     for item in part_registry.get("parts") or []:
         if not isinstance(item, dict):
@@ -1565,6 +1566,96 @@ def _generate_release_truth_packet(out_dir: Path, packet: dict[str, object]) -> 
     _write(out_dir / PUBLIC_RELEASE_TRUTH_PACKET_NAME, json.dumps(packet, indent=2, sort_keys=True))
 
 
+def _generate_onramp_page(out_dir: Path, repo_root: Path) -> None:
+    source_path = repo_root / "products" / "chummer" / "ONRAMP_STARTER_LANE.md"
+    source_text = _load_text(source_path)
+    lines = source_text.splitlines()
+    if lines and lines[0].startswith("# "):
+        lines = ["# Onramp"] + lines[1:]
+    doc_path = out_dir / "ONRAMP.md"
+    rows = [
+        _front_matter("Onramp", "products/chummer/ONRAMP_STARTER_LANE.md"),
+        *lines,
+        "",
+    ]
+    image_rows = _image_rows(
+        doc_path=doc_path,
+        out_dir=out_dir,
+        asset_path="assets/horizons/onramp.png",
+        alt="Onramp starter path art",
+    )
+    if image_rows:
+        insert_at = 3 if len(rows) > 3 else len(rows)
+        rows[insert_at:insert_at] = ["", *image_rows, ""]
+    _write(doc_path, "\n".join(rows))
+
+
+def _generate_start_here_page(out_dir: Path) -> None:
+    doc_path = out_dir / "START_HERE.md"
+    rows = [
+        _front_matter("Start Here", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
+        "# Start Here",
+        "",
+    ]
+    rows.extend(
+        _image_rows(
+            doc_path=doc_path,
+            out_dir=out_dir,
+            asset_path="assets/pages/start-here.png",
+            alt="Start here banner",
+        )
+    )
+    rows.extend(
+        [
+            "",
+            "Start with what you need tonight. You do not need the repo map first.",
+            "",
+            "## I am new or rusty",
+            "",
+            "Use the guided first-run and recovery path before you open the whole workbench.",
+            "",
+            "Start here: [Onramp](ONRAMP.md)",
+            "",
+            "## I want to try Chummer",
+            "",
+            "Get the right file for your platform and see the honest preview status.",
+            "",
+            "Start here: [Download](DOWNLOAD.md)",
+            "",
+            "## I want to know what works today",
+            "",
+            "See the current release picture, what is available, and what is still being polished.",
+            "",
+            "Start here: [Status](STATUS.md)",
+            "",
+            "## I want to understand the pitch",
+            "",
+            "Read the short product story and the reason Chummer6 is different from a plain builder.",
+            "",
+            "Start here: [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+            "",
+            "## I want the cool campaign layer",
+            "",
+            "Explore the living-world, campaign, dossier, and newsroom ideas after you know the current product picture.",
+            "",
+            "Start here: [Worlds and future work](HORIZONS/README.md)",
+            "",
+            "## I want help or recovery",
+            "",
+            "Use this when install, updates, sign-in, recovery, or bugs get in the way.",
+            "",
+            "Start here: [Help](HELP.md)",
+            "",
+            "## I want to report or contribute",
+            "",
+            "Use the public bug, feedback, or optional guided contribution path.",
+            "",
+            "Start here: [How can I help?](HOW_CAN_I_HELP.md)",
+        ]
+    )
+    _write(doc_path, "\n".join(rows))
+
+
 def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdict: dict[str, object]) -> set[str]:
     generated: set[str] = set()
     for filename in ("RUNNER_PASSPORT.md", "SIGNAL_DECK.md", "LIVING_WORLD.md"):
@@ -1847,7 +1938,7 @@ def _generate_root(
     missing_platforms = list(packet.get("missing_platforms") or [])
 
     cta_map = {
-        "start_here": "- [Start here](START_HERE.md)",
+        "start_here": "- [Start Here](START_HERE.md)",
         "current_status": "- [Status](STATUS.md)",
         "what_chummer6_is": "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
         "participate": "- [How can I help](HOW_CAN_I_HELP.md)",
@@ -1860,11 +1951,12 @@ def _generate_root(
             if line and line not in ordered_ctas:
                 ordered_ctas.append(line)
     extra_routes = [
+        "- [Onramp](ONRAMP.md)",
         "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
         "- [Contact](CONTACT.md)",
-        "- [Future ideas](HORIZONS/README.md)",
+        "- [Worlds and future work](HORIZONS/README.md)",
     ]
     if generated_live_route_ids and "runner-passport" in generated_live_route_ids:
         extra_routes.insert(1, "- [Runner Passport](RUNNER_PASSPORT.md)")
@@ -1879,12 +1971,14 @@ def _generate_root(
             ordered_ctas.append(line)
 
     rows = [
-        _front_matter("Chummer Public Guide", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
-        "# Chummer Public Guide",
+        _front_matter("Chummer6", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
+        "# Chummer6",
         "",
-        "Use this guide to answer the practical questions first: what Chummer6 is, what is real today, what to download, and where to get help.",
+        "Build a Shadowrun runner, understand why the numbers changed, and keep the table moving when the campaign gets complicated.",
         "",
-        "## Product promise",
+        "This repo is the public guide: start here if you want to try Chummer6, understand the preview, or see the bigger campaign tools growing around the builder.",
+        "",
+        "## Why it exists",
         "",
         "Chummer6 is the explainable Shadowrun campaign OS.",
         "",
@@ -1892,11 +1986,11 @@ def _generate_root(
         "",
         "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward.",
         "",
-        "## What is real now",
+        "## What can I do today?",
         "",
-        "- Short answer: yes, as an early preview.",
+        "- Try the current preview on the platforms listed below.",
         f"- {str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
-        "- clear public proof means posted downloads, visible status, and inspectable checks for the current files and flows; it is not a whole-product gold claim.",
+        "- Public wording stays tied to files and flows that are actually available now.",
         f"- {str(packet.get('proof_scope_line') or '').strip()}",
         f"- {str(packet.get('claim_boundary_line') or '').strip()}",
         f"- {str(packet.get('desktop_pick_line') or '').strip()}",
@@ -1923,6 +2017,8 @@ def _generate_root(
         [
             "## Start here",
             "",
+            "- [Start Here](START_HERE.md)",
+            "- [Onramp](ONRAMP.md)",
             "- [Download](DOWNLOAD.md)",
             "- [Status](STATUS.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
@@ -1935,7 +2031,8 @@ def _generate_root(
             for line in ordered_ctas
             if line
             not in {
-                "- [Start here](START_HERE.md)",
+                "- [Start Here](START_HERE.md)",
+                "- [Onramp](ONRAMP.md)",
                 "- [Status](STATUS.md)",
                 "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
                 "- [Download](DOWNLOAD.md)",
@@ -1946,7 +2043,7 @@ def _generate_root(
     rows.extend(
         [
             "",
-            "## How can I help?",
+            "## Account and contribution paths",
             "",
             "If you want the optional guided contribution path instead of normal product help, start with [How can I help](HOW_CAN_I_HELP.md).",
             "",
@@ -1973,13 +2070,14 @@ def _generate_root(
             "## Why people care",
             "",
             "- It shows why a number changed instead of hiding the math.",
+            "- It gives new or rusty users a guided Onramp without trapping experts in tutorial copy.",
             "- It is being built to keep sessions and campaigns recoverable when devices or connectivity drift.",
-            "- The status, downloads, and help story is meant to stay in plain sight instead of being scattered.",
+            "- The campaign layers are meant to feel alive without taking authority away from the GM or the rules engine.",
             "",
-            "## Product parts",
+            "## Worlds and deeper parts",
             "",
-            "- [Parts index](PARTS/README.md): an inside view of how the app is put together.",
-            "- [Horizons index](HORIZONS/README.md): future ideas that are not ready today.",
+            "- [Parts index](PARTS/README.md): the deeper product parts when you want to understand how Chummer fits together.",
+            "- [Worlds and future work](HORIZONS/README.md): larger campaign layers, some with early slices now and some still future-facing.",
         ]
     )
 
@@ -2492,11 +2590,11 @@ def _generate_horizon_pages(
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
-        _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
-        "# Horizons",
+        _front_matter("Worlds and future work", "products/chummer/HORIZON_REGISTRY.yaml"),
+        "# Worlds and future work",
         "",
-        "Use this index when you want to see where Chummer6 could go next after you understand the current product picture.",
-        "These are future ideas, not features you can use today.",
+        "Use this index when you want the larger campaign picture: living-world tools, dossiers, table control, publishing, and long-term ideas around the character builder.",
+        "Some pages describe early slices that already exist. Others are future-facing. Start with the current status when you need the exact availability picture.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -2547,16 +2645,25 @@ def _generate_horizon_pages(
         )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            if slug in {"karma-forge", "black-ledger", "table-pulse", "alice"}:
+            canon_text = _load_text(canon_path) if canon_path.is_file() else ""
+            video_sections = (
+                _extract_markdown_sections(
+                    canon_text,
+                    allowed_headings={"Explanation video", "Explanation videos"},
+                )
+                if canon_text
+                else []
+            )
+            if slug in {"karma-forge", "black-ledger", "table-pulse", "alice", "origin-dossier"}:
                 selected_headings = None
                 selected_heading_map = None
                 embedded = (
                     _extract_markdown_sections(
-                        _load_text(canon_path),
+                        canon_text,
                         allowed_headings=None,
                         heading_map=selected_heading_map,
                     )
-                    if canon_path.is_file()
+                    if canon_text
                     else []
                 )
             elif horizon_copy_slug in public_horizon_copy:
@@ -2577,13 +2684,16 @@ def _generate_horizon_pages(
                 selected_heading_map = PUBLIC_HORIZON_SECTION_TITLES
                 embedded = (
                     _extract_markdown_sections(
-                        _load_text(canon_path),
+                        canon_text,
                         allowed_headings=selected_headings,
                         heading_map=selected_heading_map,
                     )
-                    if canon_path.is_file()
+                    if canon_text
                     else []
                 )
+            if video_sections and not any("media/horizons/" in line for line in embedded):
+                rows.extend([""])
+                rows.extend(video_sections)
             if embedded:
                 rows.extend([""])
                 rows.extend(embedded)
@@ -2812,6 +2922,8 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         required_assets,
         derivative_fallback_root=derivative_fallback_root,
     )
+    _generate_onramp_page(out_dir, repo_root)
+    _generate_start_here_page(out_dir)
     generated_live_route_ids = _generate_live_route_pages(out_dir, repo_root, new_section_verdict)
     _generate_release_truth_packet(out_dir, release_truth_packet)
     _generate_root(

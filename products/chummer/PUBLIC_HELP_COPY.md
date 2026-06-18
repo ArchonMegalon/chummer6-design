@@ -17,6 +17,17 @@ ProductLift feedback is public. Do not post private logs, account data, campaign
 
 ProductLift roadmap and changelog pages are projections from Chummer-owned truth. They are not implementation priority, release authority, or support-case state.
 
+## Chummer Instant Help
+
+Most support should start inside Chummer or on the help page:
+
+* read the short answer
+* use `Show me` when a video is available
+* run the suggested check or repair
+* send a private report if the issue is still unresolved
+
+No normal Chummer help path should require a call, calendar slot, or vendor account.
+
 ## Private crash lane
 
 If Chummer closes unexpectedly, the first safe path is a private in-product crash report:

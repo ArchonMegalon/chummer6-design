@@ -32,6 +32,38 @@ What is still missing in canon:
 - one stronger public proof shelf that makes the artifact factory visible as product truth instead of horizon prose alone
 - one clearer promotion plan for which owned LTD lanes should move from tracked posture into real runtime adapters first
 
+## Maintenance workflow - Chummer Instant Help video library
+
+This is not a horizon.
+
+VidBoard's Chummer support role is maintenance video production: pre-rendered, reviewed clips that explain common tasks and repairs from approved Chummer help packets.
+
+The user flow is:
+
+1. Chummer Instant Help gives a short text answer.
+2. The user may choose `Show me`.
+3. Chummer selects a current video from the support catalog.
+4. The user can run the matching repair or check.
+5. If unresolved, Chummer creates a private support packet.
+
+VidBoard should not be treated as an instant runtime video API.
+Until provider API proof exists, video creation is operator-driven and asynchronous.
+
+Initial maintenance topics:
+
+* install Windows
+* install Linux
+* update Chummer
+* restore character
+* report a bug
+* import Chummer5A
+* create first character
+* add gear
+* privacy and opt out
+
+Freshness is mandatory.
+A help video becomes stale when the referenced build, installer, UI label, route, workflow, or source document changes.
+
 ## Workflow 1 - Pocket Johnson mission briefing
 
 ### User story

@@ -40,6 +40,9 @@ modules:
       - chummer6-hub
       - chummer6-ui
       - chummer6-hub
+    design_sources:
+      - INSTANT_HELP_MAINTENANCE_MODEL.md
+      - FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md
   - key: desktop-flagship
     canonical_repos:
       - chummer6-ui
@@ -86,7 +89,7 @@ first_wave:
       - chummer6-ui
       - chummer6-ui-kit
   - id: WB-004
-    title: Make claim, update, rollback, and support flows desktop-native
+    title: Make claim, update, rollback, and Instant Help flows desktop-native
     owners:
       - chummer6-hub
       - chummer6-hub-registry

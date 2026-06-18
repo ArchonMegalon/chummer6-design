@@ -19,6 +19,10 @@ assets:
     embed_policy: manual
     review_status: editorial_cover
     source_override: products/chummer/public-guide-curated-assets/assets/horizons/alice.png
+  assets/horizons/origin-dossier.png:
+    embed_policy: manual
+    review_status: editorial_cover
+    source_override: products/chummer/public-guide-curated-assets/assets/horizons/alice.png
   assets/horizons/nexus-pan.png:
     embed_policy: manual
     review_status: editorial_cover

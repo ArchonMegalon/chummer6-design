@@ -202,21 +202,6 @@ horizons:
       - publication_and_prestige_substrate
     why_horizon: Deepen session board, continuity, and recap follow-through without turning GM control into generic collaboration theater.
 
-  - id: onramp
-    file: onramp.md
-    family: guided mastery
-    state: shipped_mvp
-    public_guide_allowed: true
-    likely_owners:
-      - chummer6-hub
-      - chummer6-ui
-      - chummer6-core
-    foundation_dependencies:
-      - guided_mastery_substrate
-      - continuity_and_degraded_state_substrate
-      - evaluation_substrate
-    why_horizon: Deepen starter workspace, first playable follow-through, and restore posture without letting guided copy outrun receipts.
-
   - id: edition-studio
     file: edition-studio.md
     family: edition expression

@@ -34,9 +34,8 @@ The public fantasy is:
 
 COMMUNITY HUB is the product name for that lane.
 
-The public route is live at `https://chummer.run/community`.
-The named signed-in command lane now ships at `https://chummer.run/account/community`.
-Those lanes currently carry governed open-run board posture, venue handoff, join review, scheduling, and community closeout without pretending the whole long-range community roadmap is done.
+The signed-in command lane is already live at `https://chummer.run/community`.
+That lane currently carries governed open-run packets, venue handoff, and community closeout without pretending the whole long-range community roadmap is done.
 
 ## Likely owners
 
