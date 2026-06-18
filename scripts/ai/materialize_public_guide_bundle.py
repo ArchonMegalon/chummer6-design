@@ -1876,6 +1876,7 @@ def _generate_root(
         "",
         "- Short answer: yes, as an early preview.",
         f"- {str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
+        "- clear public proof means posted downloads, visible status, and inspectable checks for the current files and flows; it is not a whole-product gold claim.",
         f"- {str(packet.get('proof_scope_line') or '').strip()}",
         f"- {str(packet.get('claim_boundary_line') or '').strip()}",
         f"- {str(packet.get('desktop_pick_line') or '').strip()}",

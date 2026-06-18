@@ -1,5 +1,9 @@
 # TABLE PULSE
 
+## Explanation video
+
+[Watch the TABLE PULSE 90-second deep dive](https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4) - MP4 with AAC audio. [Captions](https://chummer.run/media/horizons/table-pulse-90s-deepdive.vtt).
+
 Table Pulse has two rails. The design only works if those rails stay explicit.
 
 **Table Pulse Live** is the GM-controlled heat and reaction rail. During a session or in the
