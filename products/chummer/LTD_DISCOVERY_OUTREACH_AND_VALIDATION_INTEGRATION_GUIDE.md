@@ -4,7 +4,7 @@
 **Primary repo:** `chummer6-design`  
 **Status:** Proposal / implementation guide  
 **Prepared for:** Chummer dev, Hub, Fleet, EA, Media Factory, and Product Governor teams  
-**Newly purchased capabilities assumed:** `Icanpreneur` Tier 3, `GetNextStep.io` Tier 5, `Signitic` Tier 4, `Taja` Tier 4, `FacePop` Tier 5, `vidBoard` Tier 5, `Lunacal` highest tier, `Deftform`, plus the existing EA LTD inventory.
+**Newly purchased capabilities assumed:** `Icanpreneur` Tier 3, `GetNextStep.io` Tier 5, `Signitic` Tier 4, `Taja` Tier 4, `FacePop` Tier 5, `vidBoard` Tier 5, `Lunacal` highest tier, `Deftform`, `Subscribr.ai` Tier 7, plus the existing EA LTD inventory.
 
 ## 1. Executive summary
 

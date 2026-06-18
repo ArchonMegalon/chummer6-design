@@ -19,6 +19,7 @@ The first creator operating system should include:
 * moderation and trust status
 * update request and support issue visibility
 * collateral and promo readiness
+* optional approved-source YouTube preproduction packet for creator spotlights, tutorials, release explainers, and ecosystem updates
 
 ## Why this matters
 
@@ -28,3 +29,5 @@ If creators cannot see whether anyone can safely use their work, publication bec
 
 The creator operating system must stay bounded by privacy and compatibility policy.
 It should not expose private campaign or player internals.
+Subscribr.ai may draft creator/video ideas, scripts, hooks, descriptions, tags, and thumbnail briefs only from approved source packets.
+It must not own creator truth, publication truth, channel credentials, or release claims.
