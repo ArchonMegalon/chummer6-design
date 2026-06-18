@@ -13,202 +13,97 @@ Picture the scene: A player compares two builds and sees the tradeoffs, the math
 
 ## Current stage
 
-- Today: shipped mvp.
+- Today: A bounded first playable slice is live.
 - Next: Expand bounded coaching and fallout follow-through.
 
-**ALICE is Chummer’s build-simulation and what-if horizon: the future where players can compare builds, catch trouble, test upgrade paths, and understand tradeoffs before the table discovers the mistake under pressure.**
+## The problem
 
-Many weak builds are not obvious at creation time.
+Players often discover bad builds, illegal interactions, or weak upgrade paths only after the run has already gone sideways.
 
-A player thinks they built a decker.
-The table discovers they cannot afford the gear that makes the role work.
-A face has social dice but no survival path.
-A combat build hits hard once and then collapses.
-A table discovers their favorite option is now campaign-illegal.
+## What it would do
 
-ALICE exists so Chummer can say:
+Chummer would compare builds, catch trouble before play, and explain tradeoffs without making up rules or legality.
 
-> “This is legal, but it may not do what you think.”
+## What is live now
 
-## The promise
+The shipped ALICE slice is now broader than the first compare bench:
 
-**Grounded build advice without invented mechanics.**
+* a public-safe ALICE route that explains the boundary and routes users into first-party compare work
+* signed-in build handoffs that keep tradeoffs, progression outcomes, runtime compatibility, source hints, and apply or discard follow-through on one governed rail
+* first-party compare artifacts such as compare briefs, what-if packets, and apply or discard receipts
+* a desktop ALICE workbench with explicit modes for `Build help`, `Rules coach`, and `Origin Dossier`
+* blank-state build help that can draft a full starting runner without requiring an already-open character
+* rules-coach prompts that explain selectable build options without claiming rule authority beyond cited Chummer mechanics context
+* GM allowance notes that can seed ALICE guidance with bounded exceptions such as extra ware, availability, nuyen, gear, or qualities without mutating build truth
+* an origin-dossier lane that can generate a grounded origin draft from blank-state or active-runner context, freeze approved canon, and seed later ALICE suggestions from that canon
+* origin-dossier bundle outputs that can branch into dossier PDF, portrait candidates, scene candidates, vidBoard video packets, default narration packets, alternate narration packets, and local media-factory render requests
+* voice-selection controls that let the player choose between at least a default and alternate narration posture before the audiobook packet is rendered
+* GM-steered origin context that can shape the dossier tone, faction hooks, and campaign constraints before or after sheet creation without pretending that story output is mechanical truth
 
-ALICE should compare, simulate, and explain using Chummer-owned engine truth.
+This is still not an assistant-side build oracle.
+The shipped lane is a Chummer-owned compare, coach, and origin-handoff surface with bounded public framing.
 
-It can help answer:
+## Current desktop boundary
 
-- Which build is stronger for this role?
-- Which option gives the better tradeoff?
-- What breaks if I switch campaigns?
-- Which upgrade path makes sense?
-- What is a role trap?
-- What does campaign change?
-- What is legal but fragile?
-- What can I fix quickly?
+Desktop ALICE may:
 
-But ALICE must never invent rules.
+* explain current build tradeoffs
+* explain selectable options in plain language
+* explain legality, complexity, and ware posture directly inside the desktop workbench before the user asks a free-form question
+* use an approved origin draft or origin-dossier canon as suggestion context
+* respect GM allowances as advisory context
+* generate downstream dossier media packets
+* let the player choose a narration posture before generating dossier audiobook packets
+* keep origin-dossier generation additive for finished runners instead of treating story output as a forced rebuild lane
+* accept campaign or GM steer as bounded context for origin-dossier generation
 
-Every claim needs a receipt.
+Desktop ALICE must not:
 
-## What it feels like
+* silently rewrite the character sheet
+* auto-apply GM allowances to mechanics
+* invent rule legality
+* treat dossier prose as canonical build truth
+* let a downstream media provider become rules or character authority
+* silently turn GM narrative steer into applied mechanics on an already-established sheet
 
-A player compares two builds:
+## Likely owners
 
-```text
-Variant A: decker/infiltrator
-Variant B: pure decker
-```
+* `chummer6-core`
+* `chummer6-ui`
+* `chummer6-hub`
 
-ALICE says:
+## Tool posture
 
-```text
-Variant B is stronger for Matrix-first runs.
-Variant A is safer for mixed social infiltration.
+Research and assistive drafting tools may support operator-facing explanations, but analysis outcomes stay grounded in engine-owned semantics.
 
-Tradeoffs:
-- Variant B improves core Matrix capability.
-- Variant A survives better outside the host.
-- Variant B exceeds your campaign’s starting gear budget unless the GM approves a black-channel exception.
-- Variant A leaves you weaker against heavy IC.
+## What has to be true first
 
-Recommended next question:
-Are you joining a Matrix-heavy campaign or a mixed-op open run?
-```
+* explain views that show their work
+* deterministic runtime data
+* strong comparison flows
 
-Buttons:
+## Current boundary
 
-- Show math
-- Show receipts
-- Compare team role fit
-- Fix budget issue
-- Keep my chaos
+The live ALICE lane still does not mean Chummer can invent mechanics, override legality, or turn a public explainer into runtime truth.
+The public entry, the signed-in compare bench, the desktop coach modes, the blank-state starter flow, the origin-dossier seed lane, the GM-allowance context rail, and the first-party receipts are live now; deeper simulation and autonomous build mutation can widen later only if engine-owned authority grows first.
 
-That is ALICE.
+## Naming and flow rules
 
-## What it should include
+User-facing naming should stay stable:
 
-### Build comparison
+* `Build help`
+* `Rules coach`
+* `Origin Dossier`
 
-Compare:
+Do not drift back into mixed labels like `origin draft packet`, `story packet`, or `narration kit`
+on the primary desktop controls.
 
-- current build vs snapshot
-- variant A vs variant B
-- runner vs campaign rule environment
-- runner vs team needs
-- current build vs upgrade goal
-- quickstart vs custom build
+The intended flow is:
 
-### Tradeoff briefs
-
-Not just “better/worse.”
-
-Show:
-
-- what improves
-- what worsens
-- what becomes illegal
-- what becomes expensive
-- what becomes fragile
-- what depends on campaign context
-- what role the build actually fits
-
-### Trap detection
-
-Detect:
-
-- archetype drift
-- underfunded role
-- missing required gear
-- weak survivability
-- illegal package conflict
-- bad upgrade path
-- duplicate team role
-- campaign mismatch
-- hidden dependency
-
-### Upgrade path planning
-
-Help users ask:
-
-- what should I buy next?
-- what is the cheapest meaningful upgrade?
-- what becomes available after this run?
-- what should I not buy yet?
-- what does this faction/world offer unlock?
-
-### Team analysis
-
-For campaigns and open runs:
-
-- role coverage
-- unresolved role
-- missing Matrix/magic/social/combat coverage
-- build conflicts
-- quickstart recommendations
-
-## What users want to know
-
-### Is ALICE AI?
-
-It may use assistant phrasing or drafting support, but mechanics come from Chummer-owned engine truth.
-
-### Will ALICE tell me the “best” build?
-
-It should explain tradeoffs, not erase player taste.
-
-### Can it work with house rules?
-
-Yes. It must understand the active rule environment and show what changed.
-
-### Can it help with open runs?
-
-Yes. It can show whether a runner fits a GM’s open-run joining policy.
-
-### Can it be funny?
-
-Yes. The companion can comment. The receipts still do the serious work.
-
-## What it is not
-
-ALICE is not:
-
-- a hidden optimizer
-- a build police bot
-- an AI rules engine
-- a powergaming-only tool
-- legality by vibes
-- advice without receipts
-
-It should help users think, not replace them.
-
-## The first slice
-
-The first ALICE slice should be:
-
-**Build comparison brief**
-
-It should let a user:
-
-1. select two snapshots or variants
-2. compare legality
-3. compare role fit
-4. compare major costs/tradeoffs
-5. see receipts
-6. export a short explain brief
-
-Success looks like:
-
-> A player understands why one legal build is worse for their intended run before the session starts.
-
-## The vision
-
-Chummer should not only answer:
-
-> “Is this legal?”
-
-It should also answer:
-
-> “Will this actually work for what I am trying to do?”
-
-**ALICE is where Chummer becomes a build mentor with receipts.**
+1. optional blank-state concept or active-runner context
+2. optional GM steer or allowance notes
+3. origin draft
+4. approve canon
+5. choose voice posture for narration lanes when desired
+6. render the origin dossier bundle
+7. let later ALICE suggestions read that canon without mutating established build truth

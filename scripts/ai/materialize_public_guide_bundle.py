@@ -53,6 +53,7 @@ PUBLIC_PHASE_LABELS = {
 PUBLIC_HORIZON_STAGE_LABELS = {
     "horizon": "Future concept",
     "bounded_research": "Research and prototypes",
+    "shipped_mvp": "A bounded first playable slice is live",
     "signed_in_command_lane_live": "Signed-in command lane is live",
     "bounded_coaching_expansion": "Expand bounded coaching and fallout follow-through",
 }
@@ -2521,7 +2522,7 @@ def _generate_horizon_pages(
         )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            if slug in {"karma-forge", "black-ledger", "table-pulse"}:
+            if slug in {"karma-forge", "black-ledger", "table-pulse", "alice"}:
                 selected_headings = None
                 selected_heading_map = None
                 embedded = (

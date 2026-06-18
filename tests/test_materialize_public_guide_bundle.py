@@ -275,3 +275,16 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
     assert (out_dir / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json").is_file()
     assert (out_dir / "RUNNER_PASSPORT.md").is_file()
     assert "`runner-passport`: `public_route_live` -> `public_route_live_page`" in verdict
+
+
+def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    alice = (out_dir / "HORIZONS" / "alice.md").read_text(encoding="utf-8")
+
+    assert "Origin Dossier" in alice
+    assert "blank-state build help" in alice
+    assert "GM allowance notes" in alice
+    assert "voice-selection controls" in alice
+    assert "shipped mvp" not in alice.lower()
