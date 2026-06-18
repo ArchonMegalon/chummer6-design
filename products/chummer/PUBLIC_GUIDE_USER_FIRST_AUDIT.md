@@ -114,5 +114,20 @@ Fix:
 - README starts with `# Chummer6`.
 - README links `START_HERE.md`, `ONRAMP.md`, `DOWNLOAD.md`, `STATUS.md`, and `HORIZONS/README.md`.
 - `START_HERE.md` leads with the new/rusty user path.
-- `ONRAMP.md` states that Onramp is not a horizon.
+- `ONRAMP.md` is a practical first-run/recovery page and does not appear under `HORIZONS/`.
+- Onramp art is emitted under `assets/pages/`, not `assets/horizons/`.
 - Horizons index uses mixed availability wording, not "not features you can use today."
+
+## 2026-06-18 Humanized Regeneration Follow-Up
+
+The regenerated Chummer6 guide now treats Origin Dossier as a real horizon in both the root and derived horizon registries, while Onramp stays a top-level first-run and recovery page.
+
+Additional fixes:
+
+- moved visible Onramp art from the horizon asset path to the page asset path
+- removed API route lists and checklist-style copy from the public Onramp page
+- translated horizon stage labels into reader-facing availability language
+- kept Origin Dossier prominent in the public guide and connected to ALICE, scoped audiobook handoff, and approved canon
+- kept the blocked Origin Dossier MagicFit full reel out of public links because the public URL is not live
+- verified the linked Table Pulse and ALICE horizon videos still expose AAC audio streams
+- replaced presentation-doc checklist headings such as "Guardrails" and "What belongs here" with user-facing section names

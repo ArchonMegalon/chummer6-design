@@ -53,9 +53,10 @@ PUBLIC_PHASE_LABELS = {
 PUBLIC_HORIZON_STAGE_LABELS = {
     "horizon": "Future concept",
     "bounded_research": "Research and prototypes",
-    "shipped_mvp": "A bounded first playable slice is live",
+    "shipped_mvp": "You can try the first real slice today",
     "signed_in_command_lane_live": "Signed-in command lane is live",
-    "bounded_coaching_expansion": "Expand bounded coaching and fallout follow-through",
+    "bounded_coaching_expansion": "Make the coaching deeper without loosening the boundaries",
+    "flagship_depth_hardening": "Make the slice richer, steadier, and easier to trust",
 }
 RELEASE_PROOF_JOURNEY_LABELS = {
     "install_claim_restore_continue": "install, sign back in, restore, and keep going",
@@ -467,7 +468,7 @@ def _required_public_asset_paths(part_registry: dict[str, object], horizon_regis
         "assets/hero/chummer6-hero.png",
         "assets/pages/parts-index.png",
         "assets/pages/horizons-index.png",
-        "assets/horizons/onramp.png",
+        "assets/pages/onramp.png",
     }
     for item in part_registry.get("parts") or []:
         if not isinstance(item, dict):
@@ -1581,7 +1582,7 @@ def _generate_onramp_page(out_dir: Path, repo_root: Path) -> None:
     image_rows = _image_rows(
         doc_path=doc_path,
         out_dir=out_dir,
-        asset_path="assets/horizons/onramp.png",
+        asset_path="assets/pages/onramp.png",
         alt="Onramp starter path art",
     )
     if image_rows:

@@ -49,6 +49,23 @@ horizons:
       - evaluation_substrate
     why_horizon: Deepen compare-and-explain coverage without turning assistive guidance into rules truth.
 
+  - id: origin-dossier
+    file: origin-dossier.md
+    family: origin canon and living dossier
+    state: shipped_mvp
+    public_guide_allowed: true
+    likely_owners:
+      - chummer6-ui
+      - chummer6-core
+      - chummer6-hub
+      - chummer6-media-factory
+    foundation_dependencies:
+      - guided_mastery_substrate
+      - gm_operations_substrate
+      - publication_and_prestige_substrate
+      - evaluation_substrate
+    why_horizon: Deepen approved runner origin canon, dossier media, ALICE follow-up context, and scoped origin-story audiobook handoff without letting story prose mutate mechanics.
+
   - id: karma-forge
     file: karma-forge.md
     family: governed rules evolution
