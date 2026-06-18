@@ -1721,7 +1721,6 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "- [Black Ledger notifications](/account/ledger/notifications)",
                 "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
                 "- [Work aftermath rail](/account/work#aftermath-packages)",
-                "- [Black Ledger](HORIZONS/black-ledger.md)",
                 "- [Table Pulse](HORIZONS/table-pulse.md)",
                 "- [Help](HELP.md)",
             ]
@@ -1785,7 +1784,6 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
             read_next.extend(
                 [
                     "- [Runner Passport](RUNNER_PASSPORT.md)",
-                    "- [Black Ledger](HORIZONS/black-ledger.md)",
                     "- [Table Pulse](HORIZONS/table-pulse.md)",
                     "- [Work aftermath rail](/account/work#aftermath-packages)",
                 ]
@@ -1842,7 +1840,6 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
         newsroom_read_next.append("- [Runner Passport](RUNNER_PASSPORT.md)")
     newsroom_read_next.extend(
         [
-            "- [Black Ledger](HORIZONS/black-ledger.md)",
             "- [Help](HELP.md)",
         ]
     )
@@ -1951,8 +1948,6 @@ def _generate_root(
         extra_routes.insert(2, "- [Signal Deck](SIGNAL_DECK.md)")
     if generated_live_route_ids and "living-world-engagement" in generated_live_route_ids:
         extra_routes.insert(3, "- [Living World](LIVING_WORLD.md)")
-    if generated_live_route_ids and "black-ledger-newsroom" in generated_live_route_ids:
-        extra_routes.insert(4, "- [Black Ledger Newsroom](BLACK_LEDGER_NEWSROOM.md)")
     for line in extra_routes:
         if line not in ordered_ctas:
             ordered_ctas.append(line)
@@ -2052,12 +2047,11 @@ def _generate_root(
             [
                 "",
                 (
-                    "Watch the flagship war bulletin: "
+                    "Watch the current product reel: "
                     "https://chummer.run/media/promo/chummer6-flagship-promo.mp4, "
                     "MP4 with AAC audio. Captions are at "
                     "https://chummer.run/media/promo/chummer6-flagship-promo.vtt."
                 ),
-                "Open the Black Ledger command map: https://chummer.run/ledger/map#ledger-map",
             ]
         )
     rows.extend(
@@ -2583,6 +2577,11 @@ def _generate_horizon_pages(
         return (order, str(item.get("title") or item.get("id") or ""))
 
     enabled.sort(key=sort_key)
+    enabled = [
+        horizon
+        for horizon in enabled
+        if _slug(str(horizon.get("id") or "").strip()) != "black-ledger"
+    ]
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [

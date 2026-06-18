@@ -53,6 +53,8 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
         "and carry the campaign forward."
     ) in readme
     assert readme.count("[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)") == 1
+    assert "Open the Black Ledger command map" not in readme
+    assert "Black Ledger Newsroom" not in readme
 
 
 def test_materialize_public_assets_reuses_existing_derivatives_when_encoder_missing(
@@ -275,6 +277,29 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
     assert (out_dir / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json").is_file()
     assert (out_dir / "RUNNER_PASSPORT.md").is_file()
     assert "`runner-passport`: `public_route_live` -> `public_route_live_page`" in verdict
+
+
+def test_generate_bundle_keeps_black_ledger_out_of_primary_public_navigation(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    readme = (out_dir / "README.md").read_text(encoding="utf-8")
+    horizons_index = (out_dir / "HORIZONS" / "README.md").read_text(encoding="utf-8")
+
+    assert "Open the Black Ledger command map" not in readme
+    assert "Black Ledger Newsroom" not in readme
+    assert "[BLACK LEDGER]" not in horizons_index
+    assert not (out_dir / "HORIZONS" / "black-ledger.md").exists()
+
+
+def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    start_here = (out_dir / "START_HERE.md").read_text(encoding="utf-8")
+
+    assert "## I am new or rusty" in start_here
+    assert "Start here: [Onramp](ONRAMP.md)" in start_here
 
 
 def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: Path) -> None:
