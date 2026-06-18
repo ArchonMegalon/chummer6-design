@@ -16,9 +16,9 @@ The shipped ALICE slice is now broader than the first compare bench:
 * signed-in build handoffs that keep tradeoffs, progression outcomes, runtime compatibility, source hints, and apply or discard follow-through on one governed rail
 * first-party compare artifacts such as compare briefs, what-if packets, and apply or discard receipts
 * a desktop ALICE workbench with explicit modes for `Build help`, `Rules coach`, and `Origin Dossier`
-* blank-state build help that can draft a full starting runner without requiring an already-open character
+* blank-state build help with a visible `Draft from scratch` affordance that can draft a full starting runner without requiring an already-open character
 * rules-coach prompts that explain selectable build options without claiming rule authority beyond cited Chummer mechanics context
-* GM allowance notes that can seed ALICE guidance with bounded exceptions such as extra ware, availability, nuyen, gear, or qualities without mutating build truth
+* GM allowance and requirement notes that can seed ALICE guidance with bounded exceptions or constraints such as extra ware, availability, nuyen, gear, qualities, required magical activity, illegal-addiction requirements, or minimum mental-attribute requirements without mutating build truth
 * an origin-dossier lane that can generate a grounded origin draft from blank-state or active-runner context, freeze approved canon, and seed later ALICE suggestions from that canon
 * origin-dossier bundle outputs that can branch into dossier PDF, portrait candidates, scene candidates, vidBoard video packets, default narration packets, alternate narration packets, and local media-factory render requests
 * voice-selection controls that let the player choose between at least a default and alternate narration posture before the audiobook packet is rendered
@@ -34,8 +34,9 @@ Desktop ALICE may:
 * explain current build tradeoffs
 * explain selectable options in plain language
 * explain legality, complexity, and ware posture directly inside the desktop workbench before the user asks a free-form question
+* draft a complete scratch runner from a blank or new-character state when the user chooses `Draft from scratch`
 * use an approved origin draft or origin-dossier canon as suggestion context
-* respect GM allowances as advisory context
+* respect GM allowances and hard GM requirements as advisory context
 * generate downstream dossier media packets
 * let the player choose a narration posture before generating dossier audiobook packets
 * keep origin-dossier generation additive for finished runners instead of treating story output as a forced rebuild lane
@@ -85,7 +86,7 @@ on the primary desktop controls.
 The intended flow is:
 
 1. optional blank-state concept or active-runner context
-2. optional GM steer or allowance notes
+2. optional GM steer, allowance notes, or hard narrative/mechanical requirements
 3. origin draft
 4. approve canon
 5. choose voice posture for narration lanes when desired

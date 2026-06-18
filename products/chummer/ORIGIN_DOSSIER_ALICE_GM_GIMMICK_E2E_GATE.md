@@ -21,15 +21,15 @@ This needs one mouse-first journey that proves the workflow as a product.
 
 The test passes only if all of the following are true:
 
-* origin draft can be opened directly from desktop ALICE
+* Origin Dossier can be opened directly from desktop ALICE
 * a draft can be generated without crashing on blank-state or active-runner context
 * a pure build-context origin draft works
-* a GM-steered origin draft works
+* a GM-steered origin draft works with both allowances and hard requirements
 * canon approval creates a real bundle root
 * dossier assets can be produced in sequence
 * ALICE later references the approved origin canon during follow-up
-* GM allowances or gimmicks appear in ALICE context and output
-* GM allowances do not auto-apply mechanics
+* GM allowances, requirements, or gimmicks appear in ALICE context and output
+* GM allowances and hard requirements do not auto-apply mechanics
 * the whole flow works with mouse-only interaction
 
 ## Recommended scenario
@@ -51,12 +51,15 @@ Use one deterministic scenario and keep it fixed.
 
 Use one bounded gimmick that is flavorful but mechanically explicit:
 
-> GM allowance: one clinic contact quietly fronted restricted starter ware and one over-availability deck part, but only if ALICE explains the consequences and keeps the final build proposal non-applied.
+> GM steer: one clinic contact quietly fronted restricted starter ware and one over-availability deck part. The runner must also have an illegal-drug addiction hook, must be magically active, and must keep Logic or Intuition at 2 or higher. ALICE must explain the consequences and keep the final build proposal non-applied until the player explicitly edits the sheet.
 
 This is a good gimmick because it tests:
 
 * extra ware
 * extra availability
+* required quality/story pressure
+* required awakened posture
+* minimum mental-attribute constraints
 * advisory-only posture
 * later ALICE explanation continuity
 
@@ -75,13 +78,14 @@ This is a good gimmick because it tests:
 ### Phase 2: Establish blank-state build context
 
 1. Stay in `Build Help`.
-2. Ask a starter question with mouse-only input:
+2. Verify the visible `Draft from scratch` affordance is present.
+3. Click `Draft from scratch`, or ask a starter question with mouse-only input:
    * `Build me an SR4 troll decker from scratch.`
-3. Verify ALICE does not respond with:
+4. Verify ALICE does not respond with:
    * `open a workspace first`
    * `no preview-backed build candidate`
    * any equivalent dead-end error
-4. Verify ALICE returns a complete from-scratch draft posture:
+5. Verify ALICE returns a complete from-scratch draft posture:
    * metatype
    * build method
    * attribute emphasis
@@ -111,14 +115,17 @@ This is a good gimmick because it tests:
 
 ### Phase 5: Generate GM-steered origin dossier canon
 
-1. In the GM allowances box, enter the fixed gimmick text.
+1. In the GM allowances and requirements box, enter the fixed gimmick text.
 2. Verify ALICE context updates visibly.
 3. Switch to `Origin Dossier`.
 4. Ask:
-   * `Regenerate this origin with the clinic favor as a real story influence, but keep mechanics advisory only.`
+   * `Regenerate this origin with the clinic favor, addiction hook, magical-active requirement, and Logic or Intuition minimum as real story influences, but keep mechanics advisory only.`
 5. Verify the new origin draft visibly references:
    * the clinic contact or clinic favor
    * restricted ware / deck-part pressure as story context
+   * the illegal-drug addiction hook
+   * the required magical-active posture
+   * the minimum Logic or Intuition requirement
 6. Click `Approve canon`.
 7. Verify the new approved canon remains a narrative bundle, not a mechanical auto-apply.
 
@@ -162,6 +169,7 @@ Verify all of the following exist:
    * approved origin canon or origin summary
    * the runner’s troll/decker identity
    * the GM clinic gimmick as advisory context
+   * the illegal-drug addiction, magical-active, and mental-attribute requirements as advisory context
 4. Verify ALICE still keeps bounded truth posture:
    * explanation only
    * no hidden sheet mutation
@@ -170,11 +178,14 @@ Verify all of the following exist:
 
 1. Switch to `Rules Coach`.
 2. Ask:
-   * `Rules-wise, what does the clinic favor actually allow here, and what is still risky?`
+   * `Rules-wise, what do the clinic favor, addiction hook, magical-active requirement, and Logic or Intuition minimum actually allow here, and what is still risky?`
 3. Verify ALICE explains:
    * legality posture
    * availability posture
    * ware posture
+   * quality or addiction posture
+   * awakened or magical-active posture
+   * minimum mental-attribute posture
    * what remains manual review
 
 ## Assertions
@@ -185,17 +196,19 @@ The test must assert all of these:
 
 * ALICE window opened
 * mode switch works
+* `Draft from scratch` button is visible and usable from blank-state Build Help
 * blank-state build help returns a full build draft
 * no dead-end blank-state error text appears
 * pure origin draft generated from non-GM-steered context
 * pure canon follow-up references approved origin
-* GM allowances are visible in later context
+* GM allowances and hard requirements are visible in later context
 * GM-steered origin draft generated
 * both canon approvals succeed
 * bundle directory created
 * required bundle artifacts exist
 * later ALICE answer references approved origin
 * later ALICE answer references GM gimmick
+* later ALICE answer references the illegal-drug addiction, magical-active, and mental-attribute requirements
 * no auto-apply or sheet mutation language is shown
 
 ### Fail assertions
@@ -238,6 +251,7 @@ Expected controls:
 
 * `ClassicToolStripAutoAliceButton` or equivalent shell ALICE entry
 * `AliceConversationModeCombo`
+* `AliceDraftFromScratchButton`
 * `AliceQuestionTextBox`
 * `AliceGmAllowanceTextBox`
 * `AliceAskButton`
@@ -268,11 +282,12 @@ newly created bundle root during execution instead of hardcoding a path.
 This test should emit screenshots for:
 
 1. blank-state ALICE build help
-2. pure origin draft generated
-3. pure canon follow-up in build help
-4. GM-steered origin draft generated
-5. approved bundle actions visible
-6. rules-coach explanation using GM gimmick
+2. `Draft from scratch` affordance visible
+3. pure origin draft generated
+4. pure canon follow-up in build help
+5. GM-steered origin draft generated with hard requirements visible
+6. approved bundle actions visible
+7. rules-coach explanation using GM gimmick and hard requirements
 
 These screenshots are part of the exit gate because this is both a behavior and presentation flow.
 
@@ -283,6 +298,6 @@ This journey is required for Gold because it proves:
 * ALICE is not just a shell
 * origin dossier is not just hidden code
 * origin can stand on its own from pure build context
-* GM advisory input can steer origin canon without becoming rules truth
+* GM advisory input and hard requirements can steer origin canon without becoming rules truth
 * follow-up continuity works in both variants
 * narrative and mechanics boundaries stay intact

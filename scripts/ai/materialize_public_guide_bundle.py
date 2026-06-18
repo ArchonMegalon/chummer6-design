@@ -1402,8 +1402,9 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
         if published:
             rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails."
             rendered["bullets"] = [
-                "Start with the recommended installer for your platform.",
-                "Use the other package only if the installer gives you trouble.",
+                "Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
+                "Use `Stable` when you want the slower promoted lane.",
+                "Use the Windows or Linux installer; portable builds are not the public primary path.",
                 "Create an account if you want your support history, recovery, and downloads tied to one place.",
                 "If your platform is missing, the status and download pages will say so.",
             ]
@@ -2220,6 +2221,9 @@ def _generate_download(
         "",
         "## What should I download first?",
         "",
+        "- Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
+        "- Use `Stable` when you want the slower promoted lane.",
+        "- The public shelf is installer-first; portable builds are not the primary public route.",
     ]
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]

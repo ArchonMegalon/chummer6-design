@@ -126,6 +126,8 @@ The bundle can include:
 
 The origin bundle is downstream of the runner dossier.
 It can inform ALICE suggestions, but it must not become the source of legality, nuyen, ware entitlement, or quality truth.
+GM allowances and requirements may seed the origin bundle, including extra gear, ware, availability exceptions, required magical activity, required addiction hooks, minimum attribute posture, or table-specific starting resources.
+Those inputs are table context until the player or GM commits matching mechanical edits through the normal character workflow.
 
 ## User-safe promise
 

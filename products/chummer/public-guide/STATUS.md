@@ -5,7 +5,7 @@ This is the blunt answer on what you can use today.
 ## Current picture
 
 - Today: Current release build.
-- Published: June 18, 2026 at 6:22 UTC.
+- Published: June 18, 2026 at 10:26 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows and Linux.
 - Promoted installer coverage is visible on every promised desktop platform.
@@ -18,7 +18,8 @@ This is the blunt answer on what you can use today.
 
 Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails.
 
-- Start with the recommended installer for your platform.
-- Use the other package only if the installer gives you trouble.
+- Use `Nightly` when you want the newest rolling public build on Windows or Linux.
+- Use `Stable` when you want the slower promoted lane.
+- Use the Windows or Linux installer; portable builds are not the public primary path.
 - Create an account if you want your support history, recovery, and downloads tied to one place.
 - If your platform is missing, the status and download pages will say so.

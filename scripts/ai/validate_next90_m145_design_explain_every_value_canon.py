@@ -244,7 +244,7 @@ def main() -> int:
     else:
         if milestone.get("title") != "Explain every visible value with grounded follow-up and bounded presenter mode":
             errors.append("registry_wrong_milestone_title")
-        if milestone.get("status") != "in_progress":
+        if milestone.get("status") != "complete":
             errors.append("registry_wrong_milestone_status")
         dependencies = milestone.get("dependencies")
         if dependencies != [104, 109, 114]:

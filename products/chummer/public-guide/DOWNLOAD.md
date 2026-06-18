@@ -4,6 +4,9 @@ This page tells you what you can download right now and which file to start with
 
 ## What should I download first?
 
+- Use `Nightly` when you want the newest rolling public build on Windows or Linux.
+- Use `Stable` when you want the slower promoted lane.
+- The public shelf is installer-first; portable builds are not the primary public route.
 - For Windows, start with Avalonia Desktop Windows X64 Installer.
 - For Linux, start with Avalonia Desktop Linux X64 Installer.
 - There is no public macOS installer today. Only archive previews are posted.
@@ -11,7 +14,7 @@ This page tells you what you can download right now and which file to start with
 ## Current release download
 
 - Today: Current release build.
-- Published: June 18, 2026 at 6:22 UTC.
+- Published: June 18, 2026 at 10:26 UTC.
 - Release status: Published.
 - Downloads are currently live for Windows and Linux.
 - Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.
@@ -29,7 +32,7 @@ Official client downloads start at chummer.run. GitHub is for source and public 
 - Avalonia Desktop Windows X64 Installer.
 - Download: `https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe`
 - File: `chummer-avalonia-win-x64-installer.exe`
-- Size: 94.4 MiB (98933265 bytes)
+- Size: 94.4 MiB (98934813 bytes)
 - Access: Public download.
 
 ### Linux
@@ -37,7 +40,7 @@ Official client downloads start at chummer.run. GitHub is for source and public 
 - Avalonia Desktop Linux X64 Installer.
 - Download: `https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb`
 - File: `chummer-avalonia-linux-x64-installer.deb`
-- Size: 35.2 MiB (36863084 bytes)
+- Size: 35.2 MiB (36865078 bytes)
 - Access: Public download.
 
 ### macOS
@@ -52,8 +55,8 @@ Official client downloads start at chummer.run. GitHub is for source and public 
 
 ## SHA256
 
-- Avalonia Desktop Linux X64 Installer: `312cbf9fea1fa88a30cc19391d84a51be8fc7c4aff5f12a62fa0064ec4a79dc4`
-- Avalonia Desktop Windows X64 Installer: `dd1a135e59697919cfe7034fe48fa3bf72d55c0a3b43b9a91640facdee8fbde7`
+- Avalonia Desktop Linux X64 Installer: `fd7a0772ab0f01e09bcfe200f4d391e392abafe6b2235ab5dbb63c33d18347da`
+- Avalonia Desktop Windows X64 Installer: `581f37f5f72483c1753435f5666c8ab224fd77f593cd7507d9c613ec86db11ab`
 
 ## Recent release verification
 
