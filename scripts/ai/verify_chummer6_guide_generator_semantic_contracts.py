@@ -76,10 +76,21 @@ def main() -> int:
         forbidden_claims = set(entry.get("forbidden_claims") or [])
         allowed_public_audience = set(entry.get("allowed_public_audience") or [])
         required_proof = set(entry.get("required_proof") or [])
+        expected_representation = str(entry.get("expected_representation") or "").strip()
 
         contract = POSITIVE_PAGE_SCHEMAS.get(page_class)
         if contract is None:
             raise ValueError(f"{section_id}: page_class {page_class!r} is missing from positive semantic contracts")
+
+        if verdict_name == "design_canon_only" and expected_representation.startswith("omitted_with_receipt"):
+            required_omission_proof = {"public_guide_omission_receipt", "no_public_route_claim"}
+            if not required_proof.issuperset(required_omission_proof):
+                raise ValueError(
+                    f"{section_id}: design_canon_only omission requires proof {sorted(required_omission_proof)}"
+                )
+            if bool(entry.get("shipped_claim_allowed")):
+                raise ValueError(f"{section_id}: design_canon_only omissions must not allow shipped claims")
+            continue
 
         if not allowed_public_audience.issuperset(contract.get("must_allow_audience", set())):
             raise ValueError(f"{section_id}: allowed_public_audience does not satisfy {page_class} contract")
@@ -93,7 +104,6 @@ def main() -> int:
             raise ValueError(f"{section_id}: page_class {page_class!r} requires proof hint {required_receipt_hint!r}")
 
         required_expected_representation = contract.get("must_require_expected_representation")
-        expected_representation = str(entry.get("expected_representation") or "").strip()
         if required_expected_representation and expected_representation != required_expected_representation:
             raise ValueError(
                 f"{section_id}: expected_representation {expected_representation!r} does not satisfy {page_class} contract"

@@ -1567,6 +1567,10 @@ def _generate_release_truth_packet(out_dir: Path, packet: dict[str, object]) -> 
 
 def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdict: dict[str, object]) -> set[str]:
     generated: set[str] = set()
+    for filename in ("RUNNER_PASSPORT.md", "SIGNAL_DECK.md", "LIVING_WORLD.md"):
+        stale_path = out_dir / filename
+        if stale_path.exists():
+            stale_path.unlink()
     sections = new_section_verdict.get("sections") or []
     if not isinstance(sections, list):
         return generated
@@ -1697,6 +1701,17 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
             _write(out_dir / "SIGNAL_DECK.md", "\n".join(rows))
             generated.add("signal-deck")
         elif section_id == "living-world-engagement":
+            read_next = []
+            if "signal-deck" in generated:
+                read_next.append("- [Signal Deck](SIGNAL_DECK.md)")
+            read_next.extend(
+                [
+                    "- [Runner Passport](RUNNER_PASSPORT.md)",
+                    "- [Black Ledger](HORIZONS/black-ledger.md)",
+                    "- [Table Pulse](HORIZONS/table-pulse.md)",
+                    "- [Work aftermath rail](/account/work#aftermath-packages)",
+                ]
+            )
             rows = [
                 _front_matter("Living World", "products/chummer/LIVING_WORLD_SPEC.md"),
                 "# Living World",
@@ -1736,14 +1751,23 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "## Read next",
                 "",
-                "- [Signal Deck](SIGNAL_DECK.md)",
-                "- [Runner Passport](RUNNER_PASSPORT.md)",
-                "- [Black Ledger](HORIZONS/black-ledger.md)",
-                "- [Table Pulse](HORIZONS/table-pulse.md)",
-                "- [Work aftermath rail](/account/work#aftermath-packages)",
+                *read_next,
             ]
             _write(out_dir / "LIVING_WORLD.md", "\n".join(rows))
             generated.add("living-world-engagement")
+    newsroom_read_next = []
+    if "living-world-engagement" in generated:
+        newsroom_read_next.append("- [Living World](LIVING_WORLD.md)")
+    if "signal-deck" in generated:
+        newsroom_read_next.append("- [Signal Deck](SIGNAL_DECK.md)")
+    if "runner-passport" in generated:
+        newsroom_read_next.append("- [Runner Passport](RUNNER_PASSPORT.md)")
+    newsroom_read_next.extend(
+        [
+            "- [Black Ledger](HORIZONS/black-ledger.md)",
+            "- [Help](HELP.md)",
+        ]
+    )
     rows = [
         _front_matter("Black Ledger Newsroom", "products/chummer/BLACK_LEDGER_NEWSROOM_CANON.md"),
         "# Black Ledger Newsroom",
@@ -1777,11 +1801,7 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
         "",
         "## Read next",
         "",
-        "- [Living World](LIVING_WORLD.md)",
-        "- [Signal Deck](SIGNAL_DECK.md)",
-        "- [Runner Passport](RUNNER_PASSPORT.md)",
-        "- [Black Ledger](HORIZONS/black-ledger.md)",
-        "- [Help](HELP.md)",
+        *newsroom_read_next,
     ]
     _write(out_dir / "BLACK_LEDGER_NEWSROOM.md", "\n".join(rows))
     generated.add("black-ledger-newsroom")

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-31T04:40:42.600702Z",
+  "generated_at_utc": "2026-06-18T14:44:11.771820Z",
   "contract_name": "chummer.public_download_shelf_truth",
   "base_url": "https://chummer.run",
   "status": "pass",
@@ -20,14 +20,14 @@
   },
   "release_channel": {
     "path": "/docker/chummercomplete/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
-    "channel_id": "public_stable",
-    "rollout_state": "public_stable",
-    "supportability_state": "gold_supported"
+    "channel_id": "preview",
+    "rollout_state": "promoted_preview",
+    "supportability_state": "preview_supported"
   },
   "alignment": {
-    "public_release_truth_aligned": true,
+    "public_release_truth_aligned": false,
     "windows_linux_truth_aligned": true,
     "mac_truth_aligned": true
   },
-  "summary": "pass: public-stable download shelf truth is aligned"
+  "summary": "pass: current download shelf truth is aligned"
 }

@@ -41,9 +41,13 @@ Each faction must expose:
 - public-safe pressure stats
 - no private runner or support detail
 
-## Homepage requirement
+## Public entry posture
 
-The homepage Black Ledger slice must show:
+Black Ledger is not a primary homepage slice in the current public posture. The direct
+preview route may remain available for proof, internal review, and users who already
+know where to look, but the homepage should not make it one of the first decisions.
+
+When Black Ledger returns to the homepage, the slice must show:
 
 - a visible Black Ledger gate
 - a current turn marker

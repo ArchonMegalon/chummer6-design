@@ -77,18 +77,17 @@ sections:
       rules authority, and release-truth ownership out of the public guide.
   - id: signal-deck
     title: Signal Deck
-    public_guide_verdict: public_route_live
+    public_guide_verdict: design_canon_only
     page_class: live_session_feature_page
     allowed_public_audience:
-      - players
       - gms
-      - supporters
-    shipped_claim_allowed: true
-    expected_representation: public_route_live_page_with_receipts
+      - operators
+    shipped_claim_allowed: false
+    expected_representation: omitted_with_receipt_design_canon_only
     required_proof:
-      - first_party_signal_deck_route
-      - first_party_signal_deck_receipts
-      - live_receipt_rails
+      - design_canon_retained
+      - public_guide_omission_receipt
+      - no_public_route_claim
     canonical_sources:
       - products/chummer/SIGNAL_DECK_SPEC.md
       - products/chummer/horizons/table-pulse.md
@@ -98,9 +97,9 @@ sections:
       - automatic world authority
       - private transcript export
     notes: >
-      Public guide may now claim a first-party Signal Deck route and receipt rails, but it must
-      keep the boundary explicit: command posture is governed, first-party, and fail-closed rather
-      than an unconstrained public coaching or moderation surface.
+      Signal Deck remains design canon for command posture, but it should not be projected as a
+      standalone public guide page until the product has a clearer human-facing explanation, public
+      route proof, and naming that does not read like internal AI harness scaffolding.
   - id: runner-passport
     title: Runner Passport
     public_guide_verdict: public_route_live

@@ -1,26 +1,26 @@
 # Final Product Design Review
 
-Date: 2026-06-14
+Date: 2026-06-18
 Verdict: `DESIGN_READY`
 
 ## Scope
 
 - Public flagship posture: Home, Downloads, Status, Help, and install handoff surfaces.
-- Live world surfaces: Black Ledger entrypoints and map.
+- Live world surfaces: Black Ledger direct preview/proof routes and map.
 - Desktop successor workflow: Chummer5A successor surfaces.
 - Media and provider lanes that are actively shipped.
 
 ## Release Parity
 
 - [x] Reviewed public copy is deployed on Home, Downloads, and Status.
-- [x] Public `/ledger` entry resolves through the shipped command-map entry route.
+- [x] Public `/ledger` entry resolves through the shipped command-map entry route while staying out of the primary homepage journey.
 - [x] Live surface parity receipt is passing against the currently deployed site.
 - [x] Gold and design receipts are regenerated from the deployed state, not only checked-in source.
 
 ## Surface Hierarchy
 
-- [x] Homepage starts with value in first screen (Black Ledger intent visible immediately).
-- [x] Surface list is explicit: Install > What Works > Ledger > Help > Support.
+- [x] Homepage starts with value in first screen: build, desktop, rules help, and download intent are visible before experimental world-surface framing.
+- [x] Surface list is explicit: Install > What Works > Help > Status > Support.
 - [x] Non-flagship surfaces are visually and copy-wise distinguished.
 - [x] Proof-heavy routes are available, but never the first visible default for new users.
 
@@ -49,6 +49,7 @@ Verdict: `DESIGN_READY`
 - [x] Route supports quick understanding of pressure and major world events.
 - [x] Optional cinematic route exists in a bounded media path.
 - [x] Black Ledger has a large command-map centerpiece on the map route, with faction, pressure, and newsroom/video cues visible before deeper proof routes.
+- [x] Black Ledger stays out of primary public navigation and homepage CTAs until the visual, replay, and newsroom experience clears the release bar.
 
 ## Human Acceptance
 

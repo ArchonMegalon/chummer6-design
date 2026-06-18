@@ -19,12 +19,16 @@ Projection rules:
 - `/api/v1/ledger/worlds/emerald-sprawl-prelude/turns/1`
 - `/api/v1/ledger/worlds/emerald-sprawl-prelude/dispatches`
 
-Homepage teaser rules:
+Direct preview teaser rules:
 - headline: `Turn 1 already ran. The city is moving.`
 - exact body from `PUBLIC_COPY_AND_ROUTE_MODEL.md`
 - maximum 3 stats
 - maximum 3 hotspots
 - primary CTA only: `Open Black Ledger`
 - secondary CTA only: `Replay Turn 1`
+
+Homepage rule:
+- Black Ledger stays out of the primary homepage and public navigation until the visual,
+  replay, and newsroom experience clears the release bar.
 
 The registry seed file is the single source of truth for the public-safe world projection.
