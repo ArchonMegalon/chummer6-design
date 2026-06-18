@@ -1,16 +1,23 @@
 {
-  "generated_at_utc": "2026-06-18T15:11:49.467183Z",
+  "generated_at_utc": "2026-06-18T15:37:19.674835Z",
   "contract_name": "chummer.public_download_shelf_truth",
   "base_url": "https://chummer.run",
   "status": "pass",
   "live": {
     "downloads_status_code": 200,
     "status_status_code": 200,
+    "releases_status_code": 200,
     "windows_mentioned": true,
     "linux_mentioned": true,
     "mac_mentioned": true,
-    "preview_mentioned": true,
-    "review_required_mentioned": false
+    "preview_mentioned": false,
+    "review_required_mentioned": false,
+    "releases_channel": "stable",
+    "releases_rollout_state": "stable",
+    "releases_supportability_state": "gold_supported",
+    "download_channels": [
+      "stable"
+    ]
   },
   "docs": {
     "download_doc_exists": true,
@@ -20,14 +27,17 @@
   },
   "release_channel": {
     "path": "/docker/chummercomplete/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
-    "channel_id": "preview",
-    "rollout_state": "promoted_preview",
-    "supportability_state": "preview_supported"
+    "channel_id": "stable",
+    "rollout_state": "stable",
+    "supportability_state": "gold_supported"
   },
   "alignment": {
-    "public_release_truth_aligned": false,
+    "public_release_truth_aligned": true,
+    "live_public_release_truth_aligned": true,
+    "preview_machine_truth_absent": true,
     "windows_linux_truth_aligned": true,
     "mac_truth_aligned": true
   },
+  "failures": [],
   "summary": "pass: current download shelf truth is aligned"
 }
