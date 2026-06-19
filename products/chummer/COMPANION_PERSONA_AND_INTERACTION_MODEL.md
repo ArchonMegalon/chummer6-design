@@ -664,7 +664,7 @@ A surface may not claim Switch support unless it proves:
 - media-backed micro-moments using `vidBoard` / voice packs
 - public-concierge variant on Hub public pages
 - campaign primer and mission briefing companion bundles
-- support concierge handoff to `Lunacal` and `Deftform`
+- support concierge handoff to Chummer Instant Help, first-party support intake, and optional Deftform enrichment
 
 ### Phase 3
 - bounded post-session debrief companion packets
