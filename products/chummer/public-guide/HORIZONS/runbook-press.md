@@ -1,21 +1,25 @@
-# RUNBOOK PRESS
+# Runbook Press
 
 Long-form publishing becomes something you can actually reuse instead of a ten-tool scramble.
 
-![RUNBOOK PRESS feature art](../assets/horizons/runbook-press.png)
+![Runbook Press feature art](../assets/horizons/runbook-press.png)
 
-## Why this matters
+## When this helps
+
+Use this when campaign material grows past a recap and starts becoming a handout, primer, or small book. It should make reusable material, not another pile of export files with mysterious names.
+
+Creators should be able to turn accepted Chummer material into something readable without stitching ten tools together by hand.
+
+## The table problem
 
 I want real primers, handbooks, and campaign books without duct-taping ten tools together.
 
-For example: A creator turns approved Chummer material into a district guide or campaign book without juggling a pile of unrelated publishing tools.
+For example, a creator turns approved Chummer material into a district guide or campaign book without juggling a pile of unrelated publishing tools.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it richer, steadier, and easier to trust.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools.
 
 
 ## Explanation video

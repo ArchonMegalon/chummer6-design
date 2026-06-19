@@ -53,10 +53,10 @@ PUBLIC_PHASE_LABELS = {
 PUBLIC_HORIZON_STAGE_LABELS = {
     "horizon": "Not something to use today",
     "bounded_research": "Still being designed",
-    "shipped_mvp": "A first usable version works today",
-    "signed_in_command_lane_live": "Works after sign-in",
-    "bounded_coaching_expansion": "Make it deeper without loosening the boundaries",
-    "flagship_depth_hardening": "Make it richer, steadier, and easier to trust",
+    "shipped_mvp": "You can try an early version",
+    "signed_in_command_lane_live": "Available after sign-in",
+    "bounded_coaching_expansion": "deeper table fit, clearer controls, and fewer rough edges",
+    "flagship_depth_hardening": "more polish, steadier media, and easier table use",
 }
 PUBLIC_GUIDE_CORE_PRODUCT_IDS = {
     "alice",
@@ -83,15 +83,15 @@ PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
         "Use ALICE when a character idea needs a second look before it becomes table trouble. "
         "It belongs in the normal workbench: build help, rules coach, blank-state build help, "
         "and tradeoff review should feel close to the sheet instead of hidden behind a separate product label.",
-        "Origin Dossier belongs inside ALICE as the story-and-context area. GM allowance and requirement notes can guide "
-        "the advice, but they do not silently rewrite mechanics. Voice selection and origin-story audiobook handoffs "
-        "only happen after the origin story is approved.",
+        "Origin Dossier sits there too: the story-and-context area for a runner. GM notes can guide the advice, "
+        "but they do not silently rewrite mechanics. Voice selection and origin-story audiobooks only happen after "
+        "the origin story is accepted at the table.",
     ),
     "origin-dossier": (
-        "Use Origin Dossier when a legal sheet still feels unfinished as a person. It turns an approved origin story into "
-        "contacts, debts, enemies, scars, secrets, portraits, narration, and media packets that the table can review.",
-        "The dossier can feed later ALICE context and optional player-scoped audiobook requests. It must not mutate the "
-        "sheet, hand a desktop client global Audiobookshelf access, or let a render provider decide who the character is.",
+        "Open Origin Dossier when a legal sheet still feels unfinished as a person. It turns an accepted origin story into "
+        "contacts, debts, enemies, scars, secrets, portraits, narration, and things the table can actually use later.",
+        "If the player asks for audio, Chummer can hand off a character-scoped audiobook request. It must not rewrite the "
+        "sheet, hand the desktop client a global Audiobookshelf login, or let a render tool decide who the character is.",
     ),
     "nexus-pan": (
         "Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees "
@@ -100,9 +100,67 @@ PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
         "a calm way back into the session.",
     ),
     "table-pulse": (
-        "Use Table Pulse when the table needs live pressure without a surveillance dashboard. The GM sees bounded signals "
-        "and can decide what becomes table action.",
+        "Use Table Pulse when the table needs live pressure without a surveillance dashboard. The GM sees limited signals "
+        "and decides what becomes table action.",
         "Private aftermath, remote reactions, quiet hours, and opt-outs are part of the feature, not paperwork around it.",
+    ),
+}
+PUBLIC_GUIDE_DISPLAY_TITLES = {
+    "alice": "ALICE",
+    "nexus-pan": "NEXUS-PAN",
+    "origin-dossier": "Origin Dossier",
+    "table-pulse": "Table Pulse",
+    "community-hub": "Community Hub",
+    "ghostwire": "Ghostwire",
+    "jackpoint": "Jackpoint",
+    "karma-forge": "Karma Forge",
+    "local-co-processor": "Local Co-Processor",
+    "edition-studio": "Edition Studio",
+    "quicksilver": "Quicksilver",
+    "run-control": "Run Control",
+    "runbook-press": "Runbook Press",
+    "runsite": "Runsite",
+}
+PUBLIC_GUIDE_HORIZON_DETAIL_NOTES = {
+    "community-hub": (
+        "Use this when the hard part is no longer one legal character, but getting a real table together. The useful version is not a new social network; it is a cleaner path from open run to accepted players, scheduling, table expectations, and closeout.",
+        "A GM should be able to publish a beginner-friendly run and see who fits before the evening dissolves into chat archaeology.",
+    ),
+    "ghostwire": (
+        "Use this after a session when everyone remembers the same scene differently. The point is not to litigate the table; it is to recover the sequence, compare outcomes, and write the recap while the details are still warm.",
+        "It should help a GM answer, \"what actually happened?\" without turning the session into a courtroom transcript.",
+    ),
+    "jackpoint": (
+        "Use this when a recap, dossier, or briefing needs to look finished enough to share. It is the difference between a pasted chat summary and something a player would actually read before the next run.",
+        "The writing can be polished, but the facts still have to come from the session material the GM accepted.",
+    ),
+    "karma-forge": (
+        "Use this when house rules stop being a private note and start affecting the table. A good rule change should show what changed, who agreed to it, and how to undo it if it makes the game worse.",
+        "This is for tables that want flexibility without custom-rule soup.",
+    ),
+    "runbook-press": (
+        "Use this when campaign material grows past a recap and starts becoming a handout, primer, or small book. It should make reusable material, not another pile of export files with mysterious names.",
+        "Creators should be able to turn accepted Chummer material into something readable without stitching ten tools together by hand.",
+    ),
+    "runsite": (
+        "Use this before a mission when the players keep misreading the space. The goal is a clearer safehouse, facility, or meet location before the first door gets kicked in.",
+        "It is not a VTT replacement. It is prep that makes the room easier to understand.",
+    ),
+    "edition-studio": (
+        "This belongs in the background until it earns a clearer user-facing shape. The useful promise is simple: SR4, SR5, and SR6 should feel deliberately different without splitting Chummer into three unrelated apps.",
+        "Most visitors do not need to care about it yet.",
+    ),
+    "local-co-processor": (
+        "This should stay quiet. If someone has a strong local machine, some expensive explain or media work may get faster. If they do not, Chummer should still work.",
+        "A feature that only works on one monster PC is not a normal product feature.",
+    ),
+    "quicksilver": (
+        "This is speed work for people who already know where they are going. It should shorten the path between build review, rules lookup, prep, and publication without hiding what happened.",
+        "Fast is only useful here if it stays understandable.",
+    ),
+    "run-control": (
+        "This is the GM's session cockpit idea, but it should not become another named shelf unless it clearly beats notes, chat, and memory during an actual run.",
+        "The bar is simple: a GM should see the current scene, the next safe action, and the recovery point without hunting.",
     ),
 }
 RELEASE_PROOF_JOURNEY_LABELS = {
@@ -161,6 +219,19 @@ PUBLIC_COPY_BANNED_PHRASES = (
     "future lanes",
     "session shell",
     "stays bounded",
+    "connected lane",
+    "public route",
+    "control plane",
+    "source packet",
+    "canonical",
+    "governed",
+    "bounded",
+    "truth",
+    "proof",
+    "receipt",
+    "receipts",
+    "posture",
+    "projection",
     "table-facing shell",
     "live shell",
     "player-first live shell",
@@ -955,6 +1026,31 @@ def _public_copy(text: str) -> str:
     cleaned = str(text or "").strip()
     replacements = (
         ("truth filter", "decision filter"),
+        ("source-of-truth systems", "systems that make final decisions"),
+        ("source of truth systems", "systems that make final decisions"),
+        ("source of truth", "main record"),
+        ("truth", "record"),
+        ("Truth", "Record"),
+        ("canonical", "official"),
+        ("Canonical", "Official"),
+        ("governed", "reviewed"),
+        ("Governed", "Reviewed"),
+        ("bounded", "limited"),
+        ("Bounded", "Limited"),
+        ("public route", "public page"),
+        ("Public route", "Public page"),
+        ("connected lane", "connected path"),
+        ("Connected lane", "Connected path"),
+        ("control plane", "control area"),
+        ("Control plane", "Control area"),
+        ("source packet", "source pack"),
+        ("Source packet", "Source pack"),
+        ("Chummer-owned", "Chummer's"),
+        ("chummer-owned", "Chummer's"),
+        ("operator", "maintainer"),
+        ("Operator", "Maintainer"),
+        ("proof", "check"),
+        ("Proof", "Check"),
         ("canonical plan", "shared plan"),
         ("canonical product plan", "shared product plan"),
         ("canonical session", "durable session"),
@@ -971,7 +1067,7 @@ def _public_copy(text: str) -> str:
         ("design repo", "design workspace"),
         ("registry projection", "public shelf"),
         ("install truth", "install state"),
-        ("provenance", "source trail"),
+        ("provenance", "sources"),
         ("seams", "boundaries"),
         ("seam", "boundary"),
         ("public surfaces", "public pages"),
@@ -1005,6 +1101,12 @@ def _public_copy(text: str) -> str:
         ("Receipts", "Records"),
         ("receipt", "record"),
         ("Receipt", "Record"),
+        ("packets", "bundles"),
+        ("Packets", "Bundles"),
+        ("packet", "bundle"),
+        ("Packet", "Bundle"),
+        ("the facts came from", "what it is based on"),
+        ("where the facts came from", "what it is based on"),
         (
             "In the planning notes that shape the roadmap and the public guide.",
             "Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.",
@@ -1051,6 +1153,52 @@ def _public_guide_lane_group(horizon: dict[str, object]) -> str:
     return "expansion_bet"
 
 
+def _public_display_title(identifier: str, fallback: str = "") -> str:
+    slug = _slug(identifier)
+    if slug in PUBLIC_GUIDE_DISPLAY_TITLES:
+        return PUBLIC_GUIDE_DISPLAY_TITLES[slug]
+    cleaned = str(fallback or identifier or "").strip()
+    if not cleaned:
+        return "Untitled"
+    words = re.sub(r"[_-]+", " ", cleaned).split()
+    return " ".join(word if word.isupper() and len(word) <= 5 else word.capitalize() for word in words)
+
+
+def _public_feature_status_line(build_path: object, *, lane_group: str) -> str:
+    if not isinstance(build_path, dict):
+        return "Treat this as still being shaped until the page itself says otherwise."
+    current = str(build_path.get("current_state") or "").strip().lower()
+    next_state = str(build_path.get("next_state") or "").strip().lower()
+    if current == "signed_in_command_lane_live":
+        first = "Parts of this already exist after sign-in, but I would still treat the larger idea as work in progress."
+    elif current == "shipped_mvp":
+        first = "There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters."
+    elif current in {"bounded_research", "horizon"}:
+        first = "This is still a design direction, not something I would ask a table to depend on tonight."
+    else:
+        first = "This is still moving, so judge it by the current page and not by the name alone."
+
+    if next_state == "bounded_coaching_expansion":
+        second = "The next useful work is clearer controls, better fit for real tables, and fewer edge-case surprises."
+    elif next_state == "flagship_depth_hardening":
+        second = "The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools."
+    elif lane_group == "folded_into_product":
+        second = "If it survives, it should become part of the normal app rather than another destination to remember."
+    else:
+        second = "The next useful work is making it easier to use without making stronger promises than the software can keep."
+    return f"{first} {second}"
+
+
+def _paragraph_from_items(items: object) -> str:
+    if not isinstance(items, list):
+        return ""
+    cleaned = [_public_copy(str(item).strip()).rstrip(".") for item in items if str(item).strip()]
+    if not cleaned:
+        return ""
+    cleaned[0] = cleaned[0][:1].upper() + cleaned[0][1:]
+    return _english_join(cleaned) + "."
+
+
 def _format_public_datetime(value: object) -> str:
     cleaned = str(value or "").strip()
     if not cleaned:
@@ -1072,6 +1220,23 @@ def _public_release_channel_value(release_experience: dict[str, object], channel
             if key and label:
                 labels[key] = label
     return labels.get(channel, _humanize_identifier(channel) if channel else "Not currently published")
+
+
+def _public_desktop_choice_line(primary_app: str, fallback_apps: list[str]) -> str:
+    primary = str(primary_app or "").strip() or "the main desktop app"
+    fallback_label = _english_join([item for item in fallback_apps if str(item).strip()])
+    if fallback_label and primary == "Avalonia" and "Blazor Desktop" in fallback_apps:
+        return (
+            "Because my capsule-region insult did not exactly upgrade my decision-making process, "
+            "I have not made the final Avalonia-versus-Blazor call yet. For today: start with "
+            "Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there."
+        )
+    if fallback_label:
+        return (
+            f"If you see multiple desktop apps, start with {primary}. Treat {fallback_label} "
+            "as the alternate if a page or support points you there."
+        )
+    return f"If more than one desktop app is offered, start with {primary}."
 
 
 def _public_build_label(version: str) -> str:
@@ -1266,11 +1431,11 @@ def _public_shelf_truth_line(
     missing = list(missing_platforms or [])
     if published and platforms and missing:
         return (
-            f"The download page includes {_english_join(platforms)} downloads; "
+            f"{_english_join(platforms)} downloads are posted; "
             f"{_english_join(missing)} {'does' if len(missing) == 1 else 'do'} not have a normal installer yet."
         )
     if published and platforms:
-        return f"The download page includes {_english_join(platforms)} downloads."
+        return f"{_english_join(platforms)} downloads are posted."
     if published and missing:
         return (
             "No promoted installer downloads are posted right now; "
@@ -1631,6 +1796,24 @@ def _extract_markdown_sections(
     return sections
 
 
+def _extract_video_link_sections(text: str) -> list[str]:
+    rows: list[str] = []
+    for heading, section_lines in _iter_markdown_sections(_markdown_body(text), heading_prefixes=("## ",)):
+        if heading.strip().lower() not in {"explanation video", "explanation videos"}:
+            continue
+        links = [
+            _public_copy(line.strip())
+            for line in section_lines
+            if "chummer.run/media/" in line and (".mp4" in line or ".vtt" in line)
+        ]
+        if not links:
+            continue
+        rows.extend([f"## {heading.strip()}", ""])
+        rows.extend(links)
+        rows.append("")
+    return rows
+
+
 def _build_release_truth_packet(
     *,
     progress: dict[str, object],
@@ -1682,12 +1865,8 @@ def _build_release_truth_packet(
         "available_platforms": available_platforms,
         "missing_platforms": missing_platforms,
         "shelf_truth_line": _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms),
-        "short_release_summary": "Use the downloads listed here. If your platform is missing or preview-only, wait before switching full time.",
-        "desktop_pick_line": (
-            f"If you see both desktop apps, start with {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
-            if fallback_apps
-            else f"If more than one desktop app is offered, start with {primary_app}."
-        ),
+        "short_release_summary": "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.",
+        "desktop_pick_line": _public_desktop_choice_line(primary_app, fallback_apps),
         "quality_gap_line": (
             "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
             if families_below_gold
@@ -1807,35 +1986,30 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "Runner Passport answers the question a GM actually asks before letting a character into a run: \"Can this runner sit at my table without turning setup into homework?\"",
                 "",
-                "It gives the organizer a clean summary of the runner, the rules environment, unresolved warnings, and what still needs a GM decision. The player does not have to paste half a dossier into chat, and the GM does not have to reverse-engineer the sheet from screenshots.",
+                "It gives the organizer a clean character summary, the active ruleset, unresolved warnings, and what still needs a GM decision. The player does not have to paste half a dossier into chat, and the GM does not have to reverse-engineer the sheet from screenshots.",
                 "",
-                "## When you use it",
+                "## What you send",
                 "",
-                "Use Runner Passport when you are applying for an open run, joining a community game, or carrying a runner between tables. The page lives at [chummer.run/passport](https://chummer.run/passport), but the important part is the job it does: make table approval easier without becoming a reputation score.",
+                "When you are applying for an open run, joining a community game, or carrying a runner between tables, send the passport link: [chummer.run/passport](https://chummer.run/passport).",
                 "",
-                "## Example",
+                "## A normal example",
                 "",
-                "A player sends one link for Kestrel, a street-level infiltrator with a legal SIN warning and two GM-only notes still unresolved. The GM can see the active ruleset, what needs approval, and whether the runner is ready for tonight without asking for three screenshots and a small archaeological dig through chat.",
+                "A player sends one link for Kestrel: street-level infiltrator, legal SIN warning, two GM notes still unresolved. The GM sees the ruleset, the warnings, and whether the runner is ready for tonight without asking for three screenshots and a small archaeological dig through chat.",
                 "",
                 "## What the GM sees",
                 "",
-                "Identity, ruleset, review state, warnings, and expiry are presented together so the runner can be accepted, questioned, or sent back for changes quickly.",
+                "Identity, ruleset, review state, warnings, expiry, and the remaining GM calls sit together so the runner can be accepted, questioned, or sent back for changes quickly.",
                 "",
                 "## What it is not",
                 "",
-                "It is not a social score, a hidden reputation system, or a way for Chummer to overrule the GM.",
+                "It is not a social score, a hidden reputation system, or a way for Chummer to overrule the GM. It should help a table say yes, no, or fix this first without becoming a reputation score.",
                 "",
-                "## How it connects",
+                "## Around the table",
                 "",
-                "When a table also uses Table Pulse, Runner Passport can carry the clean summary side while the actual command, review, and aftermath work stays inside Chummer.",
+                "When a table also uses Table Pulse, Runner Passport carries the clean character summary while the live review and aftermath work stays in Chummer.",
                 "",
-                "## Read next",
+                "After that, [Living World](LIVING_WORLD.md) keeps the consequences together and [Help](HELP.md) is the fallback when a passport or build does not behave.",
                 "",
-                "- [Black Ledger notifications](/account/ledger/notifications)",
-                "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
-                "- [Aftermath workspace](/account/work#aftermath-packages)",
-                "- [Table Pulse](HORIZONS/table-pulse.md)",
-                "- [Help](HELP.md)",
             ]
             _write(out_dir / "RUNNER_PASSPORT.md", "\n".join(rows))
             generated.add("runner-passport")
@@ -1883,7 +2057,6 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 [
                     "- [Runner Passport](RUNNER_PASSPORT.md)",
                     "- [Table Pulse](HORIZONS/table-pulse.md)",
-                    "- [Aftermath workspace](/account/work#aftermath-packages)",
                 ]
             )
             rows = [
@@ -1896,7 +2069,7 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "## When you use it",
                 "",
-                "Use Living World when a session leaves news, faction movement, or aftermath choices on the table. The page lives at [chummer.run/living-world](https://chummer.run/living-world), but the promise is simpler than the route: keep the consequences together so the GM does not rebuild them from chat fragments.",
+                "Use [chummer.run/living-world](https://chummer.run/living-world) when a session leaves news, faction movement, or aftermath choices on the table and you want to keep the consequences together so the GM does not rebuild them from chat fragments.",
                 "",
                 "## What it gives the table",
                 "",
@@ -1906,9 +2079,8 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "It does not replace the GM, reveal secrets, or run the campaign by itself.",
                 "",
-                "## Read next",
+                "If the next question is whether a runner belongs at the table, use [Runner Passport](RUNNER_PASSPORT.md). If the table wants live pressure during play, read [Table Pulse](HORIZONS/table-pulse.md).",
                 "",
-                *read_next,
             ]
             _write(out_dir / "LIVING_WORLD.md", "\n".join(rows))
             generated.add("living-world-engagement")
@@ -1947,7 +2119,7 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
         "- No GM secrets.",
         "- No sourcebook text.",
         "- No real person or public figure likenesses.",
-        "- No provider branding or unproven product claims.",
+        "- No tool branding or marketing promises the current page cannot support.",
         "",
         "## Read next",
         "",
@@ -2031,13 +2203,13 @@ def _generate_root(
         _front_matter("Chummer6", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "# Chummer6",
         "",
-        "Build a Shadowrun runner, understand why the numbers changed, and keep the table moving when the campaign gets complicated.",
+        "Build a Shadowrun runner, see why the numbers changed, and keep game night moving when the campaign gets messy.",
         "",
-        "This is the public guide for people who want the simple answer first: can I try it, what should I download, and will it help my table?",
+        "If you are here to decide whether this is worth your time, the honest pitch is simple: Chummer6 is trying to make dense Shadowrun character work readable again without sanding away the parts veteran players care about.",
         "",
-        "## Start here",
+        "## Start here if you just want the answer",
         "",
-        "If you want to install it, open [Download](DOWNLOAD.md). If you want to know whether it is ready for your machine, open [Status](STATUS.md). If you are coming from Chummer5a, open [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).",
+        "Use [Download](DOWNLOAD.md) for files, [Status](STATUS.md) for the blunt current state, and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md) if you already know the old app and want to know whether switching is sane.",
         "",
         f"{str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
         f"{str(packet.get('short_release_summary') or '').strip()}",
@@ -2051,13 +2223,13 @@ def _generate_root(
             "",
             "## Why it exists",
             "",
-            "Chummer6 is trying to make Shadowrun character work less opaque. When a dice pool changes, the table should see why. When a device falls out of the session, the whole night should not fall apart with it.",
+            "Shadowrun characters carry a lot of math, choices, edge cases, and table agreements. Chummer6 is for the moment when someone asks, \"why did that number change?\" and the table deserves a better answer than shoulder-shrugging and memory.",
             "",
-            "The older guide voice got too close to a release cockpit. This one is meant for players and GMs with functioning fingers, limited patience, and maybe only half a brain online before game night.",
+            "When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When you are prepping before a session with functioning fingers, limited patience, and maybe only half a brain online, the next useful action should be obvious.",
             "",
-            "## What people notice",
+            "## What should feel different",
             "",
-            "Numbers explain themselves faster. New or rusty users get a first-session path. Help, contact, privacy, and terms pages are live. The rough edges are still installer polish, update polish, support polish, and deeper campaign tooling.",
+            "The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper campaign tooling.",
             "",
         ]
     )
@@ -2074,23 +2246,14 @@ def _generate_root(
             "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         }
     ]
-    if extra_cta_links:
-        rows.extend(
-            [
-                "",
-                f"When you are ready for more, use {', '.join(extra_cta_links)}.",
-            ]
-        )
     rows.extend(
         [
             "",
             "## Help and feedback",
             "",
-            "For support or concrete feedback, start with [Contact](CONTACT.md).",
+            "If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). If the issue is safe to discuss in public, the help pages point you to the GitHub issue tracker too.",
             "",
-            "The public participation door is <https://chummer.run/participate>.",
-            "Most people should use the normal feedback and support paths. The participation page is for hands-on testing or fix follow-up.",
-            "A change only counts for regular users once it lands in a real release.",
+            "If you want to help test a fix, use <https://chummer.run/participate>. Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
             "",
         ]
     )
@@ -2102,8 +2265,8 @@ def _generate_root(
             [
                 "",
                 (
-                    "Watch the current product reel: "
-                    "https://chummer.run/media/promo/chummer6-flagship-promo.mp4."
+                    "Watch [Chummer6 flagship promo](https://chummer.run/media/promo/chummer6-flagship-promo.mp4). "
+                    "[Captions](https://chummer.run/media/promo/chummer6-flagship-promo.vtt)."
                 ),
             ]
         )
@@ -2112,25 +2275,9 @@ def _generate_root(
             "",
             "## Campaign tools",
             "",
-            "Use [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md) for normal campaign-facing features.",
-            "Use [Campaign tools](HORIZONS/README.md) when you want the deeper split between product areas, expansion bets, and folded-in infrastructure.",
+            "[Runner Passport](RUNNER_PASSPORT.md) gives a GM a clean character summary. [Living World](LIVING_WORLD.md) keeps aftermath and consequences in one place. [Campaign tools](HORIZONS/README.md) is the larger map for ALICE, Origin Dossier, Table Pulse, and the ideas that only matter once the sheet is no longer the whole problem.",
         ]
     )
-
-    if isinstance(help_page, dict):
-        intro = str(help_page.get("intro") or "").strip()
-        if intro:
-            rows.extend(
-                [
-                    "",
-                    "## Need help",
-                    "",
-                    _public_copy(intro),
-                    "",
-                    "Start with [Help](HELP.md) if install, updates, sign-in, or bugs are getting in the way.",
-                    "Use [Contact](CONTACT.md) when you want to report a concrete issue or send feedback.",
-                ]
-            )
 
     _write(doc_path, "\n".join(rows))
 
@@ -2160,7 +2307,7 @@ def _generate_what_chummer6_is(out_dir: Path) -> None:
             "",
             "A player asks why a dice pool changed. The GM wants to keep the scene moving. Chummer6 should show the base pool, each modifier, and the final number in a way both people can follow.",
             "",
-            "Example:",
+            "A tiny example:",
             "",
             "- Base pool: 11",
             "- Wounds: -1",
@@ -2170,13 +2317,9 @@ def _generate_what_chummer6_is(out_dir: Path) -> None:
             "",
             "That is the product in miniature: less archive-diving, fewer mystery numbers, and a faster return to play.",
             "",
-            "## What you would notice",
+            "## What you should notice",
             "",
-            "- fewer pauses when a number changes",
-            "- clearer explanations for rules and modifiers",
-            "- better recovery when a device, update, or connection gets in the way",
-            "- a cleaner home for custom rules, era differences, and table notes",
-            "- campaign tools that support the table without replacing the GM",
+            "Fewer pauses when a number changes. Clearer explanations for rules and modifiers. Better recovery when a device, update, or connection gets in the way. A cleaner home for custom rules, era differences, and table notes. Campaign tools that support the table without replacing the GM.",
             "",
             "## What works today",
             "",
@@ -2184,7 +2327,7 @@ def _generate_what_chummer6_is(out_dir: Path) -> None:
             "",
             "## Why there are multiple parts",
             "",
-            "The character builder, rules explanation, prep tools, campaign layer, media work, and long-range ideas are separate because they solve different problems. Most users only need the builder, the current status, and help pages.",
+            "The character builder, rules explanation, prep tools, campaign layer, media work, and long-range ideas are separate because they solve different problems. Most users only need the builder, the current status, and help pages; the rest is for people who want to understand where the campaign side is going.",
             "",
             "If you want the map behind the product, open [Parts](PARTS/README.md). If you just want to try Chummer6, start with [Download](DOWNLOAD.md).",
             "",
@@ -2248,39 +2391,33 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         "## What will feel familiar",
         "",
-        "- It is still aiming for a dense desktop workbench, not a stripped-down dashboard.",
-        "- Character editing, file work, settings, and roster tasks are supposed to stay close at hand.",
+        "It is still aiming for a dense desktop workbench, not a stripped-down dashboard. Character editing, file work, settings, and roster tasks are supposed to stay close at hand.",
+        "",
         (
-            f"- If both desktop apps appear for your platform, the {primary_app} is the main one to try and the {fallback_app} is the fallback path only when the download page or support explicitly tells you to use it."
+            _public_desktop_choice_line(primary_app, [_public_desktop_app_name(item) for item in fallback_heads])
             if fallback_app
-            else f"- If more than one desktop app appears for your platform, start with the {primary_app}."
+            else f"If more than one desktop app appears for your platform, start with the {primary_app}."
         ),
         "",
         "## What gets better",
         "",
-        "- It tries to show why a number changed instead of leaving you with mystery math.",
-        "- Recovery and continuity are being treated as core product work, not as an afterthought.",
-        "- Status, downloads, and help are easier to find without digging around for the current answer.",
+        "It tries to show why a number changed instead of leaving you with mystery math. Recovery and continuity are being treated as core product work, not as an afterthought. Status, downloads, and help are easier to find without digging around for the current answer.",
         "",
         "## Should you switch today?",
         "",
-        f"- {_public_preview_builds_line(available_platforms)}",
-        f"- {_public_wait_before_switch_line(missing_platforms)}",
-        "- If you like trying real previews and helping shape the rough edges, it is worth a serious look.",
-        "- If you need a fully settled, every-platform replacement for Chummer5a right now, wait.",
+        f"{_public_preview_builds_line(available_platforms)} {_public_wait_before_switch_line(missing_platforms)}",
+        "",
+        "If you like trying real previews and helping shape the rough edges, it is worth a serious look. If you need a fully settled, every-platform replacement for Chummer5a right now, wait.",
         "",
         "## What is still rough",
         "",
-        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts, available_platforms, missing_platforms)}",
-        f"- {rules_gap_line}",
-        "- It should still be read as a serious preview, not a finished no-step-back replacement yet.",
+        f"{_public_shelf_truth_line(release_payload.get('status'), artifacts, available_platforms, missing_platforms)} {rules_gap_line}",
         "",
-        "## Read next",
+        "It should still be read as a serious preview, not a finished no-step-back replacement yet.",
         "",
-        "- [Status](STATUS.md)",
-        "- [Download](DOWNLOAD.md)",
-        "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-        "- [Help](HELP.md)",
+        "## Next",
+        "",
+        "Check [Status](STATUS.md), then [Download](DOWNLOAD.md). If you want the broader explanation before installing, read [What Chummer6 Is](WHAT_CHUMMER6_IS.md).",
     ]
     _write(out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md", "\n".join(rows))
 
@@ -2363,44 +2500,31 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         _front_matter("How Can I Help?", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# How Can I Help?",
         "",
-        "Start with the page that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.",
+        "No short answers yet. Seriously: ask me, folks.",
+        "",
+        "Good feedback usually starts with the actual moment that failed: what you tried, what happened, and what you expected. That is more useful than a perfect bug-report template written by someone with functioning fingers and a suspicious amount of sleep.",
         "",
         "## Something broke",
         "",
-        "- File a public issue when the bug is safe to discuss in public.",
-        "- Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.",
-        "- Tell us what you expected, what happened, and what version or page you were using.",
+        "Use a public issue when the bug is safe to discuss in public. Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.",
+        "",
+        "Tell us the page, build, operating system, and the shortest path that reproduces the problem. A screenshot is welcome when it saves everyone from guessing.",
         "",
         "## Something was confusing",
         "",
-        "- Flag the exact page, sentence, screenshot, or download step that lost you.",
-        "- Say what you were trying to do in plain language.",
-        "- If you came from Chummer5a, tell us which old habit did not map cleanly.",
+        "Point to the exact sentence, screen, or download step that lost you. If you came from Chummer5a, say which old habit did not map cleanly. That is how the docs get less weird.",
         "",
         "## You have an idea",
         "",
-        "- Feature requests are welcome when they describe a real table problem.",
-        "- Short examples help more than broad roadmap wishes.",
-        "- Public ideas are public; keep private campaign material out of them.",
+        "Feature requests are welcome when they describe a real table problem. \"I need this because my GM/player/table does X\" beats a broad roadmap wish every time.",
         "",
-        "## You want to help test a fix",
+        "Public ideas are public, so keep private campaign material out of them.",
         "",
-        "Use the participation page when you want to do hands-on testing or focused follow-up:",
+        "## You want to test a fix",
         "",
-        "- [Open the public participation page](https://chummer.run/participate)",
-        "- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)",
+        "Use the participation page when you want hands-on testing or focused follow-up: [chummer.run/participate](https://chummer.run/participate). For normal public reports, use the GitHub issue tracker: [ArchonMegalon/Chummer6 issues](https://github.com/ArchonMegalon/Chummer6/issues).",
         "",
-        "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change shipped until it lands in a real release.",
-        "",
-        "## Good reports",
-        "",
-        "A good report usually has:",
-        "",
-        "- what you were trying to do",
-        "- what happened instead",
-        "- the page, build, or operating system",
-        "- a screenshot if it helps",
-        "- no private logs or copyrighted rules text in public",
+        "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change real until it lands in an actual release.",
         "",
     ]
     _write(out_dir / "HOW_CAN_I_HELP.md", "\n".join(rows))
@@ -2411,22 +2535,15 @@ def _generate_where_to_go_deeper(out_dir: Path) -> None:
         _front_matter("Where To Go Deeper", "products/chummer/PUBLIC_GUIDE_POLICY.md"),
         "# Where To Go Deeper",
         "",
-        "Use this page when the quick guide is no longer enough.",
+        "Use this after the quick pages stop being enough.",
         "",
         "## I want the product answer",
         "",
-        "Start with:",
-        "",
-        "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-        "- [Status](STATUS.md)",
-        "- [Download](DOWNLOAD.md)",
-        "- [Help](HELP.md)",
-        "",
-        "These are the right pages for most players and GMs.",
+        "Most players and GMs should read [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Status](STATUS.md), then [Download](DOWNLOAD.md). If something fails, [Help](HELP.md) is the next stop.",
         "",
         "## I want the campaign tools",
         "",
-        "Open [Campaign tools](HORIZONS/README.md) when you want to understand the larger table story: ALICE, Origin Dossier, Table Pulse, NEXUS-PAN, and the expansion ideas around them.",
+        "[Campaign tools](HORIZONS/README.md) covers the larger table story: ALICE, Origin Dossier, Table Pulse, NEXUS-PAN, and the ideas that matter after the character sheet is no longer the whole problem.",
         "",
         "## I want to report or improve something",
         "",
@@ -2436,10 +2553,29 @@ def _generate_where_to_go_deeper(out_dir: Path) -> None:
         "",
         "The software repos and design notes are for implementation details and long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.",
         "",
-        "Come back to this public guide when you want the shorter user-facing version again.",
+        "Come back here when you want the shorter user-facing version again.",
         "",
     ]
     _write(out_dir / "WHERE_TO_GO_DEEPER.md", "\n".join(rows))
+
+
+def _generate_glossary(out_dir: Path) -> None:
+    rows = [
+        _front_matter("Glossary", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
+        "# Glossary",
+        "",
+        "A few words Chummer uses because Shadowrun tooling gets dense fast.",
+        "",
+        "- **explanation**: the readable breakdown of how a ruling or modifier was calculated",
+        "- **local-first**: the important work keeps going even when the network gets stupid",
+        "- **preview**: visible and usable, but still changing",
+        "- **ruleset**: the Shadowrun rules package or era currently in play",
+        "- **session stack**: the rules, options, devices, and table choices used for one run",
+        "",
+        "If a word here still sounds like a dev meeting escaped into public, file an issue and roast it. Fair game.",
+        "",
+    ]
+    _write(out_dir / "GLOSSARY.md", "\n".join(rows))
 
 
 def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
@@ -2526,7 +2662,7 @@ def _generate_download(
         rows.append(f"- {_platform_start_line(platform_label, grouped_artifacts.get(platform_key, []), missing_note)}")
     heads_present = {str(item.get("head") or "").strip().lower() for item in artifacts if isinstance(item, dict)}
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
-        rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
+        rows.append(f"- {_public_desktop_choice_line('Avalonia', ['Blazor Desktop'])}")
 
     rows.extend(
         [
@@ -2665,8 +2801,7 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         _front_matter("Parts", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
         "# Parts",
         "",
-        "This is the inside tour, not the first stop for most readers.",
-        "Open it when you want to see how the app, phone companion, updater, and support tools fit together.",
+        "This is the backstage tour. Most players and GMs can ignore it until they want to know how the desktop app, online side, phone companion, updater, and media work fit together.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/parts-index.png", alt="Chummer6 parts index art"))
@@ -2674,9 +2809,12 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         part_id = str(part.get("id") or "").strip()
         title = str(part.get("title") or part_id).strip() or part_id
         slug = _slug(part_id)
-        index_rows.append(f"- [{title}]({slug}.md)")
+        tagline = _public_copy(str(part.get("public_tagline") or "").strip())
+        index_rows.extend([f"## [{title}]({slug}.md)", "", tagline or "How this part fits into Chummer6.", ""])
 
         doc_path = out_dir / "PARTS" / f"{slug}.md"
+        notice = _paragraph_from_items(part.get("what_you_notice"))
+        limits = _paragraph_from_items(part.get("public_noteworthy_limits"))
         rows = [
             _front_matter(f"Part: {title}", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
             f"# {title}",
@@ -2687,38 +2825,45 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/parts/{slug}.png", alt=f"{title} guide art"))
         rows.extend(
             [
-                "## When you care",
+                "## When this matters",
                 "",
                 _public_copy(str(part.get("you_touch_this_when") or "").strip()) or "When this part becomes relevant to your flow.",
                 "",
-                "## Why you care",
+                "## Why it exists",
                 "",
                 _public_copy(str(part.get("why_you_care") or "").strip()) or "This part contributes meaningfully to the product.",
                 "",
-                "## What you notice",
+                "## What you should feel",
+                "",
+                notice or "The product should feel clearer because this exists.",
                 "",
             ]
         )
-        for item in part.get("what_you_notice") or []:
-            text = _public_copy(str(item).strip())
-            if text:
-                rows.append(f"- {text}")
-        noteworthy = part.get("public_noteworthy_limits") or []
-        if isinstance(noteworthy, list) and noteworthy:
-            rows.extend(["", "## Current limits", ""])
-            rows.extend(f"- {_public_copy(str(item).strip())}" for item in noteworthy if str(item).strip())
+        if limits:
+            rows.extend(["## What not to expect here", "", limits, ""])
         rows.extend(
             [
                 "",
-                "## Current state",
+                "## Current shape",
                 "",
-                _public_copy(str(part.get("current_truth") or "").strip()) or "Current product posture is still moving here.",
+                _public_copy(str(part.get("current_truth") or "").strip()) or "This part is still moving.",
             ]
         )
         deeper = part.get("go_deeper_links") or []
         if isinstance(deeper, list) and deeper:
-            rows.extend(["", "## Go deeper", ""])
-            rows.extend(f"- {str(item).strip()}" for item in deeper if str(item).strip())
+            rendered_deeper: list[str] = []
+            for item in deeper:
+                target = str(item).strip()
+                if not target or "/NOW/" in target or target.startswith("../NOW/"):
+                    continue
+                if target.endswith(".md") and target.startswith("../"):
+                    label = Path(target).name.removesuffix(".md").replace("_", " ").replace("-", " ").title()
+                    rendered_deeper.append(f"- [{label}]({target})")
+                else:
+                    rendered_deeper.append(f"- {target}")
+            if rendered_deeper:
+                readable = [item[2:] if item.startswith("- ") else item for item in rendered_deeper]
+                rows.extend(["", "## Next", "", "Then read " + _english_join(readable) + "."])
 
         _write(out_dir / "PARTS" / f"{slug}.md", "\n".join(rows))
 
@@ -2760,9 +2905,9 @@ def _generate_horizon_pages(
         _front_matter("Campaign tools", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Campaign tools",
         "",
-        "Use this page when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
+        "Open this when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
         "",
-        "The point is not to collect shiny feature names. The point is to make campaign work easier without burying the GM under another pile of dashboards.",
+        "The goal is not a shelf full of shiny names. The goal is to make campaign work easier without burying the GM under another pile of dashboards. If a name does not help a player or GM decide what to do next, it does not deserve front-page real estate.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -2773,52 +2918,47 @@ def _generate_horizon_pages(
         index_rows.extend(["", f"## {title}", "", summary, ""])
         for row in items:
             horizon_id = str(row.get("id") or "").strip()
-            label = str(row.get("title") or horizon_id).strip() or horizon_id
+            label = _public_display_title(horizon_id, str(row.get("title") or horizon_id))
             promise = _public_copy(str(row.get("wow_promise") or row.get("pain_label") or "").strip())
             if promise:
-                index_rows.extend([f"### {label}", "", promise, "", f"Read more: [{label}]({_slug(horizon_id)}.md).", ""])
+                index_rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", promise, ""])
             else:
-                index_rows.extend([f"### {label}", "", f"Read more: [{label}]({_slug(horizon_id)}.md).", ""])
+                index_rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", "Read this when that part of campaign play becomes the problem.", ""])
 
     append_index_group(
-        "Part of the product story",
-        "These should feel like ordinary Chummer6 value around the builder and campaign layer, not distant promises.",
+        "Closest to the table",
+        "Start here when you want help with the runner, the session, or what carries over afterward.",
         core_lanes,
     )
     append_index_group(
-        "Expansion bets",
-        "These are bigger campaign ideas. Read them if you care where Chummer can go after the builder works for you.",
+        "Bigger ideas",
+        "Read these when you want to see where Chummer can go after the builder works for you.",
         expansion_lanes,
     )
     if folded_lanes:
         folded_names = [
-            str(row.get("title") or row.get("id") or "").strip()
+            _public_display_title(str(row.get("id") or "").strip(), str(row.get("title") or row.get("id") or ""))
             for row in folded_lanes
             if str(row.get("title") or row.get("id") or "").strip()
         ]
         index_rows.extend(
             [
                 "",
-                "## Folded back into the app",
+                "## Better inside the normal app",
                 "",
-                "Some ideas got demoted for good reason: they work better as quiet support for the workbench or campaign layer than as public destinations. Devs are allowed to be roasted when every helper becomes a named product.",
+                "Some ideas work better as quiet support than as another named place to visit. Devs are allowed to be roasted when every helper becomes a product name.",
                 "",
-                f"Today that means: {_english_join(folded_names)}.",
+                f"That is where {_english_join(folded_names)} belong right now.",
             ]
         )
 
     for horizon in enabled:
         horizon_id = str(horizon.get("id") or "").strip()
-        title = str(horizon.get("title") or horizon_id).strip() or horizon_id
+        title = _public_display_title(horizon_id, str(horizon.get("title") or horizon_id))
         slug = _slug(horizon_id)
 
         doc_path = out_dir / "HORIZONS" / f"{slug}.md"
         lane_group = _public_guide_lane_group(horizon)
-        group_label = {
-            "core_product": "Part of the product story",
-            "expansion_bet": "Expansion bet",
-            "folded_into_product": "Folded back into the app",
-        }.get(lane_group, "Campaign tool")
         rows = [
             _front_matter(title, "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
@@ -2834,41 +2974,33 @@ def _generate_horizon_pages(
 
         override_paragraphs = PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES.get(slug)
         if override_paragraphs:
-            rows.extend(["## How to use this", ""])
+            rows.extend(["## When this helps", ""])
             for paragraph in override_paragraphs:
+                rows.extend([_public_copy(paragraph), ""])
+        for paragraph in PUBLIC_GUIDE_HORIZON_DETAIL_NOTES.get(slug, ()):
+            if not any(paragraph in line for line in rows):
+                if "## When this helps" not in rows:
+                    rows.extend(["## When this helps", ""])
                 rows.extend([_public_copy(paragraph), ""])
 
         pain_label = _public_copy(str(horizon.get("pain_label") or "").strip())
         table_scene = _public_copy(str(horizon.get("table_scene") or "").strip())
         if pain_label or table_scene:
-            rows.extend(["## Why this matters", ""])
+            rows.extend(["## The table problem", ""])
             if pain_label:
                 rows.extend([pain_label, ""])
             if table_scene:
-                rows.extend([f"For example: {table_scene}", ""])
+                rows.extend([f"For example, {table_scene[0].lower() + table_scene[1:] if table_scene else table_scene}", ""])
 
         build_path = horizon.get("build_path") or {}
         if isinstance(build_path, dict):
-            current_state = _public_horizon_stage_label(build_path.get("current_state"))
-            next_state = _public_horizon_stage_label(build_path.get("next_state"))
-            rows.extend(["", "## Can I use it now?", ""])
-            if current_state:
-                rows.extend([f"{current_state}.", ""])
-            if next_state:
-                rows.extend([f"Next: {next_state}.", ""])
+            rows.extend(["", "## Can I use it?", "", _public_feature_status_line(build_path, lane_group=lane_group), ""])
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
         if canon_doc:
             canon_path = repo_root / canon_doc
             canon_text = _load_text(canon_path) if canon_path.is_file() else ""
-            video_sections = (
-                _extract_markdown_sections(
-                    canon_text,
-                    allowed_headings={"Explanation video", "Explanation videos"},
-                )
-                if canon_text
-                else []
-            )
+            video_sections = _extract_video_link_sections(canon_text) if canon_text else []
             if video_sections:
                 rows.extend([""])
                 rows.extend(video_sections)
@@ -3121,6 +3253,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     _generate_help(out_dir, help_copy, trust_payload, release_payload)
     _generate_how_can_i_help(out_dir)
     _generate_where_to_go_deeper(out_dir)
+    _generate_glossary(out_dir)
     _generate_faq(out_dir, faq_registry)
     _generate_download(out_dir, progress, release_payload, release_source, release_experience)
     _generate_contact(out_dir, trust_payload)

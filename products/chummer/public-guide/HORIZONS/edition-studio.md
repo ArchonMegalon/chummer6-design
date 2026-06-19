@@ -1,18 +1,22 @@
-# EDITION STUDIO
+# Edition Studio
 
 SR4, SR5, and SR6 keep authored head state without splitting the product into disconnected apps.
 
-![EDITION STUDIO feature art](../assets/horizons/edition-studio.png)
+![Edition Studio feature art](../assets/horizons/edition-studio.png)
 
-## Why this matters
+## When this helps
+
+This belongs in the background until it earns a clearer user-facing shape. The useful promise is simple: SR4, SR5, and SR6 should feel deliberately different without splitting Chummer into three unrelated apps.
+
+Most visitors do not need to care about it yet.
+
+## The table problem
 
 A generic shell can technically support SR4, SR5, and SR6 while still flattening the differences players actually need.
 
-For example: A veteran player opens the ruleset-head record and sees why SR4, SR5, and SR6 keep different emphasis, density, and terminology on the same Chummer-owned area.
+For example, a veteran player compares SR4, SR5, and SR6 support and sees why each edition keeps different emphasis, density, and terminology inside the same Chummer family.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it richer, steadier, and easier to trust.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools.

@@ -1,8 +1,37 @@
 # Parts
 
-This is the inside tour, not the first stop for most readers.
-Open it when you want to see how the app, phone companion, updater, and support tools fit together.
+This is the backstage tour. Most players and GMs can ignore it until they want to know how the desktop app, online side, phone companion, updater, and media work fit together.
 
 ![Chummer6 parts index art](../assets/pages/parts-index.png)
 
-[Core](core.md) explains the rules engine. [UI](ui.md) and [UI Kit](ui-kit.md) explain the character workbench and its shared visual language. [Mobile](mobile.md) is the table-side companion. [Hub](hub.md) and [Hub Registry](hub-registry.md) cover sign-in, coordination, downloads, and release records. [Media Factory](media-factory.md) is where polished images, narration, and promo material belong. [Design](design.md) is the map behind all of it.
+## [Design](design.md)
+
+The long-range product map and decision filter.
+
+## [Core](core.md)
+
+The rules engine that keeps the numbers explainable.
+
+## [UI](ui.md)
+
+The detailed character-building and inspection view.
+
+## [Mobile](mobile.md)
+
+The table-side companion you feel during play.
+
+## [Hub](hub.md)
+
+The online side that keeps sign-in, coordination, and community features boring.
+
+## [UI Kit](ui-kit.md)
+
+The shared visual vocabulary.
+
+## [Hub Registry](hub-registry.md)
+
+The release shelf, install history, and compatibility notes.
+
+## [Media Factory](media-factory.md)
+
+The dedicated media studio.

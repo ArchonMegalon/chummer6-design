@@ -1,18 +1,22 @@
-# QUICKSILVER
+# Quicksilver
 
-The same Chummer-owned state becomes meaningfully faster without becoming less explainable.
+The same Chummer work becomes meaningfully faster without becoming harder to understand.
 
-![QUICKSILVER feature art](../assets/horizons/quicksilver.png)
+![Quicksilver feature art](../assets/horizons/quicksilver.png)
 
-## Why this matters
+## When this helps
+
+This is speed work for people who already know where they are going. It should shorten the path between build review, rules lookup, prep, and publication without hiding what happened.
+
+Fast is only useful here if it stays understandable.
+
+## The table problem
 
 Expert users still lose flow when trusted areas are real but too many clicks apart.
 
-For example: A veteran GM jumps from build compare to rules answer to prep bench to publication desk without dropping context or trusting a fake launcher.
+For example, a veteran GM jumps from build compare to rules answer to prep bench to publication desk without dropping context or trusting a fake launcher.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it richer, steadier, and easier to trust.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools.

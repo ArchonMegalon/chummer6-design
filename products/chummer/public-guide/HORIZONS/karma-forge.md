@@ -1,47 +1,27 @@
-# KARMA FORGE
+# Karma Forge
 
 Tables can evolve house rules without splintering into unreadable forks.
 
-![KARMA FORGE feature art](../assets/horizons/karma-forge.png)
+![Karma Forge feature art](../assets/horizons/karma-forge.png)
 
-## Why this matters
+## When this helps
+
+Use this when house rules stop being a private note and start affecting the table. A good rule change should show what changed, who agreed to it, and how to undo it if it makes the game worse.
+
+This is for tables that want flexibility without custom-rule soup.
+
+## The table problem
 
 I want house rules without fork chaos.
 
-For example: A GM promotes a house-rule pack with visible impact, approval history, and reversible publication state.
+For example, a GM shares a house-rule set with visible impact, approval history, and a clear way back if it breaks the game.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it deeper without loosening the boundaries.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is clearer controls, better fit for real tables, and fewer edge-case surprises.
 
 
 ## Explanation video
 
 [Watch the KARMA FORGE 90-second deep dive](https://chummer.run/media/horizons/karma-forge-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/karma-forge-90s-deepdive.vtt).
-
-KARMA FORGE is Chummer’s governed house-rule and custom-rules layer: a way for GMs, players, creators, organizers, and living communities to change the rules of their table without turning every campaign into an incompatible private fork.
-
-Every Shadowrun table has house rules.
-
-Some tables change chargen.
-Some ban gear.
-Some simplify Matrix play.
-Some tune Edge.
-Some change advancement pacing.
-Some run street-level campaigns with restricted availability.
-Some communities maintain entire custom rule packets.
-Some Chummer5a veterans have years of amend files and custom data they do not want to lose.
-
-KARMA FORGE is where those changes become visible, portable, explainable, safe.
-
-Not hidden folder magic.
-Not “just trust the GM.”
-Not mystery XML.
-Not a private spreadsheet nobody remembers to check.
-
-A real rule environment.
-
----

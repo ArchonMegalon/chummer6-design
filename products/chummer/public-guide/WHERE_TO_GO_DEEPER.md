@@ -1,21 +1,14 @@
 # Where To Go Deeper
 
-Use this page when the quick guide is no longer enough.
+Use this after the quick pages stop being enough.
 
 ## I want the product answer
 
-Start with:
-
-- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)
-- [Status](STATUS.md)
-- [Download](DOWNLOAD.md)
-- [Help](HELP.md)
-
-These are the right pages for most players and GMs.
+Most players and GMs should read [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Status](STATUS.md), then [Download](DOWNLOAD.md). If something fails, [Help](HELP.md) is the next stop.
 
 ## I want the campaign tools
 
-Open [Campaign tools](HORIZONS/README.md) when you want to understand the larger table story: ALICE, Origin Dossier, Table Pulse, NEXUS-PAN, and the expansion ideas around them.
+[Campaign tools](HORIZONS/README.md) covers the larger table story: ALICE, Origin Dossier, Table Pulse, NEXUS-PAN, and the ideas that matter after the character sheet is no longer the whole problem.
 
 ## I want to report or improve something
 
@@ -25,4 +18,4 @@ Use [How Can I Help?](HOW_CAN_I_HELP.md) for bugs, confusing docs, feature reque
 
 The software repos and design notes are for implementation details and long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.
 
-Come back to this public guide when you want the shorter user-facing version again.
+Come back here when you want the shorter user-facing version again.

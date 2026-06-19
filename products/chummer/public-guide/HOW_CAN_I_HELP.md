@@ -1,40 +1,27 @@
 # How Can I Help?
 
-Start with the page that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.
+No short answers yet. Seriously: ask me, folks.
+
+Good feedback usually starts with the actual moment that failed: what you tried, what happened, and what you expected. That is more useful than a perfect bug-report template written by someone with functioning fingers and a suspicious amount of sleep.
 
 ## Something broke
 
-- File a public issue when the bug is safe to discuss in public.
-- Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.
-- Tell us what you expected, what happened, and what version or page you were using.
+Use a public issue when the bug is safe to discuss in public. Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.
+
+Tell us the page, build, operating system, and the shortest path that reproduces the problem. A screenshot is welcome when it saves everyone from guessing.
 
 ## Something was confusing
 
-- Flag the exact page, sentence, screenshot, or download step that lost you.
-- Say what you were trying to do in plain language.
-- If you came from Chummer5a, tell us which old habit did not map cleanly.
+Point to the exact sentence, screen, or download step that lost you. If you came from Chummer5a, say which old habit did not map cleanly. That is how the docs get less weird.
 
 ## You have an idea
 
-- Feature requests are welcome when they describe a real table problem.
-- Short examples help more than broad roadmap wishes.
-- Public ideas are public; keep private campaign material out of them.
+Feature requests are welcome when they describe a real table problem. "I need this because my GM/player/table does X" beats a broad roadmap wish every time.
 
-## You want to help test a fix
+Public ideas are public, so keep private campaign material out of them.
 
-Use the participation page when you want to do hands-on testing or focused follow-up:
+## You want to test a fix
 
-- [Open the public participation page](https://chummer.run/participate)
-- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)
+Use the participation page when you want hands-on testing or focused follow-up: [chummer.run/participate](https://chummer.run/participate). For normal public reports, use the GitHub issue tracker: [ArchonMegalon/Chummer6 issues](https://github.com/ArchonMegalon/Chummer6/issues).
 
-Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change shipped until it lands in a real release.
-
-## Good reports
-
-A good report usually has:
-
-- what you were trying to do
-- what happened instead
-- the page, build, or operating system
-- a screenshot if it helps
-- no private logs or copyrighted rules text in public
+Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change real until it lands in an actual release.

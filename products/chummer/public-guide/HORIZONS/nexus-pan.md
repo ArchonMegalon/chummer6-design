@@ -4,24 +4,22 @@ Shared state survives device churn without the table losing trust.
 
 ![NEXUS-PAN feature art](../assets/horizons/nexus-pan.png)
 
-## How to use this
+## When this helps
 
 Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees stale state, or a remote player returns mid-scene.
 
 The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and a calm way back into the session.
 
-## Why this matters
+## The table problem
 
 My devices drift and the table loses confidence.
 
-For example: A player reconnects in the middle of a session and gets back in step without the GM rebuilding everything by memory.
+For example, a player reconnects in the middle of a session and gets back in step without the GM rebuilding everything by memory.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it deeper without loosening the boundaries.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is clearer controls, better fit for real tables, and fewer edge-case surprises.
 
 
 ## Explanation videos

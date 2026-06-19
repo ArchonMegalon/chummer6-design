@@ -14,7 +14,7 @@ That is one of the core goals. Chummer6 is being built so bad connectivity does 
 
 ### Why would I trust it more than old opaque tool behavior?
 
-Because Chummer6 is trying to show how it reached an answer instead of asking you to accept mystery math.
+Because Chummer6 is trying to show the pieces behind a result instead of asking you to accept mystery math.
 
 ### What is preview versus available today?
 
@@ -56,7 +56,7 @@ Yes. Public recognition should remain opt-in, and private participation should s
 
 ### What are badges and leaderboards for?
 
-They are recognition and visibility features, not authority. They should celebrate verified contribution without replacing review or the rules themselves.
+They are thank-yous, not power. They should celebrate useful help without replacing review or the rules themselves.
 
 ### Would I need a Windows PC to join a run?
 
@@ -64,13 +64,13 @@ No. The intended direction is that browsing runs, applying with a quickstart or 
 
 ### Is Chummer trying to replace Discord or VTTs?
 
-No. The intended state is that Chummer owns rules, applications, scheduling records, and world consequences, while Discord, Teams, and VTTs remain play or communication surfaces.
+No. Chummer should handle rules, applications, scheduling records, and campaign consequences while Discord, Teams, and VTTs stay useful places to talk and play.
 
-## More detail without the rabbit hole
+## If you want more detail
 
-### Where does the deeper plan live?
+### Where should I look after this?
 
-Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.
+Start with Where To Go Deeper. It points to the optional pages without making most readers wade through planning material first.
 
 ### Where does the actual code live?
 

@@ -47,8 +47,8 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
 
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
 
-    assert "simple answer first" in readme
-    assert "The older guide voice got too close to a release cockpit." in readme
+    assert "honest pitch" in readme
+    assert "Start here if you just want the answer" in readme
     assert "functioning fingers" in readme
     assert readme.count("[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)") == 1
     assert "Open the Black Ledger command map" not in readme
@@ -172,10 +172,9 @@ def test_generate_root_uses_short_user_first_release_summary(tmp_path: Path, mon
     assert "Proof on the public shelf" not in readme
     assert "Claim boundary" not in readme
     assert "what this covers" not in readme.lower()
-    assert "Use the downloads listed here" in readme
-    assert (
-        "Treat Blazor Desktop as a fallback path only when the download page or support explicitly tells you to use it."
-    ) in readme
+    assert "Use the files linked on [Download](DOWNLOAD.md)" in readme
+    assert "capsule-region insult" in readme
+    assert "start with Avalonia" in readme
     assert "serious preview rather than a finished Chummer5a replacement" in readme
 
 
@@ -289,8 +288,8 @@ def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
     start_here = (out_dir / "START_HERE.md").read_text(encoding="utf-8")
 
     assert "## I am new, rusty, or coming back from Chummer5a" in start_here
-    assert "Open the [first session guide](ONRAMP.md)." in start_here
-    assert "not a separate product area" in start_here
+    assert "Start with the [first session guide](ONRAMP.md)." in start_here
+    assert "not another grand product shelf" in start_here
 
 
 def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_path: Path) -> None:
@@ -321,8 +320,8 @@ def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: P
 
     assert "Origin Dossier" in alice
     assert "blank-state build help" in alice
-    assert "GM allowance and requirement notes" in alice
-    assert "voice selection and origin-story audiobook handoffs" in alice.lower()
+    assert "GM notes can guide the advice" in alice
+    assert "voice selection and origin-story audiobooks" in alice.lower()
     assert "shipped mvp" not in alice.lower()
 
 

@@ -1,34 +1,64 @@
 # Campaign tools
 
-Use this page when the character builder is no longer the whole question and the table starts asking, "what happens next?"
+Open this when the character builder is no longer the whole question and the table starts asking, "what happens next?"
 
-The point is not to collect shiny feature names. The point is to make campaign work easier without burying the GM under another pile of dashboards.
+The goal is not a shelf full of shiny names. The goal is to make campaign work easier without burying the GM under another pile of dashboards. If a name does not help a player or GM decide what to do next, it does not deserve front-page real estate.
 
 ![Chummer6 horizons index art](../assets/pages/horizons-index.png)
 
 
-## Start with the campaign pieces people ask for
+## Closest to the table
 
-These are the ideas that should feel closest to normal Chummer6 value around the builder and campaign layer, not distant promises.
+Start here when you want help with the runner, the session, or what carries over afterward.
 
-[NEXUS-PAN](nexus-pan.md) keeps shared state alive when devices churn or the table moves between screens.
+### [NEXUS-PAN](nexus-pan.md)
 
-[ALICE](alice.md) gives a character idea a second look: build help, rules coach, blank-state support, and tradeoff review near the sheet.
+Shared state survives device churn without the table losing trust.
 
-[ORIGIN DOSSIER](origin-dossier.md) turns an approved origin into contacts, debts, enemies, scars, portraits, narration, and later ALICE context.
+### [ALICE](alice.md)
 
-[TABLE PULSE](table-pulse.md) gives GMs a live heat-and-reaction path, then keeps private aftermath coaching separate from the live table.
+Builders get clear what-if tests instead of black-box advice.
+
+### [Origin Dossier](origin-dossier.md)
+
+The player gets an accepted origin story, portraits, narration, and later ALICE context without letting backstory prose rewrite the sheet.
+
+### [Table Pulse](table-pulse.md)
+
+GMs get a live heat-and-reaction tool today, plus private aftermath notes that stay away from player scoring.
 
 
-## Expansion bets
+## Bigger ideas
 
-These are bigger campaign ideas. Read them if you care where Chummer can go after the builder works for you.
+Read these when you want to see where Chummer can go after the builder works for you.
 
-[KARMA FORGE](karma-forge.md) is for house-rule evolution. [JACKPOINT](jackpoint.md) is for reusable dossiers, recaps, and briefings. [RUNSITE](runsite.md) is for explorable mission spaces before the action starts. [RUNBOOK PRESS](runbook-press.md) is for long-form publishing that does not turn into a ten-tool scramble. [GHOSTWIRE](ghostwire.md) is for replay and comparison. [COMMUNITY HUB](community-hub.md) is for opening runs, preflighting players, and keeping table handoff tidy.
+### [Karma Forge](karma-forge.md)
+
+Tables can evolve house rules without splintering into unreadable forks.
+
+### [Jackpoint](jackpoint.md)
+
+The table gets polished short-to-medium-form dossiers, recaps, and briefings that still show what they are based on.
+
+### [Runsite](runsite.md)
+
+Mission spaces become explorable and legible before the action starts.
+
+### [Runbook Press](runbook-press.md)
+
+Long-form publishing becomes something you can actually reuse instead of a ten-tool scramble.
+
+### [Ghostwire](ghostwire.md)
+
+Tables can replay, inspect, and compare what happened without making a second version of the session.
+
+### [Community Hub](community-hub.md)
+
+A GM opens a run, Chummer preflights the right players and rule environment, gets the table scheduled, and the world remembers the outcome.
 
 
-## Folded back into the app
+## Better inside the normal app
 
-Some ideas got demoted for good reason: they work better as quiet support for the workbench or campaign layer than as public destinations. Devs are allowed to be roasted when every helper becomes a named product.
+Some ideas work better as quiet support than as another named place to visit. Devs are allowed to be roasted when every helper becomes a product name.
 
-Today that means: RUN CONTROL, EDITION STUDIO, LOCAL CO-PROCESSOR, and QUICKSILVER.
+That is where Run Control, Edition Studio, Local Co-Processor, and Quicksilver belong right now.

@@ -1,43 +1,41 @@
 # Chummer6
 
-Build a Shadowrun runner, understand why the numbers changed, and keep the table moving when the campaign gets complicated.
+Build a Shadowrun runner, see why the numbers changed, and keep game night moving when the campaign gets messy.
 
-This is the public guide for people who want the simple answer first: can I try it, what should I download, and will it help my table?
+If you are here to decide whether this is worth your time, the honest pitch is simple: Chummer6 is trying to make dense Shadowrun character work readable again without sanding away the parts veteran players care about.
 
-## Start here
+## Start here if you just want the answer
 
-If you want to install it, open [Download](DOWNLOAD.md). If you want to know whether it is ready for your machine, open [Status](STATUS.md). If you are coming from Chummer5a, open [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).
+Use [Download](DOWNLOAD.md) for files, [Status](STATUS.md) for the blunt current state, and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md) if you already know the old app and want to know whether switching is sane.
 
-Windows and Linux have the normal downloads today. The download page includes Windows and Linux downloads. Use the downloads listed here. If your platform is missing or preview-only, wait before switching full time.
-
-If you see both desktop apps, start with Avalonia. Treat Blazor Desktop as a fallback path only when the download page or support explicitly tells you to use it.
+Windows and Linux downloads are posted.
+Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.
+Because my capsule-region insult did not exactly upgrade my decision-making process, I have not made the final Avalonia-versus-Blazor call yet. For today: start with Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there. Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.
 
 ## Why it exists
 
-Chummer6 is trying to make Shadowrun character work less opaque. When a dice pool changes, the table should see why. When a device falls out of the session, the night should not fall apart with it.
+Shadowrun characters carry a lot of math, choices, edge cases, and table agreements. Chummer6 is for the moment when someone asks, "why did that number change?" and the table deserves a better answer than shoulder-shrugging and memory.
 
-The older guide voice got too close to a release cockpit. This one is meant for players and GMs with functioning fingers, limited patience, and maybe only half a brain online before game night.
+When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When you are prepping before a session with functioning fingers, limited patience, and maybe only half a brain online, the next useful action should be obvious.
 
-## What people notice
+## What should feel different
 
-Numbers explain themselves faster. New or rusty users get a first-session path. Help, contact, privacy, and terms pages are live. Character math is already solid; the rough edges are mostly installer polish, update polish, support polish, and deeper campaign tooling.
+The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper campaign tooling.
+
 
 ## Help and feedback
 
-For support or concrete feedback, start with [Contact](CONTACT.md). Most people should use the normal feedback and support paths. The public participation door at <https://chummer.run/participate> is for hands-on testing or fix follow-up.
+If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). If the issue is safe to discuss in public, the help pages point you to the GitHub issue tracker too.
+
+If you want to help test a fix, use <https://chummer.run/participate>. Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.
 
 ## First contact
 
 ![Chummer6 flagship hero art](assets/hero/chummer6-hero.png)
 
 
-Watch the current product reel: https://chummer.run/media/promo/chummer6-flagship-promo.mp4.
+Watch [Chummer6 flagship promo](https://chummer.run/media/promo/chummer6-flagship-promo.mp4). [Captions](https://chummer.run/media/promo/chummer6-flagship-promo.vtt).
 
 ## Campaign tools
 
-Use [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md) for normal campaign-facing features.
-Use [Campaign tools](HORIZONS/README.md) when you want the deeper split between product areas and longer-running ideas.
-
-## More when you need it
-
-Open [Help](HELP.md) if install, updates, sign-in, or bugs are getting in the way. Use [FAQ](FAQ.md) for the normal skeptical questions before game night.
+[Runner Passport](RUNNER_PASSPORT.md) gives a GM a clean character summary. [Living World](LIVING_WORLD.md) keeps aftermath and consequences in one place. [Campaign tools](HORIZONS/README.md) is the larger map for ALICE, Origin Dossier, Table Pulse, and the ideas that only matter once the sheet is no longer the whole problem.

@@ -4,24 +4,22 @@ Builders get clear what-if tests instead of black-box advice.
 
 ![ALICE feature art](../assets/horizons/alice.png)
 
-## How to use this
+## When this helps
 
 Use ALICE when a character idea needs a second look before it becomes table trouble. It belongs in the normal workbench: build help, rules coach, blank-state build help, and tradeoff review should feel close to the sheet instead of hidden behind a separate product label.
 
-Origin Dossier belongs inside ALICE as the story-and-context area. GM allowance and requirement notes can guide the advice, but they do not silently rewrite mechanics. Voice selection and origin-story audiobook handoffs only happen after the origin story is approved.
+Origin Dossier sits there too: the story-and-context area for a runner. GM notes can guide the advice, but they do not silently rewrite mechanics. Voice selection and origin-story audiobooks only happen after the origin story is accepted at the table.
 
-## Why this matters
+## The table problem
 
 We only discover weak builds after they explode in public.
 
-For example: A player compares two builds and sees the tradeoffs, the math, and the likely trouble spots before the session starts.
+For example, a player compares two builds and sees the tradeoffs, the math, and the likely trouble spots before the session starts.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it deeper without loosening the boundaries.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is clearer controls, better fit for real tables, and fewer edge-case surprises.
 
 
 ## Explanation video

@@ -8,7 +8,7 @@ The short version: it should help a player or GM understand the character, the n
 
 A player asks why a dice pool changed. The GM wants to keep the scene moving. Chummer6 should show the base pool, each modifier, and the final number in a way both people can follow.
 
-Example:
+A tiny example:
 
 - Base pool: 11
 - Wounds: -1
@@ -18,13 +18,9 @@ Example:
 
 That is the product in miniature: less archive-diving, fewer mystery numbers, and a faster return to play.
 
-## What you would notice
+## What you should notice
 
-- fewer pauses when a number changes
-- clearer explanations for rules and modifiers
-- better recovery when a device, update, or connection gets in the way
-- a cleaner home for custom rules, era differences, and table notes
-- campaign tools that support the table without replacing the GM
+Fewer pauses when a number changes. Clearer explanations for rules and modifiers. Better recovery when a device, update, or connection gets in the way. A cleaner home for custom rules, era differences, and table notes. Campaign tools that support the table without replacing the GM.
 
 ## What works today
 
@@ -32,6 +28,6 @@ Use [Status](STATUS.md) for the current answer and [Download](DOWNLOAD.md) for t
 
 ## Why there are multiple parts
 
-The character builder, rules explanation, prep tools, campaign layer, media work, and long-range ideas are separate because they solve different problems. Most users only need the builder, the current status, and help pages.
+The character builder, rules explanation, prep tools, campaign layer, media work, and long-range ideas are separate because they solve different problems. Most users only need the builder, the current status, and help pages; the rest is for people who want to understand where the campaign side is going.
 
 If you want the map behind the product, open [Parts](PARTS/README.md). If you just want to try Chummer6, start with [Download](DOWNLOAD.md).

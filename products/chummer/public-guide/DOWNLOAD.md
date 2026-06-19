@@ -17,7 +17,7 @@ That is the human answer. The rest of this page is here for exact files, sizes, 
 
 Today: Current release build.
 Published: June 19, 2026 at 0:49 UTC.
-The download page includes Windows and Linux downloads.
+Windows and Linux downloads are posted.
 This build handles installs and recovery, campaign session recovery, and support follow-up.
 No blocking download issue is listed for the current installers.
 Only expect fix notices after the affected download is available on the download page.

@@ -19,7 +19,7 @@ A good bulletin keeps the host, lower thirds, captions, audio, transcript, and s
 - No GM secrets.
 - No sourcebook text.
 - No real person or public figure likenesses.
-- No provider branding or unproven product claims.
+- No tool branding or marketing promises the current page cannot support.
 
 ## Read next
 

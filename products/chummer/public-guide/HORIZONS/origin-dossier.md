@@ -1,26 +1,22 @@
-# ORIGIN DOSSIER
+# Origin Dossier
 
-The player gets approved origin canon, dossier media, and later ALICE context without letting story prose rewrite the sheet.
+The player gets an accepted origin story, portraits, narration, and later ALICE context without letting backstory prose rewrite the sheet.
 
-![ORIGIN DOSSIER feature art](../assets/horizons/origin-dossier.png)
+![Origin Dossier feature art](../assets/horizons/origin-dossier.png)
 
-## How to use this
+## When this helps
 
-Use Origin Dossier when a legal sheet still feels unfinished as a person. It turns an approved origin story into contacts, debts, enemies, scars, secrets, portraits, narration, and media packets that the table can review.
+Open Origin Dossier when a legal sheet still feels unfinished as a person. It turns an accepted origin story into contacts, debts, enemies, scars, secrets, portraits, narration, and things the table can actually use later.
 
-The dossier can feed later ALICE context and optional player-scoped audiobook requests. If the player asks for audio, Chummer should create the audiobook for that character's library scope, not hand the desktop client a global Audiobookshelf login.
+If the player asks for audio, Chummer can hand off a character-scoped audiobook request. It must not rewrite the sheet, hand the desktop client a global Audiobookshelf login, or let a render tool decide who the character is.
 
-Your GM still approves what becomes part of play. The media is there to make an origin easier to read, hear, and remember; it does not rewrite the sheet or let a render provider decide who the character is.
-
-## Why this matters
+## The table problem
 
 A runner can start as math before they feel like a person.
 
-For example: A player drafts a troll decker, the GM adds a clinic-favor constraint, and Chummer turns the approved origin into a dossier bundle that ALICE can use later.
+For example, a player drafts a troll decker, the GM adds a clinic-favor constraint, and Chummer turns the accepted origin into a dossier bundle that ALICE can use later.
 
 
-## Can I use it now?
+## Can I use it?
 
-Today: You can try the first real slice.
-
-Next: Make it richer, steadier, and easier to use at the table.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools.

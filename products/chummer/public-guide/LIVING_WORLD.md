@@ -6,7 +6,7 @@ It is for GMs and players who want the world to remember what just happened with
 
 ## When you use it
 
-Use Living World when a session leaves news, faction movement, or aftermath choices on the table. The page lives at [chummer.run/living-world](https://chummer.run/living-world), but the promise is simpler than the route: keep the consequences together so the GM does not rebuild them from chat fragments.
+Use [chummer.run/living-world](https://chummer.run/living-world) when a session leaves news, faction movement, or aftermath choices on the table and you want to keep the consequences together so the GM does not rebuild them from chat fragments.
 
 ## What it gives the table
 
@@ -16,9 +16,4 @@ A place for watch packages, inbox reactions, leader briefings, Runner Passport c
 
 It does not replace the GM, reveal secrets, or run the campaign by itself.
 
-## Read next
-
-- [Runner Passport](RUNNER_PASSPORT.md)
-- [Table Pulse](HORIZONS/table-pulse.md)
-
-If you are signed in, the [Aftermath workspace](/account/work#aftermath-packages) is where those follow-up packages belong.
+If the next question is whether a runner belongs at the table, use [Runner Passport](RUNNER_PASSPORT.md). If the table wants live pressure during play, read [Table Pulse](HORIZONS/table-pulse.md).

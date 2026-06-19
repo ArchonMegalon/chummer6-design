@@ -5,7 +5,7 @@
     "Linux"
   ],
   "build_label": "",
-  "desktop_pick_line": "If you see both desktop apps, start with Avalonia. Treat Blazor Desktop as a fallback path only when the download page or support explicitly tells you to use it.",
+  "desktop_pick_line": "Because my capsule-region insult did not exactly upgrade my decision-making process, I have not made the final Avalonia-versus-Blazor call yet. For today: start with Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there.",
   "fallback_heads": [
     "Chummer.Blazor.Desktop"
   ],
@@ -22,6 +22,6 @@
   "release_status": "Published",
   "release_status_slug": "published",
   "release_verification_summary": "This build handles installs and recovery, campaign session recovery, and support follow-up.",
-  "shelf_truth_line": "The download page includes Windows and Linux downloads.",
-  "short_release_summary": "Use the downloads listed here. If your platform is missing or preview-only, wait before switching full time."
+  "shelf_truth_line": "Windows and Linux downloads are posted.",
+  "short_release_summary": "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time."
 }

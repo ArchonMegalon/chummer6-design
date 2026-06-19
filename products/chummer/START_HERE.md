@@ -1,27 +1,27 @@
 # Start here
 
-Do not read the repo like a manual. Pick the situation that matches you and take the next useful step.
+Do not read the repo like homework. You probably came here for one of four reasons: to install Chummer, to check whether this preview is safe enough for tonight, to understand what changed since Chummer5a, or to get help because something already annoyed you.
 
-The guide is trying not to hand you more bullet points than you have functioning fingers. If you only open three pages, make them [Download](DOWNLOAD.md), [Status](STATUS.md), and [Help](HELP.md).
+If you only open three pages, make them [Download](DOWNLOAD.md), [Status](STATUS.md), and [Help](HELP.md). That keeps the finger-count problem under control.
 
-## I want to try Chummer
+## I want to try it
 
-Open [Download](DOWNLOAD.md), then use [Status](STATUS.md) if you want to know what works before you install.
+Use [Download](DOWNLOAD.md) for the files. Use [Status](STATUS.md) first if you want the blunt answer on platforms, rough edges, and whether this is a good day to switch.
 
 ## I am new, rusty, or coming back from Chummer5a
 
-Open the [first session guide](ONRAMP.md). It is starter help, not a separate product area.
+Start with the [first session guide](ONRAMP.md). It is starter help, not another grand product shelf.
 
-If you already know Chummer5a and want the shorter bridge, use [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).
+If you already know Chummer5a and want the shorter bridge, read [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).
 
 ## I want to understand the product
 
-Open [What Chummer6 Is](WHAT_CHUMMER6_IS.md). It explains the builder, rules explanation, recovery, and campaign layer without making you read every deeper note first.
+Read [What Chummer6 Is](WHAT_CHUMMER6_IS.md). It explains the builder, rules explanations, recovery, and campaign tools without making you trawl through planning notes.
 
 ## I care about campaign play
 
-Start with [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md). After that, use [Campaign tools](HORIZONS/README.md) for the longer-running campaign ideas and expansion bets.
+[Runner Passport](RUNNER_PASSPORT.md) is the clean character summary for a GM. [Living World](LIVING_WORLD.md) is for consequences after the session. [Campaign tools](HORIZONS/README.md) is where the bigger ideas live once the sheet is no longer the whole problem.
 
 ## Something is blocking me
 
-Open [Help](HELP.md) for install, update, sign-in, and recovery issues. Use [Contact](CONTACT.md) when you have a concrete report or feedback.
+Use [Help](HELP.md) for install, update, sign-in, and recovery issues. Use [Contact](CONTACT.md) when you have a concrete report or feedback.

@@ -1,18 +1,22 @@
-# RUN CONTROL
+# Run Control
 
-Session board, active-scene continuity, reconnect state, and recap return stay on one Chummer-owned control path.
+The GM can see the active scene, reconnect state, and recap handoff in one place.
 
-![RUN CONTROL feature art](../assets/horizons/run-control.png)
+![Run Control feature art](../assets/horizons/run-control.png)
 
-## Why this matters
+## When this helps
+
+This is the GM's session cockpit idea, but it should not become another named shelf unless it clearly beats notes, chat, and memory during an actual run.
+
+The bar is simple: a GM should see the current scene, the next safe action, and the recovery point without hunting.
+
+## The table problem
 
 GM session control still falls back to notes, chats, and memory even when the rest of the product is strong.
 
-For example: A GM opens the current run, sees the active scene, the next safe action, continuity state, and recap follow-through without stitching together five tools.
+For example, a GM opens the current run, sees the active scene, the next safe action, continuity state, and recap follow-through without stitching together five tools.
 
 
-## Can I use it now?
+## Can I use it?
 
-A first usable version works today.
-
-Next: Make it richer, steadier, and easier to trust.
+There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters. The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools.
