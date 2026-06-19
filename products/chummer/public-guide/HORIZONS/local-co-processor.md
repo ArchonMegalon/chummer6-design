@@ -1,5 +1,7 @@
 # LOCAL CO-PROCESSOR
 
+Guide fit: Folded back into the app.
+
 Local acceleration improves privacy and responsiveness where available without becoming mandatory infrastructure.
 
 ![LOCAL CO-PROCESSOR feature art](../assets/horizons/local-co-processor.png)
@@ -13,16 +15,6 @@ Picture the scene: A creator with a strong local machine opts into accelerated e
 
 ## Current stage
 
-- Today: You can try the first real slice today.
-- Next: Make the slice richer, steadier, and easier to trust.
+Today: You can try the first real slice today.
 
-## The problem
-
-Some explain, search, and media-assist workloads would be cheaper, faster, or more private with optional local acceleration, but the product cannot require every user to run local compute.
-
-## What has to be true first
-
-* portable deterministic engine host strategy
-* hosted-first parity
-* explicit non-mandatory local runtime policy
-* disableable local acceleration paths
+Next: Make the slice richer, steadier, and easier to trust.

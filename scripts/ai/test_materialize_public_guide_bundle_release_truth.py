@@ -24,7 +24,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
                 ["Windows", "Linux"],
                 ["macOS"],
             ),
-            "Downloads are currently live for Windows and Linux, but macOS still lacks the promoted desktop installer proof this release says they need.",
+            "The current public shelf includes Windows and Linux downloads; macOS still needs promoted desktop installer proof before it becomes a normal installer route.",
         )
 
     def test_public_preview_builds_line_joins_platforms(self) -> None:
@@ -42,13 +42,13 @@ class ReleaseTruthWordingTests(unittest.TestCase):
     def test_public_missing_installer_warning_line_singular(self) -> None:
         self.assertEqual(
             MODULE._public_missing_installer_warning_line(["macOS"]),
-            "There is still no public macOS installer.",
+            "macOS remains archive-preview guidance only until installer proof is posted.",
         )
 
     def test_public_missing_installer_warning_line_plural(self) -> None:
         self.assertEqual(
             MODULE._public_missing_installer_warning_line(["Linux", "macOS"]),
-            "Public installers are still missing for Linux and macOS.",
+            "Installer routes are not yet promoted for Linux and macOS.",
         )
 
     def test_missing_required_platform_labels_stays_empty_for_explicit_mac_only_preview_contract(self) -> None:

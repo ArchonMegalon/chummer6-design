@@ -58,6 +58,53 @@ PUBLIC_HORIZON_STAGE_LABELS = {
     "bounded_coaching_expansion": "Make the coaching deeper without loosening the boundaries",
     "flagship_depth_hardening": "Make the slice richer, steadier, and easier to trust",
 }
+PUBLIC_GUIDE_CORE_PRODUCT_IDS = {
+    "alice",
+    "nexus-pan",
+    "origin-dossier",
+    "table-pulse",
+}
+PUBLIC_GUIDE_EXPANSION_BET_IDS = {
+    "community-hub",
+    "ghostwire",
+    "jackpoint",
+    "karma-forge",
+    "runbook-press",
+    "runsite",
+}
+PUBLIC_GUIDE_FOLDED_IDS = {
+    "edition-studio",
+    "local-co-processor",
+    "quicksilver",
+    "run-control",
+}
+PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
+    "alice": (
+        "Use ALICE when a character idea needs a second look before it becomes table trouble. "
+        "It belongs in the normal workbench: build help, rules coach, blank-state build help, "
+        "and tradeoff review should feel close to the sheet instead of hidden behind a separate product label.",
+        "Origin Dossier fits inside ALICE as the story-and-context lane. GM allowance and requirement notes can guide "
+        "the advice, but they do not silently rewrite mechanics. Voice-selection controls and scoped origin-story "
+        "audiobook handoffs are allowed only after the origin canon is approved.",
+    ),
+    "origin-dossier": (
+        "Use Origin Dossier when a legal sheet still feels unfinished as a person. It turns approved origin canon into "
+        "contacts, debts, enemies, scars, secrets, portraits, narration, and media packets that the table can review.",
+        "The dossier can feed later ALICE context and optional player-scoped audiobook requests. It must not mutate the "
+        "sheet, hand a desktop client global Audiobookshelf access, or let a render provider become character truth.",
+    ),
+    "nexus-pan": (
+        "Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees "
+        "stale state, or a remote player returns mid-scene.",
+        "The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and "
+        "a calm route back into the session.",
+    ),
+    "table-pulse": (
+        "Use Table Pulse when the table needs live pressure without a surveillance dashboard. The GM sees bounded signals "
+        "and can decide what becomes table action.",
+        "Private aftermath, remote reactions, quiet hours, and opt-outs are part of the feature, not paperwork around it.",
+    ),
+}
 RELEASE_PROOF_JOURNEY_LABELS = {
     "install_claim_restore_continue": "install, sign back in, restore, and keep going",
     "build_explain_publish": "build and publish the release",
@@ -884,7 +931,10 @@ def _public_copy(text: str) -> str:
         ("crash lane", "crash path"),
         ("public issue lane", "public issue path"),
         ("issue lane", "issue path"),
-        ("guided contribution lane", "guided contribution path"),
+        ("optional guided contribution path", "hands-on help path"),
+        ("guided contribution path", "hands-on help path"),
+        ("guided contribution lane", "hands-on help path"),
+        ("guided contribution", "hands-on help"),
         ("guided-preview lanes", "guided-preview access windows"),
         ("artifact shelf", "release shelf"),
         ("render-only asset plant", "dedicated media studio"),
@@ -910,6 +960,28 @@ def _public_horizon_stage_label(value: object) -> str:
     if not cleaned:
         return ""
     return PUBLIC_HORIZON_STAGE_LABELS.get(cleaned.lower(), _humanize_identifier(cleaned))
+
+
+def _public_guide_lane_group(horizon: dict[str, object]) -> str:
+    public_guide = horizon.get("public_guide") or {}
+    if isinstance(public_guide, dict):
+        configured = str(public_guide.get("group") or "").strip().lower()
+        if configured in {"core_product", "expansion_bet", "folded_into_product"}:
+            return configured
+    horizon_id = _slug(str(horizon.get("id") or "").strip())
+    if horizon_id in PUBLIC_GUIDE_CORE_PRODUCT_IDS:
+        return "core_product"
+    if horizon_id in PUBLIC_GUIDE_EXPANSION_BET_IDS:
+        return "expansion_bet"
+    if horizon_id in PUBLIC_GUIDE_FOLDED_IDS:
+        return "folded_into_product"
+    build_path = horizon.get("build_path") or {}
+    current_state = ""
+    if isinstance(build_path, dict):
+        current_state = str(build_path.get("current_state") or "").strip().lower()
+    if current_state in {"shipped_mvp", "signed_in_command_lane_live"}:
+        return "core_product"
+    return "expansion_bet"
 
 
 def _format_public_datetime(value: object) -> str:
@@ -1120,14 +1192,27 @@ def _public_shelf_truth_line(
     platforms = list(available_platforms or _artifact_platform_labels(artifacts))
     missing = list(missing_platforms or [])
     if published and platforms and missing:
-        missing_verb = "lacks" if len(missing) == 1 else "lack"
+        missing_tail = (
+            f"{missing[0]} still needs"
+            if len(missing) == 1
+            else f"{_english_join(missing)} still need"
+        )
+        missing_route_tail = (
+            "it becomes a normal installer route"
+            if len(missing) == 1
+            else "they become normal installer routes"
+        )
         return (
-            f"Downloads are currently live for {_english_join(platforms)}, "
-            f"but {_english_join(missing)} still {missing_verb} the promoted desktop installer proof this release says "
-            "they need."
+            f"The current public shelf includes {_english_join(platforms)} downloads; "
+            f"{missing_tail} promoted desktop installer proof before {missing_route_tail}."
         )
     if published and platforms:
-        return f"Downloads are currently live for {_english_join(platforms)}."
+        return f"The current public shelf includes {_english_join(platforms)} downloads."
+    if published and missing:
+        return (
+            "No promoted installer downloads are posted right now; "
+            f"{_english_join(missing)} still need installer proof."
+        )
     if published:
         return "The release is published, but no downloadable files are posted right now."
     if platforms:
@@ -1151,16 +1236,16 @@ def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
     if not missing_platforms:
         return ""
     if len(missing_platforms) == 1:
-        return f"There is still no public {missing_platforms[0]} installer."
-    return f"Public installers are still missing for {_english_join(missing_platforms)}."
+        return f"{missing_platforms[0]} remains archive-preview guidance only until installer proof is posted."
+    return f"Installer routes are not yet promoted for {_english_join(missing_platforms)}."
 
 
 def _public_missing_installer_lane_line(missing_platforms: list[str]) -> str:
     if not missing_platforms:
         return "Promoted installer coverage is visible on every promised desktop platform."
     if len(missing_platforms) == 1:
-        return f"Still missing from the promoted installer lane: {missing_platforms[0]}."
-    return f"Still missing from the promoted installer lane: {_english_join(missing_platforms)}."
+        return f"Promoted installer proof is not yet posted for {missing_platforms[0]}."
+    return f"Promoted installer proof is not yet posted for {_english_join(missing_platforms)}."
 
 
 def _public_architecture_scope_line(artifacts: list[dict[str, object]]) -> str:
@@ -1598,13 +1683,13 @@ def _generate_start_here_page(out_dir: Path, repo_root: Path) -> None:
         source_rows = [
             "# Start Here",
             "",
-            "## I am new or rusty",
-            "",
-            "Start here: [Onramp](ONRAMP.md)",
-            "",
             "## I want to try Chummer",
             "",
             "Start here: [Download](DOWNLOAD.md)",
+            "",
+            "## I am new, rusty, or coming back from Chummer5a",
+            "",
+            "Start here: [first session guide](ONRAMP.md)",
             "",
             "## I want to know what works today",
             "",
@@ -1616,7 +1701,7 @@ def _generate_start_here_page(out_dir: Path, repo_root: Path) -> None:
             "",
             "## I want the campaign layer",
             "",
-            "Start here: [Worlds and future work](HORIZONS/README.md)",
+            "Start here: [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md)",
             "",
             "## I want help or recovery",
             "",
@@ -1935,7 +2020,7 @@ def _generate_root(
             if line and line not in ordered_ctas:
                 ordered_ctas.append(line)
     extra_routes = [
-        "- [Onramp](ONRAMP.md)",
+        "- [First session guide](ONRAMP.md)",
         "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
@@ -1958,7 +2043,7 @@ def _generate_root(
         "",
         "Build a Shadowrun runner, understand why the numbers changed, and keep the table moving when the campaign gets complicated.",
         "",
-        "This repo is the public guide: start here if you want to try Chummer6, understand the preview, or see the bigger campaign tools growing around the builder.",
+        "This repo is the public guide. It is written for players and GMs first: try the current build, check what is real today, and understand how the campaign tools fit around the character builder.",
         "",
         "## Why it exists",
         "",
@@ -2000,10 +2085,13 @@ def _generate_root(
     )
     rows.extend(
         [
-            "## Start here",
+            "## Start Here",
             "",
-            "Start with [Start Here](START_HERE.md).",
-            "Move to [Onramp](ONRAMP.md), [Download](DOWNLOAD.md), [Status](STATUS.md), [What Chummer6 Is](WHAT_CHUMMER6_IS.md), and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md) when those are your next step.",
+            "If you want to try it, open [Download](DOWNLOAD.md).",
+            "If you are new or rusty, open the [first session guide](ONRAMP.md).",
+            "If you are checking claims before you trust it, open [Status](STATUS.md).",
+            "",
+            "[Start Here](START_HERE.md) keeps the same choices in one calm page.",
         ]
     )
     extra_cta_links = [
@@ -2012,7 +2100,7 @@ def _generate_root(
         if link
         not in {
             "- [Start Here](START_HERE.md)",
-            "- [Onramp](ONRAMP.md)",
+            "- [First session guide](ONRAMP.md)",
             "- [Status](STATUS.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
             "- [Download](DOWNLOAD.md)",
@@ -2034,7 +2122,7 @@ def _generate_root(
             "For support or concrete feedback, start with [Contact](CONTACT.md).",
             "",
             "The public participation door is <https://chummer.run/participate>.",
-            "The baseline path stays default, and guided contribution is optional.",
+            "Most people should just use the normal feedback and support paths. The participation page is for hands-on testing or fix follow-up.",
             "Final shipping stays behind review and release checks.",
             "",
         ]
@@ -2048,9 +2136,7 @@ def _generate_root(
                 "",
                 (
                     "Watch the current product reel: "
-                    "https://chummer.run/media/promo/chummer6-flagship-promo.mp4, "
-                    "MP4 with AAC audio. Captions are at "
-                    "https://chummer.run/media/promo/chummer6-flagship-promo.vtt."
+                    "https://chummer.run/media/promo/chummer6-flagship-promo.mp4."
                 ),
             ]
         )
@@ -2060,14 +2146,14 @@ def _generate_root(
             "## Why people care",
             "",
             "It shows why a number changed instead of hiding the math.",
-            "It gives new users a clear Onramp while staying useful for experienced players too.",
+            "It gives new users a first-session path while staying useful for experienced players too.",
             "It is being built to keep sessions recoverable when devices, updates, or connectivity drift.",
             "Campaign layers are designed to expand the table story without replacing GM or rules authority.",
             "",
             "## Campaign tools",
             "",
-            "Use [Parts index](PARTS/README.md) when you want the full structure.",
-            "Use [Campaign tools](HORIZONS/README.md) for longer-running campaign lanes and what is live versus still emerging.",
+            "Use [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md) for normal campaign-facing features.",
+            "Use [Campaign tools](HORIZONS/README.md) when you want the deeper split between product areas, expansion bets, and folded-in infrastructure.",
         ]
     )
 
@@ -2251,6 +2337,90 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
     _write(out_dir / "HELP.md", "\n".join(rows))
 
 
+def _generate_how_can_i_help(out_dir: Path) -> None:
+    rows = [
+        _front_matter("How Can I Help?", "products/chummer/PUBLIC_HELP_COPY.md"),
+        "# How Can I Help?",
+        "",
+        "Start with the route that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.",
+        "",
+        "## Something broke",
+        "",
+        "- File a public issue when the bug is safe to discuss in public.",
+        "- Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.",
+        "- Tell us what you expected, what happened, and what version or page you were using.",
+        "",
+        "## Something was confusing",
+        "",
+        "- Flag the exact page, sentence, screenshot, or download step that lost you.",
+        "- Say what you were trying to do in plain language.",
+        "- If you came from Chummer5a, tell us which old habit did not map cleanly.",
+        "",
+        "## You have an idea",
+        "",
+        "- Feature requests are welcome when they describe a real table problem.",
+        "- Short examples help more than broad roadmap wishes.",
+        "- Public ideas are public; keep private campaign material out of them.",
+        "",
+        "## You want to help test a fix",
+        "",
+        "Use the participation page when you want to do hands-on testing or focused follow-up:",
+        "",
+        "- [Open the public participation page](https://chummer.run/participate)",
+        "- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)",
+        "",
+        "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change shipped until it lands in a real release.",
+        "",
+        "## Good reports",
+        "",
+        "A good report usually has:",
+        "",
+        "- what you were trying to do",
+        "- what happened instead",
+        "- the page, build, or operating system",
+        "- a screenshot if it helps",
+        "- no private logs or copyrighted rules text in public",
+        "",
+    ]
+    _write(out_dir / "HOW_CAN_I_HELP.md", "\n".join(rows))
+
+
+def _generate_where_to_go_deeper(out_dir: Path) -> None:
+    rows = [
+        _front_matter("Where To Go Deeper", "products/chummer/PUBLIC_GUIDE_POLICY.md"),
+        "# Where To Go Deeper",
+        "",
+        "Use this page when the quick guide is no longer enough.",
+        "",
+        "## I want the product answer",
+        "",
+        "Start with:",
+        "",
+        "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+        "- [Status](STATUS.md)",
+        "- [Download](DOWNLOAD.md)",
+        "- [Help](HELP.md)",
+        "",
+        "These are the right pages for most players and GMs.",
+        "",
+        "## I want the campaign tools",
+        "",
+        "Open [Campaign tools](HORIZONS/README.md) when you want to understand the larger table story: ALICE, Origin Dossier, Table Pulse, NEXUS-PAN, and the expansion ideas around them.",
+        "",
+        "## I want to report or improve something",
+        "",
+        "Use [How Can I Help?](HOW_CAN_I_HELP.md) for bugs, confusing docs, feature requests, and hands-on testing.",
+        "",
+        "## I want the technical details",
+        "",
+        "The software repos and design notes are for implementation details, long-range tradeoffs, and release proof. Most people never need them to install Chummer6, try it, or report a problem.",
+        "",
+        "Come back to this public guide when you want the shorter user-facing version again.",
+        "",
+    ]
+    _write(out_dir / "WHERE_TO_GO_DEEPER.md", "\n".join(rows))
+
+
 def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
     rows = [
         _front_matter("FAQ", "products/chummer/PUBLIC_FAQ_REGISTRY.yaml"),
@@ -2313,7 +2483,7 @@ def _generate_download(
         ),
         "macos": (
             "macOS",
-            "There is no public macOS installer today. Only archive previews are posted.",
+            "macOS currently has archive previews only. Use the posted guidance before treating it as your main install path.",
         ),
     }
     section_heading = "Current release download" if _release_is_published(status) else "Current preview shelf"
@@ -2582,28 +2752,79 @@ def _generate_horizon_pages(
         for horizon in enabled
         if _slug(str(horizon.get("id") or "").strip()) != "black-ledger"
     ]
+    core_lanes = [horizon for horizon in enabled if _public_guide_lane_group(horizon) == "core_product"]
+    expansion_lanes = [horizon for horizon in enabled if _public_guide_lane_group(horizon) == "expansion_bet"]
+    folded_lanes = [horizon for horizon in enabled if _public_guide_lane_group(horizon) == "folded_into_product"]
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
         _front_matter("Campaign tools", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Campaign tools",
         "",
-        "Use this index when you want the larger campaign picture: living-world tools, dossiers, table control, publishing, and long-term ideas around the character builder.",
-        "Some pages describe early slices that already exist. Others are future-facing. Start with the current status when you need the exact availability picture.",
+        "Use this page when the character builder is no longer the whole question.",
+        "",
+        "Chummer6 has a normal product story first: build the runner, explain the rules, keep the session recoverable, and carry the campaign forward. The pages below are grouped so mature product areas do not read like a random shelf of future brands.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
+
+    def append_index_group(title: str, summary: str, items: list[dict[str, object]]) -> None:
+        if not items:
+            return
+        index_rows.extend(["", f"## {title}", "", summary, ""])
+        for row in items:
+            horizon_id = str(row.get("id") or "").strip()
+            label = str(row.get("title") or horizon_id).strip() or horizon_id
+            promise = _public_copy(str(row.get("wow_promise") or row.get("pain_label") or "").strip())
+            if promise:
+                index_rows.extend([f"### {label}", "", promise, "", f"Open [{label}]({_slug(horizon_id)}.md).", ""])
+            else:
+                index_rows.extend([f"### {label}", "", f"Open [{label}]({_slug(horizon_id)}.md).", ""])
+
+    append_index_group(
+        "Part of the product story",
+        "These should feel like ordinary Chummer6 value around the builder and campaign layer, not like distant promises or a brand shelf.",
+        core_lanes,
+    )
+    append_index_group(
+        "Expansion bets",
+        "These are bigger campaign ideas. They are useful to understand, but they should not distract from downloading Chummer and using the character builder.",
+        expansion_lanes,
+    )
+    if folded_lanes:
+        folded_names = [
+            str(row.get("title") or row.get("id") or "").strip()
+            for row in folded_lanes
+            if str(row.get("title") or row.get("id") or "").strip()
+        ]
+        index_rows.extend(
+            [
+                "",
+                "## Folded back into the app",
+                "",
+                "Some ideas are better as quiet support for the workbench or campaign layer than as public destinations.",
+                "",
+                f"Today that means: {_english_join(folded_names)}.",
+            ]
+        )
 
     for horizon in enabled:
         horizon_id = str(horizon.get("id") or "").strip()
         title = str(horizon.get("title") or horizon_id).strip() or horizon_id
         slug = _slug(horizon_id)
-        index_rows.append(f"- [{title}]({slug}.md)")
 
         doc_path = out_dir / "HORIZONS" / f"{slug}.md"
+        lane_group = _public_guide_lane_group(horizon)
+        group_label = {
+            "core_product": "Part of the product story",
+            "expansion_bet": "Expansion bet",
+            "folded_into_product": "Folded back into the app",
+        }.get(lane_group, "Campaign tool")
         rows = [
             _front_matter(title, "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
+            "",
+            f"Guide fit: {group_label}.",
             "",
         ]
         wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
@@ -2613,6 +2834,12 @@ def _generate_horizon_pages(
         if slug == "black-ledger":
             horizon_alt = "BLACK LEDGER city map with augmented-reality overlays"
         rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=horizon_alt))
+
+        override_paragraphs = PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES.get(slug)
+        if override_paragraphs:
+            rows.extend(["## How to use this", ""])
+            for paragraph in override_paragraphs:
+                rows.extend([_public_copy(paragraph), ""])
 
         pain_label = _public_copy(str(horizon.get("pain_label") or "").strip())
         table_scene = _public_copy(str(horizon.get("table_scene") or "").strip())
@@ -2629,15 +2856,11 @@ def _generate_horizon_pages(
             next_state = _public_horizon_stage_label(build_path.get("next_state"))
             rows.extend(["", "## Current stage", ""])
             if current_state:
-                rows.append(f"- Today: {current_state}.")
+                rows.extend([f"Today: {current_state}.", ""])
             if next_state:
-                rows.append(f"- Next: {next_state}.")
+                rows.extend([f"Next: {next_state}.", ""])
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
-        horizon_copy_slug = HORIZON_PUBLIC_COPY_SLUG_OVERRIDES.get(
-            slug,
-            slug,
-        )
         if canon_doc:
             canon_path = repo_root / canon_doc
             canon_text = _load_text(canon_path) if canon_path.is_file() else ""
@@ -2649,49 +2872,9 @@ def _generate_horizon_pages(
                 if canon_text
                 else []
             )
-            if slug in {"karma-forge", "black-ledger", "table-pulse", "alice", "origin-dossier"}:
-                selected_headings = None
-                selected_heading_map = None
-                embedded = (
-                    _extract_markdown_sections(
-                        canon_text,
-                        allowed_headings=None,
-                        heading_map=selected_heading_map,
-                    )
-                    if canon_text
-                    else []
-                )
-            elif horizon_copy_slug in public_horizon_copy:
-                selected_headings = None
-                selected_heading_map = None
-                embedded = list(public_horizon_copy[horizon_copy_slug])
-            else:
-                selected_headings = {
-                    "Table pain",
-                    "The problem",
-                    "Bounded product move",
-                    "What it would do",
-                    "Foundations",
-                    "What has to be true first",
-                    "Why still a horizon",
-                    "Why it is not ready yet",
-                }
-                selected_heading_map = PUBLIC_HORIZON_SECTION_TITLES
-                embedded = (
-                    _extract_markdown_sections(
-                        canon_text,
-                        allowed_headings=selected_headings,
-                        heading_map=selected_heading_map,
-                    )
-                    if canon_text
-                    else []
-                )
-            if video_sections and not any("media/horizons/" in line for line in embedded):
+            if video_sections:
                 rows.extend([""])
                 rows.extend(video_sections)
-            if embedded:
-                rows.extend([""])
-                rows.extend(embedded)
 
         _write(out_dir / "HORIZONS" / f"{slug}.md", "\n".join(rows))
 
@@ -2938,6 +3121,8 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
     _generate_status(out_dir, trust_payload, progress, release_payload)
     _generate_help(out_dir, help_copy, trust_payload, release_payload)
+    _generate_how_can_i_help(out_dir)
+    _generate_where_to_go_deeper(out_dir)
     _generate_faq(out_dir, faq_registry)
     _generate_download(out_dir, progress, release_payload, release_source, release_experience)
     _generate_contact(out_dir, trust_payload)

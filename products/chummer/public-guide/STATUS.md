@@ -5,9 +5,9 @@ This is the blunt answer on what you can use today.
 ## Current picture
 
 - Today: Current release build.
-- Published: June 19, 2026 at 0:29 UTC.
+- Published: June 19, 2026 at 0:49 UTC.
 - Release status: Published.
-- Downloads are currently live for Windows and Linux.
+- The current public shelf includes Windows and Linux downloads.
 - Promoted installer coverage is visible on every promised desktop platform.
 - Current public desktop scope covers Linux x64 and Windows x64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.
 - Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.

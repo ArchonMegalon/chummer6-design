@@ -38,7 +38,7 @@ Fix:
 - delete the obsolete horizon source file
 - add `ONRAMP_STARTER_LANE.md`
 - generate top-level `ONRAMP.md`
-- route new/rusty users to Onramp from `START_HERE.md` and `README.md`
+- route new/rusty users to a first-session guide from `START_HERE.md` and `README.md`
 
 ### 3. README answered audit questions before user questions
 
@@ -58,8 +58,8 @@ The Horizons index said all listed pages were future ideas, while several entrie
 
 Fix:
 
-- retitle the index as `Worlds and future work`
-- say some pages are early slices and some are future-facing
+- retitle the index as `Campaign tools`
+- split normal product areas, expansion bets, and folded-in infrastructure
 - keep exact availability on `STATUS.md`
 
 ## P1 Findings
@@ -71,8 +71,8 @@ The first user question is often "I am new or rusty, what do I do?" It should no
 Fix:
 
 - generate `START_HERE.md` from design
-- lead with "I am new or rusty"
-- route to top-level Onramp
+- lead with "I want to try Chummer"
+- route new or rusty users to the first-session guide without making starter help sound like a product lane
 
 ### 6. "Wow" was present but not sequenced
 
@@ -80,8 +80,8 @@ The repo had powerful surfaces: ALICE, Origin Dossier, Living World, Runner Pass
 
 Fix:
 
-- README path order: Start Here, Onramp, Download, Status, What Chummer6 Is, migration, live campaign surfaces, help, worlds
-- "Worlds and future work" becomes the deeper path, not the first frame
+- README path order: Download, first-session guide, Status, Start Here, What Chummer6 Is, migration, live campaign surfaces, help, campaign tools
+- "Campaign tools" becomes the deeper path for product areas and expansion bets, not the first frame
 
 ### 7. Internal checks were necessary but visually too loud
 
@@ -113,10 +113,10 @@ Fix:
 - No `HORIZONS/onramp.md`.
 - README starts with `# Chummer6`.
 - README links `START_HERE.md`, `ONRAMP.md`, `DOWNLOAD.md`, `STATUS.md`, and `HORIZONS/README.md`.
-- `START_HERE.md` leads with the new/rusty user path.
+- `START_HERE.md` leads with the try-it-now path and keeps the first-session guide one click away.
 - `ONRAMP.md` is a practical first-run/recovery page and does not appear under `HORIZONS/`.
 - Onramp art is emitted under `assets/pages/`, not `assets/horizons/`.
-- Horizons index uses mixed availability wording, not "not features you can use today."
+- Campaign tools index splits product areas, expansion bets, and folded-in infrastructure instead of flattening them into one horizon list.
 
 ## 2026-06-18 Humanized Regeneration Follow-Up
 

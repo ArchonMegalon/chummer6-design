@@ -34,8 +34,8 @@ assets:
     panel_contrast: 1.12
     panel_sharpness: 1.12
     panel_overlay_alpha: 4
-    editorial_finish_sigma: 6
-    editorial_finish_opacity: 8
+    editorial_finish_sigma: 0
+    editorial_finish_opacity: 0
     motif: clinic_ticks
     scene_labels:
       - text: NERVE SYNC
@@ -78,8 +78,8 @@ assets:
     panel_contrast: 1.16
     panel_sharpness: 1.12
     panel_overlay_alpha: 18
-    editorial_finish_sigma: 6
-    editorial_finish_opacity: 10
+    editorial_finish_sigma: 0
+    editorial_finish_opacity: 0
     motif: hazard_arcs
   assets/horizons/nexus-pan.png:
     kind: feature_cover
@@ -124,8 +124,8 @@ assets:
     panel_contrast: 1.16
     panel_sharpness: 1.12
     panel_overlay_alpha: 10
-    editorial_finish_sigma: 6
-    editorial_finish_opacity: 10
+    editorial_finish_sigma: 0
+    editorial_finish_opacity: 0
     motif: forge_lattice
   assets/horizons/jackpoint.png:
     kind: feature_cover
@@ -296,8 +296,8 @@ assets:
     panel_contrast: 1.08
     panel_sharpness: 1.00
     panel_overlay_alpha: 14
-    editorial_finish_sigma: 4
-    editorial_finish_opacity: 8
+    editorial_finish_sigma: 0
+    editorial_finish_opacity: 0
     copy_width: 474
     motif: route_grid
   assets/parts/design.png:

@@ -1,8 +1,16 @@
 # NEXUS-PAN
 
+Guide fit: Part of the product story.
+
 Shared state survives device churn without the table losing trust.
 
 ![NEXUS-PAN feature art](../assets/horizons/nexus-pan.png)
+
+## How to use this
+
+Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees stale state, or a remote player returns mid-scene.
+
+The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and a calm route back into the session.
 
 ## Why this matters
 
@@ -13,24 +21,12 @@ Picture the scene: A player reconnects in the middle of a session and gets back 
 
 ## Current stage
 
-- Today: You can try the first real slice today.
-- Next: Make the coaching deeper without loosening the boundaries.
+Today: You can try the first real slice today.
+
+Next: Make the coaching deeper without loosening the boundaries.
+
 
 ## Explanation videos
 
-* [Watch the NEXUS-PAN 90-second deep dive](https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4) - MP4 with AAC audio. [Captions](https://chummer.run/media/horizons/nexus-pan-90s-deepdive.vtt).
-* [Watch the NEXUS-PAN epic reel](https://chummer.run/media/horizons/nexus-pan-epic-90s.mp4) - MP4 with AAC audio. [Captions](https://chummer.run/media/horizons/nexus-pan-epic-90s.vtt).
-
-
-## The problem
-
-When phones, tablets, or laptops drift apart during play, the whole table stops trusting what is on screen.
-
-## What has to be true first
-
-* durable session state
-* reliable sync bundles
-* visible reconnect explanations
-* in-session reliability
-* offline-capable local state
-* explicit stale, pending, and conflicted state
+* [Watch the NEXUS-PAN 90-second deep dive](https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/nexus-pan-90s-deepdive.vtt).
+* [Watch the NEXUS-PAN epic reel](https://chummer.run/media/horizons/nexus-pan-epic-90s.mp4). [Captions](https://chummer.run/media/horizons/nexus-pan-epic-90s.vtt).

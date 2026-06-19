@@ -2,7 +2,7 @@
 
 ## Public feedback lane
 
-If you want to help without touching premium participation at all, use the public front door:
+If you want to help, start with the public front door:
 
 * file a public bug
 * send lightweight product feedback
@@ -75,33 +75,33 @@ The user-facing promise is:
 * we tell you when the fix is actually available on your channel
 * we may ask later whether that solved it
 
-## Guided contribution lane
+## Helping with fixes
 
-Guided contribution is the bounded "I want to help with real execution" lane.
+Some people want to do more than report an issue. The participation page is the place for hands-on testing, focused feedback, and fix follow-up.
 
 It is:
 
 * opt-in
 * temporary
-* additive on top of the free baseline
+* additive on top of normal feedback
 * still subject to review before anything lands
 
-Public copy should prefer `participate` and `guided contribution`.
+Public copy should prefer plain phrases such as `help test a fix`, `send feedback`, and `participate`.
 Operator phrasing belongs behind the scenes.
 
 ## Privacy and review safety
 
 Public participation copy must say all of this plainly:
 
-* the cheap baseline remains the default path
-* guided contribution is not a merge bypass
+* normal feedback remains the default path
+* participation is not a merge bypass
 * final landing still goes through review
 * people can stop or revoke later
 * private recognition settings remain valid even when badges or leaderboards exist
 
 ## Free later note
 
-Some expensive future lanes may begin as **guided previews** while approvals, compatibility, editorial work, provenance, or support cost remain unusually heavy.
+Some expensive future features may begin as narrow previews while approvals, compatibility, editorial work, provenance, or support cost remain unusually heavy.
 
 That is not the same thing as a permanent paywall.
 When those lanes become cheaper and safer to operate broadly, the long-run intent is wider access rather than keeping the interesting parts locked forever.

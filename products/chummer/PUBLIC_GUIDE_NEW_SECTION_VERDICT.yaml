@@ -99,7 +99,7 @@ sections:
     notes: >
       Signal Deck remains design canon for command posture, but it should not be projected as a
       standalone public guide page until the product has a clearer human-facing explanation, public
-      route proof, and naming that does not read like internal AI harness scaffolding.
+      route proof, and naming that does not read like internal machine scaffolding.
   - id: runner-passport
     title: Runner Passport
     public_guide_verdict: public_route_live

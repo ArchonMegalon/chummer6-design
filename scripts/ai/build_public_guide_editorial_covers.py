@@ -239,6 +239,8 @@ def _apply_editorial_finish(image: Image.Image, *, sigma: float = 0.0, opacity: 
     vignette_layer = Image.new("RGBA", base.size, (3, 6, 10, 0))
     vignette_layer.putalpha(vignette)
     combined = Image.alpha_composite(base, vignette_layer)
+    sigma = min(max(0.0, sigma), 2.0)
+    opacity = min(max(0, opacity), 3)
     if sigma > 0.0 and opacity > 0:
         noise = Image.effect_noise(base.size, sigma).convert("L")
         noise = ImageOps.autocontrast(noise)

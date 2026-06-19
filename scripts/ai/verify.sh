@@ -416,7 +416,7 @@ rg -n '(release|proof|verification|published|SHA256)' "$repo_root/products/chumm
 rg -n '^# Contact$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
 rg -n '^## Pick the case type that matches the problem$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
 rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/dev/null
-rg -n '^# Horizons$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
+rg -n '^# Campaign tools$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
 rg -n '^# NEXUS-PAN$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^## Current stage$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^## Why this matters$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null

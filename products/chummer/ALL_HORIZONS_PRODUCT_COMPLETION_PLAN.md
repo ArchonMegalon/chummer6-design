@@ -1,6 +1,6 @@
-# All Horizons Product Completion Plan
+# Product Area And Expansion Route Completion Plan
 
-This plan closes horizon fog by forcing every horizon into one of four states:
+This plan closes product-story fog by forcing every visible lane into one of four states:
 
 - shipped MVP
 - route-visible preview with proof
@@ -9,7 +9,7 @@ This plan closes horizon fog by forcing every horizon into one of four states:
 
 ## Current closure rule
 
-A horizon is only considered active when it has:
+A lane is only considered active when it has:
 
 - a named route or route family
 - bounded public copy
@@ -36,4 +36,4 @@ A horizon is only considered active when it has:
 
 ## Product rule
 
-No horizon may remain in roadmap copy alone. If the route is not real, the horizon must be parked or deleted from public claims.
+No lane may remain in roadmap copy alone. If the route is not real, it must be parked or deleted from public claims.

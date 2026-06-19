@@ -23,7 +23,7 @@ This page is for Chummer5a users who want the blunt answer: what still feels fam
 
 ## What is still rough
 
-- Downloads are currently live for Windows and Linux.
+- The current public shelf includes Windows and Linux downloads.
 - Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish.
 - Posted proof is scoped to the current files and flows you can inspect today; it is not a blanket flagship claim.
 - It should still be read as a serious preview, not a finished no-step-back replacement yet.

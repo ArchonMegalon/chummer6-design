@@ -26,15 +26,15 @@ Start with [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Status](STATUS.md), th
 
 ### How do I report something?
 
-Start with bug reports, documentation feedback, and feature requests. If you want to help more directly, there is also an optional guided contribution path.
+Start with a bug report, documentation note, or feature request. If you want to help test or shape a fix, use the participation page.
 
-### What is guided contribution?
+### Can I help with fixes or testing?
 
-Guided contribution is an optional hands-on path for people who want to help more directly. It does not replace normal feedback or bug reports.
+Yes. The participation page explains hands-on help for people who want to do more than leave feedback. It does not replace normal bug reports.
 
-### Do I need to join guided contribution to help?
+### Do I need to join anything to help?
 
-No. Normal bug reports, documentation feedback, and feature requests still matter. Guided contribution is optional.
+No. Normal bug reports, documentation feedback, and feature requests still matter.
 
 ### Should I use the public issue tracker for a crash?
 
@@ -44,7 +44,7 @@ Use the in-product private crash path when logs or diagnostics are involved. Use
 
 Because some parts are good enough to try before every platform, install flow, and support path is equally polished.
 
-### Will guided-preview access open wider later?
+### Will preview access open wider later?
 
 That is the goal. Early access may stay narrow while support cost, polish work, or approvals are still unusually high.
 

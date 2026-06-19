@@ -19,10 +19,10 @@
   "primary_head": "Chummer.Avalonia",
   "proof_scope_line": "Public pages focus on the builds, platforms, and workflows a player can actually try today; downloads remain the primary route for trying Chummer.",
   "public_download_authority": "https://chummer.run/downloads",
-  "published_at": "June 19, 2026 at 0:29 UTC",
+  "published_at": "June 19, 2026 at 0:49 UTC",
   "quality_gap_line": "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.",
   "release_status": "Published",
   "release_status_slug": "published",
   "release_verification_summary": "Passed for installs and recovery, campaign session recovery, and support follow-up.",
-  "shelf_truth_line": "Downloads are currently live for Windows and Linux."
+  "shelf_truth_line": "The current public shelf includes Windows and Linux downloads."
 }

@@ -25,20 +25,20 @@ sections:
     entries:
       - question: How do I report something?
         required: true
-        answer: Start with bug reports, documentation feedback, and feature requests. If you want to help more directly, there is also an optional guided contribution path.
-      - question: What is guided contribution?
+        answer: Start with a bug report, documentation note, or feature request. If you want to help test or shape a fix, use the participation page.
+      - question: Can I help with fixes or testing?
         required: true
-        answer: Guided contribution is an optional hands-on path for people who want to help more directly. It does not replace normal feedback or bug reports.
-      - question: Do I need to join guided contribution to help?
+        answer: Yes. The participation page explains hands-on help for people who want to do more than leave feedback. It does not replace normal bug reports.
+      - question: Do I need to join anything to help?
         required: true
-        answer: No. Normal bug reports, documentation feedback, and feature requests still matter. Guided contribution is optional.
+        answer: No. Normal bug reports, documentation feedback, and feature requests still matter.
       - question: Should I use the public issue tracker for a crash?
         required: true
         answer: Use the in-product private crash path when logs or diagnostics are involved. Use public issues for bugs that are safe to discuss in public.
       - question: Why are some things preview-only?
         required: true
         answer: Because some parts are good enough to try before every platform, install flow, and support path is equally polished.
-      - question: Will guided-preview access open wider later?
+      - question: Will preview access open wider later?
         required: true
         answer: That is the goal. Early access may stay narrow while support cost, polish work, or approvals are still unusually high.
       - question: Can I participate privately?

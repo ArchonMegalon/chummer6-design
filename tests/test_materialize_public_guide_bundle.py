@@ -52,7 +52,7 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
         "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, "
         "and carry the campaign forward."
     ) in readme
-    assert readme.count("[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)") == 1
+    assert "[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)" not in readme
     assert "Open the Black Ledger command map" not in readme
     assert "Black Ledger Newsroom" not in readme
 
@@ -298,8 +298,9 @@ def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
 
     start_here = (out_dir / "START_HERE.md").read_text(encoding="utf-8")
 
-    assert "## I am new or rusty" in start_here
-    assert "Start here: [Onramp](ONRAMP.md)" in start_here
+    assert "## I am new, rusty, or coming back from Chummer5a" in start_here
+    assert "Open the [first session guide](ONRAMP.md)." in start_here
+    assert "not a separate product lane" in start_here
 
 
 def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_path: Path) -> None:
@@ -330,7 +331,7 @@ def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: P
     assert "Origin Dossier" in alice
     assert "blank-state build help" in alice
     assert "GM allowance and requirement notes" in alice
-    assert "voice-selection controls" in alice
+    assert "voice-selection controls" in alice.lower()
     assert "shipped mvp" not in alice.lower()
 
 
@@ -344,6 +345,6 @@ def test_generate_bundle_carries_horizon_explanation_videos(tmp_path: Path) -> N
 
     assert "## Explanation video" in runsite
     assert "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4" in runsite
-    assert "MP4 with AAC audio" in runsite
+    assert "MP4 with AAC audio" not in runsite
     assert "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4" in community
     assert "https://chummer.run/media/horizons/nexus-pan-epic-90s.mp4" in nexus

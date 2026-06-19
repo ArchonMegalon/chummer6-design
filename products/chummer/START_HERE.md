@@ -1,32 +1,25 @@
 # Start here
 
-If you are new, rusty, or just coming back, do not read everything first. Open one page and do the next action.
+Do not read the repo like a manual. Pick the situation that matches you and take the next useful step.
 
-## I am new or rusty
+## I want to try Chummer
 
-Start here: [Onramp](ONRAMP.md). It gets you from “I need help” to “I’m in a useful table state” with minimal friction.
+Open [Download](DOWNLOAD.md), then use [Status](STATUS.md) if you want the current truth before you install.
 
-## I want to try it now
+## I am new, rusty, or coming back from Chummer5a
 
-If your goal is a working build, jump to [Download](DOWNLOAD.md).
+Open the [first session guide](ONRAMP.md). It is starter help, not a separate product lane.
 
-## I need to know what is live today
+If you already know Chummer5a and want the shorter bridge, use [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).
 
-If you want the truth on what you can use right now, start with [Status](STATUS.md).
+## I want to understand the product
 
-## I want to understand what this version is
+Open [What Chummer6 Is](WHAT_CHUMMER6_IS.md). It explains the builder, rules explanation, recovery, and campaign layer without making you read every deeper note first.
 
-If you want one page that explains how this edition is different, open [What Chummer6 Is](WHAT_CHUMMER6_IS.md).
+## I care about campaign play
 
-## I want the campaign layer
+Start with [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md). After that, use [Campaign tools](HORIZONS/README.md) for the longer-running campaign ideas and expansion bets.
 
-When the core build flow is steady, continue to [Campaign tools](HORIZONS/README.md).
+## Something is blocking me
 
-## I am blocked
-
-If installation, updates, or sign-in stops you, open [Help](HELP.md).
-
-## I want to report an issue or help improve the project
-
-For concrete feedback, use [Contact](CONTACT.md).
-If you want to contribute directly, use the participation link from the current public site.
+Open [Help](HELP.md) for install, update, sign-in, and recovery issues. Use [Contact](CONTACT.md) when you have a concrete report or feedback.

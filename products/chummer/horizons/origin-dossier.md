@@ -1,5 +1,9 @@
 # ORIGIN DOSSIER
 
+## Deep dive
+
+[Open the origin dossier deep dive](https://chummer.run/media/horizons/origin-dossier-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/origin-dossier-90s-deepdive.vtt).
+
 ## The problem
 
 A runner can be legal and still feel unfinished.
