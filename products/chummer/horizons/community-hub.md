@@ -2,7 +2,7 @@
 
 ## Explanation video
 
-[Watch the COMMUNITY HUB 90-second deep dive](https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/community-hub-90s-deepdive.vtt).
+[Watch the COMMUNITY HUB 90-second deep dive](https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4).
 
 ## The problem
 

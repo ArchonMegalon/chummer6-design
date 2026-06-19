@@ -2,7 +2,7 @@
 
 ## Deep dive
 
-[Open the origin dossier deep dive](https://chummer.run/media/horizons/origin-dossier-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/origin-dossier-90s-deepdive.vtt).
+[Watch Origin Dossier: The Name She Chose](https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4).
 
 ## The problem
 

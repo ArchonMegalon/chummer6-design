@@ -90,8 +90,9 @@ PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
     "origin-dossier": (
         "Open Origin Dossier when a legal sheet still feels unfinished as a person. It turns an accepted origin story into "
         "contacts, debts, enemies, scars, secrets, portraits, narration, and things the table can actually use later.",
-        "If the player asks for audio, Chummer can hand off a character-scoped audiobook request. It must not rewrite the "
-        "sheet, hand the desktop client a global Audiobookshelf login, or let a render tool decide who the character is.",
+        "If the player asks for audio, the accepted origin can become a private audiobook for that runner through an "
+        "EA-issued player link. It must never rewrite the sheet, hand the desktop client a global Audiobookshelf login, "
+        "or let a render tool decide who the character is.",
     ),
     "nexus-pan": (
         "Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees "
@@ -120,6 +121,18 @@ PUBLIC_GUIDE_DISPLAY_TITLES = {
     "run-control": "Run Control",
     "runbook-press": "Runbook Press",
     "runsite": "Runsite",
+}
+PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
+    "alice": "https://chummer.run/media/horizons/alice-90s-deepdive.mp4",
+    "black-ledger": "https://chummer.run/media/horizons/black-ledger-90s-deepdive.mp4",
+    "community-hub": "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4",
+    "jackpoint": "https://chummer.run/media/horizons/jackpoint-90s-deepdive.mp4",
+    "karma-forge": "https://chummer.run/media/horizons/karma-forge-90s-deepdive.mp4",
+    "nexus-pan": "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4",
+    "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4",
+    "runbook-press": "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4",
+    "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4",
+    "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4",
 }
 PUBLIC_GUIDE_HORIZON_DETAIL_NOTES = {
     "community-hub": (
@@ -677,6 +690,11 @@ def _copy_existing_derivative(
         candidates.append(derivative_fallback_root / derivative_relpath)
     for candidate in candidates:
         if candidate.is_file():
+            try:
+                if candidate.resolve() == derivative_path.resolve():
+                    continue
+            except OSError:
+                continue
             derivative_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(candidate, derivative_path)
             return True
@@ -728,12 +746,20 @@ def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> s
     return relative.replace(os.sep, "/")
 
 
-def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str) -> list[str]:
+def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str, href: str = "") -> list[str]:
     if not (out_dir / asset_path).is_file():
         return []
     if not _asset_embed_allowed(out_dir=out_dir, asset_path=asset_path):
         return []
-    return [f"![{alt}]({_relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)})", ""]
+    image_src = _relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)
+    if href:
+        return [
+            f'<a href="{href}" target="_blank" rel="noopener noreferrer">',
+            f'  <img src="{image_src}" alt="{alt}" />',
+            "</a>",
+            "",
+        ]
+    return [f"![{alt}]({image_src})", ""]
 
 
 def _front_matter(title: str, source: str) -> str:
@@ -1107,6 +1133,14 @@ def _public_copy(text: str) -> str:
         ("Packet", "Bundle"),
         ("the facts came from", "what it is based on"),
         ("where the facts came from", "what it is based on"),
+        ("Watch the COMMUNITY HUB", "Watch the Community Hub"),
+        ("Watch the JACKPOINT", "Watch the Jackpoint"),
+        ("Watch the KARMA FORGE", "Watch the Karma Forge"),
+        ("Watch the RUNBOOK PRESS", "Watch the Runbook Press"),
+        ("Watch the RUNSITE", "Watch the Runsite"),
+        ("Watch the TABLE PULSE", "Watch the Table Pulse"),
+        ("Watch the ORIGIN DOSSIER", "Watch the Origin Dossier"),
+        ("Watch the BLACK LEDGER", "Watch the Black Ledger"),
         (
             "In the planning notes that shape the roadmap and the public guide.",
             "Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.",
@@ -1584,6 +1618,14 @@ def _artifact_choice_label(artifact: dict[str, object]) -> str:
     )
 
 
+def _download_link(label: str, url: str) -> str:
+    cleaned_label = " ".join(str(label or "Download").split()).strip() or "Download"
+    cleaned_url = str(url or "").strip()
+    if not cleaned_url:
+        return cleaned_label
+    return f"[{cleaned_label}]({cleaned_url})"
+
+
 def _platform_start_line(platform_label: str, artifacts: list[dict[str, object]], missing_note: str) -> str:
     if not artifacts:
         return missing_note
@@ -1990,7 +2032,7 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "## What you send",
                 "",
-                "When you are applying for an open run, joining a community game, or carrying a runner between tables, send the passport link: [chummer.run/passport](https://chummer.run/passport).",
+                "When you are applying for an open run, joining a community game, or carrying a runner between tables, send the [passport page](https://chummer.run/passport).",
                 "",
                 "## A normal example",
                 "",
@@ -2069,7 +2111,7 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "## When you use it",
                 "",
-                "Use [chummer.run/living-world](https://chummer.run/living-world) when a session leaves news, faction movement, or aftermath choices on the table and you want to keep the consequences together so the GM does not rebuild them from chat fragments.",
+                "Use the [Living World page](https://chummer.run/living-world) when a session leaves news, faction movement, or aftermath choices on the table and you want to keep the consequences together so the GM does not rebuild them from chat fragments.",
                 "",
                 "## What it gives the table",
                 "",
@@ -2106,7 +2148,7 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
         "",
         "## Where to watch",
         "",
-        "Start with the newsroom at [chummer.run/ledger/newsroom](https://chummer.run/ledger/newsroom). A sample episode lives at [chummer.run/ledger/newsroom/turn-1-newsreel](https://chummer.run/ledger/newsroom/turn-1-newsreel), with [transcript](https://chummer.run/ledger/newsroom/turn-1-newsreel/transcript) and supporting details beside it.",
+        "Start with the [Black Ledger newsroom](https://chummer.run/ledger/newsroom). A [sample episode](https://chummer.run/ledger/newsroom/turn-1-newsreel) has its transcript and supporting details beside it.",
         "",
         "## What to look for",
         "",
@@ -2253,21 +2295,24 @@ def _generate_root(
             "",
             "If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). If the issue is safe to discuss in public, the help pages point you to the GitHub issue tracker too.",
             "",
-            "If you want to help test a fix, use <https://chummer.run/participate>. Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
+            "If you want to help test a fix, use the [participation page](https://chummer.run/participate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
             "",
         ]
     )
-    hero_rows = _image_rows(doc_path=doc_path, out_dir=out_dir, asset_path="assets/hero/chummer6-hero.png", alt="Chummer6 flagship hero art")
+    hero_rows = _image_rows(
+        doc_path=doc_path,
+        out_dir=out_dir,
+        asset_path="assets/hero/chummer6-hero.png",
+        alt="Chummer6 flagship promo preview",
+        href="https://chummer.run/media/promo/chummer6-flagship-promo.mp4",
+    )
     if hero_rows:
         rows.extend(["## First contact", ""])
         rows.extend(hero_rows)
         rows.extend(
             [
                 "",
-                (
-                    "Watch [Chummer6 flagship promo](https://chummer.run/media/promo/chummer6-flagship-promo.mp4). "
-                    "[Captions](https://chummer.run/media/promo/chummer6-flagship-promo.vtt)."
-                ),
+                "[Watch the Chummer6 flagship promo](https://chummer.run/media/promo/chummer6-flagship-promo.mp4).",
             ]
         )
     rows.extend(
@@ -2522,7 +2567,7 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         "",
         "## You want to test a fix",
         "",
-        "Use the participation page when you want hands-on testing or focused follow-up: [chummer.run/participate](https://chummer.run/participate). For normal public reports, use the GitHub issue tracker: [ArchonMegalon/Chummer6 issues](https://github.com/ArchonMegalon/Chummer6/issues).",
+        "Use the [participation page](https://chummer.run/participate) when you want hands-on testing or focused follow-up. For normal public reports, use the GitHub issue tracker: [ArchonMegalon/Chummer6 issues](https://github.com/ArchonMegalon/Chummer6/issues).",
         "",
         "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change real until it lands in an actual release.",
         "",
@@ -2688,7 +2733,7 @@ def _generate_download(
             "",
             "## File details",
             "",
-            "Official client downloads start at chummer.run. Use GitHub for source code and issue discussion, not as the normal install path.",
+            "Official client downloads start on the [Chummer6 downloads page](https://chummer.run/downloads). Use GitHub for source code and issue discussion, not as the normal install path.",
         ]
     )
 
@@ -2712,7 +2757,7 @@ def _generate_download(
             if posture_line:
                 rows.append(f"- {posture_line}")
             if artifact.get("downloadUrl"):
-                rows.append(f"- Download: `{artifact['downloadUrl']}`")
+                rows.append(f"- Download: {_download_link('Download this file', str(artifact['downloadUrl']))}")
             if artifact.get("fileName"):
                 rows.append(f"- File: `{artifact['fileName']}`")
             rows.append(f"- Size: {_format_size_bytes(artifact.get('sizeBytes'))}")
@@ -2740,8 +2785,18 @@ def _generate_download(
             _bullet_lines(
                 [
                     (
-                        f"{_artifact_label_with_kind(str(item.get('platformLabel') or item.get('platform') or 'Published build').strip(), _public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact'))} via "
-                        f"`{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}`"
+                        _download_link(
+                            _artifact_label_with_kind(
+                                str(item.get("platformLabel") or item.get("platform") or "Published build").strip(),
+                                _public_artifact_kind_label(str(item.get("kind") or "artifact").strip() or "artifact"),
+                            ),
+                            str(item.get("downloadUrl") or "").strip(),
+                        )
+                        if str(item.get("downloadUrl") or "").strip()
+                        else _artifact_label_with_kind(
+                            str(item.get("platformLabel") or item.get("platform") or "Published build").strip(),
+                            _public_artifact_kind_label(str(item.get("kind") or "artifact").strip() or "artifact"),
+                        )
                     )
                     for item in artifacts
                 ]
@@ -2967,10 +3022,22 @@ def _generate_horizon_pages(
         wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
         if wow_promise:
             rows.extend([wow_promise, ""])
-        horizon_alt = f"{title} feature art"
+        horizon_alt = (
+            f"{title} video preview"
+            if PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug)
+            else f"{title} feature art"
+        )
         if slug == "black-ledger":
             horizon_alt = "BLACK LEDGER city map with augmented-reality overlays"
-        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=horizon_alt))
+        rows.extend(
+            _image_rows(
+                doc_path=doc_path,
+                out_dir=out_dir,
+                asset_path=f"assets/horizons/{slug}.png",
+                alt=horizon_alt,
+                href=PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug, ""),
+            )
+        )
 
         override_paragraphs = PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES.get(slug)
         if override_paragraphs:
