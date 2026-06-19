@@ -20,4 +20,5 @@ It does not replace the GM, reveal secrets, or run the campaign by itself.
 
 - [Runner Passport](RUNNER_PASSPORT.md)
 - [Table Pulse](HORIZONS/table-pulse.md)
-- [Aftermath workspace](/account/work#aftermath-packages)
+
+If you are signed in, the [Aftermath workspace](/account/work#aftermath-packages) is where those follow-up packages belong.

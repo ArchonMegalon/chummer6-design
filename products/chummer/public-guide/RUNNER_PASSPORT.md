@@ -6,7 +6,7 @@ It gives the organizer a clean summary of the runner, the rules environment, unr
 
 ## When you use it
 
-Use Runner Passport when you are applying for an open run, joining a community game, or carrying a runner between tables. The page lives at [chummer.run/passport](https://chummer.run/passport), but the important part is the job it does: make table approval easier without becoming a reputation score.
+Use Runner Passport when you are applying for an open run, joining a community game, or carrying a runner between tables. Try it at [chummer.run/passport](https://chummer.run/passport). The important part is the job it does: make table approval easier without becoming a reputation score.
 
 ## Example
 
@@ -26,8 +26,11 @@ When a table also uses Table Pulse, Runner Passport can carry the clean summary 
 
 ## Read next
 
+- [Table Pulse](HORIZONS/table-pulse.md)
+- [Help](HELP.md)
+
+Signed-in examples, when you have an account:
+
 - [Black Ledger notifications](/account/ledger/notifications)
 - [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)
 - [Aftermath workspace](/account/work#aftermath-packages)
-- [Table Pulse](HORIZONS/table-pulse.md)
-- [Help](HELP.md)

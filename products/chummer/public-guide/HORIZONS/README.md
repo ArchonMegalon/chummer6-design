@@ -7,74 +7,24 @@ The point is not to collect shiny feature names. The point is to make campaign w
 ![Chummer6 horizons index art](../assets/pages/horizons-index.png)
 
 
-## Part of the product story
+## Start with the campaign pieces people ask for
 
-These should feel like ordinary Chummer6 value around the builder and campaign layer, not distant promises.
+These are the ideas that should feel closest to normal Chummer6 value around the builder and campaign layer, not distant promises.
 
-### NEXUS-PAN
+[NEXUS-PAN](nexus-pan.md) keeps shared state alive when devices churn or the table moves between screens.
 
-Shared state survives device churn without the table losing trust.
+[ALICE](alice.md) gives a character idea a second look: build help, rules coach, blank-state support, and tradeoff review near the sheet.
 
-Read more: [NEXUS-PAN](nexus-pan.md).
+[ORIGIN DOSSIER](origin-dossier.md) turns an approved origin into contacts, debts, enemies, scars, portraits, narration, and later ALICE context.
 
-### ALICE
-
-Builders get clear what-if tests instead of black-box advice.
-
-Read more: [ALICE](alice.md).
-
-### ORIGIN DOSSIER
-
-The player gets approved origin canon, dossier media, and later ALICE context without letting story prose rewrite the sheet.
-
-Read more: [ORIGIN DOSSIER](origin-dossier.md).
-
-### TABLE PULSE
-
-GMs get a governed live heat-and-reaction path today and a separate private aftermath coaching path as the broader Table Pulse promise grows.
-
-Read more: [TABLE PULSE](table-pulse.md).
+[TABLE PULSE](table-pulse.md) gives GMs a live heat-and-reaction path, then keeps private aftermath coaching separate from the live table.
 
 
 ## Expansion bets
 
 These are bigger campaign ideas. Read them if you care where Chummer can go after the builder works for you.
 
-### KARMA FORGE
-
-Tables can evolve house rules without splintering into unreadable forks.
-
-Read more: [KARMA FORGE](karma-forge.md).
-
-### JACKPOINT
-
-The table gets polished short-to-medium-form dossiers, recaps, and briefings that still show where the facts came from.
-
-Read more: [JACKPOINT](jackpoint.md).
-
-### RUNSITE
-
-Mission spaces become explorable and legible before the action starts.
-
-Read more: [RUNSITE](runsite.md).
-
-### RUNBOOK PRESS
-
-Long-form publishing becomes something you can actually reuse instead of a ten-tool scramble.
-
-Read more: [RUNBOOK PRESS](runbook-press.md).
-
-### GHOSTWIRE
-
-Tables can replay, inspect, and compare what happened without forking durable session state.
-
-Read more: [GHOSTWIRE](ghostwire.md).
-
-### COMMUNITY HUB
-
-A GM opens a run, Chummer preflights the right players and rule environment, gets the table scheduled, and the world remembers the outcome.
-
-Read more: [COMMUNITY HUB](community-hub.md).
+[KARMA FORGE](karma-forge.md) is for house-rule evolution. [JACKPOINT](jackpoint.md) is for reusable dossiers, recaps, and briefings. [RUNSITE](runsite.md) is for explorable mission spaces before the action starts. [RUNBOOK PRESS](runbook-press.md) is for long-form publishing that does not turn into a ten-tool scramble. [GHOSTWIRE](ghostwire.md) is for replay and comparison. [COMMUNITY HUB](community-hub.md) is for opening runs, preflighting players, and keeping table handoff tidy.
 
 
 ## Folded back into the app

@@ -5,11 +5,4 @@ Open it when you want to see how the app, phone companion, updater, and support 
 
 ![Chummer6 parts index art](../assets/pages/parts-index.png)
 
-- [Design](design.md)
-- [Core](core.md)
-- [UI](ui.md)
-- [Mobile](mobile.md)
-- [Hub](hub.md)
-- [UI Kit](ui-kit.md)
-- [Hub Registry](hub-registry.md)
-- [Media Factory](media-factory.md)
+[Core](core.md) explains the rules engine. [UI](ui.md) and [UI Kit](ui-kit.md) explain the character workbench and its shared visual language. [Mobile](mobile.md) is the table-side companion. [Hub](hub.md) and [Hub Registry](hub-registry.md) cover sign-in, coordination, downloads, and release records. [Media Factory](media-factory.md) is where polished images, narration, and promo material belong. [Design](design.md) is the map behind all of it.

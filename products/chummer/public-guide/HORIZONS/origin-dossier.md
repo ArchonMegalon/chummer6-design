@@ -8,7 +8,9 @@ The player gets approved origin canon, dossier media, and later ALICE context wi
 
 Use Origin Dossier when a legal sheet still feels unfinished as a person. It turns an approved origin story into contacts, debts, enemies, scars, secrets, portraits, narration, and media packets that the table can review.
 
-The dossier can feed later ALICE context and optional player-scoped audiobook requests. It must not mutate the sheet, hand a desktop client global Audiobookshelf access, or let a render provider decide who the character is.
+The dossier can feed later ALICE context and optional player-scoped audiobook requests. If the player asks for audio, Chummer should create the audiobook for that character's library scope, not hand the desktop client a global Audiobookshelf login.
+
+Your GM still approves what becomes part of play. The media is there to make an origin easier to read, hear, and remember; it does not rewrite the sheet or let a render provider decide who the character is.
 
 ## Why this matters
 
@@ -19,6 +21,6 @@ For example: A player drafts a troll decker, the GM adds a clinic-favor constrai
 
 ## Can I use it now?
 
-A first usable version works today.
+Today: You can try the first real slice.
 
-Next: Make it richer, steadier, and easier to trust.
+Next: Make it richer, steadier, and easier to use at the table.

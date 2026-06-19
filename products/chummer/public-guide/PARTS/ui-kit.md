@@ -29,5 +29,5 @@ UI Kit is real enough to matter, and the next status detail is whether the rest 
 
 ## Go deeper
 
-- ../NOW/current-status.md
+- ../STATUS.md
 - ../WHERE_TO_GO_DEEPER.md

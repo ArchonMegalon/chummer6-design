@@ -66,7 +66,7 @@ No. The intended direction is that browsing runs, applying with a quickstart or 
 
 No. The intended state is that Chummer owns rules, applications, scheduling records, and world consequences, while Discord, Teams, and VTTs remain play or communication surfaces.
 
-## If you want the deeper mess
+## More detail without the rabbit hole
 
 ### Where does the deeper plan live?
 
