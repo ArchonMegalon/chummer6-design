@@ -2,7 +2,7 @@
 
 ## Explanation video
 
-[Watch the JACKPOINT 90-second deep dive](https://chummer.run/media/horizons/jackpoint-90s-deepdive.mp4).
+[Watch the JACKPOINT 90-second deep dive](https://chummer.run/media/horizons/jackpoint-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/jackpoint-90s-deepdive.vtt).
 
 ## The problem
 
