@@ -4,17 +4,24 @@
 
 Make `chummer.run` feel like a first-party flagship entrance instead of a generic software homepage.
 
+The current design target is minimalist and human-authored:
+
+- one clear product sentence
+- one obvious acquisition path
+- one restrained platform/status rail
+- no visible machinery, provider labels, proof jargon, or assistant provenance
+- no dense Black Ledger pitch on the homepage while that surface is still hardening
+
 ## Canonical sections
 
-1. Hero: `Build the runner. Run the table. Keep the ledger honest.`
-2. Core gateways: Build, Play, Packages, Karma Forge
-3. Minimal release/status/download rail
-4. Karma Forge pipeline
-5. Account continuity and support rail
-6. Participation preview and trust footer
+1. Hero: `Build the runner. Run the table. Keep the sheet honest.`
+2. Primary actions: `Stable`, `Nightly`, `Help`
+3. Platform rail: Windows, Linux, Arch/AUR when available, macOS support posture
+4. Account continuity rail: `Claim your copy` after download or first launch
+5. Quiet status/help footer
 
 Black Ledger is not a primary homepage gateway in the current public posture. Keep it
-available as a direct preview/proof route while the visual, replay, and newsroom
+available as a direct preview route while the visual, replay, newsroom, and onboarding
 experience continue to harden.
 
 ## Route ownership
@@ -26,6 +33,7 @@ experience continue to harden.
 
 ## Copy rules
 
-- Product first, proof secondary, no roadmap-overclaim
+- Product first, status secondary, no roadmap-overclaim
 - Short sentences over dense explanatory rails
-- No provider or operator naming on public surfaces
+- No provider, operator, generation, or proof naming on normal public surfaces
+- Do not explain the workflow when a better layout or label would remove the question

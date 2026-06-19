@@ -16,7 +16,7 @@ SPEC.loader.exec_module(MODULE)
 
 
 class ReleaseTruthWordingTests(unittest.TestCase):
-    def test_public_shelf_truth_line_uses_singular_missing_verb(self) -> None:
+    def test_public_shelf_truth_line_uses_minimal_missing_installer_language(self) -> None:
         self.assertEqual(
             MODULE._public_shelf_truth_line(
                 "published",
@@ -24,7 +24,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
                 ["Windows", "Linux"],
                 ["macOS"],
             ),
-            "The current public shelf includes Windows and Linux downloads; macOS still needs promoted desktop installer proof before it becomes a normal installer route.",
+            "Windows and Linux downloads are posted; macOS does not have a normal installer yet.",
         )
 
     def test_public_preview_builds_line_joins_platforms(self) -> None:
@@ -42,13 +42,13 @@ class ReleaseTruthWordingTests(unittest.TestCase):
     def test_public_missing_installer_warning_line_singular(self) -> None:
         self.assertEqual(
             MODULE._public_missing_installer_warning_line(["macOS"]),
-            "macOS remains archive-preview guidance only until installer proof is posted.",
+            "macOS has archive guidance only; there is no normal installer yet.",
         )
 
     def test_public_missing_installer_warning_line_plural(self) -> None:
         self.assertEqual(
             MODULE._public_missing_installer_warning_line(["Linux", "macOS"]),
-            "Installer routes are not yet promoted for Linux and macOS.",
+            "Linux and macOS do not have normal installers yet.",
         )
 
     def test_missing_required_platform_labels_stays_empty_for_explicit_mac_only_preview_contract(self) -> None:

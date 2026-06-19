@@ -43,6 +43,8 @@ Light and dark themes must both prove:
 - readable warning/danger tones
 - a Chummer-adjacent palette anchor instead of generic blue/productivity chrome
 - WCAG AA contrast for normal desktop text and control labels (`4.5:1` minimum) and at least `3:1` for large text, iconography, and non-text interactive state indicators
+- every text-entry surface uses the shell text-input theme rather than framework default light/dark colors
+- hover help never duplicates textbox content or creates overlapping text
 
 The current baseline is a restrained legacy-green familiarity accent, not a literal pixel clone.
 
@@ -59,6 +61,7 @@ The gate must cover not just shell chrome, but workflow-local visual familiarity
 Release-blocking audit examples:
 
 - character creation and first-save posture
+- attributes editing with visible Base, Karma, Total, and Limit state plus compact `-` / `+` steppers
 - karma-spend and post-creation advancement posture
 - critter and non-metahuman builder posture where the ruleset supports it
 - add/edit gear
@@ -140,6 +143,8 @@ The gate fails if any of the following are true:
 - required screenshot evidence is missing, corrupt, undersized, or unreadable
 - required theme contrast assertions are missing or failing
 - required familiarity tests are missing, stale, or failing
+- any promoted dialog shows unreadable light/dark color pairings
+- any textbox shows duplicate overlapping hover text
 
 ## Fleet handoff
 

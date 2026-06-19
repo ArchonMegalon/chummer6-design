@@ -391,7 +391,7 @@ def _scrub_public_markdown(content: str) -> str:
         ("receipt rails", "records"),
         ("Receipt rails", "Records"),
         ("public-safe", "safe to share"),
-        ("first-party", "Chummer-owned"),
+        ("first-party", "built-in"),
         (" lane", " area"),
         (" Lane", " Area"),
         (" rail", " path"),
@@ -1073,6 +1073,8 @@ def _public_copy(text: str) -> str:
         ("Source packet", "Source pack"),
         ("Chummer-owned", "Chummer's"),
         ("chummer-owned", "Chummer's"),
+        ("community-ledger", "account history"),
+        ("Community-ledger", "Account history"),
         ("operator", "maintainer"),
         ("Operator", "Maintainer"),
         ("proof", "check"),
@@ -1846,7 +1848,7 @@ def _extract_video_link_sections(text: str) -> list[str]:
         links = [
             _public_copy(line.strip())
             for line in section_lines
-            if "chummer.run/media/" in line and (".mp4" in line or ".vtt" in line)
+            if "chummer.run/media/" in line and ".mp4" in line and ".vtt" not in line
         ]
         if not links:
             continue

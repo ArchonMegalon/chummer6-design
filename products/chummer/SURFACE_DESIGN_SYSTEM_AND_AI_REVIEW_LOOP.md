@@ -130,6 +130,8 @@ Required:
 * keep copy short enough that the screen still works without a manual
 * hide provider, LTD, prompt, generation, and automation terms from normal users
 * disclose synthetic, automated, or provider involvement only when it materially affects consent, privacy, safety, copyright, or trust
+* provide one global `Assisted features` setting that can disable assisted generation, coach, dossier-media, and helper surfaces together
+* when assisted features are disabled, hide the related buttons and behavior rather than leaving dead controls behind
 
 Forbidden on normal user-facing surfaces:
 
@@ -137,6 +139,7 @@ Forbidden on normal user-facing surfaces:
 * provider-branded helper labels where a Chummer-owned action name is enough
 * implementation words such as prompt, webhook, callback secret, env var, source packet, proof lane, or operator receipt
 * explaining a workflow because the layout failed to make the workflow obvious
+* insulting or shaming language for users who disable assisted features
 
 Origin Dossier, ALICE, Instant Help, and publication surfaces may use assisted generation internally, but the visible experience should read like a careful product editor wrote it.
 When a humanizer loop changes copy, the original Chummer-owned truth packet remains authoritative.
@@ -161,6 +164,7 @@ Desktop install and first-run grammar must read like one product:
 
 * guided installer or in-app recovery first
 * no browser to copy a claim code manually
+* `Claim your copy` as the user-facing relationship action
 * workbench-first continuation instead of dashboard, landing, or mainframe detours
 
 Required Chummer desktop cues:
@@ -280,6 +284,13 @@ It must specify:
 * accessibility expectations
 * dark-theme expectations
 * acceptance screenshots to produce
+
+For public surfaces, the output must also specify the negative space:
+
+* no proof-wall on the homepage
+* no visible provider or generation labels
+* no Black Ledger primary pitch until that route clears its own visual and onboarding gate
+* no more text than the user needs to choose a next action
 
 ## AI review loop
 

@@ -350,6 +350,7 @@ rg -n '^# Public guide policy' "$repo_root/products/chummer/PUBLIC_GUIDE_POLICY.
 rg -n '^# ProductLift feedback, roadmap, and changelog bridge$|ProductLift may collect and project public demand|For any ProductLift item marked `shipped`' "$repo_root/products/chummer/PRODUCTLIFT_FEEDBACK_ROADMAP_BRIDGE.md" >/dev/null
 rg -n '^# Katteb public guide optimization lane$|The generated public guide must never be hand-edited|Every Katteb job must include' "$repo_root/products/chummer/KATTEB_PUBLIC_GUIDE_OPTIMIZATION_LANE.md" >/dev/null
 rg -n '^# Public site visibility and search optimization$|ClickRank may audit and recommend SEO|Do not crawl every generated path' "$repo_root/products/chummer/PUBLIC_SITE_VISIBILITY_AND_SEARCH_OPTIMIZATION.md" >/dev/null
+python3 "$repo_root/scripts/ai/validate_minimal_public_surface_design.py" >/dev/null
 rg -n '^# Public signal to canon pipeline$|Public signal is input\\. Canon is decided by Chummer\\.|For ProductLift-linked shipped work' "$repo_root/products/chummer/PUBLIC_SIGNAL_TO_CANON_PIPELINE.md" >/dev/null
 rg -n 'productlift_public_feedback|productlift_public_roadmap|productlift_changelog|katteb_public_guide_audit|clickrank_public_site_audit' "$repo_root/products/chummer/PUBLIC_FEEDBACK_AND_CONTENT_REGISTRY.yaml" >/dev/null
 rg -n 'karma_forge_house_rules|community_hub_open_runs|guide_and_docs|internal_meaning: user_available_with_closeout' "$repo_root/products/chummer/PUBLIC_FEEDBACK_TAXONOMY.yaml" >/dev/null
@@ -358,8 +359,8 @@ rg -n '^product: chummer$|^version: 1$|^parts:$|^  - id: design$|^    public_tag
 rg -n '^product: chummer$|^version: 1$|^sections:$|What is guided contribution\?|Do I need to join guided contribution to help\?|Will guided-preview access open wider later\?' "$repo_root/products/chummer/PUBLIC_FAQ_REGISTRY.yaml" >/dev/null
 rg -n '^# Public help copy$|^## Public feedback lane$|^## Guided contribution lane$|^## Privacy and review safety$|^## Free later note$' "$repo_root/products/chummer/PUBLIC_HELP_COPY.md" >/dev/null
 rg -n '^product: chummer$|^version: 1$|^target_repo: Chummer6$|^sources:$|^rules:$|^pages:$' "$repo_root/products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml" >/dev/null
-rg -n '^# Public landing policy$|product homepage, proof shelf, and invitation surface|provider names and LTD names are implementation details' "$repo_root/products/chummer/PUBLIC_LANDING_POLICY.md" >/dev/null
-rg -n '^# Public downloads policy$|^## CTA labels$|guest-readable|claim-ticket creation|installer-first' "$repo_root/products/chummer/PUBLIC_DOWNLOADS_POLICY.md" >/dev/null
+rg -n '^# Public landing policy$|download front door, and help entry|provider names and LTD names are implementation details' "$repo_root/products/chummer/PUBLIC_LANDING_POLICY.md" >/dev/null
+rg -n '^# Public downloads policy$|^## CTA labels$|guest-readable|claim-ticket creation|download shelf first' "$repo_root/products/chummer/PUBLIC_DOWNLOADS_POLICY.md" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^headline: Shadowrun rules truth, with receipts\.$|^auth_routes:$|^registered_overlays:$|/login\?next=/home|/ledger/newsroom$|/ledger/newsroom/turn-1-newsreel$|/ledger/newsroom/turn-1-newsreel/transcript$|/ledger/newsroom/turn-1-newsreel/receipts$|/login\?next=/participate/codex' "$repo_root/products/chummer/PUBLIC_LANDING_MANIFEST.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^cards:$|^    title: Publish$|^    title: Improve$|^  - id: horizon_karma_forge$|^    badge: Booster first$' "$repo_root/products/chummer/PUBLIC_FEATURE_REGISTRY.yaml" >/dev/null
 rg -n '^product: chummer$|^surface: chummer.run$|^version: 2$|mode: raster_campaign_only|landing.hero|landing.product_workflows.run' "$repo_root/products/chummer/PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml" >/dev/null
@@ -394,23 +395,23 @@ rg -n 'MetaSurvey|ApproveThis|Teable' \
 rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|DESKTOP_CLIENT_PRODUCT_CUT|DESKTOP_PLATFORM_ACCEPTANCE_MATRIX|LOCALIZATION_AND_LANGUAGE_SYSTEM|LOCALIZATION_PARITY_MATRIX|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|NEXT_12_BIGGEST_WINS_GUIDE|NEXT_12_BIGGEST_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
-rg -n '^# Chummer Public Guide$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Product promise$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## What is real now$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Start here$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^\- \[How can I help\]\(HOW_CAN_I_HELP.md\)$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Product parts$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^# Chummer6$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Start here if you just want the answer$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Why it exists$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## What should feel different$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Help and feedback$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Campaign tools$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^# Status$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
-rg -n '^## Current picture$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
+rg -n '^## The answer$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^## Start with the release page and download help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
-rg -n '^## Ask from inside Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n '^## Ask Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
-rg -n '^## Using Chummer6$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
+rg -n '^## Questions people actually ask first$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^### Can I actually use this now\?$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^# Download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## (Current release download|Current public download|Current preview shelf)$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## Current package format$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '^## Pick your file$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '^## File details$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## SHA256$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '(release|proof|verification|published|SHA256)' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^# Contact$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
@@ -418,19 +419,18 @@ rg -n '^## Pick the case type that matches the problem$' "$repo_root/products/ch
 rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/dev/null
 rg -n '^# Campaign tools$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
 rg -n '^# NEXUS-PAN$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## Current stage$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## Why this matters$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## The problem$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## What has to be true first$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
+rg -n '^## When this helps$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
+rg -n '^## The table problem$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
+rg -n '^## Can I use it\?$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 ! rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
-rg -n '^# Chummer Public Guide$' "$downstream_root/README.md" >/dev/null
-rg -n '^## What is real now$' "$downstream_root/README.md" >/dev/null
+rg -n '^# Chummer6$' "$downstream_root/README.md" >/dev/null
+rg -n '^## Start here if you just want the answer$' "$downstream_root/README.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
-rg -n '^## Current picture$' "$downstream_root/STATUS.md" >/dev/null
+rg -n '^## The answer$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^# Download$' "$downstream_root/DOWNLOAD.md" >/dev/null
-rg -n '^## (Current release download|Current public download|Current preview shelf)$' "$downstream_root/DOWNLOAD.md" >/dev/null
+rg -n '^## Pick your file$' "$downstream_root/DOWNLOAD.md" >/dev/null
 rg -n '^# How Can I Help\?$' "$downstream_root/HOW_CAN_I_HELP.md" >/dev/null
 rg -n '^# Where To Go Deeper$' "$downstream_root/WHERE_TO_GO_DEEPER.md" >/dev/null
 rg -n '^# What Chummer6 Is$' "$downstream_root/WHAT_CHUMMER6_IS.md" >/dev/null

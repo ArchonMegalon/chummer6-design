@@ -141,9 +141,11 @@ A guest install may be linked later from:
 * a settings screen
 * a Hub account page
 * a browser-to-app handoff
-* a short code or equivalent fallback
+* an online `Claim your copy` flow
 
 Linking later must not require a reinstall.
+Normal UI must not expose a manual activation ritual or ask the user to paste claim codes.
+If a browser handoff fails, the fallback is a clear online claim link or support repair path, not a code-entry ceremony.
 
 ## Client auth rule
 

@@ -2,24 +2,24 @@
 
 Do not read the repo like a manual. Pick the situation that matches you and take the next useful step.
 
-## I want to try Chummer
+## I want to try it
 
-Open [Release experience](PUBLIC_RELEASE_EXPERIENCE.yaml), then use [Auto update](DESKTOP_AUTO_UPDATE_SYSTEM.md) if you want the install and update contract before you test a build.
+Start with [Download](DOWNLOAD.md), then check [Status](STATUS.md) if you want to know what is available today.
 
 ## I am new, rusty, or coming back from Chummer5a
 
-Open [User journeys](USER_JOURNEYS.md), then use [Build and inspect a character](journeys/build-and-inspect-a-character.md) for the first real path.
+Start with the [first session guide](ONRAMP.md), then use [Help](HELP.md) when install, update, or account return gets in the way.
 
-If you already know Chummer5a and care about import, export, or custom data, use [Interop and portability](INTEROP_AND_PORTABILITY_MODEL.md).
+If you already know Chummer5a and care about migration, read [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).
 
 ## I want to understand the product
 
-Open [Vision](VISION.md). It explains the builder, rules explanation, recovery, and campaign layer without making you read every deeper note first.
+Open [What Chummer6 Is](WHAT_CHUMMER6_IS.md). This is starter help, not another grand product shelf. It exists for the finger-count problem: too many names, too many paths, and one tired reader who only needs the next good click.
 
 ## I care about campaign play
 
-Start with [Run a campaign and return](journeys/run-a-campaign-and-return.md), then use [Horizons](HORIZONS.md) and the [horizon registry](HORIZON_REGISTRY.yaml) for longer-running campaign ideas and expansion bets.
+Start with [Runner Passport](RUNNER_PASSPORT.md), [Living World](LIVING_WORLD.md), and [Campaign tools](HORIZONS/README.md).
 
 ## Something is blocking me
 
-Open [Recovery journey](journeys/recover-from-sync-conflict.md), [Release pipeline](RELEASE_PIPELINE.md), or [Product control](PRODUCT_CONTROL_AND_GOVERNOR_LOOP.md), depending on whether the blocker is user recovery, build truth, or product-governance follow-up.
+Open [Help](HELP.md) first. Use [Contact](CONTACT.md) if the problem is private, account-bound, or still unresolved.
