@@ -1,7 +1,5 @@
 # RUNSITE
 
-Guide fit: Expansion bet.
-
 Mission spaces become explorable and legible before the action starts.
 
 ![RUNSITE feature art](../assets/horizons/runsite.png)
@@ -13,11 +11,11 @@ My players still misread the space even after the briefing.
 Picture the scene: A GM sends an explorable safehouse pack with hotspots, floor plans, route overlays, and optional narration before the session.
 
 
-## Current stage
+## Does it work today?
 
-Today: Signed-in command lane is live.
+Today: Works after sign-in.
 
-Next: Make the coaching deeper without loosening the boundaries.
+Still improving: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

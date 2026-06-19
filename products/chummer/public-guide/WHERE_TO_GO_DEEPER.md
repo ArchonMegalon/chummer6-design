@@ -23,6 +23,6 @@ Use [How Can I Help?](HOW_CAN_I_HELP.md) for bugs, confusing docs, feature reque
 
 ## I want the technical details
 
-The software repos and design notes are for implementation details, long-range tradeoffs, and release proof. Most people never need them to install Chummer6, try it, or report a problem.
+The software repos and design notes are for implementation details and long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.
 
 Come back to this public guide when you want the shorter user-facing version again.

@@ -1,7 +1,5 @@
 # JACKPOINT
 
-Guide fit: Expansion bet.
-
 The table gets polished short-to-medium-form dossiers, recaps, and briefings that still show where the facts came from.
 
 ![JACKPOINT feature art](../assets/horizons/jackpoint.png)
@@ -13,11 +11,11 @@ I want dossiers, recaps, and briefings that feel good without making things up.
 Picture the scene: After a run, the GM exports a dossier-plus-recap packet with narration, evidence rooms, and share-safe previews.
 
 
-## Current stage
+## Does it work today?
 
-Today: Signed-in command lane is live.
+Today: Works after sign-in.
 
-Next: Make the coaching deeper without loosening the boundaries.
+Still improving: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

@@ -1,6 +1,6 @@
 # How Can I Help?
 
-Start with the route that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.
+Start with the page that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.
 
 ## Something broke
 

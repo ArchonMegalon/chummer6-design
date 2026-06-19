@@ -4,7 +4,7 @@
 ![Onramp starter path art](assets/pages/onramp.png)
 
 
-Onramp is the practical first-run lane for Chummer6.  
+Onramp is the practical first-run area for Chummer6.  
 It is not a horizon.
 
 Use this page when you are new, returning, or blocked.

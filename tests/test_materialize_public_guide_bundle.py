@@ -47,12 +47,10 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
 
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
 
-    assert "Chummer6 is the explainable Shadowrun campaign OS." in readme
-    assert (
-        "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, "
-        "and carry the campaign forward."
-    ) in readme
-    assert "[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)" not in readme
+    assert "simple answer first" in readme
+    assert "The older guide voice got too close to a release cockpit." in readme
+    assert "functioning fingers" in readme
+    assert readme.count("[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)") == 1
     assert "Open the Black Ledger command map" not in readme
     assert "Black Ledger Newsroom" not in readme
 
@@ -129,7 +127,7 @@ def test_materialize_public_assets_skips_missing_derivatives_when_no_fallback_ex
     assert not (out_dir / "assets" / "hero.avif").exists()
 
 
-def test_generate_root_scopes_proof_and_fallback_language(tmp_path: Path, monkeypatch) -> None:
+def test_generate_root_uses_short_user_first_release_summary(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setattr(guide, "_load_registry_status", lambda _path: "in_progress")
     monkeypatch.setattr(guide, "_current_recommended_wave", lambda: "Next 90-day product advance")
     monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
@@ -171,21 +169,17 @@ def test_generate_root_scopes_proof_and_fallback_language(tmp_path: Path, monkey
 
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
 
-    assert (
-        "Proof on the public shelf is scoped to the posted files and flows you can inspect today; "
-        "it is not a blanket flagship-complete claim."
-    ) in readme
-    assert (
-        "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved "
-        "for surfaces that independently clear the flagship acceptance bar."
-    ) in readme
+    assert "Proof on the public shelf" not in readme
+    assert "Claim boundary" not in readme
+    assert "what this covers" not in readme.lower()
+    assert "Use the downloads listed here" in readme
     assert (
         "Treat Blazor Desktop as a fallback path only when the download page or support explicitly tells you to use it."
     ) in readme
-    assert "preview with inspectable proof rather than a flagship-complete replacement" in readme
+    assert "serious preview rather than a finished Chummer5a replacement" in readme
 
 
-def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Path) -> None:
+def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path: Path) -> None:
     guide._generate_download(
         out_dir=tmp_path,
         progress={"phase_label": "Usable preview"},
@@ -237,17 +231,13 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
 
     download = (tmp_path / "DOWNLOAD.md").read_text(encoding="utf-8")
 
-    assert (
-        "Proof scope: Public proof language is scoped to the files, flows, and recent checks posted on the current shelf that a person can inspect today; "
-        "it is not a blanket flagship-grade claim."
-    ) in download
-    assert (
-        "Claim boundary: Flagship wording is reserved for surfaces that currently satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml; "
-        "preview artifacts, proof cards, captions, packet siblings, artifact-factory explainers, and fallback routes do not earn that claim by proximity."
-    ) in download
-    assert (
-        "Where an installer exists, start there. Archive packages, packet-detail artifacts, and explainer bundles are fallback, recovery, or inspection paths, not equal flagship routes."
-    ) in download
+    assert "Proof scope:" not in download
+    assert "Claim boundary:" not in download
+    assert "what this covers" not in download.lower()
+    assert "If you are on Windows or Linux, start with the Avalonia installer." in download
+    assert "That is the human answer." in download
+    assert "This build handles installs and recovery." in download
+    assert "Where an installer exists, start there. Archive packages and explainer bundles are secondary." in download
 
 
 def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> None:
@@ -300,7 +290,7 @@ def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
 
     assert "## I am new, rusty, or coming back from Chummer5a" in start_here
     assert "Open the [first session guide](ONRAMP.md)." in start_here
-    assert "not a separate product lane" in start_here
+    assert "not a separate product area" in start_here
 
 
 def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_path: Path) -> None:
@@ -331,7 +321,7 @@ def test_generate_bundle_uses_current_alice_canon_for_origin_dossier(tmp_path: P
     assert "Origin Dossier" in alice
     assert "blank-state build help" in alice
     assert "GM allowance and requirement notes" in alice
-    assert "voice-selection controls" in alice.lower()
+    assert "voice selection and origin-story audiobook handoffs" in alice.lower()
     assert "shipped mvp" not in alice.lower()
 
 

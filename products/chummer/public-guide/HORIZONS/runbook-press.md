@@ -1,7 +1,5 @@
 # RUNBOOK PRESS
 
-Guide fit: Expansion bet.
-
 Long-form publishing becomes something you can actually reuse instead of a ten-tool scramble.
 
 ![RUNBOOK PRESS feature art](../assets/horizons/runbook-press.png)
@@ -13,11 +11,11 @@ I want real primers, handbooks, and campaign books without duct-taping ten tools
 Picture the scene: A creator turns approved Chummer material into a district guide or campaign book without juggling a pile of unrelated publishing tools.
 
 
-## Current stage
+## Does it work today?
 
-Today: You can try the first real slice today.
+Today: A first usable version works today.
 
-Next: Make the slice richer, steadier, and easier to trust.
+Still improving: Make it richer, steadier, and easier to trust.
 
 
 ## Explanation video

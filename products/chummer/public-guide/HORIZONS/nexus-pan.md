@@ -1,7 +1,5 @@
 # NEXUS-PAN
 
-Guide fit: Part of the product story.
-
 Shared state survives device churn without the table losing trust.
 
 ![NEXUS-PAN feature art](../assets/horizons/nexus-pan.png)
@@ -10,7 +8,7 @@ Shared state survives device churn without the table losing trust.
 
 Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees stale state, or a remote player returns mid-scene.
 
-The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and a calm route back into the session.
+The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and a calm way back into the session.
 
 ## Why this matters
 
@@ -19,11 +17,11 @@ My devices drift and the table loses confidence.
 Picture the scene: A player reconnects in the middle of a session and gets back in step without the GM rebuilding everything by memory.
 
 
-## Current stage
+## Does it work today?
 
-Today: You can try the first real slice today.
+Today: A first usable version works today.
 
-Next: Make the coaching deeper without loosening the boundaries.
+Still improving: Make it deeper without loosening the boundaries.
 
 
 ## Explanation videos

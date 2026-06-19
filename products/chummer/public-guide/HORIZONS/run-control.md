@@ -1,8 +1,6 @@
 # RUN CONTROL
 
-Guide fit: Folded back into the app.
-
-Session board, active-scene continuity, reconnect posture, and recap return stay on one first-party control rail.
+Session board, active-scene continuity, reconnect state, and recap return stay on one Chummer-owned control path.
 
 ![RUN CONTROL feature art](../assets/horizons/run-control.png)
 
@@ -13,8 +11,8 @@ GM session control still falls back to notes, chats, and memory even when the re
 Picture the scene: A GM opens the current run, sees the active scene, the next safe action, continuity state, and recap follow-through without stitching together five tools.
 
 
-## Current stage
+## Does it work today?
 
-Today: You can try the first real slice today.
+Today: A first usable version works today.
 
-Next: Make the slice richer, steadier, and easier to trust.
+Still improving: Make it richer, steadier, and easier to trust.

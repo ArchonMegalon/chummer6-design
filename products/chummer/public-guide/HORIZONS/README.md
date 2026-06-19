@@ -1,15 +1,15 @@
 # Campaign tools
 
-Use this page when the character builder is no longer the whole question.
+Use this page when the character builder is no longer the whole question and the table starts asking, "what happens next?"
 
-Chummer6 has a normal product story first: build the runner, explain the rules, keep the session recoverable, and carry the campaign forward. The pages below are grouped so mature product areas do not read like a random shelf of future brands.
+The point is not to collect shiny feature names. The point is to make campaign work easier without burying the GM under another pile of dashboards.
 
 ![Chummer6 horizons index art](../assets/pages/horizons-index.png)
 
 
 ## Part of the product story
 
-These should feel like ordinary Chummer6 value around the builder and campaign layer, not like distant promises or a brand shelf.
+These should feel like ordinary Chummer6 value around the builder and campaign layer, not distant promises.
 
 ### NEXUS-PAN
 
@@ -19,7 +19,7 @@ Open [NEXUS-PAN](nexus-pan.md).
 
 ### ALICE
 
-Builders get clear what-if checks instead of black-box advice.
+Builders get clear what-if tests instead of black-box advice.
 
 Open [ALICE](alice.md).
 
@@ -31,14 +31,14 @@ Open [ORIGIN DOSSIER](origin-dossier.md).
 
 ### TABLE PULSE
 
-GMs get a governed live heat-and-reaction rail today and a separate private aftermath coaching rail as the broader Table Pulse promise grows.
+GMs get a governed live heat-and-reaction path today and a separate private aftermath coaching path as the broader Table Pulse promise grows.
 
 Open [TABLE PULSE](table-pulse.md).
 
 
 ## Expansion bets
 
-These are bigger campaign ideas. They are useful to understand, but they should not distract from downloading Chummer and using the character builder.
+These are bigger campaign ideas. Read them if you care where Chummer can go after the builder works for you.
 
 ### KARMA FORGE
 
@@ -66,7 +66,7 @@ Open [RUNBOOK PRESS](runbook-press.md).
 
 ### GHOSTWIRE
 
-Tables can replay, inspect, and compare what happened without forking durable session truth.
+Tables can replay, inspect, and compare what happened without forking durable session state.
 
 Open [GHOSTWIRE](ghostwire.md).
 
@@ -79,6 +79,6 @@ Open [COMMUNITY HUB](community-hub.md).
 
 ## Folded back into the app
 
-Some ideas are better as quiet support for the workbench or campaign layer than as public destinations.
+Some ideas got demoted for good reason: they work better as quiet support for the workbench or campaign layer than as public destinations. Devs are allowed to be roasted when every helper becomes a named product.
 
 Today that means: RUN CONTROL, EDITION STUDIO, LOCAL CO-PROCESSOR, and QUICKSILVER.

@@ -2,13 +2,15 @@
 
 Do not read the repo like a manual. Pick the situation that matches you and take the next useful step.
 
+The guide is trying not to hand you more bullet points than you have functioning fingers. If you only open three pages, make them [Download](DOWNLOAD.md), [Status](STATUS.md), and [Help](HELP.md).
+
 ## I want to try Chummer
 
-Open [Download](DOWNLOAD.md), then use [Status](STATUS.md) if you want the current truth before you install.
+Open [Download](DOWNLOAD.md), then use [Status](STATUS.md) if you want to know what works before you install.
 
 ## I am new, rusty, or coming back from Chummer5a
 
-Open the [first session guide](ONRAMP.md). It is starter help, not a separate product lane.
+Open the [first session guide](ONRAMP.md). It is starter help, not a separate product area.
 
 If you already know Chummer5a and want the shorter bridge, use [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).
 

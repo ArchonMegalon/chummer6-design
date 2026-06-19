@@ -25,7 +25,7 @@ Shared visual primitives keep the split from feeling like several products prete
 
 ## Current state
 
-UI Kit is real enough to matter, and the next proof is whether the rest of the product can use it instead of rebuilding the same visual pieces over and over.
+UI Kit is real enough to matter, and the next status detail is whether the rest of the product can use it instead of rebuilding the same visual pieces over and over.
 
 ## Go deeper
 

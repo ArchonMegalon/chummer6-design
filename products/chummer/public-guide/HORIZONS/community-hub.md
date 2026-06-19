@@ -1,7 +1,5 @@
 # COMMUNITY HUB
 
-Guide fit: Expansion bet.
-
 A GM opens a run, Chummer preflights the right players and rule environment, gets the table scheduled, and the world remembers the outcome.
 
 ![COMMUNITY HUB feature art](../assets/horizons/community-hub.png)
@@ -13,11 +11,11 @@ Finding a table still means juggling community rules, approvals, chats, calendar
 Picture the scene: A player finds a beginner-friendly run, applies with a legal runner or quickstart decker, gets scheduled, and the finished session changes the city.
 
 
-## Current stage
+## Does it work today?
 
-Today: Signed-in command lane is live.
+Today: Works after sign-in.
 
-Next: Make the coaching deeper without loosening the boundaries.
+Still improving: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

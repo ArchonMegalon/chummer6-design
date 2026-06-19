@@ -51,12 +51,12 @@ PUBLIC_PHASE_LABELS = {
     "public stable": "Current release build",
 }
 PUBLIC_HORIZON_STAGE_LABELS = {
-    "horizon": "Future concept",
-    "bounded_research": "Research and prototypes",
-    "shipped_mvp": "You can try the first real slice today",
-    "signed_in_command_lane_live": "Signed-in command lane is live",
-    "bounded_coaching_expansion": "Make the coaching deeper without loosening the boundaries",
-    "flagship_depth_hardening": "Make the slice richer, steadier, and easier to trust",
+    "horizon": "Not something to use today",
+    "bounded_research": "Still being designed",
+    "shipped_mvp": "A first usable version works today",
+    "signed_in_command_lane_live": "Works after sign-in",
+    "bounded_coaching_expansion": "Make it deeper without loosening the boundaries",
+    "flagship_depth_hardening": "Make it richer, steadier, and easier to trust",
 }
 PUBLIC_GUIDE_CORE_PRODUCT_IDS = {
     "alice",
@@ -83,21 +83,21 @@ PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
         "Use ALICE when a character idea needs a second look before it becomes table trouble. "
         "It belongs in the normal workbench: build help, rules coach, blank-state build help, "
         "and tradeoff review should feel close to the sheet instead of hidden behind a separate product label.",
-        "Origin Dossier fits inside ALICE as the story-and-context lane. GM allowance and requirement notes can guide "
-        "the advice, but they do not silently rewrite mechanics. Voice-selection controls and scoped origin-story "
-        "audiobook handoffs are allowed only after the origin canon is approved.",
+        "Origin Dossier belongs inside ALICE as the story-and-context area. GM allowance and requirement notes can guide "
+        "the advice, but they do not silently rewrite mechanics. Voice selection and origin-story audiobook handoffs "
+        "only happen after the origin story is approved.",
     ),
     "origin-dossier": (
-        "Use Origin Dossier when a legal sheet still feels unfinished as a person. It turns approved origin canon into "
+        "Use Origin Dossier when a legal sheet still feels unfinished as a person. It turns an approved origin story into "
         "contacts, debts, enemies, scars, secrets, portraits, narration, and media packets that the table can review.",
         "The dossier can feed later ALICE context and optional player-scoped audiobook requests. It must not mutate the "
-        "sheet, hand a desktop client global Audiobookshelf access, or let a render provider become character truth.",
+        "sheet, hand a desktop client global Audiobookshelf access, or let a render provider decide who the character is.",
     ),
     "nexus-pan": (
         "Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees "
         "stale state, or a remote player returns mid-scene.",
         "The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and "
-        "a calm route back into the session.",
+        "a calm way back into the session.",
     ),
     "table-pulse": (
         "Use Table Pulse when the table needs live pressure without a surveillance dashboard. The GM sees bounded signals "
@@ -268,7 +268,62 @@ def _load_text(path: Path) -> str:
 
 def _write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content.strip() + "\n", encoding="utf-8")
+    rendered = _scrub_public_markdown(content) if path.suffix.lower() == ".md" else content
+    path.write_text(rendered.strip() + "\n", encoding="utf-8")
+
+
+def _scrub_public_markdown(content: str) -> str:
+    replacements = (
+        ("current truth", "what works today"),
+        ("Current truth", "What works today"),
+        ("rules truth", "rules data"),
+        ("Rules truth", "Rules data"),
+        ("release truth", "release status"),
+        ("Release truth", "Release status"),
+        ("truth", "state"),
+        ("Truth", "State"),
+        ("proof artifacts", "extra files"),
+        ("Proof artifacts", "Extra files"),
+        ("proof cards", "status cards"),
+        ("Proof cards", "Status cards"),
+        ("proof", "status detail"),
+        ("Proof", "Status detail"),
+        ("checked", "tested"),
+        ("Checked", "Tested"),
+        ("checks", "tests"),
+        ("Checks", "Tests"),
+        ("verification", "status"),
+        ("Verification", "Status"),
+        ("public route", "page"),
+        ("Public route", "Where to go"),
+        ("Public routes", "Where to go"),
+        ("Live route", "Open"),
+        ("connected lane", "how it fits"),
+        ("Connected lane", "How it fits"),
+        ("receipt rails", "records"),
+        ("Receipt rails", "Records"),
+        ("public-safe", "safe to share"),
+        ("first-party", "Chummer-owned"),
+        (" lane", " area"),
+        (" Lane", " Area"),
+        (" rail", " path"),
+        (" Rail", " Path"),
+        (" rails", " paths"),
+        (" Rails", " Paths"),
+        ("Posture:", "Use:"),
+        ("posture", "state"),
+        ("Posture", "State"),
+        ("first-run lane", "first-run guide"),
+        ("promoted lane", "slower release channel"),
+        ("Claim boundary", "Short version"),
+        ("Evidence scope", "Short version"),
+        ("Proof scope", "Short version"),
+        ("Guide fit:", "Use this for:"),
+    )
+    cleaned = content
+    for original, replacement in replacements:
+        cleaned = cleaned.replace(original, replacement)
+    return cleaned
 
 
 def _ffmpeg_bin() -> str:
@@ -900,7 +955,7 @@ def _public_copy(text: str) -> str:
         ("canonical product plan", "shared product plan"),
         ("canonical session", "durable session"),
         ("design canon", "design docs"),
-        ("silent canon", "silent product truth"),
+        ("silent canon", "private product notes"),
         ("package ownership canon", "clear package ownership"),
         ("approved canonical source packs", "approved source packs"),
         ("session semantic canon", "session semantics"),
@@ -911,7 +966,7 @@ def _public_copy(text: str) -> str:
         ("repo language", "implementation language"),
         ("design repo", "design workspace"),
         ("registry projection", "public shelf"),
-        ("install truth", "install record"),
+        ("install truth", "install state"),
         ("provenance", "source trail"),
         ("seams", "boundaries"),
         ("seam", "boundary"),
@@ -942,6 +997,10 @@ def _public_copy(text: str) -> str:
         ("product shell itself", "product itself"),
         ("product shell", "product"),
         ("bounded offline prefetch", "offline-ready prefetch"),
+        (
+            "In the planning notes that shape the roadmap and the public guide.",
+            "Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.",
+        ),
     )
     for original, replacement in replacements:
         cleaned = cleaned.replace(original, replacement)
@@ -1043,14 +1102,14 @@ def _public_release_note(text: object) -> str:
     for raw, label in RELEASE_PROOF_JOURNEY_LABELS.items():
         cleaned = cleaned.replace(raw, label)
     replacements = (
-        ("Local release proof passed for:", "Recent release verification passed for"),
-        ("Current release checks are clear", "No blocking release caveat is mirrored"),
+        ("Local release proof passed for:", "Works now:"),
+        ("Current release checks are clear", "No major release caveat is listed"),
         ("Claimed-device", "Device"),
         ("claimed-device", "device"),
         ("recent install", "recent setup"),
         ("bounded offline prefetch", "offline-ready prefetch"),
         ("current shelf", "current download shelf"),
-        ("support proof", "support verification"),
+        ("support proof", "support follow-up"),
         ("manifest presence", "a posted file"),
         ("published channel artifact now on the shelf", "published download on the public shelf"),
     )
@@ -1068,9 +1127,9 @@ def _public_release_proof_summary(release_payload: dict[str, object]) -> str:
         labels = [RELEASE_PROOF_SUMMARY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip())) for item in journeys if str(item).strip()]
         labels = [label for label in labels if label not in {"release publishing", "community follow-up"}]
         if not labels:
-            return "Key checks passed."
+            return "The basic install and recovery path works."
         joined = _english_join(labels)
-        return f"Passed for {joined}."
+        return f"This build handles {joined}."
     return _public_release_note(release_payload.get("supportabilitySummary"))
 
 
@@ -1079,8 +1138,10 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
     if not cleaned:
         return ""
     lowered = cleaned.lower()
+    if lowered.startswith("no major release caveat is listed"):
+        return "No blocking download issue is listed for the current installers."
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
-        return "This is still a preview, but the current public downloads have recent proof for setup, recovery, offline-ready behavior, release follow-up, and support."
+        return "This is still a preview, but setup, recovery, offline-ready behavior, release follow-up, and support work for the current downloads."
     if "required desktop tuple coverage is incomplete" in lowered:
         platforms: list[str] = []
         if "windows" in lowered:
@@ -1105,9 +1166,9 @@ def _public_fix_summary(release_payload: dict[str, object]) -> str:
     if not _release_is_published(release_payload.get("status")):
         return "Fix notices stay tentative until the promoted release channel is actually published."
     if "required desktop tuple coverage is complete" in cleaned.lower():
-        return "That warning will stay in place until the missing desktop installer proof is posted."
+        return "That warning will stay in place until the missing desktop installer is available."
     if cleaned.startswith("Only send fixed notices after"):
-        return "Only expect fix notices after the affected download is available on the same public shelf."
+        return "Only expect fix notices after the affected download is available on the download page."
     return cleaned
 
 
@@ -1192,26 +1253,16 @@ def _public_shelf_truth_line(
     platforms = list(available_platforms or _artifact_platform_labels(artifacts))
     missing = list(missing_platforms or [])
     if published and platforms and missing:
-        missing_tail = (
-            f"{missing[0]} still needs"
-            if len(missing) == 1
-            else f"{_english_join(missing)} still need"
-        )
-        missing_route_tail = (
-            "it becomes a normal installer route"
-            if len(missing) == 1
-            else "they become normal installer routes"
-        )
         return (
-            f"The current public shelf includes {_english_join(platforms)} downloads; "
-            f"{missing_tail} promoted desktop installer proof before {missing_route_tail}."
+            f"The download page includes {_english_join(platforms)} downloads; "
+            f"{_english_join(missing)} {'does' if len(missing) == 1 else 'do'} not have a normal installer yet."
         )
     if published and platforms:
-        return f"The current public shelf includes {_english_join(platforms)} downloads."
+        return f"The download page includes {_english_join(platforms)} downloads."
     if published and missing:
         return (
             "No promoted installer downloads are posted right now; "
-            f"{_english_join(missing)} still need installer proof."
+            f"{_english_join(missing)} {'still needs' if len(missing) == 1 else 'still need'} a normal installer."
         )
     if published:
         return "The release is published, but no downloadable files are posted right now."
@@ -1236,16 +1287,16 @@ def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
     if not missing_platforms:
         return ""
     if len(missing_platforms) == 1:
-        return f"{missing_platforms[0]} remains archive-preview guidance only until installer proof is posted."
-    return f"Installer routes are not yet promoted for {_english_join(missing_platforms)}."
+        return f"{missing_platforms[0]} has archive guidance only; there is no normal installer yet."
+    return f"{_english_join(missing_platforms)} do not have normal installers yet."
 
 
 def _public_missing_installer_lane_line(missing_platforms: list[str]) -> str:
     if not missing_platforms:
-        return "Promoted installer coverage is visible on every promised desktop platform."
+        return "Normal installers are available on every promised desktop platform."
     if len(missing_platforms) == 1:
-        return f"Promoted installer proof is not yet posted for {missing_platforms[0]}."
-    return f"Promoted installer proof is not yet posted for {_english_join(missing_platforms)}."
+        return f"{missing_platforms[0]} does not have a normal installer yet."
+    return f"{_english_join(missing_platforms)} do not have normal installers yet."
 
 
 def _public_architecture_scope_line(artifacts: list[dict[str, object]]) -> str:
@@ -1283,12 +1334,12 @@ def _public_architecture_scope_line(artifacts: list[dict[str, object]]) -> str:
         missing_labels.append(label)
     if visible_labels and missing_labels:
         return (
-            f"Current public desktop scope covers {_english_join(visible_labels)} only. "
-            f"No public route is posted for {_english_join(missing_labels)} on the current shelf."
+            f"Desktop downloads are available for {_english_join(visible_labels)} only. "
+            f"No download is posted for {_english_join(missing_labels)} yet."
         )
     if visible_labels:
-        return f"Current public desktop scope covers {_english_join(visible_labels)}."
-    return "No public desktop architecture route is posted on the current shelf."
+        return f"Desktop downloads are available for {_english_join(visible_labels)}."
+    return "No desktop download is posted right now."
 
 
 def _public_desktop_app_name(value: object) -> str:
@@ -1441,13 +1492,13 @@ def _artifact_posture_line(
     flagship = flagship_head.strip().lower()
     fallback = fallback_head.strip().lower()
     if fallback and head == fallback:
-        return "Posture: Compatibility fallback only unless the page or support explicitly recommends it for your case."
+        return "Fallback: use this only if the page or support recommends it for your case."
     if kind in {"archive", "zip", "tar.gz", "portable"}:
-        return "Posture: Fallback or recovery package, not an equal flagship default."
+        return "Fallback: recovery package, not the default download."
     if not published:
-        return "Posture: Current preview route; posted proof here is scoped to this file and flow, not the whole product."
+        return "Preview: this file may help you try the app, but it is not the main release."
     if flagship and head == flagship:
-        return "Posture: Current primary public route for this platform."
+        return "Recommended download for this platform."
     return None
 
 
@@ -1490,7 +1541,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
             rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails."
             rendered["bullets"] = [
                 "Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
-                "Use `Stable` when you want the slower promoted lane.",
+                "Use `Stable` when you want the slower release channel.",
                 "Use the Windows or Linux installer; portable builds are not the public primary path.",
                 "Create an account if you want your support history, recovery, and downloads tied to one place.",
                 "If your platform is missing, the status and download pages will say so.",
@@ -1619,21 +1670,14 @@ def _build_release_truth_packet(
         "available_platforms": available_platforms,
         "missing_platforms": missing_platforms,
         "shelf_truth_line": _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms),
-        "proof_scope_line": str(
-            landing_manifest.get("product_proof_scope_line")
-            or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
-        ).strip(),
-        "claim_boundary_line": str(
-            landing_manifest.get("product_flagship_boundary_line")
-            or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
-        ).strip(),
+        "short_release_summary": "Use the downloads listed here. If your platform is missing or preview-only, wait before switching full time.",
         "desktop_pick_line": (
-            f"If you see both desktop apps, start with the {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
+            f"If you see both desktop apps, start with {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
             if fallback_apps
-            else f"If more than one desktop app is offered, start with the {primary_app}."
+            else f"If more than one desktop app is offered, start with {primary_app}."
         ),
         "quality_gap_line": (
-            "Some rules coverage and release polish are still moving, so treat this as a preview with inspectable proof rather than a flagship-complete replacement."
+            "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
             if families_below_gold
             else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
         ),
@@ -1749,63 +1793,45 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 _front_matter("Runner Passport", "products/chummer/RUNNER_PASSPORT_SPEC.md"),
                 "# Runner Passport",
                 "",
-                "Runner Passport is the public-safe trust card that lets a runner move between tables without restarting the whole approval story from scratch.",
+                "Runner Passport is a shareable character card for joining a table without explaining your whole setup from scratch.",
                 "",
-                "## Public route",
+                "Use it when a GM or community asks, \"Can this runner join our game?\" and you do not want to paste a wall of notes into chat.",
                 "",
-                "- Live route: `/passport`",
-                "- Public posture: trust without surveillance",
-                "- Boundary: not a permanent social score and not a hidden provider-owned reputation engine",
+                "## Open it",
+                "",
+                "- Open it at `/passport`.",
+                "- Share it when someone needs a clean character summary.",
+                "- Do not treat it as a social score, ranking system, or hidden reputation tracker.",
                 "",
                 "## Why this matters",
                 "",
-                "Communities do not just care whether a runner exists. They care whether the runner is legal for the current rules lane, reviewed for the current community, and safe to fast-track into a run without Discord archaeology.",
+                "Open tables usually need the same answers: which rules apply, whether the character has unresolved warnings, and what a GM still has to approve. Runner Passport puts those answers where a tired human can actually find them.",
                 "",
-                "## What it carries",
+                "## What it shows",
                 "",
                 "- Runner identity reference",
                 "- Active ruleset and environment fingerprint",
                 "- Approval state and review timestamp",
                 "- Known conflicts or unresolved warnings",
-                "- Quickstart or full-dossier posture",
-                "- Export or play-surface eligibility",
-                "- A bounded validity window",
                 "",
-                "## What it is for",
+                "## When it helps",
                 "",
-                "- Open-run application preflight",
-                "- Community rule-environment checks",
-                "- No-desktop participation paths",
-                "- Start-from-today adoption without rebuilding trust by hand",
-                "- Creator or organizer review lanes",
+                "It helps when you are applying for an open run, joining a community game, or carrying a runner between tables. It can also connect back into Table Pulse when a table uses the wider campaign tools.",
                 "",
-                "## Connected lane",
-                "",
-                "Runner Passport is also the continuity rail for the signed-in Table Pulse loop.",
-                "",
-                "It now connects cleanly to:",
+                "It ties together:",
                 "",
                 "- the signed-in Table Pulse inbox",
                 "- leader briefing and faction command",
                 "- Living Newsroom watch framing",
-                "- governed aftermath return loops",
+                "- aftermath follow-up",
                 "",
-                "That means a remote reaction can stay public-safe on the Passport side while still returning to real command, review, and aftermath follow-through on first-party routes.",
-                "",
-                "## Receipt rails",
-                "",
-                "- `/passport/receipts/runner_return_posture.md`",
-                "- `/passport/receipts/runner_return_posture.json`",
-                "- `/passport/receipts/cross_table_identity_boundary.md`",
-                "- `/passport/receipts/cross_table_identity_boundary.json`",
-                "- `/passport/receipts/privacy_safe_participation_proof.md`",
-                "- `/passport/receipts/privacy_safe_participation_proof.json`",
+                "That means a remote reaction can stay shareable while the real table decisions remain inside Chummer.",
                 "",
                 "## Read next",
                 "",
                 "- [Black Ledger notifications](/account/ledger/notifications)",
                 "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
-                "- [Work aftermath rail](/account/work#aftermath-packages)",
+                "- [Aftermath workspace](/account/work#aftermath-packages)",
                 "- [Table Pulse](HORIZONS/table-pulse.md)",
                 "- [Help](HELP.md)",
             ]
@@ -1816,47 +1842,40 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 _front_matter("Signal Deck", "products/chummer/SIGNAL_DECK_SPEC.md"),
                 "# Signal Deck",
                 "",
-                "Signal Deck is the first-party command surface that keeps Table Pulse pressure, consequence posture, Living Newsroom framing, and aftermath continuity on one governed rail.",
+                "Signal Deck is the command view for a table that wants campaign pressure to survive between sessions.",
                 "",
-                "## Public route",
+                "It is for GMs and organizers who need to see pending consequences, faction pressure, and follow-up without digging through scattered recaps.",
                 "",
-                "- Live route: `/signal-deck`",
-                "- Public posture: first-party command continuity",
-                "- Boundary: not automatic world authority and not a hidden moderation engine",
+                "## Open it",
+                "",
+                "- Open it at `/signal-deck`.",
+                "- Use it when Table Pulse reactions have created things the table still needs to resolve.",
+                "- It does not replace the GM or decide the world by itself.",
                 "",
                 "## What it does",
                 "",
-                "- Keeps governed consequence pressure visible after inbox reactions",
-                "- Holds command posture on first-party routes instead of recap-only copy",
-                "- Connects leader briefing, Living Newsroom, Runner Passport, and aftermath return",
+                "- Keeps consequence pressure visible after inbox reactions",
+                "- Keeps the next command decision inside Chummer instead of buried in recap text",
+                "- Connects leader briefing, Living Newsroom, Runner Passport, and aftermath follow-up",
                 "",
-                "## Connected lane",
+                "## How it fits",
                 "",
-                "Signal Deck is the command-facing continuity rail for the signed-in Table Pulse loop.",
+                "Signal Deck is the command-facing side of the signed-in Table Pulse loop.",
                 "",
-                "It now connects cleanly to:",
+                "It ties together:",
                 "",
                 "- the signed-in Table Pulse inbox",
                 "- leader briefing and GM cockpit",
                 "- Living Newsroom watch framing",
-                "- governed aftermath return loops",
+                "- aftermath follow-up",
                 "- Runner Passport continuity",
-                "",
-                "## Receipt rails",
-                "",
-                "- `/signal-deck/receipts/pressure_posture.md`",
-                "- `/signal-deck/receipts/pressure_posture.json`",
-                "- `/signal-deck/receipts/command_boundary.md`",
-                "- `/signal-deck/receipts/command_boundary.json`",
-                "- `/signal-deck/receipts/aftermath_return_loop.md`",
-                "- `/signal-deck/receipts/aftermath_return_loop.json`",
                 "",
                 "## Read next",
                 "",
                 "- [Black Ledger notifications](/account/ledger/notifications)",
                 "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
                 "- [Runner Passport](RUNNER_PASSPORT.md)",
-                "- [Work aftermath rail](/account/work#aftermath-packages)",
+                "- [Aftermath workspace](/account/work#aftermath-packages)",
                 "- [Black Ledger](HORIZONS/black-ledger.md)",
                 "- [Table Pulse](HORIZONS/table-pulse.md)",
             ]
@@ -1870,45 +1889,26 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 [
                     "- [Runner Passport](RUNNER_PASSPORT.md)",
                     "- [Table Pulse](HORIZONS/table-pulse.md)",
-                    "- [Work aftermath rail](/account/work#aftermath-packages)",
+                    "- [Aftermath workspace](/account/work#aftermath-packages)",
                 ]
             )
             rows = [
                 _front_matter("Living World", "products/chummer/LIVING_WORLD_SPEC.md"),
                 "# Living World",
                 "",
-                "Living World is the first-party between-session continuity route that keeps the watch package, Table Pulse follow-through, Runner Passport, and aftermath rail attached to the same governed turn.",
+                "Living World is the between-session page for tables that want campaign consequences to stay visible after the session ends.",
                 "",
-                "## Public route",
+                "It is for GMs and players who want the world to remember what just happened without turning Chummer into an automatic storyteller with a clipboard.",
                 "",
-                "- Live route: `/living-world`",
-                "- Public posture: governed between-session continuity",
-                "- Boundary: not autonomous simulation and not detached world authority",
+                "## Open it",
                 "",
-                "## What it does",
+                "- Open it at `/living-world`.",
+                "- Use it when a session leaves news, faction movement, or aftermath choices on the table.",
+                "- It does not replace the GM, reveal secrets, or run the campaign by itself.",
                 "",
-                "- Keeps Living Newsroom watch framing attached to the same turn as command follow-through",
-                "- Connects inbox reactions, leader command, Runner Passport, and aftermath return",
-                "- Gives the between-session lane a first-party page instead of leaving it as concept-only copy",
+                "## What you get",
                 "",
-                "## Connected lane",
-                "",
-                "Living World now connects cleanly to:",
-                "",
-                "- the public-safe watch package",
-                "- the signed-in Table Pulse inbox",
-                "- leader briefing and faction command",
-                "- Runner Passport continuity",
-                "- governed aftermath return loops",
-                "",
-                "## Receipt rails",
-                "",
-                "- `/living-world/receipts/watch_package_posture.md`",
-                "- `/living-world/receipts/watch_package_posture.json`",
-                "- `/living-world/receipts/command_followthrough_boundary.md`",
-                "- `/living-world/receipts/command_followthrough_boundary.json`",
-                "- `/living-world/receipts/newsroom_aftermath_loop.md`",
-                "- `/living-world/receipts/newsroom_aftermath_loop.json`",
+                "A place for watch packages, inbox reactions, leader briefings, Runner Passport continuity, and aftermath follow-up to stay attached to the same turn instead of spreading across five chats and half a brain's worth of memory.",
                 "",
                 "## Read next",
                 "",
@@ -1932,23 +1932,23 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
         _front_matter("Black Ledger Newsroom", "products/chummer/BLACK_LEDGER_NEWSROOM_CANON.md"),
         "# Black Ledger Newsroom",
         "",
-        "Black Ledger Newsroom turns public-safe Chummer receipts into believable in-world video bulletins.",
+        "Black Ledger Newsroom turns selected campaign events into believable in-world video bulletins.",
         "",
         "It should feel like a real broadcast from the Chummer world, not a website animation.",
         "",
-        "## Public routes",
+	        "## Watch and inspect",
         "",
-        "- Latest bulletin rail: `/ledger/newsroom`",
-        "- Episode watch route: `/ledger/newsroom/turn-1-newsreel`",
-        "- Transcript route: `/ledger/newsroom/turn-1-newsreel/transcript`",
-        "- Receipt packet route: `/ledger/newsroom/turn-1-newsreel/receipts`",
+	        "- Latest bulletins: `/ledger/newsroom`",
+	        "- Watch the episode: `/ledger/newsroom/turn-1-newsreel`",
+	        "- Read the transcript: `/ledger/newsroom/turn-1-newsreel/transcript`",
+	        "- Open supporting details: `/ledger/newsroom/turn-1-newsreel/details`",
         "",
         "## What it has to do",
         "",
-        "- Keep a host, lower thirds, captions, audio, and first-party media assets on one governed public rail.",
-        "- Turn public-safe receipts into a bounded newsroom bulletin instead of loose promo fragments.",
-        "- Keep transcript and receipt links adjacent to the watch surface so the story stays inspectable.",
-        "- Make clear when footage is reconstructed from public-safe receipts instead of literal capture.",
+        "- Keep a host, lower thirds, captions, audio, and Chummer-owned media assets on one page.",
+        "- Turn selected campaign events into a bounded newsroom bulletin instead of loose promo fragments.",
+        "- Keep transcript and details links adjacent to the watch page.",
+        "- Make clear when footage is reconstructed instead of literal table capture.",
         "",
         "## Hard boundaries",
         "",
@@ -2043,55 +2043,32 @@ def _generate_root(
         "",
         "Build a Shadowrun runner, understand why the numbers changed, and keep the table moving when the campaign gets complicated.",
         "",
-        "This repo is the public guide. It is written for players and GMs first: try the current build, check what is real today, and understand how the campaign tools fit around the character builder.",
+        "This is the public guide for people who want the simple answer first: can I try it, what should I download, and will it help my table?",
         "",
-        "## Why it exists",
+        "## Start here",
         "",
-        "Chummer6 is the explainable Shadowrun campaign OS.",
-        "",
-        "Its first must-win job is being the most trustworthy way to build, inspect, and advance a Shadowrun character.",
-        "",
-        "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward.",
-        "",
-        "## What should you do now?",
-        "",
-        "Try the current preview where you already have a path, then check what changed in the release shelf before making your next move.",
+        "If you want to install it, open [Download](DOWNLOAD.md). If you want to know whether it is ready for your machine, open [Status](STATUS.md). If you are coming from Chummer5a, open [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md).",
         "",
         f"{str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
-        (
-            f"{str(packet.get('proof_scope_line') or '').strip()} "
-            f"{str(packet.get('claim_boundary_line') or '').strip()}"
-        ).strip(),
-        "Public wording stays tied to files and flows that are actually available now.",
+        f"{str(packet.get('short_release_summary') or '').strip()}",
         (
             f"{str(packet.get('desktop_pick_line') or '').strip()} "
             f"{str(packet.get('quality_gap_line') or '').strip()}"
         ).strip(),
     ]
-    if phase:
-        rows.append(f"Today: {phase}.")
     rows.extend(
         [
-            f"{str(packet.get('missing_installer_lane_line') or _public_missing_installer_lane_line(missing_platforms)).strip()}",
-            f"{str(packet.get('architecture_scope_line') or _public_architecture_scope_line(artifacts)).strip()}",
-            "Help, contact, privacy, and terms pages are live.",
-            (
-                "More campaign-ledger depth and steadier desktop polish are still coming."
-                if post_audit_closed and active_registry_status in {"in_progress", "complete"}
-                else "Broader desktop support and more product polish are still coming."
-            ),
             "",
-        ]
-    )
-    rows.extend(
-        [
-            "## Start Here",
+            "## Why it exists",
             "",
-            "If you want to try it, open [Download](DOWNLOAD.md).",
-            "If you are new or rusty, open the [first session guide](ONRAMP.md).",
-            "If you are checking claims before you trust it, open [Status](STATUS.md).",
+            "Chummer6 is trying to make Shadowrun character work less opaque. When a dice pool changes, the table should see why. When a device falls out of the session, the whole night should not fall apart with it.",
             "",
-            "[Start Here](START_HERE.md) keeps the same choices in one calm page.",
+            "The older guide voice got too close to a release cockpit. This one is meant for players and GMs with functioning fingers, limited patience, and maybe only half a brain online before game night.",
+            "",
+            "## What people notice",
+            "",
+            "Numbers explain themselves faster. New or rusty users get a first-session path. Help, contact, privacy, and terms pages are live. The rough edges are still installer polish, update polish, support polish, and deeper campaign tooling.",
+            "",
         ]
     )
     extra_cta_links = [
@@ -2111,19 +2088,19 @@ def _generate_root(
         rows.extend(
             [
                 "",
-                f"When you are ready for more, use: {', '.join(extra_cta_links)}.",
+                f"When you are ready for more, use {', '.join(extra_cta_links)}.",
             ]
         )
     rows.extend(
         [
             "",
-            "## Account and contribution paths",
+            "## Help and feedback",
             "",
             "For support or concrete feedback, start with [Contact](CONTACT.md).",
             "",
             "The public participation door is <https://chummer.run/participate>.",
-            "Most people should just use the normal feedback and support paths. The participation page is for hands-on testing or fix follow-up.",
-            "Final shipping stays behind review and release checks.",
+            "Most people should use the normal feedback and support paths. The participation page is for hands-on testing or fix follow-up.",
+            "A change only counts for regular users once it lands in a real release.",
             "",
         ]
     )
@@ -2142,13 +2119,6 @@ def _generate_root(
         )
     rows.extend(
         [
-            "",
-            "## Why people care",
-            "",
-            "It shows why a number changed instead of hiding the math.",
-            "It gives new users a first-session path while staying useful for experienced players too.",
-            "It is being built to keep sessions recoverable when devices, updates, or connectivity drift.",
-            "Campaign layers are designed to expand the table story without replacing GM or rules authority.",
             "",
             "## Campaign tools",
             "",
@@ -2172,6 +2142,64 @@ def _generate_root(
                 ]
             )
 
+    _write(doc_path, "\n".join(rows))
+
+
+def _generate_what_chummer6_is(out_dir: Path) -> None:
+    doc_path = out_dir / "WHAT_CHUMMER6_IS.md"
+    rows = [
+        _front_matter("What Chummer6 Is", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
+        "# What Chummer6 Is",
+        "",
+        "Chummer6 is Shadowrun tooling for character builds, rulings, prep, and session continuity.",
+        "",
+        "The short version: it should help a player or GM understand the character, the numbers, and the next table decision faster than digging through notes or arguing from memory.",
+        "",
+    ]
+    rows.extend(
+        _image_rows(
+            doc_path=doc_path,
+            out_dir=out_dir,
+            asset_path="assets/pages/what-chummer6-is.png",
+            alt="What Chummer6 is banner",
+        )
+    )
+    rows.extend(
+        [
+            "## The table moment it is built for",
+            "",
+            "A player asks why a dice pool changed. The GM wants to keep the scene moving. Chummer6 should show the base pool, each modifier, and the final number in a way both people can follow.",
+            "",
+            "Example:",
+            "",
+            "- Base pool: 11",
+            "- Wounds: -1",
+            "- Sustaining: -1",
+            "- Weather: -1",
+            "- Final pool: 8",
+            "",
+            "That is the product in miniature: less archive-diving, fewer mystery numbers, and a faster return to play.",
+            "",
+            "## What you would notice",
+            "",
+            "- fewer pauses when a number changes",
+            "- clearer explanations for rules and modifiers",
+            "- better recovery when a device, update, or connection gets in the way",
+            "- a cleaner home for custom rules, era differences, and table notes",
+            "- campaign tools that support the table without replacing the GM",
+            "",
+            "## What works today",
+            "",
+            "Use [Status](STATUS.md) for the current answer and [Download](DOWNLOAD.md) for the files. Windows and Linux have normal downloads today. macOS is still preview-only.",
+            "",
+            "## Why there are multiple parts",
+            "",
+            "The character builder, rules explanation, prep tools, campaign layer, media work, and long-range ideas are separate because they solve different problems. Most users only need the builder, the current status, and help pages.",
+            "",
+            "If you want the map behind the product, open [Parts](PARTS/README.md). If you just want to try Chummer6, start with [Download](DOWNLOAD.md).",
+            "",
+        ]
+    )
     _write(doc_path, "\n".join(rows))
 
 
@@ -2221,7 +2249,6 @@ def _generate_from_chummer5a_to_chummer6(
         if below_gold
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
     )
-    proof_boundary_line = "Posted proof is scoped to the current files and flows you can inspect today; it is not a blanket flagship claim."
 
     rows = [
         _front_matter("From Chummer5a to Chummer6", "products/chummer/PRIMARY_ROUTE_REGISTRY.yaml"),
@@ -2256,7 +2283,6 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts, available_platforms, missing_platforms)}",
         f"- {rules_gap_line}",
-        f"- {proof_boundary_line}",
         "- It should still be read as a serious preview, not a finished no-step-back replacement yet.",
         "",
         "## Read next",
@@ -2288,29 +2314,32 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
         "",
-        "This is the blunt answer on what you can use today.",
+        "This is the page for the uncomfortable question: should I use Chummer6 today, or should I wait?",
         "",
     ]
     overall = progress.get("overall_progress_percent")
     phase = _public_phase_label(progress.get("phase_label"))
     if overall is not None or phase:
-        rows.extend(["## Current picture", ""])
+        rows.extend(["## The answer", ""])
         if phase:
-            rows.append(f"- Today: {phase}.")
-        if version:
-            rows.append(f"- Build label: `{version}`.")
+            rows.append(f"Today: {phase}.")
+        rows.append(f"{shelf_truth}")
+        rows.append(f"{_public_architecture_scope_line(artifacts)}")
+        if missing_platforms:
+            rows.append(f"{_public_missing_installer_lane_line(missing_platforms)}")
+        if release_verification:
+            rows.append(f"{release_verification}")
+        if known_issues:
+            rows.append(f"{known_issues}")
+        rows.append("Help, contact, privacy, and terms pages are live.")
+        if published_at or release_status or version:
+            rows.extend(["", "## Release details", ""])
         if published_at:
             rows.append(f"- {published_label}: {published_at}.")
         if release_status:
             rows.append(f"- Release status: {release_status}.")
-        rows.append(f"- {shelf_truth}")
-        rows.append(f"- {_public_missing_installer_lane_line(missing_platforms)}")
-        rows.append(f"- {_public_architecture_scope_line(artifacts)}")
-        if release_verification:
-            rows.append(f"- Recent checks: {release_verification}")
-        if known_issues:
-            rows.append(f"- {known_issue_label}: {known_issues}")
-        rows.append("- Help, contact, privacy, and terms pages are live.")
+        if version:
+            rows.append(f"- Build label: `{version}`.")
         rows.append("")
 
     if isinstance(help_page, dict):
@@ -2329,6 +2358,8 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         "",
         "Start here if installation, updates, sign-in, or bugs are getting in the way.",
         "",
+        "If only half your brain is working because the session starts soon, do not debug the whole universe. Check the download page, check status, then contact us with what happened.",
+        "",
     ]
     if isinstance(help_page, dict):
         for section in help_page.get("sections") or []:
@@ -2342,7 +2373,7 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         _front_matter("How Can I Help?", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# How Can I Help?",
         "",
-        "Start with the route that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.",
+        "Start with the page that matches what happened. Most useful help is simple: report the problem clearly, point out confusing copy, or tell us what blocked your table.",
         "",
         "## Something broke",
         "",
@@ -2413,7 +2444,7 @@ def _generate_where_to_go_deeper(out_dir: Path) -> None:
         "",
         "## I want the technical details",
         "",
-        "The software repos and design notes are for implementation details, long-range tradeoffs, and release proof. Most people never need them to install Chummer6, try it, or report a problem.",
+        "The software repos and design notes are for implementation details and long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.",
         "",
         "Come back to this public guide when you want the shorter user-facing version again.",
         "",
@@ -2425,6 +2456,8 @@ def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
     rows = [
         _front_matter("FAQ", "products/chummer/PUBLIC_FAQ_REGISTRY.yaml"),
         "# FAQ",
+        "",
+        "Ask the questions a GM, player, or tired maintainer would ask before trusting this at a table.",
         "",
     ]
     for section in _faq_sections(faq_payload):
@@ -2464,14 +2497,6 @@ def _generate_download(
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
     fix_availability = _public_fix_summary(release_payload)
-    proof_scope_summary = str(
-        release_experience.get("proof_scope_summary")
-        or "Public proof language is scoped to the files, flows, and recent checks posted on the current shelf that you can inspect today; it is not a blanket flagship-grade claim."
-    ).strip()
-    flagship_claim_summary = str(
-        release_experience.get("flagship_claim_summary")
-        or "Flagship wording is reserved for surfaces that currently satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml; preview artifacts, proof cards, artifact explainers, packet siblings, and fallback routes do not earn that claim by proximity."
-    ).strip()
     platform_expectations = {
         "windows": (
             "Windows",
@@ -2486,7 +2511,7 @@ def _generate_download(
             "macOS currently has archive previews only. Use the posted guidance before treating it as your main install path.",
         ),
     }
-    section_heading = "Current release download" if _release_is_published(status) else "Current preview shelf"
+    section_heading = "What is available" if _release_is_published(status) else "What is available in preview"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
     shelf_truth = _public_shelf_truth_line(status, artifacts, available_platforms, missing_platforms)
     flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
@@ -2496,13 +2521,15 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
-        "This page tells you what you can download right now and which file to start with.",
+        "If you are on Windows or Linux, start with the Avalonia installer. If you are on macOS, treat the current files as preview-only and do not switch your main setup yet.",
         "",
-        "## What should I download first?",
+        "That is the human answer. The rest of this page is here for exact files, sizes, and hashes.",
+        "",
+        "## Pick your file",
         "",
         "- Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
-        "- Use `Stable` when you want the slower promoted lane.",
-        "- The public shelf is installer-first; portable builds are not the primary public route.",
+        "- Use `Stable` when you want the slower release channel.",
+        "- Use a portable package only for recovery or special cases.",
     ]
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]
@@ -2516,29 +2543,26 @@ def _generate_download(
             "",
             f"## {section_heading}",
             "",
-            f"- Today: {phase}.",
-            f"- {timestamp_label}: {published_label}.",
-            f"- Release status: {release_status or 'Not currently published'}.",
+            f"Today: {phase}.",
+            f"{timestamp_label}: {published_label}.",
         ]
     )
     if version:
-        rows.append(f"- Build label: `{version}`.")
-    rows.append(f"- {shelf_truth}")
+        rows.append(f"Build label: `{version}`.")
+    rows.append(shelf_truth)
     if release_verification:
-        rows.append(f"- Recent checks: {release_verification}")
-    rows.append(f"- Proof scope: {proof_scope_summary}")
-    rows.append(f"- Claim boundary: {flagship_claim_summary}")
+        rows.append(release_verification)
     if known_issues:
-        rows.append(f"- {known_issue_label}: {known_issues}")
+        rows.append(known_issues)
     if fix_availability:
-        rows.append(f"- Update note: {fix_availability}")
+        rows.append(fix_availability)
 
     rows.extend(
         [
             "",
-            "## Current build matrix",
+            "## File details",
             "",
-            "Official client downloads start at chummer.run. GitHub is for source and public development evidence, not installer, archive, update payload, or preview-client downloads.",
+            "Official client downloads start at chummer.run. Use GitHub for source code and issue discussion, not as the normal install path.",
         ]
     )
 
@@ -2573,14 +2597,14 @@ def _generate_download(
             if update_feed:
                 rows.append(f"- Update feed: `{update_feed}`")
 
-    rows.extend(["", "## Current package format", ""])
+    rows.extend(["", "## Package notes", ""])
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
             if _release_is_published(status):
-                rows.append("- Where an installer exists, start there. Archive packages, packet-detail artifacts, and explainer bundles are fallback, recovery, or inspection paths, not equal flagship routes.")
+                rows.append("- Where an installer exists, start there. Archive packages and explainer bundles are secondary.")
             else:
-                rows.append("- Installers are already visible, but they still count as preview files until the release is published; proof artifacts and explainers still stay secondary to that shelf.")
+                rows.append("- Installers are already visible, but they still count as preview files until the release is published.")
         else:
             if _release_is_published(status):
                 rows.append("- Setup currently starts from a downloaded package because there is no posted installer.")
@@ -2617,27 +2641,12 @@ def _generate_download(
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
-        rows.extend(["", "## Recent release verification", ""])
-        proof_status = str(release_proof.get("status") or "").strip()
+        rows.extend(["", "## What works in this build", ""])
         generated_at = str(release_proof.get("generatedAt") or "").strip()
-        if proof_status:
-            rows.append(f"- Status: {_public_verification_status(proof_status)}.")
         if generated_at:
-            rows.append(f"- Last checked: {_format_public_datetime(generated_at)}.")
+            rows.append(f"- Last updated: {_format_public_datetime(generated_at)}.")
         if release_verification:
-            rows.append(f"- Summary: {release_verification}")
-        journeys = release_proof.get("journeysPassed") or []
-        if isinstance(journeys, list) and journeys:
-            rows.extend(["", "### What was checked", ""])
-            rows.extend(
-                _bullet_lines(
-                    [
-                        RELEASE_PROOF_JOURNEY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip()))
-                        for item in journeys
-                        if str(item).strip()
-                    ]
-                )
-            )
+            rows.append(f"- {release_verification}")
 
     _write(out_dir / "DOWNLOAD.md", "\n".join(rows))
 
@@ -2761,9 +2770,9 @@ def _generate_horizon_pages(
         _front_matter("Campaign tools", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Campaign tools",
         "",
-        "Use this page when the character builder is no longer the whole question.",
+        "Use this page when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
         "",
-        "Chummer6 has a normal product story first: build the runner, explain the rules, keep the session recoverable, and carry the campaign forward. The pages below are grouped so mature product areas do not read like a random shelf of future brands.",
+        "The point is not to collect shiny feature names. The point is to make campaign work easier without burying the GM under another pile of dashboards.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -2783,12 +2792,12 @@ def _generate_horizon_pages(
 
     append_index_group(
         "Part of the product story",
-        "These should feel like ordinary Chummer6 value around the builder and campaign layer, not like distant promises or a brand shelf.",
+        "These should feel like ordinary Chummer6 value around the builder and campaign layer, not distant promises.",
         core_lanes,
     )
     append_index_group(
         "Expansion bets",
-        "These are bigger campaign ideas. They are useful to understand, but they should not distract from downloading Chummer and using the character builder.",
+        "These are bigger campaign ideas. Read them if you care where Chummer can go after the builder works for you.",
         expansion_lanes,
     )
     if folded_lanes:
@@ -2802,7 +2811,7 @@ def _generate_horizon_pages(
                 "",
                 "## Folded back into the app",
                 "",
-                "Some ideas are better as quiet support for the workbench or campaign layer than as public destinations.",
+                "Some ideas got demoted for good reason: they work better as quiet support for the workbench or campaign layer than as public destinations. Devs are allowed to be roasted when every helper becomes a named product.",
                 "",
                 f"Today that means: {_english_join(folded_names)}.",
             ]
@@ -2823,8 +2832,6 @@ def _generate_horizon_pages(
         rows = [
             _front_matter(title, "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
-            "",
-            f"Guide fit: {group_label}.",
             "",
         ]
         wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
@@ -2854,11 +2861,11 @@ def _generate_horizon_pages(
         if isinstance(build_path, dict):
             current_state = _public_horizon_stage_label(build_path.get("current_state"))
             next_state = _public_horizon_stage_label(build_path.get("next_state"))
-            rows.extend(["", "## Current stage", ""])
+            rows.extend(["", "## Does it work today?", ""])
             if current_state:
                 rows.extend([f"Today: {current_state}.", ""])
             if next_state:
-                rows.extend([f"Next: {next_state}.", ""])
+                rows.extend([f"Still improving: {next_state}.", ""])
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
         if canon_doc:
@@ -3118,6 +3125,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         release_truth_packet=release_truth_packet,
         generated_live_route_ids=generated_live_route_ids,
     )
+    _generate_what_chummer6_is(out_dir)
     _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
     _generate_status(out_dir, trust_payload, progress, release_payload)
     _generate_help(out_dir, help_copy, trust_payload, release_payload)

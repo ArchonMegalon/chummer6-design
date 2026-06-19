@@ -1,6 +1,8 @@
 # FAQ
 
-## Using Chummer6
+Ask the questions a GM, player, or tired maintainer would ask before trusting this at a table.
+
+## Questions people actually ask first
 
 ### Can I actually use this now?
 
@@ -22,7 +24,7 @@ Available today means you can open it or download it right now. Preview means yo
 
 Start with [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Status](STATUS.md), then [Download](DOWNLOAD.md). If the real argument is about how the math is explained, show them [Core](PARTS/core.md).
 
-## Helping and feedback
+## When something is weird or broken
 
 ### How do I report something?
 
@@ -62,13 +64,13 @@ No. The intended direction is that browsing runs, applying with a quickstart or 
 
 ### Is Chummer trying to replace Discord or VTTs?
 
-No. The intended posture is that Chummer owns rules, applications, scheduling records, and world consequences, while Discord, Teams, and VTTs remain play or communication surfaces.
+No. The intended state is that Chummer owns rules, applications, scheduling records, and world consequences, while Discord, Teams, and VTTs remain play or communication surfaces.
 
-## If you want the behind-the-scenes details
+## If you want the deeper mess
 
 ### Where does the deeper plan live?
 
-In the planning notes that shape the roadmap and the public guide.
+Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.
 
 ### Where does the actual code live?
 

@@ -1,61 +1,43 @@
 # Runner Passport
 
-Runner Passport is the public-safe trust card that lets a runner move between tables without restarting the whole approval story from scratch.
+Runner Passport is a shareable character card for joining a table without explaining your whole setup from scratch.
 
-## Public route
+Use it when a GM or community asks, "Can this runner join our game?" and you do not want to paste a wall of notes into chat.
 
-- Live route: `/passport`
-- Public posture: trust without surveillance
-- Boundary: not a permanent social score and not a hidden provider-owned reputation engine
+## Open it
+
+- Open it at `/passport`.
+- Share it when someone needs a clean character summary.
+- Do not treat it as a social score, ranking system, or hidden reputation tracker.
 
 ## Why this matters
 
-Communities do not just care whether a runner exists. They care whether the runner is legal for the current rules lane, reviewed for the current community, and safe to fast-track into a run without Discord archaeology.
+Open tables usually need the same answers: which rules apply, whether the character has unresolved warnings, and what a GM still has to approve. Runner Passport puts those answers where a tired human can actually find them.
 
-## What it carries
+## What it shows
 
 - Runner identity reference
 - Active ruleset and environment fingerprint
 - Approval state and review timestamp
 - Known conflicts or unresolved warnings
-- Quickstart or full-dossier posture
-- Export or play-surface eligibility
-- A bounded validity window
 
-## What it is for
+## When it helps
 
-- Open-run application preflight
-- Community rule-environment checks
-- No-desktop participation paths
-- Start-from-today adoption without rebuilding trust by hand
-- Creator or organizer review lanes
+It helps when you are applying for an open run, joining a community game, or carrying a runner between tables. It can also connect back into Table Pulse when a table uses the wider campaign tools.
 
-## Connected lane
-
-Runner Passport is also the continuity rail for the signed-in Table Pulse loop.
-
-It now connects cleanly to:
+It ties together:
 
 - the signed-in Table Pulse inbox
 - leader briefing and faction command
 - Living Newsroom watch framing
-- governed aftermath return loops
+- aftermath follow-up
 
-That means a remote reaction can stay public-safe on the Passport side while still returning to real command, review, and aftermath follow-through on first-party routes.
-
-## Receipt rails
-
-- `/passport/receipts/runner_return_posture.md`
-- `/passport/receipts/runner_return_posture.json`
-- `/passport/receipts/cross_table_identity_boundary.md`
-- `/passport/receipts/cross_table_identity_boundary.json`
-- `/passport/receipts/privacy_safe_participation_proof.md`
-- `/passport/receipts/privacy_safe_participation_proof.json`
+That means a remote reaction can stay shareable while the real table decisions remain inside Chummer.
 
 ## Read next
 
 - [Black Ledger notifications](/account/ledger/notifications)
 - [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)
-- [Work aftermath rail](/account/work#aftermath-packages)
+- [Aftermath workspace](/account/work#aftermath-packages)
 - [Table Pulse](HORIZONS/table-pulse.md)
 - [Help](HELP.md)

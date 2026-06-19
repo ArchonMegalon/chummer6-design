@@ -11,6 +11,6 @@ Verdict: READY
 - `runner-passport`: `public_route_live` -> `public_route_live_page`
 - `living-world-engagement`: `public_route_live` -> `public_route_live_page`
 
-## Acceptance posture
+## Acceptance state
 
 - New sections are either explicitly receipted or intentionally future-labeled.

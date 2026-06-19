@@ -1,8 +1,6 @@
 # EDITION STUDIO
 
-Guide fit: Folded back into the app.
-
-SR4, SR5, and SR6 keep authored head posture without splitting the product into disconnected apps.
+SR4, SR5, and SR6 keep authored head state without splitting the product into disconnected apps.
 
 ![EDITION STUDIO feature art](../assets/horizons/edition-studio.png)
 
@@ -10,11 +8,11 @@ SR4, SR5, and SR6 keep authored head posture without splitting the product into 
 
 A generic shell can technically support SR4, SR5, and SR6 while still flattening the differences players actually need.
 
-Picture the scene: A veteran player opens the ruleset-head receipt and sees why SR4, SR5, and SR6 keep different emphasis, density, and terminology on the same first-party lane.
+Picture the scene: A veteran player opens the ruleset-head receipt and sees why SR4, SR5, and SR6 keep different emphasis, density, and terminology on the same Chummer-owned area.
 
 
-## Current stage
+## Does it work today?
 
-Today: You can try the first real slice today.
+Today: A first usable version works today.
 
-Next: Make the slice richer, steadier, and easier to trust.
+Still improving: Make it richer, steadier, and easier to trust.

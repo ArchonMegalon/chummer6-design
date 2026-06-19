@@ -4,7 +4,7 @@ These are the plain rules for the current preview: early access, honest labels, 
 
 ## The product is real, but still early access
 
-Expect real pages, current downloads, visible proof, and explicit preview labels when support, compatibility, or breadth are still moving.
+Expect real pages, current downloads, visible status detail, and explicit preview labels when support, compatibility, or breadth are still moving.
 
 ## Sign-in is simple, and support starts with Chummer
 

@@ -1,25 +1,27 @@
 # Status
 
-This is the blunt answer on what you can use today.
+This is the page for the uncomfortable question: should I use Chummer6 today, or should I wait?
 
-## Current picture
+## The answer
 
-- Today: Current release build.
+Today: Current release build.
+The download page includes Windows and Linux downloads.
+Desktop downloads are available for Linux x64 and Windows x64 only. No download is posted for Windows ARM64, Linux ARM64, and macOS x64 yet.
+This build handles installs and recovery, campaign session recovery, and support follow-up.
+No blocking download issue is listed for the current installers.
+Help, contact, privacy, and terms pages are live.
+
+## Release details
+
 - Published: June 19, 2026 at 0:49 UTC.
 - Release status: Published.
-- The current public shelf includes Windows and Linux downloads.
-- Promoted installer coverage is visible on every promised desktop platform.
-- Current public desktop scope covers Linux x64 and Windows x64 only. No public route is posted for Windows ARM64, Linux ARM64, and macOS x64 on the current shelf.
-- Recent checks: Passed for installs and recovery, campaign session recovery, and support follow-up.
-- Current warning: No blocking release caveat is mirrored, and the downloads page has recent setup, account return, release updates, community wrap-up, offline-ready prefetch, and current support follow-up coverage.
-- Help, contact, privacy, and terms pages are live.
 
 ## Start with the release page and download help
 
 Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails.
 
 - Use `Nightly` when you want the newest rolling public build on Windows or Linux.
-- Use `Stable` when you want the slower promoted lane.
+- Use `Stable` when you want the slower release channel.
 - Use the Windows or Linux installer; portable builds are not the public primary path.
 - Create an account if you want your support history, recovery, and downloads tied to one place.
 - If your platform is missing, the status and download pages will say so.

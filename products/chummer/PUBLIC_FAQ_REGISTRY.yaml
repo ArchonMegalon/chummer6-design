@@ -3,7 +3,7 @@ version: 1
 purpose: Canonical public FAQ entries for the downstream Chummer6 guide.
 sections:
   - id: using_chummer6
-    title: Using Chummer6
+    title: Questions people actually ask first
     entries:
       - question: Can I actually use this now?
         required: true
@@ -21,7 +21,7 @@ sections:
         required: true
         answer: Start with [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Status](STATUS.md), then [Download](DOWNLOAD.md). If the real argument is about how the math is explained, show them [Core](PARTS/core.md).
   - id: participation_and_preview
-    title: Helping and feedback
+    title: When something is weird or broken
     entries:
       - question: How do I report something?
         required: true
@@ -54,7 +54,7 @@ sections:
         required: true
         answer: No. The intended posture is that Chummer owns rules, applications, scheduling records, and world consequences, while Discord, Teams, and VTTs remain play or communication surfaces.
   - id: deeper_sources
-    title: If you want the behind-the-scenes details
+    title: If you want the deeper mess
     entries:
       - question: Where does the deeper plan live?
         required: true

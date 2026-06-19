@@ -1,22 +1,22 @@
 # Black Ledger Newsroom
 
-Black Ledger Newsroom turns public-safe Chummer receipts into believable in-world video bulletins.
+Black Ledger Newsroom turns selected campaign events into believable in-world video bulletins.
 
 It should feel like a real broadcast from the Chummer world, not a website animation.
 
-## Public routes
+## Watch and inspect
 
-- Latest bulletin rail: `/ledger/newsroom`
-- Episode watch route: `/ledger/newsroom/turn-1-newsreel`
-- Transcript route: `/ledger/newsroom/turn-1-newsreel/transcript`
-- Receipt packet route: `/ledger/newsroom/turn-1-newsreel/receipts`
+- Latest bulletins: `/ledger/newsroom`
+- Watch the episode: `/ledger/newsroom/turn-1-newsreel`
+- Read the transcript: `/ledger/newsroom/turn-1-newsreel/transcript`
+- Open supporting details: `/ledger/newsroom/turn-1-newsreel/details`
 
 ## What it has to do
 
-- Keep a host, lower thirds, captions, audio, and first-party media assets on one governed public rail.
-- Turn public-safe receipts into a bounded newsroom bulletin instead of loose promo fragments.
-- Keep transcript and receipt links adjacent to the watch surface so the story stays inspectable.
-- Make clear when footage is reconstructed from public-safe receipts instead of literal capture.
+- Keep a host, lower thirds, captions, audio, and Chummer-owned media assets on one page.
+- Turn selected campaign events into a bounded newsroom bulletin instead of loose promo fragments.
+- Keep transcript and details links adjacent to the watch page.
+- Make clear when footage is reconstructed instead of literal table capture.
 
 ## Hard boundaries
 

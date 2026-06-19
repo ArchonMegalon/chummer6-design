@@ -1,7 +1,5 @@
 # LOCAL CO-PROCESSOR
 
-Guide fit: Folded back into the app.
-
 Local acceleration improves privacy and responsiveness where available without becoming mandatory infrastructure.
 
 ![LOCAL CO-PROCESSOR feature art](../assets/horizons/local-co-processor.png)
@@ -13,8 +11,8 @@ Some tasks would be cheaper or faster locally, but the product cannot assume loc
 Picture the scene: A creator with a strong local machine opts into accelerated explain or media assistance while the same workflow still works hosted-only for everyone else.
 
 
-## Current stage
+## Does it work today?
 
-Today: You can try the first real slice today.
+Today: A first usable version works today.
 
-Next: Make the slice richer, steadier, and easier to trust.
+Still improving: Make it richer, steadier, and easier to trust.

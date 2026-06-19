@@ -1,7 +1,5 @@
 # KARMA FORGE
 
-Guide fit: Expansion bet.
-
 Tables can evolve house rules without splintering into unreadable forks.
 
 ![KARMA FORGE feature art](../assets/horizons/karma-forge.png)
@@ -13,11 +11,11 @@ I want house rules without fork chaos.
 Picture the scene: A GM promotes a house-rule pack with visible impact, approval history, and reversible publication state.
 
 
-## Current stage
+## Does it work today?
 
-Today: You can try the first real slice today.
+Today: A first usable version works today.
 
-Next: Make the coaching deeper without loosening the boundaries.
+Still improving: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

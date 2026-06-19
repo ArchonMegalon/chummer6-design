@@ -6,7 +6,7 @@ The deterministic rules engine.
 
 ## When you care
 
-A number looks wrong, a modifier needs explaining, or you want proof instead of vibe-based tool behavior.
+A number looks wrong, a modifier needs explaining, or you want status detail instead of vibe-based tool behavior.
 
 ## Why you care
 
