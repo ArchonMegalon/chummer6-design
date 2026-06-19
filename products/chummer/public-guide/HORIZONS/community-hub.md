@@ -8,14 +8,14 @@ A GM opens a run, Chummer preflights the right players and rule environment, get
 
 Finding a table still means juggling community rules, approvals, chats, calendars, and follow-up by hand.
 
-Picture the scene: A player finds a beginner-friendly run, applies with a legal runner or quickstart decker, gets scheduled, and the finished session changes the city.
+For example: A player finds a beginner-friendly run, applies with a legal runner or quickstart decker, gets scheduled, and the finished session changes the city.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: Works after sign-in.
+Works after sign-in.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

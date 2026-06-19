@@ -308,7 +308,8 @@ def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_
     assert "Worlds and future work" not in start_here
     assert "# Campaign tools" in campaign_tools
     assert "## Ask Chummer first" in help_page
-    assert "Show me" in help_page
+    assert "If only half your brain is working" in help_page
+    assert "Use Contact for install trouble" in help_page
     assert "provider" not in help_page.lower()
 
 

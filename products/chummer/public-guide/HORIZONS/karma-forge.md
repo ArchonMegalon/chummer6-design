@@ -8,14 +8,14 @@ Tables can evolve house rules without splintering into unreadable forks.
 
 I want house rules without fork chaos.
 
-Picture the scene: A GM promotes a house-rule pack with visible impact, approval history, and reversible publication state.
+For example: A GM promotes a house-rule pack with visible impact, approval history, and reversible publication state.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

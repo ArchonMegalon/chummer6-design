@@ -14,14 +14,14 @@ Private aftermath, remote reactions, quiet hours, and opt-outs are part of the f
 
 I need a live pressure path during play and a private coaching path after play, without confusing the two or turning either into surveillance.
 
-Picture the scene: During a run, heat crosses a threshold and the GM receives a governed reaction packet; after the run, the GM can later open a private aftermath packet for pacing, spotlight, and confusion follow-through.
+For example: During a run, heat crosses a threshold and the GM receives a governed reaction packet; after the run, the GM can later open a private aftermath packet for pacing, spotlight, and confusion follow-through.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: Works after sign-in.
+Works after sign-in.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video
@@ -40,5 +40,5 @@ approval.
 spotlight balance, confusion points, disengagement markers, and follow-up suggestions without
 turning Chummer into surveillance or player scoring.
 
-The live path and the coaching path may share receipts, mute controls, and GM policy, but they are
+The live path and the coaching path may share records, mute controls, and GM policy, but they are
 not the same product promise and should not be described as if they are one heat system.

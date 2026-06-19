@@ -15,25 +15,25 @@ These should feel like ordinary Chummer6 value around the builder and campaign l
 
 Shared state survives device churn without the table losing trust.
 
-Open [NEXUS-PAN](nexus-pan.md).
+Read more: [NEXUS-PAN](nexus-pan.md).
 
 ### ALICE
 
 Builders get clear what-if tests instead of black-box advice.
 
-Open [ALICE](alice.md).
+Read more: [ALICE](alice.md).
 
 ### ORIGIN DOSSIER
 
 The player gets approved origin canon, dossier media, and later ALICE context without letting story prose rewrite the sheet.
 
-Open [ORIGIN DOSSIER](origin-dossier.md).
+Read more: [ORIGIN DOSSIER](origin-dossier.md).
 
 ### TABLE PULSE
 
 GMs get a governed live heat-and-reaction path today and a separate private aftermath coaching path as the broader Table Pulse promise grows.
 
-Open [TABLE PULSE](table-pulse.md).
+Read more: [TABLE PULSE](table-pulse.md).
 
 
 ## Expansion bets
@@ -44,37 +44,37 @@ These are bigger campaign ideas. Read them if you care where Chummer can go afte
 
 Tables can evolve house rules without splintering into unreadable forks.
 
-Open [KARMA FORGE](karma-forge.md).
+Read more: [KARMA FORGE](karma-forge.md).
 
 ### JACKPOINT
 
 The table gets polished short-to-medium-form dossiers, recaps, and briefings that still show where the facts came from.
 
-Open [JACKPOINT](jackpoint.md).
+Read more: [JACKPOINT](jackpoint.md).
 
 ### RUNSITE
 
 Mission spaces become explorable and legible before the action starts.
 
-Open [RUNSITE](runsite.md).
+Read more: [RUNSITE](runsite.md).
 
 ### RUNBOOK PRESS
 
 Long-form publishing becomes something you can actually reuse instead of a ten-tool scramble.
 
-Open [RUNBOOK PRESS](runbook-press.md).
+Read more: [RUNBOOK PRESS](runbook-press.md).
 
 ### GHOSTWIRE
 
 Tables can replay, inspect, and compare what happened without forking durable session state.
 
-Open [GHOSTWIRE](ghostwire.md).
+Read more: [GHOSTWIRE](ghostwire.md).
 
 ### COMMUNITY HUB
 
 A GM opens a run, Chummer preflights the right players and rule environment, gets the table scheduled, and the world remembers the outcome.
 
-Open [COMMUNITY HUB](community-hub.md).
+Read more: [COMMUNITY HUB](community-hub.md).
 
 
 ## Folded back into the app

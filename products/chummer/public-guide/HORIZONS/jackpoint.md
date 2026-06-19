@@ -8,14 +8,14 @@ The table gets polished short-to-medium-form dossiers, recaps, and briefings tha
 
 I want dossiers, recaps, and briefings that feel good without making things up.
 
-Picture the scene: After a run, the GM exports a dossier-plus-recap packet with narration, evidence rooms, and share-safe previews.
+For example: After a run, the GM exports a dossier-plus-recap packet with narration, evidence rooms, and share-safe previews.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: Works after sign-in.
+Works after sign-in.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

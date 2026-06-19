@@ -8,14 +8,14 @@ Mission spaces become explorable and legible before the action starts.
 
 My players still misread the space even after the briefing.
 
-Picture the scene: A GM sends an explorable safehouse pack with hotspots, floor plans, route overlays, and optional narration before the session.
+For example: A GM sends an explorable safehouse pack with hotspots, floor plans, route overlays, and optional narration before the session.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: Works after sign-in.
+Works after sign-in.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

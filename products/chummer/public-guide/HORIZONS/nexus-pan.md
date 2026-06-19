@@ -14,14 +14,14 @@ The point is not another named product shelf. The point is boringly reliable con
 
 My devices drift and the table loses confidence.
 
-Picture the scene: A player reconnects in the middle of a session and gets back in step without the GM rebuilding everything by memory.
+For example: A player reconnects in the middle of a session and gets back in step without the GM rebuilding everything by memory.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation videos

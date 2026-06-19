@@ -14,14 +14,14 @@ Origin Dossier belongs inside ALICE as the story-and-context area. GM allowance 
 
 We only discover weak builds after they explode in public.
 
-Picture the scene: A player compares two builds and sees the tradeoffs, the math, and the likely trouble spots before the session starts.
+For example: A player compares two builds and sees the tradeoffs, the math, and the likely trouble spots before the session starts.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it deeper without loosening the boundaries.
+Next: Make it deeper without loosening the boundaries.
 
 
 ## Explanation video

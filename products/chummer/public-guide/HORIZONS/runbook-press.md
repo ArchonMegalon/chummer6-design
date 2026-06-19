@@ -8,14 +8,14 @@ Long-form publishing becomes something you can actually reuse instead of a ten-t
 
 I want real primers, handbooks, and campaign books without duct-taping ten tools together.
 
-Picture the scene: A creator turns approved Chummer material into a district guide or campaign book without juggling a pile of unrelated publishing tools.
+For example: A creator turns approved Chummer material into a district guide or campaign book without juggling a pile of unrelated publishing tools.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it richer, steadier, and easier to trust.
+Next: Make it richer, steadier, and easier to trust.
 
 
 ## Explanation video

@@ -8,11 +8,11 @@ The same Chummer-owned state becomes meaningfully faster without becoming less e
 
 Expert users still lose flow when trusted areas are real but too many clicks apart.
 
-Picture the scene: A veteran GM jumps from build compare to rules answer to prep bench to publication desk without dropping context or trusting a fake launcher.
+For example: A veteran GM jumps from build compare to rules answer to prep bench to publication desk without dropping context or trusting a fake launcher.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it richer, steadier, and easier to trust.
+Next: Make it richer, steadier, and easier to trust.

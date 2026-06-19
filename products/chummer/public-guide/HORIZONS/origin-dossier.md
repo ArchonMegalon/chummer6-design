@@ -14,11 +14,11 @@ The dossier can feed later ALICE context and optional player-scoped audiobook re
 
 A runner can start as math before they feel like a person.
 
-Picture the scene: A player drafts a troll decker, the GM adds a clinic-favor constraint, and Chummer turns the approved origin into a dossier bundle that ALICE can use later.
+For example: A player drafts a troll decker, the GM adds a clinic-favor constraint, and Chummer turns the approved origin into a dossier bundle that ALICE can use later.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it richer, steadier, and easier to trust.
+Next: Make it richer, steadier, and easier to trust.

@@ -8,11 +8,11 @@ Local acceleration improves privacy and responsiveness where available without b
 
 Some tasks would be cheaper or faster locally, but the product cannot assume local compute exists.
 
-Picture the scene: A creator with a strong local machine opts into accelerated explain or media assistance while the same workflow still works hosted-only for everyone else.
+For example: A creator with a strong local machine opts into accelerated explain or media assistance while the same workflow still works hosted-only for everyone else.
 
 
-## Does it work today?
+## Can I use it now?
 
-Today: A first usable version works today.
+A first usable version works today.
 
-Still improving: Make it richer, steadier, and easier to trust.
+Next: Make it richer, steadier, and easier to trust.

@@ -1,38 +1,28 @@
 # Runner Passport
 
-Runner Passport is a shareable character card for joining a table without explaining your whole setup from scratch.
+Runner Passport answers the question a GM actually asks before letting a character into a run: "Can this runner sit at my table without turning setup into homework?"
 
-Use it when a GM or community asks, "Can this runner join our game?" and you do not want to paste a wall of notes into chat.
+It gives the organizer a clean summary of the runner, the rules environment, unresolved warnings, and what still needs a GM decision. The player does not have to paste half a dossier into chat, and the GM does not have to reverse-engineer the sheet from screenshots.
 
-## Open it
+## When you use it
 
-- Open it at `/passport`.
-- Share it when someone needs a clean character summary.
-- Do not treat it as a social score, ranking system, or hidden reputation tracker.
+Use Runner Passport when you are applying for an open run, joining a community game, or carrying a runner between tables. The page lives at [chummer.run/passport](https://chummer.run/passport), but the important part is the job it does: make table approval easier without becoming a reputation score.
 
-## Why this matters
+## Example
 
-Open tables usually need the same answers: which rules apply, whether the character has unresolved warnings, and what a GM still has to approve. Runner Passport puts those answers where a tired human can actually find them.
+A player sends one link for Kestrel, a street-level infiltrator with a legal SIN warning and two GM-only notes still unresolved. The GM can see the active ruleset, what needs approval, and whether the runner is ready for tonight without asking for three screenshots and a small archaeological dig through chat.
 
-## What it shows
+## What the GM sees
 
-- Runner identity reference
-- Active ruleset and environment fingerprint
-- Approval state and review timestamp
-- Known conflicts or unresolved warnings
+Identity, ruleset, review state, warnings, and expiry are presented together so the runner can be accepted, questioned, or sent back for changes quickly.
 
-## When it helps
+## What it is not
 
-It helps when you are applying for an open run, joining a community game, or carrying a runner between tables. It can also connect back into Table Pulse when a table uses the wider campaign tools.
+It is not a social score, a hidden reputation system, or a way for Chummer to overrule the GM.
 
-It ties together:
+## How it connects
 
-- the signed-in Table Pulse inbox
-- leader briefing and faction command
-- Living Newsroom watch framing
-- aftermath follow-up
-
-That means a remote reaction can stay shareable while the real table decisions remain inside Chummer.
+When a table also uses Table Pulse, Runner Passport can carry the clean summary side while the actual command, review, and aftermath work stays inside Chummer.
 
 ## Read next
 

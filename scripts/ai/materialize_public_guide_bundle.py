@@ -288,6 +288,10 @@ def _scrub_public_markdown(content: str) -> str:
         ("Proof cards", "Status cards"),
         ("proof", "status detail"),
         ("Proof", "Status detail"),
+        ("receipts", "records"),
+        ("Receipts", "Records"),
+        ("receipt", "record"),
+        ("Receipt", "Record"),
         ("checked", "tested"),
         ("Checked", "Tested"),
         ("checks", "tests"),
@@ -997,6 +1001,10 @@ def _public_copy(text: str) -> str:
         ("product shell itself", "product itself"),
         ("product shell", "product"),
         ("bounded offline prefetch", "offline-ready prefetch"),
+        ("receipts", "records"),
+        ("Receipts", "Records"),
+        ("receipt", "record"),
+        ("Receipt", "Record"),
         (
             "In the planning notes that shape the roadmap and the public guide.",
             "Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.",
@@ -1110,6 +1118,10 @@ def _public_release_note(text: object) -> str:
         ("bounded offline prefetch", "offline-ready prefetch"),
         ("current shelf", "current download shelf"),
         ("support proof", "support follow-up"),
+        ("receipts", "records"),
+        ("Receipts", "Records"),
+        ("receipt", "record"),
+        ("Receipt", "Record"),
         ("manifest presence", "a posted file"),
         ("published channel artifact now on the shelf", "published download on the public shelf"),
     )
@@ -1793,39 +1805,29 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 _front_matter("Runner Passport", "products/chummer/RUNNER_PASSPORT_SPEC.md"),
                 "# Runner Passport",
                 "",
-                "Runner Passport is a shareable character card for joining a table without explaining your whole setup from scratch.",
+                "Runner Passport answers the question a GM actually asks before letting a character into a run: \"Can this runner sit at my table without turning setup into homework?\"",
                 "",
-                "Use it when a GM or community asks, \"Can this runner join our game?\" and you do not want to paste a wall of notes into chat.",
+                "It gives the organizer a clean summary of the runner, the rules environment, unresolved warnings, and what still needs a GM decision. The player does not have to paste half a dossier into chat, and the GM does not have to reverse-engineer the sheet from screenshots.",
                 "",
-                "## Open it",
+                "## When you use it",
                 "",
-                "- Open it at `/passport`.",
-                "- Share it when someone needs a clean character summary.",
-                "- Do not treat it as a social score, ranking system, or hidden reputation tracker.",
+                "Use Runner Passport when you are applying for an open run, joining a community game, or carrying a runner between tables. The page lives at [chummer.run/passport](https://chummer.run/passport), but the important part is the job it does: make table approval easier without becoming a reputation score.",
                 "",
-                "## Why this matters",
+                "## Example",
                 "",
-                "Open tables usually need the same answers: which rules apply, whether the character has unresolved warnings, and what a GM still has to approve. Runner Passport puts those answers where a tired human can actually find them.",
+                "A player sends one link for Kestrel, a street-level infiltrator with a legal SIN warning and two GM-only notes still unresolved. The GM can see the active ruleset, what needs approval, and whether the runner is ready for tonight without asking for three screenshots and a small archaeological dig through chat.",
                 "",
-                "## What it shows",
+                "## What the GM sees",
                 "",
-                "- Runner identity reference",
-                "- Active ruleset and environment fingerprint",
-                "- Approval state and review timestamp",
-                "- Known conflicts or unresolved warnings",
+                "Identity, ruleset, review state, warnings, and expiry are presented together so the runner can be accepted, questioned, or sent back for changes quickly.",
                 "",
-                "## When it helps",
+                "## What it is not",
                 "",
-                "It helps when you are applying for an open run, joining a community game, or carrying a runner between tables. It can also connect back into Table Pulse when a table uses the wider campaign tools.",
+                "It is not a social score, a hidden reputation system, or a way for Chummer to overrule the GM.",
                 "",
-                "It ties together:",
+                "## How it connects",
                 "",
-                "- the signed-in Table Pulse inbox",
-                "- leader briefing and faction command",
-                "- Living Newsroom watch framing",
-                "- aftermath follow-up",
-                "",
-                "That means a remote reaction can stay shareable while the real table decisions remain inside Chummer.",
+                "When a table also uses Table Pulse, Runner Passport can carry the clean summary side while the actual command, review, and aftermath work stays inside Chummer.",
                 "",
                 "## Read next",
                 "",
@@ -1842,33 +1844,25 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 _front_matter("Signal Deck", "products/chummer/SIGNAL_DECK_SPEC.md"),
                 "# Signal Deck",
                 "",
-                "Signal Deck is the command view for a table that wants campaign pressure to survive between sessions.",
+                "Signal Deck answers the GM-side question after players react: \"What pressure is still on the table, and who has to decide next?\"",
                 "",
-                "It is for GMs and organizers who need to see pending consequences, faction pressure, and follow-up without digging through scattered recaps.",
+                "It is for GMs and organizers who need pending consequences, faction pressure, and follow-up to stay visible without digging through scattered recaps.",
                 "",
-                "## Open it",
+                "## When you use it",
                 "",
-                "- Open it at `/signal-deck`.",
-                "- Use it when Table Pulse reactions have created things the table still needs to resolve.",
-                "- It does not replace the GM or decide the world by itself.",
+                "Use Signal Deck when Table Pulse reactions have created things the table still needs to resolve. The page lives at `/signal-deck`, but the feature is not the route; it is the pressure board that keeps the next GM decision from disappearing into recap sludge.",
                 "",
-                "## What it does",
+                "## What it keeps clear",
                 "",
-                "- Keeps consequence pressure visible after inbox reactions",
-                "- Keeps the next command decision inside Chummer instead of buried in recap text",
-                "- Connects leader briefing, Living Newsroom, Runner Passport, and aftermath follow-up",
+                "Signal Deck keeps consequence pressure visible after inbox reactions, keeps the next command decision inside Chummer instead of buried in recap text, and connects leader briefing, Living Newsroom, Runner Passport, and aftermath follow-up.",
+                "",
+                "## What it is not",
+                "",
+                "It does not replace the GM, decide the world by itself, or turn campaign play into an admin chore with nicer typography.",
                 "",
                 "## How it fits",
                 "",
-                "Signal Deck is the command-facing side of the signed-in Table Pulse loop.",
-                "",
-                "It ties together:",
-                "",
-                "- the signed-in Table Pulse inbox",
-                "- leader briefing and GM cockpit",
-                "- Living Newsroom watch framing",
-                "- aftermath follow-up",
-                "- Runner Passport continuity",
+                "Signal Deck is the command-facing side of the signed-in Table Pulse loop. It sits beside leader briefing, GM cockpit, Living Newsroom, aftermath follow-up, and Runner Passport continuity.",
                 "",
                 "## Read next",
                 "",
@@ -1900,15 +1894,17 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
                 "",
                 "It is for GMs and players who want the world to remember what just happened without turning Chummer into an automatic storyteller with a clipboard.",
                 "",
-                "## Open it",
+                "## When you use it",
                 "",
-                "- Open it at `/living-world`.",
-                "- Use it when a session leaves news, faction movement, or aftermath choices on the table.",
-                "- It does not replace the GM, reveal secrets, or run the campaign by itself.",
+                "Use Living World when a session leaves news, faction movement, or aftermath choices on the table. The page lives at [chummer.run/living-world](https://chummer.run/living-world), but the promise is simpler than the route: keep the consequences together so the GM does not rebuild them from chat fragments.",
                 "",
-                "## What you get",
+                "## What it gives the table",
                 "",
                 "A place for watch packages, inbox reactions, leader briefings, Runner Passport continuity, and aftermath follow-up to stay attached to the same turn instead of spreading across five chats and half a brain's worth of memory.",
+                "",
+                "## What it is not",
+                "",
+                "It does not replace the GM, reveal secrets, or run the campaign by itself.",
                 "",
                 "## Read next",
                 "",
@@ -1936,21 +1932,15 @@ def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdi
         "",
         "It should feel like a real broadcast from the Chummer world, not a website animation.",
         "",
-	        "## Watch and inspect",
+        "## Where to watch",
         "",
-	        "- Latest bulletins: `/ledger/newsroom`",
-	        "- Watch the episode: `/ledger/newsroom/turn-1-newsreel`",
-	        "- Read the transcript: `/ledger/newsroom/turn-1-newsreel/transcript`",
-	        "- Open supporting details: `/ledger/newsroom/turn-1-newsreel/details`",
+        "Start with the newsroom at [chummer.run/ledger/newsroom](https://chummer.run/ledger/newsroom). A sample episode lives at [chummer.run/ledger/newsroom/turn-1-newsreel](https://chummer.run/ledger/newsroom/turn-1-newsreel), with [transcript](https://chummer.run/ledger/newsroom/turn-1-newsreel/transcript) and supporting details beside it.",
         "",
-        "## What it has to do",
+        "## What to look for",
         "",
-        "- Keep a host, lower thirds, captions, audio, and Chummer-owned media assets on one page.",
-        "- Turn selected campaign events into a bounded newsroom bulletin instead of loose promo fragments.",
-        "- Keep transcript and details links adjacent to the watch page.",
-        "- Make clear when footage is reconstructed instead of literal table capture.",
+        "A good bulletin keeps the host, lower thirds, captions, audio, transcript, and supporting details together. It should feel like an in-world broadcast made from selected campaign events, while staying clear when footage is reconstructed rather than literal table capture.",
         "",
-        "## Hard boundaries",
+        "## What stays out",
         "",
         "- No private campaign details.",
         "- No runner names without consent.",
@@ -2786,9 +2776,9 @@ def _generate_horizon_pages(
             label = str(row.get("title") or horizon_id).strip() or horizon_id
             promise = _public_copy(str(row.get("wow_promise") or row.get("pain_label") or "").strip())
             if promise:
-                index_rows.extend([f"### {label}", "", promise, "", f"Open [{label}]({_slug(horizon_id)}.md).", ""])
+                index_rows.extend([f"### {label}", "", promise, "", f"Read more: [{label}]({_slug(horizon_id)}.md).", ""])
             else:
-                index_rows.extend([f"### {label}", "", f"Open [{label}]({_slug(horizon_id)}.md).", ""])
+                index_rows.extend([f"### {label}", "", f"Read more: [{label}]({_slug(horizon_id)}.md).", ""])
 
     append_index_group(
         "Part of the product story",
@@ -2855,17 +2845,17 @@ def _generate_horizon_pages(
             if pain_label:
                 rows.extend([pain_label, ""])
             if table_scene:
-                rows.extend([f"Picture the scene: {table_scene}", ""])
+                rows.extend([f"For example: {table_scene}", ""])
 
         build_path = horizon.get("build_path") or {}
         if isinstance(build_path, dict):
             current_state = _public_horizon_stage_label(build_path.get("current_state"))
             next_state = _public_horizon_stage_label(build_path.get("next_state"))
-            rows.extend(["", "## Does it work today?", ""])
+            rows.extend(["", "## Can I use it now?", ""])
             if current_state:
-                rows.extend([f"Today: {current_state}.", ""])
+                rows.extend([f"{current_state}.", ""])
             if next_state:
-                rows.extend([f"Still improving: {next_state}.", ""])
+                rows.extend([f"Next: {next_state}.", ""])
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
         if canon_doc:
