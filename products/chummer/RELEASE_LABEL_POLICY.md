@@ -45,10 +45,13 @@ Current public desktop promotion scope:
 
 macOS remains buildable but not publicly promoted until the signed/notarized promotion lane is proven.
 
-Rolling-release rule for that scope:
+Scheduled rolling-release rule for that scope:
 
-- every successful mainline build in the current public promotion scope must become the public downloadable release automatically
-- leaving an older Windows/Linux public shelf live after a newer successful mainline bundle exists is a release-pipeline failure
+- normal public publication happens once per day at 08:00 Europe/Vienna
+- the scheduled promotion selects the newest successful qualified Windows/Linux bundle for each public platform
+- forced publication is allowed only for an explicit release reason, not as the default cadence
+- leaving an older Windows/Linux public shelf live after the scheduled promotion completes is a release-pipeline failure
+- ad hoc builds should target only the platform needed for a concrete test or fix
 
 Status language:
 

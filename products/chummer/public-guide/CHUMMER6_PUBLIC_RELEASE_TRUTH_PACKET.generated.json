@@ -5,7 +5,7 @@
     "Linux"
   ],
   "build_label": "",
-  "desktop_pick_line": "Because my capsule-region insult did not exactly upgrade my decision-making process, I have not made the final Avalonia-versus-Blazor call yet. For today: start with Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there.",
+  "desktop_pick_line": "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there.",
   "fallback_heads": [
     "Chummer.Blazor.Desktop"
   ],
@@ -18,7 +18,7 @@
   "primary_head": "Chummer.Avalonia",
   "public_download_authority": "https://chummer.run/downloads",
   "published_at": "June 19, 2026 at 14:05 UTC",
-  "quality_gap_line": "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.",
+  "quality_gap_line": "Character math is already solid. The rough edges are mostly installer polish, update polish, support polish, and deeper campaign tooling.",
   "release_status": "Published",
   "release_status_slug": "published",
   "release_verification_summary": "This build handles installs and recovery, campaign session recovery, and support follow-up.",

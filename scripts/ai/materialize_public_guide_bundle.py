@@ -1263,9 +1263,8 @@ def _public_desktop_choice_line(primary_app: str, fallback_apps: list[str]) -> s
     fallback_label = _english_join([item for item in fallback_apps if str(item).strip()])
     if fallback_label and primary == "Avalonia" and "Blazor Desktop" in fallback_apps:
         return (
-            "Because my capsule-region insult did not exactly upgrade my decision-making process, "
-            "I have not made the final Avalonia-versus-Blazor call yet. For today: start with "
-            "Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there."
+            "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when "
+            "a support page points you there."
         )
     if fallback_label:
         return (
@@ -1914,7 +1913,7 @@ def _build_release_truth_packet(
         "quality_gap_line": (
             "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
             if families_below_gold
-            else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
+            else "Character math is already solid. The rough edges are mostly installer polish, update polish, support polish, and deeper campaign tooling."
         ),
         "release_verification_summary": _public_release_proof_summary(release_payload),
         "known_issue_summary": _public_known_issue_summary(release_payload),

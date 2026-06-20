@@ -6,7 +6,7 @@ This page is for Chummer5a users who want the blunt answer: what still feels fam
 
 It is still aiming for a dense desktop workbench, not a stripped-down dashboard. Character editing, file work, settings, and roster tasks are supposed to stay close at hand.
 
-Because my capsule-region insult did not exactly upgrade my decision-making process, I have not made the final Avalonia-versus-Blazor call yet. For today: start with Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there.
+For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there.
 
 ## What gets better
 

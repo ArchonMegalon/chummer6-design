@@ -173,8 +173,8 @@ def test_generate_root_uses_short_user_first_release_summary(tmp_path: Path, mon
     assert "Claim boundary" not in readme
     assert "what this covers" not in readme.lower()
     assert "Use the files linked on [Download](DOWNLOAD.md)" in readme
-    assert "capsule-region insult" in readme
-    assert "start with Avalonia" in readme
+    assert "capsule-region insult" not in readme
+    assert "For today, start with Avalonia" in readme
     assert "serious preview rather than a finished Chummer5a replacement" in readme
 
 
@@ -288,7 +288,7 @@ def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
     start_here = (out_dir / "START_HERE.md").read_text(encoding="utf-8")
 
     assert "## I am new, rusty, or coming back from Chummer5a" in start_here
-    assert "Start with the [first session guide](ONRAMP.md)." in start_here
+    assert "Start with the [first session guide](ONRAMP.md), then use [Help](HELP.md)" in start_here
     assert "not another grand product shelf" in start_here
 
 
@@ -333,8 +333,9 @@ def test_generate_bundle_carries_horizon_explanation_videos(tmp_path: Path) -> N
     community = (out_dir / "HORIZONS" / "community-hub.md").read_text(encoding="utf-8")
     nexus = (out_dir / "HORIZONS" / "nexus-pan.md").read_text(encoding="utf-8")
 
-    assert "## Explanation video" in runsite
+    assert "## Explanation video" not in runsite
     assert "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4" in runsite
+    assert "alt=\"Runsite video preview\"" in runsite
     assert "MP4 with AAC audio" not in runsite
     assert "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4" in community
-    assert "https://chummer.run/media/horizons/nexus-pan-epic-90s.mp4" in nexus
+    assert "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4" in nexus

@@ -10,7 +10,7 @@ Use [Download](DOWNLOAD.md) for files, [Status](STATUS.md) for the blunt current
 
 Windows and Linux downloads are posted.
 Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.
-Because my capsule-region insult did not exactly upgrade my decision-making process, I have not made the final Avalonia-versus-Blazor call yet. For today: start with Avalonia, and treat Blazor Desktop as the alternate if a page or support points you there. Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish.
+For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there. Character math is already solid; the rough edges are mostly installer polish, update polish, support polish, and deeper campaign tooling.
 
 ## Why it exists
 
