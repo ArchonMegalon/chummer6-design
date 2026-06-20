@@ -96,7 +96,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ripgrep
+          sudo apt-get install -y ffmpeg ripgrep
           python -m pip install pyyaml
 
       - name: Prepare mirror directories
