@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import importlib.util
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 SCRIPT_PATH = Path(__file__).resolve().parent / "materialize_human_only_release_boundaries.py"
@@ -69,6 +71,37 @@ class HumanOnlyReleaseBoundaryTests(unittest.TestCase):
         rendered = MODULE.render_markdown(contract)
         self.assertIn("No human-only release boundaries remain.", rendered)
         self.assertIn("Verdict: `CLEAR`", rendered)
+
+    def test_missing_source_receipt_uses_checked_in_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            out_json = root / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.json"
+            out_json.write_text(
+                """{
+  "blockers": [],
+  "contract_name": "chummer.human_only_release_boundaries",
+  "contract_version": 1,
+  "generated_at": "2026-06-17T17:02:00Z",
+  "human_action_count": 0,
+  "human_action_required": false,
+  "source_receipt": "missing/source.json",
+  "source_receipt_final_verdict": "FULL_RULE_AUTHORITY_READY",
+  "source_receipt_generated_at": "2026-06-17T17:02:00Z",
+  "summary": "No human-only release boundaries remain.",
+  "verdict": "CLEAR"
+}
+""",
+                encoding="utf-8",
+            )
+
+            with (
+                mock.patch.object(MODULE, "SOURCE_RECEIPT", root / "missing-source.json"),
+                mock.patch.object(MODULE, "OUT_JSON", out_json),
+            ):
+                contract = MODULE._contract_from_checked_in_output_when_source_missing()
+
+        self.assertIsNotNone(contract)
+        self.assertEqual("CLEAR", contract["verdict"])
 
 
 if __name__ == "__main__":

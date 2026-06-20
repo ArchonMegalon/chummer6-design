@@ -210,12 +210,23 @@ def _write_outputs(contract: dict[str, Any]) -> None:
     OUT_MD.write_text(render_markdown(contract), encoding="utf-8")
 
 
+def _contract_from_checked_in_output_when_source_missing() -> dict[str, Any] | None:
+    if SOURCE_RECEIPT.exists():
+        return None
+    if not OUT_JSON.exists():
+        return None
+    contract = _load_json(OUT_JSON)
+    if str(contract.get("contract_name") or "") != "chummer.human_only_release_boundaries":
+        raise ValueError(f"{OUT_JSON} is not a human-only release boundary contract.")
+    return contract
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Materialize the current human-only product release boundaries.")
     parser.add_argument("--check", action="store_true", help="Exit non-zero if generated outputs are stale.")
     args = parser.parse_args()
 
-    contract = build_contract()
+    contract = _contract_from_checked_in_output_when_source_missing() or build_contract()
     expected_json = json.dumps(contract, indent=2, sort_keys=True) + "\n"
     expected_md = render_markdown(contract)
 

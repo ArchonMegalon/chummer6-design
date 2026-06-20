@@ -5,15 +5,16 @@ This is the page for the uncomfortable question: should I use Chummer6 today, or
 ## The answer
 
 Today: Current release build.
-Windows and Linux downloads are posted.
+Windows and Linux downloads are posted; macOS does not have a normal installer yet.
 Desktop downloads are available for Linux x64 and Windows x64 only. No download is posted for Windows ARM64, Linux ARM64, and macOS x64 yet.
+macOS does not have a normal installer yet.
 This build handles installs and recovery, campaign session recovery, and support follow-up.
-No blocking download issue is listed for the current installers.
+Release tests are missing or stale on this shelf, so preview publication is visible but not yet gold-ready.
 Help, contact, privacy, and terms pages are live.
 
 ## Release details
 
-- Published: June 19, 2026 at 14:05 UTC.
+- Published: June 19, 2026 at 19:53 UTC.
 - Release status: Published.
 
 ## Start with the release page and download help
