@@ -63,6 +63,7 @@ for path in \
   products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md \
   products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md \
   products/chummer/PRODUCT_HEALTH_SCORECARD.yaml \
+  products/chummer/WHOLE_PROJECT_MISSED_SCOPE_ACCEPTANCE.md \
   products/chummer/WEEKLY_PRODUCT_PULSE.generated.json \
   products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml \
   products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md \
@@ -231,6 +232,7 @@ python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_spine.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
+rg -n 'Fit-For-Purpose Code Shape Is Product Scope|Reproducible Product Truth Is Product Scope|What did I miss given the whole project as scope' "$repo_root/products/chummer/WHOLE_PROJECT_MISSED_SCOPE_ACCEPTANCE.md" >/dev/null
 rg -n 'ERROR_TAXONOMY_AND_ESCALATION_MATRIX.yaml|KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md' "$repo_root/products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md" >/dev/null
 rg -n 'ACCESSIBILITY_AND_COPY_SAFETY_RELEASE_CHECKLIST.md|CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml|ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md|LONG_RUNNING_ACTION_SAFETY_CONTRACT.md|HORIZON_PROMOTION_RULES.md' "$repo_root/products/chummer/FLAGSHIP_RELEASE_ACCEPTANCE.yaml" >/dev/null
 rg -n 'ERROR_TAXONOMY_AND_ESCALATION_MATRIX.yaml|CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml|FLAGSHIP_RESPONSIVENESS_BUDGETS.yaml|KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md' "$repo_root/products/chummer/METRICS_AND_SLOS.yaml" >/dev/null
