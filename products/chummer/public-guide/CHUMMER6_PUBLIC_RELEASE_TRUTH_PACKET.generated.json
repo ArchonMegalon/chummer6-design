@@ -11,7 +11,7 @@
   ],
   "fix_availability_summary": "Only expect fix notices after the affected download is available on the download page.",
   "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
-  "known_issue_summary": "Release checks are missing or stale on this shelf, so preview publication is visible but not yet gold-ready.",
+  "known_issue_summary": "The current files are posted, but some release notes are still catching up.",
   "missing_installer_lane_line": "macOS does not have a normal installer yet.",
   "missing_platforms": [
     "macOS"

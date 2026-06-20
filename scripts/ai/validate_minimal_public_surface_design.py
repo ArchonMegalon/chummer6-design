@@ -24,6 +24,7 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "The downloads surface is a download shelf first",
         "show visible `Nightly` and `Stable` lane buttons",
         "expose portable builds on the normal public shelf",
+        "keep advanced release records away from the normal install choice",
         "when an Arch/AUR package is available or still pending",
     ),
     "PUBLIC_RELEASE_EXPERIENCE.yaml": (

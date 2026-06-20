@@ -185,6 +185,7 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
         release_payload={
             "status": "published",
             "publishedAt": "2026-04-23T20:55:00Z",
+            "knownIssueSummary": "Release status is missing or stale on this shelf, so preview publication is visible but not yet gold-ready.",
             "artifacts": [
                 {
                     "platform": "windows",
@@ -234,9 +235,16 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
     assert "Claim boundary:" not in download
     assert "what this covers" not in download.lower()
     assert "If you are on Windows or Linux, start with the Avalonia installer." in download
-    assert "That is the human answer." in download
+    assert "The exact files and hashes are below." in download
     assert "This build handles installs and recovery." in download
-    assert "Where an installer exists, start there. Archive packages and explainer bundles are secondary." in download
+    assert "Start with the installer for your platform." in download
+    assert "The current files are posted, but some release notes are still catching up." in download
+    assert "chummer-blazor-win-x64.zip" not in download
+    assert "portable" not in download.lower()
+    assert "archive package" not in download.lower()
+    assert "explainer bundles" not in download.lower()
+    assert "gold-ready" not in download.lower()
+    assert "release tests" not in download.lower()
 
 
 def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> None:
@@ -290,6 +298,8 @@ def test_generate_bundle_keeps_start_here_onramp_first(tmp_path: Path) -> None:
     assert "## I am new, rusty, or coming back from Chummer5a" in start_here
     assert "Start with the [first session guide](ONRAMP.md), then use [Help](HELP.md)" in start_here
     assert "not another grand product shelf" in start_here
+    assert "I am maintaining the product" not in start_here
+    assert "Next 12 Biggest Wins" not in start_here
 
 
 def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_path: Path) -> None:

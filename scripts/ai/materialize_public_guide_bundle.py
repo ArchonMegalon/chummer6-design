@@ -1354,6 +1354,8 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
         return "No blocking download issue is listed for the current installers."
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
         return "This is still a preview, but setup, recovery, offline-ready behavior, release follow-up, and support work for the current downloads."
+    if "gold-ready" in lowered or ("release status" in lowered and "shelf" in lowered):
+        return "The current files are posted, but some release notes are still catching up."
     if "required desktop tuple coverage is incomplete" in lowered:
         platforms: list[str] = []
         if "windows" in lowered:
@@ -1574,6 +1576,24 @@ def _artifact_kind_rank(value: object) -> int:
     return 2
 
 
+def _public_download_artifacts(artifacts: list[dict[str, object]]) -> list[dict[str, object]]:
+    """Return only normal user-facing desktop downloads for the public guide."""
+    allowed_platforms = {"windows", "linux"}
+    allowed_kinds = {"installer"}
+    filtered: list[dict[str, object]] = []
+    for item in artifacts:
+        if not isinstance(item, dict):
+            continue
+        platform = str(item.get("platform") or item.get("platformLabel") or "").strip().lower()
+        kind = str(item.get("kind") or "").strip().lower()
+        if platform not in allowed_platforms:
+            continue
+        if kind not in allowed_kinds:
+            continue
+        filtered.append(item)
+    return filtered
+
+
 def _artifact_access_rank(value: object) -> int:
     cleaned = str(value or "").strip().lower()
     mapping = {
@@ -1750,7 +1770,7 @@ def _public_verification_status(value: object) -> str:
 def _public_install_section(section: dict[str, object], release_payload: dict[str, object]) -> dict[str, object]:
     if str(section.get("id") or "").strip() != "install-update":
         return dict(section)
-    artifacts = _release_artifacts(release_payload)
+    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
     installers = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
     open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
     published = _release_is_published(release_payload.get("status"))
@@ -1762,7 +1782,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
             rendered["bullets"] = [
                 "Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
                 "Use `Stable` when you want the slower release channel.",
-                "Use the Windows or Linux installer; portable builds are not the public primary path.",
+                "Use the Windows or Linux installer.",
                 "Create an account if you want your support history, recovery, and downloads tied to one place.",
                 "If your platform is missing, the status and download pages will say so.",
             ]
@@ -1865,7 +1885,7 @@ def _build_release_truth_packet(
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
 ) -> dict[str, object]:
-    artifacts = _release_artifacts(release_payload)
+    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
     raw_status = str(release_payload.get("status") or "unpublished").strip()
     phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
     published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
@@ -2471,7 +2491,7 @@ def _generate_from_chummer5a_to_chummer6(
 def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
-    artifacts = _release_artifacts(release_payload)
+    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
     available_platforms = _promoted_platform_labels(release_payload, artifacts)
     missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
@@ -2656,7 +2676,7 @@ def _generate_download(
     release_experience: dict[str, object],
 ) -> None:
     phase = _public_phase_label(progress.get("phase_label") or "Current release status")
-    artifacts = _release_artifacts(release_payload)
+    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
     available_platforms = _promoted_platform_labels(release_payload, artifacts)
     missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
@@ -2680,7 +2700,7 @@ def _generate_download(
         ),
         "macos": (
             "macOS",
-            "macOS currently has archive previews only. Use the posted guidance before treating it as your main install path.",
+            "macOS is guided support only today. There is no public Mac installer on the download page.",
         ),
     }
     section_heading = "What is available" if _release_is_published(status) else "What is available in preview"
@@ -2693,15 +2713,14 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
-        "If you are on Windows or Linux, start with the Avalonia installer. If you are on macOS, treat the current files as preview-only and do not switch your main setup yet.",
+        "If you are on Windows or Linux, start with the Avalonia installer. If you are on macOS, wait for the guided support path.",
         "",
-        "That is the human answer. The rest of this page is here for exact files, sizes, and hashes.",
+        "The exact files and hashes are below.",
         "",
         "## Pick your file",
         "",
         "- Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
         "- Use `Stable` when you want the slower release channel.",
-        "- Use a portable package only for recovery or special cases.",
     ]
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]
@@ -2734,7 +2753,7 @@ def _generate_download(
             "",
             "## File details",
             "",
-            "Official client downloads start on the [Chummer6 downloads page](https://chummer.run/downloads). Use GitHub for source code and issue discussion, not as the normal install path.",
+            "Official client downloads start on the [Chummer6 downloads page](https://chummer.run/downloads). Use GitHub for source code and issue discussion.",
         ]
     )
 
@@ -2774,7 +2793,7 @@ def _generate_download(
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
             if _release_is_published(status):
-                rows.append("- Where an installer exists, start there. Archive packages and explainer bundles are secondary.")
+                rows.append("- Start with the installer for your platform.")
             else:
                 rows.append("- Installers are already visible, but they still count as preview files until the release is published.")
         else:
@@ -2823,7 +2842,7 @@ def _generate_download(
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
-        rows.extend(["", "## What works in this build", ""])
+        rows.extend(["", "## Build notes", ""])
         generated_at = str(release_proof.get("generatedAt") or "").strip()
         if generated_at:
             rows.append(f"- Last updated: {_format_public_datetime(generated_at)}.")

@@ -9,7 +9,7 @@ Windows and Linux downloads are posted; macOS does not have a normal installer y
 Desktop downloads are available for Linux x64 and Windows x64 only. No download is posted for Windows ARM64, Linux ARM64, and macOS x64 yet.
 macOS does not have a normal installer yet.
 This build handles installs and recovery, campaign session recovery, and support follow-up.
-Release tests are missing or stale on this shelf, so preview publication is visible but not yet gold-ready.
+The current files are posted, but some release notes are still catching up.
 Help, contact, privacy, and terms pages are live.
 
 ## Release details
@@ -23,6 +23,6 @@ Start with the download page. It should tell you which file to use, what is miss
 
 - Use `Nightly` when you want the newest rolling public build on Windows or Linux.
 - Use `Stable` when you want the slower release channel.
-- Use the Windows or Linux installer; portable builds are not the public primary path.
+- Use the Windows or Linux installer.
 - Create an account if you want your support history, recovery, and downloads tied to one place.
 - If your platform is missing, the status and download pages will say so.
