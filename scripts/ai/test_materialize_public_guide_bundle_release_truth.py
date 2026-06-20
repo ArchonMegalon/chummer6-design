@@ -77,7 +77,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
 
         self.assertEqual(
             packet["quality_gap_line"],
-            "The core build path is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling.",
+            "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling.",
         )
 
     def test_missing_required_platform_labels_stays_empty_for_explicit_mac_only_preview_contract(self) -> None:

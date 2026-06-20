@@ -1,6 +1,6 @@
 # Human-only release boundaries
 
-Generated: 2026-06-19T23:15:54Z
+Generated: 2026-06-20T22:36:48Z
 Source receipt: `chummer-core-engine/.codex-studio/published/FULL_PRODUCT_RULE_AUTHORITY_COMPLETION.generated.json`
 Source verdict: `FULL_RULE_AUTHORITY_READY`
 Verdict: `CLEAR`

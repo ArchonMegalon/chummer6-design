@@ -1933,7 +1933,7 @@ def _build_release_truth_packet(
         "quality_gap_line": (
             "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
             if families_below_gold
-            else "The core build path is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling."
+            else "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling."
         ),
         "release_verification_summary": _public_release_proof_summary(release_payload),
         "known_issue_summary": _public_known_issue_summary(release_payload),
