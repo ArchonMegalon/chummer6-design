@@ -8,6 +8,7 @@ The exact files and hashes are below.
 
 - Use `Nightly` when you want the newest rolling public build on Windows or Linux.
 - Use `Stable` when you want the slower release channel.
+- If Nightly and Stable show the same build, there is no newer Nightly at that moment.
 - For Windows, start with Avalonia Desktop Windows X64 Installer.
 - For Linux, start with Avalonia Desktop Linux X64 Installer.
 - macOS is guided support only today. There is no public Mac installer on the download page.
@@ -18,7 +19,7 @@ Today: Current release build.
 Published: June 19, 2026 at 19:53 UTC.
 Windows and Linux downloads are posted; macOS does not have a normal installer yet.
 This build handles installs and recovery, campaign session recovery, and support follow-up.
-The current files are posted, but some release notes are still catching up.
+No blocking download issue is listed for the current installers.
 Only expect fix notices after the affected download is available on the download page.
 
 ## File details
@@ -58,5 +59,5 @@ Official client downloads start on the [Chummer6 downloads page](https://chummer
 
 ## Build notes
 
-- Last updated: June 19, 2026 at 11:43 UTC.
+- Last updated: June 20, 2026.
 - This build handles installs and recovery, campaign session recovery, and support follow-up.

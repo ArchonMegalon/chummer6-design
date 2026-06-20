@@ -51,6 +51,35 @@ class ReleaseTruthWordingTests(unittest.TestCase):
             "Linux and macOS do not have normal installers yet.",
         )
 
+    def test_public_known_issue_summary_removes_gold_ready_shelf_noise(self) -> None:
+        self.assertEqual(
+            MODULE._public_known_issue_summary(
+                {
+                    "knownIssueSummary": "Release status is missing or stale on this shelf, so preview publication is visible but not yet gold-ready.",
+                    "status": "published",
+                }
+            ),
+            "No blocking download issue is listed for the current installers.",
+        )
+
+    def test_release_truth_packet_uses_measured_quality_gap_line(self) -> None:
+        packet = MODULE._build_release_truth_packet(
+            progress={},
+            release_payload={
+                "status": "published",
+                "version": "run-258",
+                "downloads": [],
+            },
+            landing_manifest={},
+            primary_route_registry={"jobs": []},
+            flagship_parity_registry={"families": []},
+        )
+
+        self.assertEqual(
+            packet["quality_gap_line"],
+            "The core build path is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling.",
+        )
+
     def test_missing_required_platform_labels_stays_empty_for_explicit_mac_only_preview_contract(self) -> None:
         release_payload = {
             "desktopTupleCoverage": {

@@ -1355,7 +1355,7 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
         return "This is still a preview, but setup, recovery, offline-ready behavior, release follow-up, and support work for the current downloads."
     if "gold-ready" in lowered or ("release status" in lowered and "shelf" in lowered):
-        return "The current files are posted, but some release notes are still catching up."
+        return "No blocking download issue is listed for the current installers."
     if "required desktop tuple coverage is incomplete" in lowered:
         platforms: list[str] = []
         if "windows" in lowered:
@@ -1933,7 +1933,7 @@ def _build_release_truth_packet(
         "quality_gap_line": (
             "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
             if families_below_gold
-            else "Character math is already solid. The rough edges are mostly installer polish, update polish, support polish, and deeper campaign tooling."
+            else "The core build path is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling."
         ),
         "release_verification_summary": _public_release_proof_summary(release_payload),
         "known_issue_summary": _public_known_issue_summary(release_payload),
@@ -2288,7 +2288,7 @@ def _generate_root(
             "",
             "Shadowrun characters carry a lot of math, choices, edge cases, and table agreements. Chummer6 is for the moment when someone asks, \"why did that number change?\" and the table deserves a better answer than shoulder-shrugging and memory.",
             "",
-            "When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When you are prepping before a session with functioning fingers, limited patience, and maybe only half a brain online, the next useful action should be obvious.",
+            "When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When a session starts soon, the next useful action should be obvious.",
             "",
             "## What should feel different",
             "",
@@ -2551,7 +2551,7 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         "",
         "Start here if installation, updates, sign-in, or bugs are getting in the way.",
         "",
-        "If only half your brain is working because the session starts soon, do not debug the whole universe. Check the download page, check status, then contact us with what happened.",
+        "If the session starts soon, do not debug the whole universe. Check the download page, check status, then contact us with what happened.",
         "",
     ]
     if isinstance(help_page, dict):
@@ -2566,9 +2566,9 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         _front_matter("How Can I Help?", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# How Can I Help?",
         "",
-        "No short answers yet. Seriously: ask me, folks.",
+        "Send the moment that failed. Include what you tried, what happened, and what you expected.",
         "",
-        "Good feedback usually starts with the actual moment that failed: what you tried, what happened, and what you expected. That is more useful than a perfect bug-report template written by someone with functioning fingers and a suspicious amount of sleep.",
+        "A short, concrete report is more useful than a perfect template.",
         "",
         "## Something broke",
         "",
@@ -2721,6 +2721,7 @@ def _generate_download(
         "",
         "- Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
         "- Use `Stable` when you want the slower release channel.",
+        "- If Nightly and Stable show the same build, there is no newer Nightly at that moment.",
     ]
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]

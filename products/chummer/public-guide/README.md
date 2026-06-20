@@ -10,13 +10,13 @@ Use [Download](DOWNLOAD.md) for files, [Status](STATUS.md) for the blunt current
 
 Windows and Linux downloads are posted; macOS does not have a normal installer yet.
 Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.
-For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there. Character math is already solid. The rough edges are mostly installer polish, update polish, support polish, and deeper campaign tooling.
+For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there. The core build path is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling.
 
 ## Why it exists
 
 Shadowrun characters carry a lot of math, choices, edge cases, and table agreements. Chummer6 is for the moment when someone asks, "why did that number change?" and the table deserves a better answer than shoulder-shrugging and memory.
 
-When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When you are prepping before a session with functioning fingers, limited patience, and maybe only half a brain online, the next useful action should be obvious.
+When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When a session starts soon, the next useful action should be obvious.
 
 ## What should feel different
 
