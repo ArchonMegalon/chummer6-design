@@ -336,10 +336,13 @@ The generated human-facing docs must stay minimal, neutral, and product-first:
 - Black Ledger remains out of primary public navigation until its visual and behavior bar is ready.
 - The desktop-head recommendation uses plain language: start with Avalonia; use Blazor Desktop only when support points there.
 - Public package/catalog pages must use plain user language: package fit, review, record, account page, and Downloads. They must not surface proof, receipt, operator, governed/governance, first-party, rail/lane, provenance, or package-browser wording.
+- Generated Download, Status, Help, and Trust Help pages expose only normal Windows/Linux installer choices to first-time users. Portable/archive packages, macOS preview files, proof-card framing, `release tests`, and `gold-ready` wording stay out of those pages.
+- Known release caveats must be translated into a short user note such as "The current files are posted, but some release notes are still catching up" instead of leaking shelf/proof/test vocabulary.
 
 Current focused proof:
 
 - `tests/test_materialize_public_guide_bundle.py`
+- `test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary`
 - `PublicFrontDoorCopyPolishTests.Public_front_door_views_avoid_internal_ai_and_proof_language`
 - `PublicFrontDoorCopyPolishTests.Minimal_public_tier_avoids_black_ledger_and_proof_card_language`
 - `PublicPackageCatalogServiceTests.Public_package_catalog_user_facing_copy_avoids_internal_audit_terms`
