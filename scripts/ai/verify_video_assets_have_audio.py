@@ -39,6 +39,8 @@ VOLUME_RE = re.compile(r"(?P<kind>mean|max)_volume:\s*(?P<value>-?inf|-?\d+(?:\.
 PUBLIC_VIDEO_EXTENSIONS = {".mp4", ".webm"}
 MIN_MAX_VOLUME_DB = -50.0
 MIN_MEAN_VOLUME_DB = -80.0
+MIN_AUDIO_COVERAGE_RATIO = 0.98
+MAX_UNCOVERED_TAIL_SECONDS = 0.75
 
 
 def _iter_markdown_files() -> list[Path]:
@@ -100,7 +102,7 @@ def _probe_media(target: str | Path) -> dict[str, object]:
         "-v",
         "error",
         "-show_entries",
-        "stream=index,codec_type,codec_name,bit_rate,channels,sample_rate:format=duration,size",
+        "stream=index,codec_type,codec_name,duration,bit_rate,channels,sample_rate:format=duration,size",
         "-print_format",
         "json",
         str(target),
@@ -132,6 +134,14 @@ def _audio_bit_rate(audio_stream: dict[str, object]) -> int:
         return 0
 
 
+def _duration_value(raw_value: object) -> float:
+    try:
+        duration = float(raw_value)
+    except (TypeError, ValueError):
+        return 0.0
+    return duration if duration > 0 else 0.0
+
+
 def _audit_media_target(target: str | Path) -> list[str]:
     payload = _probe_media(target)
     streams = payload.get("streams") or []
@@ -146,6 +156,18 @@ def _audit_media_target(target: str | Path) -> list[str]:
         failures.append(f"no_audio_stream:{target}")
     if failures:
         return failures
+
+    format_payload = payload.get("format") if isinstance(payload.get("format"), dict) else {}
+    format_duration = _duration_value((format_payload or {}).get("duration"))
+    video_duration = max([_duration_value(stream.get("duration")) for stream in video_streams] + [format_duration])
+    audio_duration = max([_duration_value(stream.get("duration")) for stream in audio_streams] + [0.0])
+    if video_duration > 1.0 and audio_duration > 0:
+        uncovered_tail = video_duration - audio_duration
+        coverage_ratio = audio_duration / video_duration if video_duration else 0.0
+        if uncovered_tail > MAX_UNCOVERED_TAIL_SECONDS and coverage_ratio < MIN_AUDIO_COVERAGE_RATIO:
+            failures.append(
+                f"audio_undercovered:{target}:video={video_duration:.3f}s:audio={audio_duration:.3f}s:coverage={coverage_ratio:.3f}"
+            )
 
     stats = _measure_volume(target)
     max_volume = stats["max_volume_db"]

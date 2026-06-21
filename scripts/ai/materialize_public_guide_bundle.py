@@ -78,6 +78,31 @@ PUBLIC_GUIDE_FOLDED_IDS = {
     "quicksilver",
     "run-control",
 }
+PUBLIC_GUIDE_CAMPAIGN_TOOL_IDS = {
+    "alice",
+    "origin-dossier",
+    "table-pulse",
+    "jackpoint",
+    "karma-forge",
+    "runsite",
+    "runbook-press",
+}
+PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS = {
+    "alice",
+    "origin-dossier",
+    "table-pulse",
+    "jackpoint",
+}
+PUBLIC_GUIDE_BASE_FEATURE_ORDER = (
+    "nexus-pan",
+    "run-control",
+    "edition-studio",
+    "community-hub",
+    "ghostwire",
+    "local-co-processor",
+    "quicksilver",
+)
+PUBLIC_GUIDE_BASE_FEATURE_IDS = set(PUBLIC_GUIDE_BASE_FEATURE_ORDER)
 PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
     "alice": (
         "Use ALICE when a character idea needs a second look before it becomes table trouble. "
@@ -130,7 +155,7 @@ PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
     "karma-forge": "https://chummer.run/media/horizons/karma-forge-90s-deepdive.mp4",
     "nexus-pan": "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4",
     "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4",
-    "runbook-press": "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4",
+    "runbook-press": "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4?v=20260621-runbook-clean-speech-r1",
     "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4?v=20260621-runsite-clean-speech-r1",
     "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4",
 }
@@ -679,8 +704,17 @@ def _required_public_asset_paths(part_registry: dict[str, object], horizon_regis
             continue
         horizon_id = str(item.get("id") or "").strip()
         if horizon_id:
-            required.add(f"assets/horizons/{_slug(horizon_id)}.png")
+            required.add(_public_guide_horizon_asset_path(horizon_id))
     return required
+
+
+def _public_guide_horizon_surface_dir(identifier: str) -> str:
+    return "features" if _slug(identifier) in PUBLIC_GUIDE_BASE_FEATURE_IDS else "horizons"
+
+
+def _public_guide_horizon_asset_path(identifier: str) -> str:
+    slug = _slug(identifier)
+    return f"assets/{_public_guide_horizon_surface_dir(slug)}/{slug}.png"
 
 
 def _copy_existing_derivative(
@@ -2361,9 +2395,11 @@ def _generate_root(
     rows.extend(
         [
             "",
-            "## Campaign tools",
+            "## Campaign tools and client features",
             "",
-            "[Runner Passport](RUNNER_PASSPORT.md) gives a GM a clean character summary. [Living World](LIVING_WORLD.md) keeps aftermath and consequences in one place. [Campaign tools](HORIZONS/README.md) is the larger map for ALICE, Origin Dossier, Table Pulse, and the ideas that only matter once the sheet is no longer the whole problem.",
+            "[Runner Passport](RUNNER_PASSPORT.md) gives a GM a clean character summary. [Living World](LIVING_WORLD.md) keeps aftermath and consequences in one place. [Campaign tools](HORIZONS/README.md) covers ALICE, Origin Dossier, Table Pulse, Jackpoint, Runsite, Runbook Press, and Karma Forge.",
+            "",
+            "Use [Features](FEATURES/README.md) for base-client capabilities such as NEXUS-PAN, Run Control, Edition Studio, Community Hub, Ghostwire, Local Co-Processor, and Quicksilver.",
         ]
     )
 
@@ -2631,7 +2667,11 @@ def _generate_where_to_go_deeper(out_dir: Path) -> None:
         "",
         "## I want the campaign tools",
         "",
-        "[Campaign tools](HORIZONS/README.md) covers the larger table story: ALICE, Origin Dossier, Table Pulse, NEXUS-PAN, and the ideas that matter after the character sheet is no longer the whole problem.",
+        "[Campaign tools](HORIZONS/README.md) covers the larger table story: ALICE, Origin Dossier, Table Pulse, Jackpoint, Runsite, Runbook Press, and Karma Forge.",
+        "",
+        "## I want base-client features",
+        "",
+        "[Features](FEATURES/README.md) covers NEXUS-PAN, Run Control, Edition Studio, Community Hub, Ghostwire, Local Co-Processor, and Quicksilver without pretending they are separate Horizons.",
         "",
         "## I want to report or improve something",
         "",
@@ -2994,9 +3034,36 @@ def _generate_horizon_pages(
         for horizon in enabled
         if _slug(str(horizon.get("id") or "").strip()) != "black-ledger"
     ]
-    core_lanes = [horizon for horizon in enabled if _public_guide_lane_group(horizon) == "core_product"]
-    expansion_lanes = [horizon for horizon in enabled if _public_guide_lane_group(horizon) == "expansion_bet"]
-    folded_lanes = [horizon for horizon in enabled if _public_guide_lane_group(horizon) == "folded_into_product"]
+    campaign_lanes = [
+        horizon
+        for horizon in enabled
+        if _slug(str(horizon.get("id") or "").strip()) not in PUBLIC_GUIDE_BASE_FEATURE_IDS
+    ]
+    close_campaign_lanes = [
+        horizon
+        for horizon in campaign_lanes
+        if _slug(str(horizon.get("id") or "").strip()) in PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS
+    ]
+    bigger_campaign_lanes = [
+        horizon
+        for horizon in campaign_lanes
+        if _slug(str(horizon.get("id") or "").strip()) not in PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS
+    ]
+    feature_by_slug = {
+        _slug(str(horizon.get("id") or "").strip()): horizon
+        for horizon in enabled
+        if _slug(str(horizon.get("id") or "").strip()) in PUBLIC_GUIDE_BASE_FEATURE_IDS
+    }
+    feature_lanes = [
+        feature_by_slug[slug]
+        for slug in PUBLIC_GUIDE_BASE_FEATURE_ORDER
+        if slug in feature_by_slug
+    ]
+    feature_lanes.extend(
+        horizon
+        for slug, horizon in sorted(feature_by_slug.items())
+        if slug not in PUBLIC_GUIDE_BASE_FEATURE_ORDER
+    )
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
@@ -3005,57 +3072,60 @@ def _generate_horizon_pages(
         "",
         "Open this when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
         "",
-        "The goal is not a shelf full of shiny names. The goal is to make campaign work easier without burying the GM under another pile of dashboards. If a name does not help a player or GM decide what to do next, it does not deserve front-page real estate.",
+        "This page is not a shelf for every named capability in Chummer6. Horizons are the campaign-facing tools that change how a table prepares, runs, remembers, or publishes play. Base-client support work belongs in [Features](../FEATURES/README.md).",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
 
-    def append_index_group(title: str, summary: str, items: list[dict[str, object]]) -> None:
+    def append_index_group(rows: list[str], title: str, summary: str, items: list[dict[str, object]]) -> None:
         if not items:
             return
-        index_rows.extend(["", f"## {title}", "", summary, ""])
+        rows.extend(["", f"## {title}", "", summary, ""])
         for row in items:
             horizon_id = str(row.get("id") or "").strip()
             label = _public_display_title(horizon_id, str(row.get("title") or horizon_id))
             promise = _public_copy(str(row.get("wow_promise") or row.get("pain_label") or "").strip())
             if promise:
-                index_rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", promise, ""])
+                rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", promise, ""])
             else:
-                index_rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", "Read this when that part of campaign play becomes the problem.", ""])
+                rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", "Read this when that part of campaign play becomes the problem.", ""])
 
     append_index_group(
+        index_rows,
         "Closest to the table",
         "Start here when you want help with the runner, the session, or what carries over afterward.",
-        core_lanes,
+        close_campaign_lanes,
     )
     append_index_group(
-        "Bigger ideas",
+        index_rows,
+        "Bigger campaign bets",
         "Read these when you want to see where Chummer can go after the builder works for you.",
-        expansion_lanes,
+        bigger_campaign_lanes,
     )
-    if folded_lanes:
-        folded_names = [
-            _public_display_title(str(row.get("id") or "").strip(), str(row.get("title") or row.get("id") or ""))
-            for row in folded_lanes
-            if str(row.get("title") or row.get("id") or "").strip()
-        ]
-        index_rows.extend(
-            [
-                "",
-                "## Better inside the normal app",
-                "",
-                "Some ideas work better as quiet support than as another named place to visit. Devs are allowed to be roasted when every helper becomes a product name.",
-                "",
-                f"That is where {_english_join(folded_names)} belong right now.",
-            ]
-        )
+    feature_index_path = out_dir / "FEATURES" / "README.md"
+    feature_index_rows = [
+        _front_matter("Features", "products/chummer/HORIZON_REGISTRY.yaml"),
+        "# Features",
+        "",
+        "Open this when you want the normal Chummer6 client capabilities that should feel built in, not like separate Horizons.",
+        "",
+        "The rule is simple: if a capability helps the app stay reliable, faster, better organized, or easier to operate, it belongs here. Horizons are reserved for campaign-facing tools that change preparation, play, aftermath, or publication.",
+        "",
+    ]
+    append_index_group(
+        feature_index_rows,
+        "Base client and support surfaces",
+        "",
+        feature_lanes,
+    )
 
-    for horizon in enabled:
+    for horizon in [*campaign_lanes, *feature_lanes]:
         horizon_id = str(horizon.get("id") or "").strip()
         title = _public_display_title(horizon_id, str(horizon.get("title") or horizon_id))
         slug = _slug(horizon_id)
 
-        doc_path = out_dir / "HORIZONS" / f"{slug}.md"
+        surface_dir = _public_guide_horizon_surface_dir(slug).upper()
+        doc_path = out_dir / surface_dir / f"{slug}.md"
         lane_group = _public_guide_lane_group(horizon)
         rows = [
             _front_matter(title, "products/chummer/HORIZON_REGISTRY.yaml"),
@@ -3076,7 +3146,7 @@ def _generate_horizon_pages(
             _image_rows(
                 doc_path=doc_path,
                 out_dir=out_dir,
-                asset_path=f"assets/horizons/{slug}.png",
+                asset_path=_public_guide_horizon_asset_path(slug),
                 alt=horizon_alt,
                 href=PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug, ""),
                 title=PUBLIC_GUIDE_HORIZON_VIDEO_TITLES.get(slug, f"Play the {title} video") if PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug) else "",
@@ -3116,9 +3186,10 @@ def _generate_horizon_pages(
                 rows.extend([""])
                 rows.extend(video_sections)
 
-        _write(out_dir / "HORIZONS" / f"{slug}.md", "\n".join(rows))
+        _write(doc_path, "\n".join(rows))
 
     _write(out_dir / "HORIZONS" / "README.md", "\n".join(index_rows))
+    _write(out_dir / "FEATURES" / "README.md", "\n".join(feature_index_rows))
 
 
 def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:

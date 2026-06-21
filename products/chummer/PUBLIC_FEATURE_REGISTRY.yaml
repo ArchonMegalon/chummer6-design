@@ -199,8 +199,8 @@ cards:
     action_label: Open NEXUS-PAN continuity
     detail_primary_href: /play/continuity
     detail_primary_label: Open the continuity page
-    fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/nexus-pan.md
-    fallback_label: Read the horizon brief
+    fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/FEATURES/nexus-pan.md
+    fallback_label: Read the feature brief
     external_ok: true
     pain: My devices drift and the table loses confidence.
     payoff: Shared state survives device churn without the GM rebuilding the run from memory.
@@ -434,8 +434,8 @@ cards:
     action_label: Open Community Hub
     detail_primary_href: /community/receipts/open-run-network.json
     detail_primary_label: Open the open-run board
-    fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/HORIZONS/community-hub.md
-    fallback_label: Read the horizon brief
+    fallback_route: https://github.com/ArchonMegalon/Chummer6/blob/main/FEATURES/community-hub.md
+    fallback_label: Read the feature brief
     external_ok: true
     pain: Finding a table still means juggling community rules, approvals, chats, calendars, and follow-up by hand.
     payoff: Chummer becomes the structured layer above community chats, calendars, and play surfaces instead of another disconnected app.
