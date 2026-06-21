@@ -1983,6 +1983,21 @@ def _generate_onramp_page(out_dir: Path, repo_root: Path) -> None:
 def _generate_start_here_page(out_dir: Path, repo_root: Path) -> None:
     doc_path = out_dir / "START_HERE.md"
     source_rows = _load_text(repo_root / "products" / "chummer" / "START_HERE.md").splitlines()
+    internal_headings = {
+        "## I am maintaining the product",
+        "## I am planning the next product wave",
+    }
+    public_rows: list[str] = []
+    skip_internal_section = False
+    for row in source_rows:
+        if row.startswith("## "):
+            skip_internal_section = row.strip() in internal_headings
+            if skip_internal_section:
+                continue
+        if skip_internal_section:
+            continue
+        public_rows.append(row)
+    source_rows = public_rows
     if not source_rows:
         source_rows = [
             "# Start Here",
