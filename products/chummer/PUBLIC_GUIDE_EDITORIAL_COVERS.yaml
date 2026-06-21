@@ -82,7 +82,7 @@ assets:
     editorial_finish_opacity: 0
     motif: hazard_arcs
   assets/horizons/origin-dossier.png:
-    kind: feature_cover
+    kind: comic_panel_cover
     source: products/chummer/public-guide/assets/horizons/origin-dossier.png
     series_label: CHUMMER6 FEATURE
     index: "03"

@@ -123,7 +123,7 @@ PUBLIC_GUIDE_DISPLAY_TITLES = {
     "runsite": "Runsite",
 }
 PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
-    "alice": "https://chummer.run/media/horizons/alice-90s-deepdive.mp4",
+    "alice": "https://chummer.run/media/horizons/alice-90s-deepdive.mp4?v=20260621-alice-ava-natural-pace-r2",
     "black-ledger": "https://chummer.run/media/horizons/black-ledger-90s-deepdive.mp4",
     "community-hub": "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4",
     "jackpoint": "https://chummer.run/media/horizons/jackpoint-90s-deepdive.mp4",
@@ -131,8 +131,13 @@ PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
     "nexus-pan": "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4",
     "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4",
     "runbook-press": "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4",
-    "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4",
+    "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4?v=20260621-runsite-clean-speech-r1",
     "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4",
+}
+PUBLIC_GUIDE_HORIZON_VIDEO_TITLES = {
+    "alice": "Play the ALICE 90-second deep dive video",
+    "origin-dossier": "Play the Origin Dossier promo video",
+    "runsite": "Play the Runsite 90-second deep dive video",
 }
 PUBLIC_GUIDE_HORIZON_DETAIL_NOTES = {
     "community-hub": (
@@ -746,16 +751,17 @@ def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> s
     return relative.replace(os.sep, "/")
 
 
-def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str, href: str = "") -> list[str]:
+def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str, href: str = "", title: str = "") -> list[str]:
     if not (out_dir / asset_path).is_file():
         return []
     if not _asset_embed_allowed(out_dir=out_dir, asset_path=asset_path):
         return []
     image_src = _relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)
     if href:
+        title_attr = f' title="{title}"' if title else ""
         return [
-            f'<a href="{href}" target="_blank" rel="noopener noreferrer">',
-            f'  <img src="{image_src}" alt="{alt}" />',
+            f'<a href="{href}" target="_blank" rel="noopener noreferrer"{title_attr}>',
+            f'  <img src="{image_src}" alt="{alt}"{title_attr} />',
             "</a>",
             "",
         ]
@@ -2326,6 +2332,7 @@ def _generate_root(
         asset_path="assets/hero/chummer6-hero.png",
         alt="Chummer6 flagship promo preview",
         href="https://chummer.run/media/promo/chummer6-flagship-promo.mp4",
+        title="Play the Chummer6 flagship promo video",
     )
     if hero_rows:
         rows.extend(["## First contact", ""])
@@ -3057,6 +3064,7 @@ def _generate_horizon_pages(
                 asset_path=f"assets/horizons/{slug}.png",
                 alt=horizon_alt,
                 href=PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug, ""),
+                title=PUBLIC_GUIDE_HORIZON_VIDEO_TITLES.get(slug, f"Play the {title} video") if PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug) else "",
             )
         )
 

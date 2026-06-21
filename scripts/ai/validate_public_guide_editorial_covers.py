@@ -146,6 +146,32 @@ def _check_mosaic_cover(target: str, image: Image.Image) -> list[str]:
     return errors
 
 
+def _check_comic_panel_cover(target: str, image: Image.Image) -> list[str]:
+    width, height = image.size
+    full = image
+    center = image.crop((int(width * 0.18), int(height * 0.08), int(width * 0.92), int(height * 0.92)))
+    top_right = image.crop((int(width * 0.72), 0, width, int(height * 0.62)))
+
+    full_mean = _luma_mean(full)
+    full_std = _luma_stddev(full)
+    center_std = _luma_stddev(center)
+    hot_180 = _bright_ratio(top_right, 180)
+    hot_160 = _bright_ratio(top_right, 160)
+
+    errors: list[str] = []
+    if full_mean > 58.0:
+        errors.append(f"{target}: comic panel cover is too bright ({full_mean:.1f})")
+    if full_std < 28.0:
+        errors.append(f"{target}: comic panel cover is too flat ({full_std:.1f})")
+    if center_std < 28.0:
+        errors.append(f"{target}: comic panel composition lacks visual texture ({center_std:.1f})")
+    if hot_180 > 0.09:
+        errors.append(f"{target}: hotspot spread is too aggressive ({hot_180:.4f} > 0.09)")
+    if hot_160 > 0.20:
+        errors.append(f"{target}: bright-region dominance is too aggressive ({hot_160:.4f} > 0.20)")
+    return errors
+
+
 def main() -> int:
     config = _load_yaml(CONFIG_PATH)
     curation = _load_yaml(CURATION_PATH)
@@ -195,6 +221,8 @@ def main() -> int:
             kind = str(spec.get("kind") or "feature_cover").strip().lower()
             if kind == "mosaic_cover":
                 errors.extend(_check_mosaic_cover(target_key, image))
+            elif kind == "comic_panel_cover":
+                errors.extend(_check_comic_panel_cover(target_key, image))
             else:
                 errors.extend(_check_feature_cover(target_key, image))
         validated += 1

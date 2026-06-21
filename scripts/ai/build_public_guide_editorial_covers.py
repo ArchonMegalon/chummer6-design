@@ -898,6 +898,8 @@ def build_editorial_covers(repo_root: Path, source_root: Path) -> Path:
         spec = dict(raw_spec)
         spec["_target"] = str(target)
         kind = str(spec.get("kind") or "feature_cover").strip().lower()
+        if kind == "comic_panel_cover":
+            continue
         if kind == "mosaic_cover":
             mosaic_specs.append(spec)
         else:
