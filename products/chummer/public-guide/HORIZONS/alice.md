@@ -2,8 +2,8 @@
 
 Builders get grounded what-if tests instead of vague assistant advice.
 
-<a href="https://chummer.run/media/horizons/alice-90s-deepdive.mp4" target="_blank" rel="noopener noreferrer">
-  <img src="../assets/horizons/alice.png" alt="ALICE video preview" />
+<a href="https://chummer.run/media/horizons/alice-90s-deepdive.mp4?v=20260621-alice-ava-natural-pace-r2" target="_blank" rel="noopener noreferrer" title="Play the ALICE 90-second deep dive video">
+  <img src="../assets/horizons/alice.png" alt="ALICE video preview" title="Play the ALICE 90-second deep dive video" />
 </a>
 
 ## When this helps
