@@ -157,7 +157,7 @@ PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
     "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4",
     "runbook-press": "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4?v=20260621-runbook-clean-speech-r1",
     "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4?v=20260621-runsite-clean-speech-r1",
-    "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4",
+    "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4?v=20260621-tablepulse-3fb86343",
 }
 PUBLIC_GUIDE_HORIZON_VIDEO_TITLES = {
     "alice": "Play the ALICE 90-second deep dive video",
