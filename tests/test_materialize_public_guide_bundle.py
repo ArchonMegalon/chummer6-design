@@ -237,6 +237,7 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
     assert "what this covers" not in download.lower()
     assert "If you are on Windows or Linux, start with the Avalonia installer." in download
     assert "The exact files and hashes are below." in download
+    assert "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md)." in download
     assert "This build handles installs and recovery." in download
     assert "Start with the installer for your platform." in download
     assert "No blocking download issue is listed for the current installers." in download
