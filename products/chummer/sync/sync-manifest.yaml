@@ -119,21 +119,24 @@ product_source_groups:
     - products/chummer/HORIZON_REGISTRY.yaml
     - products/chummer/horizons/README.md
     - products/chummer/horizons/FOUNDATIONS.md
-    - products/chummer/horizons/edition-studio.md
-    - products/chummer/horizons/nexus-pan.md
     - products/chummer/horizons/alice.md
     - products/chummer/horizons/black-ledger.md
-    - products/chummer/horizons/community-hub.md
     - products/chummer/horizons/karma-forge.md
     - products/chummer/horizons/knowledge-fabric.md
     - products/chummer/horizons/jackpoint.md
-    - products/chummer/horizons/quicksilver.md
-    - products/chummer/horizons/run-control.md
     - products/chummer/horizons/runsite.md
     - products/chummer/horizons/runbook-press.md
-    - products/chummer/horizons/ghostwire.md
     - products/chummer/horizons/table-pulse.md
-    - products/chummer/horizons/local-co-processor.md
+  product_features:
+    - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
+    - products/chummer/features/README.md
+    - products/chummer/features/community-hub.md
+    - products/chummer/features/edition-studio.md
+    - products/chummer/features/ghostwire.md
+    - products/chummer/features/local-co-processor.md
+    - products/chummer/features/nexus-pan.md
+    - products/chummer/features/quicksilver.md
+    - products/chummer/features/run-control.md
   journey_workbench:
     - products/chummer/journeys/README.md
     - products/chummer/journeys/build-and-inspect-a-character.md

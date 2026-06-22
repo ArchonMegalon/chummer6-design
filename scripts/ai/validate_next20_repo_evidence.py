@@ -80,7 +80,6 @@ def main() -> int:
     for path in (
         chummer6 / "scripts" / "sync_public_guide_from_design.py",
         chummer6 / "scripts" / "verify_public_guide.sh",
-        chummer6 / ".github" / "workflows" / "verify-public-guide.yml",
         chummer6 / "STATUS.md",
         chummer6 / "HELP.md",
         chummer6 / "CONTACT.md",
@@ -89,14 +88,19 @@ def main() -> int:
             errors.append(f"missing public-guide evidence path: {path}")
 
     pulse_script = ROOT / "scripts" / "ai" / "materialize_weekly_product_pulse_snapshot.py"
+    pulse_runner = ROOT / "scripts" / "ai" / "materialize_weekly_product_pulse.sh"
     pulse_payload = _read(PRODUCT / "WEEKLY_PRODUCT_PULSE.generated.json")
-    workflow_text = _read(ROOT / ".github" / "workflows" / "weekly-product-pulse.yml")
+    pulse_runner_text = _read(pulse_runner) if pulse_runner.exists() else ""
     if "governor_decisions" not in pulse_payload or "next_checkpoint_question" not in pulse_payload:
         errors.append("WEEKLY_PRODUCT_PULSE.generated.json must include governor decisions and next checkpoint question.")
-    if "WEEKLY_PRODUCT_PULSE.generated.json" not in workflow_text:
-        errors.append("weekly-product-pulse workflow must commit WEEKLY_PRODUCT_PULSE.generated.json.")
     if not pulse_script.exists():
         errors.append("materialize_weekly_product_pulse_snapshot.py is missing.")
+    if not pulse_runner.exists():
+        errors.append("materialize_weekly_product_pulse.sh is missing.")
+    if "WEEKLY_PRODUCT_PULSE.generated.json" not in pulse_runner_text:
+        errors.append("weekly product pulse runner must write WEEKLY_PRODUCT_PULSE.generated.json.")
+    if "validate_product_invariants.py" not in pulse_runner_text:
+        errors.append("weekly product pulse runner must validate product invariants.")
 
     core_root = DOCKER_ROOT / "chummercomplete" / "chummer-core-engine"
     core_contracts = _read(core_root / "Chummer.Contracts" / "BuildLab" / "IBuildLabEngine.cs")

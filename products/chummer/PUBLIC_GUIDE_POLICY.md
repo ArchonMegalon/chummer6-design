@@ -12,10 +12,10 @@ It is not a second design authority.
 
 * `Chummer6` may explain canonical design and horizon posture in plain language.
 * `Chummer6` must stay subordinate to `PUBLIC_LANDING_POLICY.md` and the landing manifest relationship: homepage first, guide depth second.
-* `Chummer6` must not outrun `products/chummer/HORIZONS.md` or `products/chummer/horizons/*.md`.
+* `Chummer6` must not outrun `products/chummer/HORIZONS.md`, `products/chummer/horizons/*.md`, `products/chummer/features/*.md`, or `PUBLIC_FEATURE_REGISTRY.yaml`.
 * `Chummer6` must not outrun `products/chummer/PARTICIPATION_AND_BOOSTER_WORKFLOW.md`.
 * `Chummer6` must not invent a public feature map that contradicts `PUBLIC_LANDING_MANIFEST.yaml` or `PUBLIC_FEATURE_REGISTRY.yaml`.
-* When a horizon already has preview cards or first-party pages in `PUBLIC_FEATURE_REGISTRY.yaml`, public guide copy should point readers there before sending them deeper into horizon prose.
+* When a public feature already has first-party pages in `PUBLIC_FEATURE_REGISTRY.yaml`, public guide copy should point readers there before sending them deeper into feature prose.
 * `Chummer6` must compile page classes from public-safe guide registries instead of scraping implementation scopes for public prose.
 * `PUBLIC_GUIDE_PAGE_REGISTRY.yaml` is the contract for page classes, allowed sources, forbidden sources, and depth limits.
 * `PUBLIC_PART_REGISTRY.yaml` owns public part pages.

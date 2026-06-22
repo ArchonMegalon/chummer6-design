@@ -145,10 +145,6 @@ truth_domains:
     source_policy: Prompt drafts, approvals, provider receipts, human review, publication decisions, and usage ledgers.
 
 horizon_lanes:
-  - id: nexus-pan
-    capability: Session sync, reconnect, and presence.
-    loop_refs:
-      - run_reliably
   - id: alice
     capability: Build mentor and grounded what-if comparison.
     loop_refs:
@@ -184,11 +180,42 @@ horizon_lanes:
     loop_refs:
       - remember_campaign
       - publish_projections
+
+feature_lanes:
+  - id: nexus-pan
+    capability: Session sync, reconnect, and presence.
+    loop_refs:
+      - run_reliably
+  - id: run-control
+    capability: Live session control, pacing, and table-operation continuity.
+    loop_refs:
+      - run_reliably
+      - remember_campaign
+  - id: edition-studio
+    capability: Base product surface for edition-aware ruleset and content authoring.
+    loop_refs:
+      - build_correctly
+      - explain_everything
   - id: community-hub
     capability: Open runs, roster, scheduling, preflight, and closeout loop.
     loop_refs:
       - run_reliably
       - remember_campaign
+  - id: quicksilver
+    capability: Fast user-facing build and prep acceleration inside owned Chummer truth.
+    loop_refs:
+      - build_correctly
+      - run_reliably
+  - id: ghostwire
+    capability: Replay, after-action review, and forensic recovery over owned campaign/session evidence.
+    loop_refs:
+      - remember_campaign
+      - explain_everything
+  - id: local-co-processor
+    capability: Optional local acceleration without mandatory local runtime or provider ownership.
+    loop_refs:
+      - build_correctly
+      - run_reliably
 
 projection_adapters:
   - id: rafter

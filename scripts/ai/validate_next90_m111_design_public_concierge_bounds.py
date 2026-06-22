@@ -139,7 +139,8 @@ def main() -> int:
 
     help_markers = (
         "## Public concierge bounds",
-        "the first-party help or release article remains the fixed truth",
+        "the first-party help or release article remains the main answer",
+        "the first-party help or release article remains the source users should follow",
         "the widget is a preview overlay",
         "no claim codes, auth secrets, or private case identifiers belong in the widget",
     )

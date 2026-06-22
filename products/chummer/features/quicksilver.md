@@ -4,7 +4,7 @@
 
 QUICKSILVER now ships a bounded first-party command deck.
 
-The public command route, receipt route, packet rails, signed-in bench, and typed jump-target APIs are real.
+The public command route, detail route, bundle rails, signed-in bench, and typed jump-target APIs are real.
 
 ## The problem
 
@@ -21,16 +21,16 @@ QUICKSILVER turns the workbench into a named expert-speed surface:
 * split and pinned inspection surfaces that preserve context under pressure
 
 It is not a different rules engine.
-It is the speed and command lane for the same trusted product truth.
+It is the speed and command lane for the same trusted product state.
 
 ## Live routes
 
 * `/quicksilver`
-* `/quicksilver/receipts/command-network.json`
-* `/quicksilver/packets/command_deck.md`
-* `/quicksilver/packets/command_deck.json`
-* `/quicksilver/packets/jump_targets.md`
-* `/quicksilver/packets/jump_targets.json`
+* `/quicksilver/details/command-network.json`
+* `/quicksilver/bundles/command_deck.md`
+* `/quicksilver/bundles/command_deck.json`
+* `/quicksilver/bundles/jump_targets.md`
+* `/quicksilver/bundles/jump_targets.json`
 * `/account/quicksilver`
 * `/account/quicksilver/open`
 * `/account/quicksilver/{focus}`
@@ -45,7 +45,7 @@ It is the speed and command lane for the same trusted product truth.
 
 ## Tool posture
 
-No external tool is required for the canonical core of this horizon.
+No external tool is required for the source core of this feature.
 Instrumentation or profiling helpers may support tuning, but the product-facing speed model remains owned by the app itself.
 
 ## What has to be true first

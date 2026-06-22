@@ -4,12 +4,12 @@
 
 GHOSTWIRE now ships a bounded first-party after-action lane.
 
-Replay timelines, after-action reports, and consequence-chain packets are public-safe, receipt-backed, and exposed on named Chummer routes.
+Replay timelines, after-action reports, and consequence-chain bundles are public, record-backed, and exposed on named Chummer routes.
 
 ## Live routes
 
 * `/ghostwire`
-* `/ghostwire/receipts/replay-network.json`
+* `/ghostwire/details/replay-network.json`
 * `/ghostwire/after-action/replay_timeline.md`
 * `/ghostwire/after-action/replay_timeline.json`
 * `/ghostwire/after-action/after_action_report.md`
@@ -19,16 +19,16 @@ Replay timelines, after-action reports, and consequence-chain packets are public
 
 ## What it does
 
-* reconstructs public-safe consequence order from first-party aftermath packets
+* reconstructs public consequence order from first-party aftermath bundles
 * keeps after-action recap, next safe move, and consequence carry-forward visible
-* preserves bounded replay truth without widening into transcript publication
+* preserves bounded replay state without widening into transcript publication
 
 ## Boundary
 
 GHOSTWIRE does not claim:
 
-* private transcript truth
+* private transcript state
 * retrospective fiction generation
-* canonical session mutation after the fact
+* source session mutation after the fact
 
-It is a shipped replay and after-action lane, but it stays receipt-backed and bounded on purpose.
+It is a shipped replay and after-action lane, but it stays record-backed and bounded on purpose.

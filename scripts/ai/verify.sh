@@ -49,16 +49,21 @@ for path in \
   products/chummer/HORIZON_REGISTRY.yaml \
   products/chummer/horizons/HORIZON_REGISTRY.yaml \
   products/chummer/horizons/README.md \
-  products/chummer/horizons/nexus-pan.md \
+  products/chummer/features/README.md \
+  products/chummer/features/community-hub.md \
+  products/chummer/features/edition-studio.md \
+  products/chummer/features/ghostwire.md \
+  products/chummer/features/local-co-processor.md \
+  products/chummer/features/nexus-pan.md \
+  products/chummer/features/quicksilver.md \
+  products/chummer/features/run-control.md \
   products/chummer/horizons/alice.md \
   products/chummer/horizons/karma-forge.md \
   products/chummer/horizons/knowledge-fabric.md \
   products/chummer/horizons/jackpoint.md \
   products/chummer/horizons/runsite.md \
   products/chummer/horizons/runbook-press.md \
-  products/chummer/horizons/ghostwire.md \
   products/chummer/horizons/table-pulse.md \
-  products/chummer/horizons/local-co-processor.md \
   products/chummer/ARCHITECTURE.md \
   products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md \
   products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md \
@@ -402,7 +407,7 @@ rg -n '^## Start here if you just want the answer$' "$repo_root/products/chummer
 rg -n '^## Why it exists$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## What should feel different$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^## Help and feedback$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Campaign tools$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Campaign tools and client features$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^# Status$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^## The answer$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
@@ -420,11 +425,11 @@ rg -n '^# Contact$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/
 rg -n '^## Pick the case type that matches the problem$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
 rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/dev/null
 rg -n '^# Campaign tools$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
-rg -n '^# NEXUS-PAN$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## When this helps$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## The table problem$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-rg -n '^## Can I use it\?$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
-! rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/HORIZONS/nexus-pan.md" >/dev/null
+rg -n '^# NEXUS-PAN$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
+rg -n '^## When this helps$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
+rg -n '^## The table problem$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
+rg -n '^## Can I use it\?$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
+! rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
 rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n '^# Chummer6$' "$downstream_root/README.md" >/dev/null

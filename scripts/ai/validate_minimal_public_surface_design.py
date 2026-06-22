@@ -70,6 +70,13 @@ FORBIDDEN_PUBLIC_FRONT_MARKERS = (
     "every successful mainline Windows `win-x64` and Linux `linux-x64` build is a release",
 )
 
+FORBIDDEN_PUBLIC_FEATURE_MARKERS = (
+    "proof_note:",
+    "microproof:",
+    "/receipts/",
+    "receipt-trail",
+)
+
 
 def main() -> int:
     errors: list[str] = []
@@ -99,6 +106,13 @@ def main() -> int:
     for marker in FORBIDDEN_PUBLIC_FRONT_MARKERS:
         if marker in public_text:
             errors.append(f"forbidden_marker:{marker}")
+
+    feature_registry_path = PRODUCT / "PUBLIC_FEATURE_REGISTRY.yaml"
+    if feature_registry_path.is_file():
+        feature_registry_text = feature_registry_path.read_text(encoding="utf-8")
+        for marker in FORBIDDEN_PUBLIC_FEATURE_MARKERS:
+            if marker in feature_registry_text:
+                errors.append(f"forbidden_public_feature_marker:{marker}")
 
     if errors:
         for error in errors:

@@ -36,11 +36,15 @@ IMAGE_CURATION_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_IMAGE_CURATION.yaml"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
 PORTAL_RELEASE_CHANNEL_CANDIDATES = (
-    Path("/docker/chummercomplete/chummer.run-services/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json"),
-    Path("/docker/chummercomplete/.clean-main/chummer6-hub-publish/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json"),
+    ROOT.parent / "chummer.run-services/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json",
+    ROOT.parent / ".clean-main/chummer6-hub-publish/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json",
 )
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
-MEDIA_WORKER_PATH = Path("/docker/EA/scripts/chummer6_guide_media_worker.py")
+CHUMMER6_ASSET_SOURCE_PATHS_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE_PATHS"
+PORTAL_RELEASE_CHANNEL_PATHS_ENV = "CHUMMER_PORTAL_RELEASE_CHANNEL_PATHS"
+CHUMMER_HUB_REGISTRY_PATHS_ENV = "CHUMMER_HUB_REGISTRY_PATHS"
+CHUMMER6_GUIDE_MEDIA_WORKER_PATHS_ENV = "CHUMMER6_GUIDE_MEDIA_WORKER_PATHS"
+MEDIA_WORKER_PATH = ROOT / "scripts" / "chummer6_guide_media_worker.py"
 PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
 
 _MEDIA_WORKER = None
@@ -463,8 +467,45 @@ def _boolish(value: object) -> bool:
     return bool(value)
 
 
+def _split_path_list(env_name: str) -> tuple[Path, ...]:
+    raw = os.environ.get(env_name, "").strip()
+    if not raw:
+        return ()
+    paths: list[Path] = []
+    for value in re.split(r"[,\n\r;]+", raw):
+        path = value.strip()
+        if path:
+            paths.append(Path(path))
+    return tuple(paths)
+
+
+def _dedupe_paths(paths: list[Path]) -> list[Path]:
+    deduped: list[Path] = []
+    seen: set[Path] = set()
+    for path in paths:
+        normalized = path.expanduser()
+        if normalized in seen:
+            continue
+        seen.add(normalized)
+        deduped.append(normalized)
+    return deduped
+
+
+def _media_worker_candidate_paths(repo_root: Path) -> list[Path]:
+    candidates = list(_split_path_list(CHUMMER6_GUIDE_MEDIA_WORKER_PATHS_ENV))
+    candidates.append(MEDIA_WORKER_PATH)
+    for ancestor in (repo_root, repo_root.parent, repo_root.parent.parent):
+        candidates.append(ancestor / "scripts" / "chummer6_guide_media_worker.py")
+        candidates.append(ancestor / "EA" / "scripts" / "chummer6_guide_media_worker.py")
+        if ancestor.name:
+            candidates.append(ancestor.parent / "EA" / "scripts" / "chummer6_guide_media_worker.py")
+            candidates.append(ancestor.parent / "scripts" / "chummer6_guide_media_worker.py")
+    return _dedupe_paths(candidates)
+
+
 def _candidate_asset_roots(repo_root: Path) -> list[Path]:
     roots: list[Path] = []
+    roots.extend(_split_path_list(CHUMMER6_ASSET_SOURCE_PATHS_ENV))
     env_root = os.environ.get(CHUMMER6_ASSET_SOURCE_ENV, "").strip()
     if env_root:
         roots.append(Path(env_root))
@@ -484,11 +525,10 @@ def _candidate_asset_roots(repo_root: Path) -> list[Path]:
     for candidate in (
         repo_root.parent / "Chummer6" / "assets",
         repo_root.parent / "chummer6" / "assets",
-        Path("/docker/chummercomplete/Chummer6/assets"),
-        Path("/docker/chummercomplete/chummer6/assets"),
     ):
         if candidate not in roots:
             roots.append(candidate)
+    roots = _dedupe_paths(roots)
     return roots
 
 
@@ -506,21 +546,25 @@ def _media_worker_module():
         return None
     if _MEDIA_WORKER is not None:
         return _MEDIA_WORKER
-    if not MEDIA_WORKER_PATH.is_file():
-        _MEDIA_WORKER = False
-        return None
-    try:
-        spec = importlib.util.spec_from_file_location("chummer6_guide_media_worker", MEDIA_WORKER_PATH)
-        if spec is None or spec.loader is None:
-            _MEDIA_WORKER = False
-            return None
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-    except Exception:
-        _MEDIA_WORKER = False
-        return None
-    _MEDIA_WORKER = module
-    return module
+    candidate_paths = _media_worker_candidate_paths(ROOT)
+    for media_worker_path in candidate_paths:
+        if not media_worker_path.is_file():
+            continue
+        try:
+            spec = importlib.util.spec_from_file_location(
+                "chummer6_guide_media_worker",
+                media_worker_path,
+            )
+            if spec is None or spec.loader is None:
+                continue
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+        except Exception:
+            continue
+        _MEDIA_WORKER = module
+        return _MEDIA_WORKER
+    _MEDIA_WORKER = False
+    return None
 
 
 def _image_curation() -> dict[str, dict[str, object]]:
@@ -683,7 +727,66 @@ def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) 
     subprocess.run(command, check=True, capture_output=True, text=True)
 
 
-def _required_public_asset_paths(part_registry: dict[str, object], horizon_registry: dict[str, object]) -> set[str]:
+def _public_feature_rows(public_feature_registry: dict[str, object]) -> list[dict[str, object]]:
+    feature_by_slug: dict[str, dict[str, object]] = {}
+    for item in public_feature_registry.get("cards") or []:
+        if not isinstance(item, dict):
+            continue
+        raw_id = str(item.get("id") or "").strip()
+        if raw_id.startswith("feature_"):
+            feature_id = raw_id[len("feature_") :]
+        else:
+            feature_id = raw_id
+        slug = _slug(feature_id)
+        if slug not in PUBLIC_GUIDE_BASE_FEATURE_IDS:
+            continue
+        badge = str(item.get("badge") or "").strip().lower()
+        status_note = str(item.get("status_note") or item.get("proof_note") or "").strip().lower()
+        detail_primary_href = str(item.get("detail_primary_href") or "").strip().lower()
+        current_state = (
+            "signed_in_command_lane_live"
+            if "signed-in" in status_note or "/account/" in detail_primary_href
+            else "shipped_mvp"
+        )
+        if "lab" in badge or "preview" in badge:
+            current_state = "bounded_research"
+        feature_by_slug[slug] = {
+            **item,
+            "id": slug,
+            "title": item.get("title") or _public_display_title(slug),
+            "wow_promise": item.get("summary") or item.get("payoff") or "",
+            "pain_label": item.get("pain") or "",
+            "table_scene": item.get("payoff") or item.get("status_chips") or item.get("microproof") or "",
+            "canon_doc": f"products/chummer/features/{slug}.md",
+            "guide_source": "products/chummer/PUBLIC_FEATURE_REGISTRY.yaml",
+            "public_guide": {
+                "enabled": True,
+                "group": "core_product",
+            },
+            "build_path": {
+                "intent": "base_client_feature",
+                "current_state": current_state,
+                "next_state": "flagship_depth_hardening",
+            },
+        }
+    ordered = [
+        feature_by_slug[slug]
+        for slug in PUBLIC_GUIDE_BASE_FEATURE_ORDER
+        if slug in feature_by_slug
+    ]
+    ordered.extend(
+        row
+        for slug, row in sorted(feature_by_slug.items())
+        if slug not in PUBLIC_GUIDE_BASE_FEATURE_ORDER
+    )
+    return ordered
+
+
+def _required_public_asset_paths(
+    part_registry: dict[str, object],
+    horizon_registry: dict[str, object],
+    public_feature_registry: dict[str, object],
+) -> set[str]:
     required = {
         "assets/hero/chummer6-hero.png",
         "assets/pages/parts-index.png",
@@ -705,6 +808,10 @@ def _required_public_asset_paths(part_registry: dict[str, object], horizon_regis
         horizon_id = str(item.get("id") or "").strip()
         if horizon_id:
             required.add(_public_guide_horizon_asset_path(horizon_id))
+    for item in _public_feature_rows(public_feature_registry):
+        feature_id = str(item.get("id") or "").strip()
+        if feature_id:
+            required.add(_public_guide_horizon_asset_path(feature_id))
     return required
 
 
@@ -854,25 +961,22 @@ def _candidate_hub_registry_roots(repo_root: Path) -> list[Path]:
     env_root = os.environ.get(HUB_REGISTRY_ROOT_ENV, "").strip()
     if env_root:
         roots.append(Path(env_root))
+    roots.extend(_split_path_list(CHUMMER_HUB_REGISTRY_PATHS_ENV))
     candidates = [
         repo_root.parent / "chummer-hub-registry",
         repo_root.parent / "chummer6-hub-registry",
     ]
-    if repo_root.resolve().as_posix().startswith("/docker/chummercomplete/"):
-        candidates.extend(
-            [
-                Path("/docker/chummercomplete/chummer-hub-registry"),
-                Path("/docker/chummercomplete/chummer6-hub-registry"),
-            ]
-        )
     for candidate in candidates:
         if candidate not in roots:
             roots.append(candidate)
-    return roots
+    return _dedupe_paths(roots)
 
 
 def _load_release_channel(repo_root: Path) -> tuple[dict[str, object], str]:
     candidates: list[tuple[Path, str]] = []
+    for path in _split_path_list(PORTAL_RELEASE_CHANNEL_PATHS_ENV):
+        if path.is_file():
+            candidates.append((path, path.as_posix()))
     for root in _candidate_hub_registry_roots(repo_root):
         canonical = root / RELEASE_CHANNEL_RELATIVE_PATH
         if canonical.is_file():
@@ -3014,6 +3118,7 @@ def _generate_horizon_pages(
     out_dir: Path,
     repo_root: Path,
     horizon_registry: dict[str, object],
+    public_feature_registry: dict[str, object],
     public_horizon_copy: dict[str, list[str]],
 ) -> None:
     horizons = [item for item in (horizon_registry.get("horizons") or []) if isinstance(item, dict)]
@@ -3051,21 +3156,7 @@ def _generate_horizon_pages(
         for horizon in campaign_lanes
         if _slug(str(horizon.get("id") or "").strip()) not in PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS
     ]
-    feature_by_slug = {
-        _slug(str(horizon.get("id") or "").strip()): horizon
-        for horizon in enabled
-        if _slug(str(horizon.get("id") or "").strip()) in PUBLIC_GUIDE_BASE_FEATURE_IDS
-    }
-    feature_lanes = [
-        feature_by_slug[slug]
-        for slug in PUBLIC_GUIDE_BASE_FEATURE_ORDER
-        if slug in feature_by_slug
-    ]
-    feature_lanes.extend(
-        horizon
-        for slug, horizon in sorted(feature_by_slug.items())
-        if slug not in PUBLIC_GUIDE_BASE_FEATURE_ORDER
-    )
+    feature_lanes = _public_feature_rows(public_feature_registry)
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
@@ -3106,7 +3197,7 @@ def _generate_horizon_pages(
     )
     feature_index_path = out_dir / "FEATURES" / "README.md"
     feature_index_rows = [
-        _front_matter("Features", "products/chummer/HORIZON_REGISTRY.yaml"),
+        _front_matter("Features", "products/chummer/PUBLIC_FEATURE_REGISTRY.yaml"),
         "# Features",
         "",
         "Open this when you want the normal Chummer6 client capabilities that should feel built in, not like separate campaign tools.",
@@ -3129,8 +3220,9 @@ def _generate_horizon_pages(
         surface_dir = _public_guide_horizon_surface_dir(slug).upper()
         doc_path = out_dir / surface_dir / f"{slug}.md"
         lane_group = _public_guide_lane_group(horizon)
+        guide_source = str(horizon.get("guide_source") or "products/chummer/HORIZON_REGISTRY.yaml")
         rows = [
-            _front_matter(title, "products/chummer/HORIZON_REGISTRY.yaml"),
+            _front_matter(title, guide_source),
             f"# {title}",
             "",
         ]
@@ -3389,6 +3481,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     faq_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_FAQ_REGISTRY.yaml")
     trust_payload = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_TRUST_CONTENT.yaml")
     horizon_registry = _load_yaml(repo_root / "products" / "chummer" / "HORIZON_REGISTRY.yaml")
+    public_feature_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_FEATURE_REGISTRY.yaml")
     new_section_verdict = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml")
     landing_manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_LANDING_MANIFEST.yaml")
     public_horizon_copy = _load_horizon_public_copy_pack()
@@ -3398,7 +3491,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     help_copy = _load_text(repo_root / "products" / "chummer" / "PUBLIC_HELP_COPY.md")
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
-    required_assets = _required_public_asset_paths(part_registry, horizon_registry)
+    required_assets = _required_public_asset_paths(part_registry, horizon_registry, public_feature_registry)
     release_truth_packet = _build_release_truth_packet(
         progress=progress,
         release_payload=release_payload,
@@ -3446,6 +3539,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         out_dir,
         repo_root,
         horizon_registry,
+        public_feature_registry,
         public_horizon_copy,
     )
     _generate_trust_pages(out_dir, trust_payload, release_payload)

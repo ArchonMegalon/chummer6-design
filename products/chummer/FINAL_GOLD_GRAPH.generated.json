@@ -37,15 +37,22 @@
     "media_projection_truth"
   ],
   "required_horizon_lanes": [
-    "nexus-pan",
     "alice",
     "karma-forge",
     "jackpoint",
     "runsite",
     "runbook-press",
     "table-pulse",
-    "black-ledger",
-    "community-hub"
+    "black-ledger"
+  ],
+  "required_feature_lanes": [
+    "nexus-pan",
+    "run-control",
+    "edition-studio",
+    "community-hub",
+    "quicksilver",
+    "ghostwire",
+    "local-co-processor"
   ],
   "projection_adapter_policy": {
     "status": "pass",
@@ -70,6 +77,11 @@
     {
       "kind": "horizon_registry",
       "path": "products/chummer/HORIZON_REGISTRY.yaml",
+      "status": "pass"
+    },
+    {
+      "kind": "feature_registry",
+      "path": "products/chummer/PUBLIC_FEATURE_REGISTRY.yaml",
       "status": "pass"
     },
     {

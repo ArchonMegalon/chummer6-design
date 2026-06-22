@@ -142,6 +142,37 @@ class ReleaseTruthWordingTests(unittest.TestCase):
         self.assertEqual(payload.get("channelId"), "preview")
         self.assertEqual(label, live_manifest.as_posix())
 
+    def test_load_release_channel_reads_env_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            env_manifest = root / "env-portal-channel.json"
+            env_manifest.write_text(
+                json.dumps(
+                    {
+                        "status": "published",
+                        "publishedAt": "2026-06-30T10:00:00Z",
+                        "channelId": "env-preview",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            original_candidates = MODULE.PORTAL_RELEASE_CHANNEL_CANDIDATES
+            original_env = MODULE.os.environ.get(MODULE.PORTAL_RELEASE_CHANNEL_PATHS_ENV)
+            try:
+                MODULE.PORTAL_RELEASE_CHANNEL_CANDIDATES = ()
+                MODULE.os.environ[MODULE.PORTAL_RELEASE_CHANNEL_PATHS_ENV] = str(env_manifest)
+                payload, label = MODULE._load_release_channel(root)
+            finally:
+                MODULE.PORTAL_RELEASE_CHANNEL_CANDIDATES = original_candidates
+                if original_env is None:
+                    MODULE.os.environ.pop(MODULE.PORTAL_RELEASE_CHANNEL_PATHS_ENV, None)
+                else:
+                    MODULE.os.environ[MODULE.PORTAL_RELEASE_CHANNEL_PATHS_ENV] = original_env
+
+        self.assertEqual(payload.get("channelId"), "env-preview")
+        self.assertEqual(label, env_manifest.as_posix())
+
 
 if __name__ == "__main__":
     unittest.main()

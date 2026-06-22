@@ -14,6 +14,7 @@ SPINE_PATH = PRODUCT / "PRODUCT_SPINE.yaml"
 GOLD_GRAPH_PATH = PRODUCT / "FINAL_GOLD_GRAPH.generated.json"
 JOURNEY_GATES_PATH = PRODUCT / "GOLDEN_JOURNEY_RELEASE_GATES.yaml"
 HORIZON_REGISTRY_PATH = PRODUCT / "HORIZON_REGISTRY.yaml"
+FEATURE_REGISTRY_PATH = PRODUCT / "PUBLIC_FEATURE_REGISTRY.yaml"
 
 EXPECTED_LOOPS = {
     "build_correctly",
@@ -38,7 +39,6 @@ EXPECTED_TRUTH_DOMAINS = {
     "media_projection_truth",
 }
 EXPECTED_HORIZONS = {
-    "nexus-pan",
     "alice",
     "karma-forge",
     "jackpoint",
@@ -46,7 +46,15 @@ EXPECTED_HORIZONS = {
     "runbook-press",
     "table-pulse",
     "black-ledger",
+}
+EXPECTED_FEATURES = {
+    "nexus-pan",
+    "run-control",
+    "edition-studio",
     "community-hub",
+    "quicksilver",
+    "ghostwire",
+    "local-co-processor",
 }
 EXPECTED_ADAPTERS = {
     "rafter",
@@ -75,6 +83,18 @@ def ids(rows: object) -> set[str]:
     }
 
 
+def public_feature_ids(payload: dict) -> set[str]:
+    result: set[str] = set()
+    for row in payload.get("cards") or []:
+        if not isinstance(row, dict):
+            continue
+        raw = str(row.get("id") or "").strip()
+        if not raw.startswith("feature_"):
+            continue
+        result.add(raw[len("feature_") :].replace("_", "-"))
+    return result
+
+
 def fail(errors: list[str]) -> int:
     for item in errors:
         print(f"validate_product_spine: {item}", file=sys.stderr)
@@ -84,7 +104,7 @@ def fail(errors: list[str]) -> int:
 def main() -> int:
     errors: list[str] = []
 
-    for path in (SPINE_PATH, GOLD_GRAPH_PATH, JOURNEY_GATES_PATH, HORIZON_REGISTRY_PATH):
+    for path in (SPINE_PATH, GOLD_GRAPH_PATH, JOURNEY_GATES_PATH, HORIZON_REGISTRY_PATH, FEATURE_REGISTRY_PATH):
         if not path.is_file():
             errors.append(f"missing required file: {path.relative_to(ROOT)}")
     if errors:
@@ -94,6 +114,7 @@ def main() -> int:
     gold_graph = load_json(GOLD_GRAPH_PATH)
     journey_gates = load_yaml(JOURNEY_GATES_PATH)
     horizon_registry = load_yaml(HORIZON_REGISTRY_PATH)
+    feature_registry = load_yaml(FEATURE_REGISTRY_PATH)
 
     if spine.get("product") != "chummer":
         errors.append("PRODUCT_SPINE.yaml product must be chummer.")
@@ -106,6 +127,7 @@ def main() -> int:
     surface_ids = ids(spine.get("surfaces"))
     truth_domain_ids = ids(spine.get("truth_domains"))
     horizon_ids = ids(spine.get("horizon_lanes"))
+    feature_ids = ids(spine.get("feature_lanes"))
     adapter_ids = ids(spine.get("projection_adapters"))
 
     if loop_ids != EXPECTED_LOOPS:
@@ -116,6 +138,8 @@ def main() -> int:
         errors.append(f"truth_domains must be exactly {sorted(EXPECTED_TRUTH_DOMAINS)}.")
     if horizon_ids != EXPECTED_HORIZONS:
         errors.append(f"horizon_lanes must be exactly {sorted(EXPECTED_HORIZONS)}.")
+    if feature_ids != EXPECTED_FEATURES:
+        errors.append(f"feature_lanes must be exactly {sorted(EXPECTED_FEATURES)}.")
     if adapter_ids != EXPECTED_ADAPTERS:
         errors.append(f"projection_adapters must be exactly {sorted(EXPECTED_ADAPTERS)}.")
 
@@ -141,6 +165,10 @@ def main() -> int:
     for horizon_id in EXPECTED_HORIZONS:
         if horizon_id not in registry_horizons:
             errors.append(f"HORIZON_REGISTRY.yaml missing spine horizon lane {horizon_id}.")
+    registry_features = public_feature_ids(feature_registry)
+    for feature_id in EXPECTED_FEATURES:
+        if feature_id not in registry_features:
+            errors.append(f"PUBLIC_FEATURE_REGISTRY.yaml missing spine feature lane {feature_id}.")
     for horizon in spine.get("horizon_lanes") or []:
         if not isinstance(horizon, dict):
             errors.append("each horizon_lanes row must be a mapping.")
@@ -149,6 +177,14 @@ def main() -> int:
         for loop_ref in horizon.get("loop_refs") or []:
             if str(loop_ref).strip() not in loop_ids:
                 errors.append(f"{horizon_id} references unknown loop {loop_ref}.")
+    for feature in spine.get("feature_lanes") or []:
+        if not isinstance(feature, dict):
+            errors.append("each feature_lanes row must be a mapping.")
+            continue
+        feature_id = str(feature.get("id") or "").strip() or "<unknown>"
+        for loop_ref in feature.get("loop_refs") or []:
+            if str(loop_ref).strip() not in loop_ids:
+                errors.append(f"{feature_id} references unknown loop {loop_ref}.")
 
     for adapter in spine.get("projection_adapters") or []:
         if not isinstance(adapter, dict):
@@ -174,6 +210,8 @@ def main() -> int:
         errors.append("FINAL_GOLD_GRAPH.generated.json required_truth_domains must match PRODUCT_SPINE.yaml.")
     if set(gold_graph.get("required_horizon_lanes") or []) != EXPECTED_HORIZONS:
         errors.append("FINAL_GOLD_GRAPH.generated.json required_horizon_lanes must match PRODUCT_SPINE.yaml.")
+    if set(gold_graph.get("required_feature_lanes") or []) != EXPECTED_FEATURES:
+        errors.append("FINAL_GOLD_GRAPH.generated.json required_feature_lanes must match PRODUCT_SPINE.yaml.")
     adapter_policy = gold_graph.get("projection_adapter_policy") or {}
     if set(adapter_policy.get("adapters") or []) != EXPECTED_ADAPTERS:
         errors.append("FINAL_GOLD_GRAPH.generated.json projection adapters must match PRODUCT_SPINE.yaml.")
@@ -192,6 +230,7 @@ def main() -> int:
         "design_spine",
         "journey_gates",
         "horizon_registry",
+        "feature_registry",
         "fleet_gold_verdict",
         "fleet_gold_janitor",
         "live_status",

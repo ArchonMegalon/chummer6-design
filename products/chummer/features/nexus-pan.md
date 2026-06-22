@@ -23,8 +23,8 @@ It also handles bad signals and device handoffs honestly: clear offline status, 
 
 ## Tool posture
 
-No external tool is required for the canonical core of this horizon.
-If projections or operator aids appear later, they remain downstream helpers only.
+No external tool is required for the source core of this feature.
+If projections or maintainer aids appear later, they remain downstream helpers only.
 
 ## What has to be true first
 
