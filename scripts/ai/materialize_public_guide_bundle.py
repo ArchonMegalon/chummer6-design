@@ -1815,7 +1815,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
     open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
     published = _release_is_published(release_payload.get("status"))
     rendered = dict(section)
-    rendered["heading"] = "Start with the release page and download help"
+    rendered["heading"] = "Get Chummer first"
     if installers:
         if published:
             rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails."

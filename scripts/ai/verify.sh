@@ -406,7 +406,7 @@ rg -n '^## Campaign tools$' "$repo_root/products/chummer/public-guide/README.md"
 rg -n '^# Status$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^## The answer$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
-rg -n '^## Start with the release page and download help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n '^## Get Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^## Ask Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Questions people actually ask first$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
