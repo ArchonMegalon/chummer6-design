@@ -49,7 +49,8 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
 
     assert "honest pitch" in readme
     assert "Start here if you just want the answer" in readme
-    assert "functioning fingers" in readme
+    assert "functioning fingers" not in readme
+    assert "When a session starts soon, the next useful action should be obvious." in readme
     assert readme.count("[From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)") == 1
     assert "Open the Black Ledger command map" not in readme
     assert "Black Ledger Newsroom" not in readme
@@ -224,7 +225,7 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
             ),
             "flagship_claim_summary": (
                 "Flagship wording is reserved for surfaces that currently satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml; "
-                "preview artifacts, proof cards, captions, packet siblings, artifact-factory explainers, and fallback routes do not earn that claim by proximity."
+                "preview artifacts, status cards, captions, packet siblings, artifact-factory explainers, and fallback routes do not earn that claim by proximity."
             ),
         },
     )
@@ -238,7 +239,7 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
     assert "The exact files and hashes are below." in download
     assert "This build handles installs and recovery." in download
     assert "Start with the installer for your platform." in download
-    assert "The current files are posted, but some release notes are still catching up." in download
+    assert "No blocking download issue is listed for the current installers." in download
     assert "chummer-blazor-win-x64.zip" not in download
     assert "portable" not in download.lower()
     assert "archive package" not in download.lower()
@@ -317,7 +318,8 @@ def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_
     assert "Worlds and future work" not in start_here
     assert "# Campaign tools" in campaign_tools
     assert "## Ask Chummer first" in help_page
-    assert "If only half your brain is working" in help_page
+    assert "If only half your brain is working" not in help_page
+    assert "If the session starts soon, do not debug the whole universe." in help_page
     assert "Use Contact for install trouble" in help_page
     assert "provider" not in help_page.lower()
 
@@ -340,12 +342,12 @@ def test_generate_bundle_carries_horizon_explanation_videos(tmp_path: Path) -> N
     guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
 
     runsite = (out_dir / "HORIZONS" / "runsite.md").read_text(encoding="utf-8")
-    community = (out_dir / "HORIZONS" / "community-hub.md").read_text(encoding="utf-8")
-    nexus = (out_dir / "HORIZONS" / "nexus-pan.md").read_text(encoding="utf-8")
+    origin = (out_dir / "HORIZONS" / "origin-dossier.md").read_text(encoding="utf-8")
+    table_pulse = (out_dir / "HORIZONS" / "table-pulse.md").read_text(encoding="utf-8")
 
     assert "## Explanation video" not in runsite
     assert "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4" in runsite
     assert "alt=\"Runsite video preview\"" in runsite
     assert "MP4 with AAC audio" not in runsite
-    assert "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4" in community
-    assert "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4" in nexus
+    assert "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4" in origin
+    assert "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4" in table_pulse
