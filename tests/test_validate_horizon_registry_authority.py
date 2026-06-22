@@ -104,7 +104,7 @@ def test_validator_accepts_required_horizon_sections(tmp_path: Path, monkeypatch
         "\n".join(
             [
                 "The derived guide-routing index is guide-only.",
-                "The root `products/chummer/HORIZON_REGISTRY.yaml` is the only source of truth for horizon existence, order, and public-guide eligibility.",
+                "The root `products/chummer/HORIZON_REGISTRY.yaml` is the only source for horizon public-guide eligibility and order.",
             ]
         ),
         encoding="utf-8",
@@ -198,7 +198,7 @@ def test_validator_fails_when_required_sections_are_missing(tmp_path: Path, monk
         "\n".join(
             [
                 "The derived guide-routing index is guide-only.",
-                "The root `products/chummer/HORIZON_REGISTRY.yaml` is the only source of truth for horizon existence, order, and public-guide eligibility.",
+                "The root `products/chummer/HORIZON_REGISTRY.yaml` is the only source for horizon public-guide eligibility and order.",
             ]
         ),
         encoding="utf-8",
