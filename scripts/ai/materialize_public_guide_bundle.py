@@ -2671,7 +2671,7 @@ def _generate_where_to_go_deeper(out_dir: Path) -> None:
         "",
         "## I want base-client features",
         "",
-        "[Features](FEATURES/README.md) covers NEXUS-PAN, Run Control, Edition Studio, Community Hub, Ghostwire, Local Co-Processor, and Quicksilver without pretending they are separate Horizons.",
+        "[Features](FEATURES/README.md) covers NEXUS-PAN, Run Control, Edition Studio, Community Hub, Ghostwire, Local Co-Processor, and Quicksilver without pretending they are campaign tools.",
         "",
         "## I want to report or improve something",
         "",
@@ -3072,7 +3072,7 @@ def _generate_horizon_pages(
         "",
         "Open this when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
         "",
-        "This page is not a shelf for every named capability in Chummer6. Horizons are the campaign-facing tools that change how a table prepares, runs, remembers, or publishes play. Base-client support work belongs in [Features](../FEATURES/README.md).",
+        "This page is not a shelf for every named capability in Chummer6. Campaign tools are the parts that change how a table prepares, runs, remembers, or publishes play. Base-client support work belongs in [Features](../FEATURES/README.md).",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
@@ -3107,9 +3107,9 @@ def _generate_horizon_pages(
         _front_matter("Features", "products/chummer/HORIZON_REGISTRY.yaml"),
         "# Features",
         "",
-        "Open this when you want the normal Chummer6 client capabilities that should feel built in, not like separate Horizons.",
+        "Open this when you want the normal Chummer6 client capabilities that should feel built in, not like separate campaign tools.",
         "",
-        "The rule is simple: if a capability helps the app stay reliable, faster, better organized, or easier to operate, it belongs here. Horizons are reserved for campaign-facing tools that change preparation, play, aftermath, or publication.",
+        "The rule is simple: if a capability helps the app stay reliable, faster, better organized, or easier to operate, it belongs here. Campaign tools are reserved for preparation, play, aftermath, and publication.",
         "",
     ]
     append_index_group(

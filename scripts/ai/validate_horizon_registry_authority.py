@@ -132,8 +132,8 @@ def main() -> int:
 
     if "derived guide-routing index" not in policy_text.lower():
         errors.append("PUBLIC_GUIDE_POLICY.md must describe the derived guide-routing index rule.")
-    if "root `products/chummer/HORIZON_REGISTRY.yaml` is the only source of truth" not in policy_text:
-        errors.append("PUBLIC_GUIDE_POLICY.md must declare the root horizon registry as the sole source of truth.")
+    if "root `products/chummer/HORIZON_REGISTRY.yaml` is the only source for horizon public-guide eligibility and order" not in policy_text:
+        errors.append("PUBLIC_GUIDE_POLICY.md must declare the root horizon registry as the sole source for horizon public-guide eligibility and order.")
 
     if errors:
         return fail(errors)
