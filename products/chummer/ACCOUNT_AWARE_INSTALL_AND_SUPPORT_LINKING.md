@@ -104,11 +104,25 @@ If account context is needed, it must travel through a separate claim object or 
 3. Signed-in users may download the same canonical artifact plus a Hub-owned `DownloadReceipt`.
 4. If the user is signed in, Hub may also mint a short-lived `InstallClaimTicket`.
 5. First launch offers:
-   * use as guest
-   * link this copy to my account
+   * continue unlinked
+   * claim this copy online
 6. Linking completes through a Hub-owned one-time deep link, browser handoff, or short code.
 
 The installed artifact stays the same in both cases.
+
+## Optional first-run claim rule
+
+Account linking is a convenience path, not activation.
+
+If the user closes the first-run claim window or chooses `Continue unlinked`, Chummer must:
+
+* keep the local desktop open;
+* mark the prompt as dismissed so the same startup does not loop;
+* keep the install in guest/unlinked state;
+* keep character creation, rules, local files, downloads, and updates available;
+* leave account recovery, linked support history, and account return unavailable until the user claims the copy later.
+
+The claim surface must not say or imply that Chummer cannot start until the copy is linked.
 
 ## Account-aware front-door rule
 
@@ -126,7 +140,8 @@ The desktop client creates:
 * a local installation credential such as a keypair
 * initial local support and update posture settings
 
-The user may continue as guest or claim the install immediately.
+The user may continue unlinked or claim the install immediately.
+Closing the claim window is the same as continuing unlinked.
 
 ### Claim redemption
 
