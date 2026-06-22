@@ -201,7 +201,7 @@ Acceptance:
 
 ## Current Concrete Fix Added From This Pass
 
-The public-edge run-services workflow no longer deploys downloads on ordinary pushes. It can still build/package release artifacts for CI, but deployment now requires `workflow_dispatch` plus `deploy_portal_downloads`. The canonical desktop release workflow remains the daily 08:00 Europe/Vienna publish path.
+The public-edge run-services repo no longer carries hosted release automation. Pushes do not publish downloads. The canonical desktop release path is the local guarded runbook, with the normal public shelf limited to the daily 08:00 Europe/Vienna publish window.
 
 The desktop shell now treats the global AI-off preference as a hard projection boundary. When the preference is enabled, Alice/Origin Dossier commands are removed, stale selected AI commands are cleared, and an already-active Alice dialog is suppressed in the projected shell frame instead of lingering until the next manual action.
 
