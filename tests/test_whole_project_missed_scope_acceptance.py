@@ -147,7 +147,7 @@ def test_reproducible_product_truth_is_whole_product_scope() -> None:
         "current, fetchable SR4/SR5/SR6 coverage proof",
         "zero-rulefact proof cannot satisfy whole-product gold",
         "screenshots or pixel receipts for the promoted build",
-        "Humanizer improves wording only",
+        "improves wording only",
         "does not own rules, release, entitlement, or character truth",
     ]:
         assert required_scope in text

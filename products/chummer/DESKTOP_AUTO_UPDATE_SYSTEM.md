@@ -184,6 +184,8 @@ The user-facing update setting has exactly three modes:
 
 Packaged Windows, macOS, and Linux binaries default to `full` when update truth is available. Linked accounts also default to `full` unless the user changes the setting. Linux source-build launchers default to `notify` so source-built copies never silently replace themselves with a published binary.
 
+The Linux source-build path stays single-sourced. The executable script lives in `Chummer6/scripts/build-chummer6-linux.sh`, the user-facing explanation lives in `Chummer6/SOURCE_BUILD_LINUX.md`, and the maintenance policy lives in `maintenance/LINUX_SOURCE_BUILD_PATH.md`.
+
 The client must not:
 
 * invent local promoted-channel semantics

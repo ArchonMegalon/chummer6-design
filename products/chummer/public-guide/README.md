@@ -10,7 +10,7 @@ Use [Download](DOWNLOAD.md) for files, [Status](STATUS.md) for the blunt current
 
 Windows and Linux downloads are posted.
 Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.
-For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there. The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling.
+For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there. The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper table continuity.
 
 ## Why it exists
 
@@ -20,7 +20,7 @@ When a dice pool changes, the table should see why. When a device drops, the who
 
 ## What should feel different
 
-The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper campaign tooling.
+The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper table continuity.
 
 
 ## Help and feedback
@@ -31,12 +31,12 @@ If you want to help test a fix, use the [participation page](https://chummer.run
 
 ## First contact
 
-<a href="https://chummer.run/media/promo/chummer6-flagship-promo.mp4" target="_blank" rel="noopener noreferrer" title="Play the Chummer6 flagship promo video">
-  <img src="assets/hero/chummer6-hero.png" alt="Chummer6 flagship promo preview" title="Play the Chummer6 flagship promo video" />
+<a href="https://chummer.run/media/promo/chummer6-flagship-promo.mp4" target="_blank" rel="noopener noreferrer" title="Play the Chummer6 overview video">
+  <img src="assets/hero/chummer6-hero.png" alt="Chummer6 overview video preview" title="Play the Chummer6 overview video" />
 </a>
 
 
-[Watch the Chummer6 flagship promo](https://chummer.run/media/promo/chummer6-flagship-promo.mp4).
+[Watch the Chummer6 overview video](https://chummer.run/media/promo/chummer6-flagship-promo.mp4).
 
 ## Campaign tools and client features
 

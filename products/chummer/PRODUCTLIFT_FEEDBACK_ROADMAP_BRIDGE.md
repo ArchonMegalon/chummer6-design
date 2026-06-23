@@ -55,11 +55,12 @@ ProductLift public posts / votes / comments
 
 ## Public routes
 
+- `/participate` is the first-party board shell that brings feedback, roadmap, and shipped closeout together for guests without exposing a third-party product boundary.
 - `/feedback` projects ProductLift ideas, votes, comments, categories, and support-boundary copy.
 - `/roadmap` projects selected public direction from Chummer-owned planning and milestone truth.
 - `/changelog` projects shipped updates and voter-closeout notices backed by Chummer-owned release or public availability proof.
 
-Every route must retain a first-party fallback path. ProductLift outage or misconfiguration must degrade to Chummer-owned help, status, and release surfaces rather than hiding the path.
+Every route must retain a first-party fallback path. ProductLift outage or misconfiguration must degrade to Chummer-owned help, status, and release surfaces rather than hiding the path. The visual language should stay compact and dark enough to feel like `chummer.run`, not an embedded vendor board.
 
 ## Status mapping
 

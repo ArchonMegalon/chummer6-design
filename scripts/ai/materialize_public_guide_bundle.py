@@ -44,8 +44,14 @@ CHUMMER6_ASSET_SOURCE_PATHS_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE_PATHS"
 PORTAL_RELEASE_CHANNEL_PATHS_ENV = "CHUMMER_PORTAL_RELEASE_CHANNEL_PATHS"
 CHUMMER_HUB_REGISTRY_PATHS_ENV = "CHUMMER_HUB_REGISTRY_PATHS"
 CHUMMER6_GUIDE_MEDIA_WORKER_PATHS_ENV = "CHUMMER6_GUIDE_MEDIA_WORKER_PATHS"
+CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV = "CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT"
+CHUMMER6_SOURCE_DOC_CANDIDATES = (
+    ROOT.parent / "Chummer6",
+    ROOT.parent / "chummer6",
+)
 MEDIA_WORKER_PATH = ROOT / "scripts" / "chummer6_guide_media_worker.py"
 PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
+LINUX_SOURCE_BUILD_GATE_RECEIPT_NAME = "LINUX_SOURCE_BUILD_DOCKER_GATE.generated.json"
 
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
@@ -390,7 +396,28 @@ def _write(path: Path, content: str) -> None:
     path.write_text(rendered.strip() + "\n", encoding="utf-8")
 
 
+def _write_exact(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content.strip() + "\n", encoding="utf-8")
+
+
 def _scrub_public_markdown(content: str) -> str:
+    protected_terms = (
+        ("checked-in", "__CHUMMER_KEEP_CHECKED_IN_LOWER__"),
+        ("Checked-in", "__CHUMMER_KEEP_CHECKED_IN_UPPER__"),
+        ("public route live page", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_PAGE_LOWER__"),
+        ("Public route live page", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_PAGE_UPPER__"),
+        ("public route live", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_LOWER__"),
+        ("Public route live", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_UPPER__"),
+        ("checksums", "__CHUMMER_KEEP_CHECKSUMS_LOWER__"),
+        ("Checksums", "__CHUMMER_KEEP_CHECKSUMS_UPPER__"),
+        ("checksum", "__CHUMMER_KEEP_CHECKSUM_LOWER__"),
+        ("Checksum", "__CHUMMER_KEEP_CHECKSUM_UPPER__"),
+    )
+    cleaned = content
+    for term, placeholder in protected_terms:
+        cleaned = cleaned.replace(term, placeholder)
+
     replacements = (
         ("current truth", "what works today"),
         ("Current truth", "What works today"),
@@ -442,9 +469,14 @@ def _scrub_public_markdown(content: str) -> str:
         ("Proof scope", "Short version"),
         ("Guide fit:", "Use this for:"),
     )
-    cleaned = content
     for original, replacement in replacements:
-        cleaned = cleaned.replace(original, replacement)
+        prefix = r"(?<!\w)" if original[:1].isalnum() else ""
+        suffix = r"(?!\w)" if original[-1:].isalnum() else ""
+        cleaned = re.sub(prefix + re.escape(original) + suffix, replacement, cleaned)
+    cleaned = cleaned.replace("release area", "release lane")
+    cleaned = cleaned.replace("Release area", "Release lane")
+    for term, placeholder in protected_terms:
+        cleaned = cleaned.replace(placeholder, term)
     return cleaned
 
 
@@ -1294,6 +1326,8 @@ def _public_copy(text: str) -> str:
     )
     for original, replacement in replacements:
         cleaned = cleaned.replace(original, replacement)
+    cleaned = cleaned.replace("release area", "release lane")
+    cleaned = cleaned.replace("Release area", "Release lane")
     return cleaned
 
 
@@ -1483,9 +1517,9 @@ def _public_release_proof_summary(release_payload: dict[str, object]) -> str:
         labels = [RELEASE_PROOF_SUMMARY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip())) for item in journeys if str(item).strip()]
         labels = [label for label in labels if label not in {"release publishing", "community follow-up"}]
         if not labels:
-            return "The basic install and recovery path works."
+            return "The basic install and recovery path is working."
         joined = _english_join(labels)
-        return f"This build handles {joined}."
+        return f"This release covers {joined}."
     return _public_release_note(release_payload.get("supportabilitySummary"))
 
 
@@ -1495,11 +1529,11 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
         return ""
     lowered = cleaned.lower()
     if lowered.startswith("no major release caveat is listed"):
-        return "No blocking download issue is listed for the current installers."
+        return "No current download blocker is listed for these installers."
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
         return "This is still a preview, but setup, recovery, offline-ready behavior, release follow-up, and support work for the current downloads."
     if "gold-ready" in lowered or ("release status" in lowered and "shelf" in lowered):
-        return "No blocking download issue is listed for the current installers."
+        return "No current download blocker is listed for these installers."
     if "required desktop tuple coverage is incomplete" in lowered:
         platforms: list[str] = []
         if "windows" in lowered:
@@ -1526,7 +1560,7 @@ def _public_fix_summary(release_payload: dict[str, object]) -> str:
     if "required desktop tuple coverage is complete" in cleaned.lower():
         return "That warning will stay in place until the missing desktop installer is available."
     if cleaned.startswith("Only send fixed notices after"):
-        return "Only expect fix notices after the affected download is available on the download page."
+        return "Fix notices appear after the corrected download is live on the download page."
     return cleaned
 
 
@@ -1922,10 +1956,10 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
     rendered["heading"] = "Get Chummer first"
     if installers:
         if published:
-            rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and what to do next if setup fails."
+            rendered["body"] = "Start with the download page first, then check status if something looks off."
             rendered["bullets"] = [
-                "Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
-                "Use `Stable` when you want the slower release channel.",
+                "Use `Stable` for the calmer release lane.",
+                "Use `Nightly` for the newest published Windows or Linux build.",
                 "Use the Windows or Linux installer.",
                 "Create an account if you want your support history, recovery, and downloads tied to one place.",
                 "If your platform is missing, the status and download pages will say so.",
@@ -2029,6 +2063,7 @@ def _build_release_truth_packet(
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
 ) -> dict[str, object]:
+    linux_source_build_gate = _load_linux_source_build_gate_receipt()
     artifacts = _public_download_artifacts(_release_artifacts(release_payload))
     raw_status = str(release_payload.get("status") or "unpublished").strip()
     phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
@@ -2062,10 +2097,15 @@ def _build_release_truth_packet(
     fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
     available_platforms = _promoted_platform_labels(release_payload, artifacts)
     missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
-    return {
+    packet = {
         "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
         "phase_label": phase,
         "published_at": published_at,
+        "published_line": (
+            f"Published: {published_at}."
+            if published_at and _release_is_published(raw_status)
+            else (f"Last refreshed: {published_at}." if published_at else "")
+        ),
         "build_label": build_label,
         "release_status": _public_release_state(raw_status),
         "release_status_slug": _release_status_slug(raw_status),
@@ -2077,7 +2117,7 @@ def _build_release_truth_packet(
         "quality_gap_line": (
             "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
             if families_below_gold
-            else "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling."
+            else "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper table continuity."
         ),
         "release_verification_summary": _public_release_proof_summary(release_payload),
         "known_issue_summary": _public_known_issue_summary(release_payload),
@@ -2088,6 +2128,16 @@ def _build_release_truth_packet(
         "primary_head": primary_head,
         "fallback_heads": fallback_heads,
     }
+    if isinstance(linux_source_build_gate, dict):
+        packet["linux_source_build_gate"] = {
+            "status": str(linux_source_build_gate.get("status") or "").strip(),
+            "generated_at_utc": str(linux_source_build_gate.get("generated_at_utc") or "").strip(),
+            "docker_image": str(linux_source_build_gate.get("docker_image") or "").strip(),
+            "rid": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("rid") or "").strip(),
+            "archive_sha256": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("archive_sha256") or "").strip(),
+            "executable_sha256": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("executable_sha256") or "").strip(),
+        }
+    return packet
 
 
 def _generate_release_truth_packet(out_dir: Path, packet: dict[str, object]) -> None:
@@ -2451,7 +2501,7 @@ def _generate_root(
             "",
             "## What should feel different",
             "",
-            "The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper campaign tooling.",
+            "The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper table continuity.",
             "",
         ]
     )
@@ -2483,9 +2533,9 @@ def _generate_root(
         doc_path=doc_path,
         out_dir=out_dir,
         asset_path="assets/hero/chummer6-hero.png",
-        alt="Chummer6 flagship promo preview",
+        alt="Chummer6 overview video preview",
         href="https://chummer.run/media/promo/chummer6-flagship-promo.mp4",
-        title="Play the Chummer6 flagship promo video",
+        title="Play the Chummer6 overview video",
     )
     if hero_rows:
         rows.extend(["## First contact", ""])
@@ -2493,7 +2543,7 @@ def _generate_root(
         rows.extend(
             [
                 "",
-                "[Watch the Chummer6 flagship promo](https://chummer.run/media/promo/chummer6-flagship-promo.mp4).",
+                "[Watch the Chummer6 overview video](https://chummer.run/media/promo/chummer6-flagship-promo.mp4).",
             ]
         )
     rows.extend(
@@ -2669,7 +2719,7 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
         "",
-        "This is the page for the uncomfortable question: should I use Chummer6 today, or should I wait?",
+        "Use this page to see whether the current public build is ready for you.",
         "",
     ]
     overall = progress.get("overall_progress_percent")
@@ -2712,8 +2762,6 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         "# Help",
         "",
         "Start here if installation, updates, sign-in, or bugs are getting in the way.",
-        "",
-        "If the session starts soon, do not debug the whole universe. Check the download page, check status, then contact us with what happened.",
         "",
     ]
     if isinstance(help_page, dict):
@@ -2879,14 +2927,12 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
-        "If you are on Windows or Linux, start with the Avalonia installer. If you are on macOS, wait for the guided support path.",
-        "",
-        "The exact files and hashes are below.",
+        "Windows and Linux downloads start on `chummer.run`. macOS stays on a guided support path.",
         "",
         "## Pick your file",
         "",
-        "- Use `Nightly` when you want the newest rolling public build on Windows or Linux.",
-        "- Use `Stable` when you want the slower release channel.",
+        "- Use `Stable` for the calmer release lane.",
+        "- Use `Nightly` for the newest published Windows or Linux build.",
         "- If Nightly and Stable show the same build, there is no newer Nightly at that moment.",
     ]
     for platform_key in ("windows", "linux", "macos"):
@@ -3019,6 +3065,61 @@ def _generate_download(
             rows.append(f"- {release_verification}")
 
     _write(out_dir / "DOWNLOAD.md", "\n".join(rows))
+
+
+def _resolve_chummer6_public_source_root() -> Path:
+    override = os.environ.get(CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV)
+    if override:
+        candidate = Path(override).resolve()
+        if candidate.exists():
+            return candidate
+        raise FileNotFoundError(f"missing Chummer6 public guide source root: {candidate}")
+    for candidate in CHUMMER6_SOURCE_DOC_CANDIDATES:
+        resolved = candidate.resolve()
+        if resolved.exists():
+            return resolved
+    searched = ", ".join(str(candidate) for candidate in CHUMMER6_SOURCE_DOC_CANDIDATES)
+    raise FileNotFoundError(f"unable to locate Chummer6 public guide source root; checked: {searched}")
+
+
+def _resolve_chummer6_repo_root() -> Path:
+    source_root = _resolve_chummer6_public_source_root()
+    return source_root
+
+
+def _load_linux_source_build_gate_receipt() -> dict[str, object] | None:
+    repo_root = _resolve_chummer6_repo_root()
+    receipt_path = repo_root / ".guide-internal" / "receipts" / LINUX_SOURCE_BUILD_GATE_RECEIPT_NAME
+    if not receipt_path.is_file():
+        return None
+    try:
+        return json.loads(receipt_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def _public_linux_source_build_doc(content: str) -> str:
+    cleaned = content.strip()
+    cleaned = cleaned.replace("## Fresh-container publish gate", "## Fresh-container maintenance check")
+    cleaned = cleaned.replace(
+        "The publish lane now has a dedicated Linux source-build gate. It starts a fresh `debian:bookworm-slim` container, installs the required host packages inside that container, runs the checked-in audit wrapper, and then runs the full checked-in source-build script.",
+        "The maintenance option has a fresh-container Linux source-build check. It starts a fresh `debian:bookworm-slim` container, installs the required host packages inside that container, runs the checked-in audit wrapper, and then runs the full checked-in source-build script. This is a maintainer confidence check for the local source option, not a public release claim or replacement for the installers on `chummer.run`.",
+    )
+    cleaned = re.sub(
+        r"\nThe gate also writes a structured internal release record so the release lane keeps durable evidence of the fresh-container pass:?\n(?:\n- `\.guide-internal/receipts/LINUX_SOURCE_BUILD_DOCKER_GATE\.generated\.json`\n)?",
+        "\nIf the check fails, treat it as maintenance work on the local source option before pointing users at it again.\n",
+        cleaned,
+    )
+    cleaned = cleaned.replace("after the gate finishes", "after the check finishes")
+    return cleaned
+
+
+def _copy_chummer6_public_docs(out_dir: Path) -> None:
+    source_root = _resolve_chummer6_public_source_root()
+    _write_exact(
+        out_dir / "SOURCE_BUILD_LINUX.md",
+        _public_linux_source_build_doc(_load_text(source_root / "SOURCE_BUILD_LINUX.md")),
+    )
 
 
 def _generate_contact(out_dir: Path, trust_payload: dict[str, object]) -> None:
@@ -3168,7 +3269,7 @@ def _generate_horizon_pages(
         "This page is not a shelf for every named capability in Chummer6. Campaign tools are the parts that change how a table prepares, runs, remembers, or publishes play. Base-client support work belongs in [Features](../FEATURES/README.md).",
         "",
     ]
-    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
+    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 campaign tools index art"))
 
     def append_index_group(rows: list[str], title: str, summary: str, items: list[dict[str, object]]) -> None:
         if not items:
@@ -3391,6 +3492,21 @@ def _generate_new_section_receipts(
     release_payload: dict[str, object],
     generated_live_route_ids: set[str] | None = None,
 ) -> None:
+    def _display_status(value: str) -> str:
+        explicit = {
+            "future_concept_disabled_horizon": "future concept",
+            "public_safe_horizon_page": "safe campaign-tool page",
+            "help_support_page_content": "help page content",
+            "public_route_live": "live page",
+            "public_route_live_page": "live page guide",
+            "omitted_with_receipt": "omitted with record",
+            "support_only_with_receipt": "support only with record",
+            "public_horizon_page": "campaign tool page",
+        }
+        if value in explicit:
+            return explicit[value]
+        return value.replace("receipt", "record").replace("_", " ")
+
     rows = _new_section_alignment_rows(new_section_verdict, horizon_registry)
     generated_live_route_ids = generated_live_route_ids or set()
     for row in rows:
@@ -3456,18 +3572,18 @@ def _generate_new_section_receipts(
         "",
         "Verdict: NOT_READY" if not_ready_reasons else "Verdict: READY",
         "",
-        "## New section receipts",
+        "## New section records",
         "",
     ]
     for row in rows:
         verdict_lines.append(
-            f"- `{row['id']}`: `{row['public_guide_verdict']}` -> `{row['representation_status']}`"
+            f"- `{row['id']}`: `{_display_status(row['public_guide_verdict'])}` -> `{_display_status(row['representation_status'])}`"
         )
     if not_ready_reasons:
         verdict_lines.extend(["", "## Not ready reasons", ""])
         verdict_lines.extend(f"- {reason}" for reason in not_ready_reasons)
     else:
-        verdict_lines.extend(["", "## Acceptance posture", "", "- New sections are either explicitly receipted or intentionally future-labeled."])
+        verdict_lines.extend(["", "## Acceptance posture", "", "- New sections are either explicitly recorded or intentionally future-labeled."])
     _write(out_dir / "CHUMMER6_PUBLIC_GUIDE_TRUTH_AUDIT.generated.json", json.dumps(truth_audit, indent=2, sort_keys=True))
     _write(out_dir / "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json", json.dumps({"sections": rows}, indent=2, sort_keys=True))
     _write(out_dir / "CHUMMER6_GUIDE_GENERATOR_REGISTRY_ALIGNMENT.generated.json", json.dumps(alignment, indent=2, sort_keys=True))
@@ -3533,6 +3649,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     _generate_glossary(out_dir)
     _generate_faq(out_dir, faq_registry)
     _generate_download(out_dir, progress, release_payload, release_source, release_experience)
+    _copy_chummer6_public_docs(out_dir)
     _generate_contact(out_dir, trust_payload)
     _generate_part_pages(out_dir, part_registry)
     _generate_horizon_pages(

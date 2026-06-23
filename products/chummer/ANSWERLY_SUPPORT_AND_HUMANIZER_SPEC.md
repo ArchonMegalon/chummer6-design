@@ -1,4 +1,4 @@
-# Answerly Support And Humanizer Spec
+# Answerly Support And Undetectable Humanizer LTD Spec
 
 ## Purpose
 
@@ -12,8 +12,8 @@ It is not the support product, not a horizon, and not visible as a provider bran
 - public support assistant
 - install, downloads, and status helper
 - feedback and support intake helper
-- optional humanizer for `RuleSafeAnswerPacket`
-- optional humanizer for Origin Dossier preview text after Chummer has already built the approved source packet
+- optional `Undetectable Humanizer LTD` pass for `RuleSafeAnswerPacket`
+- optional `Undetectable Humanizer LTD` pass for Origin Dossier preview text after Chummer has already built the approved source packet
 
 ## Forbidden
 
@@ -30,7 +30,7 @@ It is not the support product, not a horizon, and not visible as a provider bran
 
 - `ANSWERLY_ENABLED=false` disables all provider calls
 - `ANSWERLY_SUPPORT_ENABLED=false` disables support mode
-- `ANSWERLY_HUMANIZER_ENABLED=false` disables humanizer mode
+- `ANSWERLY_HUMANIZER_ENABLED=false` disables the `Undetectable Humanizer LTD` pass
 - fallback stays first-party
 
 ## Public naming
@@ -43,7 +43,7 @@ Answers should be minimal: next step first, explanation only when it changes the
 
 ## Origin Dossier humanizer loop
 
-Origin Dossier draft text may pass through a Chummer-controlled humanizer loop before the player sees it or before a media packet is created.
+Origin Dossier draft text may pass through a Chummer-controlled `Undetectable Humanizer LTD` loop before the player sees it or before a media packet is created.
 
 The loop may improve:
 

@@ -59,7 +59,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
                     "status": "published",
                 }
             ),
-            "No blocking download issue is listed for the current installers.",
+            "No current download blocker is listed for these installers.",
         )
 
     def test_release_truth_packet_uses_measured_quality_gap_line(self) -> None:
@@ -77,7 +77,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
 
         self.assertEqual(
             packet["quality_gap_line"],
-            "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper campaign tooling.",
+            "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper table continuity.",
         )
 
     def test_missing_required_platform_labels_stays_empty_for_explicit_mac_only_preview_contract(self) -> None:

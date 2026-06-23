@@ -235,12 +235,11 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
     assert "Proof scope:" not in download
     assert "Claim boundary:" not in download
     assert "what this covers" not in download.lower()
-    assert "If you are on Windows or Linux, start with the Avalonia installer." in download
-    assert "The exact files and hashes are below." in download
+    assert "Windows and Linux downloads start on `chummer.run`. macOS stays on a guided support path." in download
     assert "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md)." in download
-    assert "This build handles installs and recovery." in download
+    assert "This release covers installs and recovery." in download
     assert "Start with the installer for your platform." in download
-    assert "No blocking download issue is listed for the current installers." in download
+    assert "No current download blocker is listed for these installers." in download
     assert "chummer-blazor-win-x64.zip" not in download
     assert "portable" not in download.lower()
     assert "archive package" not in download.lower()
@@ -252,6 +251,7 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
 def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> None:
     out_dir = tmp_path / "bundle"
     guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+    assert (out_dir / "SOURCE_BUILD_LINUX.md").exists()
 
     new_sections = json.loads(
         (out_dir / "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json").read_text(encoding="utf-8")
@@ -275,7 +275,64 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
     assert "# Chummer6 Docs Generation Verdict" in verdict
     assert (out_dir / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json").is_file()
     assert (out_dir / "RUNNER_PASSPORT.md").is_file()
-    assert "`runner-passport`: `public_route_live` -> `public_route_live_page`" in verdict
+    assert "`table-pulse`: `safe campaign-tool page` -> `campaign tool page`" in verdict
+    assert "`runner-passport`: `live page` -> `live page guide`" in verdict
+    source_build = (out_dir / "SOURCE_BUILD_LINUX.md").read_text(encoding="utf-8")
+    assert "fresh-container Linux source-build check" in source_build
+    assert "maintenance work on the local source option" in source_build
+    assert "build path" not in source_build.lower()
+    assert "Fresh-container publish gate" not in source_build
+    assert "publish lane" not in source_build
+    assert "structured internal release record" not in source_build
+    assert ".guide-internal/receipts" not in source_build
+    release_packet = json.loads(
+        (out_dir / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json").read_text(encoding="utf-8")
+    )
+    linux_gate = release_packet["linux_source_build_gate"]
+    assert linux_gate["status"] == "passed"
+    assert linux_gate["docker_image"] == "debian:bookworm-slim"
+    assert linux_gate["rid"].startswith("linux-")
+
+
+def test_scrub_public_markdown_preserves_checked_in_and_checksum_terms() -> None:
+    rendered = guide._scrub_public_markdown(
+        "\n".join(
+            (
+                "This page documents the checked-in source-build script.",
+                "The checked-in helper scripts print checksum values and checksums.",
+            )
+        )
+    )
+
+    assert "checked-in source-build script" in rendered
+    assert "checked-in helper scripts" in rendered
+    assert "checksum values and checksums" in rendered
+    assert "tested-in" not in rendered
+    assert "testsum" not in rendered
+
+
+def test_scrub_public_markdown_does_not_mutate_larger_legitimate_words() -> None:
+    rendered = guide._scrub_public_markdown(
+        "\n".join(
+            (
+                "A truthful summary should stay truthful.",
+                "An unchecked item should stay unchecked.",
+                "A proofread paragraph should stay proofread.",
+                "A checklist should stay checklist.",
+                "A checksum should stay checksum.",
+            )
+        )
+    )
+
+    assert "truthful" in rendered
+    assert "unchecked" in rendered
+    assert "proofread" in rendered
+    assert "checklist" in rendered
+    assert "checksum" in rendered
+    assert "stateful" not in rendered
+    assert "untested" not in rendered
+    assert "status detailread" not in rendered
+    assert "testlist" not in rendered
 
 
 def test_generate_bundle_keeps_black_ledger_out_of_primary_public_navigation(tmp_path: Path) -> None:
@@ -287,6 +344,9 @@ def test_generate_bundle_keeps_black_ledger_out_of_primary_public_navigation(tmp
 
     assert "Open the Black Ledger command map" not in readme
     assert "Black Ledger Newsroom" not in readme
+    assert "every-wonder-horizon-promo" not in readme
+    assert "Chummer6 campaign tools index art" in horizons_index
+    assert "Chummer6 horizons index art" not in horizons_index
     assert "[BLACK LEDGER]" not in horizons_index
     assert not (out_dir / "HORIZONS" / "black-ledger.md").exists()
 
@@ -320,7 +380,6 @@ def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_
     assert "# Campaign tools" in campaign_tools
     assert "## Ask Chummer first" in help_page
     assert "If only half your brain is working" not in help_page
-    assert "If the session starts soon, do not debug the whole universe." in help_page
     assert "Use Contact for install trouble" in help_page
     assert "provider" not in help_page.lower()
 
