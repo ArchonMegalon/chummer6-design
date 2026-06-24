@@ -14,7 +14,7 @@ Windows and Linux downloads start on `chummer.run`. macOS stays on a guided supp
 ## What is available
 
 Today: Current release build.
-Published: June 23, 2026 at 10:31 UTC.
+Published: June 23, 2026 at 10:26 UTC.
 Windows and Linux downloads are posted.
 This release covers installs and recovery, campaign session recovery, and support follow-up.
 No current download blocker is listed for these installers.
@@ -59,5 +59,5 @@ Advanced users can also [build the Linux desktop client from source](SOURCE_BUIL
 
 ## Build notes
 
-- Last updated: June 23, 2026 at 10:31 UTC.
+- Last updated: June 24, 2026 at 6:58 UTC.
 - This release covers installs and recovery, campaign session recovery, and support follow-up.

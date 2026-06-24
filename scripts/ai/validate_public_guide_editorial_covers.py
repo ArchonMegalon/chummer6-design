@@ -175,6 +175,16 @@ def _check_comic_panel_cover(target: str, image: Image.Image) -> list[str]:
 def main() -> int:
     config = _load_yaml(CONFIG_PATH)
     curation = _load_yaml(CURATION_PATH)
+    style_contract = (
+        dict(config.get("style_contract") or {})
+        if isinstance(config.get("style_contract"), dict)
+        else {}
+    )
+    default_kind = str(style_contract.get("default_kind") or "feature_cover").strip().lower()
+    allowed_kind_exceptions = {
+        _normalized_asset_key(target): str(kind or "").strip().lower()
+        for target, kind in dict(style_contract.get("allowed_kind_exceptions") or {}).items()
+    }
     defaults = dict(config.get("defaults") or {}) if isinstance(config.get("defaults"), dict) else {}
     expected_size = (int(defaults.get("width") or 1600), int(defaults.get("height") or 900))
     output_root = ROOT / str(config.get("output_root") or "products/chummer/public-guide-curated-assets")
@@ -212,13 +222,18 @@ def main() -> int:
             elif not (ROOT / source_override).is_file():
                 errors.append(f"{target_key}: curation source_override is missing on disk at {ROOT / source_override}")
         errors.extend(_cover_text_errors(target_key, spec))
+        kind = str(spec.get("kind") or default_kind).strip().lower()
+        expected_kind = allowed_kind_exceptions.get(target_key, default_kind)
+        if kind != expected_kind:
+            errors.append(
+                f"{target_key}: kind must stay {expected_kind!r} under the current style contract, got {kind!r}"
+            )
         if Image is not None and ImageStat is not None:
             image = Image.open(output_path).convert("RGB")
             if image.size != expected_size:
                 errors.append(
                     f"{target_key}: expected size {expected_size[0]}x{expected_size[1]}, got {image.size[0]}x{image.size[1]}"
                 )
-            kind = str(spec.get("kind") or "feature_cover").strip().lower()
             if kind == "mosaic_cover":
                 errors.extend(_check_mosaic_cover(target_key, image))
             elif kind == "comic_panel_cover":
@@ -226,6 +241,12 @@ def main() -> int:
             else:
                 errors.extend(_check_feature_cover(target_key, image))
         validated += 1
+
+    for target_key, expected_kind in allowed_kind_exceptions.items():
+        if target_key not in configured_assets:
+            errors.append(
+                f"{target_key}: style_contract exception points at a missing configured asset"
+            )
 
     for target, raw_row in curated_assets.items():
         if not isinstance(raw_row, dict):

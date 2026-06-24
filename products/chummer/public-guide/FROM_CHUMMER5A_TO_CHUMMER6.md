@@ -14,7 +14,7 @@ It tries to show why a number changed instead of leaving you with a total and no
 
 ## Should you switch today?
 
-Today you can try preview builds on Windows and Linux. Public downloads are already visible on the desktop platforms that are currently offered.
+Today you can try the current builds on Windows and Linux. Public downloads are already visible on the desktop platforms that are currently offered.
 
 If you like trying real previews and helping shape the rough edges, it is worth a serious look. If you need a fully settled, every-platform replacement for Chummer5a right now, wait.
 

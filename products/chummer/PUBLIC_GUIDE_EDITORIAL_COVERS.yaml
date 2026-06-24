@@ -1,4 +1,9 @@
 output_root: products/chummer/public-guide-curated-assets
+style_contract:
+  default_kind: feature_cover
+  allowed_kind_exceptions:
+    assets/horizons/origin-dossier.png: comic_panel_cover
+    assets/pages/parts-index.png: mosaic_cover
 defaults:
   width: 1600
   height: 900

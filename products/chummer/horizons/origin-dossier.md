@@ -41,6 +41,7 @@ The shipped slice can:
 * branch into a dossier PDF, portrait candidates, scene candidates, default narration, alternate narration, optional audiobook request, video storyboard, vidBoard packet, and local media-factory request
 * hand an approved origin-story audiobook request to EA's governed audiobook lane when the player asks for it
 * open the finished audiobook through a player- and runner-scoped EA reference instead of broad Audiobookshelf access
+* keep the long-form book architecture canon-first and Chummer-owned even when downstream deluxe tools are used
 * let later ALICE suggestions read the approved origin canon
 
 That makes Origin Dossier more than a subfeature of ALICE. ALICE is the coach and rules-facing conversation surface. Origin Dossier is the runner identity, approval, and media-packet lane that ALICE can reference after the player or GM approves it.
@@ -86,9 +87,15 @@ An Origin Dossier bundle can include:
 * video storyboard
 * vidBoard packet
 * media-factory render request
+* optional supporter-only MyFirstBook deluxe edition
+* optional supporter-only Inkfluence Tier 3 memoir, cover, export, or audiobook package
 * receipts for source, approval, selected assets, and render state
 
 The media is downstream. It can make the character easier to understand, pitch, and remember, but it does not own the character.
+
+MyFirstBook and Inkfluence Tier 3 belong only on that downstream deluxe branch.
+They may render approved Chummer canon into richer supporter editions, but they must stay optional, rejectable, and non-canonical.
+No external book tool may create runner truth, mutate the sheet, or bypass player and GM approval.
 
 If the player asks for it, the approved origin story can also become an audiobook through EA's governed audiobook lane. EA chooses the best configured narration voice from the story profile, renders the approved text, imports the M4B into Audiobookshelf storage, and gives Chummer only a scoped reference for that player and runner.
 
@@ -133,6 +140,7 @@ Before this lane widens, Chummer needs durable confidence that:
 * humanized prose remains source-bound and does not change facts
 * origin-story audiobooks carry the same approval lineage and scoped-access receipt as the rest of the bundle
 * media outputs can be rejected without harming the runner dossier
+* MyFirstBook and Inkfluence outputs stay supporter-only, optional, and non-canonical
 * later ALICE follow-up can use origin context without confusing story truth and rules truth
 * private and GM-only context stays scoped
 
@@ -143,3 +151,5 @@ The first playable slice is live, but the full horizon is larger.
 The flagship version should make a runner feel like a person with history, pressure, obligations, and presentation-ready artifacts while still preserving the table’s authority. That requires careful approval, media retention, export, deletion, and media-lineage work.
 
 Origin Dossier is ready to be named as a Chummer horizon because it has a real desktop foothold and a clear product boundary. It should stay bounded until the dossier-media loop proves it can be beautiful without becoming fake truth.
+
+The full canon-first book architecture now lives in `products/chummer/ORIGIN_BOOK_STUDIO.md`.

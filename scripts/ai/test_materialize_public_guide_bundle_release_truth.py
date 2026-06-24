@@ -30,7 +30,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
     def test_public_preview_builds_line_joins_platforms(self) -> None:
         self.assertEqual(
             MODULE._public_preview_builds_line(["Windows", "Linux"]),
-            "Today you can try preview builds on Windows and Linux.",
+            "Today you can try the current builds on Windows and Linux.",
         )
 
     def test_public_wait_before_switch_line_singular(self) -> None:

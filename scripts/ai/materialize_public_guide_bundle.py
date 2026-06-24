@@ -1665,7 +1665,7 @@ def _public_shelf_truth_line(
 
 def _public_preview_builds_line(available_platforms: list[str]) -> str:
     if available_platforms:
-        return f"Today you can try preview builds on {_english_join(available_platforms)}."
+        return f"Today you can try the current builds on {_english_join(available_platforms)}."
     return "There are no public downloads posted right now, so this is not a practical switch yet."
 
 
