@@ -98,7 +98,7 @@ def main() -> int:
 
     for marker in (
         "## Account-aware front-door rule",
-        "`/participate` is the guest-readable account-aware front door",
+        "`/partizipate` is the guest-readable account-aware front door",
         "`/home` and `/account` are the signed-in community-ledger shell",
         "parallel intent models",
     ):
@@ -162,8 +162,8 @@ def main() -> int:
         "Create account",
         "/login?next=/home",
         "/signup?next=/home",
-        "path: /participate",
-        "purpose: help_and_booster_entry",
+        "path: /partizipate",
+        "purpose: first_party_public_board",
     ):
         if marker not in landing_manifest_text:
             errors.append(f"landing_manifest_missing_marker:{marker}")

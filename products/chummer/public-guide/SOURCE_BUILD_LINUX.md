@@ -34,19 +34,17 @@ bash -n scripts/build-chummer6-linux.sh
 bash scripts/build-chummer6-linux.sh --audit-only --base "$HOME/chummer6-source-build"
 ```
 
-## Fresh-container publish gate
+## Fresh-container maintenance check
 
-The publish lane now has a dedicated Linux source-build gate. It starts a fresh `debian:bookworm-slim` container, installs the required host packages inside that container, runs the checked-in audit wrapper, and then runs the full checked-in source-build script.
+The maintenance option has a fresh-container Linux source-build check. It starts a fresh `debian:bookworm-slim` container, installs the required host packages inside that container, runs the checked-in audit wrapper, and then runs the full checked-in source-build script. This is a maintainer confidence check for the local source option, not a public release claim or replacement for the installers on `chummer.run`.
 
 ```bash
 bash scripts/verify_linux_source_build_docker_gate.sh
 ```
 
-Use `CHUMMER_KEEP_DOCKER_GATE_WORKDIR=1` if you need to keep the container work directory and logs after the gate finishes.
+Use `CHUMMER_KEEP_DOCKER_GATE_WORKDIR=1` if you need to keep the container work directory and logs after the check finishes.
 
-The gate also writes a structured internal release record so the release lane keeps durable evidence of the fresh-container pass:
-
-- `.guide-internal/receipts/LINUX_SOURCE_BUILD_DOCKER_GATE.generated.json`
+If the check fails, treat it as maintenance work on the local source option before pointing users at it again.
 
 ## Full build
 

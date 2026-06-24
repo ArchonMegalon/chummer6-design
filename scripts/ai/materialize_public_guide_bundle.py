@@ -1672,7 +1672,7 @@ def _public_preview_builds_line(available_platforms: list[str]) -> str:
 def _public_wait_before_switch_line(missing_platforms: list[str]) -> str:
     if missing_platforms:
         return f"If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
-    return "Public downloads are already visible on every promised desktop platform."
+    return "Public downloads are already visible on the desktop platforms that are currently offered."
 
 
 def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
@@ -1685,7 +1685,7 @@ def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
 
 def _public_missing_installer_lane_line(missing_platforms: list[str]) -> str:
     if not missing_platforms:
-        return "Normal installers are available on every promised desktop platform."
+        return "Normal installers are available on the desktop platforms that are currently offered."
     if len(missing_platforms) == 1:
         return f"{missing_platforms[0]} does not have a normal installer yet."
     return f"{_english_join(missing_platforms)} do not have normal installers yet."
@@ -2501,7 +2501,7 @@ def _generate_root(
             "",
             "## What should feel different",
             "",
-            "The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be findable before frustration becomes a GitHub archaeology expedition. The rough edges are still installer polish, update polish, support polish, and deeper table continuity.",
+            "The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be easy to find before frustration takes over. The rough edges are still installer polish, update polish, support polish, and deeper table continuity.",
             "",
         ]
     )
@@ -2523,9 +2523,9 @@ def _generate_root(
             "",
             "## Help and feedback",
             "",
-            "If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). If the issue is safe to discuss in public, the help pages point you to the GitHub issue tracker too.",
+            "If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). Use the participation page only when you want hands-on testing or focused public follow-up.",
             "",
-            "If you want to help test a fix, use the [participation page](https://chummer.run/participate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
+            "If you want to help test a fix, use the [participation page](https://chummer.run/partizipate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
             "",
         ]
     )
@@ -2679,7 +2679,7 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         "## What gets better",
         "",
-        "It tries to show why a number changed instead of leaving you with mystery math. Recovery and continuity are being treated as core product work, not as an afterthought. Status, downloads, and help are easier to find without digging around for the current answer.",
+        "It tries to show why a number changed instead of leaving you with a total and no explanation. Recovery and continuity are being treated as core product work, not as an afterthought. Status, downloads, and help are easier to find without digging around for the current answer.",
         "",
         "## Should you switch today?",
         "",
@@ -2782,7 +2782,7 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         "",
         "## Something broke",
         "",
-        "Use a public issue when the bug is safe to discuss in public. Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.",
+        "Use public feedback when the bug is safe to discuss in public. Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.",
         "",
         "Tell us the page, build, operating system, and the shortest path that reproduces the problem. A screenshot is welcome when it saves everyone from guessing.",
         "",
@@ -2798,7 +2798,7 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         "",
         "## You want to test a fix",
         "",
-        "Use the [participation page](https://chummer.run/participate) when you want hands-on testing or focused follow-up. For normal public reports, use the GitHub issue tracker: [ArchonMegalon/Chummer6 issues](https://github.com/ArchonMegalon/Chummer6/issues).",
+            "Use the [participation page](https://chummer.run/partizipate) when you want hands-on testing or focused follow-up. For normal public reports, start with [Help](https://chummer.run/help) or [Contact](https://chummer.run/contact).",
         "",
         "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change real until it lands in an actual release.",
         "",
@@ -2831,7 +2831,7 @@ def _generate_where_to_go_deeper(out_dir: Path) -> None:
         "",
         "## I want the technical details",
         "",
-        "The software repos and design notes are for implementation details and long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.",
+        "The technical docs are there when you want implementation details or long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.",
         "",
         "Come back here when you want the shorter user-facing version again.",
         "",
