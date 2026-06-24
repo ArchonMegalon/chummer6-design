@@ -1,6 +1,11 @@
 # Public Surface Verdict
 
-Verdict: `GLOBAL_PUBLIC_RELEASE_GOLD_READY`
+Superseded: true
+Superseded on: 2026-06-24
+Current authority: `products/chummer/FINAL_GOLD_GRAPH.generated.json`
+Reason: this closeout was tied to an older public shelf and must not be read as current release truth.
+
+Verdict: `SUPERSEDED_REVIEW_REQUIRED`
 
 Current truth:
 - live UX and route proof are strong

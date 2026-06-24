@@ -1,21 +1,21 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-06-22T07:45:09Z",
+  "generated_at": "2026-06-24T19:36:38Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
   "current_truth": {
-    "state": "ready",
-    "blocked_count": 0,
-    "warning_count": 0,
-    "blocked_reason": "",
+    "state": "blocked",
+    "blocked_count": 4,
+    "warning_count": 2,
+    "blocked_reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
     "warning_reason": "",
-    "next_safe_action": "Journey proof is steady on current published evidence.",
-    "evidence_age_hours": 0.12,
+    "next_safe_action": "Resolve the blocking golden-journey gaps before widening publish claims.",
+    "evidence_age_hours": 1.6,
     "provenance": {
       "weekly_product_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
-      "weekly_product_pulse_generated_at": "2026-06-22T07:38:04Z",
+      "weekly_product_pulse_generated_at": "2026-06-24T18:00:42Z",
       "golden_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml"
     }
   },

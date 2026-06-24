@@ -1,5 +1,10 @@
 # Release Download Install Closeout
 
+Superseded: true
+Superseded on: 2026-06-24
+Current authority: `products/chummer/FINAL_GOLD_GRAPH.generated.json`
+Reason: this closeout was tied to an older public shelf and must not be read as current release truth.
+
 - Generated: 2026-05-17T16:10:00Z
 - Scope: `global_public_release`
 - Live downloads route: `https://chummer.run/downloads`
@@ -12,4 +17,4 @@
 - `Public release`
 - `public_stable`
 - `gold_supported`
-- Closeout verdict: `GLOBAL_PUBLIC_RELEASE_GOLD_READY`
+- Closeout verdict: `SUPERSEDED_REVIEW_REQUIRED`

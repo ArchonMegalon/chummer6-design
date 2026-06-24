@@ -236,6 +236,7 @@ python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_spine.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_gold_claim_freshness.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
 rg -n 'Fit-For-Purpose Code Shape Is Product Scope|Reproducible Product Truth Is Product Scope|What did I miss given the whole project as scope' "$repo_root/products/chummer/WHOLE_PROJECT_MISSED_SCOPE_ACCEPTANCE.md" >/dev/null
 rg -n 'ERROR_TAXONOMY_AND_ESCALATION_MATRIX.yaml|KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md' "$repo_root/products/chummer/FEEDBACK_AND_SIGNAL_OODA_LOOP.md" >/dev/null

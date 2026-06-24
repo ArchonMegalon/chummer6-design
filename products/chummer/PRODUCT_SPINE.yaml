@@ -251,4 +251,4 @@ gold_graph_policy:
     - /docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_JANITOR.generated.json
     - https://chummer.run/status
     - https://chummer.run/downloads/releases.json
-  principle: One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself.
+  principle: One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself; stale gold artifacts must downgrade to review-required posture until live-bound gates are current again.

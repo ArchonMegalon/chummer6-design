@@ -2,12 +2,12 @@
   "contract_name": "chummer.final_gold_graph",
   "contract_version": 1,
   "product": "chummer",
-  "status": "pass",
-  "verdict": "GOLD_READY",
+  "status": "review_required",
+  "verdict": "PUBLIC_RELEASE_REVIEW_REQUIRED",
   "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
   "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
   "live_release": {
-    "version": "run-20260601-070650",
+    "version": "run-20260623-102621",
     "channel": "public_stable",
     "status": "published",
     "rollout_state": "public_stable",
@@ -87,12 +87,12 @@
     {
       "kind": "fleet_gold_verdict",
       "path": "/docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_VERDICT.md",
-      "status": "pass"
+      "status": "stale"
     },
     {
       "kind": "fleet_gold_janitor",
       "path": "/docker/chummercomplete/_completion/full_product_reaudit_v20/FINAL_GOLD_JANITOR.generated.json",
-      "status": "pass"
+      "status": "stale"
     },
     {
       "kind": "live_status",
@@ -105,6 +105,22 @@
       "status": "pass"
     }
   ],
-  "blocking_findings": [],
+  "blocking_findings": [
+    {
+      "id": "stale_gold_completion_artifacts",
+      "severity": "release_truth",
+      "summary": "Older completion artifacts claimed whole-product gold against a previous public shelf and are now superseded."
+    },
+    {
+      "id": "current_public_scope_is_windows_linux",
+      "severity": "release_truth",
+      "summary": "The current public release truth packet describes Windows and Linux downloads only; macOS is not promoted on the current public shelf."
+    },
+    {
+      "id": "publication_scope_requires_external_verification",
+      "severity": "release_truth",
+      "summary": "Desktop artifact publication must distinguish a verified external publish from a local downloads-shelf update."
+    }
+  ],
   "principle": "One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself."
 }

@@ -198,10 +198,16 @@ def main() -> int:
 
     if gold_graph.get("contract_name") != "chummer.final_gold_graph":
         errors.append("FINAL_GOLD_GRAPH.generated.json must carry chummer.final_gold_graph contract.")
-    if gold_graph.get("verdict") != "GOLD_READY":
-        errors.append("FINAL_GOLD_GRAPH.generated.json verdict must be GOLD_READY.")
-    if gold_graph.get("status") != "pass":
-        errors.append("FINAL_GOLD_GRAPH.generated.json status must be pass.")
+    graph_verdict = str(gold_graph.get("verdict") or "").strip()
+    graph_status = str(gold_graph.get("status") or "").strip()
+    if graph_verdict not in {"GOLD_READY", "PUBLIC_RELEASE_REVIEW_REQUIRED"}:
+        errors.append("FINAL_GOLD_GRAPH.generated.json verdict must be GOLD_READY or PUBLIC_RELEASE_REVIEW_REQUIRED.")
+    if graph_status not in {"pass", "review_required"}:
+        errors.append("FINAL_GOLD_GRAPH.generated.json status must be pass or review_required.")
+    if graph_verdict == "GOLD_READY" and graph_status != "pass":
+        errors.append("FINAL_GOLD_GRAPH.generated.json cannot claim GOLD_READY unless status is pass.")
+    if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and graph_status != "review_required":
+        errors.append("FINAL_GOLD_GRAPH.generated.json review-required verdict must use status review_required.")
     if set(gold_graph.get("required_loops") or []) != EXPECTED_LOOPS:
         errors.append("FINAL_GOLD_GRAPH.generated.json required_loops must match PRODUCT_SPINE.yaml.")
     if set(gold_graph.get("required_surfaces") or []) != EXPECTED_SURFACES:
@@ -217,8 +223,11 @@ def main() -> int:
         errors.append("FINAL_GOLD_GRAPH.generated.json projection adapters must match PRODUCT_SPINE.yaml.")
     if adapter_policy.get("adapters_are_projection_only") is not True:
         errors.append("FINAL_GOLD_GRAPH.generated.json must keep adapters projection-only.")
-    if gold_graph.get("blocking_findings") not in ([], None):
+    blocking_findings = gold_graph.get("blocking_findings")
+    if graph_verdict == "GOLD_READY" and blocking_findings not in ([], None):
         errors.append("FINAL_GOLD_GRAPH.generated.json must not claim GOLD_READY with blocking findings.")
+    if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and not blocking_findings:
+        errors.append("FINAL_GOLD_GRAPH.generated.json review-required verdict must explain blocking_findings.")
 
     proof_inputs = gold_graph.get("proof_inputs") or []
     proof_kinds = {
@@ -242,8 +251,11 @@ def main() -> int:
         if not isinstance(item, dict):
             errors.append("FINAL_GOLD_GRAPH.generated.json proof_inputs rows must be mappings.")
             continue
-        if item.get("status") != "pass":
-            errors.append(f"proof input {item.get('kind')} must be pass.")
+        item_status = str(item.get("status") or "").strip()
+        if graph_verdict == "GOLD_READY" and item_status != "pass":
+            errors.append(f"proof input {item.get('kind')} must be pass for GOLD_READY.")
+        if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and item_status not in {"pass", "stale", "review_required"}:
+            errors.append(f"proof input {item.get('kind')} has unsupported review-required status {item_status!r}.")
 
     return fail(errors) if errors else 0
 

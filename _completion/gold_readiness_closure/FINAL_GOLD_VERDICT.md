@@ -1,5 +1,10 @@
 # Final Gold Verdict
 
+Superseded: true
+Superseded on: 2026-06-24
+Current authority: `products/chummer/FINAL_GOLD_GRAPH.generated.json`
+Reason: this May 2026 closeout was tied to an older public shelf and must not be read as current release truth.
+
 - Generated: 2026-05-17T16:10:00Z
 - Scope: `global_public_release`
 - UX front door: `FLAGSHIP_FRONT_READY`
@@ -12,8 +17,8 @@
 - Horizon portfolio: `classified`
 - Release posture: `public_stable`
 - Supportability: `gold_supported`
-- Desktop: `DESKTOP_PUBLIC_RELEASE_GOLD_READY`
-- Final verdict: `GOLD_READY`
+- Desktop: `SUPERSEDED_REVIEW_REQUIRED`
+- Final verdict: `SUPERSEDED_REVIEW_REQUIRED`
 
 Why this is allowed:
 - public downloads and status now present Windows, Linux, and macOS on a live public-stable shelf instead of a preview posture
