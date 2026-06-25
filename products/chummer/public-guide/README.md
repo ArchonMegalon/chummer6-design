@@ -27,7 +27,7 @@ The numbers should explain themselves faster. New or rusty users should have a f
 
 If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). Use the participation page only when you want hands-on testing or focused public follow-up.
 
-If you want to help test a fix, use the [participation page](https://chummer.run/partizipate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.
+If you want to help test a fix, use the [participation page](https://chummer.run/participate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.
 
 ## First contact
 
