@@ -41,6 +41,29 @@ def test_whole_project_missed_scope_defines_all_user_reachable_surfaces() -> Non
         assert required_surface in text
 
 
+def test_current_long_running_goal_extension_is_control_plane_scope() -> None:
+    text = _acceptance_text()
+
+    assert "### Current Long-Running Goal Extension" in text
+    for required_scope in [
+        "one coherent premium product",
+        "minimal public design, reliable install/update flows, specialized Chummer copy, hard E2E release gates",
+        "control-plane goal, not a single feature goal",
+        "Origin Dossier, Blazor, and Runsite are active parallel-lane work",
+        "integrate finished changes",
+        "ProductLift-backed participation must be a real first-party `chummer.run` integration",
+        "Copying static ProductLift content",
+        "Brilliant Directories is the supporter and billing source of truth",
+        "must not fake account settings",
+        "custom folders, nested hierarchy, drag/drop movement",
+        "`chummer://` deep links",
+        "unlinked users to onboarding",
+        "Stable, Nightly, and Linux source-build script",
+        "live public routes, desktop screenshots, installer/update gates, billing/support flows, and promoted E2E workflows",
+    ]:
+        assert required_scope in text
+
+
 def test_missed_scope_review_is_a_standing_goal_not_a_retrospective_note() -> None:
     text = _acceptance_text()
 

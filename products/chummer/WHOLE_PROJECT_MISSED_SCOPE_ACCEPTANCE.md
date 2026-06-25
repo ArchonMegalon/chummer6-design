@@ -1,6 +1,6 @@
 # Whole Project Missed Scope Acceptance
 
-Last updated: 2026-06-20
+Last updated: 2026-06-26
 
 This file records additional whole-project goals that must stay in the active gold scope. It is deliberately user-facing and tester-facing: a proof artifact can pass while the product still fails if a normal user sees confusing copy, broken contrast, clipped installer text, or unclear workflows.
 
@@ -17,6 +17,19 @@ For Chummer, "all" means every path a normal player, GM, returning Chummer5A use
 - provider inventory and external lanes that can affect public copy, help, video, analytics, or generated assets.
 
 ## Additional Goals
+
+### Current Long-Running Goal Extension
+
+Acceptance:
+
+- The active product goal is to make the whole Chummer estate feel like one coherent premium product: minimal public design, reliable install/update flows, specialized Chummer copy, hard E2E release gates, and trustworthy desktop, web, account, billing, support, and publishing surfaces.
+- This is a control-plane goal, not a single feature goal. It must keep design contract, implementation, tests, deployment, public copy, and live smoke evidence aligned before claiming a slice is done.
+- Origin Dossier, Blazor, and Runsite are active parallel-lane work during this pass. The control-plane may document expectations and integrate finished changes, but it must not overwrite those lanes while another Codex is implementing them.
+- ProductLift-backed participation must be a real first-party `chummer.run` integration. Copying static ProductLift content, exposing `productlift.dev` as the product boundary, or showing vendor-colored unreachable states fails the goal.
+- Brilliant Directories is the supporter and billing source of truth. Chummer account pages must not fake account settings that actually belong in billing, membership, entitlement, or claim flows.
+- The character roster needs user-owned organization: custom folders, nested hierarchy, drag/drop movement, examples for empty accounts, and `chummer://` deep links that route unlinked users to onboarding instead of dead actions.
+- Downloads remain intentionally small: Stable, Nightly, and Linux source-build script. Extra build metadata, duplicate download buttons, release-note rails, or advanced shelves are noise unless the user explicitly opens a trust/debug route.
+- The goal is not complete until live public routes, desktop screenshots, installer/update gates, billing/support flows, and promoted E2E workflows agree with the same product truth.
 
 ### 0. Always Ask What We Missed
 
