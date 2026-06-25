@@ -2534,7 +2534,7 @@ def _generate_root(
         out_dir=out_dir,
         asset_path="assets/hero/chummer6-hero.png",
         alt="Chummer6 overview video preview",
-        href="https://chummer.run/media/promo/chummer6-flagship-promo.mp4",
+        href="https://chummer.run/media/promo/every-wonder-horizon-promo.mp4",
         title="Play the Chummer6 overview video",
     )
     if hero_rows:
@@ -2543,7 +2543,7 @@ def _generate_root(
         rows.extend(
             [
                 "",
-                "[Watch the Chummer6 overview video](https://chummer.run/media/promo/chummer6-flagship-promo.mp4).",
+                "[Watch the Chummer6 overview video](https://chummer.run/media/promo/every-wonder-horizon-promo.mp4).",
             ]
         )
     rows.extend(
