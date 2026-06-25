@@ -1961,7 +1961,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
                 "Use `Stable` for the calmer release lane.",
                 "Use `Nightly` for the newest published Windows or Linux build.",
                 "Use the Windows or Linux installer.",
-                "Create an account if you want your support history, recovery, and downloads tied to one place.",
+                "Create an account if you want your help history, recovery, and downloads tied to one place.",
                 "If your platform is missing, the status and download pages will say so.",
             ]
         else:
@@ -1969,7 +1969,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
             rendered["bullets"] = [
                 "Start with a visibly posted preview installer for your platform.",
                 "Alternative builds and manual packages are still advanced or provisional paths.",
-                "Create an account if you want your support history, recovery, and downloads tied to one place.",
+                "Create an account if you want your help history, recovery, and downloads tied to one place.",
                 "Check the download page before assuming another platform already has a working installer.",
             ]
         return rendered
@@ -1985,7 +1985,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
         ),
         "Setup currently starts from a downloaded package, not an installer.",
         (
-            "Create an account if you want your support history, recovery, or future downloads tied to one place."
+            "Create an account if you want your help history, recovery, or future downloads tied to one place."
             if open_public
             else "Create an account first when the current preview requires a linked handoff."
         ),
