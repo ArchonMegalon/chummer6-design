@@ -167,3 +167,5 @@ The rule does not change:
 Subscribr and First Book ai may narrate the origin.
 They may not change the runner.
 ```
+
+The shared gold-production promotion gate for this lane and `Runbook Press` lives in `products/chummer/RUNBOOK_AND_ORIGIN_PROVIDER_GOLD_PRODUCTION_GATE.md`.

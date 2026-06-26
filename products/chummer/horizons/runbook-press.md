@@ -117,3 +117,5 @@ Subscribr and First Book ai answer:
 ```
 
 No provider may widen release claims, rules claims, or publication rights beyond the approved Chummer packet and receipt trail.
+
+The shared gold-production promotion gate for this lane and `Origin Dossier` lives in `products/chummer/RUNBOOK_AND_ORIGIN_PROVIDER_GOLD_PRODUCTION_GATE.md`.

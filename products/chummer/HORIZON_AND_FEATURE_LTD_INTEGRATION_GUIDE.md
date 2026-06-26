@@ -37,6 +37,7 @@ Every canonical horizon in `HORIZON_REGISTRY.yaml` is covered here:
 
 * `nexus-pan` - continuity truth stays first-party; bounded delivery, help, preview, and operator-capture lanes only
 * `alice` - engine-owned build truth with bounded explain and compare-artifact helpers
+* `origin-dossier` - strongest approved-origin narration, media, and premium long-form packet fit
 * `karma-forge` - strongest discovery, review, approval, and governed-process LTD fit
 * `knowledge-fabric` - strongest explain, docs, capture, and citation LTD fit
 * `jackpoint` - strongest artifact-factory, narration, preview, and explainer LTD fit
@@ -83,6 +84,23 @@ Do not let any LTD own:
 * apply/discard truth
 
 `FacePop`, `ProductLift`, and other public concierge/signal tools are out of the runtime feature path.
+
+### ORIGIN DOSSIER
+
+Profits from approved-origin narration and premium book lanes without giving providers authority over canon or mechanics.
+
+* `Subscribr.ai` is the default creative and production layer for approved origin narration, intro scripts, video scripts, hooks, titles, and shot lists.
+* `First Book ai` is the premium long-form dossier-book lane only after player and GM approved packets already exist.
+* `MarkupGo`, `vidBoard`, `Soundmadeseen`, and `PeekShot` strengthen dossier packaging, storyboard, narration, and preview output after the packet is approved.
+* `Unmixr AI` remains a bounded candidate voice helper only.
+
+Do not let any LTD own:
+
+* origin canon truth
+* mechanics snapshot truth
+* runner dossier identity
+* player or GM approval truth
+* publication truth
 
 ### KARMA FORGE
 
@@ -186,11 +204,14 @@ Do not let any LTD own:
 
 Profits from long-form authoring, render, and explainer LTDs.
 
-* `First Book ai`, `MarkupGo`, `Documentation.AI`, `vidBoard`, and `Soundmadeseen` materially improve long-form package creation, export, explainers, and companion assets.
+* `Subscribr.ai` is the default creative and production layer for approved runbook scripts, tutorials, hooks, titles, and shot lists.
+* `First Book ai` materially improves premium long-form manual and handbook creation after approved packet sets exist.
+* `MarkupGo`, `Documentation.AI`, `vidBoard`, and `Soundmadeseen` materially improve package creation, export, explainers, and companion assets.
 * `Paperguide` and `Unmixr AI` remain bounded helper lanes.
 
 Do not let any LTD own:
 
+* rule truth
 * publication truth
 * compatibility truth
 * source-pack truth

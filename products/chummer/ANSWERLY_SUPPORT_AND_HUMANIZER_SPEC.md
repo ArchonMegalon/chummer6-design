@@ -43,7 +43,7 @@ Answers should be minimal: next step first, explanation only when it changes the
 
 ## Origin Dossier humanizer loop
 
-Origin Dossier draft text may pass through a Chummer-controlled `Undetectable Humanizer LTD` loop before the player sees it or before a media packet is created.
+Origin Dossier preview text may pass through a Chummer-controlled `Undetectable Humanizer LTD` loop only after Chummer has already built the approved source packet or accepted a bounded provider draft.
 
 The loop may improve:
 
@@ -61,4 +61,7 @@ The loop may not change:
 - nuyen, ware, qualities, skills, attributes, or availability
 - private/public scope
 
-If the humanized text drifts from the source packet, Chummer discards it and keeps the original draft.
+Subscribr remains the default creative drafting lane for origin narration and video scripts.
+The humanizer pass is optional editorial cleanup only.
+
+If the humanized text drifts from the source packet or accepted provider draft, Chummer discards it and keeps the original version.

@@ -61,9 +61,13 @@ for path in \
   products/chummer/horizons/karma-forge.md \
   products/chummer/horizons/knowledge-fabric.md \
   products/chummer/horizons/jackpoint.md \
+  products/chummer/horizons/origin-dossier.md \
   products/chummer/horizons/runsite.md \
   products/chummer/horizons/runbook-press.md \
   products/chummer/horizons/table-pulse.md \
+  products/chummer/SUBSCRIBR_SCRIPT_FACTORY_PROVIDER_BOUNDARY.md \
+  products/chummer/ORIGIN_BOOK_STUDIO.md \
+  products/chummer/RUNBOOK_AND_ORIGIN_PROVIDER_GOLD_PRODUCTION_GATE.md \
   products/chummer/ARCHITECTURE.md \
   products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md \
   products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md \
@@ -234,6 +238,7 @@ python3 "$repo_root/scripts/ai/validate_sync_manifest.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_origin_runbook_provider_gold_gate.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_spine.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_gold_claim_freshness.py" >/dev/null

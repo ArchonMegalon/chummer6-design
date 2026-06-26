@@ -6,7 +6,7 @@ Project Chummer already has image, document, recap, runsite, and narrated-media 
 
 This document closes that gap.
 
-It defines how Chummer should use owned LTDs such as `vidBoard`, `Soundmadeseen`, `MarkupGo`, `PeekShot`, `First Book ai`, `Documentation.AI`, `Mootion`, `Unmixr AI`, `AvoMap`, `Crezlo Tours`, `hedy.ai`, and `Nonverbia` to produce polished media with real wow-factor without letting any vendor become product truth.
+It defines how Chummer should use owned LTDs such as `Subscribr.ai`, `vidBoard`, `Soundmadeseen`, `MarkupGo`, `PeekShot`, `First Book ai`, `Documentation.AI`, `Mootion`, `Unmixr AI`, `AvoMap`, `Crezlo Tours`, `hedy.ai`, and `Nonverbia` to produce polished media with real wow-factor without letting any vendor become product truth.
 
 ## Current audit
 
@@ -89,11 +89,12 @@ Owns:
 ## Tool posture
 
 ### Promoted
+- `Subscribr.ai` - runbook, tutorial, origin-dossier, hook, outline, and shot-list lane from approved source packets
 - `vidBoard` - structured presenter-video and multilingual walkthrough lane
 - `Soundmadeseen` - narrated audio/video companion lane
 - `MarkupGo` - document/render sibling lane for packet and PDF parity
 - `PeekShot` - preview/share-card lane
-- `First Book ai` - long-form blueprint and script-outline helper
+- `First Book ai` - premium long-form manual and book lane after approved packet review
 - `Documentation.AI` - downstream help/guide projection from approved scripts and manifests
 
 ### Bounded
@@ -185,7 +186,8 @@ Each published video artifact should carry:
 
 2. Script or storyboard preparation
    - direct manifest-derived summary when possible
-   - `First Book ai` only for blueprint or storyboard help
+   - `Subscribr.ai` is the default runbook, tutorial, and origin-dossier script lane from approved packets
+   - `First Book ai` only for premium long-form manual or book packaging after approval
    - `Documentation.AI` only for downstream guide/help projection
    - no vendor gets unrestricted workspace access
 

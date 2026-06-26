@@ -278,8 +278,9 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
     assert "`table-pulse`: `safe campaign-tool page` -> `campaign tool page`" in verdict
     assert "`runner-passport`: `live page` -> `live page guide`" in verdict
     source_build = (out_dir / "SOURCE_BUILD_LINUX.md").read_text(encoding="utf-8")
-    assert "fresh-container Linux source-build check" in source_build
-    assert "maintenance work on the local source option" in source_build
+    assert "For extra-paranoid builds, you can also run the checked-in Docker verification script:" in source_build
+    assert "debian:bookworm-slim" in source_build
+    assert "This is a local source build, not an official release." in source_build
     assert "build path" not in source_build.lower()
     assert "Fresh-container publish gate" not in source_build
     assert "publish lane" not in source_build
@@ -344,7 +345,7 @@ def test_generate_bundle_keeps_black_ledger_out_of_primary_public_navigation(tmp
 
     assert "Open the Black Ledger command map" not in readme
     assert "Black Ledger Newsroom" not in readme
-    assert "every-wonder-horizon-promo" not in readme
+    assert "Play the Chummer6 overview video" in readme
     assert "Chummer6 campaign tools index art" in horizons_index
     assert "Chummer6 horizons index art" not in horizons_index
     assert "[BLACK LEDGER]" not in horizons_index
@@ -378,9 +379,11 @@ def test_generate_bundle_keeps_first_contact_copy_minimal_and_support_first(tmp_
     assert "Worlds and future work" not in readme
     assert "Worlds and future work" not in start_here
     assert "# Campaign tools" in campaign_tools
-    assert "## Ask Chummer first" in help_page
+    assert "## Account" in help_page
+    assert "## Private support" in help_page
+    assert "## FAQ" in help_page
     assert "If only half your brain is working" not in help_page
-    assert "Use Contact for install trouble" in help_page
+    assert "Use Contact when logs, screenshots, crash details, or account details are involved." in help_page
     assert "provider" not in help_page.lower()
 
 
@@ -411,3 +414,33 @@ def test_generate_bundle_carries_horizon_explanation_videos(tmp_path: Path) -> N
     assert "MP4 with AAC audio" not in runsite
     assert "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4" in origin
     assert "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4" in table_pulse
+
+
+def test_generate_bundle_keeps_origin_and_runbook_provider_neutral(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    origin = (out_dir / "HORIZONS" / "origin-dossier.md").read_text(encoding="utf-8")
+    runbook = (out_dir / "HORIZONS" / "runbook-press.md").read_text(encoding="utf-8")
+
+    for text in (origin, runbook):
+        lowered = text.lower()
+        assert "subscribr" not in lowered
+        assert "first book ai" not in lowered
+        assert "source packet" not in lowered
+        assert "source pack" not in lowered
+        assert "webhook" not in lowered
+        assert "generated file" not in lowered
+
+
+def test_generate_bundle_uses_participate_route_spelling(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    readme = (out_dir / "README.md").read_text(encoding="utf-8")
+    how_can_i_help = (out_dir / "HOW_CAN_I_HELP.md").read_text(encoding="utf-8")
+
+    assert "https://chummer.run/participate" in readme
+    assert "https://chummer.run/participate" in how_can_i_help
+    assert "https://chummer.run/partizipate" not in readme
+    assert "https://chummer.run/partizipate" not in how_can_i_help

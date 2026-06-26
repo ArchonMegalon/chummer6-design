@@ -2525,7 +2525,7 @@ def _generate_root(
             "",
             "If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). Use the participation page only when you want hands-on testing or focused public follow-up.",
             "",
-            "If you want to help test a fix, use the [participation page](https://chummer.run/partizipate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
+            "If you want to help test a fix, use the [participation page](https://chummer.run/participate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
             "",
         ]
     )
@@ -2798,7 +2798,7 @@ def _generate_how_can_i_help(out_dir: Path) -> None:
         "",
         "## You want to test a fix",
         "",
-            "Use the [participation page](https://chummer.run/partizipate) when you want hands-on testing or focused follow-up. For normal public reports, start with [Help](https://chummer.run/help) or [Contact](https://chummer.run/contact).",
+            "Use the [participation page](https://chummer.run/participate) when you want hands-on testing or focused follow-up. For normal public reports, start with [Help](https://chummer.run/help) or [Contact](https://chummer.run/contact).",
         "",
         "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change real until it lands in an actual release.",
         "",
