@@ -36,6 +36,7 @@ for path in \
   products/chummer/BUILD_EXPLAIN_ARTIFACT_TRUTH_POLICY.md \
   products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md \
   products/chummer/RUNSITE_HOST_MODE_POLICY.md \
+  products/chummer/RUNSITE_PACKET_SPEC.md \
   products/chummer/CAMPAIGN_COLD_OPEN_AND_MISSION_BRIEFING_POLICY.md \
   products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md \
   products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md \
@@ -269,6 +270,8 @@ python3 "$repo_root/scripts/ai/verify_video_assets_have_audio.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m108_design_campaign_briefing_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m109_design_explain_truth_policy.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m110_design_runsite_host_bounds.py" >/dev/null
+rg -n '^## One good default workflow$|^### 1\. Intake and truth binding$|^### 5\. Optional orientation bundle$|^## Fail-closed rules$|^## Packet skeleton$' \
+  "$repo_root/products/chummer/RUNSITE_PACKET_SPEC.md" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m111_design_public_concierge_bounds.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m112_design_campaign_canon.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next90_m129_design_account_community_canon.py" >/dev/null
