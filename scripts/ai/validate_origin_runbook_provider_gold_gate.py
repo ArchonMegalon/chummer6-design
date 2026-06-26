@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -9,6 +10,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
+RUN_SERVICES = ROOT.parent / "chummer.run-services"
 
 
 def _read(relative_path: str) -> str:
@@ -19,6 +21,15 @@ def _read(relative_path: str) -> str:
 def _load_yaml(relative_path: str) -> dict:
     path = PRODUCT / relative_path
     return yaml.safe_load(path.read_text(encoding="utf-8"))
+
+
+def _read_runtime(relative_path: str) -> str:
+    path = RUN_SERVICES / relative_path
+    return path.read_text(encoding="utf-8")
+
+
+def _load_runtime_json(relative_path: str) -> dict:
+    return json.loads(_read_runtime(relative_path))
 
 
 def _find_horizon(registry: dict, horizon_id: str) -> dict:
@@ -136,6 +147,125 @@ def main() -> int:
     for marker in ("approved_packet_set_only", "chapter_review_required", "no_origin_canon_truth"):
         if marker not in premium_boundary:
             failures.append(f"premium_long_form_authoring boundary missing marker: {marker}")
+
+    if not RUN_SERVICES.is_dir():
+        failures.append(f"runtime repo missing: {RUN_SERVICES}")
+    else:
+        required_scripts = (
+            "scripts/build_chummer_content_source_packet.py",
+            "scripts/build_origin_dossier_source_packet.py",
+            "scripts/materialize_subscribr_script_receipt.py",
+            "scripts/verify_subscribr_script_against_packet.py",
+            "scripts/build_firstbook_premium_packet.py",
+            "scripts/materialize_firstbook_premium_receipt.py",
+            "scripts/verify_firstbook_premium_receipt.py",
+        )
+        for relative_path in required_scripts:
+            if not (RUN_SERVICES / relative_path).is_file():
+                failures.append(f"runtime provider entrypoint missing: {relative_path}")
+
+        env_example = _read_runtime(".env.example")
+        for marker in (
+            "CHUMMER_SUBSCRIBR_ENABLED=false",
+            "CHUMMER_SUBSCRIBR_API_ENABLED=false",
+            "CHUMMER_SUBSCRIBR_WEBHOOKS_ENABLED=false",
+            "CHUMMER_FIRSTBOOK_ENABLED=false",
+            "CHUMMER_FIRSTBOOK_PREMIUM_BOOK_LANE_ENABLED=false",
+            "CHUMMER_CONTENT_DIRECT_PUBLISH_ENABLED=false",
+            "FIRSTBOOK_CHUMMER_LOGIN_EMAIL=",
+            "FIRSTBOOK_CHUMMER_LOGIN_SECRET=",
+        ):
+            if marker not in env_example:
+                failures.append(f".env.example missing provider control marker: {marker}")
+
+        subscribr_receipt = _load_runtime_json(
+            ".codex-studio/published/provider-proof-discoverability/subscribr/SUBSCRIBR_TRACKED_PROVIDER_RECEIPT.generated.json"
+        )
+        if subscribr_receipt.get("provider") != "Subscribr":
+            failures.append("runtime Subscribr tracked-provider receipt must identify Subscribr")
+        if subscribr_receipt.get("runtime_ready") is not False:
+            failures.append("runtime Subscribr tracked-provider receipt must stay runtime_ready=false until the provider lane is actually implemented")
+        claim_boundary = str(subscribr_receipt.get("claim_boundary") or "")
+        for marker in ("draft/operator lane only", "source packets own truth", "publication approval remains separate"):
+            if marker not in claim_boundary:
+                failures.append(f"runtime Subscribr tracked-provider receipt missing boundary marker: {marker}")
+
+        capability_service = _read_runtime("Chummer.Run.Api/Services/Community/HorizonCapabilityService.cs")
+        for marker in (
+            'HorizonId: "runbook-press"',
+            'CapabilityId: "runbook-export"',
+            'InternalProviderLane: "Subscribr.ai / First Book ai / MarkupGo / Documentation.AI"',
+            'HorizonId: "origin-dossier"',
+            'CapabilityId: "origin-dossier-media"',
+            'InternalProviderLane: "Magicfit / Subscribr.ai / First Book ai / MarkupGo / vidBoard / Soundmadeseen"',
+        ):
+            if marker not in capability_service:
+                failures.append(f"HorizonCapabilityService.cs missing runtime marker: {marker}")
+
+        subscribr_controller = _read_runtime("Chummer.Run.Api/Controllers/SubscribrProviderWebhookController.cs")
+        subscribr_service = _read_runtime("Chummer.Run.Api/Services/Community/SubscribrProviderWebhookService.cs")
+        for marker in (
+            '[HttpPost("/internal/providers/subscribr/webhook")]',
+            '[HttpPost("/api/internal/providers/subscribr/webhook")]',
+            'Request.Headers["X-Subscribr-Signature"]',
+            'Request.Headers["X-Subscribr-Timestamp"]',
+        ):
+            if marker not in subscribr_controller:
+                failures.append(f"SubscribrProviderWebhookController.cs missing marker: {marker}")
+        for marker in (
+            "signature verification failed",
+            "timestamp outside accepted window",
+            "duplicate_ignored",
+            '"chummer.subscribr_script_receipt.v1"',
+            '"review_required"',
+        ):
+            if marker not in subscribr_service:
+                failures.append(f"SubscribrProviderWebhookService.cs missing marker: {marker}")
+
+        media_horizons = _read_runtime("Chummer.Run.Api/Services/MediaArtifactHorizonsService.cs")
+        for marker in (
+            '"new-runner-primer"',
+            '"/runbook/primers/new-runner-primer.md"',
+            '"/runbook/primers/gm-first-night-primer.md"',
+            "Human-readable first-session primer",
+        ):
+            if marker not in media_horizons:
+                failures.append(f"MediaArtifactHorizonsService.cs missing runtime runbook marker: {marker}")
+
+        origin_publication = _read_runtime("Chummer.Run.Api/Services/Community/OriginDossierPublicationService.cs")
+        for marker in (
+            '"awaiting_provider_manuscript"',
+            '"approved source packet artifact path"',
+            '"approved source packet receipt path"',
+            '"provider manuscript receipt path"',
+            '"provider manuscript account alias"',
+            '"provider_manuscript_import"',
+        ):
+            if marker not in origin_publication:
+                failures.append(f"OriginDossierPublicationService.cs missing runtime gold marker: {marker}")
+
+        origin_publication_tests = _read_runtime("Chummer.Tests/OriginDossierPublicationServiceTests.cs")
+        for marker in (
+            'Assert.Contains("approved source packet receipt path", publication.MissingGoldRequirements);',
+            'Assert.Contains("provider manuscript receipt path", publication.MissingGoldRequirements);',
+            'Assert.Contains("provider manuscript account alias", publication.MissingGoldRequirements);',
+            'Assert.True(publication.GoldReady, string.Join(", ", publication.MissingGoldRequirements));',
+        ):
+            if marker not in origin_publication_tests:
+                failures.append(f"OriginDossierPublicationServiceTests.cs missing runtime proof marker: {marker}")
+
+        landing_tests = _read_runtime("Chummer.Tests/PublicLandingDownloadDispatchTests.cs")
+        for marker in (
+            "OriginDossierReceiptJsonReturnsStoryAndSharedArtifactContract",
+            "OriginDossierPageIncludesPublicSafeDossierMediaCapability",
+            "RunbookReceiptJsonReturnsPrimerAndSharedArtifactContract",
+            "RunbookPageKeepsPublicCopyProviderNeutralAndBoundarySafe",
+            "InternalCapabilityLanesTrackCurrentOriginAndRunbookProviderBoundary",
+            'Assert.DoesNotContain("Subscribr", serialized, StringComparison.OrdinalIgnoreCase);',
+            'Assert.DoesNotContain("source packet", serialized, StringComparison.OrdinalIgnoreCase);',
+        ):
+            if marker not in landing_tests:
+                failures.append(f"PublicLandingDownloadDispatchTests.cs missing public/runtime proof marker: {marker}")
 
     if failures:
         for failure in failures:
