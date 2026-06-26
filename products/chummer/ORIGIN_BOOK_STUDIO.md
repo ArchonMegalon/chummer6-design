@@ -31,6 +31,7 @@ Internal components:
 
 ```text
 OriginSourcePacketBuilder
+OriginBookEngine
 OriginBookStudio
 OriginCanonGraph
 OriginContinuityAuditor
