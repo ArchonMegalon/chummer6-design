@@ -158,8 +158,8 @@ Verify all of the following exist:
 * selected portrait path
 * scene set json
 * selected scene path
-* default narration packet
-* alternate narration packet
+* approved Subscribr narration packet
+* approved Subscribr alternate narration or video-script packet
 * media-factory narration request
 * video storyboard
 * vidBoard packet

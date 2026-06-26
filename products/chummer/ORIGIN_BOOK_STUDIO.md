@@ -4,29 +4,37 @@ Some older uploaded files are no longer available, so this design is self-contai
 
 ## Product decision
 
-Chummer should generate the canonical Origin Dossier book internally.
+Chummer should keep origin canon, mechanics snapshots, approvals, validation, and export control internal.
 
-External book tools may help with layout, covers, narration, or optional editorial experiments, but they must never own the runner's history.
+Subscribr is the default creative and content-production lane for:
+
+* narration scripts
+* dossier intros
+* video-ready scene plans
+* creator-facing and player-facing explainer drafts
+
+First Book ai is the premium long-form lane after a packet is already approved.
+
+External providers may help with structure, prose, layout, export, covers, narration, or optional editorial packaging, but they must never own the runner's history.
 
 ```text
-Runner data
--> consented life-event graph
--> narrative architecture
--> chapter and scene plans
--> incremental drafting
--> continuity and canon audits
--> player or GM review
+Runner dossier and origin canon truth
+-> approved source packet
+-> Subscribr narration, script, or production draft
+-> Chummer validation and review
+-> optional First Book ai premium book packet
+-> chapter and export review
 -> EPUB, PDF, DOCX, Markdown, audiobook
 ```
 
 Internal components:
 
 ```text
-OriginBookEngine
+OriginSourcePacketBuilder
 OriginBookStudio
 OriginCanonGraph
-OriginNarrativePlanner
 OriginContinuityAuditor
+OriginBookPacketValidator
 OriginPublicationRenderer
 OriginBookProviderRouter
 ```
@@ -34,13 +42,14 @@ OriginBookProviderRouter
 Fundamental rule:
 
 ```text
-Chummer owns facts.
-The model writes prose.
+Chummer owns facts, legality, lineage, approvals, and exports.
+Subscribr explains approved packets.
+First Book ai productizes approved packet sets into premium long-form books or manuals.
 The player decides what becomes personal canon.
 The GM approves anything that affects campaign canon.
 ```
 
-Do not ship this as one button that sends a giant prompt to a model and accepts whatever comes back. Long-form runner fiction needs hierarchical planning, explicit memory, scene-scale drafting, and continuity checks that can catch mid-book drift before anything becomes player or campaign canon.
+Do not ship this as one button that sends a giant prompt to a model and accepts whatever comes back. Long-form runner fiction still needs explicit memory, source packets, continuity checks, chapter review, and packet-to-export validation before anything becomes player or campaign canon.
 
 ## Product modes
 
@@ -49,11 +58,13 @@ The first release should not start with a full novel lane.
 | Mode | Target length | Structure | Use |
 | --- | ---: | ---: | --- |
 | Origin Dossier | 3,000-6,000 words | 5-7 sections | fast runner background |
-| Narrative Origin | 8,000-15,000 words | 7-10 chapters | flagship default |
+| Origin Script Packet | 1,000-3,000 words | modular scenes | narration, video, and explainer drafts |
+| Narrative Origin | 8,000-15,000 words | 7-10 chapters | premium long-form default |
 | Runner Memoir | 15,000-25,000 words | 10-14 chapters | deluxe personal edition |
 | Intelligence Casefile | 5,000-10,000 words | modular dossier | in-universe file set |
 
-The default should be `Narrative Origin`.
+The default everyday lane should be `Origin Dossier` or `Origin Script Packet`.
+`Narrative Origin` belongs on the premium review-heavy branch.
 
 `Runner Memoir` is the deluxe lane. It is not the default burden placed on every player.
 
@@ -362,52 +373,47 @@ Poppy:
   role:
     - operator ideation
 
-MyFirstBook:
+First_Book_ai:
   role:
-    - supporter-only deluxe rendering experiment
-    - optional long-form editorial presentation
+    - premium long-form editorial presentation
+    - chaptered dossier book or anthology lane
+    - DOCX, PDF, EPUB, and Markdown export lane
     - bounded secondary output, never canon truth
 
-Inkfluence_Tier_3:
+BrowserAct_manual_export:
   role:
-    - supporter-only deluxe finishing studio
-    - optional memoir layout and cover variants
-    - optional audiobook and export packaging lane
+    - browser fallback for export capture when direct provider APIs are weak or absent
     - bounded secondary output, never canon truth
 ```
 
-## Supporter deluxe posture
+## Premium posture
 
-MyFirstBook belongs on the deluxe branch, not the canonical branch.
+First Book ai belongs on the premium branch, not the canonical branch.
 
 ```yaml
 free:
   included:
     - Origin Dossier
-    - Narrative Origin
+    - Origin Script Packet
     - Markdown
+
+premium:
+  adds:
+    - chaptered First Book ai edition
+    - optional Runner Memoir render
+    - bounded editorial packaging experiments
     - DOCX
     - PDF
     - EPUB
-
-supporter:
-  adds:
-    - deluxe MyFirstBook edition
-    - deluxe Inkfluence Tier 3 memoir and packaging lane
-    - optional Runner Memoir render
-    - bounded editorial packaging experiments
 ```
 
 Rules:
 
-* MyFirstBook may render a deluxe edition from approved Chummer canon.
-* MyFirstBook must not become the source of runner history.
-* MyFirstBook output remains optional and rejectable.
-* No MyFirstBook prose invention may mutate the runner, campaign canon, or game state automatically.
-* Inkfluence Tier 3 may package approved canon into memoir, cover, export, or audiobook variants.
-* Inkfluence Tier 3 must not become the source of runner history.
-* Inkfluence output remains optional and rejectable.
-* No Inkfluence prose invention may mutate the runner, campaign canon, or game state automatically.
+* First Book ai may render a deluxe edition from approved Chummer canon.
+* First Book ai must not become the source of runner history.
+* First Book ai output remains optional and rejectable.
+* No First Book ai prose invention may mutate the runner, campaign canon, or game state automatically.
+* BrowserAct fallback export capture may assist when needed, but it does not become provider truth or publication truth.
 
 ## Repo ownership
 
