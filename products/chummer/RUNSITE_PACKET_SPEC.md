@@ -143,6 +143,42 @@ The orientation bundle is good only when:
 
 If any of those fail, fall back to the pack, route overlay, or tour without apology.
 
+### 5b. Optional Scene Forge request
+
+Only after the runsite pack, route summary, and cast approvals exist may Chummer compose an optional `Scene Forge` request.
+
+Scene Forge is for:
+
+* establishing shots
+* briefing vignettes
+* possible engagement scenes
+* reveal scenes
+* aftermath replay after the session
+
+Scene Forge is not:
+
+* tactical authority
+* outcome authority
+* hidden enemy truth for player-safe views
+* a VTT replacement
+
+Every Scene Forge request must bind:
+
+* runsite pack
+* route summary
+* audience posture
+* cast refs
+* spoiler limits
+* approval posture
+
+The free-tier rule should be simple:
+
+* every verified GM gets one lifetime Scene Forge credit
+* the credit burns only when an approved render is kept
+* failed or discarded drafts do not consume the credit
+
+See `products/chummer/RUNSITE_SCENE_FORGE.md` for the full scene packet, credit model, and approval workflow.
+
 ### 6. Session launch
 
 At the table, RUNSITE should open as orientation and planning support, not as a hidden control layer.
@@ -212,6 +248,7 @@ Fail closed to first-party inspectable surfaces when:
 * sibling routing is broken
 * provider export exists without Chummer publication refs
 * pack revision changed after the media sibling was rendered
+* a Scene Forge request references stale runsite or cast truth
 
 The fallback is simple:
 

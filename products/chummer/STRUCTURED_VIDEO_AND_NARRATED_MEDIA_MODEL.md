@@ -120,6 +120,7 @@ Add these artifact kinds:
 - `campaign_primer_video`
 - `mission_brief_video`
 - `runsite_orientation_video`
+- `runsite_scene_vignette_video`
 - `creator_promo_video`
 - `player_safe_recap_video`
 - `gm_private_debrief_video`
@@ -156,6 +157,13 @@ Each published video artifact should carry:
 - approved runsite pack and route summary truth outrank host narration whenever wording drifts
 - runsite orientation clips may not claim live state, combat authority, or hidden tactical instructions that are absent from the approved pack or route summary
 
+### Runsite scene surfaces
+- `runsite_scene_vignette_video` is a bounded scene-render artifact, not combat truth
+- pre-session scene renders may stage atmosphere, cast placement, and possible engagement energy, but they may not claim canonical outcomes
+- player-safe scene renders may only use revealed cast, revealed enemies, and approved visible loadout
+- post-session replay may be canonical only when it binds to completed Chummer outcome receipts
+- every Scene Forge launch must preserve the underlying runsite pack and route anchors as inspectable siblings
+
 ### Text and truth
 - public or help videos may only speak from approved scripts or approved manifest-derived summaries
 - exact text that matters for trust should be post-reviewed before publication
@@ -182,6 +190,7 @@ Each published video artifact should carry:
    - support resolution summary
    - primer pack
    - runsite pack
+   - runsite scene request packet
    - post-session recap draft
 
 2. Script or storyboard preparation
