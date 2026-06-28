@@ -36,6 +36,7 @@ It is the moment Chummer tells a player or GM what that actor can still do right
 See:
 
 * `LIVE_ACTION_ECONOMY_AND_TURN_ASSIST.md`
+* `LIVE_SESSION_TURN_COMPANION.md`
 * `GM_RUNBOARD_LIVE_OPERATIONS.md`
 
 ### 2. Source anchors and local rulebook binding

@@ -8,6 +8,9 @@
 
 At any moment in combat, Chummer tells every player and the GM what that actor can still do.
 
+This lane is one slice of the broader live-session turn companion defined in `LIVE_SESSION_TURN_COMPANION.md`.
+It must improve live-turn resolution without turning the phone surface into a compressed builder.
+
 ## Why this matters
 
 SR6 action economy is valuable product territory:
@@ -74,6 +77,14 @@ You can still:
 [Explain 4 Minor]
 ```
 
+The player surface may also expose:
+
+* current health or stun posture
+* ammo or charge posture for the active action
+* active modifiers with source-backed labels
+* quick odds for the current action
+* digital roll or manual physical-roll entry
+
 ### Between turns
 
 ```text
@@ -117,4 +128,5 @@ Exit:
 * action receipts remain visible during and between turns
 * quick explain can defend why an affordance is available, unavailable, or timing-limited
 * a bounded counterfactual such as spending 4 Minor for Full Defense can be previewed without mutating current truth blindly
+* the user can resolve the action with either digital rolling or manual physical-roll entry
 * mook/grunt state is summarized without requiring a full tactical map

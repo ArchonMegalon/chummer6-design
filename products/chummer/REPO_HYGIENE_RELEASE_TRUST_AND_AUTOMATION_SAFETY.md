@@ -91,21 +91,23 @@ Accept when:
 * alias drift such as `chummer-*` versus `chummer6-*` cannot silently pass
 * the boundary-lint layer is reused across Core, UI, Mobile, Hub Registry, Media Factory, Fleet, and EA
 
-### 4. Repository automation hardening
+### 4. Repo automation hardening
 
-Repository automation must be explicit, least-privilege, and removable.
+Public workflow posture must be pinned and least-privilege.
 
 Required posture:
 
-* no release authority depends on a repo-hosted automation shelf
-* security and release checks target `main`, not stale branch aliases
-* automation credentials are scoped to the one task they perform
-* duplicate promotion waves cancel or refuse cleanly
-* dependency review, secret scanning, boundary lint, build/test, and release-manifest verification remain required gates for promotion
+* no third-party action pinned to a moving branch such as `@master`
+* CodeQL and other security workflows target `main`, not a stale default branch alias
+* GitHub checkout actions are on current supported majors
+* default workflow permissions are `contents: read`
+* release workflows request only the explicit elevated permissions they need
+* concurrency is set so duplicate waves cancel cleanly
+* dependency review, secret scanning, boundary lint, build/test, and release-manifest verification are required gates for promotion
 
 Accept when:
 
-* moving-head automation dependencies are gone
+* moving-head workflow dependencies are gone
 * security workflows execute on the branch where normal work actually lands
 * branch protection requires the hardening checks above
 
@@ -235,6 +237,6 @@ Safety and proof have to harden before the automation estate gets more authority
 This file does not reopen bounded-context ownership.
 It does not move release truth away from Registry.
 It does not turn GitHub releases into canonical authority.
-It does not allow GitHub releases, repository automation artifacts, repo attachments, or repo-hosted shelves to become public client download sources.
+It does not allow GitHub releases, repo automation artifacts, repo attachments, or repo-hosted shelves to become public client download sources.
 It does not replace repo-local smoke/build/test entrypoints with one giant central script.
 It does not justify more feature breadth while the boring trust loops are still noisy.

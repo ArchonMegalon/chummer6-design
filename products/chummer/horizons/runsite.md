@@ -1,9 +1,5 @@
 # RUNSITE
 
-## Explanation video
-
-[Watch the RUNSITE 90-second deep dive](https://chummer.run/media/horizons/runsite-90s-deepdive.mp4). [Captions](https://chummer.run/media/horizons/runsite-90s-deepdive.vtt).
-
 ## The problem
 
 GMs spend too long describing spaces, and players still misread compounds, clubs, hotels, museums, arcologies, and safehouses once the action starts.
@@ -35,51 +31,13 @@ RUNSITE is for briefing, planning, and spatial understanding before things go lo
 * preview and embed receipts
 * reliable map and render adapters
 
-## What is ready now
+## Current proof posture
 
-RUNSITE is now a shipped first-party prep lane.
-The public rail exposes real runsite packs on markdown and JSON routes plus a named receipt at `/runsites/receipts/prep-network.json`.
-The signed-in rail is no longer generic workspace spillover; it has a named bench at `/account/runsites`, a named redirect lane at `/account/runsites/open`, and workspace detail routes at `/account/runsites/{workspaceId}`.
-Typed prep and run APIs are first-class too:
+RUNSITE is still a horizon, but it already has first-party preview proof in the public artifact registry through runsite-pack framing and route-oriented artifact language.
+The spatial lane should now read as an inspectable preview path, not a blank future tease.
+Route overlays, pack inspection, and explorable tours remain the first-party truth surfaces; host clips stay secondary orientation siblings rather than tactical authority.
+The live play shell may consume named room, zone, or hotspot anchors from a runsite pack, but the tour itself must not become exact tactical-position truth.
 
-* `/api/v1/campaign-spine/me/workspace-digests`
-* `/api/v1/campaign-spine/me/workspaces/{workspaceId}`
-* `/api/v1/campaign-spine/me/workspaces/{workspaceId}/prep-library`
-* `/api/v1/campaign-spine/me/runs`
-* `/api/v1/campaign-spine/me/runs/{runId}`
+## Why it is not ready yet
 
-## Next expansion: Scene Forge
-
-The strongest next premium expansion for RUNSITE is a bounded `Scene Forge` lane.
-
-That lane would let a GM request one staged scene render from a real runsite, approved cast refs, and explicit audience posture.
-
-Good first scene types:
-
-* establishing shot
-* briefing vignette
-* possible engagement
-* reveal scene
-* aftermath replay
-
-Scene Forge should not start as an unlimited battle-movie generator.
-It should start as a governed scene packet that can render one polished moment without claiming combat truth.
-
-Every verified GM account should get one lifetime free `Scene Forge` credit.
-That free credit should be bounded, private by default, and only consumed when the GM approves and keeps the finished render.
-
-Supporter tiers can widen:
-
-* duration
-* cast limits
-* quality
-* still and poster bundles
-* optional narration
-* post-session replay support
-
-The source of truth must still stay in Chummer-owned runsite, cast, and approval packets.
-
-## Boundary
-
-RUNSITE is a prep and orientation lane.
-It does not claim tactical authority, live-map truth, or VTT replacement status. Route overlays, tours, host clips, and Scene Forge renders stay subordinate to first-party workspace and run truth.
+The new vendor path makes this more plausible, but Chummer still needs a reliable permission model and clear evidence links before it should present RUNSITE as a real feature.

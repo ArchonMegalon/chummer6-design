@@ -124,7 +124,6 @@ These are user-facing first-install artifacts:
 * Windows installer `.exe`
 * macOS installer `.dmg`
 * Linux installer `.deb`
-* Arch/AUR package metadata when the Arch lane is promoted
 
 ### Machine update payloads
 
@@ -141,7 +140,7 @@ The registry is the canonical source for both classes after promotion. The UI re
 
 `chummer.run` is the only official source for downloading the Chummer client.
 
-Release automation must never publish build artifacts directly to GitHub releases, repository automation artifact shelves, repo attachments, or any repo-hosted binary channel as a user-facing client download. GitHub remains source and development evidence infrastructure only. If a user can acquire an installer, archive, update payload, or preview client, that acquisition path must start from `chummer.run` and resolve through registry-backed release truth.
+Release automation must never publish build artifacts directly to GitHub releases, repo automation artifact shelves, repo attachments, or any repo-hosted binary channel as a user-facing client download. GitHub remains source and development evidence infrastructure only. If a user can acquire an installer, archive, update payload, or preview client, that acquisition path must start from `chummer.run` and resolve through registry-backed release truth.
 
 Repo-local build outputs may exist only as private CI/staging evidence until they are promoted into the registry-backed `chummer.run` download or install handoff surface.
 
@@ -167,50 +166,12 @@ Forbidden posture:
 
 1. `chummer6-core` produces runtime-bundle outputs and fingerprints.
 2. `chummer6-ui` produces installer-ready desktop bundles for Windows `.exe`, macOS `.dmg`, and Linux `.deb`, plus any machine update payloads needed by the updater lane.
-3. When a self-hosted downloads target is configured, the scheduled public promotion replaces the previous public downloads bundle with the newest qualified Windows/Linux artifacts and prunes superseded desktop artifacts so `/downloads` stays latest-only.
+3. When a self-hosted downloads target is configured, the successful desktop build automatically replaces the previous public downloads bundle and prunes superseded desktop artifacts so `/downloads` stays latest-only.
 4. `fleet` expands the release matrix, runs verify/promotion/signoff/signing/notarization orchestration, and prepares a registry publication payload.
 5. `chummer6-hub-registry` becomes the source of truth for promoted channels, installer/download records, desktop release heads, update-feed metadata, compatibility, and runtime-bundle heads.
 6. `chummer6-hub` reads registry truth, serves `/downloads`, mints optional download receipts and install-claim tickets, and renders account-aware install UX without changing the underlying artifact.
 7. Desktop clients poll registry-backed channel/feed truth and apply updates through UI-owned helpers.
 8. `Chummer6` and other downstream guide surfaces read registry-backed release projections; they do not become build authorities.
-
-## Scheduled rolling release rule
-
-For the current public shelf, Windows `win-x64` and Linux `linux-x64` remain rolling-release lanes, but publication is scheduled.
-
-Required posture:
-
-* normal publication happens once per day at 08:00 Europe/Vienna
-* only the platform needed for a concrete test or fix should be built outside that cadence
-* the scheduled job promotes the newest successful qualified bundle for each public platform
-* public downloads must always point at the latest promoted Windows/Linux bundle
-* stale older builds left on `chummer.run` after the scheduled promotion completes are a release-pipeline failure
-* emergency publishes require an explicit release reason and must not become the default cadence
-
-Bounded exception:
-
-* macOS may continue to build and publish as a bounded lane, but it must not block the Windows/Linux rolling shelf while macOS promotion remains outside the current public promotion scope
-
-## Arch/AUR package rule
-
-Arch-based users should not be asked to rely on converted `.deb` packages as the normal path.
-
-The Linux publication lane should add an AUR package projection once the Debian package, install paths, updater posture, and package ownership are stable enough to keep the AUR recipe boring.
-
-Required posture:
-
-* AUR package metadata points back to `chummer.run` release truth.
-* The package recipe does not make GitHub a binary download authority.
-* The package name, desktop file, MIME registration, and update behavior match the Linux desktop lane.
-* The AUR package is listed on `/downloads` only after install and update smoke proof exists on an Arch-based environment.
-
-The Linux source-build lane is separate from the public binary lane. It stays documented through `Chummer6/SOURCE_BUILD_LINUX.md` and governed by `maintenance/LINUX_SOURCE_BUILD_PATH.md`; it must not become a second public binary authority.
-
-Before a publishable Windows/Linux release is accepted, the Linux source-build lane must also clear the fresh-container gate in `Chummer6/scripts/verify_linux_source_build_docker_gate.sh`. The checked-in release wrapper at `Chummer6/scripts/release/verify_guide_convergence.sh` must call that gate before it runs the public-guide convergence verifier. That gate must start from a new slim Debian container, install only the host prerequisites needed inside that container, run the checked-in audit wrapper, then run the checked-in full source-build script to completion, and emit `Chummer6/.guide-internal/receipts/LINUX_SOURCE_BUILD_DOCKER_GATE.generated.json` as durable release evidence.
-
-The same wrapper must also materialize `Chummer6/.guide-internal/receipts/MACOS_SOURCE_BUILD_CONTRACT.generated.json`. That receipt is intentionally bounded: it proves the checked-in macOS build/install/doc/test contract, keeps the personal `build -> install` split machine-checkable, and explicitly records that real macOS runtime proof still requires a Mac host. It must not be presented as a signed or notarized macOS release proof.
-
-After the guide convergence step succeeds, the wrapper must materialize `Chummer6/.guide-internal/receipts/INSTALLER_UPDATE_TRUTH.generated.json` so installer-first policy, update-mode truth, the Linux source-build `notify`/analytics-off defaults, and the personal macOS source-build two-step `build -> install` posture stay machine-checkable. The wrapper must then materialize `Chummer6/.guide-internal/receipts/RELEASE_VERIFICATION_CONVERGENCE.generated.json` so the release lane has one combined record tying the Linux gate, the bounded macOS source-build contract, installer/update truth, and the generated release packet together. A publish lane that skips these records is incomplete.
 
 ## Canonical release-manifest rule
 
@@ -377,9 +338,9 @@ Fleet may orchestrate the packaging/promotion wave, but the desktop head owns th
 
 The public `/downloads` surface is a latest-build shelf, not a long archive listing.
 
-When the desktop build pipeline is configured with a deploy target, each scheduled public promotion must:
+When the desktop build pipeline is configured with a deploy target, each successful build must:
 
-* publish the newest qualified bundle into the active downloads root
+* publish the freshly generated bundle into the active downloads root
 * replace the compatibility and canonical release manifests in that root
 * remove superseded desktop artifacts from that root
 

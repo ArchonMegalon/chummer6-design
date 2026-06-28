@@ -81,9 +81,9 @@ initiatives:
       - executive-assistant
     status: proposed
     accepts_when:
-      - Third-party automation dependencies are pinned by commit or removed.
-      - Security automation targets main and avoids stale branch aliases.
-      - Automation credentials are least-privilege.
+      - Third-party repo automation tasks are pinned by commit or removed.
+      - Security workflows target main and use current supported checkout actions.
+      - Default workflow permissions are least-privilege.
       - Boundary lint, dependency review, secret scan, build/test, and manifest verification are promotion gates.
 
   - id: RH-006

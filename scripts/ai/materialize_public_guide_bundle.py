@@ -35,184 +35,21 @@ HORIZON_PUBLIC_COPY_PACK_PATH = PRODUCT_ROOT / "HORIZON_PUBLIC_COPY_PACK.md"
 IMAGE_CURATION_PATH = PRODUCT_ROOT / "PUBLIC_GUIDE_IMAGE_CURATION.yaml"
 RELEASE_CHANNEL_RELATIVE_PATH = Path(".codex-studio/published/RELEASE_CHANNEL.generated.json")
 RELEASE_CHANNEL_COMPAT_RELATIVE_PATH = Path(".codex-studio/published/releases.json")
-PORTAL_RELEASE_CHANNEL_CANDIDATES = (
-    ROOT.parent / "chummer.run-services/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json",
-    ROOT.parent / ".clean-main/chummer6-hub-publish/Chummer.Portal/downloads/RELEASE_CHANNEL.generated.json",
-)
 CHUMMER6_ASSET_SOURCE_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE"
 CHUMMER6_ASSET_SOURCE_PATHS_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE_PATHS"
 PORTAL_RELEASE_CHANNEL_PATHS_ENV = "CHUMMER_PORTAL_RELEASE_CHANNEL_PATHS"
 CHUMMER_HUB_REGISTRY_PATHS_ENV = "CHUMMER_HUB_REGISTRY_PATHS"
 CHUMMER6_GUIDE_MEDIA_WORKER_PATHS_ENV = "CHUMMER6_GUIDE_MEDIA_WORKER_PATHS"
-CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV = "CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT"
-CHUMMER6_SOURCE_DOC_CANDIDATES = (
-    ROOT.parent / "Chummer6",
-    ROOT.parent / "chummer6",
-)
 MEDIA_WORKER_PATH = ROOT / "scripts" / "chummer6_guide_media_worker.py"
-PUBLIC_RELEASE_TRUTH_PACKET_NAME = "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
-LINUX_SOURCE_BUILD_GATE_RECEIPT_NAME = "LINUX_SOURCE_BUILD_DOCKER_GATE.generated.json"
 
 _MEDIA_WORKER = None
 _IMAGE_CURATION = None
 PUBLIC_PHASE_LABELS = {
-    "in progress": "Current release build",
-    "public-fit polish": "Current release build",
-    "public stable": "Current release build",
+    "public-fit polish": "Usable preview",
 }
 PUBLIC_HORIZON_STAGE_LABELS = {
-    "horizon": "Not something to use today",
-    "bounded_research": "Still being designed",
-    "shipped_mvp": "You can try an early version",
-    "signed_in_command_lane_live": "Available after sign-in",
-    "bounded_coaching_expansion": "deeper table fit, clearer controls, and fewer rough edges",
-    "flagship_depth_hardening": "more polish, steadier media, and easier table use",
-}
-PUBLIC_GUIDE_CORE_PRODUCT_IDS = {
-    "alice",
-    "nexus-pan",
-    "origin-dossier",
-    "table-pulse",
-}
-PUBLIC_GUIDE_EXPANSION_BET_IDS = {
-    "community-hub",
-    "ghostwire",
-    "jackpoint",
-    "karma-forge",
-    "runbook-press",
-    "runsite",
-}
-PUBLIC_GUIDE_FOLDED_IDS = {
-    "edition-studio",
-    "local-co-processor",
-    "quicksilver",
-    "run-control",
-}
-PUBLIC_GUIDE_CAMPAIGN_TOOL_IDS = {
-    "alice",
-    "origin-dossier",
-    "table-pulse",
-    "jackpoint",
-    "karma-forge",
-    "runsite",
-    "runbook-press",
-}
-PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS = {
-    "alice",
-    "origin-dossier",
-    "table-pulse",
-    "jackpoint",
-}
-PUBLIC_GUIDE_BASE_FEATURE_ORDER = (
-    "nexus-pan",
-    "run-control",
-    "edition-studio",
-    "community-hub",
-    "ghostwire",
-    "local-co-processor",
-    "quicksilver",
-)
-PUBLIC_GUIDE_BASE_FEATURE_IDS = set(PUBLIC_GUIDE_BASE_FEATURE_ORDER)
-PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES = {
-    "alice": (
-        "Use ALICE when a character idea needs a second look before it becomes table trouble. "
-        "It belongs in the normal workbench: build help, rules coach, blank-state build help, "
-        "and tradeoff review should feel close to the sheet instead of hidden behind a separate product label.",
-        "Origin Dossier sits there too: the story-and-context area for a runner. GM notes can guide the advice, "
-        "but they do not silently rewrite mechanics. Voice selection and origin-story audiobooks only happen after "
-        "the origin story is accepted at the table.",
-    ),
-    "origin-dossier": (
-        "Open Origin Dossier when a legal sheet still feels unfinished as a person. It turns an accepted origin story into "
-        "contacts, debts, enemies, scars, secrets, portraits, narration, and things the table can actually use later.",
-        "If the player asks for audio, the accepted origin can become a private audiobook for that runner through an "
-        "EA-issued player link. It must never rewrite the sheet, hand the desktop client a global Audiobookshelf login, "
-        "or let a render tool decide who the character is.",
-    ),
-    "nexus-pan": (
-        "Use NEXUS-PAN when the campaign has to survive real devices: a laptop sleeps, a phone reconnects, a tablet sees "
-        "stale state, or a remote player returns mid-scene.",
-        "The point is not another named product shelf. The point is boringly reliable continuity, visible conflicts, and "
-        "a calm way back into the session.",
-    ),
-    "table-pulse": (
-        "Use Table Pulse when the table needs live pressure without a surveillance dashboard. The GM sees limited signals "
-        "and decides what becomes table action.",
-        "Private aftermath, remote reactions, quiet hours, and opt-outs are part of the feature, not paperwork around it.",
-    ),
-}
-PUBLIC_GUIDE_DISPLAY_TITLES = {
-    "alice": "ALICE",
-    "nexus-pan": "NEXUS-PAN",
-    "origin-dossier": "Origin Dossier",
-    "table-pulse": "Table Pulse",
-    "community-hub": "Community Hub",
-    "ghostwire": "Ghostwire",
-    "jackpoint": "Jackpoint",
-    "karma-forge": "Karma Forge",
-    "local-co-processor": "Local Co-Processor",
-    "edition-studio": "Edition Studio",
-    "quicksilver": "Quicksilver",
-    "run-control": "Run Control",
-    "runbook-press": "Runbook Press",
-    "runsite": "Runsite",
-}
-PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
-    "alice": "https://chummer.run/media/horizons/alice-90s-deepdive.mp4?v=20260621-alice-ava-natural-pace-r2",
-    "black-ledger": "https://chummer.run/media/horizons/black-ledger-90s-deepdive.mp4",
-    "community-hub": "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4",
-    "karma-forge": "https://chummer.run/media/horizons/karma-forge-90s-deepdive.mp4",
-    "nexus-pan": "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4",
-    "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose.mp4",
-    "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4?v=20260621-runsite-clean-speech-r1",
-    "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4?v=20260621-tablepulse-3fb86343",
-}
-PUBLIC_GUIDE_HORIZON_VIDEO_TITLES = {
-    "alice": "Play the ALICE 90-second deep dive video",
-    "origin-dossier": "Play the Origin Dossier promo video",
-    "runsite": "Play the Runsite 90-second deep dive video",
-}
-PUBLIC_GUIDE_HORIZON_DETAIL_NOTES = {
-    "community-hub": (
-        "Use this when the hard part is no longer one legal character, but getting a real table together. The useful version is not a new social network; it is a cleaner path from open run to accepted players, scheduling, table expectations, and closeout.",
-        "A GM should be able to publish a beginner-friendly run and see who fits before the evening dissolves into chat archaeology.",
-    ),
-    "ghostwire": (
-        "Use this after a session when everyone remembers the same scene differently. The point is not to litigate the table; it is to recover the sequence, compare outcomes, and write the recap while the details are still warm.",
-        "It should help a GM answer, \"what actually happened?\" without turning the session into a courtroom transcript.",
-    ),
-    "jackpoint": (
-        "Use this when a recap, dossier, or briefing needs to look finished enough to share. It is the difference between a pasted chat summary and something a player would actually read before the next run.",
-        "The writing can be polished, but the facts still have to come from the session material the GM accepted.",
-    ),
-    "karma-forge": (
-        "Use this when house rules stop being a private note and start affecting the table. A good rule change should show what changed, who agreed to it, and how to undo it if it makes the game worse.",
-        "This is for tables that want flexibility without custom-rule soup.",
-    ),
-    "runbook-press": (
-        "Use this when campaign material grows past a recap and starts becoming a handout, primer, or small book. It should make reusable material, not another pile of export files with mysterious names.",
-        "Creators should be able to turn accepted Chummer material into something readable without stitching ten tools together by hand.",
-    ),
-    "runsite": (
-        "Use this before a mission when the players keep misreading the space. The goal is a clearer safehouse, facility, or meet location before the first door gets kicked in.",
-        "It is not a VTT replacement. It is prep that makes the room easier to understand.",
-    ),
-    "edition-studio": (
-        "This belongs in the background until it earns a clearer user-facing shape. The useful promise is simple: SR4, SR5, and SR6 should feel deliberately different without splitting Chummer into three unrelated apps.",
-        "Most visitors do not need to care about it yet.",
-    ),
-    "local-co-processor": (
-        "This should stay quiet. If someone has a strong local machine, some expensive explain or media work may get faster. If they do not, Chummer should still work.",
-        "A feature that only works on one monster PC is not a normal product feature.",
-    ),
-    "quicksilver": (
-        "This is speed work for people who already know where they are going. It should shorten the path between build review, rules lookup, prep, and publication without hiding what happened.",
-        "Fast is only useful here if it stays understandable.",
-    ),
-    "run-control": (
-        "This is the GM's session cockpit idea, but it should not become another named shelf unless it clearly beats notes, chat, and memory during an actual run.",
-        "The bar is simple: a GM should see the current scene, the next safe action, and the recovery point without hunting.",
-    ),
+    "horizon": "Future concept",
+    "bounded_research": "Research and prototypes",
 }
 RELEASE_PROOF_JOURNEY_LABELS = {
     "install_claim_restore_continue": "install, sign back in, restore, and keep going",
@@ -270,19 +107,6 @@ PUBLIC_COPY_BANNED_PHRASES = (
     "future lanes",
     "session shell",
     "stays bounded",
-    "connected lane",
-    "public route",
-    "control plane",
-    "source packet",
-    "canonical",
-    "governed",
-    "bounded",
-    "truth",
-    "proof",
-    "receipt",
-    "receipts",
-    "posture",
-    "projection",
     "table-facing shell",
     "live shell",
     "player-first live shell",
@@ -388,94 +212,45 @@ def _load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
+def _teaser_first_cleanup(content: str) -> str:
+    replacements = {
+        "Every claim needs a receipt.": "Every claim needs a clear source trail.",
+        "- Show receipts": "- Show breakdown",
+        "The receipts still do the serious work.": "The breakdown still does the serious work.",
+        "- advice without receipts": "- advice without grounded explanations",
+        "5. see receipts": "5. see the breakdown",
+        "**ALICE is where Chummer becomes a build mentor with receipts.**": "**ALICE is where Chummer becomes a build mentor with grounded explanations.**",
+        "Activation receipts": "Activation records",
+        "An activation receipt tells the table:": "An activation record tells the table:",
+        "That receipt is the table’s safety rail.": "That record is the table’s safety rail.",
+        "Here is the receipt.": "Here is the breakdown.",
+        "explicit lossy/blocking receipts": "explicit lossy/blocking notes",
+        "preview receipts": "preview summaries",
+        "player-visible receipts": "player-visible change notes",
+        "explicit lossy receipts where not possible": "explicit lossy notes where not possible",
+        "activation receipts": "activation records",
+        "generate an activation receipt": "generate an activation record",
+        "Every package needs a manifest, fingerprint, and receipt.": "Every package needs a manifest, fingerprint, and change record.",
+        "Rule changes need receipts and rollback semantics so a campaign can recover safely.": "Rule changes need change logs and rollback semantics so a campaign can recover safely.",
+        "Some legacy behavior may import cleanly; some may produce lossy or blocking receipts.": "Some legacy behavior may import cleanly; some may produce lossy or blocking notes.",
+        "preserve activation receipts": "preserve activation records",
+        "packages, reviews, and receipts determine what is real.": "packages, reviews, and change records determine what is real.",
+        "activate with a receipt": "activate with a record",
+        "- scheduling receipts": "- scheduling records",
+        "- scheduling receipt": "- scheduling record",
+        "typed event receipts": "typed event records",
+        "- receipts": "- source trails",
+        "It is an artifact studio with receipts.": "It is an artifact studio with source trails.",
+    }
+    cleaned = content
+    for old, new in replacements.items():
+        cleaned = cleaned.replace(old, new)
+    return cleaned
+
+
 def _write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    rendered = _scrub_public_markdown(content) if path.suffix.lower() == ".md" else content
-    path.write_text(rendered.strip() + "\n", encoding="utf-8")
-
-
-def _write_exact(path: Path, content: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content.strip() + "\n", encoding="utf-8")
-
-
-def _scrub_public_markdown(content: str) -> str:
-    protected_terms = (
-        ("checked-in", "__CHUMMER_KEEP_CHECKED_IN_LOWER__"),
-        ("Checked-in", "__CHUMMER_KEEP_CHECKED_IN_UPPER__"),
-        ("public route live page", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_PAGE_LOWER__"),
-        ("Public route live page", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_PAGE_UPPER__"),
-        ("public route live", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_LOWER__"),
-        ("Public route live", "__CHUMMER_KEEP_PUBLIC_ROUTE_LIVE_UPPER__"),
-        ("checksums", "__CHUMMER_KEEP_CHECKSUMS_LOWER__"),
-        ("Checksums", "__CHUMMER_KEEP_CHECKSUMS_UPPER__"),
-        ("checksum", "__CHUMMER_KEEP_CHECKSUM_LOWER__"),
-        ("Checksum", "__CHUMMER_KEEP_CHECKSUM_UPPER__"),
-    )
-    cleaned = content
-    for term, placeholder in protected_terms:
-        cleaned = cleaned.replace(term, placeholder)
-
-    replacements = (
-        ("current truth", "what works today"),
-        ("Current truth", "What works today"),
-        ("rules truth", "rules data"),
-        ("Rules truth", "Rules data"),
-        ("release truth", "release status"),
-        ("Release truth", "Release status"),
-        ("truth", "state"),
-        ("Truth", "State"),
-        ("proof artifacts", "extra files"),
-        ("Proof artifacts", "Extra files"),
-        ("proof cards", "status cards"),
-        ("Proof cards", "Status cards"),
-        ("proof", "status detail"),
-        ("Proof", "Status detail"),
-        ("receipts", "records"),
-        ("Receipts", "Records"),
-        ("receipt", "record"),
-        ("Receipt", "Record"),
-        ("checked", "tested"),
-        ("Checked", "Tested"),
-        ("checks", "tests"),
-        ("Checks", "Tests"),
-        ("verification", "status"),
-        ("Verification", "Status"),
-        ("public route", "page"),
-        ("Public route", "Where to go"),
-        ("Public routes", "Where to go"),
-        ("Live route", "Open"),
-        ("connected lane", "how it fits"),
-        ("Connected lane", "How it fits"),
-        ("receipt rails", "records"),
-        ("Receipt rails", "Records"),
-        ("public-safe", "safe to share"),
-        ("first-party", "built-in"),
-        (" lane", " area"),
-        (" Lane", " Area"),
-        (" rail", " path"),
-        (" Rail", " Path"),
-        (" rails", " paths"),
-        (" Rails", " Paths"),
-        ("Posture:", "Use:"),
-        ("posture", "state"),
-        ("Posture", "State"),
-        ("first-run lane", "first-run guide"),
-        ("promoted lane", "slower release channel"),
-        ("Claim boundary", "Short version"),
-        ("Evidence scope", "Short version"),
-        ("Proof scope", "Short version"),
-        ("Guide fit:", "Use this for:"),
-    )
-    for original, replacement in replacements:
-        prefix = r"(?<!\w)" if original[:1].isalnum() else ""
-        suffix = r"(?!\w)" if original[-1:].isalnum() else ""
-        cleaned = re.sub(prefix + re.escape(original) + suffix, replacement, cleaned)
-    cleaned = cleaned.replace("release area", "release lane")
-    cleaned = cleaned.replace("Release area", "Release lane")
-    for term, placeholder in protected_terms:
-        cleaned = cleaned.replace(placeholder, term)
-    return cleaned
+    path.write_text(_teaser_first_cleanup(content).strip() + "\n", encoding="utf-8")
 
 
 def _ffmpeg_bin() -> str:
@@ -539,19 +314,6 @@ def _candidate_asset_roots(repo_root: Path) -> list[Path]:
     env_root = os.environ.get(CHUMMER6_ASSET_SOURCE_ENV, "").strip()
     if env_root:
         roots.append(Path(env_root))
-    guide_root = os.environ.get("CHUMMER6_GUIDE_ROOT", "").strip()
-    if guide_root:
-        roots.append(Path(guide_root) / "assets")
-    for candidate in (
-        repo_root / "products" / "chummer" / "public-guide-curated-assets" / "assets",
-        repo_root / "products" / "chummer" / "public-guide" / "assets",
-        repo_root / "chummer-design" / "products" / "chummer" / "public-guide-curated-assets" / "assets",
-        repo_root / "chummer-design" / "products" / "chummer" / "public-guide" / "assets",
-        repo_root.parent / "chummer-design" / "products" / "chummer" / "public-guide-curated-assets" / "assets",
-        repo_root.parent / "chummer-design" / "products" / "chummer" / "public-guide" / "assets",
-    ):
-        if candidate not in roots:
-            roots.append(candidate)
     for candidate in (
         repo_root.parent / "Chummer6" / "assets",
         repo_root.parent / "chummer6" / "assets",
@@ -757,71 +519,14 @@ def _materialize_derivative(source: Path, derivative_path: Path, *, codec: str) 
     subprocess.run(command, check=True, capture_output=True, text=True)
 
 
-def _public_feature_rows(public_feature_registry: dict[str, object]) -> list[dict[str, object]]:
-    feature_by_slug: dict[str, dict[str, object]] = {}
-    for item in public_feature_registry.get("cards") or []:
-        if not isinstance(item, dict):
-            continue
-        raw_id = str(item.get("id") or "").strip()
-        if raw_id.startswith("feature_"):
-            feature_id = raw_id[len("feature_") :]
-        else:
-            feature_id = raw_id
-        slug = _slug(feature_id)
-        if slug not in PUBLIC_GUIDE_BASE_FEATURE_IDS:
-            continue
-        badge = str(item.get("badge") or "").strip().lower()
-        status_note = str(item.get("status_note") or item.get("proof_note") or "").strip().lower()
-        detail_primary_href = str(item.get("detail_primary_href") or "").strip().lower()
-        current_state = (
-            "signed_in_command_lane_live"
-            if "signed-in" in status_note or "/account/" in detail_primary_href
-            else "shipped_mvp"
-        )
-        if "lab" in badge or "preview" in badge:
-            current_state = "bounded_research"
-        feature_by_slug[slug] = {
-            **item,
-            "id": slug,
-            "title": item.get("title") or _public_display_title(slug),
-            "wow_promise": item.get("summary") or item.get("payoff") or "",
-            "pain_label": item.get("pain") or "",
-            "table_scene": item.get("payoff") or item.get("status_chips") or item.get("microproof") or "",
-            "canon_doc": f"products/chummer/features/{slug}.md",
-            "guide_source": "products/chummer/PUBLIC_FEATURE_REGISTRY.yaml",
-            "public_guide": {
-                "enabled": True,
-                "group": "core_product",
-            },
-            "build_path": {
-                "intent": "base_client_feature",
-                "current_state": current_state,
-                "next_state": "flagship_depth_hardening",
-            },
-        }
-    ordered = [
-        feature_by_slug[slug]
-        for slug in PUBLIC_GUIDE_BASE_FEATURE_ORDER
-        if slug in feature_by_slug
-    ]
-    ordered.extend(
-        row
-        for slug, row in sorted(feature_by_slug.items())
-        if slug not in PUBLIC_GUIDE_BASE_FEATURE_ORDER
-    )
-    return ordered
-
-
 def _required_public_asset_paths(
     part_registry: dict[str, object],
     horizon_registry: dict[str, object],
-    public_feature_registry: dict[str, object],
 ) -> set[str]:
     required = {
         "assets/hero/chummer6-hero.png",
         "assets/pages/parts-index.png",
         "assets/pages/horizons-index.png",
-        "assets/pages/onramp.png",
     }
     for item in part_registry.get("parts") or []:
         if not isinstance(item, dict):
@@ -837,21 +542,8 @@ def _required_public_asset_paths(
             continue
         horizon_id = str(item.get("id") or "").strip()
         if horizon_id:
-            required.add(_public_guide_horizon_asset_path(horizon_id))
-    for item in _public_feature_rows(public_feature_registry):
-        feature_id = str(item.get("id") or "").strip()
-        if feature_id:
-            required.add(_public_guide_horizon_asset_path(feature_id))
+            required.add(f"assets/horizons/{_slug(horizon_id)}.png")
     return required
-
-
-def _public_guide_horizon_surface_dir(identifier: str) -> str:
-    return "features" if _slug(identifier) in PUBLIC_GUIDE_BASE_FEATURE_IDS else "horizons"
-
-
-def _public_guide_horizon_asset_path(identifier: str) -> str:
-    slug = _slug(identifier)
-    return f"assets/{_public_guide_horizon_surface_dir(slug)}/{slug}.png"
 
 
 def _copy_existing_derivative(
@@ -865,12 +557,9 @@ def _copy_existing_derivative(
     if derivative_fallback_root is not None:
         candidates.append(derivative_fallback_root / derivative_relpath)
     for candidate in candidates:
+        if candidate == derivative_path:
+            continue
         if candidate.is_file():
-            try:
-                if candidate.resolve() == derivative_path.resolve():
-                    continue
-            except OSError:
-                continue
             derivative_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(candidate, derivative_path)
             return True
@@ -922,21 +611,12 @@ def _relative_asset_link(*, doc_path: Path, out_dir: Path, asset_path: str) -> s
     return relative.replace(os.sep, "/")
 
 
-def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str, href: str = "", title: str = "") -> list[str]:
+def _image_rows(*, doc_path: Path, out_dir: Path, asset_path: str, alt: str) -> list[str]:
     if not (out_dir / asset_path).is_file():
         return []
     if not _asset_embed_allowed(out_dir=out_dir, asset_path=asset_path):
         return []
-    image_src = _relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)
-    if href:
-        title_attr = f' title="{title}"' if title else ""
-        return [
-            f'<a href="{href}" target="_blank" rel="noopener noreferrer"{title_attr}>',
-            f'  <img src="{image_src}" alt="{alt}"{title_attr} />',
-            "</a>",
-            "",
-        ]
-    return [f"![{alt}]({image_src})", ""]
+    return [f"![{alt}]({_relative_asset_link(doc_path=doc_path, out_dir=out_dir, asset_path=asset_path)})", ""]
 
 
 def _front_matter(title: str, source: str) -> str:
@@ -986,52 +666,61 @@ def _section_rows(section: dict[str, object], *, level: int = 2) -> list[str]:
     return rows
 
 
+def _public_link_row(item: object) -> str:
+    label_overrides = {
+        "../NOW/current-status.md": "Current status",
+        "../NOW/public-surfaces.md": "What is visible today",
+        "../WHERE_TO_GO_DEEPER.md": "Where to go deeper",
+        "../WHAT_CHUMMER6_IS.md": "What Chummer6 Is",
+        "../START_HERE.md": "Start here",
+    }
+    if isinstance(item, dict):
+        target = str(item.get("path") or item.get("href") or "").strip()
+        label = str(item.get("label") or item.get("title") or "").strip()
+    else:
+        target = str(item).strip()
+        label = ""
+    if not target:
+        return ""
+    if target.startswith("- ") or (target.startswith("[") and "](" in target):
+        return target
+    if not label:
+        label = label_overrides.get(target, "")
+    if not label:
+        stem = Path(target).stem if target.endswith(".md") else target.rsplit("/", 1)[-1]
+        label = _humanize_identifier(stem).title() or target
+    return f"- [{label}]({target})"
+
+
 def _candidate_hub_registry_roots(repo_root: Path) -> list[Path]:
     roots: list[Path] = []
     env_root = os.environ.get(HUB_REGISTRY_ROOT_ENV, "").strip()
     if env_root:
         roots.append(Path(env_root))
     roots.extend(_split_path_list(CHUMMER_HUB_REGISTRY_PATHS_ENV))
-    candidates = [
+    for candidate in (
         repo_root.parent / "chummer-hub-registry",
         repo_root.parent / "chummer6-hub-registry",
-    ]
-    for candidate in candidates:
+    ):
         if candidate not in roots:
             roots.append(candidate)
     return _dedupe_paths(roots)
 
 
 def _load_release_channel(repo_root: Path) -> tuple[dict[str, object], str]:
-    candidates: list[tuple[Path, str]] = []
-    for path in _split_path_list(PORTAL_RELEASE_CHANNEL_PATHS_ENV):
-        if path.is_file():
-            candidates.append((path, path.as_posix()))
+    candidate_override_paths = _split_path_list(PORTAL_RELEASE_CHANNEL_PATHS_ENV)
+    if candidate_override_paths:
+        for candidate in candidate_override_paths:
+            if candidate.is_file():
+                return _load_json(candidate), candidate.as_posix()
     for root in _candidate_hub_registry_roots(repo_root):
         canonical = root / RELEASE_CHANNEL_RELATIVE_PATH
         if canonical.is_file():
-            candidates.append((canonical, f"{root.name}/{RELEASE_CHANNEL_RELATIVE_PATH.as_posix()}"))
+            return _load_json(canonical), f"{root.name}/{RELEASE_CHANNEL_RELATIVE_PATH.as_posix()}"
         compat = root / RELEASE_CHANNEL_COMPAT_RELATIVE_PATH
         if compat.is_file():
-            candidates.append((compat, f"{root.name}/{RELEASE_CHANNEL_COMPAT_RELATIVE_PATH.as_posix()}"))
-    for candidate in PORTAL_RELEASE_CHANNEL_CANDIDATES:
-        if candidate.is_file():
-            candidates.append((candidate, candidate.as_posix()))
-
-    best_payload: dict[str, object] = {}
-    best_label = "release-channel projection unavailable"
-    best_score: tuple[int, str] | None = None
-    for path, label in candidates:
-        payload = _load_json(path)
-        status = 1 if _release_is_published(payload.get("status")) else 0
-        published_at = str(payload.get("publishedAt") or "").strip()
-        score = (status, published_at)
-        if best_score is None or score > best_score:
-            best_payload = payload
-            best_label = label
-            best_score = score
-
-    return best_payload, best_label
+            return _load_json(compat), f"{root.name}/{RELEASE_CHANNEL_COMPAT_RELATIVE_PATH.as_posix()}"
+    return {}, "release-channel projection unavailable"
 
 
 def _normalize_artifact(item: dict[str, object]) -> dict[str, object]:
@@ -1041,21 +730,17 @@ def _normalize_artifact(item: dict[str, object]) -> dict[str, object]:
         file_name = Path(raw_url).name
     platform = str(item.get("platform") or "").strip()
     arch = str(item.get("arch") or "").strip()
-    platform_id = str(item.get("platformId") or "").strip()
     platform_label = str(item.get("platformLabel") or "").strip()
     if not platform_label:
         if platform and arch:
             platform_label = f"{platform.title()} {arch}"
         else:
             platform_label = platform or "Unknown platform"
-    if not platform_id and platform and arch:
-        platform_id = f"{platform.lower()}-{arch.lower()}"
     return {
         "artifactId": str(item.get("artifactId") or item.get("id") or file_name or "artifact").strip(),
         "head": str(item.get("head") or "").strip(),
         "platform": platform,
         "arch": arch,
-        "platformId": platform_id,
         "platformLabel": platform_label,
         "kind": str(item.get("kind") or item.get("flavor") or "").strip(),
         "format": str(item.get("format") or "").strip(),
@@ -1226,38 +911,11 @@ def _public_copy(text: str) -> str:
     cleaned = str(text or "").strip()
     replacements = (
         ("truth filter", "decision filter"),
-        ("source-of-truth systems", "systems that make final decisions"),
-        ("source of truth systems", "systems that make final decisions"),
-        ("source of truth", "main record"),
-        ("truth", "record"),
-        ("Truth", "Record"),
-        ("canonical", "official"),
-        ("Canonical", "Official"),
-        ("governed", "reviewed"),
-        ("Governed", "Reviewed"),
-        ("bounded", "limited"),
-        ("Bounded", "Limited"),
-        ("public route", "public page"),
-        ("Public route", "Public page"),
-        ("connected lane", "connected path"),
-        ("Connected lane", "Connected path"),
-        ("control plane", "control area"),
-        ("Control plane", "Control area"),
-        ("source packet", "source pack"),
-        ("Source packet", "Source pack"),
-        ("Chummer-owned", "Chummer's"),
-        ("chummer-owned", "Chummer's"),
-        ("community-ledger", "account history"),
-        ("Community-ledger", "Account history"),
-        ("operator", "maintainer"),
-        ("Operator", "Maintainer"),
-        ("proof", "check"),
-        ("Proof", "Check"),
         ("canonical plan", "shared plan"),
         ("canonical product plan", "shared product plan"),
         ("canonical session", "durable session"),
         ("design canon", "design docs"),
-        ("silent canon", "private product notes"),
+        ("silent canon", "silent product truth"),
         ("package ownership canon", "clear package ownership"),
         ("approved canonical source packs", "approved source packs"),
         ("session semantic canon", "session semantics"),
@@ -1268,8 +926,8 @@ def _public_copy(text: str) -> str:
         ("repo language", "implementation language"),
         ("design repo", "design workspace"),
         ("registry projection", "public shelf"),
-        ("install truth", "install state"),
-        ("provenance", "sources"),
+        ("install truth", "install record"),
+        ("provenance", "source trail"),
         ("seams", "boundaries"),
         ("seam", "boundary"),
         ("public surfaces", "public pages"),
@@ -1288,10 +946,7 @@ def _public_copy(text: str) -> str:
         ("crash lane", "crash path"),
         ("public issue lane", "public issue path"),
         ("issue lane", "issue path"),
-        ("optional guided contribution path", "hands-on help path"),
-        ("guided contribution path", "hands-on help path"),
-        ("guided contribution lane", "hands-on help path"),
-        ("guided contribution", "hands-on help"),
+        ("guided contribution lane", "guided contribution path"),
         ("guided-preview lanes", "guided-preview access windows"),
         ("artifact shelf", "release shelf"),
         ("render-only asset plant", "dedicated media studio"),
@@ -1299,34 +954,42 @@ def _public_copy(text: str) -> str:
         ("product shell itself", "product itself"),
         ("product shell", "product"),
         ("bounded offline prefetch", "offline-ready prefetch"),
-        ("receipts", "records"),
-        ("Receipts", "Records"),
-        ("receipt", "record"),
-        ("Receipt", "Record"),
-        ("packets", "bundles"),
-        ("Packets", "Bundles"),
-        ("packet", "bundle"),
-        ("Packet", "Bundle"),
-        ("the facts came from", "what it is based on"),
-        ("where the facts came from", "what it is based on"),
-        ("Watch the COMMUNITY HUB", "Watch the Community Hub"),
-        ("Watch the JACKPOINT", "Watch the Jackpoint"),
-        ("Watch the KARMA FORGE", "Watch the Karma Forge"),
-        ("Watch the RUNBOOK PRESS", "Watch the Runbook Press"),
-        ("Watch the RUNSITE", "Watch the Runsite"),
-        ("Watch the TABLE PULSE", "Watch the Table Pulse"),
-        ("Watch the ORIGIN DOSSIER", "Watch the Origin Dossier"),
-        ("Watch the BLACK LEDGER", "Watch the Black Ledger"),
-        (
-            "In the planning notes that shape the roadmap and the public guide.",
-            "Start with [Where To Go Deeper](WHERE_TO_GO_DEEPER.md). It points to the optional deeper guide pages without making most readers dig through planning material first.",
-        ),
     )
     for original, replacement in replacements:
         cleaned = cleaned.replace(original, replacement)
-    cleaned = cleaned.replace("release area", "release lane")
-    cleaned = cleaned.replace("Release area", "Release lane")
     return cleaned
+
+
+def _status_closure_readout(
+    front_door_closeout: str,
+    substrate_lane: str,
+    substrate_contract_sets: list[str],
+) -> str:
+    front_door_complete = front_door_closeout == "complete"
+    substrate_active = substrate_lane == "in_progress"
+    if not front_door_complete and not substrate_active:
+        return ""
+
+    closure_bits: list[str] = []
+    if front_door_complete:
+        closure_bits.append("front-door progress is closed")
+    else:
+        closure_bits.append("front-door proof plane is still open")
+
+    if substrate_active:
+        tracked = len(substrate_contract_sets)
+        if tracked:
+            top_sets = ", ".join(substrate_contract_sets[:5])
+            suffix = ", and others" if tracked > 5 else ""
+            closure_bits.append(
+                f"campaign/world/community/admin substrate proof is still active ({top_sets}{suffix})"
+            )
+        else:
+            closure_bits.append("campaign/world/community/admin substrate proof is still active")
+    else:
+        closure_bits.append("campaign/world/community/admin substrate proof is marked closed")
+
+    return " ; ".join(closure_bits) + "."
 
 
 def _public_phase_label(value: object) -> str:
@@ -1341,74 +1004,6 @@ def _public_horizon_stage_label(value: object) -> str:
     if not cleaned:
         return ""
     return PUBLIC_HORIZON_STAGE_LABELS.get(cleaned.lower(), _humanize_identifier(cleaned))
-
-
-def _public_guide_lane_group(horizon: dict[str, object]) -> str:
-    public_guide = horizon.get("public_guide") or {}
-    if isinstance(public_guide, dict):
-        configured = str(public_guide.get("group") or "").strip().lower()
-        if configured in {"core_product", "expansion_bet", "folded_into_product"}:
-            return configured
-    horizon_id = _slug(str(horizon.get("id") or "").strip())
-    if horizon_id in PUBLIC_GUIDE_CORE_PRODUCT_IDS:
-        return "core_product"
-    if horizon_id in PUBLIC_GUIDE_EXPANSION_BET_IDS:
-        return "expansion_bet"
-    if horizon_id in PUBLIC_GUIDE_FOLDED_IDS:
-        return "folded_into_product"
-    build_path = horizon.get("build_path") or {}
-    current_state = ""
-    if isinstance(build_path, dict):
-        current_state = str(build_path.get("current_state") or "").strip().lower()
-    if current_state in {"shipped_mvp", "signed_in_command_lane_live"}:
-        return "core_product"
-    return "expansion_bet"
-
-
-def _public_display_title(identifier: str, fallback: str = "") -> str:
-    slug = _slug(identifier)
-    if slug in PUBLIC_GUIDE_DISPLAY_TITLES:
-        return PUBLIC_GUIDE_DISPLAY_TITLES[slug]
-    cleaned = str(fallback or identifier or "").strip()
-    if not cleaned:
-        return "Untitled"
-    words = re.sub(r"[_-]+", " ", cleaned).split()
-    return " ".join(word if word.isupper() and len(word) <= 5 else word.capitalize() for word in words)
-
-
-def _public_feature_status_line(build_path: object, *, lane_group: str) -> str:
-    if not isinstance(build_path, dict):
-        return "Treat this as still being shaped until the page itself says otherwise."
-    current = str(build_path.get("current_state") or "").strip().lower()
-    next_state = str(build_path.get("next_state") or "").strip().lower()
-    if current == "signed_in_command_lane_live":
-        first = "Parts of this already exist after sign-in, but I would still treat the larger idea as work in progress."
-    elif current == "shipped_mvp":
-        first = "There is an early version you can try. It is real enough to learn from and still rough enough that feedback matters."
-    elif current in {"bounded_research", "horizon"}:
-        first = "This is still a design direction, not something I would ask a table to depend on tonight."
-    else:
-        first = "This is still moving, so judge it by the current page and not by the name alone."
-
-    if next_state == "bounded_coaching_expansion":
-        second = "The next useful work is clearer controls, better fit for real tables, and fewer edge-case surprises."
-    elif next_state == "flagship_depth_hardening":
-        second = "The next useful work is depth: steadier examples, better media, and cleaner handoff back into normal character tools."
-    elif lane_group == "folded_into_product":
-        second = "If it survives, it should become part of the normal app rather than another destination to remember."
-    else:
-        second = "The next useful work is making it easier to use without making stronger promises than the software can keep."
-    return f"{first} {second}"
-
-
-def _paragraph_from_items(items: object) -> str:
-    if not isinstance(items, list):
-        return ""
-    cleaned = [_public_copy(str(item).strip()).rstrip(".") for item in items if str(item).strip()]
-    if not cleaned:
-        return ""
-    cleaned[0] = cleaned[0][:1].upper() + cleaned[0][1:]
-    return _english_join(cleaned) + "."
 
 
 def _format_public_datetime(value: object) -> str:
@@ -1432,22 +1027,6 @@ def _public_release_channel_value(release_experience: dict[str, object], channel
             if key and label:
                 labels[key] = label
     return labels.get(channel, _humanize_identifier(channel) if channel else "Not currently published")
-
-
-def _public_desktop_choice_line(primary_app: str, fallback_apps: list[str]) -> str:
-    primary = str(primary_app or "").strip() or "the main desktop app"
-    fallback_label = _english_join([item for item in fallback_apps if str(item).strip()])
-    if fallback_label and primary == "Avalonia" and "Blazor Desktop" in fallback_apps:
-        return (
-            "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when "
-            "a support page points you there."
-        )
-    if fallback_label:
-        return (
-            f"If you see multiple desktop apps, start with {primary}. Treat {fallback_label} "
-            "as the alternate if a page or support points you there."
-        )
-    return f"If more than one desktop app is offered, start with {primary}."
 
 
 def _public_build_label(version: str) -> str:
@@ -1486,18 +1065,13 @@ def _public_release_note(text: object) -> str:
     for raw, label in RELEASE_PROOF_JOURNEY_LABELS.items():
         cleaned = cleaned.replace(raw, label)
     replacements = (
-        ("Local release proof passed for:", "Works now:"),
-        ("Current release checks are clear", "No major release caveat is listed"),
+        ("Local release proof passed for:", "Recent release verification passed for"),
         ("Claimed-device", "Device"),
         ("claimed-device", "device"),
         ("recent install", "recent setup"),
         ("bounded offline prefetch", "offline-ready prefetch"),
         ("current shelf", "current download shelf"),
-        ("support proof", "support follow-up"),
-        ("receipts", "records"),
-        ("Receipts", "Records"),
-        ("receipt", "record"),
-        ("Receipt", "Record"),
+        ("support proof", "support verification"),
         ("manifest presence", "a posted file"),
         ("published channel artifact now on the shelf", "published download on the public shelf"),
     )
@@ -1515,9 +1089,9 @@ def _public_release_proof_summary(release_payload: dict[str, object]) -> str:
         labels = [RELEASE_PROOF_SUMMARY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip())) for item in journeys if str(item).strip()]
         labels = [label for label in labels if label not in {"release publishing", "community follow-up"}]
         if not labels:
-            return "The basic install and recovery path is working."
+            return "Key checks passed."
         joined = _english_join(labels)
-        return f"This release covers {joined}."
+        return f"Passed for {joined}."
     return _public_release_note(release_payload.get("supportabilitySummary"))
 
 
@@ -1526,12 +1100,8 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
     if not cleaned:
         return ""
     lowered = cleaned.lower()
-    if lowered.startswith("no major release caveat is listed"):
-        return "No current download blocker is listed for these installers."
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
-        return "This is still a preview, but setup, recovery, offline-ready behavior, release follow-up, and support work for the current downloads."
-    if "gold-ready" in lowered or ("release status" in lowered and "shelf" in lowered):
-        return "No current download blocker is listed for these installers."
+        return "This is still a preview, but the current public downloads have recent proof for setup, recovery, offline-ready behavior, release follow-up, and support."
     if "required desktop tuple coverage is incomplete" in lowered:
         platforms: list[str] = []
         if "windows" in lowered:
@@ -1541,7 +1111,9 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
         if "macos" in lowered or "osx" in lowered:
             platforms.append("macOS")
         if platforms:
-            return _public_missing_installer_warning_line(platforms)
+            if len(platforms) == 1:
+                return f"There is still no public {platforms[0]} download."
+            return f"Public downloads are still missing for {_english_join(platforms)}."
         return "Some promised desktop downloads are still missing."
     if not _release_is_published(release_payload.get("status")) and _release_artifacts(release_payload):
         if "shelf is still empty" in cleaned.lower():
@@ -1556,9 +1128,9 @@ def _public_fix_summary(release_payload: dict[str, object]) -> str:
     if not _release_is_published(release_payload.get("status")):
         return "Fix notices stay tentative until the promoted release channel is actually published."
     if "required desktop tuple coverage is complete" in cleaned.lower():
-        return "That warning will stay in place until the missing desktop installer is available."
+        return "That warning will stay in place until the missing desktop downloads are posted."
     if cleaned.startswith("Only send fixed notices after"):
-        return "Fix notices appear after the corrected download is live on the download page."
+        return "Only expect fix notices after the affected download is available on the same public shelf."
     return cleaned
 
 
@@ -1573,46 +1145,6 @@ def _public_download_summary(artifacts: list[dict[str, object]]) -> str:
     if len(summaries) == 1:
         return summaries[0] + "."
     return _english_join(summaries) + "."
-
-
-def _desktop_tuple_coverage(release_payload: dict[str, object]) -> dict[str, object]:
-    coverage = release_payload.get("desktopTupleCoverage")
-    return coverage if isinstance(coverage, dict) else {}
-
-
-def _promoted_platform_labels(release_payload: dict[str, object], artifacts: list[dict[str, object]]) -> list[str]:
-    coverage = _desktop_tuple_coverage(release_payload)
-    promoted = {
-        str(item).strip()
-        for item in (coverage.get("promotedPlatformHeadRidTuples") or [])
-        if isinstance(item, str) and item.strip()
-    }
-    labels: list[str] = []
-    for key, label in (("windows", "Windows"), ("linux", "Linux"), ("macos", "macOS")):
-        if any(entry.endswith(f":{key}") for entry in promoted):
-            labels.append(label)
-    return labels or _artifact_platform_labels(artifacts)
-
-
-def _missing_required_platform_labels(release_payload: dict[str, object], artifacts: list[dict[str, object]]) -> list[str]:
-    coverage = _desktop_tuple_coverage(release_payload)
-    required_platforms = [
-        str(item).strip()
-        for item in (coverage.get("requiredDesktopPlatforms") or [])
-        if isinstance(item, str) and item.strip()
-    ]
-    missing = {
-        str(item).strip()
-        for item in (coverage.get("missingRequiredPlatformHeadRidTuples") or [])
-        if isinstance(item, str) and item.strip()
-    }
-    labels: list[str] = []
-    for key, label in (("windows", "Windows"), ("linux", "Linux"), ("macos", "macOS")):
-        if any(entry.endswith(f":{key}") for entry in missing):
-            labels.append(label)
-    if required_platforms or missing:
-        return labels
-    return _missing_platform_labels(artifacts)
 
 
 def _artifact_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
@@ -1633,27 +1165,11 @@ def _missing_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
     return labels
 
 
-def _public_shelf_truth_line(
-    status: object,
-    artifacts: list[dict[str, object]],
-    available_platforms: list[str] | None = None,
-    missing_platforms: list[str] | None = None,
-) -> str:
+def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]]) -> str:
     published = _release_is_published(status)
-    platforms = list(available_platforms or _artifact_platform_labels(artifacts))
-    missing = list(missing_platforms or [])
-    if published and platforms and missing:
-        return (
-            f"{_english_join(platforms)} downloads are posted; "
-            f"{_english_join(missing)} {'does' if len(missing) == 1 else 'do'} not have a normal installer yet."
-        )
+    platforms = _artifact_platform_labels(artifacts)
     if published and platforms:
-        return f"{_english_join(platforms)} downloads are posted."
-    if published and missing:
-        return (
-            "No promoted installer downloads are posted right now; "
-            f"{_english_join(missing)} {'still needs' if len(missing) == 1 else 'still need'} a normal installer."
-        )
+        return f"Downloads are currently live for {_english_join(platforms)}."
     if published:
         return "The release is published, but no downloadable files are posted right now."
     if platforms:
@@ -1661,84 +1177,13 @@ def _public_shelf_truth_line(
     return "No downloads are posted right now."
 
 
-def _public_preview_builds_line(available_platforms: list[str]) -> str:
-    if available_platforms:
-        return f"Today you can try the current builds on {_english_join(available_platforms)}."
-    return "There are no public downloads posted right now, so this is not a practical switch yet."
-
-
-def _public_wait_before_switch_line(missing_platforms: list[str]) -> str:
-    if missing_platforms:
-        return f"If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
-    return "Public downloads are already visible on the desktop platforms that are currently offered."
-
-
-def _public_missing_installer_warning_line(missing_platforms: list[str]) -> str:
-    if not missing_platforms:
-        return ""
-    if len(missing_platforms) == 1:
-        return f"{missing_platforms[0]} has archive guidance only; there is no normal installer yet."
-    return f"{_english_join(missing_platforms)} do not have normal installers yet."
-
-
-def _public_missing_installer_lane_line(missing_platforms: list[str]) -> str:
-    if not missing_platforms:
-        return "Normal installers are available on the desktop platforms that are currently offered."
-    if len(missing_platforms) == 1:
-        return f"{missing_platforms[0]} does not have a normal installer yet."
-    return f"{_english_join(missing_platforms)} do not have normal installers yet."
-
-
-def _public_architecture_scope_line(artifacts: list[dict[str, object]]) -> str:
-    rid_labels = {
-        "win-x64": "Windows x64",
-        "windows-x64": "Windows x64",
-        "win-arm64": "Windows ARM64",
-        "windows-arm64": "Windows ARM64",
-        "linux-x64": "Linux x64",
-        "linux-arm64": "Linux ARM64",
-        "osx-arm64": "macOS ARM64",
-        "macos-arm64": "macOS ARM64",
-        "osx-x64": "macOS x64",
-        "macos-x64": "macOS x64",
-    }
-    visible_rids: list[str] = []
-    for artifact in artifacts:
-        if not isinstance(artifact, dict):
-            continue
-        platform_id = str(artifact.get("platformId") or "").strip()
-        if platform_id and platform_id not in visible_rids:
-            visible_rids.append(platform_id)
-
-    visible_labels: list[str] = []
-    for rid in visible_rids:
-        label = rid_labels.get(rid)
-        if label and label not in visible_labels:
-            visible_labels.append(label)
-    missing_labels: list[str] = []
-    for rid, label in rid_labels.items():
-        if rid not in {"win-arm64", "windows-arm64", "linux-arm64", "osx-x64", "macos-x64"}:
-            continue
-        if rid in visible_rids or label in missing_labels:
-            continue
-        missing_labels.append(label)
-    if visible_labels and missing_labels:
-        return (
-            f"Desktop downloads are available for {_english_join(visible_labels)} only. "
-            f"No download is posted for {_english_join(missing_labels)} yet."
-        )
-    if visible_labels:
-        return f"Desktop downloads are available for {_english_join(visible_labels)}."
-    return "No desktop download is posted right now."
-
-
 def _public_desktop_app_name(value: object) -> str:
     cleaned = str(value or "").strip()
     mapping = {
-        "Chummer.Avalonia": "Avalonia",
-        "avalonia": "Avalonia",
-        "Chummer.Blazor.Desktop": "Blazor Desktop",
-        "blazor-desktop": "Blazor Desktop",
+        "Chummer.Avalonia": "Avalonia desktop app",
+        "avalonia": "Avalonia desktop app",
+        "Chummer.Blazor.Desktop": "Blazor desktop app",
+        "blazor-desktop": "Blazor desktop app",
     }
     return mapping.get(cleaned, cleaned or "desktop app")
 
@@ -1750,24 +1195,6 @@ def _artifact_kind_rank(value: object) -> int:
     if cleaned in {"archive", "zip", "tar.gz", "portable"}:
         return 1
     return 2
-
-
-def _public_download_artifacts(artifacts: list[dict[str, object]]) -> list[dict[str, object]]:
-    """Return only normal user-facing desktop downloads for the public guide."""
-    allowed_platforms = {"windows", "linux"}
-    allowed_kinds = {"installer"}
-    filtered: list[dict[str, object]] = []
-    for item in artifacts:
-        if not isinstance(item, dict):
-            continue
-        platform = str(item.get("platform") or item.get("platformLabel") or "").strip().lower()
-        kind = str(item.get("kind") or "").strip().lower()
-        if platform not in allowed_platforms:
-            continue
-        if kind not in allowed_kinds:
-            continue
-        filtered.append(item)
-    return filtered
 
 
 def _artifact_access_rank(value: object) -> int:
@@ -1813,14 +1240,6 @@ def _artifact_choice_label(artifact: dict[str, object]) -> str:
         str(artifact.get("platformLabel") or artifact.get("platform") or "Download").strip(),
         _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact"),
     )
-
-
-def _download_link(label: str, url: str) -> str:
-    cleaned_label = " ".join(str(label or "Download").split()).strip() or "Download"
-    cleaned_url = str(url or "").strip()
-    if not cleaned_url:
-        return cleaned_label
-    return f"[{cleaned_label}]({cleaned_url})"
 
 
 def _platform_start_line(platform_label: str, artifacts: list[dict[str, object]], missing_note: str) -> str:
@@ -1908,13 +1327,13 @@ def _artifact_posture_line(
     flagship = flagship_head.strip().lower()
     fallback = fallback_head.strip().lower()
     if fallback and head == fallback:
-        return "Fallback: use this only if the page or support recommends it for your case."
+        return "Posture: Compatibility fallback only unless the page or support explicitly recommends it for your case."
     if kind in {"archive", "zip", "tar.gz", "portable"}:
-        return "Fallback: recovery package, not the default download."
+        return "Posture: Fallback or recovery package, not an equal flagship default."
     if not published:
-        return "Preview: this file may help you try the app, but it is not the main release."
+        return "Posture: Current preview route; posted proof here is scoped to this file and flow, not the whole product."
     if flagship and head == flagship:
-        return "Recommended download for this platform."
+        return "Posture: Current primary public route for this platform."
     return None
 
 
@@ -1946,20 +1365,19 @@ def _public_verification_status(value: object) -> str:
 def _public_install_section(section: dict[str, object], release_payload: dict[str, object]) -> dict[str, object]:
     if str(section.get("id") or "").strip() != "install-update":
         return dict(section)
-    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
+    artifacts = _release_artifacts(release_payload)
     installers = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
     open_public = any(str(item.get("installAccessClass") or "").strip() == "open_public" for item in artifacts)
     published = _release_is_published(release_payload.get("status"))
     rendered = dict(section)
-    rendered["heading"] = "Get Chummer first"
+    rendered["heading"] = "Download and install first"
     if installers:
         if published:
-            rendered["body"] = "Start with the download page first, then check status if something looks off."
+            rendered["body"] = "Start with the download page. It should tell you which file to use, what is missing, and the next safe step if setup fails."
             rendered["bullets"] = [
-                "Use `Stable` for the calmer release lane.",
-                "Use `Nightly` for the newest published Windows or Linux build.",
-                "Use the Windows or Linux installer.",
-                "Create an account if you want your help history, recovery, and downloads tied to one place.",
+                "Start with the recommended installer for your platform.",
+                "Use the other package only if the installer gives you trouble.",
+                "Create an account if you want your support history, recovery, and downloads tied to one place.",
                 "If your platform is missing, the status and download pages will say so.",
             ]
         else:
@@ -1967,7 +1385,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
             rendered["bullets"] = [
                 "Start with a visibly posted preview installer for your platform.",
                 "Alternative builds and manual packages are still advanced or provisional paths.",
-                "Create an account if you want your help history, recovery, and downloads tied to one place.",
+                "Create an account if you want your support history, recovery, and downloads tied to one place.",
                 "Check the download page before assuming another platform already has a working installer.",
             ]
         return rendered
@@ -1983,7 +1401,7 @@ def _public_install_section(section: dict[str, object], release_payload: dict[st
         ),
         "Setup currently starts from a downloaded package, not an installer.",
         (
-            "Create an account if you want your help history, recovery, or future downloads tied to one place."
+            "Create an account if you want your support history, recovery, or future downloads tied to one place."
             if open_public
             else "Create an account first when the current preview requires a linked handoff."
         ),
@@ -2035,386 +1453,6 @@ def _extract_markdown_sections(
     return sections
 
 
-def _extract_video_link_sections(text: str) -> list[str]:
-    rows: list[str] = []
-    for heading, section_lines in _iter_markdown_sections(_markdown_body(text), heading_prefixes=("## ",)):
-        if heading.strip().lower() not in {"explanation video", "explanation videos"}:
-            continue
-        links = [
-            _public_copy(line.strip())
-            for line in section_lines
-            if "chummer.run/media/" in line and ".mp4" in line and ".vtt" not in line
-        ]
-        if not links:
-            continue
-        rows.extend([f"## {heading.strip()}", ""])
-        rows.extend(links)
-        rows.append("")
-    return rows
-
-
-def _build_release_truth_packet(
-    *,
-    progress: dict[str, object],
-    release_payload: dict[str, object],
-    landing_manifest: dict[str, object],
-    primary_route_registry: dict[str, object],
-    flagship_parity_registry: dict[str, object],
-) -> dict[str, object]:
-    linux_source_build_gate = _load_linux_source_build_gate_receipt()
-    macos_source_build_contract = _load_macos_source_build_contract_receipt()
-    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
-    raw_status = str(release_payload.get("status") or "unpublished").strip()
-    phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
-    published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
-    build_label = _public_build_label(str(release_payload.get("version") or "").strip())
-    jobs = [
-        item
-        for item in (primary_route_registry.get("jobs") or [])
-        if isinstance(item, dict) and isinstance(item.get("primary_route"), dict)
-    ]
-    primary_head = str(jobs[0].get("primary_route", {}).get("head") or "").strip() if jobs else "Chummer.Avalonia"
-    fallback_heads: list[str] = []
-    for item in jobs:
-        for route in item.get("fallback_routes") or []:
-            if not isinstance(route, dict):
-                continue
-            head = str(route.get("head") or "").strip()
-            if head and head != "web_supporting_surface" and head not in fallback_heads:
-                fallback_heads.append(head)
-    parity_families = [
-        item
-        for item in (flagship_parity_registry.get("families") or [])
-        if isinstance(item, dict)
-    ]
-    families_below_gold = [
-        str(item.get("id") or "").strip()
-        for item in parity_families
-        if str(item.get("release_status") or "").strip() != "gold_ready"
-    ]
-    primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
-    fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
-    available_platforms = _promoted_platform_labels(release_payload, artifacts)
-    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
-    packet = {
-        "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
-        "phase_label": phase,
-        "published_at": published_at,
-        "published_line": (
-            f"Published: {published_at}."
-            if published_at and _release_is_published(raw_status)
-            else (f"Last refreshed: {published_at}." if published_at else "")
-        ),
-        "build_label": build_label,
-        "release_status": _public_release_state(raw_status),
-        "release_status_slug": _release_status_slug(raw_status),
-        "available_platforms": available_platforms,
-        "missing_platforms": missing_platforms,
-        "shelf_truth_line": _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms),
-        "short_release_summary": "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.",
-        "desktop_pick_line": _public_desktop_choice_line(primary_app, fallback_apps),
-        "quality_gap_line": (
-            "Some rules coverage and release polish are still moving, so treat this as a serious preview rather than a finished Chummer5a replacement."
-            if families_below_gold
-            else "The core app is usable. The remaining work is desktop parity, installer polish, update polish, and deeper table continuity."
-        ),
-        "release_verification_summary": _public_release_proof_summary(release_payload),
-        "known_issue_summary": _public_known_issue_summary(release_payload),
-        "fix_availability_summary": _public_fix_summary(release_payload),
-        "missing_installer_lane_line": _public_missing_installer_lane_line(missing_platforms),
-        "architecture_scope_line": _public_architecture_scope_line(artifacts),
-        "public_download_authority": "https://chummer.run/downloads",
-        "primary_head": primary_head,
-        "fallback_heads": fallback_heads,
-    }
-    if isinstance(linux_source_build_gate, dict):
-        packet["linux_source_build_gate"] = {
-            "status": str(linux_source_build_gate.get("status") or "").strip(),
-            "generated_at_utc": str(linux_source_build_gate.get("generated_at_utc") or "").strip(),
-            "docker_image": str(linux_source_build_gate.get("docker_image") or "").strip(),
-            "rid": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("rid") or "").strip(),
-            "archive_sha256": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("archive_sha256") or "").strip(),
-            "executable_sha256": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("executable_sha256") or "").strip(),
-        }
-    if isinstance(macos_source_build_contract, dict):
-        policy = macos_source_build_contract.get("policy") or {}
-        if not isinstance(policy, dict):
-            policy = {}
-        packet["macos_source_build_contract"] = {
-            "status": str(macos_source_build_contract.get("status") or "").strip(),
-            "generated_at_utc": str(macos_source_build_contract.get("generated_at_utc") or "").strip(),
-            "scope": str(macos_source_build_contract.get("scope") or "").strip(),
-            "runtime_coverage": str(macos_source_build_contract.get("runtime_coverage") or "").strip(),
-            "real_macos_runtime_proof_required": macos_source_build_contract.get("real_macos_runtime_proof_required") is True,
-            "maintenance_policy_marks_real_build_as_macos_only": policy.get("maintenance_policy_marks_real_build_as_macos_only") is True,
-            "maintenance_policy_requires_two_step_install": policy.get("maintenance_policy_requires_two_step_install") is True,
-            "doc_marks_second_script_install": policy.get("doc_marks_second_script_install") is True,
-        }
-    return packet
-
-
-def _generate_release_truth_packet(out_dir: Path, packet: dict[str, object]) -> None:
-    _write(out_dir / PUBLIC_RELEASE_TRUTH_PACKET_NAME, json.dumps(packet, indent=2, sort_keys=True))
-
-
-def _generate_onramp_page(out_dir: Path, repo_root: Path) -> None:
-    source_path = repo_root / "products" / "chummer" / "ONRAMP_STARTER_LANE.md"
-    source_text = _load_text(source_path)
-    lines = source_text.splitlines()
-    if lines and lines[0].startswith("# "):
-        lines = ["# Onramp"] + lines[1:]
-    doc_path = out_dir / "ONRAMP.md"
-    rows = [
-        _front_matter("Onramp", "products/chummer/ONRAMP_STARTER_LANE.md"),
-        *lines,
-        "",
-    ]
-    image_rows = _image_rows(
-        doc_path=doc_path,
-        out_dir=out_dir,
-        asset_path="assets/pages/onramp.png",
-        alt="Onramp starter path art",
-    )
-    if image_rows:
-        insert_at = 3 if len(rows) > 3 else len(rows)
-        rows[insert_at:insert_at] = ["", *image_rows, ""]
-    _write(doc_path, "\n".join(rows))
-
-
-def _generate_start_here_page(out_dir: Path, repo_root: Path) -> None:
-    doc_path = out_dir / "START_HERE.md"
-    source_rows = _load_text(repo_root / "products" / "chummer" / "START_HERE.md").splitlines()
-    internal_headings = {
-        "## I am maintaining the product",
-        "## I am planning the next product wave",
-    }
-    public_rows: list[str] = []
-    skip_internal_section = False
-    for row in source_rows:
-        if row.startswith("## "):
-            skip_internal_section = row.strip() in internal_headings
-            if skip_internal_section:
-                continue
-        if skip_internal_section:
-            continue
-        public_rows.append(row)
-    source_rows = public_rows
-    if not source_rows:
-        source_rows = [
-            "# Start Here",
-            "",
-            "## I want to try Chummer",
-            "",
-            "Start here: [Download](DOWNLOAD.md)",
-            "",
-            "## I am new, rusty, or coming back from Chummer5a",
-            "",
-            "Start here: [first session guide](ONRAMP.md)",
-            "",
-            "## I want to know what works today",
-            "",
-            "Start here: [Status](STATUS.md)",
-            "",
-            "## I want to understand the pitch",
-            "",
-            "Start here: [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-            "",
-            "## I want the campaign layer",
-            "",
-            "Start here: [Runner Passport](RUNNER_PASSPORT.md) and [Living World](LIVING_WORLD.md)",
-            "",
-            "## I want help or recovery",
-            "",
-            "Start here: [Help](HELP.md)",
-            "",
-            "## I want to report or contribute",
-            "",
-            "Start here: [Contact](CONTACT.md)",
-        ]
-
-    rows = [
-        _front_matter("Start Here", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
-        *source_rows,
-        "",
-    ]
-    rows.extend(
-        _image_rows(
-            doc_path=doc_path,
-            out_dir=out_dir,
-            asset_path="assets/pages/start-here.png",
-            alt="Start here banner",
-        )
-    )
-    _write(doc_path, "\n".join(rows))
-
-
-def _generate_live_route_pages(out_dir: Path, repo_root: Path, new_section_verdict: dict[str, object]) -> set[str]:
-    generated: set[str] = set()
-    for filename in ("RUNNER_PASSPORT.md", "SIGNAL_DECK.md", "LIVING_WORLD.md"):
-        stale_path = out_dir / filename
-        if stale_path.exists():
-            stale_path.unlink()
-    sections = new_section_verdict.get("sections") or []
-    if not isinstance(sections, list):
-        return generated
-    for entry in sections:
-        if not isinstance(entry, dict):
-            continue
-        section_id = str(entry.get("id") or "").strip()
-        verdict = str(entry.get("public_guide_verdict") or "").strip()
-        if verdict != "public_route_live":
-            continue
-        if section_id == "runner-passport":
-            rows = [
-                _front_matter("Runner Passport", "products/chummer/RUNNER_PASSPORT_SPEC.md"),
-                "# Runner Passport",
-                "",
-                "Runner Passport answers the question a GM actually asks before letting a character into a run: \"Can this runner sit at my table without turning setup into homework?\"",
-                "",
-                "It gives the organizer a clean character summary, the active ruleset, unresolved warnings, and what still needs a GM decision. The player does not have to paste half a dossier into chat, and the GM does not have to reverse-engineer the sheet from screenshots.",
-                "",
-                "## What you send",
-                "",
-                "When you are applying for an open run, joining a community game, or carrying a runner between tables, send the [passport page](https://chummer.run/passport).",
-                "",
-                "## A normal example",
-                "",
-                "A player sends one link for Kestrel: street-level infiltrator, legal SIN warning, two GM notes still unresolved. The GM sees the ruleset, the warnings, and whether the runner is ready for tonight without asking for three screenshots and a small archaeological dig through chat.",
-                "",
-                "## What the GM sees",
-                "",
-                "Identity, ruleset, review state, warnings, expiry, and the remaining GM calls sit together so the runner can be accepted, questioned, or sent back for changes quickly.",
-                "",
-                "## What it is not",
-                "",
-                "It is not a social score, a hidden reputation system, or a way for Chummer to overrule the GM. It should help a table say yes, no, or fix this first without becoming a reputation score.",
-                "",
-                "## Around the table",
-                "",
-                "When a table also uses Table Pulse, Runner Passport carries the clean character summary while the live review and aftermath work stays in Chummer.",
-                "",
-                "After that, [Living World](LIVING_WORLD.md) keeps the consequences together and [Help](HELP.md) is the fallback when a passport or build does not behave.",
-                "",
-            ]
-            _write(out_dir / "RUNNER_PASSPORT.md", "\n".join(rows))
-            generated.add("runner-passport")
-        elif section_id == "signal-deck":
-            rows = [
-                _front_matter("Signal Deck", "products/chummer/SIGNAL_DECK_SPEC.md"),
-                "# Signal Deck",
-                "",
-                "Signal Deck answers the GM-side question after players react: \"What pressure is still on the table, and who has to decide next?\"",
-                "",
-                "It is for GMs and organizers who need pending consequences, faction pressure, and follow-up to stay visible without digging through scattered recaps.",
-                "",
-                "## When you use it",
-                "",
-                "Use Signal Deck when Table Pulse reactions have created things the table still needs to resolve. The page lives at `/signal-deck`, but the feature is not the route; it is the pressure board that keeps the next GM decision from disappearing into recap sludge.",
-                "",
-                "## What it keeps clear",
-                "",
-                "Signal Deck keeps consequence pressure visible after inbox reactions, keeps the next command decision inside Chummer instead of buried in recap text, and connects leader briefing, Living Newsroom, Runner Passport, and aftermath follow-up.",
-                "",
-                "## What it is not",
-                "",
-                "It does not replace the GM, decide the world by itself, or turn campaign play into an admin chore with nicer typography.",
-                "",
-                "## How it fits",
-                "",
-                "Signal Deck is the command-facing side of the signed-in Table Pulse loop. It sits beside leader briefing, GM cockpit, Living Newsroom, aftermath follow-up, and Runner Passport continuity.",
-                "",
-                "## Read next",
-                "",
-                "- [Black Ledger notifications](/account/ledger/notifications)",
-                "- [Leader briefing](/account/ledger/factions/ashline-circle/leader-briefing)",
-                "- [Runner Passport](RUNNER_PASSPORT.md)",
-                "- [Aftermath workspace](/account/work#aftermath-packages)",
-                "- [Black Ledger](HORIZONS/black-ledger.md)",
-                "- [Table Pulse](HORIZONS/table-pulse.md)",
-            ]
-            _write(out_dir / "SIGNAL_DECK.md", "\n".join(rows))
-            generated.add("signal-deck")
-        elif section_id == "living-world-engagement":
-            read_next = []
-            if "signal-deck" in generated:
-                read_next.append("- [Signal Deck](SIGNAL_DECK.md)")
-            read_next.extend(
-                [
-                    "- [Runner Passport](RUNNER_PASSPORT.md)",
-                    "- [Table Pulse](HORIZONS/table-pulse.md)",
-                ]
-            )
-            rows = [
-                _front_matter("Living World", "products/chummer/LIVING_WORLD_SPEC.md"),
-                "# Living World",
-                "",
-                "Living World is the between-session page for tables that want campaign consequences to stay visible after the session ends.",
-                "",
-                "It is for GMs and players who want the world to remember what just happened without turning Chummer into an automatic storyteller with a clipboard.",
-                "",
-                "## When you use it",
-                "",
-                "Use the [Living World page](https://chummer.run/living-world) when a session leaves news, faction movement, or aftermath choices on the table and you want to keep the consequences together so the GM does not rebuild them from chat fragments.",
-                "",
-                "## What it gives the table",
-                "",
-                "A place for watch packages, inbox reactions, leader briefings, Runner Passport continuity, and aftermath follow-up to stay attached to the same turn instead of spreading across five chats and half a brain's worth of memory.",
-                "",
-                "## What it is not",
-                "",
-                "It does not replace the GM, reveal secrets, or run the campaign by itself.",
-                "",
-                "If the next question is whether a runner belongs at the table, use [Runner Passport](RUNNER_PASSPORT.md). If the table wants live pressure during play, read [Table Pulse](HORIZONS/table-pulse.md).",
-                "",
-            ]
-            _write(out_dir / "LIVING_WORLD.md", "\n".join(rows))
-            generated.add("living-world-engagement")
-    newsroom_read_next = []
-    if "living-world-engagement" in generated:
-        newsroom_read_next.append("- [Living World](LIVING_WORLD.md)")
-    if "signal-deck" in generated:
-        newsroom_read_next.append("- [Signal Deck](SIGNAL_DECK.md)")
-    if "runner-passport" in generated:
-        newsroom_read_next.append("- [Runner Passport](RUNNER_PASSPORT.md)")
-    newsroom_read_next.extend(
-        [
-            "- [Help](HELP.md)",
-        ]
-    )
-    rows = [
-        _front_matter("Black Ledger Newsroom", "products/chummer/BLACK_LEDGER_NEWSROOM_CANON.md"),
-        "# Black Ledger Newsroom",
-        "",
-        "Black Ledger Newsroom turns selected campaign events into believable in-world video bulletins.",
-        "",
-        "It should feel like a real broadcast from the Chummer world, not a website animation.",
-        "",
-        "## Where to watch",
-        "",
-        "Start with the [Black Ledger newsroom](https://chummer.run/ledger/newsroom). A [sample episode](https://chummer.run/ledger/newsroom/turn-1-newsreel) has its transcript and supporting details beside it.",
-        "",
-        "## What to look for",
-        "",
-        "A good bulletin keeps the host, lower thirds, captions, audio, transcript, and supporting details together. It should feel like an in-world broadcast made from selected campaign events, while staying clear when footage is reconstructed rather than literal table capture.",
-        "",
-        "## What stays out",
-        "",
-        "- No private campaign details.",
-        "- No runner names without consent.",
-        "- No GM secrets.",
-        "- No sourcebook text.",
-        "- No real person or public figure likenesses.",
-        "- No tool branding or marketing promises the current page cannot support.",
-        "",
-        "## Read next",
-        "",
-        *newsroom_read_next,
-    ]
-    _write(out_dir / "BLACK_LEDGER_NEWSROOM.md", "\n".join(rows))
-    generated.add("black-ledger-newsroom")
-    return generated
-
-
 def _generate_root(
     out_dir: Path,
     manifest: dict[str, object],
@@ -2426,8 +1464,6 @@ def _generate_root(
     release_payload: dict[str, object],
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
-    release_truth_packet: dict[str, object] | None = None,
-    generated_live_route_ids: set[str] | None = None,
 ) -> None:
     doc_path = out_dir / "README.md"
     parts = [item for item in (part_registry.get("parts") or []) if isinstance(item, dict)]
@@ -2444,20 +1480,61 @@ def _generate_root(
     proof_line = str(landing_manifest.get("proof_line") or "").strip()
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
-    packet = release_truth_packet or _build_release_truth_packet(
-        progress=progress,
-        release_payload=release_payload,
-        landing_manifest=landing_manifest,
-        primary_route_registry=primary_route_registry,
-        flagship_parity_registry=flagship_parity_registry,
+    published = _release_is_published(release_payload.get("status"))
+    shelf_truth = _public_shelf_truth_line(release_payload.get("status"), artifacts)
+    primary_jobs = [
+        item
+        for item in (primary_route_registry.get("jobs") or [])
+        if isinstance(item, dict) and isinstance(item.get("primary_route"), dict)
+    ]
+    primary_head = ""
+    fallback_heads: list[str] = []
+    if primary_jobs:
+        primary_head = str(primary_jobs[0].get("primary_route", {}).get("head") or "").strip()
+        for item in primary_jobs:
+            for route in item.get("fallback_routes") or []:
+                if not isinstance(route, dict):
+                    continue
+                head = str(route.get("head") or "").strip()
+                if head and head != "web_supporting_surface" and head not in fallback_heads:
+                    fallback_heads.append(head)
+    parity_families = [
+        item
+        for item in (flagship_parity_registry.get("families") or [])
+        if isinstance(item, dict)
+    ]
+    families_below_gold = [
+        str(item.get("id") or "").strip()
+        for item in parity_families
+        if str(item.get("release_status") or "").strip() != "gold_ready"
+    ]
+    primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
+    fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
+    missing_platforms = _missing_platform_labels(artifacts)
+    proof_scope_line = str(
+        landing_manifest.get("product_proof_scope_line")
+        or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
+    ).strip()
+    claim_boundary_line = str(
+        landing_manifest.get("product_flagship_boundary_line")
+        or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
+    ).strip()
+    desktop_pick_line = (
+        f"If you see both desktop apps, start with the {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
+        if fallback_apps
+        else f"If more than one desktop app is offered, start with the {primary_app}."
     )
-    missing_platforms = list(packet.get("missing_platforms") or [])
+    quality_gap_line = (
+        "Some rules coverage and release polish are still moving, so treat this as a preview with inspectable proof rather than a flagship-complete replacement."
+        if families_below_gold
+        else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
+    )
 
     cta_map = {
-        "start_here": "- [Start Here](START_HERE.md)",
+        "start_here": "- [Start here](START_HERE.md)",
         "current_status": "- [Status](STATUS.md)",
         "what_chummer6_is": "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-        "participate": "- [Contact](CONTACT.md)",
+        "participate": "- [How can I help](HOW_CAN_I_HELP.md)",
         "download": "- [Download](DOWNLOAD.md)",
     }
     ordered_ctas: list[str] = []
@@ -2467,19 +1544,12 @@ def _generate_root(
             if line and line not in ordered_ctas:
                 ordered_ctas.append(line)
     extra_routes = [
-        "- [First session guide](ONRAMP.md)",
         "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
         "- [Contact](CONTACT.md)",
-        "- [Campaign tools](HORIZONS/README.md)",
+        "- [Future ideas](HORIZONS/README.md)",
     ]
-    if generated_live_route_ids and "runner-passport" in generated_live_route_ids:
-        extra_routes.insert(1, "- [Runner Passport](RUNNER_PASSPORT.md)")
-    if generated_live_route_ids and "signal-deck" in generated_live_route_ids:
-        extra_routes.insert(2, "- [Signal Deck](SIGNAL_DECK.md)")
-    if generated_live_route_ids and "living-world-engagement" in generated_live_route_ids:
-        extra_routes.insert(3, "- [Living World](LIVING_WORLD.md)")
     for line in extra_routes:
         if line not in ordered_ctas:
             ordered_ctas.append(line)
@@ -2488,142 +1558,116 @@ def _generate_root(
         _front_matter("Chummer6", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "# Chummer6",
         "",
-        "Build a Shadowrun runner, see why the numbers changed, and keep game night moving when the campaign gets messy.",
+        "Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.",
         "",
-        "If you are here to decide whether this is worth your time, the honest pitch is simple: Chummer6 is trying to make dense Shadowrun character work readable again without sanding away the parts veteran players care about.",
+        "## Product promise",
         "",
-        "## Start here if you just want the answer",
+        "Chummer6 helps Shadowrun players and GMs build runners, explain rulings, and keep campaigns moving without mystery math.",
         "",
-        "Use [Download](DOWNLOAD.md) for files, [Status](STATUS.md) for the blunt current state, and [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md) if you already know the old app and want to know whether switching is sane.",
+        "Its first must-win job is being the most trustworthy way to build, inspect, and advance a Shadowrun character.",
         "",
-        f"{str(packet.get('shelf_truth_line') or _public_shelf_truth_line(release_payload.get('status'), artifacts)).strip()}",
-        f"{str(packet.get('short_release_summary') or '').strip()}",
-        (
-            f"{str(packet.get('desktop_pick_line') or '').strip()} "
-            f"{str(packet.get('quality_gap_line') or '').strip()}"
-        ).strip(),
+        "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward.",
+        "",
+        "## What is real now",
+        "",
+        "- Short answer: yes, as an early preview.",
+        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        f"- {desktop_pick_line}",
+        "- Use Avalonia first when the download page offers it.",
+        f"- {quality_gap_line}",
     ]
+    if phase:
+        rows.append(f"- Today: {phase}.")
     rows.extend(
         [
-            "",
-            "## Why it exists",
-            "",
-            "Shadowrun characters carry a lot of math, choices, edge cases, and table agreements. Chummer6 is for the moment when someone asks, \"why did that number change?\" and the table deserves a better answer than shoulder-shrugging and memory.",
-            "",
-            "When a dice pool changes, the table should see why. When a device drops, the whole night should not fall apart. When a session starts soon, the next useful action should be obvious.",
-            "",
-            "## What should feel different",
-            "",
-            "The numbers should explain themselves faster. New or rusty users should have a first-session path. Help should be easy to find before frustration takes over. The rough edges are still installer polish, update polish, support polish, and deeper table continuity.",
+            (
+                f"- Still missing from the public download page: {_english_join(missing_platforms)}."
+                if missing_platforms
+                else "- Public downloads are visible on every promised desktop platform."
+            ),
+            "- The current shelf should be read as a real preview, not a finished no-step-back release.",
+            "- Help, contact, privacy, and terms pages are live.",
+            (
+                "- More campaign-ledger depth and steadier desktop polish are still coming."
+                if post_audit_closed and active_registry_status in {"in_progress", "complete"}
+                else "- Broader desktop support and more product polish are still coming."
+            ),
             "",
         ]
     )
-    extra_cta_links = [
-        link.lstrip("- ").strip()
-        for link in ordered_ctas
-        if link
-        not in {
-            "- [Start Here](START_HERE.md)",
-            "- [First session guide](ONRAMP.md)",
+    rows.extend(
+        [
+            "## Start here",
+            "",
+            "- [Download builds](DOWNLOAD.md)",
             "- [Status](STATUS.md)",
+            "- [Current status](NOW/current-status.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
-            "- [Download](DOWNLOAD.md)",
-            "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
-        }
-    ]
+            "- [Moving from Chummer5a](FROM_CHUMMER5A_TO_CHUMMER6.md)",
+        ]
+    )
+    rows.extend(
+        [
+            line
+            for line in ordered_ctas
+            if line
+            not in {
+                "- [Start here](START_HERE.md)",
+                "- [Status](STATUS.md)",
+                "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+                "- [Download](DOWNLOAD.md)",
+                "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
+            }
+        ]
+    )
     rows.extend(
         [
             "",
-            "## Help and feedback",
+            "## How can I help?",
             "",
-            "If something breaks, start with [Help](HELP.md) or [Contact](CONTACT.md). Use the participation page only when you want hands-on testing or focused public follow-up.",
+            "Use the public participation path when you want to report a problem, flag confusing guide copy, or suggest a future improvement.",
             "",
-            "If you want to help test a fix, use the [participation page](https://chummer.run/participate). Most people do not need that path; a clear bug report, a confusing sentence, or a screenshot of the broken thing is already useful.",
+            "- [Open the public participation page](https://chummer.run/participate)",
+            "- [File a public issue](https://github.com/ArchonMegalon/Chummer6/issues)",
+            "- Guided contribution is optional and still goes through review before anything lands.",
             "",
         ]
     )
-    hero_rows = _image_rows(
-        doc_path=doc_path,
-        out_dir=out_dir,
-        asset_path="assets/hero/chummer6-hero.png",
-        alt="Chummer6 overview video preview",
-        href="https://chummer.run/media/promo/every-wonder-horizon-promo.mp4",
-        title="Play the Chummer6 overview video",
-    )
+    hero_rows = _image_rows(doc_path=doc_path, out_dir=out_dir, asset_path="assets/hero/chummer6-hero.png", alt="Chummer6 flagship hero art")
     if hero_rows:
         rows.extend(["## First contact", ""])
         rows.extend(hero_rows)
-        rows.extend(
-            [
-                "",
-                "[Watch the Chummer6 overview video](https://chummer.run/media/promo/every-wonder-horizon-promo.mp4).",
-            ]
-        )
     rows.extend(
         [
             "",
-            "## Campaign tools and client features",
+            "## Why people care",
             "",
-            "[Runner Passport](RUNNER_PASSPORT.md) gives a GM a clean character summary. [Living World](LIVING_WORLD.md) keeps aftermath and consequences in one place. [Campaign tools](HORIZONS/README.md) covers ALICE, Origin Dossier, Table Pulse, Jackpoint, Runsite, Runbook Press, and Karma Forge.",
+            "- It shows why a number changed instead of hiding the math.",
+            "- It is being built to keep sessions and campaigns recoverable when devices or connectivity drift.",
+            "- The status, downloads, and help story is meant to stay in plain sight instead of being scattered.",
             "",
-            "Use [Features](FEATURES/README.md) for base-client capabilities such as NEXUS-PAN, Run Control, Edition Studio, Community Hub, Ghostwire, Local Co-Processor, and Quicksilver.",
+            "## Product parts",
+            "",
+            "- [Parts index](PARTS/README.md): an inside view of how the app is put together.",
+            "- [Horizons index](HORIZONS/README.md): future ideas that are not ready today.",
         ]
     )
 
-    _write(doc_path, "\n".join(rows))
+    if isinstance(help_page, dict):
+        intro = str(help_page.get("intro") or "").strip()
+        if intro:
+            rows.extend(
+                [
+                    "",
+                    "## Need help",
+                    "",
+                    _public_copy(intro),
+                    "",
+                    "- Start with [Help](HELP.md) if install, updates, sign-in, or bugs are getting in the way.",
+                    "- Use [Contact](CONTACT.md) when you want to report a problem or send feedback.",
+                ]
+            )
 
-
-def _generate_what_chummer6_is(out_dir: Path) -> None:
-    doc_path = out_dir / "WHAT_CHUMMER6_IS.md"
-    rows = [
-        _front_matter("What Chummer6 Is", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
-        "# What Chummer6 Is",
-        "",
-        "Chummer6 is Shadowrun tooling for character builds, rulings, prep, and session continuity.",
-        "",
-        "The short version: it should help a player or GM understand the character, the numbers, and the next table decision faster than digging through notes or arguing from memory.",
-        "",
-    ]
-    rows.extend(
-        _image_rows(
-            doc_path=doc_path,
-            out_dir=out_dir,
-            asset_path="assets/pages/what-chummer6-is.png",
-            alt="What Chummer6 is banner",
-        )
-    )
-    rows.extend(
-        [
-            "## The table moment it is built for",
-            "",
-            "A player asks why a dice pool changed. The GM wants to keep the scene moving. Chummer6 should show the base pool, each modifier, and the final number in a way both people can follow.",
-            "",
-            "A tiny example:",
-            "",
-            "- Base pool: 11",
-            "- Wounds: -1",
-            "- Sustaining: -1",
-            "- Weather: -1",
-            "- Final pool: 8",
-            "",
-            "That is the product in miniature: less archive-diving, fewer mystery numbers, and a faster return to play.",
-            "",
-            "## What you should notice",
-            "",
-            "Fewer pauses when a number changes. Clearer explanations for rules and modifiers. Better recovery when a device, update, or connection gets in the way. A cleaner home for custom rules, era differences, and table notes. Campaign tools that support the table without replacing the GM.",
-            "",
-            "## What works today",
-            "",
-            "Use [Status](STATUS.md) for the current answer and [Download](DOWNLOAD.md) for the files. Windows and Linux have normal downloads today. macOS is still preview-only.",
-            "",
-            "## Why there are multiple parts",
-            "",
-            "The character builder, rules explanation, prep tools, campaign layer, media work, and long-range ideas are separate because they solve different problems. Most users only need the builder, the current status, and help pages; the rest is for people who want to understand where the campaign side is going.",
-            "",
-            "If you want the map behind the product, open [Parts](PARTS/README.md). If you just want to try Chummer6, start with [Download](DOWNLOAD.md).",
-            "",
-        ]
-    )
     _write(doc_path, "\n".join(rows))
 
 
@@ -2666,12 +1710,22 @@ def _generate_from_chummer5a_to_chummer6(
     ]
     primary_app = _public_desktop_app_name(primary_head)
     fallback_app = _english_join([_public_desktop_app_name(item) for item in fallback_heads])
-    available_platforms = _promoted_platform_labels(release_payload, artifacts)
-    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
+    available_platforms = _artifact_platform_labels(artifacts)
+    missing_platforms = _missing_platform_labels(artifacts)
     rules_gap_line = (
         "Some rules coverage is still moving, so keep treating this as a preview."
         if below_gold
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
+    )
+    switch_now_line = (
+        f"Today you can try preview builds on {_english_join(available_platforms)}."
+        if available_platforms
+        else "There are no public downloads posted right now, so this is not a practical switch yet."
+    )
+    wait_platform_line = (
+        f"If you rely on {_english_join(missing_platforms)} as your main platform, wait before switching full time."
+        if missing_platforms
+        else "Public downloads are already visible on every promised desktop platform."
     )
 
     rows = [
@@ -2680,84 +1734,134 @@ def _generate_from_chummer5a_to_chummer6(
         "",
         "This page is for Chummer5a users who want the blunt answer: what still feels familiar, what gets better, and whether now is the right time to switch.",
         "",
+    ]
+    rows.extend(
+        [
         "## What will feel familiar",
         "",
-        "It is still aiming for a dense desktop workbench, not a stripped-down dashboard. Character editing, file work, settings, and roster tasks are supposed to stay close at hand.",
-        "",
+        "- It is still aiming for a dense desktop workbench, not a stripped-down dashboard.",
+        "- Character editing, file work, settings, and roster tasks are supposed to stay close at hand.",
         (
-            _public_desktop_choice_line(primary_app, [_public_desktop_app_name(item) for item in fallback_heads])
+            f"- If both desktop apps appear for your platform, the {primary_app} is the main one to try and the {fallback_app} is the fallback path only when the download page or support explicitly tells you to use it."
             if fallback_app
-            else f"If more than one desktop app appears for your platform, start with the {primary_app}."
+            else f"- If more than one desktop app appears for your platform, start with the {primary_app}."
         ),
         "",
         "## What gets better",
         "",
-        "It tries to show why a number changed instead of leaving you with a total and no explanation. Recovery and continuity are being treated as core product work, not as an afterthought. Status, downloads, and help are easier to find without digging around for the current answer.",
+        "- It tries to show why a number changed instead of leaving you with mystery math.",
+        "- Recovery and continuity are being treated as core product work, not as an afterthought.",
+        "- Status, downloads, and help are easier to find without digging around for the current answer.",
         "",
-        "## Should you switch today?",
+        "## What the switch looks like in practice",
         "",
-        f"{_public_preview_builds_line(available_platforms)} {_public_wait_before_switch_line(missing_platforms)}",
-        "",
-        "If you like trying real previews and helping shape the rough edges, it is worth a serious look. If you need a fully settled, every-platform replacement for Chummer5a right now, wait.",
+        "| If this is what you do in Chummer5a | Expect this in Chummer6 |",
+        "| --- | --- |",
+        "| Build or tweak a runner | A similar dense desktop flow, but with a stronger push to explain why totals changed. |",
+        "| Chase a weird modifier | A clearer receipt trail instead of reconstructing the math from memory. |",
+        "| Come back after a bad install, lost device, or broken update | Recovery, download, and help are treated as product work instead of an afterthought. |",
+        "| Check whether the preview is ready for you | The status page, download shelf, and help page are meant to answer that directly. |",
         "",
         "## What is still rough",
         "",
-        f"{_public_shelf_truth_line(release_payload.get('status'), artifacts, available_platforms, missing_platforms)} {rules_gap_line}",
+        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        f"- {rules_gap_line}",
+        f"- {wait_platform_line}",
+        "- Treat the current shelf as a serious preview, not a fully settled every-platform replacement yet.",
         "",
-        "It should still be read as a serious preview, not a finished no-step-back replacement yet.",
+        "## Should you switch today?",
         "",
-        "## Next",
+        f"- {switch_now_line}",
         "",
-        "Check [Status](STATUS.md), then [Download](DOWNLOAD.md). If you want the broader explanation before installing, read [What Chummer6 Is](WHAT_CHUMMER6_IS.md).",
-    ]
+        "### If you mostly live on Windows and like testing real previews",
+        "",
+        "- It is worth a serious look.",
+        "",
+        "### If Linux or macOS is your daily route",
+        "",
+        "- Wait until your platform is on the public shelf before making it your main path.",
+        "",
+        "### If you need a settled replacement this week",
+        "",
+        "- Wait if you need a no-drama every-platform swap right now.",
+        "",
+        "## Read next",
+        "",
+        "- [Status](STATUS.md)",
+        "- [Download builds](DOWNLOAD.md)",
+        "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
+        "- [Help](HELP.md)",
+        "",
+        "## First things to compare for yourself",
+        "",
+        "- menu and toolbar density",
+        "- the builder flow",
+        "- roster behavior",
+        "- settings and account recovery",
+        "- import and export paths",
+        ]
+    )
     _write(out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md", "\n".join(rows))
 
 
 def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
-    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
-    available_platforms = _promoted_platform_labels(release_payload, artifacts)
-    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
+    artifacts = _release_artifacts(release_payload)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
     published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
     raw_status = str(release_payload.get("status") or "unpublished").strip()
     release_status = _public_release_state(raw_status)
     release_verification = _public_release_proof_summary(release_payload)
     published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
-    shelf_truth = _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms)
+    shelf_truth = _public_shelf_truth_line(raw_status, artifacts)
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
+    missing_platforms = _missing_platform_labels(artifacts)
+    closure = (
+        progress.get("closure_semantics")
+        or (progress.get("supporting_signals") or {}).get("closure_semantics")
+        or {}
+    )
+    closure_front_door = str(closure.get("front_door_closeout") or "").strip().lower()
+    closure_substrate = str(closure.get("substrate_proof_lane") or "").strip().lower()
+    closure_substrate_contracts = list(
+        dict.fromkeys(
+            str(item).strip()
+            for item in (progress.get("substrate_contract_sets_in_progress") or (progress.get("supporting_signals") or {}).get("substrate_contract_sets_in_progress") or [])
+            if str(item).strip()
+        )
+    )
+    closure_statement = _status_closure_readout(closure_front_door, closure_substrate, closure_substrate_contracts)
     rows = [
         _front_matter("Status", "products/chummer/PROGRESS_REPORT.generated.json"),
         "# Status",
         "",
-        "Use this page to see whether the current public build is ready for you.",
+        "This is the blunt answer on what you can use today.",
         "",
     ]
     overall = progress.get("overall_progress_percent")
     phase = _public_phase_label(progress.get("phase_label"))
     if overall is not None or phase:
-        rows.extend(["## The answer", ""])
+        rows.extend(["## Current picture", ""])
         if phase:
-            rows.append(f"Today: {phase}.")
-        rows.append(f"{shelf_truth}")
-        rows.append(f"{_public_architecture_scope_line(artifacts)}")
-        if missing_platforms:
-            rows.append(f"{_public_missing_installer_lane_line(missing_platforms)}")
-        if release_verification:
-            rows.append(f"{release_verification}")
-        if known_issues:
-            rows.append(f"{known_issues}")
-        rows.append("Help, contact, privacy, and terms pages are live.")
-        if published_at or release_status or version:
-            rows.extend(["", "## Release details", ""])
+            rows.append(f"- Today: {phase}.")
+        if version:
+            rows.append(f"- Build label: `{version}`.")
         if published_at:
             rows.append(f"- {published_label}: {published_at}.")
         if release_status:
             rows.append(f"- Release status: {release_status}.")
-        if version:
-            rows.append(f"- Build label: `{version}`.")
+        rows.append(f"- {shelf_truth}")
+        if missing_platforms:
+            rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
+        if release_verification:
+            rows.append(f"- Recent checks: {release_verification}")
+        if known_issues:
+            rows.append(f"- {known_issue_label}: {known_issues}")
+        if closure_statement:
+            rows.append(f"- {closure_statement}")
+        rows.append("- Help, contact, privacy, and terms pages are live.")
         rows.append("")
 
     if isinstance(help_page, dict):
@@ -2767,164 +1871,35 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     _write(out_dir / "STATUS.md", "\n".join(rows))
 
 
-def _generate_now_pages(out_dir: Path, release_payload: dict[str, object]) -> None:
-    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
-    raw_status = str(release_payload.get("status") or "unpublished").strip()
-    available_platforms = _promoted_platform_labels(release_payload, artifacts)
-    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
-    shelf_truth = _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms)
-    platform_scope = _public_architecture_scope_line(artifacts)
-
-    current_status_rows = [
-        _front_matter("Current Status", "products/chummer/PROGRESS_REPORT.generated.json"),
-        "# Current Status",
-        "",
-        shelf_truth,
-        "",
-        platform_scope,
-        "",
-        "Start with [Download](../DOWNLOAD.md), then [Help](../HELP.md) if installation, updates, or sign-in go sideways.",
-        "",
-    ]
-    if missing_platforms:
-        current_status_rows.extend(
-            [
-                _public_missing_installer_lane_line(missing_platforms),
-                "",
-            ]
-        )
-    current_status_rows.extend(
-        [
-            "For the fuller explanation, read [Status](../STATUS.md).",
-            "",
-        ]
-    )
-    _write(out_dir / "NOW" / "current-status.md", "\n".join(current_status_rows))
-
-    public_surfaces_rows = [
-        _front_matter("Live Pages", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
-        "# Live Pages",
-        "",
-        "These are the pages that should answer the normal first questions without making you learn the project map first.",
-        "",
-        "- [Download](../DOWNLOAD.md)",
-        "- [Status](../STATUS.md)",
-        "- [Help](../HELP.md)",
-        "- [FAQ](../FAQ.md)",
-        "- [Contact](../CONTACT.md)",
-        "",
-    ]
-    _write(out_dir / "NOW" / "public-surfaces.md", "\n".join(public_surfaces_rows))
-
-
-def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:
+def _generate_help(
+    out_dir: Path,
+    help_copy: str,
+    trust_payload: dict[str, object],
+    release_payload: dict[str, object],
+) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     rows = [
         _front_matter("Help", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# Help",
         "",
-        "Start here if installation, updates, sign-in, or bugs are getting in the way.",
+        "If you just need the right file, go to [Download](DOWNLOAD.md). If something broke, start here instead of guessing.",
+        "",
+        "## Quick triage",
+        "",
+        "- **Installer will not start:** Start with the recommended download for your platform, then contact support if setup still fails.",
+        "- **I cannot sign in:** Use the account recovery flow before trying random reinstall steps.",
+        "- **I lost access:** Use recovery email or the account page so identity and device problems stay separate.",
+        "- **An update failed:** Go back to the current download page, then contact support with the version and platform if the retry still fails.",
+        "- **I need to report a bug:** Use [Contact](CONTACT.md) first. Use GitHub only when you want a public bug thread.",
+        "- **I need private help:** Use Contact or in-account support instead of posting private details publicly.",
         "",
     ]
     if isinstance(help_page, dict):
         for section in help_page.get("sections") or []:
             if isinstance(section, dict):
                 rows.extend(_section_rows(_public_install_section(section, release_payload)))
-    rows.extend(
-        [
-            "Use Contact when logs, screenshots, crash details, or account details are involved.",
-            "",
-        ]
-    )
     _write(out_dir / "HELP.md", "\n".join(rows))
-
-
-def _generate_how_can_i_help(out_dir: Path) -> None:
-    rows = [
-        _front_matter("How Can I Help?", "products/chummer/PUBLIC_HELP_COPY.md"),
-        "# How Can I Help?",
-        "",
-        "Send the moment that failed. Include what you tried, what happened, and what you expected.",
-        "",
-        "A short, concrete report is more useful than a perfect template.",
-        "",
-        "## Something broke",
-        "",
-        "Use public feedback when the bug is safe to discuss in public. Use Chummer Help or Contact for crashes, account trouble, private logs, campaign spoilers, or anything with personal data.",
-        "",
-        "Tell us the page, build, operating system, and the shortest path that reproduces the problem. A screenshot is welcome when it saves everyone from guessing.",
-        "",
-        "## Something was confusing",
-        "",
-        "Point to the exact sentence, screen, or download step that lost you. If you came from Chummer5a, say which old habit did not map cleanly. That is how the docs get less weird.",
-        "",
-        "## You have an idea",
-        "",
-        "Feature requests are welcome when they describe a real table problem. \"I need this because my GM/player/table does X\" beats a broad roadmap wish every time.",
-        "",
-        "Public ideas are public, so keep private campaign material out of them.",
-        "",
-        "## You want to test a fix",
-        "",
-            "Use the [participation page](https://chummer.run/participate) when you want hands-on testing or focused follow-up. For normal public reports, start with [Help](https://chummer.run/help) or [Contact](https://chummer.run/contact).",
-        "",
-        "Participation is optional. It does not replace normal feedback, does not bypass review, and does not make a change real until it lands in an actual release.",
-        "",
-    ]
-    _write(out_dir / "HOW_CAN_I_HELP.md", "\n".join(rows))
-
-
-def _generate_where_to_go_deeper(out_dir: Path) -> None:
-    rows = [
-        _front_matter("Where To Go Deeper", "products/chummer/PUBLIC_GUIDE_POLICY.md"),
-        "# Where To Go Deeper",
-        "",
-        "Use this after the quick pages stop being enough.",
-        "",
-        "## I want the product answer",
-        "",
-        "Most players and GMs should read [What Chummer6 Is](WHAT_CHUMMER6_IS.md), then [Status](STATUS.md), then [Download](DOWNLOAD.md). If something fails, [Help](HELP.md) is the next stop.",
-        "",
-        "## I want the campaign tools",
-        "",
-        "[Campaign tools](HORIZONS/README.md) covers the larger table story: ALICE, Origin Dossier, Table Pulse, Jackpoint, Runsite, Runbook Press, and Karma Forge.",
-        "",
-        "## I want base-client features",
-        "",
-        "[Features](FEATURES/README.md) covers NEXUS-PAN, Run Control, Edition Studio, Community Hub, Ghostwire, Local Co-Processor, and Quicksilver without pretending they are campaign tools.",
-        "",
-        "## I want to report or improve something",
-        "",
-        "Use [How Can I Help?](HOW_CAN_I_HELP.md) for bugs, confusing docs, feature requests, and hands-on testing.",
-        "",
-        "## I want the technical details",
-        "",
-        "The technical docs are there when you want implementation details or long-range tradeoffs. Most people never need them to install Chummer6, try it, or report a problem.",
-        "",
-        "Come back here when you want the shorter user-facing version again.",
-        "",
-    ]
-    _write(out_dir / "WHERE_TO_GO_DEEPER.md", "\n".join(rows))
-
-
-def _generate_glossary(out_dir: Path) -> None:
-    rows = [
-        _front_matter("Glossary", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
-        "# Glossary",
-        "",
-        "A few words Chummer uses because Shadowrun tooling gets dense fast.",
-        "",
-        "- **explanation**: the readable breakdown of how a ruling or modifier was calculated",
-        "- **local-first**: the important work keeps going even when the network gets stupid",
-        "- **preview**: visible and usable, but still changing",
-        "- **ruleset**: the Shadowrun rules package or era currently in play",
-        "- **session stack**: the rules, options, devices, and table choices used for one run",
-        "",
-        "If a word here still sounds like a dev meeting escaped into public, file an issue and roast it. Fair game.",
-        "",
-    ]
-    _write(out_dir / "GLOSSARY.md", "\n".join(rows))
 
 
 def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
@@ -2932,7 +1907,12 @@ def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
         _front_matter("FAQ", "products/chummer/PUBLIC_FAQ_REGISTRY.yaml"),
         "# FAQ",
         "",
-        "Ask the questions a GM, player, or tired maintainer would ask before trusting this at a table.",
+        "## Start with these answers",
+        "",
+        "- **Which desktop app should I start with?** Start with the Avalonia desktop app when the download page offers it.",
+        "- **What platforms are publicly available today?** Windows preview builds are the public path today unless the download page says otherwise.",
+        "- **I use Chummer5a now. Where should I start?** Start with [What Chummer6 Is](WHAT_CHUMMER6_IS.md) and [Current status](NOW/current-status.md).",
+        "- **Do I need GitHub for anything normal?** No. Use the guide, download page, and help flow first.",
         "",
     ]
     for section in _faq_sections(faq_payload):
@@ -2959,9 +1939,7 @@ def _generate_download(
     release_experience: dict[str, object],
 ) -> None:
     phase = _public_phase_label(progress.get("phase_label") or "Current release status")
-    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
-    available_platforms = _promoted_platform_labels(release_payload, artifacts)
-    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
+    artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
     published_at = str(release_payload.get("publishedAt") or "").strip()
@@ -2972,6 +1950,14 @@ def _generate_download(
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
     fix_availability = _public_fix_summary(release_payload)
+    proof_scope_summary = str(
+        release_experience.get("proof_scope_summary")
+        or "Public proof language is scoped to the files, flows, and recent checks posted on the current shelf that you can inspect today; it is not a blanket flagship-grade claim."
+    ).strip()
+    flagship_claim_summary = str(
+        release_experience.get("flagship_claim_summary")
+        or "Flagship wording is reserved for surfaces that currently satisfy FLAGSHIP_RELEASE_ACCEPTANCE.yaml; preview artifacts, proof cards, artifact explainers, packet siblings, and fallback routes do not earn that claim by proximity."
+    ).strip()
     platform_expectations = {
         "windows": (
             "Windows",
@@ -2983,12 +1969,12 @@ def _generate_download(
         ),
         "macos": (
             "macOS",
-            "macOS is guided support only today. There is no public Mac installer on the download page.",
+            "There is no public macOS download today.",
         ),
     }
-    section_heading = "What is available" if _release_is_published(status) else "What is available in preview"
+    section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
-    shelf_truth = _public_shelf_truth_line(status, artifacts, available_platforms, missing_platforms)
+    shelf_truth = _public_shelf_truth_line(status, artifacts)
     flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
     fallback_head = str(release_experience.get("desktop_fallback_head") or "Chummer.Blazor.Desktop").strip()
 
@@ -2996,48 +1982,47 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
-        "Windows and Linux downloads start on `chummer.run`. macOS stays on a guided support path.",
+        "Start here when you want the right file first.",
         "",
-        "## Pick your file",
+        "## What should I download first?",
         "",
-        "- Use `Stable` for the calmer release lane.",
-        "- Use `Nightly` for the newest published Windows or Linux build.",
-        "- If Nightly and Stable show the same build, there is no newer Nightly at that moment.",
     ]
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]
         rows.append(f"- {_platform_start_line(platform_label, grouped_artifacts.get(platform_key, []), missing_note)}")
     heads_present = {str(item.get("head") or "").strip().lower() for item in artifacts if isinstance(item, dict)}
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
-        rows.append(f"- {_public_desktop_choice_line('Avalonia', ['Blazor Desktop'])}")
+        rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
+    rows.append("- You do not need GitHub for the normal download path.")
+    rows.append("- Raw GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.")
 
     rows.extend(
         [
             "",
             f"## {section_heading}",
             "",
-            f"Today: {phase}.",
-            f"{timestamp_label}: {published_label}.",
+            f"- Today: {phase}.",
+            f"- {timestamp_label}: {published_label}.",
+            f"- Release status: {release_status or 'Not currently published'}.",
         ]
     )
     if version:
-        rows.append(f"Build label: `{version}`.")
-    rows.append(shelf_truth)
+        rows.append(f"- Build label: `{version}`.")
+    rows.append(f"- {shelf_truth}")
     if release_verification:
-        rows.append(release_verification)
+        rows.append(f"- Recent checks: {release_verification}")
+    rows.append("- These are real preview builds, not a finished flagship release yet.")
     if known_issues:
-        rows.append(known_issues)
+        rows.append(f"- {known_issue_label}: {known_issues}")
     if fix_availability:
-        rows.append(fix_availability)
+        rows.append(f"- Update note: {fix_availability}")
 
     rows.extend(
         [
             "",
-            "## File details",
+            "## Current build matrix",
             "",
-            "Official client downloads start on the [Chummer6 downloads page](https://chummer.run/downloads). Use GitHub for source code and issue discussion.",
-            "",
-            "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md). For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md).",
+            "Use chummer.run for downloads. Use GitHub only when you want source or a public bug thread.",
         ]
     )
 
@@ -3061,7 +2046,7 @@ def _generate_download(
             if posture_line:
                 rows.append(f"- {posture_line}")
             if artifact.get("downloadUrl"):
-                rows.append(f"- Download: {_download_link('Download this file', str(artifact['downloadUrl']))}")
+                rows.append(f"- Download: `{artifact['downloadUrl']}`")
             if artifact.get("fileName"):
                 rows.append(f"- File: `{artifact['fileName']}`")
             rows.append(f"- Size: {_format_size_bytes(artifact.get('sizeBytes'))}")
@@ -3072,12 +2057,12 @@ def _generate_download(
             if update_feed:
                 rows.append(f"- Update feed: `{update_feed}`")
 
-    rows.extend(["", "## Package notes", ""])
+    rows.extend(["", "## Current package format", ""])
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
         if installer_artifacts:
             if _release_is_published(status):
-                rows.append("- Start with the installer for your platform.")
+                rows.append("- Where an installer exists, start there. Archive packages are fallback or recovery paths, not the normal first pick.")
             else:
                 rows.append("- Installers are already visible, but they still count as preview files until the release is published.")
         else:
@@ -3089,18 +2074,8 @@ def _generate_download(
             _bullet_lines(
                 [
                     (
-                        _download_link(
-                            _artifact_label_with_kind(
-                                str(item.get("platformLabel") or item.get("platform") or "Published build").strip(),
-                                _public_artifact_kind_label(str(item.get("kind") or "artifact").strip() or "artifact"),
-                            ),
-                            str(item.get("downloadUrl") or "").strip(),
-                        )
-                        if str(item.get("downloadUrl") or "").strip()
-                        else _artifact_label_with_kind(
-                            str(item.get("platformLabel") or item.get("platform") or "Published build").strip(),
-                            _public_artifact_kind_label(str(item.get("kind") or "artifact").strip() or "artifact"),
-                        )
+                        f"{_artifact_label_with_kind(str(item.get('platformLabel') or item.get('platform') or 'Published build').strip(), _public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact'))} via "
+                        f"`{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}`"
                     )
                     for item in artifacts
                 ]
@@ -3126,84 +2101,29 @@ def _generate_download(
 
     release_proof = release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
-        rows.extend(["", "## Build notes", ""])
+        rows.extend(["", "## Recent release verification", ""])
+        proof_status = str(release_proof.get("status") or "").strip()
         generated_at = str(release_proof.get("generatedAt") or "").strip()
+        if proof_status:
+            rows.append(f"- Status: {_public_verification_status(proof_status)}.")
         if generated_at:
-            rows.append(f"- Last updated: {_format_public_datetime(generated_at)}.")
+            rows.append(f"- Last checked: {_format_public_datetime(generated_at)}.")
         if release_verification:
-            rows.append(f"- {release_verification}")
+            rows.append(f"- Summary: {release_verification}")
+        journeys = release_proof.get("journeysPassed") or []
+        if isinstance(journeys, list) and journeys:
+            rows.extend(["", "### What was checked", ""])
+            rows.extend(
+                _bullet_lines(
+                    [
+                        RELEASE_PROOF_JOURNEY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip()))
+                        for item in journeys
+                        if str(item).strip()
+                    ]
+                )
+            )
 
     _write(out_dir / "DOWNLOAD.md", "\n".join(rows))
-
-
-def _resolve_chummer6_public_source_root() -> Path:
-    override = os.environ.get(CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV)
-    if override:
-        candidate = Path(override).resolve()
-        if candidate.exists():
-            return candidate
-        raise FileNotFoundError(f"missing Chummer6 public guide source root: {candidate}")
-    for candidate in CHUMMER6_SOURCE_DOC_CANDIDATES:
-        resolved = candidate.resolve()
-        if resolved.exists():
-            return resolved
-    searched = ", ".join(str(candidate) for candidate in CHUMMER6_SOURCE_DOC_CANDIDATES)
-    raise FileNotFoundError(f"unable to locate Chummer6 public guide source root; checked: {searched}")
-
-
-def _resolve_chummer6_repo_root() -> Path:
-    source_root = _resolve_chummer6_public_source_root()
-    return source_root
-
-
-def _load_linux_source_build_gate_receipt() -> dict[str, object] | None:
-    repo_root = _resolve_chummer6_repo_root()
-    receipt_path = repo_root / ".guide-internal" / "receipts" / LINUX_SOURCE_BUILD_GATE_RECEIPT_NAME
-    if not receipt_path.is_file():
-        return None
-    try:
-        return json.loads(receipt_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return None
-
-
-def _load_macos_source_build_contract_receipt() -> dict[str, object] | None:
-    repo_root = _resolve_chummer6_repo_root()
-    receipt_path = repo_root / ".guide-internal" / "receipts" / "MACOS_SOURCE_BUILD_CONTRACT.generated.json"
-    if not receipt_path.is_file():
-        return None
-    try:
-        return json.loads(receipt_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return None
-
-
-def _public_linux_source_build_doc(content: str) -> str:
-    cleaned = content.strip()
-    cleaned = cleaned.replace("## Fresh-container publish gate", "## Fresh-container maintenance check")
-    cleaned = cleaned.replace(
-        "The publish lane now has a dedicated Linux source-build gate. It starts a fresh `debian:bookworm-slim` container, installs the required host packages inside that container, runs the checked-in audit wrapper, and then runs the full checked-in source-build script.",
-        "The maintenance option has a fresh-container Linux source-build check. It starts a fresh `debian:bookworm-slim` container, installs the required host packages inside that container, runs the checked-in audit wrapper, and then runs the full checked-in source-build script. This is a maintainer confidence check for the local source option, not a public release claim or replacement for the installers on `chummer.run`.",
-    )
-    cleaned = re.sub(
-        r"\nThe gate also writes a structured internal release record so the release lane keeps durable evidence of the fresh-container pass:?\n(?:\n- `\.guide-internal/receipts/LINUX_SOURCE_BUILD_DOCKER_GATE\.generated\.json`\n)?",
-        "\nIf the check fails, treat it as maintenance work on the local source option before pointing users at it again.\n",
-        cleaned,
-    )
-    cleaned = cleaned.replace("after the gate finishes", "after the check finishes")
-    return cleaned
-
-
-def _copy_chummer6_public_docs(out_dir: Path) -> None:
-    source_root = _resolve_chummer6_public_source_root()
-    _write_exact(
-        out_dir / "SOURCE_BUILD_LINUX.md",
-        _public_linux_source_build_doc(_load_text(source_root / "SOURCE_BUILD_LINUX.md")),
-    )
-    _write_exact(
-        out_dir / "SOURCE_BUILD_MACOS.md",
-        _load_text(source_root / "SOURCE_BUILD_MACOS.md"),
-    )
 
 
 def _generate_contact(out_dir: Path, trust_payload: dict[str, object]) -> None:
@@ -3230,7 +2150,8 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         _front_matter("Parts", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
         "# Parts",
         "",
-        "This is the backstage tour. Most players and GMs can ignore it until they want to know how the desktop app, online side, phone companion, updater, and media work fit together.",
+        "This is the inside tour, not the first stop for most readers.",
+        "Open it when you want to see how the app, phone companion, updater, and support tools fit together.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/parts-index.png", alt="Chummer6 parts index art"))
@@ -3238,12 +2159,9 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         part_id = str(part.get("id") or "").strip()
         title = str(part.get("title") or part_id).strip() or part_id
         slug = _slug(part_id)
-        tagline = _public_copy(str(part.get("public_tagline") or "").strip())
-        index_rows.extend([f"## [{title}]({slug}.md)", "", tagline or "How this part fits into Chummer6.", ""])
+        index_rows.append(f"- [{title}]({slug}.md)")
 
         doc_path = out_dir / "PARTS" / f"{slug}.md"
-        notice = _paragraph_from_items(part.get("what_you_notice"))
-        limits = _paragraph_from_items(part.get("public_noteworthy_limits"))
         rows = [
             _front_matter(f"Part: {title}", "products/chummer/PUBLIC_PART_REGISTRY.yaml"),
             f"# {title}",
@@ -3254,45 +2172,38 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/parts/{slug}.png", alt=f"{title} guide art"))
         rows.extend(
             [
-                "## When this matters",
+                "## When you care",
                 "",
                 _public_copy(str(part.get("you_touch_this_when") or "").strip()) or "When this part becomes relevant to your flow.",
                 "",
-                "## Why it exists",
+                "## Why you care",
                 "",
                 _public_copy(str(part.get("why_you_care") or "").strip()) or "This part contributes meaningfully to the product.",
                 "",
-                "## What you should feel",
-                "",
-                notice or "The product should feel clearer because this exists.",
+                "## What you notice",
                 "",
             ]
         )
-        if limits:
-            rows.extend(["## What not to expect here", "", limits, ""])
+        for item in part.get("what_you_notice") or []:
+            text = _public_copy(str(item).strip())
+            if text:
+                rows.append(f"- {text}")
+        noteworthy = part.get("public_noteworthy_limits") or []
+        if isinstance(noteworthy, list) and noteworthy:
+            rows.extend(["", "## Current limits", ""])
+            rows.extend(f"- {_public_copy(str(item).strip())}" for item in noteworthy if str(item).strip())
         rows.extend(
             [
                 "",
-                "## Current shape",
+                "## Current state",
                 "",
-                _public_copy(str(part.get("current_truth") or "").strip()) or "This part is still moving.",
+                _public_copy(str(part.get("current_truth") or "").strip()) or "Current product posture is still moving here.",
             ]
         )
         deeper = part.get("go_deeper_links") or []
         if isinstance(deeper, list) and deeper:
-            rendered_deeper: list[str] = []
-            for item in deeper:
-                target = str(item).strip()
-                if not target or "/NOW/" in target or target.startswith("../NOW/"):
-                    continue
-                if target.endswith(".md") and target.startswith("../"):
-                    label = Path(target).name.removesuffix(".md").replace("_", " ").replace("-", " ").title()
-                    rendered_deeper.append(f"- [{label}]({target})")
-                else:
-                    rendered_deeper.append(f"- {target}")
-            if rendered_deeper:
-                readable = [item[2:] if item.startswith("- ") else item for item in rendered_deeper]
-                rows.extend(["", "## Next", "", "Then read " + _english_join(readable) + "."])
+            rows.extend(["", "## Go deeper", ""])
+            rows.extend(link for item in deeper if (link := _public_link_row(item)))
 
         _write(out_dir / "PARTS" / f"{slug}.md", "\n".join(rows))
 
@@ -3303,7 +2214,6 @@ def _generate_horizon_pages(
     out_dir: Path,
     repo_root: Path,
     horizon_registry: dict[str, object],
-    public_feature_registry: dict[str, object],
     public_horizon_copy: dict[str, list[str]],
 ) -> None:
     horizons = [item for item in (horizon_registry.get("horizons") or []) if isinstance(item, dict)]
@@ -3321,154 +2231,108 @@ def _generate_horizon_pages(
         return (order, str(item.get("title") or item.get("id") or ""))
 
     enabled.sort(key=sort_key)
-    enabled = [
-        horizon
-        for horizon in enabled
-        if _slug(str(horizon.get("id") or "").strip()) != "black-ledger"
-    ]
-    campaign_lanes = [
-        horizon
-        for horizon in enabled
-        if _slug(str(horizon.get("id") or "").strip()) not in PUBLIC_GUIDE_BASE_FEATURE_IDS
-    ]
-    close_campaign_lanes = [
-        horizon
-        for horizon in campaign_lanes
-        if _slug(str(horizon.get("id") or "").strip()) in PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS
-    ]
-    bigger_campaign_lanes = [
-        horizon
-        for horizon in campaign_lanes
-        if _slug(str(horizon.get("id") or "").strip()) not in PUBLIC_GUIDE_CAMPAIGN_CLOSE_IDS
-    ]
-    feature_lanes = _public_feature_rows(public_feature_registry)
 
     index_path = out_dir / "HORIZONS" / "README.md"
     index_rows = [
-        _front_matter("Campaign tools", "products/chummer/HORIZON_REGISTRY.yaml"),
-        "# Campaign tools",
+        _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
+        "# Horizons",
         "",
-        "Open this when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
-        "",
-        "This page is not a shelf for every named capability in Chummer6. Campaign tools are the parts that change how a table prepares, runs, remembers, or publishes play. Base-client support work belongs in [Features](../FEATURES/README.md).",
-        "",
-    ]
-    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 campaign tools index art"))
-
-    def append_index_group(rows: list[str], title: str, summary: str, items: list[dict[str, object]]) -> None:
-        if not items:
-            return
-        rows.extend(["", f"## {title}", "", summary, ""])
-        for row in items:
-            horizon_id = str(row.get("id") or "").strip()
-            label = _public_display_title(horizon_id, str(row.get("title") or horizon_id))
-            promise = _public_copy(str(row.get("wow_promise") or row.get("pain_label") or "").strip())
-            if promise:
-                rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", promise, ""])
-            else:
-                rows.extend([f"### [{label}]({_slug(horizon_id)}.md)", "", "Read this when that part of campaign play becomes the problem.", ""])
-
-    append_index_group(
-        index_rows,
-        "Closest to the table",
-        "Start here when you want help with the runner, the session, or what carries over afterward.",
-        close_campaign_lanes,
-    )
-    append_index_group(
-        index_rows,
-        "Bigger campaign bets",
-        "Read these when you want to see where Chummer can go after the builder works for you.",
-        bigger_campaign_lanes,
-    )
-    feature_index_path = out_dir / "FEATURES" / "README.md"
-    feature_index_rows = [
-        _front_matter("Features", "products/chummer/PUBLIC_FEATURE_REGISTRY.yaml"),
-        "# Features",
-        "",
-        "Open this when you want the normal Chummer6 client capabilities that should feel built in, not like separate campaign tools.",
-        "",
-        "The rule is simple: if a capability helps the app stay reliable, faster, better organized, or easier to operate, it belongs here. Campaign tools are reserved for preparation, play, aftermath, and publication.",
+        "Use this index when you want to see where Chummer6 could go next after you understand the current product picture.",
+        "These are future ideas, not features you can use today.",
         "",
     ]
-    append_index_group(
-        feature_index_rows,
-        "Base client and support surfaces",
-        "",
-        feature_lanes,
-    )
+    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
 
-    for horizon in [*campaign_lanes, *feature_lanes]:
+    for horizon in enabled:
         horizon_id = str(horizon.get("id") or "").strip()
-        title = _public_display_title(horizon_id, str(horizon.get("title") or horizon_id))
+        title = str(horizon.get("title") or horizon_id).strip() or horizon_id
         slug = _slug(horizon_id)
+        index_rows.append(f"- [{title}]({slug}.md)")
 
-        surface_dir = _public_guide_horizon_surface_dir(slug).upper()
-        doc_path = out_dir / surface_dir / f"{slug}.md"
-        lane_group = _public_guide_lane_group(horizon)
-        guide_source = str(horizon.get("guide_source") or "products/chummer/HORIZON_REGISTRY.yaml")
+        doc_path = out_dir / "HORIZONS" / f"{slug}.md"
         rows = [
-            _front_matter(title, guide_source),
+            _front_matter(f"Horizon: {title}", "products/chummer/HORIZON_REGISTRY.yaml"),
             f"# {title}",
             "",
         ]
         wow_promise = _public_copy(str(horizon.get("wow_promise") or "").strip())
         if wow_promise:
             rows.extend([wow_promise, ""])
-        horizon_alt = (
-            f"{title} video preview"
-            if PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug)
-            else f"{title} feature art"
-        )
+        horizon_alt = f"{title} horizon art"
         if slug == "black-ledger":
             horizon_alt = "BLACK LEDGER city map with augmented-reality overlays"
-        rows.extend(
-            _image_rows(
-                doc_path=doc_path,
-                out_dir=out_dir,
-                asset_path=_public_guide_horizon_asset_path(slug),
-                alt=horizon_alt,
-                href=PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug, ""),
-                title=PUBLIC_GUIDE_HORIZON_VIDEO_TITLES.get(slug, f"Play the {title} video") if PUBLIC_GUIDE_HORIZON_VIDEO_HREFS.get(slug) else "",
-            )
-        )
-
-        override_paragraphs = PUBLIC_GUIDE_HORIZON_DETAIL_OVERRIDES.get(slug)
-        if override_paragraphs:
-            rows.extend(["## When this helps", ""])
-            for paragraph in override_paragraphs:
-                rows.extend([_public_copy(paragraph), ""])
-        for paragraph in PUBLIC_GUIDE_HORIZON_DETAIL_NOTES.get(slug, ()):
-            if not any(paragraph in line for line in rows):
-                if "## When this helps" not in rows:
-                    rows.extend(["## When this helps", ""])
-                rows.extend([_public_copy(paragraph), ""])
+        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/horizons/{slug}.png", alt=horizon_alt))
 
         pain_label = _public_copy(str(horizon.get("pain_label") or "").strip())
         table_scene = _public_copy(str(horizon.get("table_scene") or "").strip())
         if pain_label or table_scene:
-            rows.extend(["## The table problem", ""])
+            rows.extend(["## Why this matters", ""])
             if pain_label:
                 rows.extend([pain_label, ""])
             if table_scene:
-                rows.extend([f"For example, {table_scene[0].lower() + table_scene[1:] if table_scene else table_scene}", ""])
+                rows.extend([f"Picture the scene: {table_scene}", ""])
 
         build_path = horizon.get("build_path") or {}
         if isinstance(build_path, dict):
-            rows.extend(["", "## Can I use it?", "", _public_feature_status_line(build_path, lane_group=lane_group), ""])
+            current_state = _public_horizon_stage_label(build_path.get("current_state"))
+            next_state = _public_horizon_stage_label(build_path.get("next_state"))
+            rows.extend(["", "## Current stage", ""])
+            if current_state:
+                rows.append(f"- Today: {current_state}.")
+            if next_state:
+                rows.append(f"- Next: {next_state}.")
 
         canon_doc = str(horizon.get("canon_doc") or "").strip()
+        horizon_copy_slug = HORIZON_PUBLIC_COPY_SLUG_OVERRIDES.get(
+            slug,
+            slug,
+        )
         if canon_doc:
             canon_path = repo_root / canon_doc
-            canon_text = _load_text(canon_path) if canon_path.is_file() else ""
-            video_sections = _extract_video_link_sections(canon_text) if canon_text else []
-            if video_sections:
+            if horizon_copy_slug in public_horizon_copy:
+                selected_headings = None
+                selected_heading_map = None
+                embedded = list(public_horizon_copy[horizon_copy_slug])
+            elif slug in {"karma-forge", "black-ledger"}:
+                selected_headings = None
+                selected_heading_map = None
+                embedded = (
+                    _extract_markdown_sections(
+                        _load_text(canon_path),
+                        allowed_headings=None,
+                        heading_map=selected_heading_map,
+                    )
+                    if canon_path.is_file()
+                    else []
+                )
+            else:
+                selected_headings = {
+                    "Table pain",
+                    "The problem",
+                    "Bounded product move",
+                    "What it would do",
+                    "Foundations",
+                    "What has to be true first",
+                    "Why still a horizon",
+                    "Why it is not ready yet",
+                }
+                selected_heading_map = PUBLIC_HORIZON_SECTION_TITLES
+                embedded = (
+                    _extract_markdown_sections(
+                        _load_text(canon_path),
+                        allowed_headings=selected_headings,
+                        heading_map=selected_heading_map,
+                    )
+                    if canon_path.is_file()
+                    else []
+                )
+            if embedded:
                 rows.extend([""])
-                rows.extend(video_sections)
+                rows.extend(embedded)
 
-        _write(doc_path, "\n".join(rows))
+        _write(out_dir / "HORIZONS" / f"{slug}.md", "\n".join(rows))
 
     _write(out_dir / "HORIZONS" / "README.md", "\n".join(index_rows))
-    _write(out_dir / "FEATURES" / "README.md", "\n".join(feature_index_rows))
 
 
 def _generate_trust_pages(out_dir: Path, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:
@@ -3512,168 +2376,6 @@ def _generate_manifest(out_dir: Path, manifest: dict[str, object]) -> None:
     _write(out_dir / "manifest.generated.json", json.dumps(generated, indent=2, sort_keys=True))
 
 
-def _new_section_alignment_rows(
-    new_section_verdict: dict[str, object],
-    horizon_registry: dict[str, object],
-) -> list[dict[str, object]]:
-    horizon_rows = horizon_registry.get("horizons") or []
-    horizon_by_id = {
-        str(item.get("id") or "").strip(): item
-        for item in horizon_rows
-        if isinstance(item, dict) and str(item.get("id") or "").strip()
-    }
-    rows: list[dict[str, object]] = []
-    for entry in new_section_verdict.get("sections") or []:
-        if not isinstance(entry, dict):
-            continue
-        section_id = str(entry.get("id") or "").strip()
-        if not section_id:
-            continue
-        verdict = str(entry.get("public_guide_verdict") or "").strip()
-        expected = str(entry.get("expected_representation") or "").strip()
-        horizon = horizon_by_id.get(section_id)
-        horizon_public_enabled = None
-        if isinstance(horizon, dict):
-            public_guide = horizon.get("public_guide") or {}
-            if isinstance(public_guide, dict):
-                horizon_public_enabled = bool(public_guide.get("enabled"))
-        if verdict == "future_concept_disabled_horizon":
-            representation = "omitted_with_receipt"
-        elif verdict == "public_safe_horizon_page":
-            representation = (
-                "public_horizon_page"
-                if horizon_public_enabled
-                else "missing"
-            )
-        elif verdict == "help_support_page_content":
-            representation = "support_only_with_receipt"
-        elif verdict == "public_route_live":
-            representation = "missing"
-        else:
-            representation = "omitted_with_receipt"
-        rows.append(
-            {
-                "id": section_id,
-                "title": str(entry.get("title") or section_id).strip(),
-                "public_guide_verdict": verdict,
-                "page_class": str(entry.get("page_class") or "").strip(),
-                "shipped_claim_allowed": bool(entry.get("shipped_claim_allowed")),
-                "expected_representation": expected,
-                "representation_status": representation,
-                "horizon_public_guide_enabled": horizon_public_enabled,
-                "canonical_sources": entry.get("canonical_sources") or [],
-                "required_proof": entry.get("required_proof") or [],
-            }
-        )
-    return rows
-
-
-def _generate_new_section_receipts(
-    out_dir: Path,
-    manifest: dict[str, object],
-    horizon_registry: dict[str, object],
-    new_section_verdict: dict[str, object],
-    release_payload: dict[str, object],
-    generated_live_route_ids: set[str] | None = None,
-) -> None:
-    def _display_status(value: str) -> str:
-        explicit = {
-            "future_concept_disabled_horizon": "future concept",
-            "public_safe_horizon_page": "safe campaign-tool page",
-            "help_support_page_content": "help page content",
-            "public_route_live": "live page",
-            "public_route_live_page": "live page guide",
-            "omitted_with_receipt": "omitted with record",
-            "support_only_with_receipt": "support only with record",
-            "public_horizon_page": "campaign tool page",
-        }
-        if value in explicit:
-            return explicit[value]
-        return value.replace("receipt", "record").replace("_", " ")
-
-    rows = _new_section_alignment_rows(new_section_verdict, horizon_registry)
-    generated_live_route_ids = generated_live_route_ids or set()
-    for row in rows:
-        if row["id"] == "runner-passport" and row["public_guide_verdict"] == "public_route_live":
-            row["representation_status"] = (
-                "public_route_live_page"
-                if "runner-passport" in generated_live_route_ids and (out_dir / "RUNNER_PASSPORT.md").is_file()
-                else "missing"
-            )
-        if row["id"] == "signal-deck" and row["public_guide_verdict"] == "public_route_live":
-            row["representation_status"] = (
-                "public_route_live_page"
-                if "signal-deck" in generated_live_route_ids and (out_dir / "SIGNAL_DECK.md").is_file()
-                else "missing"
-            )
-        if row["id"] == "living-world-engagement" and row["public_guide_verdict"] == "public_route_live":
-            row["representation_status"] = (
-                "public_route_live_page"
-                if "living-world-engagement" in generated_live_route_ids and (out_dir / "LIVING_WORLD.md").is_file()
-                else "missing"
-            )
-    truth_audit = {
-        "generated_from": "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml",
-        "release_source_status": str(release_payload.get("status") or "").strip(),
-        "windows_artifact_count": sum(
-            1 for artifact in release_payload.get("artifacts") or [] if isinstance(artifact, dict) and str(artifact.get("platform") or "").strip().lower() == "windows"
-        ),
-        "sign_in_required_windows_artifact_count": sum(
-            1
-            for artifact in release_payload.get("artifacts") or []
-            if isinstance(artifact, dict)
-            and str(artifact.get("platform") or "").strip().lower() == "windows"
-            and str(artifact.get("installAccessClass") or "").strip().lower() == "account_required"
-        ),
-        "source_count": len((manifest.get("sources") or {}).keys()) if isinstance(manifest.get("sources") or {}, dict) else 0,
-    }
-    alignment = {
-        "generated_from": "products/chummer/PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml",
-        "new_section_ids": [row["id"] for row in rows],
-        "sections_with_shipped_claims": [row["id"] for row in rows if row["shipped_claim_allowed"]],
-        "disabled_horizons_with_receipts": [
-            row["id"]
-            for row in rows
-            if row["public_guide_verdict"] == "future_concept_disabled_horizon"
-            and row["representation_status"] == "omitted_with_receipt"
-        ],
-        "sections": rows,
-    }
-    not_ready_reasons = []
-    if any(row["representation_status"] == "missing" for row in rows):
-        not_ready_reasons.append("new sections silently omitted without receipt")
-    if any(
-        row["id"] in {"table-pulse", "behuman-gm-sessions"} and row["shipped_claim_allowed"]
-        for row in rows
-    ):
-        not_ready_reasons.append("Table Pulse or BeHuman appears as shipped without implementation proof")
-    if any(row["id"] == "answerly-support-humanizer" and row["shipped_claim_allowed"] for row in rows):
-        not_ready_reasons.append("Answerly appears as shipped truth instead of bounded support")
-    if any(row["public_guide_verdict"] == "public_route_live" and row["representation_status"] != "public_route_live_page" for row in rows):
-        not_ready_reasons.append("live public routes are still missing dedicated public-guide pages")
-    verdict_lines = [
-        "# Chummer6 Docs Generation Verdict",
-        "",
-        "Verdict: NOT_READY" if not_ready_reasons else "Verdict: READY",
-        "",
-        "## New section records",
-        "",
-    ]
-    for row in rows:
-        verdict_lines.append(
-            f"- `{row['id']}`: `{_display_status(row['public_guide_verdict'])}` -> `{_display_status(row['representation_status'])}`"
-        )
-    if not_ready_reasons:
-        verdict_lines.extend(["", "## Not ready reasons", ""])
-        verdict_lines.extend(f"- {reason}" for reason in not_ready_reasons)
-    else:
-        verdict_lines.extend(["", "## Acceptance posture", "", "- New sections are either explicitly recorded or intentionally future-labeled."])
-    _write(out_dir / "CHUMMER6_PUBLIC_GUIDE_TRUTH_AUDIT.generated.json", json.dumps(truth_audit, indent=2, sort_keys=True))
-    _write(out_dir / "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json", json.dumps({"sections": rows}, indent=2, sort_keys=True))
-    _write(out_dir / "CHUMMER6_GUIDE_GENERATOR_REGISTRY_ALIGNMENT.generated.json", json.dumps(alignment, indent=2, sort_keys=True))
-    _write(out_dir / "FINAL_CHUMMER6_DOCS_GENERATION_VERDICT.md", "\n".join(verdict_lines))
-
-
 def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root: Path | None = None) -> None:
     manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_EXPORT_MANIFEST.yaml")
     page_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_PAGE_REGISTRY.yaml")
@@ -3681,8 +2383,6 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     faq_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_FAQ_REGISTRY.yaml")
     trust_payload = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_TRUST_CONTENT.yaml")
     horizon_registry = _load_yaml(repo_root / "products" / "chummer" / "HORIZON_REGISTRY.yaml")
-    public_feature_registry = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_FEATURE_REGISTRY.yaml")
-    new_section_verdict = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_GUIDE_NEW_SECTION_VERDICT.yaml")
     landing_manifest = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_LANDING_MANIFEST.yaml")
     public_horizon_copy = _load_horizon_public_copy_pack()
     release_experience = _load_yaml(repo_root / "products" / "chummer" / "PUBLIC_RELEASE_EXPERIENCE.yaml")
@@ -3691,14 +2391,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     help_copy = _load_text(repo_root / "products" / "chummer" / "PUBLIC_HELP_COPY.md")
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
-    required_assets = _required_public_asset_paths(part_registry, horizon_registry, public_feature_registry)
-    release_truth_packet = _build_release_truth_packet(
-        progress=progress,
-        release_payload=release_payload,
-        landing_manifest=landing_manifest,
-        primary_route_registry=primary_route_registry,
-        flagship_parity_registry=flagship_parity_registry,
-    )
+    required_assets = _required_public_asset_paths(part_registry, horizon_registry)
 
     _materialize_public_assets(
         repo_root,
@@ -3706,10 +2399,6 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         required_assets,
         derivative_fallback_root=derivative_fallback_root,
     )
-    _generate_onramp_page(out_dir, repo_root)
-    _generate_start_here_page(out_dir, repo_root)
-    generated_live_route_ids = _generate_live_route_pages(out_dir, repo_root, new_section_verdict)
-    _generate_release_truth_packet(out_dir, release_truth_packet)
     _generate_root(
         out_dir,
         manifest,
@@ -3721,38 +2410,21 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         release_payload,
         primary_route_registry,
         flagship_parity_registry,
-        release_truth_packet=release_truth_packet,
-        generated_live_route_ids=generated_live_route_ids,
     )
-    _generate_what_chummer6_is(out_dir)
     _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
     _generate_status(out_dir, trust_payload, progress, release_payload)
-    _generate_now_pages(out_dir, release_payload)
     _generate_help(out_dir, help_copy, trust_payload, release_payload)
-    _generate_how_can_i_help(out_dir)
-    _generate_where_to_go_deeper(out_dir)
-    _generate_glossary(out_dir)
     _generate_faq(out_dir, faq_registry)
     _generate_download(out_dir, progress, release_payload, release_source, release_experience)
-    _copy_chummer6_public_docs(out_dir)
     _generate_contact(out_dir, trust_payload)
     _generate_part_pages(out_dir, part_registry)
     _generate_horizon_pages(
         out_dir,
         repo_root,
         horizon_registry,
-        public_feature_registry,
         public_horizon_copy,
     )
     _generate_trust_pages(out_dir, trust_payload, release_payload)
-    _generate_new_section_receipts(
-        out_dir,
-        manifest,
-        horizon_registry,
-        new_section_verdict,
-        release_payload,
-        generated_live_route_ids=generated_live_route_ids,
-    )
     _generate_manifest(out_dir, manifest)
     _assert_public_bundle_language(out_dir)
 

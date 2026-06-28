@@ -74,11 +74,14 @@ product_source_groups:
     - products/chummer/GROUP_BLOCKERS.md
     - products/chummer/OWNERSHIP_MATRIX.md
   product_middle:
-    - products/chummer/BUILD_GHOST_MVP_001.md
     - products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md
     - products/chummer/CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER.md
     - products/chummer/ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC.md
     - products/chummer/CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES.md
+    - products/chummer/LIVING_CAMPAIGN_LOOP_MATERIALIZATION_GUIDE.md
+    - products/chummer/LIVE_ACTION_ECONOMY_AND_TURN_ASSIST.md
+    - products/chummer/LIVE_SESSION_TURN_COMPANION.md
+    - products/chummer/BUILD_GHOST_MVP_001.md
   world_state:
     - products/chummer/WORLD_STATE_AND_MISSION_MARKET_MODEL.md
     - products/chummer/WORLD_MAP_AND_INTEL_ECONOMY_MODEL.md
@@ -117,26 +120,25 @@ product_source_groups:
   horizons:
     - products/chummer/HORIZONS.md
     - products/chummer/HORIZON_REGISTRY.yaml
+    - products/chummer/HORIZON_AND_FEATURE_LTD_INTEGRATION_GUIDE.md
     - products/chummer/horizons/README.md
     - products/chummer/horizons/FOUNDATIONS.md
+    - products/chummer/horizons/edition-studio.md
+    - products/chummer/horizons/nexus-pan.md
     - products/chummer/horizons/alice.md
     - products/chummer/horizons/black-ledger.md
+    - products/chummer/horizons/community-hub.md
     - products/chummer/horizons/karma-forge.md
     - products/chummer/horizons/knowledge-fabric.md
     - products/chummer/horizons/jackpoint.md
+    - products/chummer/horizons/onramp.md
+    - products/chummer/horizons/quicksilver.md
+    - products/chummer/horizons/run-control.md
     - products/chummer/horizons/runsite.md
     - products/chummer/horizons/runbook-press.md
+    - products/chummer/horizons/ghostwire.md
     - products/chummer/horizons/table-pulse.md
-  product_features:
-    - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
-    - products/chummer/features/README.md
-    - products/chummer/features/community-hub.md
-    - products/chummer/features/edition-studio.md
-    - products/chummer/features/ghostwire.md
-    - products/chummer/features/local-co-processor.md
-    - products/chummer/features/nexus-pan.md
-    - products/chummer/features/quicksilver.md
-    - products/chummer/features/run-control.md
+    - products/chummer/horizons/local-co-processor.md
   journey_workbench:
     - products/chummer/journeys/README.md
     - products/chummer/journeys/build-and-inspect-a-character.md
@@ -207,6 +209,9 @@ product_source_groups:
     - products/chummer/FLAGSHIP_PRODUCT_BAR.md
     - products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md
     - products/chummer/CHUMMER5A_FAMILIARITY_BRIDGE.md
+    - products/chummer/SR5_FIRST_MINUTE_TASKS.yaml
+    - products/chummer/SR5_SCREENSHOT_ORACLE_REGISTRY.yaml
+    - products/chummer/SR5_FLAGSHIP_VISUAL_PARITY_EXIT.yaml
     - products/chummer/DESKTOP_EXECUTABLE_EXIT_GATES.md
     - products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY.md
     - products/chummer/LEGACY_CLIENT_AND_ADJACENT_PARITY_REGISTRY.yaml
@@ -231,6 +236,7 @@ product_source_groups:
     - products/chummer/LTD_CAPABILITY_MAP.md
     - products/chummer/LTD_STACK_WOW_FACTOR_CHANGE_GUIDE.md
     - products/chummer/LTD_RUNTIME_AND_PROJECTION_REGISTRY.yaml
+    - products/chummer/HORIZON_AND_FEATURE_LTD_INTEGRATION_GUIDE.md
     - products/chummer/TEABLE_ADMIN_PROJECTION_AND_INTENT_LAYER.md
     - products/chummer/ADMIN_INTENT_AND_PROJECTION_RECEIPTS.yaml
     - products/chummer/EMAILIT_OUTBOUND_DELIVERY_PROVIDER.md
