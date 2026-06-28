@@ -1,6 +1,6 @@
 # Contact
 
-Discord for normal questions. Use the form only for private install trouble, crashes, logs, or account detail.
+Discord first. Private form if needed.
 
 ## Use the Chummer5 server for normal contact
 

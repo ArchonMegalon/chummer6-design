@@ -161,11 +161,9 @@ PUBLIC_GUIDE_HORIZON_VIDEO_HREFS = {
     "alice": "https://chummer.run/media/horizons/alice-90s-deepdive.mp4?v=20260621-alice-ava-natural-pace-r2",
     "black-ledger": "https://chummer.run/media/horizons/black-ledger-90s-deepdive.mp4",
     "community-hub": "https://chummer.run/media/horizons/community-hub-90s-deepdive.mp4",
-    "jackpoint": "https://chummer.run/media/horizons/jackpoint-90s-deepdive.mp4",
     "karma-forge": "https://chummer.run/media/horizons/karma-forge-90s-deepdive.mp4",
     "nexus-pan": "https://chummer.run/media/horizons/nexus-pan-90s-deepdive.mp4",
-    "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4",
-    "runbook-press": "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4?v=20260621-runbook-clean-speech-r1",
+    "origin-dossier": "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose.mp4",
     "runsite": "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4?v=20260621-runsite-clean-speech-r1",
     "table-pulse": "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4?v=20260621-tablepulse-3fb86343",
 }
@@ -2064,6 +2062,7 @@ def _build_release_truth_packet(
     flagship_parity_registry: dict[str, object],
 ) -> dict[str, object]:
     linux_source_build_gate = _load_linux_source_build_gate_receipt()
+    macos_source_build_contract = _load_macos_source_build_contract_receipt()
     artifacts = _public_download_artifacts(_release_artifacts(release_payload))
     raw_status = str(release_payload.get("status") or "unpublished").strip()
     phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
@@ -2136,6 +2135,20 @@ def _build_release_truth_packet(
             "rid": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("rid") or "").strip(),
             "archive_sha256": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("archive_sha256") or "").strip(),
             "executable_sha256": str(((linux_source_build_gate.get("output") or {}) if isinstance(linux_source_build_gate.get("output"), dict) else {}).get("executable_sha256") or "").strip(),
+        }
+    if isinstance(macos_source_build_contract, dict):
+        policy = macos_source_build_contract.get("policy") or {}
+        if not isinstance(policy, dict):
+            policy = {}
+        packet["macos_source_build_contract"] = {
+            "status": str(macos_source_build_contract.get("status") or "").strip(),
+            "generated_at_utc": str(macos_source_build_contract.get("generated_at_utc") or "").strip(),
+            "scope": str(macos_source_build_contract.get("scope") or "").strip(),
+            "runtime_coverage": str(macos_source_build_contract.get("runtime_coverage") or "").strip(),
+            "real_macos_runtime_proof_required": macos_source_build_contract.get("real_macos_runtime_proof_required") is True,
+            "maintenance_policy_marks_real_build_as_macos_only": policy.get("maintenance_policy_marks_real_build_as_macos_only") is True,
+            "maintenance_policy_requires_two_step_install": policy.get("maintenance_policy_requires_two_step_install") is True,
+            "doc_marks_second_script_install": policy.get("doc_marks_second_script_install") is True,
         }
     return packet
 
@@ -2754,6 +2767,56 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     _write(out_dir / "STATUS.md", "\n".join(rows))
 
 
+def _generate_now_pages(out_dir: Path, release_payload: dict[str, object]) -> None:
+    artifacts = _public_download_artifacts(_release_artifacts(release_payload))
+    raw_status = str(release_payload.get("status") or "unpublished").strip()
+    available_platforms = _promoted_platform_labels(release_payload, artifacts)
+    missing_platforms = _missing_required_platform_labels(release_payload, artifacts)
+    shelf_truth = _public_shelf_truth_line(raw_status, artifacts, available_platforms, missing_platforms)
+    platform_scope = _public_architecture_scope_line(artifacts)
+
+    current_status_rows = [
+        _front_matter("Current Status", "products/chummer/PROGRESS_REPORT.generated.json"),
+        "# Current Status",
+        "",
+        shelf_truth,
+        "",
+        platform_scope,
+        "",
+        "Start with [Download](../DOWNLOAD.md), then [Help](../HELP.md) if installation, updates, or sign-in go sideways.",
+        "",
+    ]
+    if missing_platforms:
+        current_status_rows.extend(
+            [
+                _public_missing_installer_lane_line(missing_platforms),
+                "",
+            ]
+        )
+    current_status_rows.extend(
+        [
+            "For the fuller explanation, read [Status](../STATUS.md).",
+            "",
+        ]
+    )
+    _write(out_dir / "NOW" / "current-status.md", "\n".join(current_status_rows))
+
+    public_surfaces_rows = [
+        _front_matter("Live Pages", "products/chummer/PUBLIC_GUIDE_PAGE_REGISTRY.yaml"),
+        "# Live Pages",
+        "",
+        "These are the pages that should answer the normal first questions without making you learn the project map first.",
+        "",
+        "- [Download](../DOWNLOAD.md)",
+        "- [Status](../STATUS.md)",
+        "- [Help](../HELP.md)",
+        "- [FAQ](../FAQ.md)",
+        "- [Contact](../CONTACT.md)",
+        "",
+    ]
+    _write(out_dir / "NOW" / "public-surfaces.md", "\n".join(public_surfaces_rows))
+
+
 def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, object], release_payload: dict[str, object]) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
@@ -2768,6 +2831,12 @@ def _generate_help(out_dir: Path, help_copy: str, trust_payload: dict[str, objec
         for section in help_page.get("sections") or []:
             if isinstance(section, dict):
                 rows.extend(_section_rows(_public_install_section(section, release_payload)))
+    rows.extend(
+        [
+            "Use Contact when logs, screenshots, crash details, or account details are involved.",
+            "",
+        ]
+    )
     _write(out_dir / "HELP.md", "\n".join(rows))
 
 
@@ -2968,7 +3037,7 @@ def _generate_download(
             "",
             "Official client downloads start on the [Chummer6 downloads page](https://chummer.run/downloads). Use GitHub for source code and issue discussion.",
             "",
-            "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md).",
+            "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md). For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md).",
         ]
     )
 
@@ -3098,6 +3167,17 @@ def _load_linux_source_build_gate_receipt() -> dict[str, object] | None:
         return None
 
 
+def _load_macos_source_build_contract_receipt() -> dict[str, object] | None:
+    repo_root = _resolve_chummer6_repo_root()
+    receipt_path = repo_root / ".guide-internal" / "receipts" / "MACOS_SOURCE_BUILD_CONTRACT.generated.json"
+    if not receipt_path.is_file():
+        return None
+    try:
+        return json.loads(receipt_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
 def _public_linux_source_build_doc(content: str) -> str:
     cleaned = content.strip()
     cleaned = cleaned.replace("## Fresh-container publish gate", "## Fresh-container maintenance check")
@@ -3119,6 +3199,10 @@ def _copy_chummer6_public_docs(out_dir: Path) -> None:
     _write_exact(
         out_dir / "SOURCE_BUILD_LINUX.md",
         _public_linux_source_build_doc(_load_text(source_root / "SOURCE_BUILD_LINUX.md")),
+    )
+    _write_exact(
+        out_dir / "SOURCE_BUILD_MACOS.md",
+        _load_text(source_root / "SOURCE_BUILD_MACOS.md"),
     )
 
 
@@ -3643,6 +3727,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     _generate_what_chummer6_is(out_dir)
     _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
     _generate_status(out_dir, trust_payload, progress, release_payload)
+    _generate_now_pages(out_dir, release_payload)
     _generate_help(out_dir, help_copy, trust_payload, release_payload)
     _generate_how_can_i_help(out_dir)
     _generate_where_to_go_deeper(out_dir)

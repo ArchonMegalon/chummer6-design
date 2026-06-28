@@ -21,10 +21,10 @@ Claim your copy only if you want recovery or linked installs.
 
 ## Private support
 
-Use Contact for crashes, logs, screenshots, or account detail.
+Use Contact for crashes, install trouble, or account details.
 
 - One issue per message.
-- Discord is better for normal questions.
+- Use Discord for normal questions.
 
 ## FAQ
 
@@ -32,3 +32,5 @@ Read the short answers first.
 
 - No account needed.
 - Support stays private.
+
+Use Contact when logs, screenshots, crash details, or account details are involved.

@@ -182,9 +182,11 @@ The user-facing update setting has exactly three modes:
 * `notify`: check and show that a newer build exists, without downloading or applying it automatically
 * `off`: do not check for updates on startup
 
-Packaged Windows, macOS, and Linux binaries default to `full` when update truth is available. Linked accounts also default to `full` unless the user changes the setting. Linux source-build launchers default to `notify` so source-built copies never silently replace themselves with a published binary.
+Packaged Windows, macOS, and Linux binaries default to `full` when update truth is available. Linked accounts also default to `full` unless the user changes the setting. Linux local-source-build launchers default to `notify` so source-built copies never silently replace themselves with a published binary. The Linux local-source-build lane stays split into a build step plus a separate user-local install step.
 
-The Linux source-build path stays single-sourced. The executable script lives in `Chummer6/scripts/build-chummer6-linux.sh`, the user-facing explanation lives in `Chummer6/SOURCE_BUILD_LINUX.md`, and the maintenance policy lives in `maintenance/LINUX_SOURCE_BUILD_PATH.md`.
+The personal macOS local-source-build lane follows the same update default. It remains a separate build step plus install step, stays outside the public installer shelf, and defaults the installed app bundle to `notify` rather than silently switching itself onto a published binary lane.
+
+The Linux source-build path stays single-sourced. The executable build script lives in `Chummer6/scripts/build-chummer6-linux.sh`, the executable install helper lives in `Chummer6/scripts/install-chummer6-linux-local.sh`, the user-facing explanation lives in `Chummer6/SOURCE_BUILD_LINUX.md`, and the maintenance policy lives in `maintenance/LINUX_SOURCE_BUILD_PATH.md`.
 
 The client must not:
 

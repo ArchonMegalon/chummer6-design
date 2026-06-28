@@ -236,7 +236,7 @@ def test_generate_download_cuts_scope_paragraph_and_keeps_plain_summary(tmp_path
     assert "Claim boundary:" not in download
     assert "what this covers" not in download.lower()
     assert "Windows and Linux downloads start on `chummer.run`. macOS stays on a guided support path." in download
-    assert "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md)." in download
+    assert "Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md). For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md)." in download
     assert "This release covers installs and recovery." in download
     assert "Start with the installer for your platform." in download
     assert "No current download blocker is listed for these installers." in download
@@ -252,6 +252,7 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
     out_dir = tmp_path / "bundle"
     guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
     assert (out_dir / "SOURCE_BUILD_LINUX.md").exists()
+    assert (out_dir / "SOURCE_BUILD_MACOS.md").exists()
 
     new_sections = json.loads(
         (out_dir / "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json").read_text(encoding="utf-8")
@@ -293,6 +294,14 @@ def test_generate_bundle_emits_new_section_proof_artifacts(tmp_path: Path) -> No
     assert linux_gate["status"] == "passed"
     assert linux_gate["docker_image"] == "debian:bookworm-slim"
     assert linux_gate["rid"].startswith("linux-")
+    macos_contract = release_packet["macos_source_build_contract"]
+    assert macos_contract["status"] == "passed"
+    assert macos_contract["scope"] == "script_contract_only"
+    assert macos_contract["runtime_coverage"] == "not_run_on_non_macos_host"
+    assert macos_contract["real_macos_runtime_proof_required"] is True
+    assert macos_contract["maintenance_policy_marks_real_build_as_macos_only"] is True
+    assert macos_contract["maintenance_policy_requires_two_step_install"] is True
+    assert macos_contract["doc_marks_second_script_install"] is True
 
 
 def test_scrub_public_markdown_preserves_checked_in_and_checksum_terms() -> None:
@@ -404,15 +413,21 @@ def test_generate_bundle_carries_horizon_explanation_videos(tmp_path: Path) -> N
     out_dir = tmp_path / "bundle"
     guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
 
+    jackpoint = (out_dir / "HORIZONS" / "jackpoint.md").read_text(encoding="utf-8")
     runsite = (out_dir / "HORIZONS" / "runsite.md").read_text(encoding="utf-8")
     origin = (out_dir / "HORIZONS" / "origin-dossier.md").read_text(encoding="utf-8")
+    runbook = (out_dir / "HORIZONS" / "runbook-press.md").read_text(encoding="utf-8")
     table_pulse = (out_dir / "HORIZONS" / "table-pulse.md").read_text(encoding="utf-8")
 
+    assert "https://chummer.run/media/horizons/jackpoint-90s-deepdive.mp4" not in jackpoint
+    assert "![Jackpoint feature art](../assets/horizons/jackpoint.png)" in jackpoint
     assert "## Explanation video" not in runsite
     assert "https://chummer.run/media/horizons/runsite-90s-deepdive.mp4" in runsite
     assert "alt=\"Runsite video preview\"" in runsite
     assert "MP4 with AAC audio" not in runsite
-    assert "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose-20260619.mp4" in origin
+    assert "https://chummer.run/media/horizons/origin-dossier-the-name-she-chose.mp4" in origin
+    assert "https://chummer.run/media/horizons/runbook-press-90s-deepdive.mp4" not in runbook
+    assert "![Runbook Press feature art](../assets/horizons/runbook-press.png)" in runbook
     assert "https://chummer.run/media/horizons/table-pulse-90s-deepdive.mp4" in table_pulse
 
 
@@ -431,6 +446,19 @@ def test_generate_bundle_keeps_origin_and_runbook_provider_neutral(tmp_path: Pat
         assert "source pack" not in lowered
         assert "webhook" not in lowered
         assert "generated file" not in lowered
+
+
+def test_generate_bundle_emits_now_status_pages(tmp_path: Path) -> None:
+    out_dir = tmp_path / "bundle"
+    guide.generate_bundle(Path("/docker/chummercomplete/chummer-design"), out_dir)
+
+    current_status = (out_dir / "NOW" / "current-status.md").read_text(encoding="utf-8")
+    public_surfaces = (out_dir / "NOW" / "public-surfaces.md").read_text(encoding="utf-8")
+
+    assert "# Current Status" in current_status
+    assert "[Status](../STATUS.md)" in current_status
+    assert "# Live Pages" in public_surfaces
+    assert "- [Download](../DOWNLOAD.md)" in public_surfaces
 
 
 def test_generate_bundle_uses_participate_route_spelling(tmp_path: Path) -> None:

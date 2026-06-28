@@ -1,6 +1,6 @@
-# Help
+# What is wrong?
 
-Start with the closest path.
+Pick the next step.
 
 ## Get Chummer first
 
@@ -21,10 +21,10 @@ Claim your copy only if you want recovery or linked installs.
 
 ## Private support
 
-Use Contact for crashes, logs, screenshots, or account detail.
+Use Contact for crashes, install trouble, or account details.
 
 - One issue per message.
-- Discord is better for normal questions.
+- Use Discord for normal questions.
 
 ## FAQ
 
