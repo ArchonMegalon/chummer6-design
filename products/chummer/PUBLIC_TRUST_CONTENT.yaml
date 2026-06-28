@@ -33,7 +33,7 @@ trust_pages:
       - id: sign-in-recovery
         eyebrow: "Account recovery"
         heading: "Account"
-        body: "Claim your copy only if you want recovery or linked installs."
+        body: "Claim your copy only when you want recovery or linked installs."
         bullets:
           - "Guest use is fine."
           - "Claim only when you want recovery."
@@ -127,10 +127,9 @@ trust_pages:
     effective_date: "2026-03-25"
     updated_date: "2026-03-25"
     summary_points:
-      - "Discord first"
-      - "Private form if needed"
+      - "Discord for normal questions"
+      - "Private form for account or crash details"
       - "Account history if you sign in"
-      - "Discord for normal questions. Private form for private details."
     actions:
       - label: "Open Discord"
         href: "https://discord.gg/chummer"
@@ -150,10 +149,6 @@ trust_pages:
         eyebrow: "Private"
         heading: "Use the form only when Discord is the wrong place"
         body: "Install failures, crashes, screenshots, logs, or account details should stay private. The form is for those cases."
-      - id: public-issues
-        eyebrow: "Public feedback"
-        heading: "Participate"
-        body: "Public bugs, requests, and roadmap items belong on Participate."
 faq_pages:
   - id: faq
     eyebrow: "FAQ"
@@ -185,7 +180,7 @@ faq_pages:
           - question: "Does the account change the download file?"
             answer: "No. The published package stays the same for everyone. Account linking is separate from the file itself."
           - question: "Where do I go if install or update goes sideways?"
-            answer: "Start with Downloads, then use Contact or Account > Support. Public boards are optional."
+            answer: "Start with Downloads, then use Contact or Account > Support."
       - title: "Participation and help"
         entries:
           - question: "What went wrong?"
