@@ -33,11 +33,11 @@ RUNSITE is for briefing, planning, and spatial understanding before things go lo
 
 ## Current proof posture
 
-RUNSITE is still a horizon, but it already has first-party preview proof in the public artifact registry through runsite-pack framing and route-oriented artifact language.
+RUNSITE has first-party preview proof in the public artifact registry through runsite-pack framing and route-oriented artifact language.
 The spatial lane should now read as an inspectable preview path, not a blank future tease.
 Route overlays, pack inspection, and explorable tours remain the first-party truth surfaces; host clips stay secondary orientation siblings rather than tactical authority.
 The live play shell may consume named room, zone, or hotspot anchors from a runsite pack, but the tour itself must not become exact tactical-position truth.
 
-## Why it is not ready yet
+## Current product boundary
 
-The new vendor path makes this more plausible, but Chummer still needs a reliable permission model and clear evidence links before it should present RUNSITE as a real feature.
+Chummer can present RUNSITE as a preview-backed spatial briefing lane when every pack has a reliable permission model, clear evidence links, and a first-party fallback if a hosted tour is unavailable.

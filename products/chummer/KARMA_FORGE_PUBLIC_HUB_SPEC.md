@@ -15,4 +15,4 @@
 
 - candidate/package linkage must point into `/packages` routes
 - roadmap detail remains `/roadmap/karma-forge`
-- support still exits to `/contact#support-intake`
+- support exits to `/contact`
