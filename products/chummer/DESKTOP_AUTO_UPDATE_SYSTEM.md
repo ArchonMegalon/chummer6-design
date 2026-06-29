@@ -177,6 +177,8 @@ The user-facing update setting has exactly three modes:
 
 Packaged Windows, macOS, and Linux binaries default to `full` when update truth is available. Linked accounts also default to `full` unless the user changes the setting. Linux source-build launchers default to `notify` so source-built copies never silently replace themselves with a published binary.
 
+Linux local-source-build lane stays split into a build step plus a separate user-local install step. The personal macOS local-source-build lane follows the same update default. It remains a separate build step plus install step, stays outside the public installer shelf, and defaults the installed app bundle to `notify` rather than silently switching itself onto a published binary lane.
+
 The client must not:
 
 * invent local promoted-channel semantics

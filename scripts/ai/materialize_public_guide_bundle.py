@@ -2202,6 +2202,7 @@ def _generate_download(
     rows.append("- You do not need GitHub for the normal download path.")
     rows.append("- [Raw GitHub releases](https://github.com/ArchonMegalon/Chummer6/releases).")
     rows.append("- Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md).")
+    rows.append("- For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md).")
 
     rows.extend(
         [
