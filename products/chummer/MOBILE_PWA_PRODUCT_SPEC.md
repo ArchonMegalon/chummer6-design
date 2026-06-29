@@ -46,7 +46,9 @@ fallback paths: `/mobile`, `/play`, `/play/continuity`, `/mobile/pwa.json`, and
 
 verification: `scripts/verify_mobile_pwa_public_projection.py` checks the service
 worker cache list, navigation preload, runtime cache, and explicit exclusion of
-`/mobile/pwa/ledger.json`.
+`/mobile/pwa/ledger.json`. `tests/public/pwa-offline-cache.spec.ts` checks the live
+browser Cache Storage entries after `/mobile` loads, proves the public shell can replay
+offline, and proves the personalized ledger stream was not cached.
 
 ## Auth and opt-in
 
@@ -96,7 +98,7 @@ owner: chummer6-hub
 verification: The current repeatable release evidence is:
 
 - `python3 scripts/verify_mobile_pwa_public_projection.py --base-url https://chummer.run`
-- `BASE_URL=https://chummer.run npx playwright test tests/public/mobile-pwa-public.spec.ts tests/public/pwa-installability.spec.ts`
+- `BASE_URL=https://chummer.run npx playwright test tests/public/mobile-pwa-public.spec.ts tests/public/pwa-installability.spec.ts tests/public/pwa-offline-cache.spec.ts`
 - `curl -I https://chummer.run/mobile`
 - `curl -I https://chummer.run/play`
 - `curl -I https://chummer.run/blazor/`
