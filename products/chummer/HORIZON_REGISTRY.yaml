@@ -305,7 +305,7 @@ horizons:
   family: campaign_world_state
   canon_doc: products/chummer/horizons/black-ledger.md
   public_guide:
-    enabled: true
+    enabled: false
     order: 85
     group: expansion_bet
   pain_label: I want the city to matter between sessions without needing a metagame spreadsheet to prep the next run.

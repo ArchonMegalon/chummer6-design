@@ -6,6 +6,17 @@ This file defines where Chummer release authority lives after the split.
 
 The goal is to keep build recipes near the owning code, keep release control in one place, and keep public install/update truth in one registry-owned plane.
 
+## Scheduled rolling release rule
+
+The normal publication happens once per day at 08:00 Europe/Vienna after the required release gates pass.
+Extra publishes are allowed only when a fix is urgent, user-visible, and worth the extra release noise.
+emergency publishes require an explicit release reason, the affected surface, and the verification that made the extra publish safe.
+
+## Arch/AUR package rule
+
+Arch-based users should not be asked to convert Debian packages as the long-term path.
+The release pipeline should keep an AUR package target visible until it is implemented, tested from a clean Arch-like build, and documented on the download surface.
+
 ## Canonical split
 
 ### `chummer6-core`

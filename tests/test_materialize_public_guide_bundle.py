@@ -47,7 +47,8 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
 
     assert "# Chummer6" in readme
-    assert "Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help." in readme
+    assert "Build a Shadowrun runner, see why the numbers changed, and keep game night moving when the campaign gets messy." in readme
+    assert "The honest pitch is simple:" in readme
     assert (
         "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward."
     ) in readme
@@ -167,13 +168,11 @@ def test_generate_root_scopes_proof_and_fallback_language(tmp_path: Path, monkey
 
     readme = (tmp_path / "README.md").read_text(encoding="utf-8")
 
-    assert "Downloads are currently live for Windows." in readme
+    assert "Windows downloads are posted." in readme
     assert (
-        "Treat Blazor desktop app as a fallback path only when the download page or support explicitly tells you to use it."
+        "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there."
     ) in readme
-    assert (
-        "Treat Blazor desktop app as a fallback path only when the download page or support explicitly tells you to use it."
-    ) in readme
+    assert "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time." in readme
 
 
 def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Path) -> None:
@@ -228,7 +227,7 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
 
     download = (tmp_path / "DOWNLOAD.md").read_text(encoding="utf-8")
 
-    assert "Downloads are currently live for Windows." in download
+    assert "Windows downloads are posted." in download
     assert "There is no public Linux download today." in download
     assert "There is no public macOS download today." in download
-    assert "Recent checks: Passed for installs and recovery." in download
+    assert "Recent checks: This release covers installs and recovery, campaign session recovery, and support follow-up." in download

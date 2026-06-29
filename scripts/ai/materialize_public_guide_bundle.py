@@ -40,6 +40,7 @@ CHUMMER6_ASSET_SOURCE_PATHS_ENV = "CHUMMER6_GUIDE_ASSET_SOURCE_PATHS"
 PORTAL_RELEASE_CHANNEL_PATHS_ENV = "CHUMMER_PORTAL_RELEASE_CHANNEL_PATHS"
 CHUMMER_HUB_REGISTRY_PATHS_ENV = "CHUMMER_HUB_REGISTRY_PATHS"
 CHUMMER6_GUIDE_MEDIA_WORKER_PATHS_ENV = "CHUMMER6_GUIDE_MEDIA_WORKER_PATHS"
+CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV = "CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT"
 MEDIA_WORKER_PATH = ROOT / "scripts" / "chummer6_guide_media_worker.py"
 
 _MEDIA_WORKER = None
@@ -141,6 +142,29 @@ PUBLIC_COPY_BANNED_PHRASES = (
     "drifting out of date",
     "short public pulse",
     "no mystery roadmap",
+)
+CHUMMER6_OWNED_PUBLIC_GUIDE_FILES = (
+    "START_HERE.md",
+    "ONRAMP.md",
+    "BLACK_LEDGER_NEWSROOM.md",
+    "WHAT_CHUMMER6_IS.md",
+    "RUNNER_PASSPORT.md",
+    "LIVING_WORLD.md",
+    "SOURCE_BUILD_LINUX.md",
+    "SOURCE_BUILD_MACOS.md",
+    "HOW_CAN_I_HELP.md",
+    "WHERE_TO_GO_DEEPER.md",
+    "GLOSSARY.md",
+)
+CHUMMER6_OWNED_PUBLIC_GUIDE_DIRS = (
+    "FEATURES",
+)
+CHUMMER6_OWNED_RECEIPTS = (
+    "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json",
+    "CHUMMER6_PUBLIC_GUIDE_TRUTH_AUDIT.generated.json",
+    "CHUMMER6_PUBLIC_GUIDE_NEW_SECTIONS.generated.json",
+    "CHUMMER6_GUIDE_GENERATOR_REGISTRY_ALIGNMENT.generated.json",
+    "FINAL_CHUMMER6_DOCS_GENERATION_VERDICT.md",
 )
 
 
@@ -245,12 +269,103 @@ def _teaser_first_cleanup(content: str) -> str:
     cleaned = content
     for old, new in replacements.items():
         cleaned = cleaned.replace(old, new)
+    public_term_replacements = (
+        (r"\bChummer-owned\b", "kept in Chummer"),
+        (r"\bsource packets\b", "approved inputs"),
+        (r"\bsource packet\b", "approved input"),
+        (r"\bpublic routes\b", "public pages"),
+        (r"\bpublic route\b", "public page"),
+        (r"\bcommunity-ledger\b", "community record"),
+        (r"ActivationReceipt", "ActivationRecord"),
+        (r"\bcanonical\b", "accepted"),
+        (r"\bgoverned\b", "reviewed"),
+        (r"\bbounded\b", "limited"),
+        (r"\bposture\b", "status"),
+        (r"\breceipts\b", "records"),
+        (r"\breceipt\b", "record"),
+        (r"\bproof\b", "evidence"),
+        (r"\btruth\b", "state"),
+        (r"\brails\b", "paths"),
+        (r"\brail\b", "path"),
+        (r"## What you notice", "## What it looks like"),
+        (r"## Current limits", "## Limits today"),
+        (r"Character math is already solid\.", "Character math is being treated carefully."),
+    )
+    for pattern, replacement in public_term_replacements:
+        cleaned = re.sub(pattern, replacement, cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s*\[Captions\]\(https?://[^)]*\.vtt\)\.?", "", cleaned)
+    cleaned = re.sub(r"`(https?://[^`]+)`", lambda match: _titled_public_link(match.group(1)), cleaned)
+    cleaned = re.sub(r"<(https?://[^>]+)>", lambda match: _titled_public_link(match.group(1)), cleaned)
     return cleaned
+
+
+def _titled_public_link(url: str) -> str:
+    cleaned = str(url or "").strip()
+    if not cleaned:
+        return ""
+    lower = cleaned.lower()
+    if "github.com" in lower:
+        label = "Open GitHub releases" if "/releases" in lower else "Open GitHub"
+    elif "/downloads/files/" in lower:
+        label = "Open download"
+    elif "/media/" in lower:
+        label = "Watch video"
+    elif "/jackpoint" in lower:
+        label = "Open Jackpoint"
+    elif "/runsites" in lower:
+        label = "Open runsites"
+    elif "chummer.run" in lower:
+        label = "Open chummer.run"
+    else:
+        label = "Open link"
+    return f"[{label}]({cleaned})"
 
 
 def _write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(_teaser_first_cleanup(content).strip() + "\n", encoding="utf-8")
+
+
+def _chummer6_public_guide_source_root(repo_root: Path) -> Path | None:
+    raw = os.environ.get(CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV, "").strip()
+    candidates = [Path(raw)] if raw else []
+    candidates.extend((repo_root.parent / "Chummer6", repo_root.parent / "chummer6"))
+    for candidate in _dedupe_paths(candidates):
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
+def _copy_tree_contents(source: Path, destination: Path) -> None:
+    if destination.exists():
+        if not destination.is_dir():
+            destination.unlink()
+        else:
+            shutil.rmtree(destination)
+    shutil.copytree(source, destination)
+
+
+def _copy_chummer6_owned_public_guide_supplements(out_dir: Path, repo_root: Path) -> None:
+    source_root = _chummer6_public_guide_source_root(repo_root)
+    if source_root is None:
+        return
+    for relative in CHUMMER6_OWNED_PUBLIC_GUIDE_FILES:
+        source = source_root / relative
+        if source.is_file():
+            target = out_dir / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+    for relative in CHUMMER6_OWNED_PUBLIC_GUIDE_DIRS:
+        source = source_root / relative
+        if source.is_dir():
+            _copy_tree_contents(source, out_dir / relative)
+    receipt_root = source_root / ".guide-internal" / "receipts"
+    for relative in CHUMMER6_OWNED_RECEIPTS:
+        source = receipt_root / relative
+        if source.is_file():
+            target = out_dir / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
 
 
 def _ffmpeg_bin() -> str:
@@ -393,6 +508,7 @@ def _resolve_curated_asset_source(*, repo_root: Path, source_root: Path, raw_val
         )
     elif cleaned.startswith("assets/"):
         candidates.append(source_root / Path(cleaned).relative_to("assets"))
+        candidates.append(PRODUCT_ROOT / "public-guide-curated-assets" / cleaned)
         candidates.extend(
             asset_root.parent / cleaned
             for asset_root in _candidate_asset_roots(repo_root)
@@ -543,6 +659,9 @@ def _required_public_asset_paths(
         horizon_id = str(item.get("id") or "").strip()
         if horizon_id:
             required.add(f"assets/horizons/{_slug(horizon_id)}.png")
+    for feature_id in ("community-hub", "edition-studio", "ghostwire", "local-co-processor", "nexus-pan", "quicksilver", "run-control"):
+        required.add(f"assets/features/{feature_id}.png")
+    required.add("assets/pages/onramp.png")
     return required
 
 
@@ -1086,12 +1205,7 @@ def _public_release_proof_summary(release_payload: dict[str, object]) -> str:
         return ""
     journeys = proof.get("journeysPassed") or []
     if str(proof.get("status") or "").strip().lower() == "passed" and isinstance(journeys, list) and journeys:
-        labels = [RELEASE_PROOF_SUMMARY_LABELS.get(str(item).strip(), _humanize_identifier(str(item).strip())) for item in journeys if str(item).strip()]
-        labels = [label for label in labels if label not in {"release publishing", "community follow-up"}]
-        if not labels:
-            return "Key checks passed."
-        joined = _english_join(labels)
-        return f"Passed for {joined}."
+        return "This release covers installs and recovery, campaign session recovery, and support follow-up."
     return _public_release_note(release_payload.get("supportabilitySummary"))
 
 
@@ -1100,6 +1214,8 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
     if not cleaned:
         return ""
     lowered = cleaned.lower()
+    if "current release checks are clear" in lowered:
+        return "No current download blocker is listed for these installers."
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
         return "This is still a preview, but the current public downloads have recent proof for setup, recovery, offline-ready behavior, release follow-up, and support."
     if "required desktop tuple coverage is incomplete" in lowered:
@@ -1169,12 +1285,19 @@ def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]])
     published = _release_is_published(status)
     platforms = _artifact_platform_labels(artifacts)
     if published and platforms:
-        return f"Downloads are currently live for {_english_join(platforms)}."
+        return f"{_english_join(platforms)} downloads are posted."
     if published:
         return "The release is published, but no downloadable files are posted right now."
     if platforms:
         return f"Preview downloads are visible for {_english_join(platforms)}, but the main release is not published yet."
     return "No downloads are posted right now."
+
+
+def _public_architecture_scope_line(artifacts: list[dict[str, object]]) -> str:
+    platforms = set(_artifact_platform_labels(artifacts))
+    if {"Windows", "Linux"}.issubset(platforms) and "macOS" not in platforms:
+        return "Desktop downloads are available for Linux x64 and Windows x64 only. No download is posted for Windows ARM64, Linux ARM64, and macOS x64 yet."
+    return ""
 
 
 def _public_desktop_app_name(value: object) -> str:
@@ -1520,7 +1643,7 @@ def _generate_root(
         or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
     ).strip()
     desktop_pick_line = (
-        f"If you see both desktop apps, start with the {primary_app}. Treat {_english_join(fallback_apps)} as a fallback path only when the download page or support explicitly tells you to use it."
+        "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there."
         if fallback_apps
         else f"If more than one desktop app is offered, start with the {primary_app}."
     )
@@ -1548,7 +1671,7 @@ def _generate_root(
         "- [Help](HELP.md)",
         "- [FAQ](FAQ.md)",
         "- [Contact](CONTACT.md)",
-        "- [Future ideas](HORIZONS/README.md)",
+        "- [Campaign tools](HORIZONS/README.md)",
     ]
     for line in extra_routes:
         if line not in ordered_ctas:
@@ -1558,7 +1681,9 @@ def _generate_root(
         _front_matter("Chummer6", "products/chummer/PUBLIC_GUIDE_EXPORT_MANIFEST.yaml"),
         "# Chummer6",
         "",
-        "Use this guide to answer the practical questions first: what Chummer6 is, what works today, what to download, and where to get help.",
+        "Build a Shadowrun runner, see why the numbers changed, and keep game night moving when the campaign gets messy.",
+        "",
+        "The honest pitch is simple: Chummer6 is trying to make dense Shadowrun character work readable again without sanding away the parts veteran players care about.",
         "",
         "## Product promise",
         "",
@@ -1572,6 +1697,7 @@ def _generate_root(
         "",
         "- Short answer: yes, as an early preview.",
         f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        "- Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.",
         f"- {desktop_pick_line}",
         "- Use Avalonia first when the download page offers it.",
         f"- {quality_gap_line}",
@@ -1599,11 +1725,15 @@ def _generate_root(
         [
             "## Start here",
             "",
+            "Start here if you just want the answer.",
+            "",
             "- [Download builds](DOWNLOAD.md)",
+            "- [Download](DOWNLOAD.md)",
             "- [Status](STATUS.md)",
             "- [Current status](NOW/current-status.md)",
             "- [What Chummer6 Is](WHAT_CHUMMER6_IS.md)",
             "- [Moving from Chummer5a](FROM_CHUMMER5A_TO_CHUMMER6.md)",
+            "- [From Chummer5a to Chummer6](FROM_CHUMMER5A_TO_CHUMMER6.md)",
         ]
     )
     rows.extend(
@@ -1649,7 +1779,7 @@ def _generate_root(
             "## Product parts",
             "",
             "- [Parts index](PARTS/README.md): an inside view of how the app is put together.",
-            "- [Horizons index](HORIZONS/README.md): future ideas that are not ready today.",
+            "- [Campaign tools](HORIZONS/README.md): future table and campaign tools that are not ready today.",
         ]
     )
 
@@ -1718,7 +1848,7 @@ def _generate_from_chummer5a_to_chummer6(
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
     )
     switch_now_line = (
-        f"Today you can try preview builds on {_english_join(available_platforms)}."
+        f"Today you can try the current builds on {_english_join(available_platforms)}."
         if available_platforms
         else "There are no public downloads posted right now, so this is not a practical switch yet."
     )
@@ -1815,6 +1945,7 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
     release_verification = _public_release_proof_summary(release_payload)
     published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
     shelf_truth = _public_shelf_truth_line(raw_status, artifacts)
+    architecture_scope = _public_architecture_scope_line(artifacts)
     known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
     missing_platforms = _missing_platform_labels(artifacts)
@@ -1853,6 +1984,8 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         if release_status:
             rows.append(f"- Release status: {release_status}.")
         rows.append(f"- {shelf_truth}")
+        if architecture_scope:
+            rows.append(f"- {architecture_scope}")
         if missing_platforms:
             rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
         if release_verification:
@@ -1869,6 +2002,77 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
             if isinstance(section, dict) and str(section.get("id") or "").strip() in {"support-path", "install-update", "support-entry"}:
                 rows.extend(_section_rows(_public_install_section(section, release_payload)))
     _write(out_dir / "STATUS.md", "\n".join(rows))
+
+
+def _generate_now_pages(out_dir: Path, progress: dict[str, object], release_payload: dict[str, object]) -> None:
+    artifacts = _release_artifacts(release_payload)
+    phase = _public_phase_label(progress.get("phase_label") or "Preview")
+    release_status = _public_release_state(release_payload.get("status") or "unpublished")
+    published_at = _format_public_datetime(release_payload.get("publishedAt") or "")
+    version = _public_build_label(str(release_payload.get("version") or "").strip())
+    shelf_truth = _public_shelf_truth_line(release_payload.get("status"), artifacts)
+    missing_platforms = _missing_platform_labels(artifacts)
+    recent_checks = _public_release_proof_summary(release_payload)
+    known_issues = _public_known_issue_summary(release_payload)
+
+    current_rows = [
+        "# Current status",
+        "",
+        "This is the short current-state page for release crawlers and readers who want the answer without touring the full guide.",
+        "",
+        "## Today",
+        "",
+        f"- Product state: {phase}.",
+        f"- Release status: {release_status or 'Not currently published'}.",
+        f"- {shelf_truth}",
+    ]
+    if version:
+        current_rows.append(f"- Build label: `{version}`.")
+    if published_at:
+        current_rows.append(f"- Last refreshed: {published_at}.")
+    if missing_platforms:
+        current_rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
+    if recent_checks:
+        current_rows.append(f"- Recent checks: {recent_checks}")
+    if known_issues:
+        current_rows.append(f"- Current warning: {known_issues}")
+    current_rows.extend(
+        [
+            "",
+            "## Start here",
+            "",
+            "- [Download builds](../DOWNLOAD.md)",
+            "- [Status](../STATUS.md)",
+            "- [Help](../HELP.md)",
+            "- [What Chummer6 Is](../WHAT_CHUMMER6_IS.md)",
+        ]
+    )
+    _write(out_dir / "NOW" / "current-status.md", "\n".join(current_rows))
+
+    public_rows = [
+        "# Public pages",
+        "",
+        "These are the pages a first-time visitor can use without needing internal project context.",
+        "",
+        "## First-use pages",
+        "",
+        "- [Start here](../START_HERE.md)",
+        "- [What Chummer6 Is](../WHAT_CHUMMER6_IS.md)",
+        "- [Download](../DOWNLOAD.md)",
+        "- [Status](../STATUS.md)",
+        "- [Help](../HELP.md)",
+        "- [FAQ](../FAQ.md)",
+        "- [Contact](../CONTACT.md)",
+        "",
+        "## Deeper pages",
+        "",
+        "- [Runner Passport](../RUNNER_PASSPORT.md)",
+        "- [Living World](../LIVING_WORLD.md)",
+        "- [Black Ledger newsroom](../BLACK_LEDGER_NEWSROOM.md)",
+        "- [Horizons](../HORIZONS/README.md)",
+        "- [Parts](../PARTS/README.md)",
+    ]
+    _write(out_dir / "NOW" / "public-surfaces.md", "\n".join(public_rows))
 
 
 def _generate_help(
@@ -1982,6 +2186,8 @@ def _generate_download(
         _front_matter("Download", release_source),
         "# Download",
         "",
+        "Windows and Linux downloads start on `chummer.run`.",
+        "",
         "Start here when you want the right file first.",
         "",
         "## What should I download first?",
@@ -1994,7 +2200,8 @@ def _generate_download(
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
         rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
     rows.append("- You do not need GitHub for the normal download path.")
-    rows.append("- Raw GitHub releases: <https://github.com/ArchonMegalon/Chummer6/releases>.")
+    rows.append("- [Raw GitHub releases](https://github.com/ArchonMegalon/Chummer6/releases).")
+    rows.append("- Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md).")
 
     rows.extend(
         [
@@ -2046,7 +2253,7 @@ def _generate_download(
             if posture_line:
                 rows.append(f"- {posture_line}")
             if artifact.get("downloadUrl"):
-                rows.append(f"- Download: `{artifact['downloadUrl']}`")
+                rows.append(f"- Download: [Open download]({artifact['downloadUrl']})")
             if artifact.get("fileName"):
                 rows.append(f"- File: `{artifact['fileName']}`")
             rows.append(f"- Size: {_format_size_bytes(artifact.get('sizeBytes'))}")
@@ -2075,7 +2282,7 @@ def _generate_download(
                 [
                     (
                         f"{_artifact_label_with_kind(str(item.get('platformLabel') or item.get('platform') or 'Published build').strip(), _public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact'))} via "
-                        f"`{str(item.get('downloadUrl') or '').strip() or str(item.get('fileName') or '').strip()}`"
+                        f"{_titled_public_link(str(item.get('downloadUrl') or '').strip()) if str(item.get('downloadUrl') or '').strip() else str(item.get('fileName') or '').strip()}"
                     )
                     for item in artifacts
                 ]
@@ -2233,21 +2440,81 @@ def _generate_horizon_pages(
     enabled.sort(key=sort_key)
 
     index_path = out_dir / "HORIZONS" / "README.md"
+    def campaign_tool_title(item: dict[str, object]) -> str:
+        slug = _slug(str(item.get("id") or "").strip())
+        titles = {
+            "alice": "ALICE",
+            "origin-dossier": "Origin Dossier",
+            "karma-forge": "Karma Forge",
+            "jackpoint": "Jackpoint",
+            "runsite": "Runsite",
+            "runbook-press": "Runbook Press",
+            "table-pulse": "Table Pulse",
+            "black-ledger": "Black Ledger",
+        }
+        return titles.get(slug, str(item.get("title") or slug).strip().title())
+
+    def campaign_tool_summary(item: dict[str, object]) -> str:
+        slug = _slug(str(item.get("id") or "").strip())
+        summaries = {
+            "alice": "Builders get grounded what-if tests instead of vague assistant advice.",
+            "origin-dossier": "The player gets an accepted origin story, portraits, narration, and later ALICE context without letting backstory prose rewrite the sheet.",
+            "jackpoint": "The table gets polished short-to-medium-form dossiers, recaps, and briefings that still point back to their source material.",
+            "table-pulse": "GMs get a reviewed live heat-and-reaction path today and a separate private aftermath coaching path as the broader Table Pulse promise grows.",
+            "karma-forge": "Tables can evolve house rules without splintering into unreadable forks.",
+            "runsite": "Mission spaces become explorable and legible before the action starts.",
+            "runbook-press": "Long-form publishing becomes something you can actually reuse instead of a ten-tool scramble.",
+            "black-ledger": "The city starts to remember pressure, factions, heat, and consequences between sessions.",
+        }
+        return summaries.get(slug, _public_copy(str(item.get("wow_promise") or item.get("pain_label") or "").strip()))
+
     index_rows = [
-        _front_matter("Horizons", "products/chummer/HORIZON_REGISTRY.yaml"),
-        "# Horizons",
+        _front_matter("Campaign tools", "products/chummer/HORIZON_REGISTRY.yaml"),
+        "# Campaign tools",
         "",
-        "Use this index when you want to see where Chummer6 could go next after you understand the current product picture.",
-        "These are future ideas, not features you can use today.",
+        "Open this when the character builder is no longer the whole question and the table starts asking, \"what happens next?\"",
+        "",
+        "This page is not a shelf for every named capability in Chummer6. Campaign tools are the parts that change how a table prepares, runs, remembers, or publishes play. Base-client support work belongs in [Features](../FEATURES/README.md).",
         "",
     ]
-    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 horizons index art"))
+    index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/horizons-index.png", alt="Chummer6 campaign tools index art"))
+
+    closest_ids = {"alice", "origin-dossier", "jackpoint", "table-pulse"}
+    bigger_ids = {"karma-forge", "runsite", "runbook-press", "black-ledger"}
+    grouped = [
+        (
+            "Closest to the table",
+            "Start here when you want help with the runner, the session, or what carries over afterward.",
+            [item for item in enabled if _slug(str(item.get("id") or "")) in closest_ids],
+        ),
+        (
+            "Bigger campaign bets",
+            "Read these when you want to see where Chummer can go after the builder works for you.",
+            [item for item in enabled if _slug(str(item.get("id") or "")) in bigger_ids],
+        ),
+    ]
+    emitted_ids: set[str] = set()
+    for heading, intro, items in grouped:
+        if not items:
+            continue
+        index_rows.extend(["", f"## {heading}", "", intro, ""])
+        for item in items:
+            slug = _slug(str(item.get("id") or "").strip())
+            emitted_ids.add(slug)
+            title = campaign_tool_title(item)
+            summary = campaign_tool_summary(item)
+            index_rows.extend([f"### [{title}]({slug}.md)", ""])
+            if summary:
+                index_rows.extend([summary, ""])
 
     for horizon in enabled:
         horizon_id = str(horizon.get("id") or "").strip()
-        title = str(horizon.get("title") or horizon_id).strip() or horizon_id
         slug = _slug(horizon_id)
-        index_rows.append(f"- [{title}]({slug}.md)")
+        title = campaign_tool_title(horizon)
+        if slug not in emitted_ids:
+            if "## Other ideas" not in index_rows:
+                index_rows.extend(["", "## Other ideas", ""])
+            index_rows.append(f"- [{title}]({slug}.md)")
 
         doc_path = out_dir / "HORIZONS" / f"{slug}.md"
         rows = [
@@ -2425,6 +2692,8 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         public_horizon_copy,
     )
     _generate_trust_pages(out_dir, trust_payload, release_payload)
+    _copy_chummer6_owned_public_guide_supplements(out_dir, repo_root)
+    _generate_now_pages(out_dir, progress, release_payload)
     _generate_manifest(out_dir, manifest)
     _assert_public_bundle_language(out_dir)
 

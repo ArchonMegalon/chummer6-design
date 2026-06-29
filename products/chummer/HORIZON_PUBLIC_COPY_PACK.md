@@ -32,6 +32,50 @@ products/chummer/horizons/public-copy/edition-studio.md
 
 BLACK LEDGER and KARMA FORGE are intentionally not repeated here except through cross-links.
 
+# ORIGIN DOSSIER — make the runner feel like a person
+
+## When this helps
+
+Open Origin Dossier when a legal sheet still feels unfinished as a person.
+
+It is for the moment after the numbers work, but the table still needs to know why this runner exists, what they owe, who knows them, and what pressure follows them into the first job.
+
+Origin Dossier can turn reviewed runner context into contacts, debts, enemies, scars, secrets, portraits, narration, and a short player-facing identity package.
+
+The player gets the final say on personal history.
+The GM approves anything that changes campaign context.
+The story must never rewrite the sheet.
+
+## What it can become
+
+For now, the accepted origin can become a private audiobook for that runner, linked through an EA-issued player link instead of a global Audiobookshelf login.
+
+That matters because origin material is personal.
+It may include family, debts, enemies, and private campaign pressure.
+The player should be able to enjoy the finished story without exposing a shared media library or giving the desktop app broad media access.
+
+## What it must not do
+
+Origin Dossier may help decide who the character is.
+It may not decide what the character owns, what qualities they have, what exceptions they receive, or what the rules engine accepts.
+
+The story can suggest:
+
+- this friend might become a contact
+- this old debt might become a future hook
+- this fear might shape roleplay
+- this scene might make a good portrait or video prompt
+
+The user still approves it.
+The GM still approves campaign effects.
+The character sheet changes only through normal Chummer edits.
+
+## Can I use it?
+
+There is an early version you can try.
+
+Treat it as a guided origin and media preview, not as a finished book studio or automatic character author.
+
 # QUICKSILVER — build at the speed of thought
 
 **QUICKSILVER is Chummer’s expert-speed horizon: the future where power users stop waiting on the interface and start moving through dense builds, comparisons, inspections, and edits as fast as they can think.**
@@ -1844,6 +1888,12 @@ Those places should matter.
 
 **RUNBOOK PRESS is Chummer’s long-form publishing horizon: the future where approved Chummer material can become primers, handbooks, district guides, campaign books, convention modules, and creator-ready publications without duct-taping ten unrelated tools together.**
 
+## When this helps
+
+Use this when campaign material grows past a recap and starts becoming a handout, primer, or small book.
+
+Creators should be able to turn accepted Chummer material into something readable without stitching ten tools together by hand.
+
 Short recaps are not enough.
 
 Creators need books.  
@@ -2028,6 +2078,12 @@ It should generate:
 Success looks like:
 
 > A GM can onboard a new player with a polished campaign primer that stays aligned with the actual campaign state.
+
+## Can I use it?
+
+There is an early version you can try.
+
+Treat it as a careful long-form publishing preview, not as an automatic book factory.
 
 ## The vision
 
