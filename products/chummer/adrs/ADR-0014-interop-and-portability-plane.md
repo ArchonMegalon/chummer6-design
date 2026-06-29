@@ -21,10 +21,10 @@ The canonical source is:
 
 * `INTEROP_AND_PORTABILITY_MODEL.md`
 
-The active owner-package split is:
+The active owner-package and namespace split is:
 
 * `Chummer.Campaign.Contracts` for long-lived dossier and campaign meaning
-* `Chummer.Play.Contracts.Interop` for portable round-trip package contracts
+* `Chummer.Play.Contracts` as the canonical published package, with `Chummer.Play.Contracts.Interop` as its portable round-trip contract namespace family
 * `Chummer.Hub.Registry.Contracts` for immutable artifact, install, and release metadata that portable packages may reference
 
 ## Consequences
