@@ -1,21 +1,21 @@
 {
   "contract_name": "chummer.journey_gates",
   "contract_version": 1,
-  "generated_at": "2026-06-24T19:36:38Z",
+  "generated_at": "2026-07-12T06:35:48Z",
   "source_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml",
   "source_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
   "journey_count": 6,
   "current_truth": {
-    "state": "blocked",
-    "blocked_count": 4,
-    "warning_count": 2,
-    "blocked_reason": "Resolve the blocking golden-journey gaps before widening publish claims.",
+    "state": "ready",
+    "blocked_count": 0,
+    "warning_count": 0,
+    "blocked_reason": "",
     "warning_reason": "",
-    "next_safe_action": "Resolve the blocking golden-journey gaps before widening publish claims.",
-    "evidence_age_hours": 1.6,
+    "next_safe_action": "Journey proof is steady on current published evidence.",
+    "evidence_age_hours": 0.01,
     "provenance": {
       "weekly_product_pulse": "products/chummer/WEEKLY_PRODUCT_PULSE.generated.json",
-      "weekly_product_pulse_generated_at": "2026-06-24T18:00:42Z",
+      "weekly_product_pulse_generated_at": "2026-07-12T06:35:00Z",
       "golden_registry": "products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml"
     }
   },
@@ -648,16 +648,22 @@
           },
           {
             "repo": "chummer6-media-factory",
-            "path": "src/Chummer.Media.Factory.Runtime/Assets/CreatorPublicationPlannerService.cs",
+            "path": "docs/MEDIA_CAPABILITY_SIGNOFF.md",
             "must_contain": [
-              "PreserveLaneLine(\"JSON exchange:\", handoff.ExchangeParityLines, selectedParityLines);",
-              "PreserveLaneLine(\"Foundry exchange:\", handoff.ExchangeParityLines, selectedParityLines);",
-              "PreserveLaneLine(\"Sheet viewer:\", handoff.ExchangeParityLines, selectedParityLines);",
-              "PreserveLaneLine(\"Print PDF:\", handoff.ExchangeParityLines, selectedParityLines);",
-              "PreserveLaneLine(\"Character template export:\", handoff.ExchangeParityLines, selectedParityLines);",
-              "PreserveLaneLine(\"Replay timeline:\", handoff.PortabilityPillarLines, selectedPortabilityLines);",
-              "PreserveLaneLine(\"Session recap:\", handoff.PortabilityPillarLines, selectedPortabilityLines);",
-              "PreserveLaneLine(\"Run module:\", handoff.PortabilityPillarLines, selectedPortabilityLines);"
+              "structured media recipe lanes for video, audio, preview-card, and packet-bundle siblings",
+              "build explain companion lanes for approved explain packets rendered into video, audio, preview-card, and packet companions",
+              "creator promo kit lanes for approved creator manifests rendered into promo video, poster, and preview-card siblings",
+              "Upstream repos may request media intent. They do not choose provider adapters, provider credentials, storage class, or retention policy."
+            ]
+          },
+          {
+            "repo": "chummer6-media-factory",
+            "path": "scripts/ai/verify.sh",
+            "must_contain": [
+              "CreatorPublicationPlannerService",
+              "GovernedPrepPacketPlannerService",
+              "Chummer\\.Campaign\\.Contracts",
+              "verify failed: non-render campaign/publication planning leaked into media-factory surfaces"
             ]
           },
           {
@@ -687,15 +693,11 @@
               "Replay-safe dedupe should reuse the same job before expiry.",
               "Backup contract family must stay stable.",
               "Restore must retain pinned approval assets.",
+              "Restore must preserve lifecycle replay counters.",
               "Restore must preserve media dedupe replay counts.",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"JSON exchange:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Foundry exchange:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Sheet viewer:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Print PDF:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Character template export:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Replay timeline:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Session recap:\", StringComparison.Ordinal)),",
-              "Assert(creatorPublicationPlan.EvidenceLines.Any(static line => line.Contains(\"Run module:\", StringComparison.Ordinal)),"
+              "Retention sweep should expire cache-only entries after TTL.",
+              "Cache-only assets should be gone after expiry sweep.",
+              "Succeeded render jobs must transition to expired after TTL progression."
             ]
           },
           {

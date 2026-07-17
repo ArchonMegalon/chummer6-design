@@ -61,6 +61,31 @@ EXPECTED_ADAPTERS = {
     "pixefy",
     "magicfit",
 }
+EXPECTED_GOLD_PROOF_INPUTS = {
+    "design_spine",
+    "horizon_registry",
+    "feature_registry",
+    "human_only_boundaries",
+    "campaign_os_flagship_closeout",
+    "release_evidence_pack",
+    "parity_and_group_blockers",
+    "campaign_operability_scorecard",
+    "journey_gates",
+    "fleet_flagship_readiness",
+    "operator_release_dashboard",
+    "final_gold_janitor",
+    "flagship_product_readiness_gate",
+    "google_oauth_linking_proof",
+    "public_edge_postdeploy_gate",
+    "black_ledger_live_media_proof",
+    "ui_localization_release_gate",
+    "release_ready_matrix",
+    "ea_release_critical_readiness",
+    "registry_release_channel",
+    "below_gold_platform_truth",
+    "live_status",
+    "live_release_manifest",
+}
 
 
 def load_yaml(path: Path) -> dict:
@@ -230,23 +255,26 @@ def main() -> int:
         errors.append("FINAL_GOLD_GRAPH.generated.json review-required verdict must explain blocking_findings.")
 
     proof_inputs = gold_graph.get("proof_inputs") or []
-    proof_kinds = {
+    proof_kind_rows = [
         str(item.get("kind") or "").strip()
         for item in proof_inputs
         if isinstance(item, dict)
-    }
-    for required_kind in (
-        "design_spine",
-        "journey_gates",
-        "horizon_registry",
-        "feature_registry",
-        "fleet_gold_verdict",
-        "fleet_gold_janitor",
-        "live_status",
-        "live_release_manifest",
-    ):
-        if required_kind not in proof_kinds:
-            errors.append(f"FINAL_GOLD_GRAPH.generated.json missing proof input {required_kind}.")
+    ]
+    proof_kinds = set(proof_kind_rows)
+    if len(proof_kind_rows) != len(proof_kinds):
+        errors.append("FINAL_GOLD_GRAPH.generated.json proof input kinds must be unique.")
+    missing_proofs = EXPECTED_GOLD_PROOF_INPUTS - proof_kinds
+    unexpected_proofs = proof_kinds - EXPECTED_GOLD_PROOF_INPUTS
+    if missing_proofs:
+        errors.append(
+            "FINAL_GOLD_GRAPH.generated.json missing proof inputs "
+            f"{sorted(missing_proofs)}."
+        )
+    if unexpected_proofs:
+        errors.append(
+            "FINAL_GOLD_GRAPH.generated.json has unexpected proof inputs "
+            f"{sorted(unexpected_proofs)}."
+        )
     for item in proof_inputs:
         if not isinstance(item, dict):
             errors.append("FINAL_GOLD_GRAPH.generated.json proof_inputs rows must be mappings.")

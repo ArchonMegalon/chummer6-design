@@ -32,6 +32,25 @@ def _load_runtime_json(relative_path: str) -> dict:
     return json.loads(_read_runtime(relative_path))
 
 
+def _find_runtime_capability_block(source: str, horizon_id: str, capability_id: str) -> str:
+    capability_marker = f'CapabilityId: "{capability_id}"'
+    capability_index = source.find(capability_marker)
+    if capability_index < 0:
+        raise KeyError(capability_id)
+
+    block_start = source.rfind("new(", 0, capability_index)
+    block_end = source.find("\n        new(", capability_index)
+    if block_start < 0:
+        raise KeyError(capability_id)
+    if block_end < 0:
+        block_end = len(source)
+
+    block = source[block_start:block_end]
+    if f'HorizonId: "{horizon_id}"' not in block:
+        raise KeyError(f"{horizon_id}/{capability_id}")
+    return block
+
+
 def _find_horizon(registry: dict, horizon_id: str) -> dict:
     horizons = registry.get("horizons") or []
     for item in horizons:
@@ -62,6 +81,9 @@ def main() -> int:
         "chummer.firstbook_premium_receipt.v1",
         "## Public-guide rule",
         "## Promotion evidence",
+        "Subscribr authors the real full-story manuscript before portrait, audiobook, or cinema follow-through opens",
+        "exactly three story-fit portrait choices are surfaced and one chosen portrait becomes the edition face",
+        "audiobook request stays closed until ebook handoff is complete and the player makes an explicit voice choice",
     ):
         if marker not in gate:
             failures.append(f"RUNBOOK_AND_ORIGIN_PROVIDER_GOLD_PRODUCTION_GATE.md missing marker: {marker}")
@@ -98,6 +120,9 @@ def main() -> int:
 
     for marker in (
         "Subscribr is the default creative and content-production lane",
+        "the real full-story manuscript drafted from the approved origin packet",
+        "## Flagship player handoff contract",
+        "The player must receive the finished ebook before portraits, audio, or cinema unlock.",
         "First Book ai is the premium long-form lane after a packet is already approved.",
         "## Premium posture",
         "BrowserAct_manual_export:",
@@ -197,10 +222,30 @@ def main() -> int:
             'InternalProviderLane: "Subscribr.ai / First Book ai / MarkupGo / Documentation.AI"',
             'HorizonId: "origin-dossier"',
             'CapabilityId: "origin-dossier-media"',
-            'InternalProviderLane: "Magicfit / Subscribr.ai / First Book ai / MarkupGo / vidBoard / Soundmadeseen"',
         ):
             if marker not in capability_service:
                 failures.append(f"HorizonCapabilityService.cs missing runtime marker: {marker}")
+
+        try:
+            origin_capability = _find_runtime_capability_block(
+                capability_service,
+                "origin-dossier",
+                "origin-dossier-media",
+            )
+        except KeyError:
+            failures.append("HorizonCapabilityService.cs missing origin-dossier-media capability block")
+        else:
+            for marker in (
+                "Subscribr.ai",
+                "Magicfit",
+                "First Book ai",
+                "approved audiobook providers",
+            ):
+                if marker not in origin_capability:
+                    failures.append(
+                        "HorizonCapabilityService.cs origin-dossier-media capability "
+                        f"missing internal provider marker: {marker}"
+                    )
 
         subscribr_controller = _read_runtime("Chummer.Run.Api/Controllers/SubscribrProviderWebhookController.cs")
         subscribr_service = _read_runtime("Chummer.Run.Api/Services/Community/SubscribrProviderWebhookService.cs")
@@ -237,7 +282,7 @@ def main() -> int:
             '"awaiting_provider_manuscript"',
             '"approved source packet artifact path"',
             '"approved source packet receipt path"',
-            '"provider manuscript receipt path"',
+            '"Subscribr full-story manuscript receipt path"',
             '"provider manuscript account alias"',
             '"provider_manuscript_import"',
         ):
@@ -247,7 +292,7 @@ def main() -> int:
         origin_publication_tests = _read_runtime("Chummer.Tests/OriginDossierPublicationServiceTests.cs")
         for marker in (
             'Assert.Contains("approved source packet receipt path", publication.MissingGoldRequirements);',
-            'Assert.Contains("provider manuscript receipt path", publication.MissingGoldRequirements);',
+            'Assert.Contains("Subscribr full-story manuscript receipt path", publication.MissingGoldRequirements);',
             'Assert.Contains("provider manuscript account alias", publication.MissingGoldRequirements);',
             'Assert.True(publication.GoldReady, string.Join(", ", publication.MissingGoldRequirements));',
         ):

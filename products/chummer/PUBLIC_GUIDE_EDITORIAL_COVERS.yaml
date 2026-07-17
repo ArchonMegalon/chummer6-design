@@ -251,6 +251,7 @@ assets:
     background_zoom: 1.16
     panel_focus: [0.78, 0.41]
     panel_zoom: 1.42
+    panel_crop_bottom: 0.16
     background_brightness: 0.92
     background_saturation: 1.12
     background_contrast: 1.10

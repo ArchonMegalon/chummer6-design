@@ -1,0 +1,115 @@
+version: 1
+owner: chummer6-design
+generated_at: 2026-07-09T00:00:00Z
+policy:
+  fail_closed_when_required_evidence_missing: true
+  allow_pilot_without_key: true
+  default_route:
+    provider: 1min.AI
+    reason: scheduler_fallback_or_missing_credits
+  min_slot_health: 0.5
+providers:
+  - name: 1min.AI
+    status: use_now
+    capability: background_capacity
+    routing_priority: 10
+    slot_health_min: 0.75
+    credits_available: 74
+    slot_count: 74
+    latency_class: low
+    privacy_class: public_safe
+    cost_class: lowest
+    human_review_required: true
+    use_for:
+      - background_summarization
+      - low_risk_draft_generation
+      - public_doc_transformation
+      - low_priority_support_draft_expansion
+      - media_prompt_variants
+      - black_ledger_script_variants
+    avoid_for:
+      - release_truth
+      - rules_truth
+      - private_campaign_data
+      - entitlement_truth
+  - name: AI Magicx
+    status: pilot
+    capability: interactive_overflow
+    routing_priority: 20
+    slot_health_min: 0.60
+    key_env: AI_MAGICX_API_KEY
+    latency_class: low
+    privacy_class: bounded
+    cost_class: medium
+    human_review_required: true
+    use_for:
+      - short_interactive_overflow
+      - audit_support_drafts
+      - alternate_phrasing
+      - fast_low_risk_replies
+    avoid_for:
+      - bulk_background_jobs
+      - private_campaign_data
+      - release_truth
+      - rules_truth
+  - name: vexp.dev
+    status: use_now
+    capability: opportunity_query
+    routing_priority: 5
+    slot_health_min: 0.80
+    credits_available: 999
+    slot_count: 999
+    latency_class: medium
+    privacy_class: public_safe
+    cost_class: lowest
+    human_review_required: false
+    use_for:
+      - cross_repo_opportunity_scan
+      - lane_coverage_gap_analysis
+      - stale_receipt_signal
+    avoid_for:
+      - direct_publish
+      - runtime_account_secret_mutation
+      - authoritative_contract_writes
+  - name: OMagic
+    status: park
+    capability: discovery_probe
+    routing_priority: 40
+    slot_health_min: 0.20
+    latency_class: medium
+    privacy_class: bounded
+    cost_class: medium
+    human_review_required: true
+    use_for:
+      - capacity_discovery
+      - account_verification
+    avoid_for:
+      - runtime_routing
+      - production_publishing
+      - private_campaign_data
+  - name: YouBooks
+    status: park
+    capability: proof_only_transform
+    routing_priority: 35
+    slot_health_min: 0.40
+    latency_class: medium
+    privacy_class: bounded
+    cost_class: medium
+    human_review_required: true
+    use_for:
+      - public_trust_shelf_experimentation
+    avoid_for:
+      - raw_sourcebook_text
+      - private_campaign_data
+      - release_truth
+      - rules_truth
+fallback_path:
+  provider: 1min.AI
+  reason: scheduler_fallback_or_missing_evidence
+decision_rules:
+  - if:
+      key_missing: ["AI_MAGICX_API_KEY"]
+    then:
+      allow: ["1min.AI", "vexp.dev"]
+      deny: ["AI Magicx"]
+      record_receipt: true

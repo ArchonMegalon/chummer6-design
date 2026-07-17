@@ -1,6 +1,6 @@
 # Release Evidence Pack
 
-Last reviewed: 2026-04-15
+Last reviewed: 2026-07-11
 
 Purpose: close `WL-D037` by keeping the final release argument in one canonical location.
 This pack records foundation and wave-closeout truth, but full public-release completeness still depends on the flagship acceptance bar in `FLAGSHIP_RELEASE_ACCEPTANCE.yaml`.
@@ -39,10 +39,9 @@ This pack records foundation and wave-closeout truth, but full public-release co
 ## Human-only boundaries
 
 - `HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md` is the canonical product-level handoff for anything automation cannot honestly clear.
-- Today that boundary is rule-authority review, not repo-local drift:
-  - `SR4` remains blocked on reviewed row-level mapping, reviewed errata posture, fuller authority fixtures, and human signoff.
-  - `SR6` remains blocked on reviewed row-level mapping, selected source baseline, reviewed errata posture, fuller authority fixtures, fuller explain-provider authority, and human signoff.
-- Those boundaries are real, explicit, and intentionally not papered over by green repo hygiene or release-surface proof.
+- Current verdict: `CLEAR`.
+- The source `FULL_PRODUCT_RULE_AUTHORITY_COMPLETION.generated.json` reports `FULL_RULE_AUTHORITY_READY`, so no SR4 or SR6 human-only release boundary remains open for the promoted scope.
+- Future authority changes must reopen the generated human-boundary receipt rather than relying on this prose.
 
 ## Promotion posture
 
@@ -67,3 +66,5 @@ A final flagship release argument must also show:
 * journey evidence from `GOLDEN_JOURNEY_RELEASE_GATES.yaml`
 * explicit rule-environment and amend-package honesty on build, import, restore, and explain surfaces
 * public/download/help/support coherence with the actual promoted artifacts
+
+The current release decision also publishes `CAMPAIGN_OPERABILITY_SCORECARD.generated.json`. It must score all six required surfaces across all six rubric dimensions at `3`; aggregate green tests or an empty support queue cannot substitute for that 36-cell proof.

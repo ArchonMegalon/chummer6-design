@@ -1,0 +1,61 @@
+version: 1
+owner: chummer6-design
+classes:
+  public_safe:
+    examples:
+      - public_release_copy
+      - public_docs
+      - approved_marketing_copy
+    allowed_classes:
+      - public
+    allowed_outputs:
+      - text
+      - markdown
+  operator_internal:
+    examples:
+      - internal_memo
+      - proof_debt_dashboard
+      - audit_note
+    allowed_classes:
+      - internal
+    allowed_outputs:
+      - json
+      - markdown
+      - yaml
+  private_sensitive:
+    examples:
+      - support_ticket
+      - private_campaign_data
+      - gmail_calendar
+      - people_memory
+      - secrets
+    allowed_classes:
+      - support
+    allowed_outputs:
+      - redacted_report
+      - summary
+  regulated_or_high_risk:
+    examples:
+      - billing
+      - entitlement
+      - account_access
+      - release_promotion
+      - publication_approval
+    allowed_classes:
+      - regulated
+      - high_risk
+    required_controls:
+      - human_review_required: true
+      - audit_receipt_required: true
+provider_policies:
+  poppy_ai:
+    max_input_class: public_safe
+    may_publish: false
+    may_own_truth: false
+  sendr:
+    max_input_class: approved_outreach_packet
+    may_send_directly: false
+    requires_human_approval: true
+  answerly:
+    max_input_class: support_safe_redacted
+    may_answer_rules_truth: false

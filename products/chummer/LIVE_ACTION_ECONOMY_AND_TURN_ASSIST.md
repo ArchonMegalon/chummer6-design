@@ -1,7 +1,9 @@
 # Live Action Economy And Turn Assist
 
-**Product:** Chummer6 / SR Campaign OS  
-**Design area:** Build, Play, GM Runboard, Mobile Table Sheet  
+**Product:** Chummer6 / SR Campaign OS
+
+**Design area:** Build, Play, GM Runboard, Mobile Table Sheet
+
 **Status:** Proposal / release-gated loop
 
 ## North star

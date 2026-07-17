@@ -204,7 +204,7 @@ def main() -> int:
         expected_rules = {
             "Any public concierge widget on release, downloads, or help-entry surfaces must stay in preview-overlay posture and must not become release authority.",
             "Fixed route, fallback route, and recovery route language must remain distinct on public surfaces; warm concierge copy may not blur them.",
-            "Concierge copy must not imply that a fix is already available, installed, or correct for this user unless the same claim is already true in first-party release or support truth.",
+            "Concierge copy must not imply that a fix is already available, installed, or correct for this user unless the same claim is already true in first-party release or support records.",
         }
         missing_rules = sorted(expected_rules.difference(set(rules)))
         errors.extend(f"release_experience_missing_rule:{rule}" for rule in missing_rules)

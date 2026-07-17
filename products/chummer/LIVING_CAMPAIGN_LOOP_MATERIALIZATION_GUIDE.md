@@ -1,7 +1,9 @@
 # Living Campaign Loop Materialization
 
-**Product:** Chummer6 / SR Campaign OS  
-**Status:** Active overlay  
+**Product:** Chummer6 / SR Campaign OS
+
+**Status:** Active overlay
+
 **Purpose:** Turn the newer living-world and campaign-memory ideas into small, release-gated loops that users can feel in one session.
 
 ## Core rule

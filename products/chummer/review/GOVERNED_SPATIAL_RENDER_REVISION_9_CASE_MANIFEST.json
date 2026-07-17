@@ -1,0 +1,2551 @@
+{
+  "schema_version": "governed_spatial_render_revision_9_case_manifest_v1",
+  "state": "frozen_for_controller_validation_and_independent_review",
+  "purpose": "Immutable case identity, denominator, evidence binding, and parity policy for the Revision 9 independent canonical design review.",
+  "source_provenance": {
+    "r5_original_shell_command_sha256": "1909fb89e3c984f8988099fa0766a26c86e067e5da91b3094eefd8fd18dbc4e5",
+    "r5_original_shell_command_bytes": 68873,
+    "r6_corrected_shell_command_sha256": "eac6788d39027d56d3864907c4de6c674d7b53991576c5473d53729cfd4bf1b4",
+    "r6_corrected_shell_command_bytes": 68946,
+    "r6_authorized_predicate_corrections": [
+      "milestone_pending_blocked requires spatial-render and blocked",
+      "sync_manifest_paths requires the schema and privacy-policy paths and excludes the review-packet path"
+    ]
+  },
+  "harness": {
+    "path": "/docker/chummercomplete/chummer-design/products/chummer/review/GOVERNED_SPATIAL_RENDER_REVISION_9_FROZEN_MATRIX.py",
+    "sha256": "325897ba027c8f8b5041e15e2b21fabc3d4ca4b3c982b79ef92edb0096f1210f",
+    "mode": "0664",
+    "invocation": "PYTHONDONTWRITEBYTECODE=1 python3 products/chummer/review/GOVERNED_SPATIAL_RENDER_REVISION_9_FROZEN_MATRIX.py"
+  },
+  "bound_artifacts": [
+    {
+      "path": "/docker/chummercomplete/chummer-design/products/chummer/GOVERNED_SPATIAL_RENDER_CAPABILITY_QUOTA_EVIDENCE.schema.yaml",
+      "sha256": "f86e6f737ba3333f7e84d8196481cda4c4cc34dc08d6b5aff5a7465af303546f",
+      "mode": "0664"
+    },
+    {
+      "path": "/docker/chummercomplete/chummer-design/products/chummer/review/GOVERNED_SPATIAL_RENDER_CANONICAL_AMENDMENT_PACKET.md",
+      "sha256": "874f3ce32c160d396814381cee98ad936cb53bbb15f95a5591fecf9af17f82e7",
+      "mode": "0664"
+    },
+    {
+      "path": "/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_6_ASSERTION_CORRECTION_HANDOFF.md",
+      "sha256": "10f8df8d40e35c1938995e804f6716fcddd6c82a022976789d38fbce7090c024",
+      "mode": "0664"
+    },
+    {
+      "path": "/tmp/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_6_CONTROLLER.final.md",
+      "sha256": "50b31e2e064da1668f893892e2d1479950dab5b55134dd099496f90be1ce56ff",
+      "mode": "0600"
+    },
+    {
+      "path": "/docker/EA/GOVERNED_SPATIAL_RENDER_REVISION_7_CLEAN_INDEPENDENT_REREVIEW_HANDOFF.md",
+      "sha256": "2bc5753208903ebc8e60d15793688c66bcdeadcff85ba0d6c8eea0e84c9c096e",
+      "mode": "0664"
+    },
+    {
+      "path": "/tmp/GOVERNED_SPATIAL_RENDER_REVISION_7_CLEAN_INDEPENDENT_REREVIEW.final.md",
+      "sha256": "7f92d24a54899ea951403a2d9c9609b7bc05251b9f8cb0400a1b1937b94cd959",
+      "mode": "0600"
+    },
+    {
+      "path": "/docker/EA/GOVERNED_SPATIAL_RENDER_REVISION_8_FINAL_MATRIX_REREVIEW_HANDOFF.md",
+      "sha256": "e207816710b1856f0551c3997c7b422f69a93925104f27c2435ea6b8eb0e01fa",
+      "mode": "0664"
+    },
+    {
+      "path": "/tmp/GOVERNED_SPATIAL_RENDER_REVISION_8_FINAL_MATRIX_REREVIEW.final.md",
+      "sha256": "fc23f0bf8942e3a2d524cae1248ff3a0c37a40373e69bcbfea25c7a59cdd123d",
+      "mode": "0600"
+    }
+  ],
+  "sync_baseline": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/ai/validate_sync_manifest.py",
+    "combine_stdout_and_stderr": true,
+    "nonblank_line_classifier": true,
+    "expected_exit_code": 1,
+    "missing_source_predicate": "line contains \"sync_manifest: missing source '\"",
+    "missing_source_count": 8,
+    "mirror_expansion_predicate": "line contains \" expands missing source \"",
+    "mirror_expansion_count": 56,
+    "total_diagnostic_count": 64,
+    "governed_spatial_diagnostic_count": 0
+  },
+  "protected_repository_policy": {
+    "exact_parity_required_only_for": [
+      "chummer_design",
+      "propertyquarry",
+      "run_services",
+      "hub_registry"
+    ],
+    "ea_exact_parity_required": false,
+    "ea_rule": "Record pre/post fingerprints and read-only action logs; require zero reviewer-attributable writes; classify concurrent external drift honestly and never claim EA unchanged."
+  },
+  "protected_repositories": [
+    {
+      "id": "chummer_design",
+      "path": "/docker/chummercomplete/chummer-design",
+      "fingerprint": [
+        "e490f52fc8fc82986eccc4b60fc69764d57fa583",
+        "cb6cb56cdb7bf66887f3a429db238c99417651d3eda202891aea18dcc3b3bef6",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "00694cb2741a1a5e4a771cb11812b9135a21df8fe405ad7fc50ab6f3da173403"
+      ]
+    },
+    {
+      "id": "propertyquarry",
+      "path": "/docker/property",
+      "fingerprint": [
+        "9bb633a29699e49da2e5c842bb7762fc3aaf7b65",
+        "5e2b4878099ec0a09f7c3483a7e1b4aa7ef9b7fc7484d4627f60ee14293c14b3",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "f4e5b33eeb04a96e36c91cd607c695894e099b7ee67b92a63234aebdb1eb9c51"
+      ]
+    },
+    {
+      "id": "run_services",
+      "path": "/docker/chummercomplete/chummer.run-services",
+      "fingerprint": [
+        "16ff4c810337fe4607d302fc8d95c09e54266bba",
+        "81825ad643b0c45d5fc1e4423478f95b20950f5b70793f09fba2b1690afe769b",
+        "a71041141d87597252b1c0946675a3da1c2099f08633d139f5cef77baa396a2d",
+        "037a4d3a0fd441e2f3843aa50565ca3e4589d56a8d792e9745d7c5b69e5b3b05"
+      ]
+    },
+    {
+      "id": "hub_registry",
+      "path": "/docker/chummercomplete/chummer-hub-registry",
+      "fingerprint": [
+        "da460b3d594a56c272f95d841244e6a457fe70b5",
+        "33cf6b74128c5eaf18df0d06d2f83c4dc824cf036654b3648c9b879b6eb77ac0",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "f41c508138131d1c9edb25be4c58d688fe0a72134589ae1f4f7b7d4cd094f32e"
+      ]
+    }
+  ],
+  "expected_total": 341,
+  "expected_groups": {
+    "audit_only_positive": 1,
+    "authorization_lineage_negative": 55,
+    "blocked_terminal_positive": 6,
+    "boundary_scan": 4,
+    "bounded_jcs": 6,
+    "bounded_jcs_negative": 6,
+    "build_state_positive": 11,
+    "chronology_freshness_negative": 13,
+    "compensation_lineage_loss_negative": 10,
+    "cross_file_assertion": 18,
+    "ea_attributable_write_audit": 1,
+    "ed25519_positive": 2,
+    "generic_blocked_positive": 1,
+    "generic_blocked_semantic_negative": 8,
+    "generic_blocked_structural_negative": 8,
+    "governing_hashes": 11,
+    "idempotency_null_negative": 55,
+    "key_registry_negative": 10,
+    "manifest": 18,
+    "node_parity": 5,
+    "owned_file_hash": 4,
+    "protected_repo_parity": 4,
+    "raw_json_negative": 15,
+    "raw_json_positive": 3,
+    "repository_validator": 2,
+    "schema_meta": 2,
+    "semantic_adversary_negative": 11,
+    "signature_semantic_negative": 12,
+    "signature_structural_negative": 17,
+    "signed_envelope_mutation": 11,
+    "sync_baseline": 5,
+    "yaml_duplicate_safe": 6
+  },
+  "cases": [
+    {
+      "id": "yaml_duplicate_safe:CONTRACT_SETS.yaml",
+      "group": "yaml_duplicate_safe",
+      "name": "CONTRACT_SETS.yaml",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "yaml_duplicate_safe:PROGRAM_MILESTONES.yaml",
+      "group": "yaml_duplicate_safe",
+      "name": "PROGRAM_MILESTONES.yaml",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "yaml_duplicate_safe:HORIZON_REGISTRY.yaml",
+      "group": "yaml_duplicate_safe",
+      "name": "HORIZON_REGISTRY.yaml",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "yaml_duplicate_safe:MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml",
+      "group": "yaml_duplicate_safe",
+      "name": "MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "yaml_duplicate_safe:sync-manifest.yaml",
+      "group": "yaml_duplicate_safe",
+      "name": "sync-manifest.yaml",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "yaml_duplicate_safe:GOVERNED_SPATIAL_RENDER_CAPABILITY_QUOTA_EVIDENCE.schema.yaml",
+      "group": "yaml_duplicate_safe",
+      "name": "GOVERNED_SPATIAL_RENDER_CAPABILITY_QUOTA_EVIDENCE.schema.yaml",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "schema_meta:draft202012_schema",
+      "group": "schema_meta",
+      "name": "draft202012_schema",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "schema_meta:format_checker_attached",
+      "group": "schema_meta",
+      "name": "format_checker_attached",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_positive:simple",
+      "group": "raw_json_positive",
+      "name": "simple",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_positive:safe_boundaries",
+      "group": "raw_json_positive",
+      "name": "safe_boundaries",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_positive:unicode_non_bmp",
+      "group": "raw_json_positive",
+      "name": "unicode_non_bmp",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:duplicate_top",
+      "group": "raw_json_negative",
+      "name": "duplicate_top",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:duplicate_nested",
+      "group": "raw_json_negative",
+      "name": "duplicate_nested",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:bom",
+      "group": "raw_json_negative",
+      "name": "bom",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:malformed_utf8",
+      "group": "raw_json_negative",
+      "name": "malformed_utf8",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:unpaired_high_surrogate",
+      "group": "raw_json_negative",
+      "name": "unpaired_high_surrogate",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:unpaired_low_surrogate",
+      "group": "raw_json_negative",
+      "name": "unpaired_low_surrogate",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:nan",
+      "group": "raw_json_negative",
+      "name": "nan",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:infinity",
+      "group": "raw_json_negative",
+      "name": "infinity",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:float_decimal",
+      "group": "raw_json_negative",
+      "name": "float_decimal",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:float_exponent",
+      "group": "raw_json_negative",
+      "name": "float_exponent",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:negative_zero",
+      "group": "raw_json_negative",
+      "name": "negative_zero",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:unsafe_high",
+      "group": "raw_json_negative",
+      "name": "unsafe_high",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:unsafe_low",
+      "group": "raw_json_negative",
+      "name": "unsafe_low",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:trailing_data",
+      "group": "raw_json_negative",
+      "name": "trailing_data",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "raw_json_negative:wrong_root",
+      "group": "raw_json_negative",
+      "name": "wrong_root",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs:utf16_ordering_vector",
+      "group": "bounded_jcs",
+      "name": "utf16_ordering_vector",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs:escaping_quote",
+      "group": "bounded_jcs",
+      "name": "escaping_quote",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs:escaping_reverse_solidus",
+      "group": "bounded_jcs",
+      "name": "escaping_reverse_solidus",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs:escaping_control_u000f",
+      "group": "bounded_jcs",
+      "name": "escaping_control_u000f",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs:escaping_newline",
+      "group": "bounded_jcs",
+      "name": "escaping_newline",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs:escaping_unicode",
+      "group": "bounded_jcs",
+      "name": "escaping_unicode",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs_negative:float",
+      "group": "bounded_jcs_negative",
+      "name": "float",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs_negative:negative_zero_float",
+      "group": "bounded_jcs_negative",
+      "name": "negative_zero_float",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs_negative:nan_programmatic",
+      "group": "bounded_jcs_negative",
+      "name": "nan_programmatic",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs_negative:positive_infinity_programmatic",
+      "group": "bounded_jcs_negative",
+      "name": "positive_infinity_programmatic",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs_negative:unsafe_high_programmatic",
+      "group": "bounded_jcs_negative",
+      "name": "unsafe_high_programmatic",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "bounded_jcs_negative:invalid_surrogate_programmatic",
+      "group": "bounded_jcs_negative",
+      "name": "invalid_surrogate_programmatic",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "node_parity:case_1",
+      "group": "node_parity",
+      "name": "case_1",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "node_parity:case_2",
+      "group": "node_parity",
+      "name": "case_2",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "node_parity:case_3",
+      "group": "node_parity",
+      "name": "case_3",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "node_parity:case_4",
+      "group": "node_parity",
+      "name": "case_4",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "node_parity:case_5",
+      "group": "node_parity",
+      "name": "case_5",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "ed25519_positive:deterministic_receipt",
+      "group": "ed25519_positive",
+      "name": "deterministic_receipt",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "ed25519_positive:non_ascii_receipt",
+      "group": "ed25519_positive",
+      "name": "non_ascii_receipt",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:algorithm_none",
+      "group": "signature_structural_negative",
+      "name": "algorithm_none",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:wrong_encoding",
+      "group": "signature_structural_negative",
+      "name": "wrong_encoding",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:missing_signature",
+      "group": "signature_structural_negative",
+      "name": "missing_signature",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:missing_signature_value",
+      "group": "signature_structural_negative",
+      "name": "missing_signature_value",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:empty_signature_value",
+      "group": "signature_structural_negative",
+      "name": "empty_signature_value",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:padded_signature_value",
+      "group": "signature_structural_negative",
+      "name": "padded_signature_value",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:short_signature_value",
+      "group": "signature_structural_negative",
+      "name": "short_signature_value",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:long_signature_value",
+      "group": "signature_structural_negative",
+      "name": "long_signature_value",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:wrong_type_signature_value",
+      "group": "signature_structural_negative",
+      "name": "wrong_type_signature_value",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:wrong_terminal_bits",
+      "group": "signature_structural_negative",
+      "name": "wrong_terminal_bits",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:empty_key_ref",
+      "group": "signature_structural_negative",
+      "name": "empty_key_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:negative_key_epoch",
+      "group": "signature_structural_negative",
+      "name": "negative_key_epoch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:malformed_fingerprint",
+      "group": "signature_structural_negative",
+      "name": "malformed_fingerprint",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:wrong_canonicalization",
+      "group": "signature_structural_negative",
+      "name": "wrong_canonicalization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:wrong_scope",
+      "group": "signature_structural_negative",
+      "name": "wrong_scope",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:malformed_digest",
+      "group": "signature_structural_negative",
+      "name": "malformed_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_structural_negative:extra_signature_member",
+      "group": "signature_structural_negative",
+      "name": "extra_signature_member",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:algorithm",
+      "group": "signed_envelope_mutation",
+      "name": "algorithm",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:encoding",
+      "group": "signed_envelope_mutation",
+      "name": "encoding",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:key_ref",
+      "group": "signed_envelope_mutation",
+      "name": "key_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:key_epoch",
+      "group": "signed_envelope_mutation",
+      "name": "key_epoch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:key_fingerprint",
+      "group": "signed_envelope_mutation",
+      "name": "key_fingerprint",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:canonicalization",
+      "group": "signed_envelope_mutation",
+      "name": "canonicalization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:scope",
+      "group": "signed_envelope_mutation",
+      "name": "scope",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:issuer",
+      "group": "signed_envelope_mutation",
+      "name": "issuer",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:environment",
+      "group": "signed_envelope_mutation",
+      "name": "environment",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:expires_at",
+      "group": "signed_envelope_mutation",
+      "name": "expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signed_envelope_mutation:payload_receipt_id",
+      "group": "signed_envelope_mutation",
+      "name": "payload_receipt_id",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:unknown_key_ref",
+      "group": "signature_semantic_negative",
+      "name": "unknown_key_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:unknown_key_epoch",
+      "group": "signature_semantic_negative",
+      "name": "unknown_key_epoch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:fingerprint_mismatch",
+      "group": "signature_semantic_negative",
+      "name": "fingerprint_mismatch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:registry_owner_mismatch",
+      "group": "signature_semantic_negative",
+      "name": "registry_owner_mismatch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:registry_environment_mismatch",
+      "group": "signature_semantic_negative",
+      "name": "registry_environment_mismatch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:revoked_key",
+      "group": "signature_semantic_negative",
+      "name": "revoked_key",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:not_yet_valid_key",
+      "group": "signature_semantic_negative",
+      "name": "not_yet_valid_key",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:expired_key",
+      "group": "signature_semantic_negative",
+      "name": "expired_key",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:receipt_exceeds_key_expiry",
+      "group": "signature_semantic_negative",
+      "name": "receipt_exceeds_key_expiry",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:wrong_payload_digest",
+      "group": "signature_semantic_negative",
+      "name": "wrong_payload_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:bad_ed25519_signature",
+      "group": "signature_semantic_negative",
+      "name": "bad_ed25519_signature",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "signature_semantic_negative:tampered_payload",
+      "group": "signature_semantic_negative",
+      "name": "tampered_payload",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:active_alias_duplicate",
+      "group": "key_registry_negative",
+      "name": "active_alias_duplicate",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:cross_environment_fingerprint_duplicate",
+      "group": "key_registry_negative",
+      "name": "cross_environment_fingerprint_duplicate",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:global_revocation_alias",
+      "group": "key_registry_negative",
+      "name": "global_revocation_alias",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:tuple_epoch_reuse",
+      "group": "key_registry_negative",
+      "name": "tuple_epoch_reuse",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:reactivation_forbidden",
+      "group": "key_registry_negative",
+      "name": "reactivation_forbidden",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:epoch_regression",
+      "group": "key_registry_negative",
+      "name": "epoch_regression",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:unknown_key",
+      "group": "key_registry_negative",
+      "name": "unknown_key",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:fingerprint_binding",
+      "group": "key_registry_negative",
+      "name": "fingerprint_binding",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:not_before_zero_skew",
+      "group": "key_registry_negative",
+      "name": "not_before_zero_skew",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "key_registry_negative:not_after_zero_skew",
+      "group": "key_registry_negative",
+      "name": "not_after_zero_skew",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:authorization_verified",
+      "group": "build_state_positive",
+      "name": "authorization_verified",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:reservation_held",
+      "group": "build_state_positive",
+      "name": "reservation_held",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:released",
+      "group": "build_state_positive",
+      "name": "released",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:attempt_committed",
+      "group": "build_state_positive",
+      "name": "attempt_committed",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:charge_pending",
+      "group": "build_state_positive",
+      "name": "charge_pending",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:cancelled_reconciliation_pending",
+      "group": "build_state_positive",
+      "name": "cancelled_reconciliation_pending",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:consumed",
+      "group": "build_state_positive",
+      "name": "consumed",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:closed_consumed",
+      "group": "build_state_positive",
+      "name": "closed_consumed",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:compensation_pending",
+      "group": "build_state_positive",
+      "name": "compensation_pending",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:compensated",
+      "group": "build_state_positive",
+      "name": "compensated",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "build_state_positive:compensation_failed_blocked",
+      "group": "build_state_positive",
+      "name": "compensation_failed_blocked",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:authorization_verified:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "authorization_verified:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:authorization_verified:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "authorization_verified:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:authorization_verified:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "authorization_verified:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:authorization_verified:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "authorization_verified:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:authorization_verified:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "authorization_verified:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:reservation_held:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "reservation_held:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:reservation_held:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "reservation_held:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:reservation_held:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "reservation_held:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:reservation_held:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "reservation_held:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:reservation_held:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "reservation_held:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:released:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "released:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:released:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "released:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:released:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "released:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:released:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "released:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:released:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "released:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:attempt_committed:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "attempt_committed:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:attempt_committed:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "attempt_committed:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:attempt_committed:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "attempt_committed:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:attempt_committed:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "attempt_committed:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:attempt_committed:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "attempt_committed:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:charge_pending:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "charge_pending:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:charge_pending:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "charge_pending:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:charge_pending:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "charge_pending:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:charge_pending:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "charge_pending:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:charge_pending:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "charge_pending:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:cancelled_reconciliation_pending:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "cancelled_reconciliation_pending:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:cancelled_reconciliation_pending:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "cancelled_reconciliation_pending:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:cancelled_reconciliation_pending:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "cancelled_reconciliation_pending:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:cancelled_reconciliation_pending:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "cancelled_reconciliation_pending:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:cancelled_reconciliation_pending:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "cancelled_reconciliation_pending:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:consumed:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "consumed:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:consumed:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "consumed:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:consumed:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "consumed:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:consumed:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "consumed:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:consumed:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "consumed:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:closed_consumed:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "closed_consumed:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:closed_consumed:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "closed_consumed:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:closed_consumed:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "closed_consumed:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:closed_consumed:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "closed_consumed:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:closed_consumed:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "closed_consumed:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_pending:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_pending:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_pending:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_pending:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_pending:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_pending:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_pending:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_pending:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_pending:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_pending:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensated:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensated:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensated:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensated:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensated:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensated:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensated:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensated:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensated:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensated:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_failed_blocked:scope_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_failed_blocked:scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_failed_blocked:key_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_failed_blocked:key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_failed_blocked:normalized_request_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_failed_blocked:normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_failed_blocked:composition_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_failed_blocked:composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "idempotency_null_negative:compensation_failed_blocked:authorization_binding_digest",
+      "group": "idempotency_null_negative",
+      "name": "compensation_failed_blocked:authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:authorization_verified:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "authorization_verified:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:authorization_verified:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "authorization_verified:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:authorization_verified:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "authorization_verified:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:authorization_verified:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "authorization_verified:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:authorization_verified:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "authorization_verified:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:reservation_held:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "reservation_held:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:reservation_held:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "reservation_held:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:reservation_held:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "reservation_held:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:reservation_held:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "reservation_held:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:reservation_held:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "reservation_held:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:released:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "released:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:released:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "released:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:released:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "released:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:released:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "released:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:released:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "released:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:attempt_committed:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "attempt_committed:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:attempt_committed:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "attempt_committed:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:attempt_committed:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "attempt_committed:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:attempt_committed:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "attempt_committed:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:attempt_committed:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "attempt_committed:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:charge_pending:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "charge_pending:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:charge_pending:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "charge_pending:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:charge_pending:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "charge_pending:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:charge_pending:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "charge_pending:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:charge_pending:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "charge_pending:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:cancelled_reconciliation_pending:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "cancelled_reconciliation_pending:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:cancelled_reconciliation_pending:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "cancelled_reconciliation_pending:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:cancelled_reconciliation_pending:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "cancelled_reconciliation_pending:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:cancelled_reconciliation_pending:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "cancelled_reconciliation_pending:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:cancelled_reconciliation_pending:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "cancelled_reconciliation_pending:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:consumed:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "consumed:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:consumed:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "consumed:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:consumed:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "consumed:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:consumed:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "consumed:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:consumed:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "consumed:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:closed_consumed:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "closed_consumed:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:closed_consumed:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "closed_consumed:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:closed_consumed:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "closed_consumed:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:closed_consumed:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "closed_consumed:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:closed_consumed:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "closed_consumed:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_pending:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_pending:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_pending:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_pending:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_pending:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_pending:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_pending:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_pending:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_pending:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_pending:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensated:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "compensated:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensated:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "compensated:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensated:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "compensated:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensated:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "compensated:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensated:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "compensated:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_failed_blocked:authorization_ref",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_failed_blocked:authorization_ref",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_failed_blocked:issued_at",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_failed_blocked:issued_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_failed_blocked:expires_at",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_failed_blocked:expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_failed_blocked:maximum_provider_attempts",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_failed_blocked:maximum_provider_attempts",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "authorization_lineage_negative:compensation_failed_blocked:quota_limit_digest",
+      "group": "authorization_lineage_negative",
+      "name": "compensation_failed_blocked:quota_limit_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "blocked_terminal_positive:verified_valid_blocked_route",
+      "group": "blocked_terminal_positive",
+      "name": "verified_valid_blocked_route",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "blocked_terminal_positive:capability_blocked",
+      "group": "blocked_terminal_positive",
+      "name": "capability_blocked",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "blocked_terminal_positive:capability_revoked",
+      "group": "blocked_terminal_positive",
+      "name": "capability_revoked",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "blocked_terminal_positive:capability_expired",
+      "group": "blocked_terminal_positive",
+      "name": "capability_expired",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "blocked_terminal_positive:authorization_expired",
+      "group": "blocked_terminal_positive",
+      "name": "authorization_expired",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "blocked_terminal_positive:authorization_revoked",
+      "group": "blocked_terminal_positive",
+      "name": "authorization_revoked",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:idempotency.scope_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "idempotency.scope_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:idempotency.key_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "idempotency.key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:idempotency.normalized_request_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "idempotency.normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:idempotency.composition_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "idempotency.composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:idempotency.authorization_binding_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "idempotency.authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:quota.reservation_ref_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "quota.reservation_ref_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:quota.reservation_expires_at",
+      "group": "compensation_lineage_loss_negative",
+      "name": "quota.reservation_expires_at",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:quota.mutation_token_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "quota.mutation_token_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:quota.consumption_receipt_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "quota.consumption_receipt_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "compensation_lineage_loss_negative:quota.compensation_receipt_digest",
+      "group": "compensation_lineage_loss_negative",
+      "name": "quota.compensation_receipt_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_positive:clean_pre_execution_block",
+      "group": "generic_blocked_positive",
+      "name": "clean_pre_execution_block",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:key_digest",
+      "group": "generic_blocked_structural_negative",
+      "name": "key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:key_digest",
+      "group": "generic_blocked_semantic_negative",
+      "name": "key_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:normalized_request_digest",
+      "group": "generic_blocked_structural_negative",
+      "name": "normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:normalized_request_digest",
+      "group": "generic_blocked_semantic_negative",
+      "name": "normalized_request_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:composition_digest",
+      "group": "generic_blocked_structural_negative",
+      "name": "composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:composition_digest",
+      "group": "generic_blocked_semantic_negative",
+      "name": "composition_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:authorization_binding_digest",
+      "group": "generic_blocked_structural_negative",
+      "name": "authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:authorization_binding_digest",
+      "group": "generic_blocked_semantic_negative",
+      "name": "authorization_binding_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:all_four_build_digests",
+      "group": "generic_blocked_structural_negative",
+      "name": "all_four_build_digests",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:all_four_build_digests",
+      "group": "generic_blocked_semantic_negative",
+      "name": "all_four_build_digests",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:reservation_lineage",
+      "group": "generic_blocked_structural_negative",
+      "name": "reservation_lineage",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:reservation_lineage",
+      "group": "generic_blocked_semantic_negative",
+      "name": "reservation_lineage",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:attempt_mutation_lineage",
+      "group": "generic_blocked_structural_negative",
+      "name": "attempt_mutation_lineage",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:attempt_mutation_lineage",
+      "group": "generic_blocked_semantic_negative",
+      "name": "attempt_mutation_lineage",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_structural_negative:consumption_compensation_lineage",
+      "group": "generic_blocked_structural_negative",
+      "name": "consumption_compensation_lineage",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "generic_blocked_semantic_negative:consumption_compensation_lineage",
+      "group": "generic_blocked_semantic_negative",
+      "name": "consumption_compensation_lineage",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "audit_only_positive:zero_burn_audit",
+      "group": "audit_only_positive",
+      "name": "zero_burn_audit",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:attempt_beyond_authorization",
+      "group": "semantic_adversary_negative",
+      "name": "attempt_beyond_authorization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:authorization_binding_mismatch",
+      "group": "semantic_adversary_negative",
+      "name": "authorization_binding_mismatch",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:request_mutation_after_authorization",
+      "group": "semantic_adversary_negative",
+      "name": "request_mutation_after_authorization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:composition_mutation_after_authorization",
+      "group": "semantic_adversary_negative",
+      "name": "composition_mutation_after_authorization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:same_key_different_digest",
+      "group": "semantic_adversary_negative",
+      "name": "same_key_different_digest",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:concurrent_duplicate",
+      "group": "semantic_adversary_negative",
+      "name": "concurrent_duplicate",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:retry_different_authorization",
+      "group": "semantic_adversary_negative",
+      "name": "retry_different_authorization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:compensation_different_authorization",
+      "group": "semantic_adversary_negative",
+      "name": "compensation_different_authorization",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:duplicate_compensation",
+      "group": "semantic_adversary_negative",
+      "name": "duplicate_compensation",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:optimistic_refund",
+      "group": "semantic_adversary_negative",
+      "name": "optimistic_refund",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "semantic_adversary_negative:mutation_token_reuse",
+      "group": "semantic_adversary_negative",
+      "name": "mutation_token_reuse",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:receipt_reversed",
+      "group": "chronology_freshness_negative",
+      "name": "receipt_reversed",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:capability_window_too_long",
+      "group": "chronology_freshness_negative",
+      "name": "capability_window_too_long",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:evidence_expires_before_receipt",
+      "group": "chronology_freshness_negative",
+      "name": "evidence_expires_before_receipt",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:compose_evidence_stale",
+      "group": "chronology_freshness_negative",
+      "name": "compose_evidence_stale",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:quota_snapshot_stale",
+      "group": "chronology_freshness_negative",
+      "name": "quota_snapshot_stale",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:kill_switch_stale",
+      "group": "chronology_freshness_negative",
+      "name": "kill_switch_stale",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:authorization_too_old",
+      "group": "chronology_freshness_negative",
+      "name": "authorization_too_old",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:reservation_lease_too_long",
+      "group": "chronology_freshness_negative",
+      "name": "reservation_lease_too_long",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:key_not_yet_valid",
+      "group": "chronology_freshness_negative",
+      "name": "key_not_yet_valid",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:key_expires_too_early",
+      "group": "chronology_freshness_negative",
+      "name": "key_expires_too_early",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:naive_timestamp",
+      "group": "chronology_freshness_negative",
+      "name": "naive_timestamp",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:canary_duration_short",
+      "group": "chronology_freshness_negative",
+      "name": "canary_duration_short",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "chronology_freshness_negative:canary_receipt_old",
+      "group": "chronology_freshness_negative",
+      "name": "canary_receipt_old",
+      "evidence_kind": "executable_adversarial_fixture",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:contract_registered",
+      "group": "cross_file_assertion",
+      "name": "contract_registered",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:contract_media_factory_owner",
+      "group": "cross_file_assertion",
+      "name": "contract_media_factory_owner",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:contract_property_bridge_owner",
+      "group": "cross_file_assertion",
+      "name": "contract_property_bridge_owner",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:architecture_hub_bridge",
+      "group": "cross_file_assertion",
+      "name": "architecture_hub_bridge",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:architecture_media_factory_boundary",
+      "group": "cross_file_assertion",
+      "name": "architecture_media_factory_boundary",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:ownership_ea_derived_only",
+      "group": "cross_file_assertion",
+      "name": "ownership_ea_derived_only",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:ownership_property_privacy_owner",
+      "group": "cross_file_assertion",
+      "name": "ownership_property_privacy_owner",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:milestone_pending_blocked",
+      "group": "cross_file_assertion",
+      "name": "milestone_pending_blocked",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:horizon_private_boundary",
+      "group": "cross_file_assertion",
+      "name": "horizon_private_boundary",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:walkthrough_recipe",
+      "group": "cross_file_assertion",
+      "name": "walkthrough_recipe",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:encounter_recipe",
+      "group": "cross_file_assertion",
+      "name": "encounter_recipe",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:ea_project_no_quota_authority",
+      "group": "cross_file_assertion",
+      "name": "ea_project_no_quota_authority",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:hub_project_bridge",
+      "group": "cross_file_assertion",
+      "name": "hub_project_bridge",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:media_project_contract_owner",
+      "group": "cross_file_assertion",
+      "name": "media_project_contract_owner",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:runsite_orientation_not_public_combat",
+      "group": "cross_file_assertion",
+      "name": "runsite_orientation_not_public_combat",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:sync_manifest_paths",
+      "group": "cross_file_assertion",
+      "name": "sync_manifest_paths",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:privacy_numeric_external_owner",
+      "group": "cross_file_assertion",
+      "name": "privacy_numeric_external_owner",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "cross_file_assertion:all_review_templates_bound",
+      "group": "cross_file_assertion",
+      "name": "all_review_templates_bound",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:row_count_17",
+      "group": "manifest",
+      "name": "row_count_17",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/CONTRACT_SETS.yaml",
+      "group": "manifest",
+      "name": "products/chummer/CONTRACT_SETS.yaml",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/ARCHITECTURE.md",
+      "group": "manifest",
+      "name": "products/chummer/ARCHITECTURE.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/OWNERSHIP_MATRIX.md",
+      "group": "manifest",
+      "name": "products/chummer/OWNERSHIP_MATRIX.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/PROGRAM_MILESTONES.yaml",
+      "group": "manifest",
+      "name": "products/chummer/PROGRAM_MILESTONES.yaml",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/HORIZON_REGISTRY.yaml",
+      "group": "manifest",
+      "name": "products/chummer/HORIZON_REGISTRY.yaml",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml",
+      "group": "manifest",
+      "name": "products/chummer/MEDIA_ARTIFACT_RECIPE_REGISTRY.yaml",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/projects/executive-assistant.md",
+      "group": "manifest",
+      "name": "products/chummer/projects/executive-assistant.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/projects/hub.md",
+      "group": "manifest",
+      "name": "products/chummer/projects/hub.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/projects/media-factory.md",
+      "group": "manifest",
+      "name": "products/chummer/projects/media-factory.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/horizons/runsite.md",
+      "group": "manifest",
+      "name": "products/chummer/horizons/runsite.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/sync/sync-manifest.yaml",
+      "group": "manifest",
+      "name": "products/chummer/sync/sync-manifest.yaml",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/review/hub.AGENTS.template.md",
+      "group": "manifest",
+      "name": "products/chummer/review/hub.AGENTS.template.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/review/media-factory.AGENTS.template.md",
+      "group": "manifest",
+      "name": "products/chummer/review/media-factory.AGENTS.template.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/review/hub-registry.AGENTS.template.md",
+      "group": "manifest",
+      "name": "products/chummer/review/hub-registry.AGENTS.template.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/review/executive-assistant.AGENTS.template.md",
+      "group": "manifest",
+      "name": "products/chummer/review/executive-assistant.AGENTS.template.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/GOVERNED_SPATIAL_RENDER_PRIVACY_RETENTION_POLICY.md",
+      "group": "manifest",
+      "name": "products/chummer/GOVERNED_SPATIAL_RENDER_PRIVACY_RETENTION_POLICY.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "manifest:products/chummer/GOVERNED_SPATIAL_RENDER_CAPABILITY_QUOTA_EVIDENCE.schema.yaml",
+      "group": "manifest",
+      "name": "products/chummer/GOVERNED_SPATIAL_RENDER_CAPABILITY_QUOTA_EVIDENCE.schema.yaml",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:products/chummer/review/GOVERNED_SPATIAL_RENDER_PETITION_DECISION.md",
+      "group": "governing_hashes",
+      "name": "products/chummer/review/GOVERNED_SPATIAL_RENDER_PETITION_DECISION.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/EA_GOVERNED_SPATIAL_RENDER_DESIGN_PETITION.md",
+      "group": "governing_hashes",
+      "name": "/docker/EA/EA_GOVERNED_SPATIAL_RENDER_DESIGN_PETITION.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/PROPERTYQUARRY_CHUMMER_GOVERNED_SPATIAL_RENDER_HANDOFF.md",
+      "group": "governing_hashes",
+      "name": "/docker/EA/PROPERTYQUARRY_CHUMMER_GOVERNED_SPATIAL_RENDER_HANDOFF.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/_completion/governed-spatial-render/GOVERNED_SPATIAL_RENDER_DESIGN_REVIEW_RECEIPT.generated.json",
+      "group": "governing_hashes",
+      "name": "/docker/EA/_completion/governed-spatial-render/GOVERNED_SPATIAL_RENDER_DESIGN_REVIEW_RECEIPT.generated.json",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/property/PROPERTYQUARRY_GOVERNED_SPATIAL_RENDER_AUTHORITY_DECISION.md",
+      "group": "governing_hashes",
+      "name": "/docker/property/PROPERTYQUARRY_GOVERNED_SPATIAL_RENDER_AUTHORITY_DECISION.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/tmp/GOVERNED_SPATIAL_RENDER_REVISION_2_INDEPENDENT_REREVIEW.final.md",
+      "group": "governing_hashes",
+      "name": "/tmp/GOVERNED_SPATIAL_RENDER_REVISION_2_INDEPENDENT_REREVIEW.final.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_3_HANDOFF.md",
+      "group": "governing_hashes",
+      "name": "/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_3_HANDOFF.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_4_RECOVERY_HANDOFF.md",
+      "group": "governing_hashes",
+      "name": "/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_4_RECOVERY_HANDOFF.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/tmp/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_4_WORKER.final.md",
+      "group": "governing_hashes",
+      "name": "/tmp/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_4_WORKER.final.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_5_RECOVERY_HANDOFF.md",
+      "group": "governing_hashes",
+      "name": "/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_5_RECOVERY_HANDOFF.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "governing_hashes:/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_6_ASSERTION_CORRECTION_HANDOFF.md",
+      "group": "governing_hashes",
+      "name": "/docker/EA/GOVERNED_SPATIAL_RENDER_CANONICAL_REVISION_6_ASSERTION_CORRECTION_HANDOFF.md",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "repository_validator:validate_contract_sets_ok",
+      "group": "repository_validator",
+      "name": "validate_contract_sets_ok",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "repository_validator:git_diff_check",
+      "group": "repository_validator",
+      "name": "git_diff_check",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "sync_baseline:exit_1",
+      "group": "sync_baseline",
+      "name": "exit_1",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "sync_baseline:missing_sources_8",
+      "group": "sync_baseline",
+      "name": "missing_sources_8",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "sync_baseline:mirror_expansions_56",
+      "group": "sync_baseline",
+      "name": "mirror_expansions_56",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "sync_baseline:total_diagnostics_64",
+      "group": "sync_baseline",
+      "name": "total_diagnostics_64",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "sync_baseline:governed_spatial_diagnostics_0",
+      "group": "sync_baseline",
+      "name": "governed_spatial_diagnostics_0",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "boundary_scan:stale_propertyquarry_authority_0",
+      "group": "boundary_scan",
+      "name": "stale_propertyquarry_authority_0",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "boundary_scan:canonical_ea_aliases_0",
+      "group": "boundary_scan",
+      "name": "canonical_ea_aliases_0",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "boundary_scan:r3_validator_artifact_absent",
+      "group": "boundary_scan",
+      "name": "r3_validator_artifact_absent",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "boundary_scan:r4_node_artifact_absent",
+      "group": "boundary_scan",
+      "name": "r4_node_artifact_absent",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "protected_repo_parity:chummer_design",
+      "group": "protected_repo_parity",
+      "name": "chummer_design",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "protected_repo_parity:propertyquarry",
+      "group": "protected_repo_parity",
+      "name": "propertyquarry",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "protected_repo_parity:run_services",
+      "group": "protected_repo_parity",
+      "name": "run_services",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "protected_repo_parity:hub_registry",
+      "group": "protected_repo_parity",
+      "name": "hub_registry",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "ea_attributable_write_audit:reviewer_attributable_writes_zero",
+      "group": "ea_attributable_write_audit",
+      "name": "reviewer_attributable_writes_zero",
+      "evidence_kind": "read_only_operational_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "owned_file_hash:schema_final",
+      "group": "owned_file_hash",
+      "name": "schema_final",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "owned_file_hash:packet_current",
+      "group": "owned_file_hash",
+      "name": "packet_current",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "owned_file_hash:schema_mode_0664",
+      "group": "owned_file_hash",
+      "name": "schema_mode_0664",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    },
+    {
+      "id": "owned_file_hash:packet_mode_0664",
+      "group": "owned_file_hash",
+      "name": "packet_mode_0664",
+      "evidence_kind": "canonical_or_hash_assertion",
+      "expected": "pass"
+    }
+  ]
+}

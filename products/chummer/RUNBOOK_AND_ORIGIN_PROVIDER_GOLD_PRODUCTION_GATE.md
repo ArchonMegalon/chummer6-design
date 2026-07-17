@@ -107,6 +107,11 @@ Promotion requires runnable packet, receipt, and verification entrypoints.
 `origin-dossier` must prove:
 
 * `ORIGIN_DOSSIER_NARRATIVE` uses approved origin canon only
+* Subscribr authors the real full-story manuscript before portrait, audiobook, or cinema follow-through opens
+* the ebook handoff embeds the fitted cover before any later media choices appear
+* exactly three story-fit portrait choices are surfaced and one chosen portrait becomes the edition face
+* audiobook request stays closed until ebook handoff is complete and the player makes an explicit voice choice
+* chapter-scene summaries come from the approved book and only one chosen character-visible cinematic render may proceed
 * GM-only content never leaks into player-safe projections
 * narration cannot change karma, gear, ware entitlement, or legality
 * later ALICE follow-up consumes approved canon without treating prose as mechanics authority

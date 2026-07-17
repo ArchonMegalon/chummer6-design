@@ -19,6 +19,11 @@ if [ -z "$downstream_root" ]; then
   echo "unable to locate Chummer6 guide repo; set CHUMMER6_GUIDE_ROOT" >&2
   exit 1
 fi
+registry_manifest="${CHUMMER_REGISTRY_RELEASE_CHANNEL:-$repo_root/../chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json}"
+if [ ! -f "$registry_manifest" ]; then
+  echo "unable to locate canonical registry release manifest; set CHUMMER_REGISTRY_RELEASE_CHANNEL" >&2
+  exit 1
+fi
 for path in \
   README.md \
   AGENTS.md \
@@ -238,6 +243,7 @@ done
 python3 "$repo_root/scripts/ai/validate_contract_sets.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_sync_manifest.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
+CHUMMER_REGISTRY_RELEASE_CHANNEL="$registry_manifest" python3 "$downstream_root/scripts/verify_public_downloads_match_registry.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_origin_runbook_provider_gold_gate.py" >/dev/null
@@ -254,11 +260,12 @@ rg -n 'first_run_complete_without_confusion|no_data_recovery_exposes_next_safe_a
 rg -n 'KNOWN_ISSUE_AND_FIX_STATUS_LANGUAGE.md|ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md|LONG_RUNNING_ACTION_SAFETY_CONTRACT.md|CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml' "$repo_root/products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" >/dev/null
-  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
 fi
 if ! python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py" >/dev/null
-  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" \
+    --no-prune \
+    --source products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md >/dev/null
 fi
 python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
@@ -286,15 +293,17 @@ python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev
 python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" >/dev/null
-  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --no-prune >/dev/null
 fi
 if ! python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" >/dev/null
-  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+  python3 "$repo_root/scripts/ai/publish_local_mirrors.py" \
+    --no-prune \
+    --source products/chummer/WEEKLY_PRODUCT_PULSE.generated.json >/dev/null
 fi
 if [ "${CHUMMER_DESIGN_SKIP_LOCAL_MIRROR_CHECK:-}" != "1" ]; then
-  if ! python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check >/dev/null; then
-    python3 "$repo_root/scripts/ai/publish_local_mirrors.py" >/dev/null
+  if ! python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check --no-prune >/dev/null; then
+    python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --no-prune >/dev/null
   fi
 fi
 if ! python3 "$downstream_root/scripts/sync_public_guide_from_design.py" --check >/dev/null; then
@@ -415,26 +424,26 @@ rg -n 'downstream public guide' "$repo_root/products/chummer/README.md" >/dev/nu
 rg -n 'PUBLIC_LANDING_POLICY|PUBLIC_NAVIGATION|PUBLIC_LANDING_MANIFEST|PUBLIC_FEATURE_REGISTRY|PUBLIC_PROGRESS_PARTS|PUBLIC_RELEASE_EXPERIENCE|PUBLIC_CAMPAIGN_IMAGE_MANIFEST|PUBLIC_USER_MODEL|PUBLIC_AUTH_FLOW|IDENTITY_AND_CHANNEL_LINKING_MODEL|PUBLIC_MEDIA_BRIEFS|PUBLIC_GUIDE_PAGE_REGISTRY|PUBLIC_PART_REGISTRY|PUBLIC_FAQ_REGISTRY|PUBLIC_HELP_COPY' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n 'CAMPAIGN_SPINE_AND_CREW_MODEL|CHARACTER_LIFECYCLE_AND_LIVING_DOSSIER|ROAMING_WORKSPACE_AND_ENTITLEMENT_SYNC|CAMPAIGN_WORKSPACE_AND_DEVICE_ROLES|INTEROP_AND_PORTABILITY_MODEL|PRODUCT_CONTROL_AND_GOVERNOR_LOOP|SUPPORT_AND_SIGNAL_OODA_LOOP|USER_JOURNEYS|EXPERIENCE_SUCCESS_METRICS|BUILD_LAB_PRODUCT_MODEL|EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP|PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP|PROVIDER_AND_ROUTE_STEWARDSHIP|PRODUCT_HEALTH_SCORECARD|WEEKLY_PRODUCT_PULSE.generated.json|PUBLIC_TRUST_CONTENT|PUBLIC_DOWNLOADS_POLICY|PUBLIC_AUTO_UPDATE_POLICY|DESKTOP_CLIENT_PRODUCT_CUT|DESKTOP_PLATFORM_ACCEPTANCE_MATRIX|LOCALIZATION_AND_LANGUAGE_SYSTEM|LOCALIZATION_PARITY_MATRIX|ACCOUNT_AWARE_FRONT_DOOR_CLOSEOUT|NEXT_WAVE_ACCOUNT_AWARE_FRONT_DOOR|NEXT_15_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_EXECUTION_PLAN|NEXT_20_BIG_WINS_REGISTRY|POST_AUDIT_NEXT_20_BIG_WINS_CLOSEOUT|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_GUIDE|NEXT_20_BIG_WINS_AFTER_POST_AUDIT_CLOSEOUT_REGISTRY|NEXT_12_BIGGEST_WINS_GUIDE|NEXT_12_BIGGEST_WINS_REGISTRY|FEEDBACK_AND_SIGNAL_OODA_LOOP|FEEDBACK_AND_CRASH_STATUS_MODEL|projects/executive-assistant.md' "$repo_root/products/chummer/README.md" >/dev/null
 rg -n '^# Chummer6$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Start here if you just want the answer$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Why it exists$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## What should feel different$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Help and feedback$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
-rg -n '^## Campaign tools and client features$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Product promise$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## What is real now$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Start here$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## How can I help\?$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
+rg -n '^## Product parts$' "$repo_root/products/chummer/public-guide/README.md" >/dev/null
 rg -n '^# Status$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
-rg -n '^## The answer$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
+rg -n '^## Current picture$' "$repo_root/products/chummer/public-guide/STATUS.md" >/dev/null
 rg -n '^# Help$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
-rg -n '^## Get Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
-rg -n '^## Ask Chummer first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n '^## Quick triage$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
+rg -n '^## Download and install first$' "$repo_root/products/chummer/public-guide/HELP.md" >/dev/null
 rg -n '^# FAQ$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^## Questions people actually ask first$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^### Can I actually use this now\?$' "$repo_root/products/chummer/public-guide/FAQ.md" >/dev/null
 rg -n '^# Download$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## Pick your file$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
-rg -n '^## File details$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '^## What should I download first\?$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
+rg -n '^## Current build matrix$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^## SHA256$' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '(release|proof|verification|published|SHA256)' "$repo_root/products/chummer/public-guide/DOWNLOAD.md" >/dev/null
 rg -n '^# Contact$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
-rg -n '^## Pick the case type that matches the problem$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
+rg -n '^## Use the Chummer5 server for normal contact$' "$repo_root/products/chummer/public-guide/CONTACT.md" >/dev/null
 rg -n '^# Parts$' "$repo_root/products/chummer/public-guide/PARTS/README.md" >/dev/null
 rg -n '^# Campaign tools$' "$repo_root/products/chummer/public-guide/HORIZONS/README.md" >/dev/null
 rg -n '^# NEXUS-PAN$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
@@ -442,14 +451,14 @@ rg -n '^## When this helps$' "$repo_root/products/chummer/public-guide/FEATURES/
 rg -n '^## The table problem$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
 rg -n '^## Can I use it\?$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
 ! rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
-rg -n '^# Get help without guessing$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
+rg -n '^# What is wrong\?$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n '^# Chummer6$' "$downstream_root/README.md" >/dev/null
-rg -n '^## Start here if you just want the answer$' "$downstream_root/README.md" >/dev/null
+rg -n '^## Product promise$' "$downstream_root/README.md" >/dev/null
 rg -n '^# Status$' "$downstream_root/STATUS.md" >/dev/null
-rg -n '^## The answer$' "$downstream_root/STATUS.md" >/dev/null
+rg -n '^## Current picture$' "$downstream_root/STATUS.md" >/dev/null
 rg -n '^# Download$' "$downstream_root/DOWNLOAD.md" >/dev/null
-rg -n '^## Pick your file$' "$downstream_root/DOWNLOAD.md" >/dev/null
+rg -n '^## What should I download first\?$' "$downstream_root/DOWNLOAD.md" >/dev/null
 rg -n '^# How Can I Help\?$' "$downstream_root/HOW_CAN_I_HELP.md" >/dev/null
 rg -n '^# Where To Go Deeper$' "$downstream_root/WHERE_TO_GO_DEEPER.md" >/dev/null
 rg -n '^# What Chummer6 Is$' "$downstream_root/WHAT_CHUMMER6_IS.md" >/dev/null

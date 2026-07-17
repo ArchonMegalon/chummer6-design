@@ -40,6 +40,7 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
         trust_payload={},
         progress={"phase_label": "Usable preview"},
         release_payload={"status": "published", "artifacts": []},
+        release_truth_packet={},
         primary_route_registry={"jobs": []},
         flagship_parity_registry={"families": []},
     )
@@ -52,6 +53,62 @@ def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
     assert (
         "The goal is simple: build correctly, explain clearly, run reliably, recover calmly, and carry the campaign forward."
     ) in readme
+
+
+def test_generate_root_projects_bounded_gold_supported_release_truth(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(guide, "_load_registry_status", lambda _path: "complete")
+    monkeypatch.setattr(guide, "_current_recommended_wave", lambda: "Campaign OS")
+    monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
+    release_truth_packet = {
+        "release_posture": "gold_supported",
+        "phase_label": "Gold-supported release",
+        "shelf_truth_line": "Windows and Linux downloads are posted.",
+        "short_release_summary": (
+            "Use the files linked on [Download](DOWNLOAD.md). The current Windows and Linux shelf "
+            "is the supported release; platforms not listed there remain outside this release scope."
+        ),
+        "desktop_pick_line": "Use the Avalonia installer listed for your platform.",
+        "quality_gap_line": (
+            "The current promoted Windows and Linux release is gold-supported for its stated "
+            "platform and desktop-head scope."
+        ),
+        "architecture_scope_line": (
+            "Desktop downloads are available for Linux x64 and Windows x64 only. "
+            "No public download is posted for Linux ARM64, Windows ARM64, and macOS yet."
+        ),
+        "available_platforms": ["Windows", "Linux"],
+        "missing_platforms": [],
+    }
+
+    guide._generate_root(
+        out_dir=tmp_path,
+        manifest={},
+        page_registry={"page_types": {"root_story_github_readme": {"primary_cta_order": ["download"]}}},
+        part_registry={"parts": []},
+        landing_manifest={},
+        trust_payload={},
+        progress={"phase_label": "Usable preview"},
+        release_payload={
+            "status": "published",
+            "artifacts": [
+                {"platform": "windows", "head": "Chummer.Avalonia", "kind": "installer"},
+                {"platform": "linux", "head": "Chummer.Avalonia", "kind": "installer"},
+            ],
+        },
+        release_truth_packet=release_truth_packet,
+        primary_route_registry={"jobs": []},
+        flagship_parity_registry={"families": [{"id": "desktop", "release_status": "gold_ready"}]},
+    )
+
+    readme = (tmp_path / "README.md").read_text(encoding="utf-8")
+
+    assert "Short answer: yes, on the current gold-supported public shelf." in readme
+    assert "Today: Gold-supported release." in readme
+    assert "Future platforms and additive campaign depth remain separate" in readme
+    assert "as an early preview" not in readme
+    assert "real preview, not a finished" not in readme
 
 
 def test_materialize_public_assets_reuses_existing_derivatives_when_encoder_missing(
@@ -155,6 +212,7 @@ def test_generate_root_scopes_proof_and_fallback_language(tmp_path: Path, monkey
                 {"platform": "windows", "head": "Chummer.Blazor.Desktop", "kind": "installer"},
             ],
         },
+        release_truth_packet={},
         primary_route_registry={
             "jobs": [
                 {
@@ -212,6 +270,7 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
                 "journeysPassed": ["install_claim_restore_continue"],
             },
         },
+        release_truth_packet={},
         release_source="products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml",
         release_experience={
             "proof_scope_summary": (

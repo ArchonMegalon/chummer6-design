@@ -155,6 +155,12 @@ Release automation must never publish build artifacts directly to GitHub release
 
 Repo-local build outputs may exist only as private CI/staging evidence until they are promoted into the registry-backed `chummer.run` download or install handoff surface.
 
+## Canonical public release truth
+
+Only `chummer6-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json` may define public installer artifact IDs, filenames, sizes, SHA256 hashes, channel IDs, release versions, rollout state, and promotion state.
+
+`releases.json`, `/downloads`, `DOWNLOAD.md`, `STATUS.md`, and any repo-local portal mirror are projections from that canonical manifest. They must fail closed if they drift.
+
 ## Claimable install rule
 
 Chummer makes installs claimable and account-aware without personalizing the delivered binary.
