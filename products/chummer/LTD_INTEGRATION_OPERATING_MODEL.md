@@ -24,9 +24,17 @@ Chummer may use lifetime or external tools only through Chummer-owned boundaries
 - Chummer-owned receipt and closeout trail
 - public-copy neutrality
 
+The executable lane table is now captured in `LTD_UTILIZATION_MATRIX.md`.
+
 ## Answerly classification
 
 - `support_assistant`: `pilot`
 - `rules_humanizer`: `pilot`
 - `rules_backend`: `avoid`
 - `sourcebook_training_without_license_receipt`: `avoid`
+
+## LTD posture hard rules (for reference)
+
+- No LTD may publish directly from this layer.
+- No LTD may own product, release, support, entitlement, campaign, or account truth.
+- Capability lanes must have receipts before release-facing use.

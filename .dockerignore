@@ -1,0 +1,6 @@
+*
+
+!.dockerignore
+!products/
+!products/chummer/
+!products/chummer/**

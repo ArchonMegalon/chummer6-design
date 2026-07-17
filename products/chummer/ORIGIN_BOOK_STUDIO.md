@@ -8,6 +8,9 @@ Chummer should keep origin canon, mechanics snapshots, approvals, validation, an
 
 Subscribr is the default creative and content-production lane for:
 
+* the real full-story manuscript drafted from the approved origin packet
+* chapter-by-chapter scene writing and revision passes for that book
+* important-scene and chapter-summary extraction after the book is approved
 * narration scripts
 * dossier intros
 * video-ready scene plans
@@ -31,13 +34,13 @@ Internal components:
 
 ```text
 OriginSourcePacketBuilder
-OriginBookEngine
 OriginBookStudio
 OriginCanonGraph
 OriginContinuityAuditor
 OriginBookPacketValidator
 OriginPublicationRenderer
-OriginBookProviderRouter
+SubscribrManuscriptLane
+OriginPublicationProviderRouter
 ```
 
 Fundamental rule:
@@ -54,18 +57,19 @@ Do not ship this as one button that sends a giant prompt to a model and accepts 
 
 ## Product modes
 
-The first release should not start with a full novel lane.
+The flagship release should start with a real full-ebook lane.
+Preview material is useful for proofing and early review, but it is not the promised player handoff.
 
 | Mode | Target length | Structure | Use |
 | --- | ---: | ---: | --- |
-| Origin Dossier | 3,000-6,000 words | 5-7 sections | fast runner background |
+| Origin Preview Packet | 1,500-3,000 words | 2-4 sections | proofing, early review, and table alignment |
 | Origin Script Packet | 1,000-3,000 words | modular scenes | narration, video, and explainer drafts |
-| Narrative Origin | 8,000-15,000 words | 7-10 chapters | premium long-form default |
+| Narrative Origin | 10,000-15,000 words | 8-10 chapters | default flagship full-ebook deliverable |
 | Runner Memoir | 15,000-25,000 words | 10-14 chapters | deluxe personal edition |
 | Intelligence Casefile | 5,000-10,000 words | modular dossier | in-universe file set |
 
-The default everyday lane should be `Origin Dossier` or `Origin Script Packet`.
-`Narrative Origin` belongs on the premium review-heavy branch.
+The default flagship lane should be `Narrative Origin`.
+`Origin Preview Packet` is not enough for the player-facing promise by itself and must never satisfy a flagship ebook gate.
 
 `Runner Memoir` is the deluxe lane. It is not the default burden placed on every player.
 
@@ -190,11 +194,64 @@ Core flow:
 2. explicit source selection
 3. Life Map timeline
 4. story-arc proposals
-5. voice sample
-6. hierarchical outline
-7. draft and review
+5. hierarchical outline
+6. incremental drafting and review
+7. ebook packaging with fitted cover art
+8. full ebook handoff
+9. three-portrait shortlist
+10. voice choice for optional audiobook
+11. important-scene summary board
+12. one chosen cinematic scene request
 
 The player must see exactly what source material is being processed, what is excluded, and what still needs approval.
+
+## Flagship player handoff contract
+
+The player-facing promise is explicit:
+
+1. Chummer freezes the approved origin packet and source snapshot.
+2. Subscribr drafts the real full story manuscript from that approved packet.
+3. Chummer runs continuity, humanization, and chapter review until the manuscript is accepted.
+4. Magicfit renders the fitting cover art for that accepted story.
+5. Chummer packages and hands over the finished ebook with that cover embedded.
+6. Only after ebook handoff, Chummer unlocks exactly three story-fit portrait options.
+7. The player chooses one portrait as the edition face.
+8. The player can request the audiobook in the voice they choose.
+9. Chummer presents important chapter or scene summaries from the approved book.
+10. The player chooses one summarized scene for one bounded cinematic render with the selected character visible in it.
+
+The player must receive the finished ebook before portraits, audio, or cinema unlock.
+The cover belongs to the ebook handoff itself.
+The portrait choice, voice choice, and scene choice all stay downstream from the same approved manuscript.
+
+Implementation gate:
+
+```text
+FullStoryVerified
+  requires Subscribr full-story manuscript receipt plus an ebook-length chaptered manuscript artifact.
+
+EbookHandoffReady
+  requires the accepted manuscript, fitted cover, packaged ebook, scoped read/share handoff, and import receipt.
+
+Portrait, audiobook voice, and cinematic scene controls
+  must bind to EbookHandoffReady, not merely to BookArtifactVerified or fitted-cover booleans.
+```
+
+If the ebook handoff receipt is missing, the user may see that the story is in progress, but they must not be allowed to choose portraits, request an audiobook voice, or request a cinematic render.
+
+## Media follow-through
+
+After the manuscript is approved:
+
+* `Magicfit` is the preferred visual lane for the cover art that ships with the ebook
+* `Magicfit` is the preferred visual lane for the three portrait options
+* the player chooses one portrait after reading the story
+* audiobook request happens after ebook handoff and includes explicit voice choice
+* Chummer presents the important scenes or chapters as summaries from the approved book
+* the player chooses one scene for the bounded cinematic render with the character visible in it
+
+The full story remains the anchor artifact.
+The cover belongs to the ebook handoff, not a detached later asset. Portraits, audio, and cinema are downstream packages from that same approved book.
 
 ## Generation pipeline
 

@@ -37,7 +37,7 @@ Every canonical horizon in `HORIZON_REGISTRY.yaml` is covered here:
 
 * `nexus-pan` - continuity truth stays first-party; bounded delivery, help, preview, and operator-capture lanes only
 * `alice` - engine-owned build truth with bounded explain and compare-artifact helpers
-* `origin-dossier` - strongest approved-origin narration, media, and premium long-form packet fit
+* `origin-dossier` - strongest approved-origin full-story ebook, fitted-cover, portrait, audiobook, and chosen-scene fit
 * `karma-forge` - strongest discovery, review, approval, and governed-process LTD fit
 * `knowledge-fabric` - strongest explain, docs, capture, and citation LTD fit
 * `jackpoint` - strongest artifact-factory, narration, preview, and explainer LTD fit
@@ -89,8 +89,8 @@ Do not let any LTD own:
 
 Profits from approved-origin narration and premium book lanes without giving providers authority over canon or mechanics.
 
-* `Subscribr.ai` is the default creative and production layer for approved origin narration, intro scripts, video scripts, hooks, titles, and shot lists.
-* `First Book ai` is the premium long-form dossier-book lane only after player and GM approved packets already exist.
+* `Subscribr.ai` is the default creative and production layer for the real full approved-origin story manuscript, chapter summaries, approved origin narration, intro scripts, video scripts, hooks, titles, and shot lists.
+* `First Book ai` is the optional premium long-form editorial packaging lane only after the Subscribr-authored story and the Chummer packet set are already approved.
 * `MarkupGo`, `vidBoard`, `Soundmadeseen`, and `PeekShot` strengthen dossier packaging, storyboard, narration, and preview output after the packet is approved.
 * `Unmixr AI` remains a bounded candidate voice helper only.
 

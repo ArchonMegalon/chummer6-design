@@ -572,6 +572,16 @@ def _draw_feature_cover(spec: dict[str, object], *, repo_root: Path, source_root
 
     background_source_image = Image.open(background_source_path).convert("RGB")
     panel_source_image = Image.open(panel_source_path).convert("RGB")
+    panel_crop_bottom = max(0.0, min(0.40, _float_value(spec.get("panel_crop_bottom"), 0.0)))
+    if panel_crop_bottom > 0:
+        panel_source_image = panel_source_image.crop(
+            (
+                0,
+                0,
+                panel_source_image.width,
+                max(1, int(round(panel_source_image.height * (1.0 - panel_crop_bottom)))),
+            )
+        )
     background = _fit_cover(background_source_image, (width, height), background_focus, zoom=background_zoom)
     background = _contrast(_saturate(_darken(background, background_brightness), background_saturation), background_contrast)
     background = background.filter(ImageFilter.GaussianBlur(radius=background_blur_sigma))

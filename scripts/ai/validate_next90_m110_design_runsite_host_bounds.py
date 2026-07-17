@@ -145,7 +145,8 @@ def main() -> int:
             errors.append(f"workflow_missing_marker:{marker}")
 
     tools_markers = (
-        "route, map, and tour siblings stay first-party inspectable truth and the media layer may not become tactical authority",
+        "route, map, tour, and scene-request siblings stay first-party inspectable truth",
+        "the media layer may not become tactical authority",
         "* not canonical route, map, or tour truth",
     )
     for marker in tools_markers:

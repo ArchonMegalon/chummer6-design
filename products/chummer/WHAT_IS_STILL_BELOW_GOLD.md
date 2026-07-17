@@ -1,6 +1,6 @@
 # What Is Still Below Gold
 
-Last reviewed: 2026-05-26
+Last reviewed: 2026-07-11
 
 This file exists to stop structural closure from masquerading as flagship replacement truth.
 
@@ -8,7 +8,10 @@ This file exists to stop structural closure from masquerading as flagship replac
 
 No current whole-product blockers are keeping the promoted desktop release lane below gold.
 
-- Public-stable release truth now carries the promoted Avalonia desktop tuples for Linux, Windows, and macOS, with fresh startup-smoke and executable-exit proof bound into the published release lane.
+- Current public shelf platform ids: `linux`, `windows`.
+- Current public shelf head ids: `avalonia`.
+- Public-stable release truth carries promoted Avalonia Linux x64 and Windows x64 installers with matching startup-smoke and executable-exit proof.
+- macOS is not on the current public shelf and is not part of this promoted-scope gold claim.
 - The flagship UI release gate, desktop executable exit gate, desktop workflow execution gate, and desktop visual familiarity gate are all current and passing against the same promoted desktop bytes.
 - Keep this file fail-closed: reopen it only if public-stable tuple coverage, startup-smoke truth, or packaged desktop proof drifts below the current release wave.
 

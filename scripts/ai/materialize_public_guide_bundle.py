@@ -326,6 +326,22 @@ def _write(path: Path, content: str) -> None:
     path.write_text(_teaser_first_cleanup(content).strip() + "\n", encoding="utf-8")
 
 
+def _restore_exact_release_truth_phrase(path: Path, exact_text: str) -> None:
+    normalized_exact_text = str(exact_text or "").strip()
+    if not normalized_exact_text or not path.is_file():
+        return
+
+    cleaned_variant = _teaser_first_cleanup(normalized_exact_text).strip()
+    if cleaned_variant == normalized_exact_text:
+        return
+
+    rendered = path.read_text(encoding="utf-8")
+    if cleaned_variant not in rendered:
+        return
+
+    path.write_text(rendered.replace(cleaned_variant, normalized_exact_text), encoding="utf-8")
+
+
 def _chummer6_public_guide_source_root(repo_root: Path) -> Path | None:
     raw = os.environ.get(CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT_ENV, "").strip()
     candidates = [Path(raw)] if raw else []
@@ -366,6 +382,18 @@ def _copy_chummer6_owned_public_guide_supplements(out_dir: Path, repo_root: Path
             target = out_dir / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
+
+
+def _load_chummer6_public_release_truth_packet(repo_root: Path) -> dict[str, object]:
+    source_root = _chummer6_public_guide_source_root(repo_root)
+    if source_root is None:
+        return {}
+
+    packet_path = source_root / ".guide-internal" / "receipts" / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
+    if not packet_path.is_file():
+        return {}
+
+    return _load_json(packet_path)
 
 
 def _ffmpeg_bin() -> str:
@@ -1214,6 +1242,10 @@ def _public_known_issue_summary(release_payload: dict[str, object]) -> str:
     if not cleaned:
         return ""
     lowered = cleaned.lower()
+    if "release status is missing or stale on this shelf" in lowered:
+        if _release_is_published(release_payload.get("status")):
+            return "Release status details are being refreshed for the current downloads."
+        return "Release status details are being refreshed before the main release is published."
     if "current release checks are clear" in lowered:
         return "No current download blocker is listed for these installers."
     if lowered.startswith("preview caveats still apply") and "support verification" in lowered:
@@ -1279,6 +1311,57 @@ def _missing_platform_labels(artifacts: list[dict[str, object]]) -> list[str]:
         if not grouped.get(key):
             labels.append(label)
     return labels
+
+
+def _normalize_public_platform_labels(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+
+    labels: list[str] = []
+    for item in value:
+        key = _platform_key(str(item or ""))
+        label = {
+            "windows": "Windows",
+            "linux": "Linux",
+            "macos": "macOS",
+        }.get(key)
+        if label and label not in labels:
+            labels.append(label)
+    return labels
+
+
+def _release_truth_available_platform_labels(
+    release_truth_packet: dict[str, object],
+    artifacts: list[dict[str, object]],
+) -> list[str]:
+    if "available_platforms" in release_truth_packet:
+        return _normalize_public_platform_labels(release_truth_packet.get("available_platforms"))
+    return _artifact_platform_labels(artifacts)
+
+
+def _release_truth_missing_platform_labels(
+    release_truth_packet: dict[str, object],
+    artifacts: list[dict[str, object]],
+) -> list[str]:
+    if "missing_platforms" in release_truth_packet:
+        return _normalize_public_platform_labels(release_truth_packet.get("missing_platforms"))
+    return _missing_platform_labels(artifacts)
+
+
+def _release_posture_is_gold_supported(release_truth_packet: dict[str, object]) -> bool:
+    return str(release_truth_packet.get("release_posture") or "").strip() == "gold_supported"
+
+
+def _release_phase_label(
+    release_truth_packet: dict[str, object],
+    progress: dict[str, object],
+    fallback: str,
+) -> str:
+    return _public_phase_label(
+        release_truth_packet.get("phase_label")
+        or progress.get("phase_label")
+        or fallback
+    )
 
 
 def _public_shelf_truth_line(status: object, artifacts: list[dict[str, object]]) -> str:
@@ -1585,6 +1668,7 @@ def _generate_root(
     trust_payload: dict[str, object],
     progress: dict[str, object],
     release_payload: dict[str, object],
+    release_truth_packet: dict[str, object],
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
 ) -> None:
@@ -1594,7 +1678,8 @@ def _generate_root(
     help_page = trust_pages.get("help", {})
     root_contract = _page_types(page_registry).get("root_story_github_readme") or _page_types(page_registry).get("root_story") or {}
     overall = progress.get("overall_progress_percent")
-    phase = _public_phase_label(progress.get("phase_label") or "Current product posture")
+    phase = _release_phase_label(release_truth_packet, progress, "Current product posture")
+    gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     post_audit_closed = _load_registry_status(POST_AUDIT_REGISTRY) == "complete"
     active_registry_status = _load_registry_status(ACTIVE_WAVE_REGISTRY)
     active_wave = _current_recommended_wave()
@@ -1604,7 +1689,7 @@ def _generate_root(
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     published = _release_is_published(release_payload.get("status"))
-    shelf_truth = _public_shelf_truth_line(release_payload.get("status"), artifacts)
+    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(release_payload.get("status"), artifacts)
     primary_jobs = [
         item
         for item in (primary_route_registry.get("jobs") or [])
@@ -1633,7 +1718,7 @@ def _generate_root(
     ]
     primary_app = _public_desktop_app_name(primary_head or "Chummer.Avalonia")
     fallback_apps = [_public_desktop_app_name(item) for item in fallback_heads]
-    missing_platforms = _missing_platform_labels(artifacts)
+    missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
     proof_scope_line = str(
         landing_manifest.get("product_proof_scope_line")
         or "Proof on the public shelf is scoped to the posted files and flows you can inspect today; it is not a blanket flagship-complete claim."
@@ -1642,16 +1727,18 @@ def _generate_root(
         landing_manifest.get("product_flagship_boundary_line")
         or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
     ).strip()
-    desktop_pick_line = (
+    desktop_pick_line = str(release_truth_packet.get("desktop_pick_line") or "").strip() or (
         "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there."
         if fallback_apps
         else f"If more than one desktop app is offered, start with the {primary_app}."
     )
-    quality_gap_line = (
+    quality_gap_line = str(release_truth_packet.get("quality_gap_line") or "").strip() or (
         "Some rules coverage and release polish are still moving, so treat this as a preview with inspectable proof rather than a flagship-complete replacement."
         if families_below_gold
         else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
     )
+    short_release_summary = str(release_truth_packet.get("short_release_summary") or "").strip() or "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time."
+    architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
 
     cta_map = {
         "start_here": "- [Start here](START_HERE.md)",
@@ -1695,32 +1782,48 @@ def _generate_root(
         "",
         "## What is real now",
         "",
-        "- Short answer: yes, as an early preview.",
-        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
-        "- Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time.",
+        (
+            "- Short answer: yes, on the current gold-supported public shelf."
+            if gold_supported
+            else "- Short answer: yes, as an early preview."
+        ),
+        f"- {shelf_truth}",
+        f"- {short_release_summary}",
         f"- {desktop_pick_line}",
         "- Use Avalonia first when the download page offers it.",
         f"- {quality_gap_line}",
     ]
     if phase:
         rows.append(f"- Today: {phase}.")
-    rows.extend(
-        [
-            (
-                f"- Still missing from the public download page: {_english_join(missing_platforms)}."
-                if missing_platforms
-                else "- Public downloads are visible on every promised desktop platform."
-            ),
-            "- The current shelf should be read as a real preview, not a finished no-step-back release.",
-            "- Help, contact, privacy, and terms pages are live.",
-            (
-                "- More campaign-ledger depth and steadier desktop polish are still coming."
-                if post_audit_closed and active_registry_status in {"in_progress", "complete"}
-                else "- Broader desktop support and more product polish are still coming."
-            ),
-            "",
-        ]
+    rows.append(
+        f"- {architecture_scope_line}"
+        if architecture_scope_line
+        else f"- Still missing from the public download page: {_english_join(missing_platforms)}."
+        if missing_platforms
+        else "- Public downloads are visible on every currently supported desktop platform."
     )
+    if gold_supported:
+        rows.extend(
+            [
+                "- The current promoted shelf is gold-supported for its stated platform and desktop-head scope.",
+                "- Help, contact, privacy, and terms pages are live.",
+                "- Future platforms and additive campaign depth remain separate from the supported release claim.",
+                "",
+            ]
+        )
+    else:
+        rows.extend(
+            [
+                "- The current shelf should be read as a real preview, not a finished no-step-back release.",
+                "- Help, contact, privacy, and terms pages are live.",
+                (
+                    "- More campaign-ledger depth and steadier desktop polish are still coming."
+                    if post_audit_closed and active_registry_status in {"in_progress", "complete"}
+                    else "- Broader desktop support and more product polish are still coming."
+                ),
+                "",
+            ]
+        )
     rows.extend(
         [
             "## Start here",
@@ -1779,7 +1882,7 @@ def _generate_root(
             "## Product parts",
             "",
             "- [Parts index](PARTS/README.md): an inside view of how the app is put together.",
-            "- [Campaign tools](HORIZONS/README.md): future table and campaign tools that are not ready today.",
+            "- [Campaign tools](HORIZONS/README.md): table and campaign lanes with their current availability stated individually.",
         ]
     )
 
@@ -1806,9 +1909,9 @@ def _generate_from_chummer5a_to_chummer6(
     primary_route_registry: dict[str, object],
     flagship_parity_registry: dict[str, object],
     release_payload: dict[str, object],
+    release_truth_packet: dict[str, object],
 ) -> None:
     artifacts = _release_artifacts(release_payload)
-    grouped_artifacts = _group_artifacts_by_platform(artifacts)
     jobs = [
         item
         for item in (primary_route_registry.get("jobs") or [])
@@ -1840,11 +1943,17 @@ def _generate_from_chummer5a_to_chummer6(
     ]
     primary_app = _public_desktop_app_name(primary_head)
     fallback_app = _english_join([_public_desktop_app_name(item) for item in fallback_heads])
-    available_platforms = _artifact_platform_labels(artifacts)
-    missing_platforms = _missing_platform_labels(artifacts)
+    available_platforms = _release_truth_available_platform_labels(release_truth_packet, artifacts)
+    missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
+    gold_supported = _release_posture_is_gold_supported(release_truth_packet)
+    architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
+    packet_quality_line = str(release_truth_packet.get("quality_gap_line") or "").strip()
+    packet_shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip()
     rules_gap_line = (
         "Some rules coverage is still moving, so keep treating this as a preview."
         if below_gold
+        else packet_quality_line
+        if packet_quality_line
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
     )
     switch_now_line = (
@@ -1890,30 +1999,43 @@ def _generate_from_chummer5a_to_chummer6(
         "| Build or tweak a runner | A similar dense desktop flow, but with a stronger push to explain why totals changed. |",
         "| Chase a weird modifier | A clearer receipt trail instead of reconstructing the math from memory. |",
         "| Come back after a bad install, lost device, or broken update | Recovery, download, and help are treated as product work instead of an afterthought. |",
-        "| Check whether the preview is ready for you | The status page, download shelf, and help page are meant to answer that directly. |",
+        "| Check whether the current release fits your platform | The status page, download shelf, and help page are meant to answer that directly. |",
         "",
-        "## What is still rough",
+        "## Current release boundary" if gold_supported else "## What is still rough",
         "",
-        f"- {_public_shelf_truth_line(release_payload.get('status'), artifacts)}",
+        f"- {packet_shelf_truth or _public_shelf_truth_line(release_payload.get('status'), artifacts)}",
         f"- {rules_gap_line}",
         f"- {wait_platform_line}",
-        "- Treat the current shelf as a serious preview, not a fully settled every-platform replacement yet.",
+        *([f"- {architecture_scope_line}"] if architecture_scope_line else []),
+        (
+            "- The current promoted shelf is supported for its stated scope; platforms outside that shelf need separate proof before promotion."
+            if gold_supported
+            else "- Treat the current shelf as a serious preview, not a fully settled every-platform replacement yet."
+        ),
         "",
         "## Should you switch today?",
         "",
         f"- {switch_now_line}",
         "",
-        "### If you mostly live on Windows and like testing real previews",
+        "### If your platform is on the current download shelf",
         "",
-        "- It is worth a serious look.",
+        (
+            "- The promoted Avalonia installer is a supported release path."
+            if gold_supported
+            else "- It is worth a serious look."
+        ),
         "",
-        "### If Linux or macOS is your daily route",
+        "### If your platform is outside the current download shelf",
         "",
-        "- Wait until your platform is on the public shelf before making it your main path.",
+        "- Keep your current setup until that platform has its own promoted installer and runtime proof.",
         "",
         "### If you need a settled replacement this week",
         "",
-        "- Wait if you need a no-drama every-platform swap right now.",
+        (
+            "- Use the current release when its supported platform scope fits; keep your prior install during file and workflow migration."
+            if gold_supported
+            else "- Wait if you need a no-drama every-platform swap right now."
+        ),
         "",
         "## Read next",
         "",
@@ -1934,21 +2056,29 @@ def _generate_from_chummer5a_to_chummer6(
     _write(out_dir / "FROM_CHUMMER5A_TO_CHUMMER6.md", "\n".join(rows))
 
 
-def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: dict[str, object], release_payload: dict[str, object]) -> None:
+def _generate_status(
+    out_dir: Path,
+    trust_payload: dict[str, object],
+    progress: dict[str, object],
+    release_payload: dict[str, object],
+    release_truth_packet: dict[str, object],
+) -> None:
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     artifacts = _release_artifacts(release_payload)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
+    published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
     raw_status = str(release_payload.get("status") or "unpublished").strip()
-    release_status = _public_release_state(raw_status)
-    release_verification = _public_release_proof_summary(release_payload)
+    release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(raw_status)
+    release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip() or _public_release_proof_summary(release_payload)
     published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
-    shelf_truth = _public_shelf_truth_line(raw_status, artifacts)
-    architecture_scope = _public_architecture_scope_line(artifacts)
-    known_issues = _public_known_issue_summary(release_payload)
+    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(raw_status, artifacts)
+    architecture_scope = str(release_truth_packet.get("architecture_scope_line") or "").strip() or _public_architecture_scope_line(artifacts)
+    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip() or _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
-    missing_platforms = _missing_platform_labels(artifacts)
+    missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
+    missing_installer_lane_line = str(release_truth_packet.get("missing_installer_lane_line") or "").strip()
     closure = (
         progress.get("closure_semantics")
         or (progress.get("supporting_signals") or {}).get("closure_semantics")
@@ -1972,14 +2102,16 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         "",
     ]
     overall = progress.get("overall_progress_percent")
-    phase = _public_phase_label(progress.get("phase_label"))
+    phase = _release_phase_label(release_truth_packet, progress, "Current release status")
     if overall is not None or phase:
         rows.extend(["## Current picture", ""])
         if phase:
             rows.append(f"- Today: {phase}.")
         if version:
             rows.append(f"- Build label: `{version}`.")
-        if published_at:
+        if published_line:
+            rows.append(f"- {published_line}")
+        elif published_at:
             rows.append(f"- {published_label}: {published_at}.")
         if release_status:
             rows.append(f"- Release status: {release_status}.")
@@ -1987,7 +2119,10 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         if architecture_scope:
             rows.append(f"- {architecture_scope}")
         if missing_platforms:
-            rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
+            if missing_installer_lane_line:
+                rows.append(f"- {missing_installer_lane_line}")
+            else:
+                rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
         if release_verification:
             rows.append(f"- Recent checks: {release_verification}")
         if known_issues:
@@ -2001,19 +2136,29 @@ def _generate_status(out_dir: Path, trust_payload: dict[str, object], progress: 
         for section in help_page.get("sections") or []:
             if isinstance(section, dict) and str(section.get("id") or "").strip() in {"support-path", "install-update", "support-entry"}:
                 rows.extend(_section_rows(_public_install_section(section, release_payload)))
-    _write(out_dir / "STATUS.md", "\n".join(rows))
+    status_path = out_dir / "STATUS.md"
+    _write(status_path, "\n".join(rows))
+    _restore_exact_release_truth_phrase(status_path, str(release_truth_packet.get("known_issue_summary") or "").strip())
 
 
-def _generate_now_pages(out_dir: Path, progress: dict[str, object], release_payload: dict[str, object]) -> None:
+def _generate_now_pages(
+    out_dir: Path,
+    progress: dict[str, object],
+    release_payload: dict[str, object],
+    release_truth_packet: dict[str, object],
+) -> None:
     artifacts = _release_artifacts(release_payload)
-    phase = _public_phase_label(progress.get("phase_label") or "Preview")
-    release_status = _public_release_state(release_payload.get("status") or "unpublished")
+    phase = _release_phase_label(release_truth_packet, progress, "Preview")
+    release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(release_payload.get("status") or "unpublished")
+    published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = _format_public_datetime(release_payload.get("publishedAt") or "")
     version = _public_build_label(str(release_payload.get("version") or "").strip())
-    shelf_truth = _public_shelf_truth_line(release_payload.get("status"), artifacts)
-    missing_platforms = _missing_platform_labels(artifacts)
-    recent_checks = _public_release_proof_summary(release_payload)
-    known_issues = _public_known_issue_summary(release_payload)
+    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(release_payload.get("status"), artifacts)
+    architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
+    missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
+    missing_installer_lane_line = str(release_truth_packet.get("missing_installer_lane_line") or "").strip()
+    recent_checks = str(release_truth_packet.get("release_verification_summary") or "").strip() or _public_release_proof_summary(release_payload)
+    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip() or _public_known_issue_summary(release_payload)
 
     current_rows = [
         "# Current status",
@@ -2028,10 +2173,17 @@ def _generate_now_pages(out_dir: Path, progress: dict[str, object], release_payl
     ]
     if version:
         current_rows.append(f"- Build label: `{version}`.")
-    if published_at:
+    if published_line:
+        current_rows.append(f"- {published_line}")
+    elif published_at:
         current_rows.append(f"- Last refreshed: {published_at}.")
+    if architecture_scope_line:
+        current_rows.append(f"- {architecture_scope_line}")
     if missing_platforms:
-        current_rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
+        if missing_installer_lane_line:
+            current_rows.append(f"- {missing_installer_lane_line}")
+        elif not architecture_scope_line:
+            current_rows.append(f"- Still missing from the public download page: {_english_join(missing_platforms)}.")
     if recent_checks:
         current_rows.append(f"- Recent checks: {recent_checks}")
     if known_issues:
@@ -2047,7 +2199,9 @@ def _generate_now_pages(out_dir: Path, progress: dict[str, object], release_payl
             "- [What Chummer6 Is](../WHAT_CHUMMER6_IS.md)",
         ]
     )
-    _write(out_dir / "NOW" / "current-status.md", "\n".join(current_rows))
+    current_status_path = out_dir / "NOW" / "current-status.md"
+    _write(current_status_path, "\n".join(current_rows))
+    _restore_exact_release_truth_phrase(current_status_path, str(release_truth_packet.get("known_issue_summary") or "").strip())
 
     public_rows = [
         "# Public pages",
@@ -2106,7 +2260,14 @@ def _generate_help(
     _write(out_dir / "HELP.md", "\n".join(rows))
 
 
-def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
+def _generate_faq(
+    out_dir: Path,
+    faq_payload: dict[str, object],
+    release_truth_packet: dict[str, object],
+) -> None:
+    available_platforms = _normalize_public_platform_labels(release_truth_packet.get("available_platforms"))
+    platform_scope = _english_join(available_platforms) or "the platforms listed on Download"
+    gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     rows = [
         _front_matter("FAQ", "products/chummer/PUBLIC_FAQ_REGISTRY.yaml"),
         "# FAQ",
@@ -2114,7 +2275,11 @@ def _generate_faq(out_dir: Path, faq_payload: dict[str, object]) -> None:
         "## Start with these answers",
         "",
         "- **Which desktop app should I start with?** Start with the Avalonia desktop app when the download page offers it.",
-        "- **What platforms are publicly available today?** Windows preview builds are the public path today unless the download page says otherwise.",
+        (
+            f"- **What platforms are publicly available today?** {platform_scope} are the current gold-supported public shelf."
+            if gold_supported
+            else f"- **What platforms are publicly available today?** {platform_scope} are the current public path; check Download for exact posture."
+        ),
         "- **I use Chummer5a now. Where should I start?** Start with [What Chummer6 Is](WHAT_CHUMMER6_IS.md) and [Current status](NOW/current-status.md).",
         "- **Do I need GitHub for anything normal?** No. Use the guide, download page, and help flow first.",
         "",
@@ -2139,21 +2304,24 @@ def _generate_download(
     out_dir: Path,
     progress: dict[str, object],
     release_payload: dict[str, object],
+    release_truth_packet: dict[str, object],
     release_source: str,
     release_experience: dict[str, object],
 ) -> None:
-    phase = _public_phase_label(progress.get("phase_label") or "Current release status")
+    phase = _release_phase_label(release_truth_packet, progress, "Current release status")
+    gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     artifacts = _release_artifacts(release_payload)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     version = _public_build_label(str(release_payload.get("version") or "").strip())
+    published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = str(release_payload.get("publishedAt") or "").strip()
     status = str(release_payload.get("status") or "unpublished").strip()
-    release_status = _public_release_state(status)
+    release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(status)
     published_label = _format_public_datetime(published_at) or "Not currently published"
-    release_verification = _public_release_proof_summary(release_payload)
-    known_issues = _public_known_issue_summary(release_payload)
+    release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip() or _public_release_proof_summary(release_payload)
+    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip() or _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
-    fix_availability = _public_fix_summary(release_payload)
+    fix_availability = str(release_truth_packet.get("fix_availability_summary") or "").strip() or _public_fix_summary(release_payload)
     proof_scope_summary = str(
         release_experience.get("proof_scope_summary")
         or "Public proof language is scoped to the files, flows, and recent checks posted on the current shelf that you can inspect today; it is not a blanket flagship-grade claim."
@@ -2178,7 +2346,7 @@ def _generate_download(
     }
     section_heading = "Current public download" if _release_is_published(status) else "Current preview shelf"
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
-    shelf_truth = _public_shelf_truth_line(status, artifacts)
+    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(status, artifacts)
     flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
     fallback_head = str(release_experience.get("desktop_fallback_head") or "Chummer.Blazor.Desktop").strip()
 
@@ -2200,7 +2368,6 @@ def _generate_download(
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
         rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
     rows.append("- You do not need GitHub for the normal download path.")
-    rows.append("- [Raw GitHub releases](https://github.com/ArchonMegalon/Chummer6/releases).")
     rows.append("- Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md).")
     rows.append("- For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md).")
 
@@ -2210,16 +2377,23 @@ def _generate_download(
             f"## {section_heading}",
             "",
             f"- Today: {phase}.",
-            f"- {timestamp_label}: {published_label}.",
             f"- Release status: {release_status or 'Not currently published'}.",
         ]
     )
+    if published_line:
+        rows.insert(len(rows) - 1, f"- {published_line}")
+    else:
+        rows.insert(len(rows) - 1, f"- {timestamp_label}: {published_label}.")
     if version:
         rows.append(f"- Build label: `{version}`.")
     rows.append(f"- {shelf_truth}")
     if release_verification:
         rows.append(f"- Recent checks: {release_verification}")
-    rows.append("- These are real preview builds, not a finished flagship release yet.")
+    rows.append(
+        "- These are the current gold-supported builds for the stated public platform and desktop-head scope."
+        if gold_supported
+        else "- These are real preview builds, not a finished flagship release yet."
+    )
     if known_issues:
         rows.append(f"- {known_issue_label}: {known_issues}")
     if fix_availability:
@@ -2331,7 +2505,9 @@ def _generate_download(
                 )
             )
 
-    _write(out_dir / "DOWNLOAD.md", "\n".join(rows))
+    download_path = out_dir / "DOWNLOAD.md"
+    _write(download_path, "\n".join(rows))
+    _restore_exact_release_truth_phrase(download_path, str(release_truth_packet.get("known_issue_summary") or "").strip())
 
 
 def _generate_contact(out_dir: Path, trust_payload: dict[str, object]) -> None:
@@ -2459,7 +2635,7 @@ def _generate_horizon_pages(
         slug = _slug(str(item.get("id") or "").strip())
         summaries = {
             "alice": "Builders get grounded what-if tests instead of vague assistant advice.",
-            "origin-dossier": "The player gets an accepted origin story, portraits, narration, and later ALICE context without letting backstory prose rewrite the sheet.",
+            "origin-dossier": "The player gets a full private origin story ebook with fitted cover art, then three portrait choices, an optional chosen-voice audiobook request, one later cinematic scene choice, and later ALICE context without letting backstory prose rewrite the sheet.",
             "jackpoint": "The table gets polished short-to-medium-form dossiers, recaps, and briefings that still point back to their source material.",
             "table-pulse": "GMs get a reviewed live heat-and-reaction path today and a separate private aftermath coaching path as the broader Table Pulse promise grows.",
             "karma-forge": "Tables can evolve house rules without splintering into unreadable forks.",
@@ -2659,6 +2835,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     help_copy = _load_text(repo_root / "products" / "chummer" / "PUBLIC_HELP_COPY.md")
     progress = _load_json(repo_root / "products" / "chummer" / "PROGRESS_REPORT.generated.json")
     release_payload, release_source = _load_release_channel(repo_root)
+    release_truth_packet = _load_chummer6_public_release_truth_packet(repo_root)
     required_assets = _required_public_asset_paths(part_registry, horizon_registry)
 
     _materialize_public_assets(
@@ -2676,14 +2853,15 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
         trust_payload,
         progress,
         release_payload,
+        release_truth_packet,
         primary_route_registry,
         flagship_parity_registry,
     )
-    _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload)
-    _generate_status(out_dir, trust_payload, progress, release_payload)
+    _generate_from_chummer5a_to_chummer6(out_dir, primary_route_registry, flagship_parity_registry, release_payload, release_truth_packet)
+    _generate_status(out_dir, trust_payload, progress, release_payload, release_truth_packet)
     _generate_help(out_dir, help_copy, trust_payload, release_payload)
-    _generate_faq(out_dir, faq_registry)
-    _generate_download(out_dir, progress, release_payload, release_source, release_experience)
+    _generate_faq(out_dir, faq_registry, release_truth_packet)
+    _generate_download(out_dir, progress, release_payload, release_truth_packet, release_source, release_experience)
     _generate_contact(out_dir, trust_payload)
     _generate_part_pages(out_dir, part_registry)
     _generate_horizon_pages(
@@ -2694,7 +2872,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     )
     _generate_trust_pages(out_dir, trust_payload, release_payload)
     _copy_chummer6_owned_public_guide_supplements(out_dir, repo_root)
-    _generate_now_pages(out_dir, progress, release_payload)
+    _generate_now_pages(out_dir, progress, release_payload, release_truth_packet)
     _generate_manifest(out_dir, manifest)
     _assert_public_bundle_language(out_dir)
 

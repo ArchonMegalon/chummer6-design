@@ -1,5 +1,8 @@
 .DS_Store
 
+# Local context index state.
+/.vexp/
+
 # Local agent and worker artifacts
 .agent-memory.md
 AGENT_MEMORY.md

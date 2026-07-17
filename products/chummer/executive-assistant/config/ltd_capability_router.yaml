@@ -1,0 +1,135 @@
+version: 1
+owner: chummer6-design
+lane_model: executive-assisted
+updated_at: 2026-07-09T00:00:00Z
+providers:
+  - name: 1min.AI
+    lane: background_capacity_scheduler
+    workspace_tier: 1
+    policy_class: public_safe
+    runtime_status:
+      state: active
+      source: .env and local scheduler capacity
+    route_to: [support_concierge, background_capacity_scheduler]
+    allowed_inputs:
+      - public_doc_transforms
+      - support_drafts
+      - media_prompt_variants
+    forbidden_inputs:
+      - release_truth
+      - rules_truth
+      - private_campaign_data
+      - entitlement_truth
+    must_not_route_when:
+      - key_missing
+      - stale_capacity_receipt
+    must_not_publish_directly: true
+    may_own_truth: false
+
+  - name: AI Magicx
+    lane: background_capacity_scheduler
+    workspace_tier: 4
+    policy_class: bounded
+    runtime_status:
+      state: staged
+      source: key-gated
+    route_to: [support_concierge]
+    allowed_inputs:
+      - short_interactive_overflow
+      - audit_support_drafts
+      - alternate_phrasing
+    forbidden_inputs:
+      - bulk_background_jobs
+      - private_campaign_data
+      - release_truth
+      - rules_truth
+    must_not_route_when:
+      - key_missing
+    must_not_publish_directly: true
+    may_own_truth: false
+
+  - name: vexp.dev
+    lane: cross_repo_opportunity_index
+    workspace_tier: 1
+    policy_class: public_safe
+    runtime_status:
+      state: active
+      source: active codex MCP stance
+    route_to: [cross_repo_opportunity_index, release_trust_factory]
+    allowed_inputs:
+      - repo_docs
+      - release_receipts
+      - roadmap_items
+    forbidden_inputs:
+      - direct_canonical_writes
+      - runtime_account_secrets
+    must_not_publish_directly: true
+    may_own_truth: false
+
+  - name: Teable
+    lane: proof_debt_operations
+    workspace_tier: 1
+    policy_class: operator_internal
+    runtime_status:
+      state: active
+      source: local API key and sync flags
+    route_to: [proof_debt_operations, cross_repo_opportunity_index, support_concierge]
+    allowed_inputs:
+      - admin_intent
+      - projection_rows
+      - proof_status
+    forbidden_inputs:
+      - rule_truth
+      - release_truth
+      - sensitive_campaign_state
+    must_not_publish_directly: true
+    may_own_truth: false
+
+  - name: OMagic
+    lane: cross_repo_opportunity_index
+    workspace_tier: 4
+    policy_class: bounded
+    runtime_status:
+      state: discovery
+      source: staged
+    route_to: [cross_repo_opportunity_index]
+    allowed_inputs:
+      - capacity_discovery_input
+      - capability_inventory_inputs
+    forbidden_inputs:
+      - production_routing
+      - direct_publication
+      - private_campaign_data
+    must_not_publish_directly: true
+    may_own_truth: false
+
+  - name: YouBooks
+    lane: public_trust_shelf
+    workspace_tier: 4
+    policy_class: bounded
+    runtime_status:
+      state: discovery
+      source: seeded accounts, no integration receipts
+    route_to: [public_trust_shelf]
+    allowed_inputs:
+      - approved_source_transform
+    forbidden_inputs:
+      - raw_sourcebook_text
+      - private_campaign_data
+      - live_product_truth_inputs
+    must_not_publish_directly: true
+    may_own_truth: false
+
+rules:
+  never_publish_directly:
+    - all_providers
+  never_own_truth:
+    - all_providers
+  fallback_order:
+    - 1min.AI
+    - AI Magicx
+    - vexp.dev
+  key_gates:
+    - provider: AI Magicx
+      required_env: AI_MAGICX_API_KEY
+      on_missing: fallback_to_background_only

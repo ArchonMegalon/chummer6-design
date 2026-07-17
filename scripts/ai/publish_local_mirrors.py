@@ -175,13 +175,32 @@ def _prune_stale_product_files(product_root: Path, expected_rel_paths: set[Path]
     return removed
 
 
-def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None, repo_filter: str = "") -> int:
+def publish_mirrors(
+    *,
+    write: bool,
+    prune: bool,
+    repo_base: Path | None,
+    repo_filter: str = "",
+    source_filters: tuple[str, ...] = (),
+) -> int:
     manifest = _load_manifest(MANIFEST_PATH)
     mirrors = manifest.get("mirrors") or []
     if not isinstance(mirrors, list):
         raise ValueError("sync_manifest_mirrors_not_list")
 
     normalized_repo_filter = str(repo_filter or "").strip()
+    normalized_source_filters = tuple(dict.fromkeys(str(item or "").strip() for item in source_filters if str(item or "").strip()))
+    if normalized_source_filters and prune:
+        raise ValueError("source_filtered_publish_requires_no_prune")
+    configured_sources = {
+        source
+        for mirror in mirrors
+        if isinstance(mirror, dict)
+        for source in _expand_product_sources(manifest, mirror)
+    }
+    unknown_source_filters = sorted(set(normalized_source_filters) - configured_sources)
+    if unknown_source_filters:
+        raise ValueError(f"source_filters_not_in_manifest:{','.join(unknown_source_filters)}")
     matched_repo_filter = not normalized_repo_filter
     missing_repos: list[tuple[str, str, list[Path]]] = []
     changed_count = 0
@@ -201,6 +220,8 @@ def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None, repo_fi
 
         product_target = str(mirror.get("product_target") or mirror.get("target") or ".codex-design/product").strip()
         product_sources = _expand_product_sources(manifest, mirror)
+        if normalized_source_filters:
+            product_sources = [source for source in product_sources if source in normalized_source_filters]
         duplicate_basenames = {
             name
             for name, count in Counter(Path(source).name for source in product_sources).items()
@@ -220,14 +241,14 @@ def publish_mirrors(*, write: bool, prune: bool, repo_base: Path | None, repo_fi
             if _copy_file(source, destination, write=write):
                 mirror_changed.append(str(target_rel))
 
-        repo_source = str(mirror.get("repo_source") or "").strip()
+        repo_source = "" if normalized_source_filters else str(mirror.get("repo_source") or "").strip()
         if repo_source:
             source = REPO_ROOT / repo_source
             destination = repo_root / str(mirror.get("repo_target") or ".codex-design/repo/IMPLEMENTATION_SCOPE.md").strip()
             if source.is_file() and _copy_file(source, destination, write=write):
                 mirror_changed.append(str(destination.relative_to(repo_root)))
 
-        review_source = str(mirror.get("review_source") or "").strip()
+        review_source = "" if normalized_source_filters else str(mirror.get("review_source") or "").strip()
         if review_source:
             source = REPO_ROOT / review_source
             destination = repo_root / str(mirror.get("review_target") or ".codex-design/review/REVIEW_CONTEXT.md").strip()
@@ -279,12 +300,19 @@ def main() -> int:
     parser.add_argument("--no-prune", action="store_true", help="Do not remove stale mirrored product files that are no longer in the manifest.")
     parser.add_argument("--repo-base", type=Path, help="Optional base directory containing sibling repos under canonical or legacy local names.")
     parser.add_argument("--repo", default="", help="Optional repo id from sync-manifest.yaml to publish/check in isolation.")
+    parser.add_argument(
+        "--source",
+        action="append",
+        default=[],
+        help="Publish/check only this exact manifest source path; repeat as needed and combine with --no-prune.",
+    )
     args = parser.parse_args()
     return publish_mirrors(
         write=not args.check,
         prune=not args.no_prune,
         repo_base=args.repo_base,
         repo_filter=str(args.repo or "").strip(),
+        source_filters=tuple(args.source),
     )
 
 

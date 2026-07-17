@@ -9,7 +9,9 @@ It exists to stop the loop from scattering effort across desktop polish, localiz
 
 ## Current verdict
 
-Chummer6 is not finished.
+Current promoted-scope verdict: `GOLD_READY`.
+
+The current public-stable Chummer release clears the flagship closeout bar for the promoted Avalonia desktop scope. This is a bounded release claim, not a claim that every future horizon or additive product lane is finished.
 
 The remaining blocker truth is already explicit:
 
@@ -21,15 +23,15 @@ This file now exists to preserve the closeout order that was required to reach t
 
 ## Closeout order
 
-### 1. Prove the missing Windows desktop tuples on a Windows host
+### 1. Preserve the promoted Windows desktop tuple
 
-This was the first required closeout lane before `BLK-010` could clear.
+This was the first required closeout lane before `BLK-010` could clear and remains a regression gate.
 
 That means:
 
-- promote the missing Windows installers for both desktop heads
-- capture matching Windows startup-smoke receipts for those promoted bytes
-- republish the release channel, executable gate, and journey receipts from that Windows evidence
+- keep the promoted Avalonia Windows installer and payload bound to matching startup-smoke receipts
+- republish the release channel, executable gate, and journey receipts when those bytes change
+- do not imply that a second desktop head is shipped; Avalonia is the only current public-shelf desktop head
 
 ### 2. Keep the lived Campaign OS truth aligned
 
@@ -51,10 +53,12 @@ No horizon may be treated as near-term flagship scope unless:
 - the owning repos can cite executable proof instead of public-guide ambition
 - its release posture stops reading like contingent research
 
-### 4. Only then widen the flagship claim
+### 4. Keep the widened claim bounded
 
 Desktop polish, horizon storytelling, and adjacent wow lanes matter.
 They do not outrank executable Windows proof or lived-system proof.
+
+The current widened claim covers the promoted Avalonia Linux x64 and Windows x64 artifacts. macOS and any future second desktop head remain outside the current public-shelf promise until independently proven and promoted.
 
 ## Fleet execution rule
 

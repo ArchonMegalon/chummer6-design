@@ -44,12 +44,21 @@ product_source_groups:
     - products/chummer/PRODUCT_GOVERNOR_AND_AUTOPILOT_LOOP.md
     - products/chummer/PRODUCT_HEALTH_SCORECARD.yaml
     - products/chummer/WEEKLY_PRODUCT_PULSE.generated.json
+    - products/chummer/FINAL_GOLD_GRAPH.generated.json
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml
+    - products/chummer/FLAGSHIP_READINESS_PLANES.yaml
+    - products/chummer/CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml
+    - products/chummer/CAMPAIGN_OPERABILITY_SCORECARD.generated.json
+    - products/chummer/CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md
+    - products/chummer/RELEASE_EVIDENCE_PACK.md
+    - products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md
+    - products/chummer/WHAT_IS_STILL_BELOW_GOLD.md
     - products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md
     - products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md
     - products/chummer/CAMPAIGN_AUTHORITY_AND_PERMISSIONS.md
     - products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md
+    - products/chummer/GOVERNED_SPATIAL_RENDER_PRIVACY_RETENTION_POLICY.md
     - products/chummer/EXPERIENCE_SUCCESS_METRICS.md
     - products/chummer/USER_JOURNEYS.md
     - products/chummer/BUILD_LAB_PRODUCT_MODEL.md
@@ -71,6 +80,7 @@ product_source_groups:
     - products/chummer/CAMPAIGN_OS_GAP_AND_CHANGE_GUIDE.md
     - products/chummer/PROGRAM_MILESTONES.yaml
     - products/chummer/CONTRACT_SETS.yaml
+    - products/chummer/GOVERNED_SPATIAL_RENDER_CAPABILITY_QUOTA_EVIDENCE.schema.yaml
     - products/chummer/GROUP_BLOCKERS.md
     - products/chummer/OWNERSHIP_MATRIX.md
   product_middle:
@@ -123,22 +133,15 @@ product_source_groups:
     - products/chummer/HORIZON_AND_FEATURE_LTD_INTEGRATION_GUIDE.md
     - products/chummer/horizons/README.md
     - products/chummer/horizons/FOUNDATIONS.md
-    - products/chummer/horizons/edition-studio.md
-    - products/chummer/horizons/nexus-pan.md
     - products/chummer/horizons/alice.md
+    - products/chummer/horizons/origin-dossier.md
     - products/chummer/horizons/black-ledger.md
-    - products/chummer/horizons/community-hub.md
     - products/chummer/horizons/karma-forge.md
     - products/chummer/horizons/knowledge-fabric.md
     - products/chummer/horizons/jackpoint.md
-    - products/chummer/horizons/onramp.md
-    - products/chummer/horizons/quicksilver.md
-    - products/chummer/horizons/run-control.md
     - products/chummer/horizons/runsite.md
     - products/chummer/horizons/runbook-press.md
-    - products/chummer/horizons/ghostwire.md
     - products/chummer/horizons/table-pulse.md
-    - products/chummer/horizons/local-co-processor.md
   journey_workbench:
     - products/chummer/journeys/README.md
     - products/chummer/journeys/build-and-inspect-a-character.md
@@ -165,6 +168,12 @@ product_source_groups:
     - products/chummer/PUBLIC_LANDING_POLICY.md
     - products/chummer/PUBLIC_DOWNLOADS_POLICY.md
     - products/chummer/PUBLIC_TRUST_CONTENT.yaml
+    - products/chummer/PUBLIC_FEEDBACK_TAXONOMY.yaml
+    - products/chummer/PUBLIC_FEEDBACK_AND_CONTENT_REGISTRY.yaml
+    - products/chummer/PUBLIC_SIGNAL_FEEDBACK_ROADMAP_BRIDGE.md
+    - products/chummer/PUBLIC_SIGNAL_TO_CANON_PIPELINE.md
+    - products/chummer/ORIGIN_BOOK_STUDIO.md
+    - products/chummer/public-guides/chummer6-quickstart.md
     - products/chummer/PUBLIC_LANDING_MANIFEST.yaml
     - products/chummer/PUBLIC_FEATURE_REGISTRY.yaml
     - products/chummer/PUBLIC_CAMPAIGN_IMAGE_MANIFEST.yaml
@@ -207,6 +216,10 @@ product_source_groups:
     - products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml
   flagship_desktop_canon:
     - products/chummer/FLAGSHIP_PRODUCT_BAR.md
+    - products/chummer/FLAGSHIP_PARITY_REGISTRY.yaml
+    - products/chummer/DENSE_WORKBENCH_BUDGET.yaml
+    - products/chummer/VETERAN_FIRST_MINUTE_GATE.yaml
+    - products/chummer/PRIMARY_ROUTE_REGISTRY.yaml
     - products/chummer/SURFACE_DESIGN_SYSTEM_AND_AI_REVIEW_LOOP.md
     - products/chummer/CHUMMER5A_FAMILIARITY_BRIDGE.md
     - products/chummer/SR5_FIRST_MINUTE_TASKS.yaml
@@ -233,7 +246,10 @@ product_source_groups:
     - products/chummer/EXTERNAL_TOOLS_PLANE.md
     - products/chummer/EXTERNAL_TOOLS_BLOCKING_POLICY_REWORK.md
     - products/chummer/PROVIDER_AND_ROUTE_STEWARDSHIP.md
+    - products/chummer/FEATURE_AND_OPPORTUNITY_GUIDE_FOR_DEVELOPERS.md
     - products/chummer/LTD_CAPABILITY_MAP.md
+    - products/chummer/LTD_UTILIZATION_MATRIX.md
+    - products/chummer/WHAT_WE_MISSED_LTD_UTILIZATION_OPPORTUNITIES_FOR_CHUMMER6_EXECUTIVE_ASSISTANT.md
     - products/chummer/LTD_STACK_WOW_FACTOR_CHANGE_GUIDE.md
     - products/chummer/LTD_RUNTIME_AND_PROJECTION_REGISTRY.yaml
     - products/chummer/HORIZON_AND_FEATURE_LTD_INTEGRATION_GUIDE.md
