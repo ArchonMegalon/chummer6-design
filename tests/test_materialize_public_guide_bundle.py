@@ -62,7 +62,7 @@ def test_generate_root_projects_bounded_gold_supported_release_truth(
     monkeypatch.setattr(guide, "_current_recommended_wave", lambda: "Campaign OS")
     monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
     release_truth_packet = {
-        "release_posture": "gold_supported",
+        "release_posture": "stable_ready",
         "phase_label": "Gold-supported release",
         "shelf_truth_line": "Windows and Linux downloads are posted.",
         "short_release_summary": (
@@ -290,3 +290,152 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
     assert "There is no public Linux download today." in download
     assert "There is no public macOS download today." in download
     assert "Recent checks: This release covers installs and recovery, campaign session recovery, and support follow-up." in download
+
+
+def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: Path) -> None:
+    banner = "Release review required. Public availability claims remain paused until one immutable snapshot converges."
+    manifest_artifact = {
+        "artifactId": "windows-installer",
+        "platform": "windows",
+        "platformLabel": "Windows x64 Installer",
+        "head": "avalonia",
+        "kind": "installer",
+        "downloadUrl": "https://chummer.run/downloads/g/generation-1/files/chummer-windows.exe",
+        "fileName": "chummer-windows.exe",
+        "sizeBytes": 100,
+        "installAccessClass": "open_public",
+        "sha256": "a" * 64,
+    }
+    authority_artifact = {
+        **manifest_artifact,
+        "arch": "x64",
+        "rid": "win-x64",
+        "compatibilityState": "compatible",
+        "promotionState": "promoted",
+        "publicationScope": "signed-in-and-public",
+        "revokeState": "not_revoked",
+        "publicInstallRoute": "/downloads/windows",
+    }
+    authority_artifact.pop("fileName")
+    authority_artifact.pop("platformLabel")
+    packet = {
+        "authority": {"artifacts": [authority_artifact]},
+        "authority_binding_status": "bound",
+        "release_posture": "review_required",
+        "review_required_banner": banner,
+        "phase_label": "Release review required",
+        "available_platforms": ["Windows"],
+        "missing_platforms": ["Linux", "macOS"],
+        "shelf_truth_line": "One bounded Windows artifact remains accessible while release review is open.",
+        "release_status": "Published",
+    }
+    release_payload = {
+        "status": "published",
+        "version": "run-1",
+        "artifacts": [manifest_artifact],
+    }
+
+    guide._generate_download(
+        out_dir=tmp_path,
+        progress={},
+        release_payload=release_payload,
+        release_truth_packet=packet,
+        release_source="immutable Registry authority",
+        release_experience={},
+    )
+    guide._generate_status(tmp_path, {}, {}, release_payload, packet)
+    guide._generate_now_pages(tmp_path, {}, release_payload, packet)
+
+    download = (tmp_path / "DOWNLOAD.md").read_text(encoding="utf-8")
+    assert "Windows downloads start on `chummer.run`." in download
+    assert "Windows and Linux downloads start" not in download
+    assert "[Open download](https://chummer.run/downloads/windows)" in download
+    assert "/downloads/g/generation-1/files" not in download
+    assert banner in download
+    assert banner in (tmp_path / "STATUS.md").read_text(encoding="utf-8")
+    assert banner in (tmp_path / "NOW" / "current-status.md").read_text(encoding="utf-8")
+
+
+def test_unbound_review_placeholder_suppresses_stale_manifest_metadata(tmp_path: Path) -> None:
+    banner = "Release review required. Public availability claims remain paused until one immutable snapshot converges."
+    packet = {
+        "authority": {"artifacts": [], "status": "unavailable"},
+        "authority_binding_status": "unbound_review_placeholder",
+        "release_posture": "review_required",
+        "release_status_slug": "review_required",
+        "release_status": "Review required",
+        "review_required_banner": banner,
+        "phase_label": "Release review required",
+        "available_platforms": [],
+        "missing_platforms": ["Windows", "Linux", "macOS"],
+        "shelf_truth_line": "No public platform availability is claimed by this unbound repository projection.",
+    }
+    stale_payload = {
+        "status": "published",
+        "version": "run-stale",
+        "publishedAt": "2026-05-01T00:00:00Z",
+        "artifacts": [
+            {
+                "artifactId": "stale-windows",
+                "platform": "windows",
+                "downloadUrl": "https://chummer.run/downloads/stale",
+            }
+        ],
+    }
+
+    guide._generate_download(tmp_path, {}, stale_payload, packet, "unbound review placeholder", {})
+    guide._generate_status(tmp_path, {}, {}, stale_payload, packet)
+    guide._generate_now_pages(tmp_path, {}, stale_payload, packet)
+    trust_payload = {
+        "trust_pages": [
+            {
+                "id": "help",
+                "sections": [
+                    {
+                        "id": "install-update",
+                        "heading": "Install",
+                        "body": "Use the current package.",
+                        "bullets": ["Install it."],
+                    }
+                ],
+            }
+        ]
+    }
+    guide._generate_help(tmp_path, "", trust_payload, stale_payload, packet)
+    guide._generate_faq(
+        tmp_path,
+        {
+            "sections": [
+                {
+                    "title": "Questions people actually ask first",
+                    "entries": [
+                        {"question": "Can I actually use this now?", "answer": "Yes. Start with Download."}
+                    ],
+                }
+            ]
+        },
+        packet,
+    )
+    guide._generate_from_chummer5a_to_chummer6(tmp_path, {}, {}, stale_payload, packet)
+
+    rendered = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in (
+            tmp_path / "DOWNLOAD.md",
+            tmp_path / "STATUS.md",
+            tmp_path / "NOW" / "current-status.md",
+            tmp_path / "HELP.md",
+            tmp_path / "FAQ.md",
+            tmp_path / "FROM_CHUMMER5A_TO_CHUMMER6.md",
+        )
+    )
+    assert banner in rendered
+    assert "run-stale" not in rendered
+    assert "May 1, 2026" not in rendered
+    assert "downloads/stale" not in rendered
+    assert "Windows downloads are posted" not in rendered
+    assert "published published package" not in rendered
+    assert "These are real preview builds" not in rendered
+    assert "Start with the recommended download" not in rendered
+    assert "Yes. Start with Download" not in rendered
+    assert "It is worth a serious look" not in rendered

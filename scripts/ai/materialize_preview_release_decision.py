@@ -76,7 +76,7 @@ EXPECTED_CONVERGENCE_TOP_LEVEL = {
     "authoritySnapshotSha256",
 }
 CURRENT_AUTHORITY_ROUTE = "/api/v1/public/release-truth"
-CURRENT_CONVERGENCE_ROUTES = (
+CURRENT_CONVERGENCE_ROUTES = tuple(sorted((
     "/",
     "/now",
     "/changelog",
@@ -96,7 +96,7 @@ CURRENT_CONVERGENCE_ROUTES = (
     "/api/public/release-truth",
     "/downloads/releases.json",
     "/downloads/RELEASE_CHANNEL.generated.json",
-)
+)))
 GENERATION_AUTHORITY_ROUTE = re.compile(r"^/api/v1/public/release-truth/g/([A-Za-z0-9][A-Za-z0-9._-]{0,127})$")
 
 
@@ -107,11 +107,11 @@ def expected_convergence_routes(authority_route: str) -> tuple[str, ...] | None:
     if match is None:
         return None
     generation_id = match.group(1)
-    return (
+    return tuple(sorted((
         f"/api/public/release-truth/g/{generation_id}",
         f"/downloads/g/{generation_id}/releases.json",
         f"/downloads/g/{generation_id}/RELEASE_CHANNEL.generated.json",
-    )
+    )))
 
 
 def load_json(path: Path | None) -> dict[str, Any]:
