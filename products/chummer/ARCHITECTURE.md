@@ -250,6 +250,19 @@ It is not PropertyQuarry input, public RUNSITE meaning, live-session truth, tact
 The verified PropertyQuarry decision supplies external owner evidence, not implementation authority.
 Any later independently authorized cross-product wire must use the PropertyQuarry-owned provider-neutral contract and explicit mapper, then map into, never source-copy, `Chummer.Media.Contracts` at the Chummer boundary.
 
+### Rule 21 — Package licensing follows the owner boundary
+
+Package metadata must identify the license of the repository that owns the
+package. Consuming a package across a repository boundary does not silently
+relicense either side of that boundary.
+
+The canonical engineering matrix is
+[`PROGRAM_PACKAGE_LICENSE_BOUNDARY.md`](PROGRAM_PACKAGE_LICENSE_BOUNDARY.md).
+Core, UI, and UI Kit packages use the GPL surface described there. Hub and
+Registry runtime or contract packages use their repository-owned proprietary
+license file. A package whose metadata is absent or disagrees with the matrix
+is not eligible for a release feed.
+
 ## Repo graph
 
 ```text
