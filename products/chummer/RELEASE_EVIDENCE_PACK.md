@@ -5,8 +5,8 @@ Generated compatibility projection; do not edit. Current authority: `CURRENT_REL
 This projection is an index, not independent release proof.
 
 - Current status: `review_required`
-- Final graph SHA-256: `87acca731556a9369906738568f26e20f63a5fdd476833ec573f59aaa3ff6764`
-- Preview decision SHA-256: `c810d874d3a7b8dcf404cf5c87d9167682c4c7bbdd05089208582bca343b43d0`
+- Final graph SHA-256: `87d9cabc79ae6f502467a2201808b5c41a3d58aeb0e86ea3b685877713685a56`
+- Preview decision SHA-256: `976c516c51d79ed8b857fbf725108132921956225479b61072f773a55cae043a`
 - Authority snapshot SHA-256: `missing`
 - Authority manifest SHA-256: `missing`
 

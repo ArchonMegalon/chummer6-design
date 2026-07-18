@@ -35,3 +35,14 @@ claim_rules:
   historical_closeout_must_name_release_version: true
   generated_current_state_must_bind_snapshot_and_decision_digests: true
   disagreement_requires_review: true
+authority_transaction:
+  decision_bytes_are_immutable: true
+  decision_must_not_embed_its_own_snapshot_digest: true
+  current_pointer_advance_is_atomic: true
+  stages:
+    - Generate a review-required candidate decision bound to the exact manifest bytes.
+    - Seal and commit the immutable review-required Registry snapshot.
+    - Activate the review-required projection and run exact public-route convergence.
+    - Generate the preview-ready or stable-ready decision from the bound proof set.
+    - Seal a successor snapshot containing the exact ready-decision bytes.
+    - Advance CURRENT only after successor activation and convergence pass.

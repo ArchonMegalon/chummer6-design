@@ -23,8 +23,11 @@ def write_graph(root: Path, *, verdict: str, status: str, blockers: list[dict] |
         json.dumps(
             {
                 "contract_name": "chummer.final_gold_graph",
+                "contract_version": 2,
                 "verdict": verdict,
                 "status": status,
+                "releaseDecisionStatus": "stable_ready" if verdict == "GOLD_READY" else "review_required",
+                "releaseVersion": "run-1" if verdict == "GOLD_READY" else "",
                 "blocking_findings": blockers,
                 "proof_inputs": [{"kind": "live_status", "status": "pass"}],
             },
@@ -96,3 +99,34 @@ def test_hand_maintained_current_status_compatibility_doc_is_rejected(tmp_path: 
 
     assert any("hand-maintained current status" in error for error in errors)
     assert any("superseded historical" in error for error in errors)
+
+
+def test_gold_ready_graph_requires_stable_decision_binding(tmp_path: Path) -> None:
+    write_graph(tmp_path, verdict="GOLD_READY", status="pass", blockers=[])
+    graph_path = tmp_path / "products" / "chummer" / "FINAL_GOLD_GRAPH.generated.json"
+    graph = json.loads(graph_path.read_text(encoding="utf-8"))
+    graph["releaseDecisionStatus"] = "review_required"
+    graph_path.write_text(json.dumps(graph), encoding="utf-8")
+
+    errors = validator.validate_gold_graph(tmp_path)
+
+    assert any("bound stable_ready release version" in error for error in errors)
+
+
+def test_snapshotless_current_state_cannot_claim_decision_proof(tmp_path: Path) -> None:
+    product = tmp_path / "products" / "chummer"
+    product.mkdir(parents=True)
+    current = {
+        "contractName": "chummer.current-release-decision/v1",
+        "status": "review_required",
+        "snapshotSha256": "",
+        "availablePlatforms": [],
+        "artifactCount": 0,
+        "releaseDecisionStatus": "preview_ready",
+        "releaseDecisionSha256": "a" * 64,
+    }
+    (product / "CURRENT_RELEASE_DECISION.generated.json").write_text(json.dumps(current), encoding="utf-8")
+
+    errors = validator.validate_current_release_projections(tmp_path)
+
+    assert any("must not assert bound release-decision proof" in error for error in errors)

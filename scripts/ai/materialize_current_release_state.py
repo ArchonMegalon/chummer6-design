@@ -8,6 +8,11 @@ import re
 from pathlib import Path
 from typing import Any
 
+try:
+    from registry_authority_contract import validate_snapshot_artifact_projection, validate_snapshot_envelope_shape
+except ModuleNotFoundError:  # imported from repository-root tests
+    from scripts.ai.registry_authority_contract import validate_snapshot_artifact_projection, validate_snapshot_envelope_shape
+
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
@@ -26,6 +31,7 @@ OUTPUTS = {
 }
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
+DOWNLOAD_ACCESS_POSTURES = {"unavailable", "open_public", "account_recommended", "account_required", "mixed"}
 
 
 def load_json(path: Path | None) -> dict[str, Any]:
@@ -52,14 +58,34 @@ def token(value: Any) -> str:
     return text(value).lower()
 
 
+def strict_json_object(payload: bytes) -> dict[str, Any]:
+    def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON property: {key}")
+            result[key] = value
+        return result
+
+    parsed = json.loads(payload, object_pairs_hook=reject_duplicate_keys)
+    if not isinstance(parsed, dict):
+        raise ValueError("JSON root must be an object")
+    return parsed
+
+
 def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
     if path is None:
         return {}, "", ["immutable Registry authority snapshot is not bound"]
-    snapshot = load_json(path)
-    digest = file_sha256(path)
+    try:
+        snapshot_bytes = path.read_bytes()
+        digest = hashlib.sha256(snapshot_bytes).hexdigest()
+        snapshot = strict_json_object(snapshot_bytes)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        return {}, "", [f"Registry authority snapshot is missing or invalid: {exc}"]
     errors: list[str] = []
     if text(snapshot.get("authorityContract")) != "chummer.release-authority-snapshot/v2":
         errors.append("Registry authority snapshot contract is missing or invalid")
+    errors.extend(f"Registry authority {error}" for error in validate_snapshot_envelope_shape(snapshot))
     expected_tail = ("snapshots", text(snapshot.get("releaseVersion")), digest, "SNAPSHOT.json")
     if tuple(path.resolve().parts[-4:]) != expected_tail:
         errors.append("Registry authority snapshot path or digest is invalid")
@@ -76,6 +102,8 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
         "knownIssueSummary",
         "artifacts",
         "manifestPath",
+        "releaseDecisionPath",
+        "registryRepository",
         "manifestSha256",
         "registryCommit",
         "releaseDecisionStatus",
@@ -83,7 +111,7 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
     )
     for field in required:
         value = snapshot.get(field)
-        if value is None or value == "" or value == [] or value == {}:
+        if field not in snapshot or value is None or value == "":
             errors.append(f"Registry authority snapshot field {field} is missing")
     if not HEX_40.fullmatch(token(snapshot.get("registryCommit"))):
         errors.append("Registry authority registryCommit must be exact lowercase 40-hex")
@@ -93,6 +121,8 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
         errors.append("Registry authority releaseDecisionSha256 must be exact lowercase 64-hex")
     if token(snapshot.get("releaseDecisionStatus")) not in {"review_required", "preview_ready", "stable_ready"}:
         errors.append("Registry authority releaseDecisionStatus is invalid")
+    if text(snapshot.get("registryRepository")) != "ArchonMegalon/chummer6-hub-registry":
+        errors.append("Registry authority repository identity is invalid")
 
     platforms = sorted({token(value) for value in (snapshot.get("availablePlatforms") or []) if token(value)})
     primary_heads = snapshot.get("primaryHeadByPlatform") if isinstance(snapshot.get("primaryHeadByPlatform"), dict) else {}
@@ -101,10 +131,24 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
     artifact_platforms = sorted(
         {token(row.get("platform")) for row in artifacts if isinstance(row, dict) and token(row.get("platform"))}
     )
-    if sorted(normalized_heads) != platforms or artifact_platforms != platforms:
-        errors.append("Registry authority platform, primary-head, and artifact inventories disagree")
-    if not isinstance(snapshot.get("artifactCount"), int) or snapshot.get("artifactCount") != len(artifacts) or not artifacts:
-        errors.append("Registry authority artifactCount must match a non-empty artifact inventory")
+    artifact_count = snapshot.get("artifactCount")
+    download_access_posture = token(snapshot.get("downloadAccessPosture"))
+    if download_access_posture not in DOWNLOAD_ACCESS_POSTURES:
+        errors.append("Registry authority downloadAccessPosture is invalid")
+    if not isinstance(artifact_count, int) or artifact_count < 0 or artifact_count != len(artifacts):
+        errors.append("Registry authority artifactCount must match the artifact inventory")
+    elif artifact_count == 0:
+        if platforms or normalized_heads or artifact_platforms:
+            errors.append("Registry authority empty shelf must not assert platforms or primary heads")
+        if download_access_posture != "unavailable":
+            errors.append("Registry authority empty shelf must use unavailable download access posture")
+        if token(snapshot.get("releaseDecisionStatus")) != "review_required":
+            errors.append("Registry authority empty shelf must remain review_required")
+    else:
+        if sorted(normalized_heads) != platforms or artifact_platforms != platforms:
+            errors.append("Registry authority platform, primary-head, and artifact inventories disagree")
+        if download_access_posture == "unavailable":
+            errors.append("Registry authority non-empty shelf cannot use unavailable download access posture")
     heads_by_platform: dict[str, set[str]] = {}
     for row in artifacts:
         if isinstance(row, dict) and token(row.get("platform")) and token(row.get("head")):
@@ -112,6 +156,7 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
     for platform, head in normalized_heads.items():
         if head not in heads_by_platform.get(platform, set()):
             errors.append(f"Registry authority primary head {head!r} is absent from {platform!r} artifacts")
+    errors.extend(f"Registry authority {error}" for error in validate_snapshot_artifact_projection(snapshot))
 
     manifest_ref = text(snapshot.get("manifestPath"))
     if not manifest_ref or Path(manifest_ref).is_absolute() or Path(manifest_ref).name != manifest_ref:
@@ -120,9 +165,8 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
         manifest_path = path.parent / manifest_ref
         try:
             manifest_bytes = manifest_path.read_bytes()
-            parsed = json.loads(manifest_bytes)
-            manifest = parsed if isinstance(parsed, dict) else {}
-        except (OSError, json.JSONDecodeError):
+            manifest = strict_json_object(manifest_bytes)
+        except (OSError, json.JSONDecodeError, ValueError):
             manifest_bytes = b""
             manifest = {}
             errors.append("Registry authority manifest is missing or invalid")
@@ -137,6 +181,43 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
         ):
             if snapshot_value != manifest_value:
                 errors.append(f"Registry authority {field} disagrees with exact manifest bytes")
+
+    decision_ref = text(snapshot.get("releaseDecisionPath"))
+    if not decision_ref or Path(decision_ref).is_absolute() or Path(decision_ref).name != decision_ref:
+        errors.append("Registry authority releaseDecisionPath must name one sibling file")
+    else:
+        decision_path = path.parent / decision_ref
+        try:
+            decision_bytes = decision_path.read_bytes()
+            decision = strict_json_object(decision_bytes)
+        except (OSError, json.JSONDecodeError, ValueError):
+            decision_bytes = b""
+            decision = {}
+            errors.append("Registry authority decision is missing or invalid")
+        if hashlib.sha256(decision_bytes).hexdigest() != token(snapshot.get("releaseDecisionSha256")):
+            errors.append("Registry authority decision digest does not match exact bytes")
+        decision_contract = text(decision.get("contractName") or decision.get("contract_name"))
+        decision_contract_valid = (
+            decision_contract == "chummer.preview-release-decision/v1"
+            or (
+                decision_contract == "chummer.final_gold_graph"
+                and decision.get("contract_version") == 2
+            )
+        )
+        if not decision_contract_valid:
+            errors.append("Registry authority decision contract is unsupported")
+        if token(decision.get("releaseDecisionStatus")) != token(snapshot.get("releaseDecisionStatus")):
+            errors.append("Registry authority decision status disagrees with exact bytes")
+        decision_version = text(decision.get("releaseVersion"))
+        if decision_version != text(snapshot.get("releaseVersion")):
+            errors.append("Registry authority decision releaseVersion disagrees with snapshot")
+        if decision_contract == "chummer.preview-release-decision/v1":
+            decision_manifest_sha = token(decision.get("manifestSha256"))
+        else:
+            release_authority = decision.get("release_authority") if isinstance(decision.get("release_authority"), dict) else {}
+            decision_manifest_sha = token(release_authority.get("manifest_sha256"))
+        if decision_manifest_sha != token(snapshot.get("manifestSha256")):
+            errors.append("Registry authority decision manifest digest disagrees with snapshot")
     return snapshot, digest, errors
 
 
@@ -163,10 +244,9 @@ def build_state(
     decision_status = token(snapshot.get("releaseDecisionStatus"))
     expected_decision_sha = token(snapshot.get("releaseDecisionSha256"))
     selected = "review_required"
-    selected_decision_sha = ""
+    selected_decision_sha = expected_decision_sha
     if not snapshot_errors and decision_status == "stable_ready":
         blockers.extend(stable_blockers)
-        selected_decision_sha = final_graph_sha256
         if expected_decision_sha != final_graph_sha256:
             blockers.append("Registry authority decision digest does not match FINAL_GOLD_GRAPH bytes")
         elif token(final_graph.get("status")) != "pass" or text(final_graph.get("verdict")) != "GOLD_READY":
@@ -175,7 +255,6 @@ def build_state(
             selected = "stable_ready"
     elif not snapshot_errors and decision_status == "preview_ready":
         blockers.extend(preview_blockers)
-        selected_decision_sha = preview_decision_sha256
         if expected_decision_sha != preview_decision_sha256:
             blockers.append("Registry authority decision digest does not match PREVIEW_RELEASE_DECISION bytes")
         elif token(preview_decision.get("status")) != "preview_ready":
@@ -183,7 +262,6 @@ def build_state(
         else:
             selected = "preview_ready"
     elif not snapshot_errors and decision_status == "review_required":
-        selected_decision_sha = expected_decision_sha
         if expected_decision_sha == preview_decision_sha256 and token(preview_decision.get("status")) == "review_required":
             blockers.extend(preview_blockers)
         elif expected_decision_sha == final_graph_sha256 and token(final_graph.get("status")) == "review_required":

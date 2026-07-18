@@ -60,55 +60,65 @@
     {
       "id": "current_12",
       "severity": "release_truth",
-      "summary": "public release convergence proof is missing or not passing"
+      "summary": "Registry authority: immutable Registry authority snapshot is not bound"
     },
     {
       "id": "current_13",
       "severity": "release_truth",
-      "summary": "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3"
+      "summary": "Registry authority: immutable Registry authority snapshot is required for preview readiness"
     },
     {
       "id": "current_14",
       "severity": "release_truth",
-      "summary": "fleet_flagship_readiness status is fail"
+      "summary": "public release convergence proof is missing or not passing"
     },
     {
       "id": "current_15",
       "severity": "release_truth",
-      "summary": "operator_release_dashboard status is fail"
+      "summary": "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3"
     },
     {
       "id": "current_16",
       "severity": "release_truth",
-      "summary": "final_gold_janitor status is fail"
+      "summary": "fleet_flagship_readiness status is fail"
     },
     {
       "id": "current_17",
       "severity": "release_truth",
-      "summary": "flagship_product_readiness_gate status is fail"
+      "summary": "operator_release_dashboard status is fail"
     },
     {
       "id": "current_18",
       "severity": "release_truth",
-      "summary": "release-ready receipt does not prove the exact current 41-gate matrix and projection"
+      "summary": "final_gold_janitor status is fail"
     },
     {
       "id": "current_19",
       "severity": "release_truth",
-      "summary": "explicit immutable registry authority snapshot is required"
+      "summary": "flagship_product_readiness_gate status is fail"
     },
     {
       "id": "current_20",
       "severity": "release_truth",
-      "summary": "registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof"
+      "summary": "release-ready receipt does not prove the exact current 41-gate matrix and projection"
     },
     {
       "id": "current_21",
       "severity": "release_truth",
-      "summary": "live status page does not expose the current stable published version"
+      "summary": "explicit immutable registry authority snapshot is required"
     },
     {
       "id": "current_22",
+      "severity": "release_truth",
+      "summary": "registry candidate authority is not public_stable and gold_supported"
+    },
+    {
+      "id": "current_23",
+      "severity": "release_truth",
+      "summary": "live status page does not expose the current stable published version"
+    },
+    {
+      "id": "current_24",
       "severity": "release_truth",
       "summary": "live release manifest does not match exact immutable registry authority"
     }
@@ -116,11 +126,11 @@
   "channel": "",
   "contractName": "chummer.current-release-decision/v1",
   "downloadAccessPosture": "review_required",
-  "finalGoldGraphSha256": "87acca731556a9369906738568f26e20f63a5fdd476833ec573f59aaa3ff6764",
-  "generatedAt": "2026-07-18T17:36:22Z",
+  "finalGoldGraphSha256": "87d9cabc79ae6f502467a2201808b5c41a3d58aeb0e86ea3b685877713685a56",
+  "generatedAt": "2026-07-18T17:56:28Z",
   "knownIssueSummary": "Immutable release authority is not available.",
   "manifestSha256": "",
-  "previewDecisionSha256": "c810d874d3a7b8dcf404cf5c87d9167682c4c7bbdd05089208582bca343b43d0",
+  "previewDecisionSha256": "976c516c51d79ed8b857fbf725108132921956225479b61072f773a55cae043a",
   "primaryHeadByPlatform": {},
   "registryCommit": "",
   "releaseDecisionSha256": "",

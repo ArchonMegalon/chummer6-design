@@ -12,6 +12,11 @@ from typing import Any, Callable
 
 import yaml
 
+try:
+    from registry_authority_contract import validate_snapshot_artifact_projection, validate_snapshot_envelope_shape
+except ModuleNotFoundError:  # imported from repository-root tests
+    from scripts.ai.registry_authority_contract import validate_snapshot_artifact_projection, validate_snapshot_envelope_shape
+
 
 DESIGN_ROOT = Path(__file__).resolve().parents[2]
 PRODUCT_ROOT = DESIGN_ROOT / "products" / "chummer"
@@ -82,6 +87,8 @@ OBJECTIVE_REQUIREMENT_PROOFS = {
 
 AUTHORITY_CONTRACT = "chummer.release-authority-snapshot/v2"
 DECISION_STATUSES = {"review_required", "preview_ready", "stable_ready"}
+DOWNLOAD_ACCESS_POSTURES = {"unavailable", "open_public", "account_recommended", "account_required", "mixed"}
+REGISTRY_REPOSITORY = "ArchonMegalon/chummer6-hub-registry"
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -100,6 +107,21 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def sha256_bytes(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
+
+
+def strict_json_object(payload: bytes) -> dict[str, Any]:
+    def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON property: {key}")
+            result[key] = value
+        return result
+
+    parsed = json.loads(payload, object_pairs_hook=reject_duplicate_keys)
+    if not isinstance(parsed, dict):
+        raise ValueError("JSON root must be an object")
+    return parsed
 
 
 def normalized_string_list(value: Any) -> list[str]:
@@ -124,11 +146,9 @@ def load_release_authority(snapshot_path: Path | None) -> tuple[dict[str, Any], 
         return {}, {}, "", ["explicit immutable registry authority snapshot is required"]
     try:
         snapshot_bytes = snapshot_path.read_bytes()
-        snapshot = json.loads(snapshot_bytes)
-    except (OSError, json.JSONDecodeError) as exc:
+        snapshot = strict_json_object(snapshot_bytes)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         return {}, {}, "", [f"registry authority snapshot is missing or invalid: {exc}"]
-    if not isinstance(snapshot, dict):
-        return {}, {}, "", ["registry authority snapshot must be a JSON object"]
 
     snapshot_sha256 = sha256_bytes(snapshot_bytes)
     try:
@@ -140,6 +160,9 @@ def load_release_authority(snapshot_path: Path | None) -> tuple[dict[str, Any], 
         errors.append("registry authority snapshot path must be snapshots/<releaseVersion>/<snapshotSha256>/SNAPSHOT.json")
     if str(snapshot.get("authorityContract") or "") != AUTHORITY_CONTRACT:
         errors.append(f"registry authority snapshot must declare {AUTHORITY_CONTRACT}")
+    if str(snapshot.get("registryRepository") or "") != REGISTRY_REPOSITORY:
+        errors.append(f"registry authority snapshot must identify {REGISTRY_REPOSITORY}")
+    errors.extend(f"registry authority {error}" for error in validate_snapshot_envelope_shape(snapshot))
 
     manifest_ref = str(snapshot.get("manifestPath") or "").strip()
     if not manifest_ref or Path(manifest_ref).is_absolute() or Path(manifest_ref).name != manifest_ref:
@@ -149,9 +172,8 @@ def load_release_authority(snapshot_path: Path | None) -> tuple[dict[str, Any], 
         manifest_path = snapshot_path.parent / manifest_ref
         try:
             manifest_bytes = manifest_path.read_bytes()
-            parsed_manifest = json.loads(manifest_bytes)
-            manifest = parsed_manifest if isinstance(parsed_manifest, dict) else {}
-        except (OSError, json.JSONDecodeError) as exc:
+            manifest = strict_json_object(manifest_bytes)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
             manifest_bytes = b""
             manifest = {}
             errors.append(f"registry authority manifest is missing or invalid: {exc}")
@@ -193,17 +215,31 @@ def load_release_authority(snapshot_path: Path | None) -> tuple[dict[str, Any], 
     for field, value in required_strings.items():
         if not value:
             errors.append(f"registry authority {field} is required")
-    if not available_platforms:
-        errors.append("registry authority availablePlatforms must be non-empty")
-    if sorted(primary_heads) != available_platforms:
-        errors.append("registry authority primaryHeadByPlatform keys must exactly match availablePlatforms")
-    if artifact_platforms != available_platforms:
-        errors.append("registry authority artifact platforms must exactly match availablePlatforms")
-    if not isinstance(artifact_count, int) or artifact_count != len(artifacts) or artifact_count <= 0:
-        errors.append("registry authority artifactCount must exactly match a non-empty artifacts inventory")
+    download_access_posture = token(snapshot.get("downloadAccessPosture"))
+    if download_access_posture not in DOWNLOAD_ACCESS_POSTURES:
+        errors.append("registry authority downloadAccessPosture is invalid")
+    if not isinstance(artifact_count, int) or artifact_count < 0 or artifact_count != len(artifacts):
+        errors.append("registry authority artifactCount must exactly match the artifacts inventory")
+    elif artifact_count == 0:
+        if available_platforms or primary_heads or artifact_platforms:
+            errors.append("registry authority empty shelf must not assert platforms or primary heads")
+        if download_access_posture != "unavailable":
+            errors.append("registry authority empty shelf must use unavailable download access posture")
+        if token(snapshot.get("releaseDecisionStatus")) != "review_required":
+            errors.append("registry authority empty shelf must remain review_required")
+    else:
+        if not available_platforms:
+            errors.append("registry authority non-empty shelf must assert availablePlatforms")
+        if sorted(primary_heads) != available_platforms:
+            errors.append("registry authority primaryHeadByPlatform keys must exactly match availablePlatforms")
+        if artifact_platforms != available_platforms:
+            errors.append("registry authority artifact platforms must exactly match availablePlatforms")
+        if download_access_posture == "unavailable":
+            errors.append("registry authority non-empty shelf cannot use unavailable download access posture")
     for platform, head in primary_heads.items():
         if head not in heads_by_platform.get(platform, set()):
             errors.append(f"registry authority primary head {head!r} is absent from {platform!r} artifacts")
+    errors.extend(f"registry authority {error}" for error in validate_snapshot_artifact_projection(snapshot))
 
     registry_commit = token(snapshot.get("registryCommit"))
     decision_status = token(snapshot.get("releaseDecisionStatus"))
@@ -214,6 +250,44 @@ def load_release_authority(snapshot_path: Path | None) -> tuple[dict[str, Any], 
         errors.append("registry authority releaseDecisionStatus is invalid")
     if not HEX_64.fullmatch(decision_sha256):
         errors.append("registry authority releaseDecisionSha256 must be a 64-character lowercase SHA-256")
+
+    decision_ref = str(snapshot.get("releaseDecisionPath") or "").strip()
+    if not decision_ref or Path(decision_ref).is_absolute() or Path(decision_ref).name != decision_ref:
+        errors.append("registry authority releaseDecisionPath must name one sibling file")
+    else:
+        decision_path = snapshot_path.parent / decision_ref
+        try:
+            decision_bytes = decision_path.read_bytes()
+            decision = strict_json_object(decision_bytes)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            decision_bytes = b""
+            decision = {}
+            errors.append(f"registry authority decision is missing or invalid: {exc}")
+        if sha256_bytes(decision_bytes) != decision_sha256:
+            errors.append("registry authority releaseDecisionSha256 does not match exact decision bytes")
+        decision_contract = str(decision.get("contractName") or decision.get("contract_name") or "").strip()
+        decision_contract_valid = (
+            decision_contract == "chummer.preview-release-decision/v1"
+            or (
+                decision_contract == "chummer.final_gold_graph"
+                and decision.get("contract_version") == 2
+            )
+        )
+        if not decision_contract_valid:
+            errors.append("registry authority decision contract is unsupported")
+        embedded_decision_status = token(decision.get("releaseDecisionStatus"))
+        if embedded_decision_status != decision_status:
+            errors.append("registry authority decision status disagrees with exact decision bytes")
+        embedded_decision_version = str(decision.get("releaseVersion") or "").strip()
+        if embedded_decision_version != release_version:
+            errors.append("registry authority decision releaseVersion disagrees with the snapshot")
+        if decision_contract == "chummer.preview-release-decision/v1":
+            embedded_manifest_sha = token(decision.get("manifestSha256"))
+        else:
+            release_authority = decision.get("release_authority") if isinstance(decision.get("release_authority"), dict) else {}
+            embedded_manifest_sha = token(release_authority.get("manifest_sha256"))
+        if embedded_manifest_sha != token(snapshot.get("manifestSha256")):
+            errors.append("registry authority decision manifest digest disagrees with the snapshot")
 
     manifest_version = str(manifest.get("releaseVersion") or manifest.get("version") or "").strip()
     manifest_channel = token(manifest.get("channelId") or manifest.get("channel"))
@@ -563,7 +637,8 @@ def build_graph(
         and token(registry.get("channel")) == "public_stable"
         and token(registry.get("rolloutState")) == "public_stable"
         and token(registry.get("supportabilityState")) == "gold_supported"
-        and token(registry.get("releaseDecisionStatus")) == "stable_ready"
+        and isinstance(registry.get("artifactCount"), int)
+        and registry.get("artifactCount") > 0
     )
     proof_inputs.append(
         {
@@ -573,7 +648,7 @@ def build_graph(
         }
     )
     if not registry_stable:
-        errors.append("registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof")
+        errors.append("registry candidate authority is not public_stable and gold_supported")
 
     version = str(registry.get("releaseVersion") or "").strip()
     try:
@@ -674,6 +749,8 @@ def build_graph(
         "generated_at_utc": utc_now(),
         "status": "pass" if passed else "review_required",
         "verdict": "GOLD_READY" if passed else "PUBLIC_RELEASE_REVIEW_REQUIRED",
+        "releaseDecisionStatus": "stable_ready" if passed else "review_required",
+        "releaseVersion": version,
         "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
         "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
         "live_release": {

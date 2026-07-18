@@ -1,5 +1,6 @@
 {
   "artifactAccessClass": "review_required",
+  "authoritySnapshotSha256": "",
   "blockingFindings": [
     {
       "id": "preview_1",
@@ -54,9 +55,21 @@
     {
       "id": "preview_11",
       "severity": "release_truth",
+      "summary": "Registry authority: immutable Registry authority snapshot is not bound"
+    },
+    {
+      "id": "preview_12",
+      "severity": "release_truth",
+      "summary": "Registry authority: immutable Registry authority snapshot is required for preview readiness"
+    },
+    {
+      "id": "preview_13",
+      "severity": "release_truth",
       "summary": "public release convergence proof is missing or not passing"
     }
   ],
+  "candidateDecisionSha256": "",
+  "candidateDecisionStatus": "",
   "channel": "preview",
   "contractName": "chummer.preview-release-decision/v1",
   "convergenceSha256": "",
@@ -70,6 +83,7 @@
   "platforms": [],
   "primaryHeadByPlatform": {},
   "registryCommit": "",
+  "releaseDecisionStatus": "review_required",
   "releaseVersion": "",
   "scorecardSha256": "dc307e014dd3013194143bd69c724fc7b8d8c156f6a84d3962539c4a83771a96",
   "status": "review_required",

@@ -2,9 +2,11 @@
   "contract_name": "chummer.final_gold_graph",
   "contract_version": 2,
   "product": "chummer",
-  "generated_at_utc": "2026-07-18T17:36:22Z",
+  "generated_at_utc": "2026-07-18T17:56:28Z",
   "status": "review_required",
   "verdict": "PUBLIC_RELEASE_REVIEW_REQUIRED",
+  "releaseDecisionStatus": "review_required",
+  "releaseVersion": "",
   "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
   "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
   "live_release": {
@@ -416,7 +418,7 @@
     {
       "id": "proof_8",
       "severity": "release_truth",
-      "summary": "registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof"
+      "summary": "registry candidate authority is not public_stable and gold_supported"
     },
     {
       "id": "proof_9",

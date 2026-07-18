@@ -10,6 +10,13 @@ from typing import Any
 
 import yaml
 
+try:
+    from materialize_current_release_state import load_snapshot as load_registry_snapshot, strict_json_object
+    from registry_authority_contract import INVALID_SENTINELS, validate_snapshot_artifact_projection, validate_snapshot_envelope_shape
+except ModuleNotFoundError:  # imported from repository-root tests
+    from scripts.ai.materialize_current_release_state import load_snapshot as load_registry_snapshot, strict_json_object
+    from scripts.ai.registry_authority_contract import INVALID_SENTINELS, validate_snapshot_artifact_projection, validate_snapshot_envelope_shape
+
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
@@ -17,6 +24,7 @@ DEFAULT_SCOPE = PRODUCT / "RELEASE_SCOPE_DECISION.yaml"
 DEFAULT_SCORECARD = PRODUCT / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
 DEFAULT_OUTPUT = PRODUCT / "PREVIEW_RELEASE_DECISION.generated.json"
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
+HEX_64 = re.compile(r"^[0-9a-f]{64}$")
 EXPECTED_SURFACES = (
     "desktop_workbench",
     "public_front_door_and_support",
@@ -49,6 +57,24 @@ EXPECTED_CONVERGENCE_FIELDS = (
     "releaseDecisionStatus",
     "releaseDecisionSha256",
 )
+EXPECTED_CONVERGENCE_TOP_LEVEL = {
+    "contractName",
+    "contractVersion",
+    "status",
+    "mismatchCount",
+    "failureCount",
+    "mismatches",
+    "failures",
+    "authorityRoute",
+    "checkedRouteCount",
+    "checkedRoutes",
+    "comparedFields",
+    "releaseTruth",
+    "manifestSha256",
+    "releaseDecisionStatus",
+    "releaseDecisionSha256",
+    "authoritySnapshotSha256",
+}
 
 
 def load_json(path: Path | None) -> dict[str, Any]:
@@ -116,6 +142,9 @@ def build_decision(
     manifest: dict[str, Any],
     manifest_sha256: str,
     registry_commit: str,
+    snapshot: dict[str, Any],
+    snapshot_sha256: str,
+    snapshot_errors: list[str],
     convergence: dict[str, Any],
     convergence_sha256: str,
     scorecard_sha256: str,
@@ -137,23 +166,30 @@ def build_decision(
         for platform, heads in (fallback_heads_raw.items() if isinstance(fallback_heads_raw, dict) else [])
         if token(platform)
     }
-    if not release_version:
+    if not release_version or token(release_version) in INVALID_SENTINELS:
         failures.append("release scope release_version is required")
     if not platforms:
         failures.append("release scope must name at least one platform")
     if sorted(primary_heads) != platforms:
         failures.append("release scope must name exactly one primary head per platform")
+    if any(value in INVALID_SENTINELS for value in [*platforms, *primary_heads, *primary_heads.values()]):
+        failures.append("release scope contains an invalid platform or head sentinel")
     if any(platform not in platforms for platform in fallback_heads):
         failures.append("release scope fallback heads contain an out-of-scope platform")
     for platform, heads in fallback_heads.items():
         if primary_heads.get(platform) in heads:
             failures.append(f"release scope {platform} primary head is also listed as fallback")
-    if not token(scope.get("artifact_access_class")) or token(scope.get("artifact_access_class")) == "review_required":
+    if token(scope.get("artifact_access_class")) not in {
+        "open_public",
+        "account_recommended",
+        "account_required",
+        "mixed",
+    }:
         failures.append("release scope artifact access class is unresolved")
     signing = scope.get("signing_requirements")
     if not isinstance(signing, dict) or sorted(token(key) for key in signing) != platforms:
         failures.append("release scope signing requirements must cover every platform")
-    if not text(scope.get("support_owner")):
+    if not text(scope.get("support_owner")) or token(scope.get("support_owner")) in INVALID_SENTINELS:
         failures.append("release scope support owner is required")
     if not string_list(scope.get("next_actions")):
         failures.append("release scope must name next actions")
@@ -186,39 +222,70 @@ def build_decision(
         failures.append("exact 40-character registry commit is required")
     manifest_version = text(manifest.get("releaseVersion") or manifest.get("version"))
     manifest_channel = token(manifest.get("channelId") or manifest.get("channel"))
-    artifacts = manifest.get("artifacts") if isinstance(manifest.get("artifacts"), list) else []
-    manifest_platforms = sorted(
-        {token(row.get("platform")) for row in artifacts if isinstance(row, dict) and token(row.get("platform"))}
-    )
-    manifest_heads: dict[str, set[str]] = {}
-    for row in artifacts:
-        if not isinstance(row, dict):
-            continue
-        platform = token(row.get("platform"))
-        head = token(row.get("head"))
-        if platform and head:
-            manifest_heads.setdefault(platform, set()).add(head)
     if manifest_version != release_version:
         failures.append("release scope version does not match exact manifest bytes")
     if manifest_channel != "preview":
         failures.append("release manifest channel must be preview")
-    if manifest_platforms != platforms:
-        failures.append("release scope platforms do not match exact manifest artifacts")
-    for platform, primary_head in primary_heads.items():
-        if primary_head not in manifest_heads.get(platform, set()):
-            failures.append(f"release scope primary head {primary_head!r} is absent from {platform!r} manifest artifacts")
-    for platform, heads in fallback_heads.items():
-        missing = sorted(set(heads) - manifest_heads.get(platform, set()))
-        if missing:
-            failures.append(f"release scope fallback heads are absent from {platform!r} manifest artifacts: {', '.join(missing)}")
+
+    authority_errors = [*snapshot_errors]
+    if snapshot:
+        authority_errors.extend(validate_snapshot_envelope_shape(snapshot))
+        authority_errors.extend(validate_snapshot_artifact_projection(snapshot))
+    else:
+        authority_errors.append("immutable Registry authority snapshot is required for preview readiness")
+    failures.extend(f"Registry authority: {error}" for error in dict.fromkeys(authority_errors))
+
+    snapshot_platforms = string_list(snapshot.get("availablePlatforms"))
+    snapshot_heads = head_map(snapshot.get("primaryHeadByPlatform"))
+    snapshot_artifacts = snapshot.get("artifacts") if isinstance(snapshot.get("artifacts"), list) else []
+    shelf_heads: dict[str, set[str]] = {}
+    for row in snapshot_artifacts:
+        if isinstance(row, dict) and token(row.get("platform")) and token(row.get("head")):
+            shelf_heads.setdefault(token(row.get("platform")), set()).add(token(row.get("head")))
+    if snapshot:
+        if not HEX_64.fullmatch(snapshot_sha256):
+            failures.append("Registry authority snapshot SHA-256 is invalid")
+        if text(snapshot.get("releaseVersion")) != release_version:
+            failures.append("release scope version does not match immutable Registry snapshot")
+        if token(snapshot.get("channel")) != "preview":
+            failures.append("Registry authority snapshot channel must be preview")
+        if token(snapshot.get("status")) != "published":
+            failures.append("Registry authority snapshot must be published")
+        if token(snapshot.get("releaseDecisionStatus")) not in {"review_required", "preview_ready"}:
+            failures.append("Registry authority snapshot has an invalid preview decision status")
+        if not HEX_64.fullmatch(token(snapshot.get("releaseDecisionSha256"))):
+            failures.append("Registry authority candidate decision SHA-256 is invalid")
+        if token(snapshot.get("manifestSha256")) != manifest_sha256:
+            failures.append("Registry authority snapshot is not bound to exact manifest bytes")
+        if token(snapshot.get("registryCommit")) != registry_commit:
+            failures.append("Registry authority snapshot Registry commit disagrees with exact authority input")
+        if snapshot_platforms != platforms:
+            failures.append("release scope platforms do not match immutable public shelf")
+        if snapshot_heads != primary_heads:
+            failures.append("release scope primary heads do not match immutable public shelf")
+        if token(snapshot.get("downloadAccessPosture")) != token(scope.get("artifact_access_class")):
+            failures.append("release scope artifact access class does not match immutable public shelf")
+        if text(snapshot.get("supportOwner")) != text(scope.get("support_owner")):
+            failures.append("release scope support owner does not match immutable Registry snapshot")
+        for platform in platforms:
+            expected_heads = {primary_heads.get(platform), *fallback_heads.get(platform, [])} - {None, ""}
+            if shelf_heads.get(platform, set()) != expected_heads:
+                failures.append(f"release scope visible heads do not exactly match {platform!r} public shelf")
 
     convergence_truth = convergence.get("releaseTruth") if isinstance(convergence.get("releaseTruth"), dict) else {}
     convergence_valid = (
-        text(convergence.get("contractName")) == "chummer.live-release-convergence/v1"
+        set(convergence) == EXPECTED_CONVERGENCE_TOP_LEVEL
+        and text(convergence.get("contractName")) == "chummer.live-release-convergence/v1"
         and convergence.get("contractVersion") == 1
         and token(convergence.get("status")) == "pass"
         and convergence.get("mismatchCount") == 0
         and convergence.get("failureCount") == 0
+        and isinstance(convergence.get("checkedRouteCount"), int)
+        and not isinstance(convergence.get("checkedRouteCount"), bool)
+        and convergence.get("checkedRouteCount") > 0
+        and convergence.get("checkedRouteCount") == len(convergence.get("checkedRoutes") or [])
+        and text(convergence.get("authorityRoute")) in (convergence.get("checkedRoutes") or [])
+        and HEX_64.fullmatch(token(convergence.get("authoritySnapshotSha256"))) is not None
         and set(convergence.get("comparedFields") or []) == set(EXPECTED_CONVERGENCE_FIELDS)
         and not convergence.get("mismatches")
         and not convergence.get("failures")
@@ -231,6 +298,31 @@ def build_decision(
         or token(convergence_truth.get("manifestSha256")) != manifest_sha256
     ):
         failures.append("public release convergence proof is not bound to the exact manifest digest")
+    if convergence and (
+        token(convergence.get("releaseDecisionStatus")) != token(snapshot.get("releaseDecisionStatus"))
+        or token(convergence.get("releaseDecisionSha256")) != token(snapshot.get("releaseDecisionSha256"))
+    ):
+        failures.append("public release convergence proof is not bound to the exact candidate decision")
+    if convergence and token(convergence.get("authoritySnapshotSha256")) != snapshot_sha256:
+        failures.append("public release convergence proof is not bound to the exact authority snapshot digest")
+    expected_release_truth = {
+        "releaseVersion": text(snapshot.get("releaseVersion")),
+        "channel": text(snapshot.get("channel")),
+        "releaseStatus": text(snapshot.get("status")),
+        "rolloutState": text(snapshot.get("rolloutState")),
+        "supportabilityState": text(snapshot.get("supportabilityState")),
+        "availablePlatforms": snapshot.get("availablePlatforms") if isinstance(snapshot.get("availablePlatforms"), list) else [],
+        "primaryHeadByPlatform": snapshot.get("primaryHeadByPlatform") if isinstance(snapshot.get("primaryHeadByPlatform"), dict) else {},
+        "artifactCount": snapshot.get("artifactCount"),
+        "downloadAccessPosture": text(snapshot.get("downloadAccessPosture")),
+        "knownIssueSummary": snapshot.get("knownIssueSummary"),
+        "manifestSha256": text(snapshot.get("manifestSha256")),
+        "registryCommit": text(snapshot.get("registryCommit")),
+        "releaseDecisionStatus": text(snapshot.get("releaseDecisionStatus")),
+        "releaseDecisionSha256": text(snapshot.get("releaseDecisionSha256")),
+    }
+    if convergence and convergence_truth != expected_release_truth:
+        failures.append("public release convergence truth does not exactly match immutable Registry snapshot")
 
     unique_failures = list(dict.fromkeys(failures))
     ready = not unique_failures
@@ -238,6 +330,7 @@ def build_decision(
         "contractName": "chummer.preview-release-decision/v1",
         "generatedAt": generated_at(scope, scorecard, manifest, convergence),
         "status": "preview_ready" if ready else "review_required",
+        "releaseDecisionStatus": "preview_ready" if ready else "review_required",
         "verdict": "PREVIEW_READY" if ready else "PREVIEW_RELEASE_REVIEW_REQUIRED",
         "releaseVersion": release_version,
         "channel": "preview",
@@ -249,6 +342,9 @@ def build_decision(
         "nextActions": [text(item) for item in (scope.get("next_actions") or []) if text(item)],
         "registryCommit": registry_commit,
         "manifestSha256": manifest_sha256,
+        "authoritySnapshotSha256": snapshot_sha256,
+        "candidateDecisionStatus": text(snapshot.get("releaseDecisionStatus")),
+        "candidateDecisionSha256": text(snapshot.get("releaseDecisionSha256")),
         "manifestGeneratedAt": text(manifest.get("generatedAt") or manifest.get("generated_at")),
         "scorecardSha256": scorecard_sha256,
         "convergenceSha256": convergence_sha256,
@@ -263,7 +359,9 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Materialize the fail-closed preview release decision.")
     parser.add_argument("--scope", type=Path, default=DEFAULT_SCOPE)
     parser.add_argument("--scorecard", type=Path, default=DEFAULT_SCORECARD)
-    parser.add_argument("--manifest", type=Path)
+    authority = parser.add_mutually_exclusive_group()
+    authority.add_argument("--registry-snapshot", type=Path)
+    authority.add_argument("--candidate-manifest", type=Path)
     parser.add_argument("--registry-commit", default="")
     parser.add_argument("--convergence-receipt", type=Path)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -275,14 +373,24 @@ def main() -> int:
     args = parse_args()
     scope = load_yaml(args.scope)
     scorecard = load_json(args.scorecard)
-    manifest = load_json(args.manifest)
+    snapshot, snapshot_sha256, snapshot_errors = load_registry_snapshot(args.registry_snapshot)
+    manifest_path = args.candidate_manifest
+    if args.registry_snapshot is not None and snapshot.get("manifestPath") == "RELEASE_CHANNEL.json":
+        manifest_path = args.registry_snapshot.parent / "RELEASE_CHANNEL.json"
+    try:
+        manifest = strict_json_object(manifest_path.read_bytes()) if manifest_path is not None else {}
+    except (OSError, json.JSONDecodeError, ValueError):
+        manifest = {}
     convergence = load_json(args.convergence_receipt)
     decision = build_decision(
         scope=scope,
         scorecard=scorecard,
         manifest=manifest,
-        manifest_sha256=file_sha256(args.manifest),
-        registry_commit=token(args.registry_commit),
+        manifest_sha256=file_sha256(manifest_path),
+        registry_commit=token(snapshot.get("registryCommit") or args.registry_commit),
+        snapshot=snapshot,
+        snapshot_sha256=snapshot_sha256,
+        snapshot_errors=snapshot_errors,
         convergence=convergence,
         convergence_sha256=file_sha256(args.convergence_receipt),
         scorecard_sha256=file_sha256(args.scorecard),

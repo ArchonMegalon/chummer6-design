@@ -15,6 +15,8 @@ Generated compatibility projection; do not edit. Current authority: `CURRENT_REL
 - explicit immutable release manifest bytes are required
 - exact 40-character registry commit is required
 - release manifest channel must be preview
+- Registry authority: immutable Registry authority snapshot is not bound
+- Registry authority: immutable Registry authority snapshot is required for preview readiness
 - public release convergence proof is missing or not passing
 - campaign operability scorecard is not an evidence-backed exact 36/36 at score 3
 - fleet_flagship_readiness status is fail
@@ -23,6 +25,6 @@ Generated compatibility projection; do not edit. Current authority: `CURRENT_REL
 - flagship_product_readiness_gate status is fail
 - release-ready receipt does not prove the exact current 41-gate matrix and projection
 - explicit immutable registry authority snapshot is required
-- registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof
+- registry candidate authority is not public_stable and gold_supported
 - live status page does not expose the current stable published version
 - live release manifest does not match exact immutable registry authority
