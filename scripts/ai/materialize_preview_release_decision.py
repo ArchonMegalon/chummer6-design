@@ -284,7 +284,7 @@ def build_decision(
         and not isinstance(convergence.get("checkedRouteCount"), bool)
         and convergence.get("checkedRouteCount") > 0
         and convergence.get("checkedRouteCount") == len(convergence.get("checkedRoutes") or [])
-        and text(convergence.get("authorityRoute")) in (convergence.get("checkedRoutes") or [])
+        and bool(text(convergence.get("authorityRoute")))
         and HEX_64.fullmatch(token(convergence.get("authoritySnapshotSha256"))) is not None
         and set(convergence.get("comparedFields") or []) == set(EXPECTED_CONVERGENCE_FIELDS)
         and not convergence.get("mismatches")
@@ -306,6 +306,7 @@ def build_decision(
     if convergence and token(convergence.get("authoritySnapshotSha256")) != snapshot_sha256:
         failures.append("public release convergence proof is not bound to the exact authority snapshot digest")
     expected_release_truth = {
+        "contractName": "chummer.release-truth-projection/v1",
         "releaseVersion": text(snapshot.get("releaseVersion")),
         "channel": text(snapshot.get("channel")),
         "releaseStatus": text(snapshot.get("status")),

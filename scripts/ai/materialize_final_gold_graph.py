@@ -91,6 +91,14 @@ DOWNLOAD_ACCESS_POSTURES = {"unavailable", "open_public", "account_recommended",
 REGISTRY_REPOSITORY = "ArchonMegalon/chummer6-hub-registry"
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
+RELEASE_RECEIPT_MAX_AGE = dt.timedelta(hours=24)
+RELEASE_RECEIPT_MAX_FUTURE_SKEW = dt.timedelta(minutes=5)
+RELEASE_BINDING_FIELDS = (
+    "releaseVersion",
+    "snapshotSha256",
+    "manifestSha256",
+    "releaseDecisionSha256",
+)
 
 
 def utc_now() -> str:
@@ -319,6 +327,63 @@ def token(value: Any) -> str:
     return str(value or "").strip().lower()
 
 
+def receipt_generated_at(payload: dict[str, Any]) -> str:
+    return str(
+        payload.get("generated_at_utc")
+        or payload.get("generatedAtUtc")
+        or payload.get("generated_at")
+        or payload.get("generatedAt")
+        or ""
+    ).strip()
+
+
+def parse_utc_timestamp(value: str) -> dt.datetime:
+    normalized = value[:-1] + "+00:00" if value.endswith("Z") else value
+    parsed = dt.datetime.fromisoformat(normalized)
+    if parsed.tzinfo is None:
+        raise ValueError("timestamp must include a timezone")
+    return parsed.astimezone(dt.timezone.utc)
+
+
+def release_binding_errors(
+    *,
+    kind: str,
+    payload: dict[str, Any],
+    expected_binding: dict[str, str],
+    evaluation_time: dt.datetime,
+) -> list[str]:
+    errors: list[str] = []
+    for field in RELEASE_BINDING_FIELDS:
+        actual = str(payload.get(field) or "").strip()
+        expected = str(expected_binding.get(field) or "").strip()
+        if not actual or actual != expected:
+            errors.append(f"{kind} {field} is missing or does not match current registry authority")
+
+    generated_at = receipt_generated_at(payload)
+    if not generated_at:
+        errors.append(f"{kind} generated timestamp is missing")
+        return errors
+    try:
+        generated_time = parse_utc_timestamp(generated_at)
+    except (TypeError, ValueError):
+        errors.append(f"{kind} generated timestamp is not a valid timezone-aware ISO-8601 value")
+        return errors
+    if generated_time > evaluation_time + RELEASE_RECEIPT_MAX_FUTURE_SKEW:
+        errors.append(f"{kind} generated timestamp is implausibly in the future")
+    elif evaluation_time - generated_time > RELEASE_RECEIPT_MAX_AGE:
+        errors.append(f"{kind} receipt is stale (older than 24 hours)")
+    return errors
+
+
+def binding_projection(payload: dict[str, Any]) -> dict[str, str]:
+    return {
+        "release_version": str(payload.get("releaseVersion") or "").strip(),
+        "snapshot_sha256": str(payload.get("snapshotSha256") or "").strip(),
+        "manifest_sha256": str(payload.get("manifestSha256") or "").strip(),
+        "release_decision_sha256": str(payload.get("releaseDecisionSha256") or "").strip(),
+    }
+
+
 def portable_proof_path(
     value: str,
     *,
@@ -349,29 +414,37 @@ def receipt_proof(
     kind: str,
     path: Path,
     expected_verdict: str = "",
+    expected_release_binding: dict[str, str] | None = None,
+    evaluation_time: dt.datetime | None = None,
 ) -> tuple[dict[str, Any], str]:
     payload = load_json(path)
     status = token(payload.get("status"))
     verdict = str(payload.get("verdict") or "").strip()
-    error = ""
+    receipt_errors: list[str] = []
     if not payload:
-        error = f"{kind} receipt is missing or invalid"
+        receipt_errors.append(f"{kind} receipt is missing or invalid")
     elif status not in PASS_STATES:
-        error = f"{kind} status is {status or 'missing'}"
+        receipt_errors.append(f"{kind} status is {status or 'missing'}")
     elif expected_verdict and verdict != expected_verdict:
-        error = f"{kind} verdict is {verdict or 'missing'}, expected {expected_verdict}"
+        receipt_errors.append(f"{kind} verdict is {verdict or 'missing'}, expected {expected_verdict}")
+    if expected_release_binding is not None and evaluation_time is not None:
+        receipt_errors.extend(
+            release_binding_errors(
+                kind=kind,
+                payload=payload,
+                expected_binding=expected_release_binding,
+                evaluation_time=evaluation_time,
+            )
+        )
+    error = "; ".join(receipt_errors)
+    projection = binding_projection(payload)
     return (
         {
             "kind": kind,
             "path": str(path),
             "status": "fail" if error else "pass",
-            "generated_at": str(
-                payload.get("generated_at_utc")
-                or payload.get("generatedAtUtc")
-                or payload.get("generated_at")
-                or payload.get("generatedAt")
-                or ""
-            ).strip(),
+            "generated_at": receipt_generated_at(payload),
+            **projection,
         },
         error,
     )
@@ -389,12 +462,24 @@ def build_graph(
     live_status_url: str,
     live_release_url: str,
     url_loader: Callable[[str], str] = load_url_text,
+    now_utc: dt.datetime | None = None,
 ) -> dict[str, Any]:
     product_root = design_root / "products" / "chummer"
     template = load_json(template_path)
     proof_inputs: list[dict[str, Any]] = []
     errors: list[str] = []
     advisory_findings: list[dict[str, Any]] = []
+    evaluation_time = now_utc or dt.datetime.now(dt.timezone.utc)
+    if evaluation_time.tzinfo is None:
+        raise ValueError("now_utc must be timezone-aware")
+    evaluation_time = evaluation_time.astimezone(dt.timezone.utc)
+    registry, _registry_manifest, snapshot_sha256, authority_errors = load_release_authority(registry_snapshot_path)
+    expected_release_binding = {
+        "releaseVersion": str(registry.get("releaseVersion") or "").strip(),
+        "snapshotSha256": snapshot_sha256,
+        "manifestSha256": str(registry.get("manifestSha256") or "").strip(),
+        "releaseDecisionSha256": str(registry.get("releaseDecisionSha256") or "").strip(),
+    }
 
     for kind, path in (
         ("design_spine", product_root / "PRODUCT_SPINE.yaml"),
@@ -489,6 +574,13 @@ def build_graph(
             for cell in operability_cells
         )
     )
+    operability_binding_errors = release_binding_errors(
+        kind="campaign_operability_scorecard",
+        payload=operability,
+        expected_binding=expected_release_binding,
+        evaluation_time=evaluation_time,
+    )
+    operability_ready = operability_ready and not operability_binding_errors
     proof_inputs.append(
         {
             "kind": "campaign_operability_scorecard",
@@ -496,10 +588,12 @@ def build_graph(
             "status": "pass" if operability_ready else "fail",
             "generated_at": str(operability.get("generated_at_utc") or "").strip(),
             "cell_count": len(operability_cells),
+            **binding_projection(operability),
         }
     )
-    if not operability_ready:
+    if not operability_ready and not operability_binding_errors:
         errors.append("campaign operability scorecard is not an evidence-backed exact 36/36 at score 3")
+    errors.extend(operability_binding_errors)
 
     journey_path = fleet_root / ".codex-studio" / "published" / "JOURNEY_GATES.generated.json"
     journey = load_json(journey_path)
@@ -523,17 +617,23 @@ def build_graph(
         errors.append("golden journey projection is not exactly 6/6 ready with zero blockers and warnings")
 
     receipt_specs = (
-        ("fleet_flagship_readiness", fleet_root / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS.generated.json", ""),
-        ("operator_release_dashboard", run_services_root / ".codex-studio" / "published" / "OPERATOR_RELEASE_DASHBOARD.generated.json", "OPERABLE_RELEASE_READY"),
-        ("final_gold_janitor", run_services_root / ".codex-studio" / "published" / "FINAL_GOLD_JANITOR.generated.json", "GOLD_READY"),
-        ("flagship_product_readiness_gate", run_services_root / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS_GATE.generated.json", "FLAGSHIP_PRODUCT_READY"),
-        ("google_oauth_linking_proof", run_services_root / ".codex-studio" / "published" / "GOOGLE_OAUTH_LINKING_PROOF.generated.json", ""),
-        ("public_edge_postdeploy_gate", run_services_root / ".codex-studio" / "published" / "PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json", ""),
-        ("black_ledger_live_media_proof", run_services_root / ".codex-studio" / "published" / "BLACK_LEDGER_LIVE_MEDIA_PROOF.generated.json", ""),
-        ("ui_localization_release_gate", ui_root / ".codex-studio" / "published" / "UI_LOCALIZATION_RELEASE_GATE.generated.json", ""),
+        ("fleet_flagship_readiness", fleet_root / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS.generated.json", "", False),
+        ("operator_release_dashboard", run_services_root / ".codex-studio" / "published" / "OPERATOR_RELEASE_DASHBOARD.generated.json", "OPERABLE_RELEASE_READY", True),
+        ("final_gold_janitor", run_services_root / ".codex-studio" / "published" / "FINAL_GOLD_JANITOR.generated.json", "GOLD_READY", True),
+        ("flagship_product_readiness_gate", run_services_root / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS_GATE.generated.json", "FLAGSHIP_PRODUCT_READY", True),
+        ("google_oauth_linking_proof", run_services_root / ".codex-studio" / "published" / "GOOGLE_OAUTH_LINKING_PROOF.generated.json", "", False),
+        ("public_edge_postdeploy_gate", run_services_root / ".codex-studio" / "published" / "PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json", "", True),
+        ("black_ledger_live_media_proof", run_services_root / ".codex-studio" / "published" / "BLACK_LEDGER_LIVE_MEDIA_PROOF.generated.json", "", False),
+        ("ui_localization_release_gate", ui_root / ".codex-studio" / "published" / "UI_LOCALIZATION_RELEASE_GATE.generated.json", "", False),
     )
-    for kind, path, expected_verdict in receipt_specs:
-        row, error = receipt_proof(kind=kind, path=path, expected_verdict=expected_verdict)
+    for kind, path, expected_verdict, release_bound in receipt_specs:
+        row, error = receipt_proof(
+            kind=kind,
+            path=path,
+            expected_verdict=expected_verdict,
+            expected_release_binding=expected_release_binding if release_bound else None,
+            evaluation_time=evaluation_time if release_bound else None,
+        )
         proof_inputs.append(row)
         if error:
             errors.append(error)
@@ -557,6 +657,13 @@ def build_graph(
         and completed_gates == list(REQUIRED_RELEASE_READY_GATES)
         and token(projection_refresh.get("status")) == "pass"
     )
+    release_ready_binding_errors = release_binding_errors(
+        kind="release_ready_matrix",
+        payload=release_ready,
+        expected_binding=expected_release_binding,
+        evaluation_time=evaluation_time,
+    )
+    release_matrix_ready = release_matrix_ready and not release_ready_binding_errors
     proof_inputs.append(
         {
             "kind": "release_ready_matrix",
@@ -565,10 +672,12 @@ def build_graph(
             "generated_at": str(release_ready.get("generated_at_utc") or "").strip(),
             "required_gate_count": len(REQUIRED_RELEASE_READY_GATES),
             "completed_gate_count": len(completed_gates),
+            **binding_projection(release_ready),
         }
     )
-    if not release_matrix_ready:
+    if not release_matrix_ready and not release_ready_binding_errors:
         errors.append("release-ready receipt does not prove the exact current 41-gate matrix and projection")
+    errors.extend(release_ready_binding_errors)
 
     ea_path = run_services_root / ".codex-studio" / "published" / "EA_OPERATOR_READINESS.generated.json"
     ea = load_json(ea_path)
@@ -617,7 +726,6 @@ def build_graph(
             }
         )
 
-    registry, _registry_manifest, snapshot_sha256, authority_errors = load_release_authority(registry_snapshot_path)
     proof_inputs.append(
         {
             "kind": "registry_release_authority",

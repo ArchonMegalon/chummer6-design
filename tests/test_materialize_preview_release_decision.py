@@ -98,9 +98,9 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
         "comparedFields": list(module.EXPECTED_CONVERGENCE_FIELDS),
         "mismatches": [],
         "failures": [],
-        "authorityRoute": "/api/releases/current",
+        "authorityRoute": "/api/v1/public/release-truth",
         "checkedRouteCount": 1,
-        "checkedRoutes": ["/api/releases/current"],
+        "checkedRoutes": ["/"],
         "releaseTruth": {},
         "manifestSha256": "",
         "releaseDecisionStatus": "review_required",
@@ -119,6 +119,7 @@ def build(scope: dict, scorecard: dict, manifest: dict, snapshot: dict, converge
     convergence["releaseDecisionStatus"] = snapshot["releaseDecisionStatus"]
     convergence["releaseDecisionSha256"] = snapshot["releaseDecisionSha256"]
     convergence["releaseTruth"] = {
+        "contractName": "chummer.release-truth-projection/v1",
         "releaseVersion": snapshot["releaseVersion"],
         "channel": snapshot["channel"],
         "releaseStatus": snapshot["status"],

@@ -234,6 +234,24 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     }
     snapshot_path = write_authority_snapshot(registry, release)
     snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    release_binding = {
+        "releaseVersion": snapshot["releaseVersion"],
+        "snapshotSha256": hashlib.sha256(snapshot_path.read_bytes()).hexdigest(),
+        "manifestSha256": snapshot["manifestSha256"],
+        "releaseDecisionSha256": snapshot["releaseDecisionSha256"],
+    }
+    release_bound_receipts = (
+        product / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json",
+        run / ".codex-studio" / "published" / "OPERATOR_RELEASE_DASHBOARD.generated.json",
+        run / ".codex-studio" / "published" / "FINAL_GOLD_JANITOR.generated.json",
+        run / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS_GATE.generated.json",
+        run / ".codex-studio" / "published" / "PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
+        run / ".codex-studio" / "published" / "RELEASE_READY.generated.json",
+    )
+    for receipt_path in release_bound_receipts:
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        receipt.update(release_binding)
+        write_json(receipt_path, receipt)
     live = {
         "https://example.test/status": "Stable is published. Version run-1",
         "https://example.test/releases.json": json.dumps(snapshot),
@@ -253,6 +271,7 @@ def materialize_fixture(paths: dict[str, Path], live: dict[str, str]) -> dict:
         live_status_url="https://example.test/status",
         live_release_url="https://example.test/releases.json",
         url_loader=live.__getitem__,
+        now_utc=materializer.parse_utc_timestamp("2026-07-11T16:30:00Z"),
     )
 
 
@@ -470,3 +489,35 @@ def test_release_ready_gate_matrix_cannot_omit_security_gate(tmp_path: Path) -> 
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
     assert any("41-gate matrix" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_release_bound_receipt_from_another_release_fails_closed(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    receipt_path = paths["run"] / ".codex-studio" / "published" / "OPERATOR_RELEASE_DASHBOARD.generated.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["releaseVersion"] = "run-other"
+    write_json(receipt_path, receipt)
+
+    graph = materialize_fixture(paths, live)
+
+    assert graph["status"] == "review_required"
+    assert any(
+        "operator_release_dashboard releaseVersion is missing or does not match" in row["summary"]
+        for row in graph["blocking_findings"]
+    )
+
+
+def test_stale_release_bound_receipt_fails_closed(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    receipt_path = paths["run"] / ".codex-studio" / "published" / "PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["generated_at_utc"] = "2026-07-10T15:00:00Z"
+    write_json(receipt_path, receipt)
+
+    graph = materialize_fixture(paths, live)
+
+    assert graph["status"] == "review_required"
+    assert any(
+        "public_edge_postdeploy_gate receipt is stale" in row["summary"]
+        for row in graph["blocking_findings"]
+    )
