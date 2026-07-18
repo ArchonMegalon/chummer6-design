@@ -180,6 +180,67 @@ def _load_json(path: Path) -> dict[str, object]:
     return payload if isinstance(payload, dict) else {}
 
 
+def _unbound_review_release_truth_packet(reason: str) -> dict[str, object]:
+    return {
+        "architecture_scope_line": (
+            "No desktop platform is currently claimed by this unbound repository projection."
+        ),
+        "authority": {"artifacts": [], "status": "unavailable"},
+        "authority_binding_status": "unbound_review_placeholder",
+        "authority_source": {"reason": reason, "status": "unbound"},
+        "available_platforms": [],
+        "build_label": "",
+        "channel_id": "",
+        "desktop_pick_line": (
+            "No desktop head is approved by this unbound repository projection."
+        ),
+        "desktop_tuple_coverage_complete": False,
+        "fallback_heads": [],
+        "fix_availability_summary": (
+            "Wait for a Registry-bound release decision before relying on fix availability."
+        ),
+        "generated_from": "unbound repository review placeholder",
+        "known_issue_summary": (
+            "The repository has no bound current release authority; live availability must not be "
+            "inferred from stale guide text."
+        ),
+        "missing_installer_lane_line": (
+            "Windows, Linux, and macOS remain unclaimed until immutable authority is supplied."
+        ),
+        "missing_platforms": ["Windows", "Linux", "macOS"],
+        "phase_label": "Release review required",
+        "primary_head": "",
+        "primary_head_by_platform": {},
+        "published_at": "",
+        "published_line": "",
+        "quality_gap_line": (
+            "Release review is required. Stable and gold claims remain paused until the immutable "
+            "authority and public routes converge."
+        ),
+        "release_decision_status": "review_required",
+        "release_posture": "review_required",
+        "release_status": "Review required",
+        "release_status_slug": "review_required",
+        "release_verification_summary": (
+            "No Registry-bound current release verification is available in this checkout."
+        ),
+        "required_platforms": [],
+        "review_required_banner": (
+            "Release review required. Public availability claims remain paused until one immutable "
+            "snapshot converges."
+        ),
+        "rollout_state": "review_required",
+        "shelf_truth_line": (
+            "No public platform availability is claimed by this unbound repository projection."
+        ),
+        "short_release_summary": (
+            "Release review is required. Do not rely on platform availability claims until the "
+            "current immutable snapshot converges."
+        ),
+        "supportability_state": "review_required",
+    }
+
+
 def _load_registry_status(path: Path) -> str:
     payload = _load_yaml(path)
     return str(payload.get("status") or "").strip().lower()
@@ -387,11 +448,15 @@ def _copy_chummer6_owned_public_guide_supplements(out_dir: Path, repo_root: Path
 def _load_chummer6_public_release_truth_packet(repo_root: Path) -> dict[str, object]:
     source_root = _chummer6_public_guide_source_root(repo_root)
     if source_root is None:
-        return {}
+        return _unbound_review_release_truth_packet(
+            "No Chummer6 public-guide source checkout was available."
+        )
 
     packet_path = source_root / ".guide-internal" / "receipts" / "CHUMMER6_PUBLIC_RELEASE_TRUTH_PACKET.generated.json"
     if not packet_path.is_file():
-        return {}
+        return _unbound_review_release_truth_packet(
+            "The Chummer6 public-guide source checkout did not contain a release truth packet."
+        )
 
     return _load_json(packet_path)
 
@@ -915,28 +980,23 @@ def _release_truth_artifacts(
     release_truth_packet: dict[str, object],
 ) -> list[dict[str, object]]:
     authority = release_truth_packet.get("authority")
-    if isinstance(authority, dict) and isinstance(authority.get("artifacts"), list):
-        manifest_by_id = {
-            str(item.get("artifactId") or item.get("id") or "").strip(): dict(item)
-            for item in (release_payload.get("artifacts") or [])
-            if isinstance(item, dict) and str(item.get("artifactId") or item.get("id") or "").strip()
-        }
+    if (
+        str(release_truth_packet.get("authority_binding_status") or "").strip() == "bound"
+        and isinstance(authority, dict)
+        and isinstance(authority.get("artifacts"), list)
+    ):
         projected: list[dict[str, object]] = []
         for authority_item in authority.get("artifacts") or []:
             if not isinstance(authority_item, dict):
                 continue
-            artifact_id = str(authority_item.get("artifactId") or "").strip()
-            combined = dict(manifest_by_id.get(artifact_id) or {})
-            combined.update(authority_item)
+            combined = dict(authority_item)
             public_route = str(authority_item.get("publicInstallRoute") or "").strip()
             combined["downloadUrl"] = f"https://chummer.run{public_route}" if public_route.startswith("/") else ""
             if not str(combined.get("fileName") or "").strip() and public_route:
                 combined["fileName"] = Path(public_route).name
             projected.append(_normalize_artifact(combined))
         return projected
-    if "release_posture" in release_truth_packet:
-        return []
-    return _release_artifacts(release_payload)
+    return []
 
 
 def _platform_key(value: str) -> str:
@@ -1378,20 +1438,26 @@ def _release_truth_missing_platform_labels(
 
 
 def _release_posture_is_gold_supported(release_truth_packet: dict[str, object]) -> bool:
-    return str(release_truth_packet.get("release_posture") or "").strip() == "stable_ready"
-
-
-def _release_authority_is_unbound_review(release_truth_packet: dict[str, object]) -> bool:
     return (
-        str(release_truth_packet.get("authority_binding_status") or "").strip()
-        == "unbound_review_placeholder"
+        str(release_truth_packet.get("authority_binding_status") or "").strip() == "bound"
+        and str(release_truth_packet.get("release_posture") or "").strip() == "stable_ready"
     )
 
 
+def _release_authority_is_unbound_review(release_truth_packet: dict[str, object]) -> bool:
+    return str(release_truth_packet.get("authority_binding_status") or "").strip() != "bound"
+
+
 def _release_review_banner(release_truth_packet: dict[str, object]) -> str:
-    if str(release_truth_packet.get("release_posture") or "").strip() != "review_required":
+    if (
+        not _release_authority_is_unbound_review(release_truth_packet)
+        and str(release_truth_packet.get("release_posture") or "").strip() != "review_required"
+    ):
         return ""
-    return str(release_truth_packet.get("review_required_banner") or "").strip()
+    return str(release_truth_packet.get("review_required_banner") or "").strip() or (
+        "Release review required. Public availability claims remain paused until one immutable "
+        "snapshot converges."
+    )
 
 
 def _release_phase_label(
@@ -1399,6 +1465,10 @@ def _release_phase_label(
     progress: dict[str, object],
     fallback: str,
 ) -> str:
+    if _release_authority_is_unbound_review(release_truth_packet):
+        return _public_phase_label(
+            release_truth_packet.get("phase_label") or "Release review required"
+        )
     return _public_phase_label(
         release_truth_packet.get("phase_label")
         or progress.get("phase_label")
@@ -2160,11 +2230,15 @@ def _generate_status(
         else str(release_payload.get("status") or "unpublished").strip()
     )
     release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(raw_status)
-    release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip() or _public_release_proof_summary(release_payload)
+    release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip()
+    if not release_verification and not unbound_review:
+        release_verification = _public_release_proof_summary(release_payload)
     published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
     shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(raw_status, artifacts)
     architecture_scope = str(release_truth_packet.get("architecture_scope_line") or "").strip() or _public_architecture_scope_line(artifacts)
-    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip() or _public_known_issue_summary(release_payload)
+    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip()
+    if not known_issues and not unbound_review:
+        known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
     missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
     missing_installer_lane_line = str(release_truth_packet.get("missing_installer_lane_line") or "").strip()
@@ -2250,8 +2324,12 @@ def _generate_now_pages(
     architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
     missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
     missing_installer_lane_line = str(release_truth_packet.get("missing_installer_lane_line") or "").strip()
-    recent_checks = str(release_truth_packet.get("release_verification_summary") or "").strip() or _public_release_proof_summary(release_payload)
-    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip() or _public_known_issue_summary(release_payload)
+    recent_checks = str(release_truth_packet.get("release_verification_summary") or "").strip()
+    if not recent_checks and not unbound_review:
+        recent_checks = _public_release_proof_summary(release_payload)
+    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip()
+    if not known_issues and not unbound_review:
+        known_issues = _public_known_issue_summary(release_payload)
 
     current_rows = [
         "# Current status",
@@ -2435,10 +2513,16 @@ def _generate_download(
     )
     release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(status)
     published_label = _format_public_datetime(published_at) or "Not currently published"
-    release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip() or _public_release_proof_summary(release_payload)
-    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip() or _public_known_issue_summary(release_payload)
+    release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip()
+    if not release_verification and not unbound_review:
+        release_verification = _public_release_proof_summary(release_payload)
+    known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip()
+    if not known_issues and not unbound_review:
+        known_issues = _public_known_issue_summary(release_payload)
     known_issue_label = "Preview note" if known_issues.lower().startswith("this is still a preview") else "Current warning"
-    fix_availability = str(release_truth_packet.get("fix_availability_summary") or "").strip() or _public_fix_summary(release_payload)
+    fix_availability = str(release_truth_packet.get("fix_availability_summary") or "").strip()
+    if not fix_availability and not unbound_review:
+        fix_availability = _public_fix_summary(release_payload)
     proof_scope_summary = str(
         release_experience.get("proof_scope_summary")
         or "Public proof language is scoped to the files, flows, and recent checks posted on the current shelf that you can inspect today; it is not a blanket flagship-grade claim."
@@ -2613,7 +2697,7 @@ def _generate_download(
         else:
             rows.append("- No checksums are available because no preview downloads are posted.")
 
-    release_proof = release_payload.get("releaseProof") or {}
+    release_proof = {} if unbound_review else release_payload.get("releaseProof") or {}
     if isinstance(release_proof, dict) and release_proof:
         rows.extend(["", "## Recent release verification", ""])
         proof_status = str(release_proof.get("status") or "").strip()

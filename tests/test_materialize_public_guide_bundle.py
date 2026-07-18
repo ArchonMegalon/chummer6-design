@@ -62,6 +62,8 @@ def test_generate_root_projects_bounded_gold_supported_release_truth(
     monkeypatch.setattr(guide, "_current_recommended_wave", lambda: "Campaign OS")
     monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
     release_truth_packet = {
+        "authority_binding_status": "bound",
+        "authority": {"artifacts": []},
         "release_posture": "stable_ready",
         "phase_label": "Gold-supported release",
         "shelf_truth_line": "Windows and Linux downloads are posted.",
@@ -183,7 +185,7 @@ def test_materialize_public_assets_skips_missing_derivatives_when_no_fallback_ex
     assert not (out_dir / "assets" / "hero.avif").exists()
 
 
-def test_generate_root_scopes_proof_and_fallback_language(tmp_path: Path, monkeypatch) -> None:
+def test_generate_root_scopes_bound_proof_and_fallback_language(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setattr(guide, "_load_registry_status", lambda _path: "in_progress")
     monkeypatch.setattr(guide, "_current_recommended_wave", lambda: "Next 90-day product advance")
     monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
@@ -212,7 +214,28 @@ def test_generate_root_scopes_proof_and_fallback_language(tmp_path: Path, monkey
                 {"platform": "windows", "head": "Chummer.Blazor.Desktop", "kind": "installer"},
             ],
         },
-        release_truth_packet={},
+        release_truth_packet={
+            "authority_binding_status": "bound",
+            "authority": {
+                "artifacts": [
+                    {
+                        "artifactId": "avalonia",
+                        "platform": "windows",
+                        "head": "Chummer.Avalonia",
+                        "kind": "installer",
+                        "publicInstallRoute": "/downloads/install/avalonia",
+                    },
+                    {
+                        "artifactId": "blazor",
+                        "platform": "windows",
+                        "head": "Chummer.Blazor.Desktop",
+                        "kind": "installer",
+                        "publicInstallRoute": "/downloads/install/blazor",
+                    },
+                ]
+            },
+            "release_posture": "preview_ready",
+        },
         primary_route_registry={
             "jobs": [
                 {
@@ -270,7 +293,36 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
                 "journeysPassed": ["install_claim_restore_continue"],
             },
         },
-        release_truth_packet={},
+        release_truth_packet={
+            "authority_binding_status": "bound",
+            "authority": {
+                "artifacts": [
+                    {
+                        "artifactId": "avalonia",
+                        "platform": "windows",
+                        "platformLabel": "Windows",
+                        "head": "Chummer.Avalonia",
+                        "kind": "installer",
+                        "sizeBytes": 100,
+                        "installAccessClass": "account_required",
+                        "sha256": "abc",
+                        "publicInstallRoute": "/downloads/install/avalonia",
+                    },
+                    {
+                        "artifactId": "blazor",
+                        "platform": "windows",
+                        "platformLabel": "Windows",
+                        "head": "Chummer.Blazor.Desktop",
+                        "kind": "archive",
+                        "sizeBytes": 100,
+                        "installAccessClass": "public",
+                        "sha256": "def",
+                        "publicInstallRoute": "/downloads/install/blazor",
+                    },
+                ]
+            },
+            "release_posture": "preview_ready",
+        },
         release_source="products/chummer/PUBLIC_RELEASE_EXPERIENCE.yaml",
         release_experience={
             "proof_scope_summary": (
@@ -374,6 +426,13 @@ def test_unbound_review_placeholder_suppresses_stale_manifest_metadata(tmp_path:
         "status": "published",
         "version": "run-stale",
         "publishedAt": "2026-05-01T00:00:00Z",
+        "knownIssueSummary": "STALE-ISSUE",
+        "fixAvailabilitySummary": "STALE-FIX",
+        "releaseProof": {
+            "status": "passed",
+            "generatedAt": "2026-05-01T00:00:00Z",
+            "journeysPassed": ["install_claim_restore_continue"],
+        },
         "artifacts": [
             {
                 "artifactId": "stale-windows",
@@ -433,9 +492,64 @@ def test_unbound_review_placeholder_suppresses_stale_manifest_metadata(tmp_path:
     assert "run-stale" not in rendered
     assert "May 1, 2026" not in rendered
     assert "downloads/stale" not in rendered
+    assert "STALE-ISSUE" not in rendered
+    assert "STALE-FIX" not in rendered
+    assert "What was checked" not in rendered
+    assert "install, sign back in, restore, and keep going" not in rendered
     assert "Windows downloads are posted" not in rendered
     assert "published published package" not in rendered
     assert "These are real preview builds" not in rendered
     assert "Start with the recommended download" not in rendered
     assert "Yes. Start with Download" not in rendered
     assert "It is worth a serious look" not in rendered
+
+
+def test_missing_public_guide_source_materializes_unbound_review_packet(tmp_path: Path) -> None:
+    packet = guide._load_chummer6_public_release_truth_packet(tmp_path)
+
+    assert packet["authority_binding_status"] == "unbound_review_placeholder"
+    assert packet["release_posture"] == "review_required"
+    assert packet["available_platforms"] == []
+    assert packet["authority"] == {"artifacts": [], "status": "unavailable"}
+
+
+def test_bound_authority_artifacts_do_not_inherit_mutable_manifest_metadata() -> None:
+    packet = {
+        "authority_binding_status": "bound",
+        "authority": {
+            "artifacts": [
+                {
+                    "artifactId": "windows-installer",
+                    "platform": "windows",
+                    "arch": "x64",
+                    "head": "avalonia",
+                    "kind": "installer",
+                    "sha256": "a" * 64,
+                    "sizeBytes": 100,
+                    "installAccessClass": "open_public",
+                    "publicInstallRoute": "/downloads/install/windows-installer",
+                }
+            ]
+        },
+    }
+    stale_payload = {
+        "artifacts": [
+            {
+                "artifactId": "windows-installer",
+                "platformLabel": "STALE-LABEL",
+                "fileName": "STALE-FILE.exe",
+                "updateFeedUrl": "https://stale.example/update",
+                "downloadUrl": "https://stale.example/download",
+            }
+        ]
+    }
+
+    artifacts = guide._release_truth_artifacts(stale_payload, packet)
+
+    assert len(artifacts) == 1
+    artifact = artifacts[0]
+    assert artifact["platformLabel"] == "Windows x64"
+    assert artifact["fileName"] == "windows-installer"
+    assert artifact["downloadUrl"] == "https://chummer.run/downloads/install/windows-installer"
+    assert artifact["updateFeedUrl"] == ""
+    assert "STALE" not in str(artifact)

@@ -839,6 +839,7 @@ def build_graph(
         and all(row.get("status") == "pass" for row in proof_inputs)
         and completion_audit["status"] == "pass"
     )
+    release_decision_status = "stable_ready" if passed else "review_required"
     for row in proof_inputs:
         path = row.get("path")
         if isinstance(path, str):
@@ -857,7 +858,7 @@ def build_graph(
         "generated_at_utc": utc_now(),
         "status": "pass" if passed else "review_required",
         "verdict": "GOLD_READY" if passed else "PUBLIC_RELEASE_REVIEW_REQUIRED",
-        "releaseDecisionStatus": "stable_ready" if passed else "review_required",
+        "releaseDecisionStatus": release_decision_status,
         "releaseVersion": version,
         "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
         "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
@@ -874,7 +875,7 @@ def build_graph(
             "known_issue_summary": live_release.get("knownIssueSummary"),
             "manifest_sha256": str(live_release.get("manifestSha256") or "").strip(),
             "registry_commit": str(live_release.get("registryCommit") or "").strip(),
-            "release_decision_status": str(live_release.get("releaseDecisionStatus") or "").strip(),
+            "release_decision_status": release_decision_status,
             "release_decision_sha256": str(live_release.get("releaseDecisionSha256") or "").strip(),
             "status_endpoint": live_status_url,
             "release_manifest_endpoint": live_release_url,
@@ -892,7 +893,7 @@ def build_graph(
             "snapshot_sha256": snapshot_sha256,
             "manifest_sha256": str(registry.get("manifestSha256") or "").strip(),
             "registry_commit": str(registry.get("registryCommit") or "").strip(),
-            "release_decision_status": str(registry.get("releaseDecisionStatus") or "").strip(),
+            "release_decision_status": release_decision_status,
             "release_decision_sha256": str(registry.get("releaseDecisionSha256") or "").strip(),
         },
         "required_loops": list(template.get("required_loops") or []),

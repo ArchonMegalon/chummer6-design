@@ -91,6 +91,8 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
         "artifacts": [artifact()],
         "manifestPath": "RELEASE_CHANNEL.json",
     }
+    current_routes = module.expected_convergence_routes(module.CURRENT_AUTHORITY_ROUTE, snapshot)
+    assert current_routes is not None
     convergence = {
         "contractName": "chummer.live-release-convergence/v1",
         "contractVersion": 1,
@@ -101,8 +103,8 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
         "mismatches": [],
         "failures": [],
         "authorityRoute": module.CURRENT_AUTHORITY_ROUTE,
-        "checkedRouteCount": len(module.CURRENT_CONVERGENCE_ROUTES),
-        "checkedRoutes": list(module.CURRENT_CONVERGENCE_ROUTES),
+        "checkedRouteCount": len(current_routes),
+        "checkedRoutes": list(current_routes),
         "releaseTruth": {},
         "manifestSha256": "",
         "releaseDecisionStatus": "review_required",
@@ -185,7 +187,7 @@ def test_exact_generation_convergence_denominator_is_accepted() -> None:
     scope, scorecard, manifest, snapshot, convergence = fixture()
     generation_id = "candidate-20260718.1"
     authority_route = f"/api/v1/public/release-truth/g/{generation_id}"
-    routes = module.expected_convergence_routes(authority_route)
+    routes = module.expected_convergence_routes(authority_route, snapshot)
     assert routes is not None
     convergence["authorityRoute"] = authority_route
     convergence["checkedRoutes"] = list(routes)
@@ -194,6 +196,21 @@ def test_exact_generation_convergence_denominator_is_accepted() -> None:
     decision = build(scope, scorecard, manifest, snapshot, convergence)
 
     assert decision["status"] == "preview_ready"
+
+
+def test_convergence_install_route_must_match_snapshot_artifact() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    convergence["checkedRoutes"] = [
+        "/downloads/install/not-the-authority-artifact"
+        if route.startswith("/downloads/install/")
+        else route
+        for route in convergence["checkedRoutes"]
+    ]
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("convergence proof is missing" in row["summary"] for row in decision["blockingFindings"])
 
 
 def test_score_one_cell_fails_preview() -> None:

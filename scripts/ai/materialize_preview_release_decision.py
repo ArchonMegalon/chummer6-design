@@ -25,6 +25,7 @@ DEFAULT_SCORECARD = PRODUCT / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
 DEFAULT_OUTPUT = PRODUCT / "PREVIEW_RELEASE_DECISION.generated.json"
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
+ARTIFACT_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 EXPECTED_SURFACES = (
     "desktop_workbench",
     "public_front_door_and_support",
@@ -87,6 +88,7 @@ CURRENT_CONVERGENCE_ROUTES = tuple(sorted((
     "/progress",
     "/help",
     "/now/concierge",
+    "/now/concierge/read_notes",
     "/api/v1/public/progress-report",
     "/api/public/progress-report",
     "/api/v1/public/progress-poster.svg",
@@ -94,24 +96,60 @@ CURRENT_CONVERGENCE_ROUTES = tuple(sorted((
     "/api/v1/public/weekly-pulse",
     "/api/public/weekly-pulse",
     "/api/public/release-truth",
+    "/api/v1/install-linking/continuation",
+    "/api/v1/install-linking/continuation/support",
+    "/api/v1/install-linking/continuation/update",
+    "/api/v1/install-linking/continuation/rollback",
     "/downloads/releases.json",
     "/downloads/RELEASE_CHANNEL.generated.json",
+    "/Now/",
+    "/Help/",
+    "/Downloads/Concierge/",
+    "/Now/Concierge/",
+    "/Now/Concierge/read_notes/",
 )))
 GENERATION_AUTHORITY_ROUTE = re.compile(r"^/api/v1/public/release-truth/g/([A-Za-z0-9][A-Za-z0-9._-]{0,127})$")
 
 
-def expected_convergence_routes(authority_route: str) -> tuple[str, ...] | None:
+def preferred_install_artifact_id(snapshot: dict[str, Any]) -> str:
+    raw_artifacts = snapshot.get("artifacts")
+    if not isinstance(raw_artifacts, list):
+        return ""
+    artifacts = [row for row in raw_artifacts if isinstance(row, dict)]
+    preferred = [
+        row for row in artifacts if token(row.get("installAccessClass")) == "open_public"
+    ] or artifacts
+    for row in preferred:
+        artifact_id = text(row.get("artifactId") or row.get("id"))
+        if ARTIFACT_ID.fullmatch(artifact_id):
+            return artifact_id
+    return ""
+
+
+def expected_convergence_routes(
+    authority_route: str,
+    snapshot: dict[str, Any] | None = None,
+) -> tuple[str, ...] | None:
     if authority_route == CURRENT_AUTHORITY_ROUTE:
-        return CURRENT_CONVERGENCE_ROUTES
+        routes = list(CURRENT_CONVERGENCE_ROUTES)
+        artifact_id = preferred_install_artifact_id(snapshot or {})
+        if artifact_id:
+            routes.append(f"/downloads/install/{artifact_id}")
+        return tuple(sorted(routes))
     match = GENERATION_AUTHORITY_ROUTE.fullmatch(authority_route)
     if match is None:
         return None
     generation_id = match.group(1)
-    return tuple(sorted((
+    routes = [
         f"/api/public/release-truth/g/{generation_id}",
         f"/downloads/g/{generation_id}/releases.json",
         f"/downloads/g/{generation_id}/RELEASE_CHANNEL.generated.json",
-    )))
+        f"/downloads/g/{generation_id}/releases.json/",
+    ]
+    artifact_id = preferred_install_artifact_id(snapshot or {})
+    if artifact_id:
+        routes.append(f"/downloads/g/{generation_id}/install/{artifact_id}")
+    return tuple(sorted(routes))
 
 
 def load_json(path: Path | None) -> dict[str, Any]:
@@ -312,7 +350,7 @@ def build_decision(
     convergence_truth = convergence.get("releaseTruth") if isinstance(convergence.get("releaseTruth"), dict) else {}
     authority_route = text(convergence.get("authorityRoute"))
     checked_routes = convergence.get("checkedRoutes")
-    expected_routes = expected_convergence_routes(authority_route)
+    expected_routes = expected_convergence_routes(authority_route, snapshot)
     checked_routes_valid = (
         isinstance(checked_routes, list)
         and all(isinstance(route, str) and route for route in checked_routes)

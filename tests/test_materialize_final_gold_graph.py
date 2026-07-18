@@ -281,6 +281,8 @@ def test_complete_current_evidence_materializes_gold_ready(tmp_path: Path) -> No
     assert graph["status"] == "pass"
     assert graph["verdict"] == "GOLD_READY"
     assert graph["releaseDecisionStatus"] == "stable_ready"
+    assert graph["live_release"]["release_decision_status"] == "stable_ready"
+    assert graph["release_authority"]["release_decision_status"] == "stable_ready"
     assert graph["releaseVersion"] == "run-1"
     assert graph["blocking_findings"] == []
     assert len(graph["proof_inputs"]) == 22
