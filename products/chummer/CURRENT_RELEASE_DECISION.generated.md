@@ -1,8 +1,15 @@
-# Group blockers
+# Current release decision
 
-Generated compatibility projection; do not edit. Current authority: `CURRENT_RELEASE_DECISION.generated.json`.
+Generated current state. The JSON sibling is the machine-readable projection; `FINAL_GOLD_GRAPH.generated.json` remains the stable/gold authority.
 
-## RED blockers
+- Status: `review_required`
+- Release version: `unbound`
+- Channel: `unbound`
+- Snapshot SHA-256: `unbound`
+- Decision SHA-256: `unbound`
+- Available platforms: `none asserted`
+
+## Why review is required
 
 - immutable Registry authority snapshot is not bound
 - release scope decision is not approved

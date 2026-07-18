@@ -30,13 +30,23 @@ for path in \
   WORKLIST.md \
   products/chummer/README.md \
   products/chummer/START_HERE.md \
-  products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.json \
-  products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md \
+  products/chummer/RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.json \
+  products/chummer/RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md \
   products/chummer/GLOSSARY.md \
   products/chummer/VISION.md \
   products/chummer/PRODUCT_SPINE_REDESIGN.md \
   products/chummer/PRODUCT_SPINE.yaml \
   products/chummer/FINAL_GOLD_GRAPH.generated.json \
+  products/chummer/PREVIEW_RELEASE_DECISION.generated.json \
+  products/chummer/CURRENT_RELEASE_DECISION.generated.json \
+  products/chummer/CURRENT_RELEASE_DECISION.generated.md \
+  products/chummer/CURRENT_BLOCKERS.generated.md \
+  products/chummer/CURRENT_PLATFORM_STATE.generated.json \
+  products/chummer/CURRENT_HUMAN_APPROVALS.generated.md \
+  products/chummer/FLAGSHIP_RELEASE_POLICY.yaml \
+  products/chummer/DESKTOP_PLATFORM_POLICY.yaml \
+  products/chummer/PRIMARY_ROUTE_POLICY.yaml \
+  products/chummer/RELEASE_SCOPE_DECISION.yaml \
   products/chummer/CAMPAIGN_SPINE_AND_CREW_MODEL.md \
   products/chummer/BUILD_EXPLAIN_ARTIFACT_TRUTH_POLICY.md \
   products/chummer/EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md \
@@ -129,6 +139,7 @@ for path in \
   products/chummer/ONBOARDING_AND_EMPTY_STATE_JOURNEY_CONTRACT.md \
   products/chummer/LONG_RUNNING_ACTION_SAFETY_CONTRACT.md \
   products/chummer/CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md \
+  products/chummer/history/2026-07-11-promoted-scope-closeout.md \
   products/chummer/HORIZON_PROMOTION_RULES.md \
   products/chummer/ACCOUNT_AWARE_INSTALL_AND_SUPPORT_LINKING.md \
   products/chummer/FEEDBACK_AND_CRASH_REPORTING_SYSTEM.md \
@@ -265,8 +276,10 @@ if ! python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py
   python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py" >/dev/null
   python3 "$repo_root/scripts/ai/publish_local_mirrors.py" \
     --no-prune \
-    --source products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md >/dev/null
+    --source products/chummer/RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md >/dev/null
 fi
+python3 "$repo_root/scripts/ai/materialize_preview_release_decision.py" --check >/dev/null
+python3 "$repo_root/scripts/ai/materialize_current_release_state.py" --check >/dev/null
 python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
@@ -289,6 +302,11 @@ python3 "$repo_root/scripts/ai/validate_next90_m145_design_explain_every_value_c
 python3 "$repo_root/scripts/ai/verify_newsroom_design_canon.py" >/dev/null
 python3 -m unittest "$repo_root/scripts/ai/test_materialize_public_guide_bundle_release_truth.py" >/dev/null
 python3 -m unittest "$repo_root/scripts/ai/test_materialize_human_only_release_boundaries.py" >/dev/null
+python3 -m pytest -q \
+  "$repo_root/tests/test_materialize_final_gold_graph.py" \
+  "$repo_root/tests/test_materialize_preview_release_decision.py" \
+  "$repo_root/tests/test_materialize_current_release_state.py" \
+  "$repo_root/tests/test_validate_gold_claim_freshness.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null; then
@@ -408,7 +426,7 @@ rg -n '^# Community Sponsorship Backlog$|Hub = account / community / ledger / en
 rg -n '^# TABLE PULSE' "$repo_root/products/chummer/horizons/table-pulse.md" >/dev/null
 rg -n '^  title: TABLE PULSE$' "$repo_root/products/chummer/HORIZON_REGISTRY.yaml" >/dev/null
 rg -n 'HORIZON_PROMOTION_RULES.md' "$repo_root/products/chummer/README.md" "$repo_root/products/chummer/START_HERE.md" >/dev/null
-rg -n '^# Release Evidence Pack$|No red blockers remain|chummer6-core|chummer6-ui|chummer6-mobile|chummer6-media-factory' "$repo_root/products/chummer/RELEASE_EVIDENCE_PACK.md" >/dev/null
+rg -n '^# Release evidence pack$|Generated compatibility projection|Current status|Final graph SHA-256' "$repo_root/products/chummer/RELEASE_EVIDENCE_PACK.md" >/dev/null
 rg -n '^# ADR-0010:|Registry-Backed and UI-Applied' "$repo_root/products/chummer/adrs/ADR-0010-desktop-auto-update-plane.md" >/dev/null
 rg -n '^# ADR-0011:|claimable installs instead' "$repo_root/products/chummer/adrs/ADR-0011-no-personalized-binaries-claimable-installs.md" >/dev/null
 rg -n '^# ADR-0012:|product governor and feedback loop are first-class canon' "$repo_root/products/chummer/adrs/ADR-0012-product-governor-and-feedback-loop.md" >/dev/null

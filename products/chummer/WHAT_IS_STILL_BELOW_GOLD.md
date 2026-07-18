@@ -1,28 +1,31 @@
-# What Is Still Below Gold
+# What is still below gold
 
-Last reviewed: 2026-07-11
+Generated compatibility projection; do not edit. Current authority: `CURRENT_RELEASE_DECISION.generated.json`.
 
-This file exists to stop structural closure from masquerading as flagship replacement truth.
+Current stable/gold verdict: `PUBLIC_RELEASE_REVIEW_REQUIRED`.
+Current preview verdict: `PREVIEW_RELEASE_REVIEW_REQUIRED`.
 
-## Current whole-product blockers
+## RED blockers
 
-No current whole-product blockers are keeping the promoted desktop release lane below gold.
-
-- Current public shelf platform ids: `linux`, `windows`.
-- Current public shelf head ids: `avalonia`.
-- Public-stable release truth carries promoted Avalonia Linux x64 and Windows x64 installers with matching startup-smoke and executable-exit proof.
-- macOS is not on the current public shelf and is not part of this promoted-scope gold claim.
-- The flagship UI release gate, desktop executable exit gate, desktop workflow execution gate, and desktop visual familiarity gate are all current and passing against the same promoted desktop bytes.
-- Keep this file fail-closed: reopen it only if public-stable tuple coverage, startup-smoke truth, or packaged desktop proof drifts below the current release wave.
-
-## Families below gold
-
-No in-scope flagship parity family is currently below `gold_ready`.
-
-`FLAGSHIP_PARITY_REGISTRY.yaml` is now allowed to mark every in-scope family `gold_ready` because the promoted public-stable desktop lane, packaged-head receipts, and release-bound readiness proof now agree.
-
-## Regression watch
-
-Keep this file as the fail-closed place to record future regressions if the published readiness proof reopens a coverage lane or if any family in `FLAGSHIP_PARITY_REGISTRY.yaml` falls below its currently justified state.
-
-Do not reintroduce a public or operator flagship claim if the promoted Avalonia route loses workbench-first startup or restore continuation, the real `File` menu, first-class master index, first-class character roster, in-app claim/restore/recovery, dense-workbench budget proof, or honest support/crash routing.
+- immutable Registry authority snapshot is not bound
+- release scope decision is not approved
+- release scope release_version is required
+- release scope must name at least one platform
+- release scope artifact access class is unresolved
+- release scope support owner is required
+- release scope approval identity and timestamp are required
+- every campaign operability cell must be evidence-backed at score 2 or 3
+- explicit immutable release manifest bytes are required
+- exact 40-character registry commit is required
+- release manifest channel must be preview
+- public release convergence proof is missing or not passing
+- campaign operability scorecard is not an evidence-backed exact 36/36 at score 3
+- fleet_flagship_readiness status is fail
+- operator_release_dashboard status is fail
+- final_gold_janitor status is fail
+- flagship_product_readiness_gate status is fail
+- release-ready receipt does not prove the exact current 41-gate matrix and projection
+- explicit immutable registry authority snapshot is required
+- registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof
+- live status page does not expose the current stable published version
+- live release manifest does not match exact immutable registry authority

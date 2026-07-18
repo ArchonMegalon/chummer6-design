@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 
-REPO_ROOT = Path("/docker/chummercomplete/chummer-design")
+REPO_ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = REPO_ROOT / "scripts" / "ai" / "validate_gold_claim_freshness.py"
 SPEC = importlib.util.spec_from_file_location("validate_gold_claim_freshness", MODULE_PATH)
 if SPEC is None or SPEC.loader is None:
@@ -73,3 +73,26 @@ def test_superseded_completion_gold_token_is_allowed(tmp_path: Path) -> None:
     errors = validator.validate(tmp_path)
 
     assert errors == []
+
+
+def test_hand_maintained_current_status_compatibility_doc_is_rejected(tmp_path: Path) -> None:
+    write_graph(
+        tmp_path,
+        verdict="PUBLIC_RELEASE_REVIEW_REQUIRED",
+        status="review_required",
+        blockers=[{"id": "stale"}],
+    )
+    product = tmp_path / "products" / "chummer"
+    (product / "CURRENT_RELEASE_DECISION.generated.json").write_text(
+        json.dumps({"contractName": "chummer.current-release-decision/v1", "status": "review_required"}),
+        encoding="utf-8",
+    )
+    (product / "GROUP_BLOCKERS.md").write_text("No blockers.\n", encoding="utf-8")
+    (product / "WHAT_IS_STILL_BELOW_GOLD.md").write_text("Nothing.\n", encoding="utf-8")
+    (product / "RELEASE_EVIDENCE_PACK.md").write_text("Gold.\n", encoding="utf-8")
+    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text("GOLD_READY\n", encoding="utf-8")
+
+    errors = validator.validate_current_release_projections(tmp_path)
+
+    assert any("hand-maintained current status" in error for error in errors)
+    assert any("superseded historical" in error for error in errors)

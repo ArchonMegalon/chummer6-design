@@ -1,6 +1,6 @@
-# Group blockers
+# Current blockers
 
-Generated compatibility projection; do not edit. Current authority: `CURRENT_RELEASE_DECISION.generated.json`.
+Generated from `FINAL_GOLD_GRAPH.generated.json`, `PREVIEW_RELEASE_DECISION.generated.json`, and the exact Registry authority snapshot. Do not edit by hand.
 
 ## RED blockers
 

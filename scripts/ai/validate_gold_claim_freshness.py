@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import sys
 from pathlib import Path
 from typing import Any
@@ -91,8 +92,49 @@ def validate_completion_claims(root: Path) -> list[str]:
     return errors
 
 
+def validate_current_release_projections(root: Path) -> list[str]:
+    errors: list[str] = []
+    product = root / "products" / "chummer"
+    current_path = product / "CURRENT_RELEASE_DECISION.generated.json"
+    if not current_path.exists():
+        return errors
+    current = load_json(current_path)
+    if str(current.get("contractName") or "") != "chummer.current-release-decision/v1":
+        errors.append("CURRENT_RELEASE_DECISION.generated.json has an invalid contract.")
+    if str(current.get("status") or "") not in {"review_required", "preview_ready", "stable_ready"}:
+        errors.append("CURRENT_RELEASE_DECISION.generated.json has an invalid status.")
+
+    for filename in ("GROUP_BLOCKERS.md", "WHAT_IS_STILL_BELOW_GOLD.md", "RELEASE_EVIDENCE_PACK.md"):
+        path = product / filename
+        content = path.read_text(encoding="utf-8") if path.is_file() else ""
+        if "Generated compatibility projection; do not edit." not in content:
+            errors.append(f"{filename} must be a generated compatibility projection, not hand-maintained current status.")
+    closeout = product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md"
+    closeout_text = closeout.read_text(encoding="utf-8") if closeout.is_file() else ""
+    if "Superseded: true" not in closeout_text or "no longer carries a current release verdict" not in closeout_text:
+        errors.append("CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md must be a superseded historical compatibility pointer.")
+
+    graph_path = product / "FINAL_GOLD_GRAPH.generated.json"
+    preview_path = product / "PREVIEW_RELEASE_DECISION.generated.json"
+    if graph_path.is_file():
+        graph_sha = hashlib.sha256(graph_path.read_bytes()).hexdigest()
+        if str(current.get("finalGoldGraphSha256") or "") != graph_sha:
+            errors.append("CURRENT_RELEASE_DECISION.generated.json is not bound to exact FINAL_GOLD_GRAPH bytes.")
+    if preview_path.is_file():
+        preview_sha = hashlib.sha256(preview_path.read_bytes()).hexdigest()
+        if str(current.get("previewDecisionSha256") or "") != preview_sha:
+            errors.append("CURRENT_RELEASE_DECISION.generated.json is not bound to exact PREVIEW_RELEASE_DECISION bytes.")
+
+    if not str(current.get("snapshotSha256") or ""):
+        if current.get("status") != "review_required":
+            errors.append("Current state without an immutable snapshot must be review_required.")
+        if current.get("availablePlatforms") not in ([], None) or current.get("artifactCount") not in (0, None):
+            errors.append("Current state without an immutable snapshot must assert no platform or artifact availability.")
+    return errors
+
+
 def validate(root: Path = ROOT) -> list[str]:
-    return [*validate_gold_graph(root), *validate_completion_claims(root)]
+    return [*validate_gold_graph(root), *validate_completion_claims(root), *validate_current_release_projections(root)]
 
 
 def main() -> int:

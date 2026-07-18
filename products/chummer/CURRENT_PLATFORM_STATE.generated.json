@@ -1,0 +1,12 @@
+{
+  "artifactCount": 0,
+  "availablePlatforms": [],
+  "contractName": "chummer.current-platform-state/v1",
+  "generatedAt": "2026-07-18T17:36:22Z",
+  "manifestSha256": "",
+  "note": "No platform is promoted by policy alone; this projection is authoritative only when bound to an immutable snapshot.",
+  "primaryHeadByPlatform": {},
+  "releaseVersion": "",
+  "snapshotSha256": "",
+  "status": "review_required"
+}

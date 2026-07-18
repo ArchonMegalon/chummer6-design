@@ -45,14 +45,25 @@ product_source_groups:
     - products/chummer/PRODUCT_HEALTH_SCORECARD.yaml
     - products/chummer/WEEKLY_PRODUCT_PULSE.generated.json
     - products/chummer/FINAL_GOLD_GRAPH.generated.json
+    - products/chummer/PREVIEW_RELEASE_DECISION.generated.json
+    - products/chummer/CURRENT_RELEASE_DECISION.generated.json
+    - products/chummer/CURRENT_RELEASE_DECISION.generated.md
+    - products/chummer/CURRENT_BLOCKERS.generated.md
+    - products/chummer/CURRENT_PLATFORM_STATE.generated.json
+    - products/chummer/CURRENT_HUMAN_APPROVALS.generated.md
     - products/chummer/METRICS_AND_SLOS.yaml
     - products/chummer/GOLDEN_JOURNEY_RELEASE_GATES.yaml
     - products/chummer/FLAGSHIP_READINESS_PLANES.yaml
     - products/chummer/CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml
+    - products/chummer/FLAGSHIP_RELEASE_POLICY.yaml
+    - products/chummer/DESKTOP_PLATFORM_POLICY.yaml
+    - products/chummer/PRIMARY_ROUTE_POLICY.yaml
+    - products/chummer/RELEASE_SCOPE_DECISION.yaml
     - products/chummer/CAMPAIGN_OPERABILITY_SCORECARD.generated.json
     - products/chummer/CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md
+    - products/chummer/history/2026-07-11-promoted-scope-closeout.md
     - products/chummer/RELEASE_EVIDENCE_PACK.md
-    - products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md
+    - products/chummer/RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md
     - products/chummer/WHAT_IS_STILL_BELOW_GOLD.md
     - products/chummer/PRODUCT_USAGE_TELEMETRY_MODEL.md
     - products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md

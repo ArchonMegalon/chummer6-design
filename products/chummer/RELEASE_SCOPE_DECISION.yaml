@@ -1,0 +1,19 @@
+contract_name: chummer.release_scope_decision
+contract_version: 1
+updated_at: 2026-07-18T00:00:00Z
+status: decision_required
+target_channel: preview
+release_version: ""
+platforms: []
+primary_head_by_platform: {}
+fallback_heads_by_platform: {}
+artifact_access_class: review_required
+signing_requirements: {}
+support_owner: ""
+next_actions:
+  - Choose one explicit platform and desktop-head scope before candidate production resumes.
+approval:
+  status: pending
+  approved_by: ""
+  approved_at: ""
+note: This fail-closed packet intentionally makes no platform availability claim.

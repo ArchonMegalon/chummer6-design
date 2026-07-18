@@ -1,0 +1,135 @@
+{
+  "artifactCount": 0,
+  "availablePlatforms": [],
+  "blockingFindings": [
+    {
+      "id": "current_1",
+      "severity": "release_truth",
+      "summary": "immutable Registry authority snapshot is not bound"
+    },
+    {
+      "id": "current_2",
+      "severity": "release_truth",
+      "summary": "release scope decision is not approved"
+    },
+    {
+      "id": "current_3",
+      "severity": "release_truth",
+      "summary": "release scope release_version is required"
+    },
+    {
+      "id": "current_4",
+      "severity": "release_truth",
+      "summary": "release scope must name at least one platform"
+    },
+    {
+      "id": "current_5",
+      "severity": "release_truth",
+      "summary": "release scope artifact access class is unresolved"
+    },
+    {
+      "id": "current_6",
+      "severity": "release_truth",
+      "summary": "release scope support owner is required"
+    },
+    {
+      "id": "current_7",
+      "severity": "release_truth",
+      "summary": "release scope approval identity and timestamp are required"
+    },
+    {
+      "id": "current_8",
+      "severity": "release_truth",
+      "summary": "every campaign operability cell must be evidence-backed at score 2 or 3"
+    },
+    {
+      "id": "current_9",
+      "severity": "release_truth",
+      "summary": "explicit immutable release manifest bytes are required"
+    },
+    {
+      "id": "current_10",
+      "severity": "release_truth",
+      "summary": "exact 40-character registry commit is required"
+    },
+    {
+      "id": "current_11",
+      "severity": "release_truth",
+      "summary": "release manifest channel must be preview"
+    },
+    {
+      "id": "current_12",
+      "severity": "release_truth",
+      "summary": "public release convergence proof is missing or not passing"
+    },
+    {
+      "id": "current_13",
+      "severity": "release_truth",
+      "summary": "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3"
+    },
+    {
+      "id": "current_14",
+      "severity": "release_truth",
+      "summary": "fleet_flagship_readiness status is fail"
+    },
+    {
+      "id": "current_15",
+      "severity": "release_truth",
+      "summary": "operator_release_dashboard status is fail"
+    },
+    {
+      "id": "current_16",
+      "severity": "release_truth",
+      "summary": "final_gold_janitor status is fail"
+    },
+    {
+      "id": "current_17",
+      "severity": "release_truth",
+      "summary": "flagship_product_readiness_gate status is fail"
+    },
+    {
+      "id": "current_18",
+      "severity": "release_truth",
+      "summary": "release-ready receipt does not prove the exact current 41-gate matrix and projection"
+    },
+    {
+      "id": "current_19",
+      "severity": "release_truth",
+      "summary": "explicit immutable registry authority snapshot is required"
+    },
+    {
+      "id": "current_20",
+      "severity": "release_truth",
+      "summary": "registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof"
+    },
+    {
+      "id": "current_21",
+      "severity": "release_truth",
+      "summary": "live status page does not expose the current stable published version"
+    },
+    {
+      "id": "current_22",
+      "severity": "release_truth",
+      "summary": "live release manifest does not match exact immutable registry authority"
+    }
+  ],
+  "channel": "",
+  "contractName": "chummer.current-release-decision/v1",
+  "downloadAccessPosture": "review_required",
+  "finalGoldGraphSha256": "87acca731556a9369906738568f26e20f63a5fdd476833ec573f59aaa3ff6764",
+  "generatedAt": "2026-07-18T17:36:22Z",
+  "knownIssueSummary": "Immutable release authority is not available.",
+  "manifestSha256": "",
+  "previewDecisionSha256": "c810d874d3a7b8dcf404cf5c87d9167682c4c7bbdd05089208582bca343b43d0",
+  "primaryHeadByPlatform": {},
+  "registryCommit": "",
+  "releaseDecisionSha256": "",
+  "releaseDecisionStatus": "review_required",
+  "releaseStatus": "review_required",
+  "releaseVersion": "",
+  "rolloutState": "review_required",
+  "snapshotSha256": "",
+  "stableBlockingFindings": [],
+  "status": "review_required",
+  "supportabilityState": "review_required"
+}

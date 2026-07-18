@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import sys
 from pathlib import Path
 
 
-REPO_ROOT = Path("/docker/chummercomplete/chummer-design")
+REPO_ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = REPO_ROOT / "scripts" / "ai" / "materialize_final_gold_graph.py"
 SPEC = importlib.util.spec_from_file_location("materialize_final_gold_graph", MODULE_PATH)
 if SPEC is None or SPEC.loader is None:
@@ -21,6 +22,41 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
 
 
+def write_authority_snapshot(registry: Path, manifest: dict, snapshot_overrides: dict | None = None) -> Path:
+    manifest_bytes = json.dumps(manifest).encode("utf-8")
+    artifacts = manifest["artifacts"]
+    snapshot = {
+        "authorityContract": "chummer.release-authority-snapshot/v2",
+        "releaseVersion": manifest["version"],
+        "channel": manifest["channelId"],
+        "status": manifest["status"],
+        "rolloutState": manifest["rolloutState"],
+        "supportabilityState": manifest["supportabilityState"],
+        "availablePlatforms": sorted({row["platform"] for row in artifacts}),
+        "primaryHeadByPlatform": {row["platform"]: row["head"] for row in artifacts},
+        "artifacts": artifacts,
+        "artifactCount": len(artifacts),
+        "downloadAccessPosture": "open_public",
+        "knownIssueSummary": "No promoted blocking issues.",
+        "manifestPath": "RELEASE_CHANNEL.json",
+        "manifestSha256": hashlib.sha256(manifest_bytes).hexdigest(),
+        "registryCommit": "a" * 40,
+        "releaseDecisionStatus": "stable_ready",
+        "releaseDecisionSha256": "b" * 64,
+        "supportOwner": "release-operations",
+        "nextActions": ["Monitor the stable rollout."],
+    }
+    snapshot.update(snapshot_overrides or {})
+    snapshot_bytes = json.dumps(snapshot).encode("utf-8")
+    snapshot_sha256 = hashlib.sha256(snapshot_bytes).hexdigest()
+    generation = registry / "snapshots" / snapshot["releaseVersion"] / snapshot_sha256
+    generation.mkdir(parents=True, exist_ok=True)
+    (generation / "RELEASE_CHANNEL.json").write_bytes(manifest_bytes)
+    snapshot_path = generation / "SNAPSHOT.json"
+    snapshot_path.write_bytes(snapshot_bytes)
+    return snapshot_path
+
+
 def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     design = tmp_path / "design"
     fleet = tmp_path / "fleet"
@@ -29,30 +65,15 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     ui = tmp_path / "ui"
     product = design / "products" / "chummer"
     product.mkdir(parents=True)
-    for name in ("PRODUCT_SPINE.yaml", "HORIZON_REGISTRY.yaml", "PUBLIC_FEATURE_REGISTRY.yaml"):
+    for name in ("PRODUCT_SPINE.yaml", "HORIZON_REGISTRY.yaml", "PUBLIC_FEATURE_REGISTRY.yaml", "FLAGSHIP_RELEASE_POLICY.yaml"):
         (product / name).write_text("status: pass\n", encoding="utf-8")
-    (product / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md").write_text(
-        "Verdict: `CLEAR`\n\nNo human-only release boundaries remain.\n",
-        encoding="utf-8",
-    )
-    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text(
-        "Current promoted-scope verdict: `GOLD_READY`.\n"
-        "Avalonia is the only current public-shelf desktop head.\n",
-        encoding="utf-8",
-    )
-    (product / "RELEASE_EVIDENCE_PACK.md").write_text(
-        "Current verdict: `CLEAR`.\nFULL_RULE_AUTHORITY_READY\n",
+    (product / "RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md").write_text(
+        "Verdict: `CLEAR`\n\nNo human-only rule-authority boundaries remain.\n"
+        "This receipt is not a whole-product human-approval ledger.\n",
         encoding="utf-8",
     )
     (product / "FLAGSHIP_PARITY_REGISTRY.yaml").write_text(
         "families:\n  - id: shell\n    release_status: gold_ready\n",
-        encoding="utf-8",
-    )
-    (product / "GROUP_BLOCKERS.md").write_text("## RED blockers\n\nNone.\n", encoding="utf-8")
-    (product / "WHAT_IS_STILL_BELOW_GOLD.md").write_text(
-        "- Current public shelf platform ids: `linux`, `windows`.\n"
-        "- Current public shelf head ids: `avalonia`.\n"
-        "- macOS is not on the current public shelf.\n",
         encoding="utf-8",
     )
     operability_cells = [
@@ -174,12 +195,13 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
             {"head": "avalonia", "platform": "windows"},
         ],
     }
-    write_json(registry / ".codex-studio" / "published" / "RELEASE_CHANNEL.generated.json", release)
+    snapshot_path = write_authority_snapshot(registry, release)
+    snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
     live = {
         "https://example.test/status": "Stable is published. Version run-1",
-        "https://example.test/releases.json": json.dumps({**release, "channel": "public_stable"}),
+        "https://example.test/releases.json": json.dumps(snapshot),
     }
-    return {"design": design, "fleet": fleet, "run": run, "registry": registry, "ui": ui, "template": template}, live
+    return {"design": design, "fleet": fleet, "run": run, "registry": registry, "snapshot": snapshot_path, "ui": ui, "template": template}, live
 
 
 def materialize_fixture(paths: dict[str, Path], live: dict[str, str]) -> dict:
@@ -188,6 +210,7 @@ def materialize_fixture(paths: dict[str, Path], live: dict[str, str]) -> dict:
         fleet_root=paths["fleet"],
         run_services_root=paths["run"],
         registry_root=paths["registry"],
+        registry_snapshot_path=paths["snapshot"],
         ui_root=paths["ui"],
         template_path=paths["template"],
         live_status_url="https://example.test/status",
@@ -202,7 +225,7 @@ def test_complete_current_evidence_materializes_gold_ready(tmp_path: Path) -> No
     assert graph["status"] == "pass"
     assert graph["verdict"] == "GOLD_READY"
     assert graph["blocking_findings"] == []
-    assert len(graph["proof_inputs"]) == 23
+    assert len(graph["proof_inputs"]) == 22
     assert all(row["status"] == "pass" for row in graph["proof_inputs"])
     assert graph["completion_audit"]["status"] == "pass"
     assert graph["completion_audit"]["requirement_count"] == 12
@@ -270,28 +293,30 @@ def test_optional_ea_blocker_is_visible_but_does_not_block_gold(tmp_path: Path) 
     ]
 
 
-def test_stale_closeout_or_human_boundary_claim_fails_closed(tmp_path: Path) -> None:
+def test_handwritten_closeout_claims_cannot_overrule_generated_graph(tmp_path: Path) -> None:
     paths, live = build_fixture(tmp_path)
     product = paths["design"] / "products" / "chummer"
-    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text("Chummer6 is not finished.\n", encoding="utf-8")
-    (product / "RELEASE_EVIDENCE_PACK.md").write_text("`SR4` remains blocked\n", encoding="utf-8")
+    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text("Current verdict: GOLD_READY.\n", encoding="utf-8")
+    (product / "GROUP_BLOCKERS.md").write_text("No blockers.\n", encoding="utf-8")
     graph = materialize_fixture(paths, live)
-    assert graph["status"] == "review_required"
-    summaries = [row["summary"] for row in graph["blocking_findings"]]
-    assert any("closeout contradicts" in summary for summary in summaries)
-    assert any("human-only boundary truth" in summary for summary in summaries)
+    assert graph["status"] == "pass"
+    proof_kinds = {row["kind"] for row in graph["proof_inputs"]}
+    assert "campaign_os_flagship_closeout" not in proof_kinds
+    assert "parity_and_group_blockers" not in proof_kinds
 
 
-def test_public_shelf_platform_claim_must_match_registry_artifacts(tmp_path: Path) -> None:
+def test_authority_primary_head_must_match_snapshot_artifacts(tmp_path: Path) -> None:
     paths, live = build_fixture(tmp_path)
-    registry_path = paths["registry"] / ".codex-studio" / "published" / "RELEASE_CHANNEL.generated.json"
-    release = json.loads(registry_path.read_text(encoding="utf-8"))
-    release["artifacts"].append({"head": "avalonia", "platform": "macos"})
-    write_json(registry_path, release)
-    live["https://example.test/releases.json"] = json.dumps({**release, "channel": "public_stable"})
+    manifest = json.loads((paths["snapshot"].parent / "RELEASE_CHANNEL.json").read_text(encoding="utf-8"))
+    paths["snapshot"] = write_authority_snapshot(
+        paths["registry"],
+        manifest,
+        {"primaryHeadByPlatform": {"linux": "avalonia", "windows": "blazor"}},
+    )
+    live["https://example.test/releases.json"] = paths["snapshot"].read_text(encoding="utf-8")
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
-    assert any("public shelf platform" in row["summary"] for row in graph["blocking_findings"])
+    assert any("primary head" in row["summary"] for row in graph["blocking_findings"])
 
 
 def test_non_gold_parity_family_fails_closed(tmp_path: Path) -> None:

@@ -50,7 +50,7 @@ acceptance_axes:
   - id: desktop_familiarity_and_install_continuity
     rule: Desktop install, claim, restore, and workbench continuation preserve Chummer5a familiarity and avoid browser-ritual or dashboard-first detours on the promoted path.
   - id: desktop_head_authority_and_fallback_honesty
-    rule: Avalonia is the default primary desktop head; no second desktop head is currently on the public shelf, and any future shipped head must independently meet the flagship bar for its promised scope.
+    rule: The approved release scope names exactly one primary desktop head per platform, and every visible primary or fallback head independently meets the bar for its promised scope.
   - id: dense_workbench_budget
     rule: The promoted desktop head stays within the dense-workbench budget for spacing, chrome, visible rows, and always-visible trust posture.
   - id: authored_ruleset_experience
@@ -88,9 +88,9 @@ surfaces:
       - chummer6-core
     must_prove:
       - One obvious flagship desktop head and install path per promoted platform.
-      - Avalonia is the primary promoted desktop head for the current lane.
-      - No second desktop head is currently part of the public shelf.
-      - If a second desktop head is reintroduced later or becomes the recommended download, it must satisfy the same desktop flagship proof lanes as Avalonia for the workflows it promises.
+      - The immutable release scope names exactly one primary desktop head for each promoted platform.
+      - Every additional visible head is explicitly bounded as fallback or independently promoted.
+      - Every visible head satisfies the same desktop proof lanes for the workflows it promises; no head inherits another head's evidence.
       - A gold desktop claim is only true when every shipped desktop head independently satisfies startup, install, update, crash-recovery, feedback, workflow, and visual-familiarity proof.
       - The promoted desktop path starts with a guided product installer path instead of a framework chooser or browser ritual.
       - Install, claim, and restore land in the installer or app and open a workbench or restore continuation flow without a dashboard-first detour.

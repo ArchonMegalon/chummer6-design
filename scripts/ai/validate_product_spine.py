@@ -65,10 +65,9 @@ EXPECTED_GOLD_PROOF_INPUTS = {
     "design_spine",
     "horizon_registry",
     "feature_registry",
-    "human_only_boundaries",
-    "campaign_os_flagship_closeout",
-    "release_evidence_pack",
-    "parity_and_group_blockers",
+    "release_policy",
+    "rule_authority_human_boundaries",
+    "parity_registry",
     "campaign_operability_scorecard",
     "journey_gates",
     "fleet_flagship_readiness",
@@ -81,8 +80,8 @@ EXPECTED_GOLD_PROOF_INPUTS = {
     "ui_localization_release_gate",
     "release_ready_matrix",
     "ea_release_critical_readiness",
-    "registry_release_channel",
-    "below_gold_platform_truth",
+    "registry_release_authority",
+    "registry_stable_posture",
     "live_status",
     "live_release_manifest",
 }
@@ -282,7 +281,7 @@ def main() -> int:
         item_status = str(item.get("status") or "").strip()
         if graph_verdict == "GOLD_READY" and item_status != "pass":
             errors.append(f"proof input {item.get('kind')} must be pass for GOLD_READY.")
-        if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and item_status not in {"pass", "stale", "review_required"}:
+        if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and item_status not in {"pass", "fail", "stale", "review_required"}:
             errors.append(f"proof input {item.get('kind')} has unsupported review-required status {item_status!r}.")
 
     return fail(errors) if errors else 0

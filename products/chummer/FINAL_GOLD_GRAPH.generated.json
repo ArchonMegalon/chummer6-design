@@ -1,8 +1,8 @@
 {
   "contract_name": "chummer.final_gold_graph",
-  "contract_version": 1,
+  "contract_version": 2,
   "product": "chummer",
-  "generated_at_utc": "2026-07-17T04:46:46Z",
+  "generated_at_utc": "2026-07-18T17:36:22Z",
   "status": "review_required",
   "verdict": "PUBLIC_RELEASE_REVIEW_REQUIRED",
   "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
@@ -13,8 +13,26 @@
     "status": "published",
     "rollout_state": "public_release_review_required",
     "supportability_state": "review_required",
+    "available_platforms": [],
+    "primary_head_by_platform": {},
+    "artifact_count": null,
+    "download_access_posture": "",
+    "known_issue_summary": "Preview caveats still apply, but the current release has recent install, account return, release updates, community wrap-up, bounded offline prefetch, and current support follow-up coverage Final release checks are not current yet, so launch-sensitive claims stay review-required.",
+    "manifest_sha256": "",
+    "registry_commit": "",
+    "release_decision_status": "",
+    "release_decision_sha256": "",
     "status_endpoint": "https://chummer.run/status",
     "release_manifest_endpoint": "https://chummer.run/downloads/releases.json"
+  },
+  "release_authority": {
+    "contract": "",
+    "snapshot_path": "",
+    "snapshot_sha256": "",
+    "manifest_sha256": "",
+    "registry_commit": "",
+    "release_decision_status": "",
+    "release_decision_sha256": ""
   },
   "required_loops": [
     "build_correctly",
@@ -82,23 +100,18 @@
       "status": "pass"
     },
     {
-      "kind": "human_only_boundaries",
-      "path": "products/chummer/HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md",
+      "kind": "release_policy",
+      "path": "products/chummer/FLAGSHIP_RELEASE_POLICY.yaml",
       "status": "pass"
     },
     {
-      "kind": "campaign_os_flagship_closeout",
-      "path": "products/chummer/CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md",
+      "kind": "rule_authority_human_boundaries",
+      "path": "products/chummer/RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md",
       "status": "pass"
     },
     {
-      "kind": "release_evidence_pack",
-      "path": "products/chummer/RELEASE_EVIDENCE_PACK.md",
-      "status": "pass"
-    },
-    {
-      "kind": "parity_and_group_blockers",
-      "path": "products/chummer/FLAGSHIP_PARITY_REGISTRY.yaml; products/chummer/GROUP_BLOCKERS.md",
+      "kind": "parity_registry",
+      "path": "products/chummer/FLAGSHIP_PARITY_REGISTRY.yaml",
       "status": "pass",
       "family_count": 11
     },
@@ -119,7 +132,7 @@
       "kind": "fleet_flagship_readiness",
       "path": "$FLEET_WORKSPACE/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-13T04:39:23Z"
+      "generated_at": "2026-07-18T00:25:10Z"
     },
     {
       "kind": "operator_release_dashboard",
@@ -137,7 +150,7 @@
       "kind": "flagship_product_readiness_gate",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS_GATE.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-15T13:44:04Z"
+      "generated_at": "2026-07-17T23:59:49Z"
     },
     {
       "kind": "google_oauth_linking_proof",
@@ -161,13 +174,13 @@
       "kind": "ui_localization_release_gate",
       "path": "$UI_WORKSPACE/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
       "status": "pass",
-      "generated_at": "2026-07-13T23:39:57Z"
+      "generated_at": "2026-07-17T22:24:10Z"
     },
     {
       "kind": "release_ready_matrix",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/RELEASE_READY.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-14T03:51:45Z",
+      "generated_at": "2026-07-17T23:59:48Z",
       "required_gate_count": 41,
       "completed_gate_count": 0
     },
@@ -185,29 +198,19 @@
       "optional_blocked_component_keys": []
     },
     {
-      "kind": "registry_release_channel",
-      "path": "$REGISTRY_WORKSPACE/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+      "kind": "registry_release_authority",
+      "path": "explicit snapshot not provided",
       "status": "fail",
-      "generated_at": "2026-07-12T18:46:26Z"
+      "snapshot_sha256": "",
+      "manifest_sha256": "",
+      "registry_commit": "",
+      "release_decision_status": "",
+      "release_decision_sha256": ""
     },
     {
-      "kind": "below_gold_platform_truth",
-      "path": "products/chummer/WHAT_IS_STILL_BELOW_GOLD.md",
-      "status": "pass",
-      "claimed_platforms": [
-        "linux",
-        "windows"
-      ],
-      "actual_platforms": [
-        "linux",
-        "windows"
-      ],
-      "claimed_heads": [
-        "avalonia"
-      ],
-      "actual_heads": [
-        "avalonia"
-      ]
+      "kind": "registry_stable_posture",
+      "path": "explicit snapshot not provided",
+      "status": "fail"
     },
     {
       "kind": "live_status",
@@ -218,7 +221,7 @@
       "kind": "live_release_manifest",
       "path": "https://chummer.run/downloads/releases.json",
       "status": "fail",
-      "generated_at": "2026-07-15T14:06:48Z"
+      "generated_at": "2026-07-15T14:06:48+00:00"
     }
   ],
   "completion_audit": {
@@ -234,7 +237,7 @@
           "design_spine",
           "horizon_registry",
           "feature_registry",
-          "campaign_os_flagship_closeout"
+          "release_policy"
         ],
         "missing_or_failed_proof_kinds": []
       },
@@ -242,11 +245,15 @@
         "id": "release_control",
         "status": "fail",
         "proof_kinds": [
+          "registry_release_authority",
+          "registry_stable_posture",
           "release_ready_matrix",
           "final_gold_janitor",
           "flagship_product_readiness_gate"
         ],
         "missing_or_failed_proof_kinds": [
+          "registry_release_authority",
+          "registry_stable_posture",
           "release_ready_matrix",
           "final_gold_janitor",
           "flagship_product_readiness_gate"
@@ -267,7 +274,7 @@
         "id": "legacy_and_adjacent_parity",
         "status": "fail",
         "proof_kinds": [
-          "parity_and_group_blockers",
+          "parity_registry",
           "fleet_flagship_readiness"
         ],
         "missing_or_failed_proof_kinds": [
@@ -309,12 +316,14 @@
         "status": "fail",
         "proof_kinds": [
           "release_ready_matrix",
-          "registry_release_channel",
+          "registry_release_authority",
+          "registry_stable_posture",
           "live_release_manifest"
         ],
         "missing_or_failed_proof_kinds": [
           "release_ready_matrix",
-          "registry_release_channel",
+          "registry_release_authority",
+          "registry_stable_posture",
           "live_release_manifest"
         ]
       },
@@ -402,17 +411,22 @@
     {
       "id": "proof_7",
       "severity": "release_truth",
-      "summary": "registry release channel is not current public_stable gold-supported truth"
+      "summary": "explicit immutable registry authority snapshot is required"
     },
     {
       "id": "proof_8",
       "severity": "release_truth",
-      "summary": "live status page does not expose the current stable published version"
+      "summary": "registry authority is not public_stable, gold_supported, and bound to stable_ready decision proof"
     },
     {
       "id": "proof_9",
       "severity": "release_truth",
-      "summary": "live release manifest does not match current public_stable registry truth"
+      "summary": "live status page does not expose the current stable published version"
+    },
+    {
+      "id": "proof_10",
+      "severity": "release_truth",
+      "summary": "live release manifest does not match exact immutable registry authority"
     }
   ],
   "advisory_findings": [],
