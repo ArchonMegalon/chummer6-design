@@ -1,9 +1,6 @@
-# What is still below gold
+# Current blockers
 
-Generated compatibility projection; do not edit. Current authority: `CURRENT_RELEASE_DECISION.generated.json`.
-
-Current stable/gold verdict: `PUBLIC_RELEASE_REVIEW_REQUIRED`.
-Current preview verdict: `PREVIEW_RELEASE_REVIEW_REQUIRED`.
+Generated from `FINAL_GOLD_GRAPH.generated.json`, `PREVIEW_RELEASE_DECISION.generated.json`, and the exact Registry authority snapshot. Do not edit by hand.
 
 ## RED blockers
 

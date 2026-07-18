@@ -4,17 +4,19 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "products" / "chummer"
-WORKSPACE_ROOT = ROOT.parent
-CORE_ROOT = ROOT.parent / "chummer-core-engine"
+WORKSPACE_ROOT = Path(os.environ.get("CHUMMER_WORKSPACE_ROOT", str(ROOT.parent))).resolve()
+CORE_ROOT = WORKSPACE_ROOT / "chummer-core-engine"
 SOURCE_RECEIPT = CORE_ROOT / ".codex-studio" / "published" / "FULL_PRODUCT_RULE_AUTHORITY_COMPLETION.generated.json"
-OUT_JSON = PRODUCT / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.json"
-OUT_MD = PRODUCT / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md"
+OUT_JSON = PRODUCT / "RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.json"
+OUT_MD = PRODUCT / "RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md"
+LEGACY_OUT_JSON = PRODUCT / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.json"
 
 
 def _utc_now_iso() -> str:
@@ -84,7 +86,7 @@ def build_contract(*, payload: dict[str, Any] | None = None, generated_at: str |
     active_blockers = [row for row in blockers if row.get("pending_review") or not row.get("review_ready")]
 
     return {
-        "contract_name": "chummer.human_only_release_boundaries",
+        "contract_name": "chummer.rule_authority_human_boundaries",
         "contract_version": 1,
         "generated_at": generated_at or source_generated_at or _utc_now_iso(),
         "source_receipt": _relative(SOURCE_RECEIPT),
@@ -96,7 +98,7 @@ def build_contract(*, payload: dict[str, Any] | None = None, generated_at: str |
         "summary": (
             f"{len(active_blockers)} human-only rule-authority boundary or boundaries remain."
             if active_blockers
-            else "No human-only release boundaries remain."
+            else "No human-only rule-authority boundaries remain."
         ),
         "blockers": active_blockers,
     }
@@ -104,15 +106,15 @@ def build_contract(*, payload: dict[str, Any] | None = None, generated_at: str |
 
 def render_markdown(contract: dict[str, Any]) -> str:
     lines = [
-        "# Human-only release boundaries",
+        "# Rule-authority human boundaries",
         "",
         f"Generated: {contract['generated_at']}",
         f"Source receipt: `{contract['source_receipt']}`",
         f"Source verdict: `{contract['source_receipt_final_verdict']}`",
         f"Verdict: `{contract['verdict']}`",
         "",
-        "Purpose: list the remaining product boundaries that automation cannot honestly close.",
-        "These are not repo-local cleanup tasks. They require a human decision, approval, or baseline choice.",
+        "Purpose: list only the remaining SR4/SR6 rule-authority boundaries that automation cannot honestly close.",
+        "This receipt is not a whole-product human-approval ledger and cannot clear release-scope, signing, native-visual, or publication approvals.",
         "",
     ]
 
@@ -122,7 +124,8 @@ def render_markdown(contract: dict[str, Any]) -> str:
             [
                 "## Current state",
                 "",
-                "No human-only release boundaries remain.",
+                "No human-only rule-authority boundaries remain.",
+                "Release-wide approvals, if any, are projected separately in `CURRENT_HUMAN_APPROVALS.generated.md`.",
                 "",
             ]
         )
@@ -213,16 +216,21 @@ def _write_outputs(contract: dict[str, Any]) -> None:
 def _contract_from_checked_in_output_when_source_missing() -> dict[str, Any] | None:
     if SOURCE_RECEIPT.exists():
         return None
-    if not OUT_JSON.exists():
+    fallback_path = OUT_JSON if OUT_JSON.exists() else LEGACY_OUT_JSON
+    if not fallback_path.exists():
         return None
-    contract = _load_json(OUT_JSON)
-    if str(contract.get("contract_name") or "") != "chummer.human_only_release_boundaries":
-        raise ValueError(f"{OUT_JSON} is not a human-only release boundary contract.")
+    contract = _load_json(fallback_path)
+    contract_name = str(contract.get("contract_name") or "")
+    if contract_name not in {"chummer.rule_authority_human_boundaries", "chummer.human_only_release_boundaries"}:
+        raise ValueError(f"{fallback_path} is not a rule-authority human-boundary contract.")
+    contract["contract_name"] = "chummer.rule_authority_human_boundaries"
+    if contract.get("verdict") == "CLEAR":
+        contract["summary"] = "No human-only rule-authority boundaries remain."
     return contract
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Materialize the current human-only product release boundaries.")
+    parser = argparse.ArgumentParser(description="Materialize the current human-only rule-authority boundaries.")
     parser.add_argument("--check", action="store_true", help="Exit non-zero if generated outputs are stale.")
     args = parser.parse_args()
 

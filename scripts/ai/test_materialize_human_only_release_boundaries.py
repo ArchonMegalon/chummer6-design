@@ -69,17 +69,18 @@ class HumanOnlyReleaseBoundaryTests(unittest.TestCase):
         }
 
         rendered = MODULE.render_markdown(contract)
-        self.assertIn("No human-only release boundaries remain.", rendered)
+        self.assertIn("No human-only rule-authority boundaries remain.", rendered)
+        self.assertIn("not a whole-product human-approval ledger", rendered)
         self.assertIn("Verdict: `CLEAR`", rendered)
 
     def test_missing_source_receipt_uses_checked_in_contract(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            out_json = root / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.json"
+            out_json = root / "RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.json"
             out_json.write_text(
                 """{
   "blockers": [],
-  "contract_name": "chummer.human_only_release_boundaries",
+  "contract_name": "chummer.rule_authority_human_boundaries",
   "contract_version": 1,
   "generated_at": "2026-06-17T17:02:00Z",
   "human_action_count": 0,
@@ -87,7 +88,7 @@ class HumanOnlyReleaseBoundaryTests(unittest.TestCase):
   "source_receipt": "missing/source.json",
   "source_receipt_final_verdict": "FULL_RULE_AUTHORITY_READY",
   "source_receipt_generated_at": "2026-06-17T17:02:00Z",
-  "summary": "No human-only release boundaries remain.",
+  "summary": "No human-only rule-authority boundaries remain.",
   "verdict": "CLEAR"
 }
 """,

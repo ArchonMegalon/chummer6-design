@@ -1,6 +1,8 @@
 product: chummer
 surface: desktop_delivery
 version: 1
+policy_only: true
+current_platform_state: CURRENT_PLATFORM_STATE.generated.json
 flagship_head: Chummer.Avalonia
 fallback_head: Chummer.Blazor.Desktop
 gold_release_head_policy:
@@ -34,28 +36,28 @@ head_policies:
       - Blazor is presented as fallback while the shelf or matrix treats it as the primary public route.
 platforms:
   - id: windows
-    public_shelf_status: promoted_release
+    eligibility: promotable_when_current_scope_and_native_proof_pass
     primary_package_kind: installer
     fallback_package_kinds: []
     startup_smoke_gate: required
     signing_posture: required_for_promoted_release
     updater_mode: in_app_apply_helper
-    supportability: primary
+    supportability_requirement: named_owner_and_current_support_proof
   - id: linux
-    public_shelf_status: promoted_release
+    eligibility: promotable_when_current_scope_and_native_proof_pass
     primary_package_kind: deb
     fallback_package_kinds: []
     startup_smoke_gate: required
     signing_posture: package_integrity_required
     updater_mode: in_app_or_installer_handoff
-    supportability: secondary
+    supportability_requirement: named_owner_and_current_support_proof
   - id: macOS
-    public_shelf_status: buildable_not_publicly_promoted
-    primary_package_kind: none
+    eligibility: promotable_when_current_scope_and_native_proof_pass
+    primary_package_kind: installer
     fallback_package_kinds: []
     startup_smoke_gate: required
     signing_posture: codesign_and_notarization_required
     updater_mode: promoted_installer_then_in_app_or_handoff
-    supportability: guided_support_only
-    public_manifest_visibility: hidden_from_public_downloads
-    public_promotion_gate: guided_support_manual_only
+    supportability_requirement: named_owner_and_current_support_proof
+    public_manifest_visibility: derived_from_current_release_authority
+    public_promotion_gate: codesign_notarization_native_startup_and_support_proof

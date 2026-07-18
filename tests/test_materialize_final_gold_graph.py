@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import sys
 from pathlib import Path
 
 
-REPO_ROOT = Path("/docker/chummercomplete/chummer-design")
+REPO_ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = REPO_ROOT / "scripts" / "ai" / "materialize_final_gold_graph.py"
 SPEC = importlib.util.spec_from_file_location("materialize_final_gold_graph", MODULE_PATH)
 if SPEC is None or SPEC.loader is None:
@@ -21,6 +22,78 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
 
 
+def release_artifact(platform: str, artifact_id: str, *, head: str = "avalonia") -> dict:
+    rid = "win-x64" if platform == "windows" else "linux-x64"
+    return {
+        "artifactId": artifact_id,
+        "head": head,
+        "platform": platform,
+        "rid": rid,
+        "arch": "x64",
+        "kind": "installer",
+        "downloadUrl": f"https://chummer.run/downloads/g/generation-1/files/{artifact_id}",
+        "sha256": "d" * 64,
+        "sizeBytes": 1024,
+        "compatibilityState": "compatible",
+        "promotionState": "promoted",
+        "publicationScope": "signed-in-and-public",
+        "revokeState": "not_revoked",
+        "publicInstallRoute": f"/downloads/{platform}",
+        "installAccessClass": "open_public",
+    }
+
+
+def write_authority_snapshot(
+    registry: Path,
+    manifest: dict,
+    snapshot_overrides: dict | None = None,
+    decision_overrides: dict | None = None,
+) -> Path:
+    manifest_bytes = json.dumps(manifest).encode("utf-8")
+    artifacts = manifest["artifacts"]
+    decision = {
+        "contractName": "chummer.preview-release-decision/v1",
+        "releaseVersion": manifest["version"],
+        "releaseDecisionStatus": "preview_ready",
+        "manifestSha256": hashlib.sha256(manifest_bytes).hexdigest(),
+    }
+    decision.update(decision_overrides or {})
+    decision_bytes = json.dumps(decision).encode("utf-8")
+    snapshot = {
+        "authorityContract": "chummer.release-authority-snapshot/v2",
+        "registryRepository": "ArchonMegalon/chummer6-hub-registry",
+        "releaseVersion": manifest["version"],
+        "channel": manifest["channelId"],
+        "status": manifest["status"],
+        "rolloutState": manifest["rolloutState"],
+        "supportabilityState": manifest["supportabilityState"],
+        "availablePlatforms": sorted({row["platform"] for row in artifacts}),
+        "primaryHeadByPlatform": {row["platform"]: row["head"] for row in artifacts},
+        "artifacts": artifacts,
+        "artifactCount": len(artifacts),
+        "downloadAccessPosture": "open_public",
+        "knownIssueSummary": "No promoted blocking issues.",
+        "manifestPath": "RELEASE_CHANNEL.json",
+        "manifestSha256": hashlib.sha256(manifest_bytes).hexdigest(),
+        "releaseDecisionPath": "RELEASE_DECISION.json",
+        "registryCommit": "a" * 40,
+        "releaseDecisionStatus": "preview_ready",
+        "releaseDecisionSha256": hashlib.sha256(decision_bytes).hexdigest(),
+        "supportOwner": "release-operations",
+        "nextActions": ["Monitor the stable rollout."],
+    }
+    snapshot.update(snapshot_overrides or {})
+    snapshot_bytes = json.dumps(snapshot).encode("utf-8")
+    snapshot_sha256 = hashlib.sha256(snapshot_bytes).hexdigest()
+    generation = registry / "snapshots" / snapshot["releaseVersion"] / snapshot_sha256
+    generation.mkdir(parents=True, exist_ok=True)
+    (generation / "RELEASE_CHANNEL.json").write_bytes(manifest_bytes)
+    (generation / "RELEASE_DECISION.json").write_bytes(decision_bytes)
+    snapshot_path = generation / "SNAPSHOT.json"
+    snapshot_path.write_bytes(snapshot_bytes)
+    return snapshot_path
+
+
 def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     design = tmp_path / "design"
     fleet = tmp_path / "fleet"
@@ -29,30 +102,15 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     ui = tmp_path / "ui"
     product = design / "products" / "chummer"
     product.mkdir(parents=True)
-    for name in ("PRODUCT_SPINE.yaml", "HORIZON_REGISTRY.yaml", "PUBLIC_FEATURE_REGISTRY.yaml"):
+    for name in ("PRODUCT_SPINE.yaml", "HORIZON_REGISTRY.yaml", "PUBLIC_FEATURE_REGISTRY.yaml", "FLAGSHIP_RELEASE_POLICY.yaml"):
         (product / name).write_text("status: pass\n", encoding="utf-8")
-    (product / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md").write_text(
-        "Verdict: `CLEAR`\n\nNo human-only release boundaries remain.\n",
-        encoding="utf-8",
-    )
-    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text(
-        "Current promoted-scope verdict: `GOLD_READY`.\n"
-        "Avalonia is the only current public-shelf desktop head.\n",
-        encoding="utf-8",
-    )
-    (product / "RELEASE_EVIDENCE_PACK.md").write_text(
-        "Current verdict: `CLEAR`.\nFULL_RULE_AUTHORITY_READY\n",
+    (product / "RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md").write_text(
+        "Verdict: `CLEAR`\n\nNo human-only rule-authority boundaries remain.\n"
+        "This receipt is not a whole-product human-approval ledger.\n",
         encoding="utf-8",
     )
     (product / "FLAGSHIP_PARITY_REGISTRY.yaml").write_text(
         "families:\n  - id: shell\n    release_status: gold_ready\n",
-        encoding="utf-8",
-    )
-    (product / "GROUP_BLOCKERS.md").write_text("## RED blockers\n\nNone.\n", encoding="utf-8")
-    (product / "WHAT_IS_STILL_BELOW_GOLD.md").write_text(
-        "- Current public shelf platform ids: `linux`, `windows`.\n"
-        "- Current public shelf head ids: `avalonia`.\n"
-        "- macOS is not on the current public shelf.\n",
         encoding="utf-8",
     )
     operability_cells = [
@@ -170,16 +228,35 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
         "version": "run-1",
         "generatedAt": "2026-07-11T16:00:00Z",
         "artifacts": [
-            {"head": "avalonia", "platform": "linux"},
-            {"head": "avalonia", "platform": "windows"},
+            release_artifact("linux", "chummer-linux.AppImage"),
+            release_artifact("windows", "chummer-windows.exe"),
         ],
     }
-    write_json(registry / ".codex-studio" / "published" / "RELEASE_CHANNEL.generated.json", release)
+    snapshot_path = write_authority_snapshot(registry, release)
+    snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    release_binding = {
+        "releaseVersion": snapshot["releaseVersion"],
+        "snapshotSha256": hashlib.sha256(snapshot_path.read_bytes()).hexdigest(),
+        "manifestSha256": snapshot["manifestSha256"],
+        "releaseDecisionSha256": snapshot["releaseDecisionSha256"],
+    }
+    release_bound_receipts = (
+        product / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json",
+        run / ".codex-studio" / "published" / "OPERATOR_RELEASE_DASHBOARD.generated.json",
+        run / ".codex-studio" / "published" / "FINAL_GOLD_JANITOR.generated.json",
+        run / ".codex-studio" / "published" / "FLAGSHIP_PRODUCT_READINESS_GATE.generated.json",
+        run / ".codex-studio" / "published" / "PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
+        run / ".codex-studio" / "published" / "RELEASE_READY.generated.json",
+    )
+    for receipt_path in release_bound_receipts:
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        receipt.update(release_binding)
+        write_json(receipt_path, receipt)
     live = {
         "https://example.test/status": "Stable is published. Version run-1",
-        "https://example.test/releases.json": json.dumps({**release, "channel": "public_stable"}),
+        "https://example.test/releases.json": json.dumps(snapshot),
     }
-    return {"design": design, "fleet": fleet, "run": run, "registry": registry, "ui": ui, "template": template}, live
+    return {"design": design, "fleet": fleet, "run": run, "registry": registry, "snapshot": snapshot_path, "ui": ui, "template": template}, live
 
 
 def materialize_fixture(paths: dict[str, Path], live: dict[str, str]) -> dict:
@@ -188,11 +265,13 @@ def materialize_fixture(paths: dict[str, Path], live: dict[str, str]) -> dict:
         fleet_root=paths["fleet"],
         run_services_root=paths["run"],
         registry_root=paths["registry"],
+        registry_snapshot_path=paths["snapshot"],
         ui_root=paths["ui"],
         template_path=paths["template"],
         live_status_url="https://example.test/status",
         live_release_url="https://example.test/releases.json",
         url_loader=live.__getitem__,
+        now_utc=materializer.parse_utc_timestamp("2026-07-11T16:30:00Z"),
     )
 
 
@@ -201,8 +280,12 @@ def test_complete_current_evidence_materializes_gold_ready(tmp_path: Path) -> No
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "pass"
     assert graph["verdict"] == "GOLD_READY"
+    assert graph["releaseDecisionStatus"] == "stable_ready"
+    assert graph["live_release"]["release_decision_status"] == "stable_ready"
+    assert graph["release_authority"]["release_decision_status"] == "stable_ready"
+    assert graph["releaseVersion"] == "run-1"
     assert graph["blocking_findings"] == []
-    assert len(graph["proof_inputs"]) == 23
+    assert len(graph["proof_inputs"]) == 22
     assert all(row["status"] == "pass" for row in graph["proof_inputs"])
     assert graph["completion_audit"]["status"] == "pass"
     assert graph["completion_audit"]["requirement_count"] == 12
@@ -270,28 +353,110 @@ def test_optional_ea_blocker_is_visible_but_does_not_block_gold(tmp_path: Path) 
     ]
 
 
-def test_stale_closeout_or_human_boundary_claim_fails_closed(tmp_path: Path) -> None:
+def test_handwritten_closeout_claims_cannot_overrule_generated_graph(tmp_path: Path) -> None:
     paths, live = build_fixture(tmp_path)
     product = paths["design"] / "products" / "chummer"
-    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text("Chummer6 is not finished.\n", encoding="utf-8")
-    (product / "RELEASE_EVIDENCE_PACK.md").write_text("`SR4` remains blocked\n", encoding="utf-8")
+    (product / "CAMPAIGN_OS_FLAGSHIP_CLOSEOUT.md").write_text("Current verdict: GOLD_READY.\n", encoding="utf-8")
+    (product / "GROUP_BLOCKERS.md").write_text("No blockers.\n", encoding="utf-8")
+    graph = materialize_fixture(paths, live)
+    assert graph["status"] == "pass"
+    proof_kinds = {row["kind"] for row in graph["proof_inputs"]}
+    assert "campaign_os_flagship_closeout" not in proof_kinds
+    assert "parity_and_group_blockers" not in proof_kinds
+
+
+def test_authority_primary_head_must_match_snapshot_artifacts(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    manifest = json.loads((paths["snapshot"].parent / "RELEASE_CHANNEL.json").read_text(encoding="utf-8"))
+    paths["snapshot"] = write_authority_snapshot(
+        paths["registry"],
+        manifest,
+        {"primaryHeadByPlatform": {"linux": "avalonia", "windows": "blazor"}},
+    )
+    live["https://example.test/releases.json"] = paths["snapshot"].read_text(encoding="utf-8")
+    graph = materialize_fixture(paths, live)
+    assert graph["status"] == "review_required"
+    assert any("primary head" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_authority_must_identify_the_registry_repository(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    manifest = json.loads((paths["snapshot"].parent / "RELEASE_CHANNEL.json").read_text(encoding="utf-8"))
+    paths["snapshot"] = write_authority_snapshot(
+        paths["registry"],
+        manifest,
+        {"registryRepository": "example/ambiguous-registry"},
+    )
+    live["https://example.test/releases.json"] = paths["snapshot"].read_text(encoding="utf-8")
+    graph = materialize_fixture(paths, live)
+    assert graph["status"] == "review_required"
+    assert any("must identify ArchonMegalon/chummer6-hub-registry" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_authority_must_preserve_exact_decision_bytes(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    (paths["snapshot"].parent / "RELEASE_DECISION.json").write_text("{}", encoding="utf-8")
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
     summaries = [row["summary"] for row in graph["blocking_findings"]]
-    assert any("closeout contradicts" in summary for summary in summaries)
-    assert any("human-only boundary truth" in summary for summary in summaries)
+    assert any("does not match exact decision bytes" in summary for summary in summaries)
+    assert any("decision contract is unsupported" in summary for summary in summaries)
 
 
-def test_public_shelf_platform_claim_must_match_registry_artifacts(tmp_path: Path) -> None:
+def test_authority_decision_status_must_match_exact_bytes(tmp_path: Path) -> None:
     paths, live = build_fixture(tmp_path)
-    registry_path = paths["registry"] / ".codex-studio" / "published" / "RELEASE_CHANNEL.generated.json"
-    release = json.loads(registry_path.read_text(encoding="utf-8"))
-    release["artifacts"].append({"head": "avalonia", "platform": "macos"})
-    write_json(registry_path, release)
-    live["https://example.test/releases.json"] = json.dumps({**release, "channel": "public_stable"})
+    manifest = json.loads((paths["snapshot"].parent / "RELEASE_CHANNEL.json").read_text(encoding="utf-8"))
+    paths["snapshot"] = write_authority_snapshot(
+        paths["registry"],
+        manifest,
+        decision_overrides={"releaseDecisionStatus": "review_required"},
+    )
+    live["https://example.test/releases.json"] = paths["snapshot"].read_text(encoding="utf-8")
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
-    assert any("public shelf platform" in row["summary"] for row in graph["blocking_findings"])
+    assert any("decision status disagrees" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_authority_decision_release_version_must_match_exact_bytes(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    manifest = json.loads((paths["snapshot"].parent / "RELEASE_CHANNEL.json").read_text(encoding="utf-8"))
+    paths["snapshot"] = write_authority_snapshot(
+        paths["registry"],
+        manifest,
+        decision_overrides={"releaseVersion": "run-other"},
+    )
+    live["https://example.test/releases.json"] = paths["snapshot"].read_text(encoding="utf-8")
+    graph = materialize_fixture(paths, live)
+    assert graph["status"] == "review_required"
+    assert any("decision releaseVersion disagrees" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_authority_decision_manifest_digest_must_match_snapshot(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    manifest = json.loads((paths["snapshot"].parent / "RELEASE_CHANNEL.json").read_text(encoding="utf-8"))
+    paths["snapshot"] = write_authority_snapshot(
+        paths["registry"],
+        manifest,
+        decision_overrides={"manifestSha256": "f" * 64},
+    )
+    live["https://example.test/releases.json"] = paths["snapshot"].read_text(encoding="utf-8")
+    graph = materialize_fixture(paths, live)
+    assert graph["status"] == "review_required"
+    assert any("decision manifest digest disagrees" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_authority_rejects_duplicate_decision_properties(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    (paths["snapshot"].parent / "RELEASE_DECISION.json").write_text(
+        '{"contractName":"chummer.preview-release-decision/v1",'
+        '"releaseVersion":"run-1",'
+        '"releaseDecisionStatus":"preview_ready",'
+        '"releaseDecisionStatus":"review_required"}',
+        encoding="utf-8",
+    )
+    graph = materialize_fixture(paths, live)
+    assert graph["status"] == "review_required"
+    assert any("duplicate JSON property: releaseDecisionStatus" in row["summary"] for row in graph["blocking_findings"])
 
 
 def test_non_gold_parity_family_fails_closed(tmp_path: Path) -> None:
@@ -326,3 +491,35 @@ def test_release_ready_gate_matrix_cannot_omit_security_gate(tmp_path: Path) -> 
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
     assert any("41-gate matrix" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_release_bound_receipt_from_another_release_fails_closed(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    receipt_path = paths["run"] / ".codex-studio" / "published" / "OPERATOR_RELEASE_DASHBOARD.generated.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["releaseVersion"] = "run-other"
+    write_json(receipt_path, receipt)
+
+    graph = materialize_fixture(paths, live)
+
+    assert graph["status"] == "review_required"
+    assert any(
+        "operator_release_dashboard releaseVersion is missing or does not match" in row["summary"]
+        for row in graph["blocking_findings"]
+    )
+
+
+def test_stale_release_bound_receipt_fails_closed(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    receipt_path = paths["run"] / ".codex-studio" / "published" / "PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["generated_at_utc"] = "2026-07-10T15:00:00Z"
+    write_json(receipt_path, receipt)
+
+    graph = materialize_fixture(paths, live)
+
+    assert graph["status"] == "review_required"
+    assert any(
+        "public_edge_postdeploy_gate receipt is stale" in row["summary"]
+        for row in graph["blocking_findings"]
+    )

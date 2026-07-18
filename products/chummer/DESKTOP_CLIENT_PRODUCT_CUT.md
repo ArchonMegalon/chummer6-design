@@ -24,7 +24,7 @@ It is still a real maintained delivery lane, but it is not the flagship product 
 
 `Chummer.Blazor.Desktop` may be treated as fallback only when all of the following are true:
 
-* the current public shelf names Avalonia as the primary desktop route for the same lane
+* the immutable release scope names exactly one primary desktop route for the lane
 * the shelf, release copy, and release evidence explicitly label Blazor as compatibility or fallback
 * the Blazor lane is being used for support-directed compatibility, recovery, or parity backfill rather than as the public default
 

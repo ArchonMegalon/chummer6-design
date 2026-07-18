@@ -1,6 +1,6 @@
 {
   "blockers": [],
-  "contract_name": "chummer.human_only_release_boundaries",
+  "contract_name": "chummer.rule_authority_human_boundaries",
   "contract_version": 1,
   "generated_at": "2026-06-26T11:28:00Z",
   "human_action_count": 0,
@@ -8,6 +8,6 @@
   "source_receipt": "chummer-core-engine/.codex-studio/published/FULL_PRODUCT_RULE_AUTHORITY_COMPLETION.generated.json",
   "source_receipt_final_verdict": "FULL_RULE_AUTHORITY_READY",
   "source_receipt_generated_at": "2026-06-26T11:28:00Z",
-  "summary": "No human-only release boundaries remain.",
+  "summary": "No human-only rule-authority boundaries remain.",
   "verdict": "CLEAR"
 }

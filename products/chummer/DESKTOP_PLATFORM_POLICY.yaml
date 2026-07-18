@@ -1,0 +1,26 @@
+contract_name: chummer.desktop_platform_policy
+contract_version: 1
+policy_only: true
+scope_rules:
+  choose_platforms_before_candidate_production: true
+  one_primary_head_per_platform: true
+  every_visible_head_requires_independent_proof: true
+  fallback_heads_must_be_explicit_and_bounded: true
+  shelf_contents_must_not_define_scope_implicitly: true
+platform_requirements:
+  windows:
+    startup: native
+    signing: required_for_promotion
+    visual_review: protected_human_finalization
+  linux:
+    startup: native
+    package_integrity: required_for_promotion
+  macos:
+    startup: native
+    signing: codesign_and_notarization_required
+head_requirements:
+  avalonia:
+    role_eligibility: primary_or_bounded_fallback
+  blazor:
+    role_eligibility: primary_or_bounded_fallback
+    cannot_inherit_other_head_proof: true

@@ -1,11 +1,15 @@
-# What is still below gold
+# Current release decision
 
-Generated compatibility projection; do not edit. Current authority: `CURRENT_RELEASE_DECISION.generated.json`.
+Generated current state. The JSON sibling is the machine-readable projection; `FINAL_GOLD_GRAPH.generated.json` remains the stable/gold authority.
 
-Current stable/gold verdict: `PUBLIC_RELEASE_REVIEW_REQUIRED`.
-Current preview verdict: `PREVIEW_RELEASE_REVIEW_REQUIRED`.
+- Status: `review_required`
+- Release version: `unbound`
+- Channel: `unbound`
+- Snapshot SHA-256: `unbound`
+- Decision SHA-256: `unbound`
+- Available platforms: `none asserted`
 
-## RED blockers
+## Why review is required
 
 - immutable Registry authority snapshot is not bound
 - release scope decision is not approved

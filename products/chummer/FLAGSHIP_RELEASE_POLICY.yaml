@@ -1,0 +1,48 @@
+contract_name: chummer.flagship_release_policy
+contract_version: 1
+policy_only: true
+current_availability_authority: FINAL_GOLD_GRAPH.generated.json
+preview_decision_authority: PREVIEW_RELEASE_DECISION.generated.json
+current_projection_authority: CURRENT_RELEASE_DECISION.generated.json
+preview:
+  scorecard:
+    required_cell_count: 36
+    minimum_score: 2
+  requires:
+    - one immutable Registry authority snapshot
+    - one explicitly approved release scope
+    - one primary desktop head per promoted platform
+    - independent proof for every visible fallback head
+    - no stale or missing required proof
+    - one passing public-route convergence result
+    - a bounded support owner and named next actions
+  public_wording: preview
+stable:
+  scorecard:
+    required_cell_count: 36
+    required_score: 3
+  release_ready:
+    required_gate_count: 41
+    all_gates_must_pass: true
+  requires:
+    - signed and supportable artifacts
+    - independent proof for every shipped head
+    - current rollback and recovery proof
+    - public-stable Registry posture
+    - current postdeploy evidence
+claim_rules:
+  static_policy_must_not_claim_current_availability: true
+  historical_closeout_must_name_release_version: true
+  generated_current_state_must_bind_snapshot_and_decision_digests: true
+  disagreement_requires_review: true
+authority_transaction:
+  decision_bytes_are_immutable: true
+  decision_must_not_embed_its_own_snapshot_digest: true
+  current_pointer_advance_is_atomic: true
+  stages:
+    - Generate a review-required candidate decision bound to the exact manifest bytes.
+    - Seal and commit the immutable review-required Registry snapshot.
+    - Activate the review-required projection and run exact public-route convergence.
+    - Generate the preview-ready or stable-ready decision from the bound proof set.
+    - Seal a successor snapshot containing the exact ready-decision bytes.
+    - Advance CURRENT only after successor activation and convergence pass.

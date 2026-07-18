@@ -1,0 +1,9 @@
+contract_name: chummer.primary_route_policy
+contract_version: 1
+policy_only: true
+rules:
+  - Every promoted platform has exactly one primary head.
+  - Every fallback head is labeled compatibility or support-directed.
+  - A route may not infer availability from a checked-in shelf artifact.
+  - All release-facing routes consume the same immutable release-truth projection.
+  - Review-required authority may preserve access to working artifacts but may not render optimistic release claims.

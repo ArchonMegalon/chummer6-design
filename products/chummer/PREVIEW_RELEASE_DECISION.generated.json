@@ -1,0 +1,92 @@
+{
+  "artifactAccessClass": "review_required",
+  "authoritySnapshotSha256": "",
+  "blockingFindings": [
+    {
+      "id": "preview_1",
+      "severity": "release_truth",
+      "summary": "release scope decision is not approved"
+    },
+    {
+      "id": "preview_2",
+      "severity": "release_truth",
+      "summary": "release scope release_version is required"
+    },
+    {
+      "id": "preview_3",
+      "severity": "release_truth",
+      "summary": "release scope must name at least one platform"
+    },
+    {
+      "id": "preview_4",
+      "severity": "release_truth",
+      "summary": "release scope artifact access class is unresolved"
+    },
+    {
+      "id": "preview_5",
+      "severity": "release_truth",
+      "summary": "release scope support owner is required"
+    },
+    {
+      "id": "preview_6",
+      "severity": "release_truth",
+      "summary": "release scope approval identity and timestamp are required"
+    },
+    {
+      "id": "preview_7",
+      "severity": "release_truth",
+      "summary": "every campaign operability cell must be evidence-backed at score 2 or 3"
+    },
+    {
+      "id": "preview_8",
+      "severity": "release_truth",
+      "summary": "explicit immutable release manifest bytes are required"
+    },
+    {
+      "id": "preview_9",
+      "severity": "release_truth",
+      "summary": "exact 40-character registry commit is required"
+    },
+    {
+      "id": "preview_10",
+      "severity": "release_truth",
+      "summary": "release manifest channel must be preview"
+    },
+    {
+      "id": "preview_11",
+      "severity": "release_truth",
+      "summary": "Registry authority: immutable Registry authority snapshot is not bound"
+    },
+    {
+      "id": "preview_12",
+      "severity": "release_truth",
+      "summary": "Registry authority: immutable Registry authority snapshot is required for preview readiness"
+    },
+    {
+      "id": "preview_13",
+      "severity": "release_truth",
+      "summary": "public release convergence proof is missing or not passing"
+    }
+  ],
+  "candidateDecisionSha256": "",
+  "candidateDecisionStatus": "",
+  "channel": "preview",
+  "contractName": "chummer.preview-release-decision/v1",
+  "convergenceSha256": "",
+  "fallbackHeadsByPlatform": {},
+  "generatedAt": "2026-07-18 00:00:00+00:00",
+  "manifestGeneratedAt": "",
+  "manifestSha256": "",
+  "nextActions": [
+    "Choose one explicit platform and desktop-head scope before candidate production resumes."
+  ],
+  "platforms": [],
+  "primaryHeadByPlatform": {},
+  "registryCommit": "",
+  "releaseDecisionStatus": "review_required",
+  "releaseVersion": "",
+  "scorecardSha256": "dc307e014dd3013194143bd69c724fc7b8d8c156f6a84d3962539c4a83771a96",
+  "status": "review_required",
+  "supportOwner": "",
+  "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED"
+}
