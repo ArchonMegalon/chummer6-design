@@ -6,6 +6,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MODULE_PATH = REPO_ROOT / "scripts" / "ai" / "materialize_preview_release_decision.py"
@@ -98,9 +100,9 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
         "comparedFields": list(module.EXPECTED_CONVERGENCE_FIELDS),
         "mismatches": [],
         "failures": [],
-        "authorityRoute": "/api/v1/public/release-truth",
-        "checkedRouteCount": 1,
-        "checkedRoutes": ["/"],
+        "authorityRoute": module.CURRENT_AUTHORITY_ROUTE,
+        "checkedRouteCount": len(module.CURRENT_CONVERGENCE_ROUTES),
+        "checkedRoutes": list(module.CURRENT_CONVERGENCE_ROUTES),
         "releaseTruth": {},
         "manifestSha256": "",
         "releaseDecisionStatus": "review_required",
@@ -157,6 +159,41 @@ def test_exact_preview_bar_is_ready() -> None:
     assert decision["candidateDecisionStatus"] == "review_required"
     assert decision["candidateDecisionSha256"] == "e" * 64
     assert decision["blockingFindings"] == []
+
+
+@pytest.mark.parametrize(
+    "checked_routes",
+    [
+        ["/"],
+        [module.CURRENT_AUTHORITY_ROUTE],
+        ["/", "/"],
+        "/",
+    ],
+)
+def test_partial_duplicate_or_malformed_convergence_denominator_fails(checked_routes) -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    convergence["checkedRoutes"] = checked_routes
+    convergence["checkedRouteCount"] = len(checked_routes)
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("convergence proof is missing" in row["summary"] for row in decision["blockingFindings"])
+
+
+def test_exact_generation_convergence_denominator_is_accepted() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    generation_id = "candidate-20260718.1"
+    authority_route = f"/api/v1/public/release-truth/g/{generation_id}"
+    routes = module.expected_convergence_routes(authority_route)
+    assert routes is not None
+    convergence["authorityRoute"] = authority_route
+    convergence["checkedRoutes"] = list(routes)
+    convergence["checkedRouteCount"] = len(routes)
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "preview_ready"
 
 
 def test_score_one_cell_fails_preview() -> None:

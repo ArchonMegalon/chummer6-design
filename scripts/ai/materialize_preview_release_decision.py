@@ -75,6 +75,43 @@ EXPECTED_CONVERGENCE_TOP_LEVEL = {
     "releaseDecisionSha256",
     "authoritySnapshotSha256",
 }
+CURRENT_AUTHORITY_ROUTE = "/api/v1/public/release-truth"
+CURRENT_CONVERGENCE_ROUTES = (
+    "/",
+    "/now",
+    "/changelog",
+    "/downloads",
+    "/downloads/concierge",
+    "/status",
+    "/artifacts",
+    "/progress",
+    "/help",
+    "/now/concierge",
+    "/api/v1/public/progress-report",
+    "/api/public/progress-report",
+    "/api/v1/public/progress-poster.svg",
+    "/api/public/progress-poster.svg",
+    "/api/v1/public/weekly-pulse",
+    "/api/public/weekly-pulse",
+    "/api/public/release-truth",
+    "/downloads/releases.json",
+    "/downloads/RELEASE_CHANNEL.generated.json",
+)
+GENERATION_AUTHORITY_ROUTE = re.compile(r"^/api/v1/public/release-truth/g/([A-Za-z0-9][A-Za-z0-9._-]{0,127})$")
+
+
+def expected_convergence_routes(authority_route: str) -> tuple[str, ...] | None:
+    if authority_route == CURRENT_AUTHORITY_ROUTE:
+        return CURRENT_CONVERGENCE_ROUTES
+    match = GENERATION_AUTHORITY_ROUTE.fullmatch(authority_route)
+    if match is None:
+        return None
+    generation_id = match.group(1)
+    return (
+        f"/api/public/release-truth/g/{generation_id}",
+        f"/downloads/g/{generation_id}/releases.json",
+        f"/downloads/g/{generation_id}/RELEASE_CHANNEL.generated.json",
+    )
 
 
 def load_json(path: Path | None) -> dict[str, Any]:
@@ -273,6 +310,17 @@ def build_decision(
                 failures.append(f"release scope visible heads do not exactly match {platform!r} public shelf")
 
     convergence_truth = convergence.get("releaseTruth") if isinstance(convergence.get("releaseTruth"), dict) else {}
+    authority_route = text(convergence.get("authorityRoute"))
+    checked_routes = convergence.get("checkedRoutes")
+    expected_routes = expected_convergence_routes(authority_route)
+    checked_routes_valid = (
+        isinstance(checked_routes, list)
+        and all(isinstance(route, str) and route for route in checked_routes)
+        and len(checked_routes) == len(set(checked_routes))
+        and authority_route not in checked_routes
+        and expected_routes is not None
+        and tuple(checked_routes) == expected_routes
+    )
     convergence_valid = (
         set(convergence) == EXPECTED_CONVERGENCE_TOP_LEVEL
         and text(convergence.get("contractName")) == "chummer.live-release-convergence/v1"
@@ -282,9 +330,8 @@ def build_decision(
         and convergence.get("failureCount") == 0
         and isinstance(convergence.get("checkedRouteCount"), int)
         and not isinstance(convergence.get("checkedRouteCount"), bool)
-        and convergence.get("checkedRouteCount") > 0
-        and convergence.get("checkedRouteCount") == len(convergence.get("checkedRoutes") or [])
-        and bool(text(convergence.get("authorityRoute")))
+        and convergence.get("checkedRouteCount") == len(expected_routes or ())
+        and checked_routes_valid
         and HEX_64.fullmatch(token(convergence.get("authoritySnapshotSha256"))) is not None
         and set(convergence.get("comparedFields") or []) == set(EXPECTED_CONVERGENCE_FIELDS)
         and not convergence.get("mismatches")
