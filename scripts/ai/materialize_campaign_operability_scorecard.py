@@ -13,6 +13,9 @@ PRODUCT_ROOT = DESIGN_ROOT / "products" / "chummer"
 DEFAULT_OUTPUT = PRODUCT_ROOT / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
 DEFAULT_FLEET_ROOT = Path("/docker/fleet")
 DEFAULT_CHUMMER_ROOT = Path("/docker/chummercomplete")
+PREVIEW_EVIDENCE_CONTRACT = "chummer.campaign_operability_preview_evidence"
+PREVIEW_EVIDENCE_CONTRACT_VERSION = 1
+UNRESOLVED_VALUES = {"", "none", "null", "tbd", "todo", "unknown", "unassigned"}
 
 DIMENSIONS = (
     "route_clarity",
@@ -107,6 +110,12 @@ def token(value: Any) -> str:
     return str(value or "").strip().lower()
 
 
+def string_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item).strip() for item in value if str(item).strip()]
+
+
 def load_json(path: Path) -> dict[str, Any]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -149,6 +158,81 @@ def generated_at(payload: dict[str, Any]) -> str:
     ).strip()
 
 
+def preview_evidence_declaration(
+    payload: dict[str, Any],
+) -> tuple[bool, str, list[str], str]:
+    declaration = payload.get("campaign_operability_preview")
+    if declaration is None:
+        return False, "", [], ""
+    if not isinstance(declaration, dict):
+        return False, "", [], "campaign-operability preview evidence declaration is malformed"
+
+    owner = token(declaration.get("bounded_owner"))
+    next_actions = string_list(declaration.get("next_actions"))
+    failures: list[str] = []
+    if declaration.get("contract_name") != PREVIEW_EVIDENCE_CONTRACT:
+        failures.append("preview evidence contract name is invalid")
+    if declaration.get("contract_version") != PREVIEW_EVIDENCE_CONTRACT_VERSION:
+        failures.append("preview evidence contract version is invalid")
+    if token(declaration.get("status")) != "pass":
+        failures.append("preview evidence status is not pass")
+    if token(owner) in UNRESOLVED_VALUES:
+        failures.append("preview evidence has no bounded owner")
+    if not next_actions or any(token(item) in UNRESOLVED_VALUES for item in next_actions):
+        failures.append("preview evidence has no concrete next action")
+    return not failures, owner, next_actions, "; ".join(failures)
+
+
+def release_channel_preview_evidence(
+    payload: dict[str, Any],
+) -> tuple[bool, str, list[str], str]:
+    owner = token(payload.get("supportOwner") or payload.get("support_owner"))
+    next_actions = string_list(payload.get("nextActions") or payload.get("next_actions"))
+    valid = (
+        token(payload.get("status")) == "published"
+        and token(payload.get("channelId") or payload.get("channel")) == "preview"
+        and token(payload.get("rolloutState")) == "promoted_preview"
+        and token(payload.get("supportabilityState")) == "preview_supported"
+        and token(payload.get("releaseDecisionStatus")) == "preview_ready"
+        and token(owner) not in UNRESOLVED_VALUES
+        and bool(next_actions)
+        and not any(token(item) in UNRESOLVED_VALUES for item in next_actions)
+    )
+    return (
+        valid,
+        owner,
+        next_actions,
+        "" if valid else "release channel is not an owner-bounded, Registry-approved promoted preview",
+    )
+
+
+def score_projection(
+    *,
+    payload: dict[str, Any],
+    stable_valid: bool,
+    stable_failure: str,
+    preview_evidence: tuple[bool, str, list[str], str] | None = None,
+) -> dict[str, Any]:
+    preview_valid, bounded_owner, next_actions, preview_failure = (
+        preview_evidence if preview_evidence is not None else preview_evidence_declaration(payload)
+    )
+    bounded_owner = token(bounded_owner)
+    score = 3 if stable_valid else (2 if preview_valid else (1 if payload else 0))
+    stable_gap = "" if score == 3 else stable_failure
+    if score >= 2:
+        preview_failure = ""
+    elif not preview_failure:
+        preview_failure = stable_failure
+    return {
+        "score": score,
+        "status": "pass" if score == 3 else ("preview" if score == 2 else "fail"),
+        "bounded_owner": bounded_owner if score == 2 else "",
+        "next_actions": next_actions if score == 2 else [],
+        "failure": stable_gap,
+        "preview_failure": preview_failure,
+    }
+
+
 def evidence_row(
     evidence_id: str,
     path: Path,
@@ -158,6 +242,7 @@ def evidence_row(
     extra_valid: bool = True,
     failure: str = "",
     path_label: str | None = None,
+    preview_evidence: tuple[bool, str, list[str], str] | None = None,
 ) -> dict[str, Any]:
     payload = load_json(path)
     status = token(payload.get("status"))
@@ -165,14 +250,20 @@ def evidence_row(
     valid = bool(payload) and status in valid_statuses and extra_valid
     if expected_verdict:
         valid = valid and verdict == expected_verdict
+    stable_failure = failure or f"{evidence_id} is not passing"
+    projection = score_projection(
+        payload=payload,
+        stable_valid=valid,
+        stable_failure=stable_failure,
+        preview_evidence=preview_evidence,
+    )
     return {
         "id": evidence_id,
         "path": path_label or path.name,
-        "status": "pass" if valid else "fail",
         "source_status": status or "missing",
         "source_verdict": verdict,
         "generated_at": generated_at(payload),
-        "failure": "" if valid else (failure or f"{evidence_id} is not passing"),
+        **projection,
     }
 
 
@@ -226,24 +317,34 @@ def build_evidence_catalog(chummer_root: Path, fleet_root: Path) -> dict[str, di
             "",
             token(release_channel.get("channelId") or release_channel.get("channel")) == "public_stable"
             and token(release_channel.get("rolloutState")) == "public_stable"
-            and token(release_channel.get("supportabilityState")) == "gold_supported",
-            "release channel is not public_stable and gold_supported",
+            and token(release_channel.get("supportabilityState")) == "gold_supported"
+            and token(release_channel.get("releaseDecisionStatus")) == "stable_ready",
+            "release channel is not stable_ready, public_stable, and gold_supported",
         ),
     }
     catalog: dict[str, dict[str, Any]] = {}
     for evidence_id, (path, statuses, verdict, extra_valid, failure) in specs.items():
         if evidence_id == "support_packets":
             source = load_json(path)
+            projection = score_projection(
+                payload=source,
+                stable_valid=bool(source) and extra_valid,
+                stable_failure=failure,
+            )
             catalog[evidence_id] = {
                 "id": evidence_id,
                 "path": portable_path(path, chummer_root=chummer_root, fleet_root=fleet_root),
-                "status": "pass" if bool(source) and extra_valid else "fail",
                 "source_status": "clear" if bool(source) and extra_valid else "missing_or_blocked",
                 "source_verdict": "",
                 "generated_at": generated_at(source),
-                "failure": "" if bool(source) and extra_valid else failure,
+                **projection,
             }
             continue
+        preview_evidence = (
+            release_channel_preview_evidence(release_channel)
+            if evidence_id == "release_channel"
+            else None
+        )
         catalog[evidence_id] = evidence_row(
             evidence_id,
             path,
@@ -252,6 +353,7 @@ def build_evidence_catalog(chummer_root: Path, fleet_root: Path) -> dict[str, di
             extra_valid=extra_valid,
             failure=failure,
             path_label=portable_path(path, chummer_root=chummer_root, fleet_root=fleet_root),
+            preview_evidence=preview_evidence,
         )
     return catalog
 
@@ -264,13 +366,18 @@ def build_journey_catalog(fleet_root: Path) -> tuple[dict[str, dict[str, Any]], 
         if not isinstance(row, dict) or not str(row.get("id") or "").strip():
             continue
         journey_id = str(row["id"]).strip()
+        stable_valid = token(row.get("state")) == "ready"
+        projection = score_projection(
+            payload=row,
+            stable_valid=stable_valid,
+            stable_failure=f"journey {journey_id} is not flagship-ready",
+        )
         catalog[journey_id] = {
             "id": journey_id,
             "path": portable_path(path, fleet_root=fleet_root),
-            "status": "pass" if token(row.get("state")) == "ready" else "fail",
             "source_status": token(row.get("state")) or "missing",
             "generated_at": str(payload.get("generated_at") or "").strip(),
-            "failure": "" if token(row.get("state")) == "ready" else f"journey {journey_id} is not ready",
+            **projection,
         }
     return catalog, path
 
@@ -284,58 +391,147 @@ def score_matrix(
         journey_ids = list(definition["journeys"])
         for dimension_id in DIMENSIONS:
             evidence_ids = list(definition["dimensions"][dimension_id])
-            rows = [dict(journey_catalog.get(item) or {"id": item, "status": "fail", "failure": "journey evidence missing"}) for item in journey_ids]
+            rows = [
+                dict(
+                    journey_catalog.get(item)
+                    or {
+                        "id": item,
+                        "status": "fail",
+                        "score": 0,
+                        "failure": "journey evidence missing",
+                        "preview_failure": "journey evidence missing",
+                    }
+                )
+                for item in journey_ids
+            ]
             rows.extend(
-                dict(evidence_catalog.get(item) or {"id": item, "status": "fail", "failure": "receipt evidence missing"})
+                dict(
+                    evidence_catalog.get(item)
+                    or {
+                        "id": item,
+                        "status": "fail",
+                        "score": 0,
+                        "failure": "receipt evidence missing",
+                        "preview_failure": "receipt evidence missing",
+                    }
+                )
                 for item in evidence_ids
             )
-            failures = [str(row.get("failure") or row.get("id") or "unknown failure") for row in rows if row.get("status") != "pass"]
-            missing = any("missing" in str(row.get("failure") or "").lower() for row in rows if row.get("status") != "pass")
+            for row in rows:
+                raw_score = row.get("score")
+                if not isinstance(raw_score, int) or isinstance(raw_score, bool) or raw_score not in {0, 1, 2, 3}:
+                    raw_score = 3 if row.get("status") == "pass" else (
+                        0 if "missing" in str(row.get("failure") or "").lower() else 1
+                    )
+                next_actions = string_list(row.get("next_actions"))
+                bounded_owner = token(row.get("bounded_owner"))
+                if raw_score == 2 and (
+                    token(bounded_owner) in UNRESOLVED_VALUES
+                    or not next_actions
+                    or any(token(item) in UNRESOLVED_VALUES for item in next_actions)
+                ):
+                    raw_score = 1
+                    row["preview_failure"] = "trustworthy-preview evidence lacks a bounded owner or concrete next action"
+                    row["failure"] = row.get("failure") or row["preview_failure"]
+                row["score"] = raw_score
+                row["bounded_owner"] = bounded_owner if raw_score == 2 else ""
+                row["next_actions"] = next_actions if raw_score == 2 else []
+            score = min((int(row["score"]) for row in rows), default=0)
+            flagship_gaps = [
+                str(row.get("failure") or row.get("id") or "unknown flagship gap")
+                for row in rows
+                if row["score"] < 3
+            ]
+            preview_blockers = [
+                str(row.get("preview_failure") or row.get("failure") or row.get("id") or "unknown preview blocker")
+                for row in rows
+                if row["score"] < 2
+            ]
+            preview_owners = sorted(
+                {str(row["bounded_owner"]) for row in rows if row["score"] == 2 and row.get("bounded_owner")}
+            )
+            next_actions = list(
+                dict.fromkeys(
+                    action
+                    for row in rows
+                    if row["score"] == 2
+                    for action in string_list(row.get("next_actions"))
+                )
+            )
             cells.append(
                 {
                     "surface_id": surface_id,
                     "dimension_id": dimension_id,
-                    "score": 3 if not failures else (0 if missing else 1),
+                    "score": score,
+                    "preview_status": "pass" if score >= 2 else "fail",
+                    "stable_status": "pass" if score == 3 else "fail",
                     "owners": list(definition["owners"]),
+                    "preview_owners": preview_owners,
+                    "next_actions": next_actions,
                     "journey_ids": journey_ids,
                     "evidence_ids": evidence_ids,
                     "evidence": rows,
-                    "failures": failures,
+                    "preview_blockers": preview_blockers,
+                    "flagship_gaps": flagship_gaps,
+                    "failures": flagship_gaps,
                 }
             )
     return cells
+
+
+def scorecard_summary(cells: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {score: sum(cell.get("score") == score for cell in cells) for score in range(4)}
+    return {
+        "surface_count": len(SURFACE_DEFINITIONS),
+        "dimension_count": len(DIMENSIONS),
+        "cell_count": len(cells),
+        "score_0_count": counts[0],
+        "score_1_count": counts[1],
+        "score_2_count": counts[2],
+        "score_3_count": counts[3],
+        "at_least_2_count": counts[2] + counts[3],
+        "below_2_count": counts[0] + counts[1],
+        "below_3_count": len(cells) - counts[3],
+        "minimum_score": min((int(cell.get("score") or 0) for cell in cells), default=0),
+    }
 
 
 def build_scorecard(chummer_root: Path, fleet_root: Path) -> dict[str, Any]:
     evidence_catalog = build_evidence_catalog(chummer_root, fleet_root)
     journey_catalog, journey_path = build_journey_catalog(fleet_root)
     cells = score_matrix(evidence_catalog, journey_catalog)
-    ready_cells = [cell for cell in cells if cell["score"] == 3]
-    failures = [
+    summary = scorecard_summary(cells)
+    preview_ready = summary["cell_count"] == summary["at_least_2_count"] == 36
+    stable_ready = summary["cell_count"] == summary["score_3_count"] == 36
+    preview_failures = [
+        f"{cell['surface_id']}.{cell['dimension_id']}: {', '.join(cell['preview_blockers'])}"
+        for cell in cells
+        if cell["score"] < 2
+    ]
+    flagship_gaps = [
         f"{cell['surface_id']}.{cell['dimension_id']}: {', '.join(cell['failures'])}"
         for cell in cells
         if cell["score"] != 3
     ]
     return {
         "contract_name": "chummer.campaign_operability_scorecard",
-        "contract_version": 1,
+        "contract_version": 2,
         "generated_at_utc": utc_now(),
-        "status": "pass" if len(ready_cells) == len(cells) == 36 else "fail",
-        "verdict": "CAMPAIGN_OPERABILITY_READY" if len(ready_cells) == len(cells) == 36 else "CAMPAIGN_OPERABILITY_NOT_READY",
+        "status": "pass" if stable_ready else "fail",
+        "verdict": "CAMPAIGN_OPERABILITY_READY" if stable_ready else "CAMPAIGN_OPERABILITY_NOT_READY",
+        "preview_status": "pass" if preview_ready else "fail",
+        "preview_verdict": "CAMPAIGN_OPERABILITY_PREVIEW_READY" if preview_ready else "CAMPAIGN_OPERABILITY_PREVIEW_NOT_READY",
+        "stable_status": "pass" if stable_ready else "fail",
+        "stable_verdict": "CAMPAIGN_OPERABILITY_READY" if stable_ready else "CAMPAIGN_OPERABILITY_NOT_READY",
         "rubric_path": portable_path(PRODUCT_ROOT / "CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml"),
         "journey_gate_path": portable_path(journey_path, fleet_root=fleet_root),
         "required_surfaces": list(SURFACE_DEFINITIONS),
         "required_dimensions": list(DIMENSIONS),
-        "summary": {
-            "surface_count": len(SURFACE_DEFINITIONS),
-            "dimension_count": len(DIMENSIONS),
-            "cell_count": len(cells),
-            "score_3_count": len(ready_cells),
-            "below_3_count": len(cells) - len(ready_cells),
-            "minimum_score": min((cell["score"] for cell in cells), default=0),
-        },
+        "summary": summary,
         "cells": cells,
-        "failures": failures,
+        "preview_failures": preview_failures,
+        "flagship_gaps": flagship_gaps,
+        "failures": flagship_gaps,
     }
 
 
@@ -344,6 +540,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--chummer-root", type=Path, default=DEFAULT_CHUMMER_ROOT)
     parser.add_argument("--fleet-root", type=Path, default=DEFAULT_FLEET_ROOT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--target", choices=("preview", "stable"), default="stable")
     return parser.parse_args()
 
 
@@ -352,8 +549,9 @@ def main() -> int:
     payload = build_scorecard(args.chummer_root.resolve(), args.fleet_root.resolve())
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    print(f"campaign_operability_scorecard:{payload['status']}")
-    return 0 if payload["status"] == "pass" else 1
+    target_status = str(payload[f"{args.target}_status"])
+    print(f"campaign_operability_scorecard:{args.target}:{target_status}")
+    return 0 if target_status == "pass" else 1
 
 
 if __name__ == "__main__":

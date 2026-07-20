@@ -17,6 +17,16 @@ module = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = module
 SPEC.loader.exec_module(module)
 
+SCORECARD_MODULE_PATH = REPO_ROOT / "scripts" / "ai" / "materialize_campaign_operability_scorecard.py"
+SCORECARD_SPEC = importlib.util.spec_from_file_location(
+    "preview_test_campaign_operability_scorecard",
+    SCORECARD_MODULE_PATH,
+)
+assert SCORECARD_SPEC and SCORECARD_SPEC.loader
+scorecard_module = importlib.util.module_from_spec(SCORECARD_SPEC)
+sys.modules[SCORECARD_SPEC.name] = scorecard_module
+SCORECARD_SPEC.loader.exec_module(scorecard_module)
+
 
 def artifact() -> dict:
     return {
@@ -56,12 +66,70 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
         "next_actions": ["Monitor rollout."],
         "approval": {"status": "approved", "approved_by": "operator", "approved_at": "2026-07-18T00:00:00Z"},
     }
+    preview_action = "Complete the remaining flagship evidence."
     cells = [
-        {"surface_id": surface, "dimension_id": dimension, "score": 2, "owners": ["owner"], "evidence": ["proof"]}
+        {
+            "surface_id": surface,
+            "dimension_id": dimension,
+            "score": 2,
+            "preview_status": "pass",
+            "stable_status": "fail",
+            "owners": ["owner"],
+            "preview_owners": ["owner"],
+            "next_actions": [preview_action],
+            "evidence": [
+                {
+                    "id": "proof",
+                    "score": 2,
+                    "status": "preview",
+                    "bounded_owner": "owner",
+                    "next_actions": [preview_action],
+                    "failure": "flagship proof remains",
+                    "preview_failure": "",
+                }
+            ],
+            "preview_blockers": [],
+            "flagship_gaps": ["flagship proof remains"],
+            "failures": ["flagship proof remains"],
+        }
         for surface in module.EXPECTED_SURFACES
         for dimension in module.EXPECTED_DIMENSIONS
     ]
-    scorecard = {"generated_at_utc": "2026-07-18T00:00:00Z", "cells": cells}
+    flagship_gaps = [
+        f"{surface}.{dimension}: flagship proof remains"
+        for surface in module.EXPECTED_SURFACES
+        for dimension in module.EXPECTED_DIMENSIONS
+    ]
+    scorecard = {
+        "contract_name": "chummer.campaign_operability_scorecard",
+        "contract_version": 2,
+        "generated_at_utc": "2026-07-18T00:00:00Z",
+        "status": "fail",
+        "verdict": "CAMPAIGN_OPERABILITY_NOT_READY",
+        "preview_status": "pass",
+        "preview_verdict": "CAMPAIGN_OPERABILITY_PREVIEW_READY",
+        "stable_status": "fail",
+        "stable_verdict": "CAMPAIGN_OPERABILITY_NOT_READY",
+        "required_surfaces": list(module.EXPECTED_SURFACES),
+        "required_dimensions": list(module.EXPECTED_DIMENSIONS),
+        "summary": {
+            "surface_count": 6,
+            "dimension_count": 6,
+            "cell_count": 36,
+            "score_0_count": 0,
+            "score_1_count": 0,
+            "score_2_count": 36,
+            "score_3_count": 0,
+            "at_least_2_count": 36,
+            "below_2_count": 0,
+            "below_3_count": 36,
+            "minimum_score": 2,
+        },
+        "cells": cells,
+        "preview_failures": [],
+        "flagship_gaps": flagship_gaps,
+        "failures": list(flagship_gaps),
+    }
     manifest = {
         "version": "run-1",
         "channelId": "preview",
@@ -154,6 +222,47 @@ def build(scope: dict, scorecard: dict, manifest: dict, snapshot: dict, converge
     )
 
 
+def make_scorecard_stable(scorecard: dict) -> None:
+    for cell in scorecard["cells"]:
+        cell.update(
+            {
+                "score": 3,
+                "stable_status": "pass",
+                "preview_owners": [],
+                "next_actions": [],
+                "flagship_gaps": [],
+                "failures": [],
+            }
+        )
+        cell["evidence"][0].update(
+            {
+                "score": 3,
+                "status": "pass",
+                "bounded_owner": "",
+                "next_actions": [],
+                "failure": "",
+            }
+        )
+    scorecard.update(
+        {
+            "status": "pass",
+            "verdict": "CAMPAIGN_OPERABILITY_READY",
+            "stable_status": "pass",
+            "stable_verdict": "CAMPAIGN_OPERABILITY_READY",
+            "flagship_gaps": [],
+            "failures": [],
+        }
+    )
+    scorecard["summary"].update(
+        {
+            "score_2_count": 0,
+            "score_3_count": 36,
+            "below_3_count": 0,
+            "minimum_score": 3,
+        }
+    )
+
+
 def test_exact_preview_bar_is_ready() -> None:
     decision = build(*fixture())
     assert decision["status"] == "preview_ready"
@@ -161,6 +270,136 @@ def test_exact_preview_bar_is_ready() -> None:
     assert decision["candidateDecisionStatus"] == "review_required"
     assert decision["candidateDecisionSha256"] == "e" * 64
     assert decision["blockingFindings"] == []
+
+
+def test_emitted_mixed_case_multi_action_scorecard_validates(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    evidence_ids = {
+        evidence_id
+        for definition in scorecard_module.SURFACE_DEFINITIONS.values()
+        for dimension_evidence in definition["dimensions"].values()
+        for evidence_id in dimension_evidence
+    }
+    journey_ids = {
+        journey_id
+        for definition in scorecard_module.SURFACE_DEFINITIONS.values()
+        for journey_id in definition["journeys"]
+    }
+    evidence = {
+        evidence_id: {"id": evidence_id, "status": "pass", "failure": ""}
+        for evidence_id in evidence_ids
+    }
+    journeys = {
+        journey_id: {"id": journey_id, "status": "pass", "failure": ""}
+        for journey_id in journey_ids
+    }
+    evidence["release_ready"] = {
+        "id": "release_ready",
+        "status": "preview",
+        "score": 2,
+        "bounded_owner": "Release-Operations",
+        "next_actions": ["Capture proof B.", "Capture proof A.", "Capture proof B."],
+        "failure": "release_ready is below the flagship bar",
+        "preview_failure": "",
+    }
+    monkeypatch.setattr(scorecard_module, "build_evidence_catalog", lambda *_: evidence)
+    monkeypatch.setattr(
+        scorecard_module,
+        "build_journey_catalog",
+        lambda *_: (journeys, Path("journeys.json")),
+    )
+    emitted = scorecard_module.build_scorecard(Path("chummer"), Path("fleet"))
+
+    assert module.preview_scorecard_errors(emitted) == []
+    dependent = [cell for cell in emitted["cells"] if "release_ready" in cell["evidence_ids"]]
+    assert dependent
+    assert all(cell["preview_owners"] == ["release-operations"] for cell in dependent)
+    assert all(
+        cell["next_actions"] == ["Capture proof B.", "Capture proof A."]
+        for cell in dependent
+    )
+
+    scope, _, manifest, snapshot, convergence = fixture()
+    decision = build(scope, emitted, manifest, snapshot, convergence)
+    assert decision["status"] == "preview_ready"
+
+
+def test_score_three_operability_evidence_also_satisfies_preview() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    make_scorecard_stable(scorecard)
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "preview_ready"
+    assert decision["blockingFindings"] == []
+
+
+def test_score_two_multi_action_order_is_validated_exactly() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    actions = ["Capture proof B.", "Capture proof A."]
+    for cell in scorecard["cells"]:
+        cell["evidence"][0]["bounded_owner"] = "release-operations"
+        cell["evidence"][0]["next_actions"] = list(actions)
+        cell["preview_owners"] = ["release-operations"]
+        cell["next_actions"] = list(actions)
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+    assert decision["status"] == "preview_ready"
+
+    scorecard["cells"][0]["next_actions"] = list(reversed(actions))
+    reordered = build(scope, scorecard, manifest, snapshot, convergence)
+    assert reordered["status"] == "review_required"
+    assert any("bounded preview ownership" in row["summary"] for row in reordered["blockingFindings"])
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("preview_owners", ["release-operations"]),
+        ("next_actions", ["No preview action belongs on score 3."]),
+    ],
+)
+def test_score_three_cell_rejects_preview_only_metadata(field: str, value: list[str]) -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    make_scorecard_stable(scorecard)
+    scorecard["cells"][0][field] = value
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("bounded preview ownership" in row["summary"] for row in decision["blockingFindings"])
+
+
+def test_score_three_evidence_rejects_preview_failure() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    make_scorecard_stable(scorecard)
+    scorecard["cells"][0]["evidence"][0]["preview_failure"] = "preview contradiction"
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("bounded preview ownership" in row["summary"] for row in decision["blockingFindings"])
+
+
+def test_preview_ready_rejects_top_level_preview_failures() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    scorecard["preview_failures"] = ["optimistic contradiction"]
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("preview posture" in row["summary"] for row in decision["blockingFindings"])
+
+
+def test_scorecard_summary_rejects_unknown_v2_fields() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    scorecard["summary"]["optimistic_override"] = 0
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("summary does not match" in row["summary"] for row in decision["blockingFindings"])
 
 
 @pytest.mark.parametrize(
@@ -219,6 +458,28 @@ def test_score_one_cell_fails_preview() -> None:
     decision = build(scope, scorecard, manifest, snapshot, convergence)
     assert decision["status"] == "review_required"
     assert any("score 2 or 3" in row["summary"] for row in decision["blockingFindings"])
+
+
+@pytest.mark.parametrize("missing_field", ["bounded_owner", "next_actions"])
+def test_score_two_cell_requires_bounded_owner_and_next_action(missing_field: str) -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    scorecard["cells"][0]["evidence"][0].pop(missing_field)
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("bounded preview ownership" in row["summary"] for row in decision["blockingFindings"])
+
+
+def test_preview_scorecard_cannot_claim_stable_aliases() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    scorecard["status"] = "pass"
+    scorecard["verdict"] = "CAMPAIGN_OPERABILITY_READY"
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "review_required"
+    assert any("stable posture" in row["summary"] for row in decision["blockingFindings"])
 
 
 def test_platform_head_ambiguity_fails_preview() -> None:

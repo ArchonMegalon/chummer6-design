@@ -118,8 +118,14 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
             "surface_id": surface_id,
             "dimension_id": dimension_id,
             "score": 3,
+            "preview_status": "pass",
+            "stable_status": "pass",
             "owners": ["owner"],
-            "evidence": [{"id": "proof", "status": "pass"}],
+            "preview_owners": [],
+            "next_actions": [],
+            "evidence": [{"id": "proof", "status": "pass", "score": 3}],
+            "preview_blockers": [],
+            "flagship_gaps": [],
             "failures": [],
         }
         for surface_id in (
@@ -142,14 +148,25 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     write_json(
         product / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json",
         {
+            "contract_name": "chummer.campaign_operability_scorecard",
+            "contract_version": 2,
             "status": "pass",
             "verdict": "CAMPAIGN_OPERABILITY_READY",
+            "preview_status": "pass",
+            "preview_verdict": "CAMPAIGN_OPERABILITY_PREVIEW_READY",
+            "stable_status": "pass",
+            "stable_verdict": "CAMPAIGN_OPERABILITY_READY",
             "generated_at_utc": "2026-07-11T16:00:00Z",
             "summary": {
                 "surface_count": 6,
                 "dimension_count": 6,
                 "cell_count": 36,
+                "score_0_count": 0,
+                "score_1_count": 0,
+                "score_2_count": 0,
                 "score_3_count": 36,
+                "at_least_2_count": 36,
+                "below_2_count": 0,
                 "below_3_count": 0,
                 "minimum_score": 3,
             },
@@ -479,6 +496,48 @@ def test_campaign_operability_denominator_cannot_be_weakened(tmp_path: Path) -> 
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
     assert any("exact 36/36" in row["summary"] for row in graph["blocking_findings"])
+
+
+def test_trustworthy_preview_score_two_cannot_pass_gold(tmp_path: Path) -> None:
+    paths, live = build_fixture(tmp_path)
+    scorecard_path = paths["design"] / "products" / "chummer" / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
+    scorecard = json.loads(scorecard_path.read_text(encoding="utf-8"))
+    cell = scorecard["cells"][0]
+    cell.update(
+        {
+            "score": 2,
+            "stable_status": "fail",
+            "preview_owners": ["release-operations"],
+            "next_actions": ["Complete the remaining flagship proof."],
+            "flagship_gaps": ["flagship proof remains"],
+            "failures": ["flagship proof remains"],
+        }
+    )
+    cell["evidence"][0].update(
+        {
+            "score": 2,
+            "bounded_owner": "release-operations",
+            "next_actions": ["Complete the remaining flagship proof."],
+        }
+    )
+    scorecard["status"] = "fail"
+    scorecard["verdict"] = "CAMPAIGN_OPERABILITY_NOT_READY"
+    scorecard["stable_status"] = "fail"
+    scorecard["stable_verdict"] = "CAMPAIGN_OPERABILITY_NOT_READY"
+    scorecard["summary"].update(
+        {
+            "score_2_count": 1,
+            "score_3_count": 35,
+            "below_3_count": 1,
+            "minimum_score": 2,
+        }
+    )
+    write_json(scorecard_path, scorecard)
+
+    graph = materialize_fixture(paths, live)
+
+    assert graph["status"] == "review_required"
+    assert any("exact 36/36 at score 3" in row["summary"] for row in graph["blocking_findings"])
 
 
 def test_release_ready_gate_matrix_cannot_omit_security_gate(tmp_path: Path) -> None:

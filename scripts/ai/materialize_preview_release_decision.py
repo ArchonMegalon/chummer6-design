@@ -42,6 +42,19 @@ EXPECTED_DIMENSIONS = (
     "responsiveness",
     "design_authorship",
 )
+EXPECTED_SCORECARD_SUMMARY_FIELDS = {
+    "surface_count",
+    "dimension_count",
+    "cell_count",
+    "score_0_count",
+    "score_1_count",
+    "score_2_count",
+    "score_3_count",
+    "at_least_2_count",
+    "below_2_count",
+    "below_3_count",
+    "minimum_score",
+}
 EXPECTED_CONVERGENCE_FIELDS = (
     "releaseVersion",
     "channel",
@@ -190,6 +203,12 @@ def string_list(value: Any) -> list[str]:
     return sorted({token(item) for item in value if token(item)})
 
 
+def ordered_text_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [text(item) for item in value if text(item)]
+
+
 def head_map(value: Any) -> dict[str, str]:
     if not isinstance(value, dict):
         return {}
@@ -208,6 +227,181 @@ def generated_at(*payloads: dict[str, Any]) -> str:
             if value:
                 candidates.append(value)
     return max(candidates) if candidates else "unknown"
+
+
+def preview_scorecard_errors(scorecard: dict[str, Any]) -> list[str]:
+    failures: list[str] = []
+    if (
+        text(scorecard.get("contract_name")) != "chummer.campaign_operability_scorecard"
+        or scorecard.get("contract_version") != 2
+        or scorecard.get("required_surfaces") != list(EXPECTED_SURFACES)
+        or scorecard.get("required_dimensions") != list(EXPECTED_DIMENSIONS)
+    ):
+        failures.append("campaign operability scorecard contract must be generated v2")
+
+    cells = scorecard.get("cells") if isinstance(scorecard.get("cells"), list) else []
+    pairs = {
+        (text(cell.get("surface_id")), text(cell.get("dimension_id")))
+        for cell in cells
+        if isinstance(cell, dict)
+    }
+    expected_pairs = {(surface, dimension) for surface in EXPECTED_SURFACES for dimension in EXPECTED_DIMENSIONS}
+    if len(cells) != 36 or pairs != expected_pairs:
+        failures.append("campaign operability scorecard must contain the exact 36 required cells")
+
+    scores: list[int] = []
+    invalid_cell = False
+    for cell in cells:
+        if not isinstance(cell, dict):
+            invalid_cell = True
+            continue
+        score = cell.get("score")
+        evidence = cell.get("evidence")
+        owners = string_list(cell.get("owners"))
+        if (
+            not isinstance(score, int)
+            or isinstance(score, bool)
+            or score not in {2, 3}
+            or not owners
+            or not isinstance(evidence, list)
+            or not evidence
+            or not all(isinstance(row, dict) for row in evidence)
+        ):
+            invalid_cell = True
+            continue
+        evidence_scores = [row.get("score") for row in evidence]
+        if any(
+            not isinstance(value, int)
+            or isinstance(value, bool)
+            or value not in {2, 3}
+            for value in evidence_scores
+        ) or score != min(evidence_scores) or any(
+            (
+                row.get("score") == 3
+                and (
+                    token(row.get("status")) != "pass"
+                    or row.get("failure")
+                    or row.get("preview_failure")
+                    or text(row.get("bounded_owner"))
+                    or row.get("next_actions") != []
+                )
+            )
+            or (
+                row.get("score") == 2
+                and (
+                    token(row.get("status")) != "preview"
+                    or row.get("preview_failure")
+                    or not row.get("failure")
+                    or text(row.get("bounded_owner")) != token(row.get("bounded_owner"))
+                    or row.get("next_actions") != ordered_text_list(row.get("next_actions"))
+                )
+            )
+            for row in evidence
+        ):
+            invalid_cell = True
+            continue
+        if token(cell.get("preview_status")) != "pass" or cell.get("preview_blockers") != []:
+            invalid_cell = True
+            continue
+        if score == 2:
+            score_two_rows = [row for row in evidence if row.get("score") == 2]
+            expected_preview_owners = sorted(
+                {
+                    text(row.get("bounded_owner"))
+                    for row in score_two_rows
+                    if token(row.get("bounded_owner")) not in INVALID_SENTINELS
+                }
+            )
+            expected_next_actions = list(
+                dict.fromkeys(
+                    action
+                    for row in score_two_rows
+                    for action in ordered_text_list(row.get("next_actions"))
+                )
+            )
+            if (
+                token(cell.get("stable_status")) != "fail"
+                or not score_two_rows
+                or any(
+                    token(row.get("bounded_owner")) in INVALID_SENTINELS
+                    or not ordered_text_list(row.get("next_actions"))
+                    for row in score_two_rows
+                )
+                or cell.get("preview_owners") != expected_preview_owners
+                or cell.get("next_actions") != expected_next_actions
+                or not isinstance(cell.get("flagship_gaps"), list)
+                or not isinstance(cell.get("failures"), list)
+                or not cell.get("flagship_gaps")
+                or not all(isinstance(item, str) and text(item) for item in cell.get("flagship_gaps"))
+                or cell.get("flagship_gaps") != cell.get("failures")
+            ):
+                invalid_cell = True
+                continue
+        elif (
+            token(cell.get("stable_status")) != "pass"
+            or cell.get("preview_owners") != []
+            or cell.get("next_actions") != []
+            or cell.get("failures") != []
+            or cell.get("flagship_gaps") != []
+        ):
+            invalid_cell = True
+            continue
+        scores.append(score)
+    if invalid_cell or len(scores) != 36:
+        failures.append("every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership")
+
+    counts = {score: scores.count(score) for score in range(4)}
+    summary = scorecard.get("summary") if isinstance(scorecard.get("summary"), dict) else {}
+    expected_summary = {
+        "surface_count": 6,
+        "dimension_count": 6,
+        "cell_count": 36,
+        "score_0_count": counts[0],
+        "score_1_count": counts[1],
+        "score_2_count": counts[2],
+        "score_3_count": counts[3],
+        "at_least_2_count": counts[2] + counts[3],
+        "below_2_count": counts[0] + counts[1],
+        "below_3_count": 36 - counts[3],
+        "minimum_score": min(scores, default=0),
+    }
+    if set(summary) != EXPECTED_SCORECARD_SUMMARY_FIELDS or any(
+        summary.get(key) != value for key, value in expected_summary.items()
+    ):
+        failures.append("campaign operability scorecard summary does not match its exact 36-cell denominator")
+    expected_flagship_gaps = [
+        f"{cell['surface_id']}.{cell['dimension_id']}: {', '.join(cell['failures'])}"
+        for cell in cells
+        if (
+            isinstance(cell, dict)
+            and cell.get("score") == 2
+            and isinstance(cell.get("failures"), list)
+            and all(isinstance(item, str) for item in cell.get("failures"))
+        )
+    ]
+    if (
+        token(scorecard.get("preview_status")) != "pass"
+        or text(scorecard.get("preview_verdict")) != "CAMPAIGN_OPERABILITY_PREVIEW_READY"
+        or summary.get("at_least_2_count") != 36
+        or summary.get("below_2_count") != 0
+        or summary.get("minimum_score") not in {2, 3}
+        or scorecard.get("preview_failures") != []
+    ):
+        failures.append("campaign operability scorecard preview posture is not 36/36 at score 2 or 3")
+
+    stable_ready = counts[3] == 36 and len(scores) == 36
+    expected_stable_status = "pass" if stable_ready else "fail"
+    expected_stable_verdict = "CAMPAIGN_OPERABILITY_READY" if stable_ready else "CAMPAIGN_OPERABILITY_NOT_READY"
+    if (
+        token(scorecard.get("stable_status")) != expected_stable_status
+        or text(scorecard.get("stable_verdict")) != expected_stable_verdict
+        or token(scorecard.get("status")) != expected_stable_status
+        or text(scorecard.get("verdict")) != expected_stable_verdict
+        or scorecard.get("flagship_gaps") != expected_flagship_gaps
+        or scorecard.get("failures") != expected_flagship_gaps
+    ):
+        failures.append("campaign operability scorecard stable posture does not match its score-3 count")
+    return list(dict.fromkeys(failures))
 
 
 def build_decision(
@@ -272,24 +466,7 @@ def build_decision(
     if token(approval.get("status")) != "approved" or not text(approval.get("approved_by")) or not text(approval.get("approved_at")):
         failures.append("release scope approval identity and timestamp are required")
 
-    cells = scorecard.get("cells") if isinstance(scorecard.get("cells"), list) else []
-    pairs = {
-        (text(cell.get("surface_id")), text(cell.get("dimension_id")))
-        for cell in cells
-        if isinstance(cell, dict)
-    }
-    expected_pairs = {(surface, dimension) for surface in EXPECTED_SURFACES for dimension in EXPECTED_DIMENSIONS}
-    if len(cells) != 36 or pairs != expected_pairs:
-        failures.append("campaign operability scorecard must contain the exact 36 required cells")
-    if any(
-        not isinstance(cell, dict)
-        or not isinstance(cell.get("score"), int)
-        or cell.get("score") < 2
-        or not cell.get("owners")
-        or not cell.get("evidence")
-        for cell in cells
-    ):
-        failures.append("every campaign operability cell must be evidence-backed at score 2 or 3")
+    failures.extend(preview_scorecard_errors(scorecard))
 
     if not manifest or not manifest_sha256:
         failures.append("explicit immutable release manifest bytes are required")

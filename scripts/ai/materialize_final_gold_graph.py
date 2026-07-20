@@ -556,20 +556,40 @@ def build_graph(
         )
     }
     operability_ready = (
-        token(operability.get("status")) == "pass"
+        str(operability.get("contract_name") or "") == "chummer.campaign_operability_scorecard"
+        and operability.get("contract_version") == 2
+        and token(operability.get("status")) == "pass"
         and str(operability.get("verdict") or "") == "CAMPAIGN_OPERABILITY_READY"
+        and token(operability.get("preview_status")) == "pass"
+        and str(operability.get("preview_verdict") or "") == "CAMPAIGN_OPERABILITY_PREVIEW_READY"
+        and token(operability.get("stable_status")) == "pass"
+        and str(operability.get("stable_verdict") or "") == "CAMPAIGN_OPERABILITY_READY"
         and operability_summary.get("surface_count") == 6
         and operability_summary.get("dimension_count") == 6
         and operability_summary.get("cell_count") == 36
+        and operability_summary.get("score_0_count") == 0
+        and operability_summary.get("score_1_count") == 0
+        and operability_summary.get("score_2_count") == 0
         and operability_summary.get("score_3_count") == 36
+        and operability_summary.get("at_least_2_count") == 36
+        and operability_summary.get("below_2_count") == 0
         and operability_summary.get("below_3_count") == 0
         and operability_summary.get("minimum_score") == 3
         and operability_pairs == expected_operability_pairs
         and all(
             isinstance(cell, dict)
             and cell.get("score") == 3
+            and token(cell.get("preview_status")) == "pass"
+            and token(cell.get("stable_status")) == "pass"
             and bool(cell.get("owners"))
             and bool(cell.get("evidence"))
+            and all(
+                isinstance(row, dict)
+                and row.get("score") == 3
+                for row in cell.get("evidence")
+            )
+            and not cell.get("preview_blockers")
+            and not cell.get("flagship_gaps")
             and not cell.get("failures")
             for cell in operability_cells
         )

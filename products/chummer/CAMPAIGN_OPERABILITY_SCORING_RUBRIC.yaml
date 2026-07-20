@@ -1,6 +1,6 @@
 product: chummer
-version: 1
-last_reviewed: 2026-05-12
+version: 2
+last_reviewed: 2026-07-20
 purpose: Versioned whole-product scoring rubric for release readiness at campaign-operability level.
 
 score_scale:
@@ -8,6 +8,40 @@ score_scale:
   1: bounded_but_not_ready
   2: trustworthy_preview
   3: flagship_ready
+
+evidence_rules:
+  aggregation: A cell score is the minimum score of every required journey and receipt; averaging and compensating scores are forbidden.
+  score_0:
+    - Required evidence is missing, unreadable, or absent from the fixed denominator.
+  score_1:
+    - Required evidence exists but does not pass either the preview or flagship contract.
+    - A failed flagship receipt does not become preview evidence merely because it names blockers or next actions.
+  score_2:
+    - The exact source receipt contains a `campaign_operability_preview` object.
+    - Its `contract_name` is `chummer.campaign_operability_preview_evidence` and `contract_version` is `1`.
+    - Its status is `pass`, `bounded_owner` is resolved, and `next_actions` contains at least one concrete action.
+    - Generated owner identifiers are canonical lowercase tokens; cell next actions preserve evidence traversal order and remove only later exact duplicates.
+    - The Registry release channel may satisfy score `2` without the nested object only when it is published as `preview`, rollout is `promoted_preview`, supportability is `preview_supported`, release decision status is `preview_ready`, and support owner plus next actions are present.
+  score_3:
+    - Every required source receipt and journey passes its flagship contract without a preview exception.
+  fail_closed:
+    - Malformed preview declarations score `1`, not `2`.
+    - A score-`2` row without both a bounded owner and concrete next action is downgraded to `1`.
+    - Generated cells retain both preview blockers and flagship gaps so preview truth cannot erase stable debt.
+
+decision_postures:
+  preview:
+    required_cell_count: 36
+    minimum_cell_score: 2
+    generated_status_field: preview_status
+    generated_verdict: CAMPAIGN_OPERABILITY_PREVIEW_READY
+  stable:
+    required_cell_count: 36
+    required_cell_score: 3
+    generated_status_field: stable_status
+    generated_verdict: CAMPAIGN_OPERABILITY_READY
+  compatibility:
+    - Top-level `status` and `verdict` remain aliases of the stable posture; they must never turn green for a score-`2` preview.
 
 dimensions:
   - id: route_clarity

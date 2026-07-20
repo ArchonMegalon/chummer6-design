@@ -6,8 +6,11 @@ preview_decision_authority: PREVIEW_RELEASE_DECISION.generated.json
 current_projection_authority: CURRENT_RELEASE_DECISION.generated.json
 preview:
   scorecard:
+    contract_version: 2
     required_cell_count: 36
     minimum_score: 2
+    status_field: preview_status
+    score_2_requires_bounded_owner_and_next_action: true
   requires:
     - one immutable Registry authority snapshot
     - one explicitly approved release scope
@@ -19,8 +22,10 @@ preview:
   public_wording: preview
 stable:
   scorecard:
+    contract_version: 2
     required_cell_count: 36
     required_score: 3
+    status_field: stable_status
   release_ready:
     required_gate_count: 41
     all_gates_must_pass: true
