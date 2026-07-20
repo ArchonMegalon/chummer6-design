@@ -501,10 +501,13 @@ def test_scope_rejects_sentinel_head_and_unknown_access_class() -> None:
     assert any("artifact access class is unresolved" in summary for summary in summaries)
 
 
-def test_missing_convergence_fails_preview() -> None:
+def test_registry_review_seed_cannot_publish_without_exact_convergence() -> None:
     scope, scorecard, manifest, snapshot, _ = fixture()
+    assert scorecard["preview_status"] == "pass"
+    assert snapshot["releaseDecisionStatus"] == "review_required"
     decision = build(scope, scorecard, manifest, snapshot, {})
     assert decision["status"] == "review_required"
+    assert decision["candidateDecisionStatus"] == "review_required"
     assert any("convergence proof" in row["summary"] for row in decision["blockingFindings"])
 
 

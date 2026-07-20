@@ -11,6 +11,12 @@ preview:
     minimum_score: 2
     status_field: preview_status
     score_2_requires_bounded_owner_and_next_action: true
+  registry_transition:
+    review_seed_decision_status: review_required
+    review_seed_may_score_release_channel: 2
+    review_seed_is_transition_evidence_only: true
+    review_seed_cannot_authorize_publication: true
+    ready_decision_requires_exact_predecessor_bound_live_convergence: true
   requires:
     - one immutable Registry authority snapshot
     - one explicitly approved release scope

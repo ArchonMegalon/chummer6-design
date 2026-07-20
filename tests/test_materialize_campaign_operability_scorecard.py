@@ -185,28 +185,41 @@ def test_preview_evidence_declaration_is_explicit_and_fail_closed(tmp_path: Path
     assert "no bounded owner" in invalid["preview_failure"]
 
 
-def test_registry_approved_preview_channel_scores_two_only_with_support_handoff() -> None:
+def test_registry_review_seed_channel_scores_two_only_with_support_handoff() -> None:
     payload = {
         "status": "published",
         "channel": "preview",
         "rolloutState": "promoted_preview",
         "supportabilityState": "preview_supported",
-        "releaseDecisionStatus": "preview_ready",
+        "releaseDecisionStatus": "review_required",
         "supportOwner": "release-operations",
         "nextActions": ["Complete stable evidence before widening the channel."],
     }
 
-    assert materializer.release_channel_preview_evidence(payload) == (
+    preview_evidence = materializer.release_channel_preview_evidence(payload)
+    assert preview_evidence == (
         True,
         "release-operations",
         ["Complete stable evidence before widening the channel."],
         "",
     )
+    projection = materializer.score_projection(
+        payload=payload,
+        stable_valid=False,
+        stable_failure="release channel is below the stable bar",
+        preview_evidence=preview_evidence,
+    )
+    assert projection["score"] == 2
+    assert projection["status"] == "preview"
+    assert projection["bounded_owner"] == "release-operations"
 
-    payload["releaseDecisionStatus"] = "review_required"
+    payload["releaseDecisionStatus"] = "preview_ready"
+    assert materializer.release_channel_preview_evidence(payload)[0] is True
+
+    payload["releaseDecisionStatus"] = "stable_ready"
     valid, _, _, failure = materializer.release_channel_preview_evidence(payload)
     assert valid is False
-    assert "Registry-approved promoted preview" in failure
+    assert "Registry review seed or approved promoted preview" in failure
 
 
 def test_scorecard_projects_preview_and_stable_postures_separately(monkeypatch: pytest.MonkeyPatch) -> None:

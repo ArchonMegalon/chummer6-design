@@ -193,7 +193,7 @@ def release_channel_preview_evidence(
         and token(payload.get("channelId") or payload.get("channel")) == "preview"
         and token(payload.get("rolloutState")) == "promoted_preview"
         and token(payload.get("supportabilityState")) == "preview_supported"
-        and token(payload.get("releaseDecisionStatus")) == "preview_ready"
+        and token(payload.get("releaseDecisionStatus")) in {"review_required", "preview_ready"}
         and token(owner) not in UNRESOLVED_VALUES
         and bool(next_actions)
         and not any(token(item) in UNRESOLVED_VALUES for item in next_actions)
@@ -202,7 +202,7 @@ def release_channel_preview_evidence(
         valid,
         owner,
         next_actions,
-        "" if valid else "release channel is not an owner-bounded, Registry-approved promoted preview",
+        "" if valid else "release channel is not an owner-bounded Registry review seed or approved promoted preview",
     )
 
 
