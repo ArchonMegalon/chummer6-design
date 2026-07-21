@@ -1,10 +1,13 @@
 contract_name: chummer.release_scope_decision
 contract_version: 1
+decision_id: ""
 updated_at: 2026-07-18T00:00:00Z
 status: decision_required
 target_channel: preview
+release_target: preview
 release_version: ""
 platforms: []
+rid_by_platform: {}
 primary_head_by_platform: {}
 fallback_heads_by_platform: {}
 artifact_access_class: review_required
