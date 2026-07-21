@@ -31,14 +31,14 @@ def release_artifact(platform: str, artifact_id: str, *, head: str = "avalonia")
         "rid": rid,
         "arch": "x64",
         "kind": "installer",
-        "downloadUrl": f"https://chummer.run/downloads/g/generation-1/files/{artifact_id}",
+        "downloadUrl": f"/downloads/g/generation-1/files/{artifact_id}",
         "sha256": "d" * 64,
         "sizeBytes": 1024,
         "compatibilityState": "compatible",
         "promotionState": "promoted",
         "publicationScope": "signed-in-and-public",
         "revokeState": "not_revoked",
-        "publicInstallRoute": f"/downloads/{platform}",
+        "publicInstallRoute": f"/downloads/install/{artifact_id}",
         "installAccessClass": "open_public",
     }
 

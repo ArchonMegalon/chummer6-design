@@ -6,7 +6,11 @@ from typing import Any
 
 
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
-IMMUTABLE_DOWNLOAD_PATH = re.compile(r"^/downloads/g/[^/]+/files/[^/]+$")
+GENERATION_FILE_ROUTE = re.compile(r"^/downloads/g/([^/]+)/files/([^/]+)$")
+GENERATION_INSTALL_ROUTE = re.compile(r"^/downloads/g/([^/]+)/install/([^/]+)$")
+PUBLIC_INSTALL_ROUTE = re.compile(
+    r"^/downloads/(?:install/|g/([^/]+)/install/)([^/]+)$"
+)
 ARTIFACT_FIELDS = {
     "artifactId",
     "head",
@@ -87,6 +91,41 @@ def normalized_heads(value: Any) -> dict[str, str]:
         for platform, head in sorted(value.items(), key=lambda item: str(item[0]))
         if token(platform) and token(head)
     }
+
+
+def safe_root_relative_route_match(
+    value: Any,
+    pattern: re.Pattern[str],
+) -> re.Match[str] | None:
+    if not isinstance(value, str) or value != value.strip() or not value:
+        return None
+    parsed = urllib.parse.urlsplit(value)
+    if (
+        parsed.scheme
+        or parsed.netloc
+        or parsed.query
+        or parsed.fragment
+        or not parsed.path.startswith("/")
+        or parsed.path.startswith("//")
+        or "\\" in parsed.path
+        or any(character.isspace() or ord(character) < 32 for character in parsed.path)
+    ):
+        return None
+    match = pattern.fullmatch(parsed.path)
+    if match is None:
+        return None
+    for segment in match.groups():
+        if segment is None:
+            continue
+        decoded = urllib.parse.unquote(segment)
+        if (
+            decoded in {".", ".."}
+            or "/" in decoded
+            or "\\" in decoded
+            or any(character.isspace() or ord(character) < 32 for character in decoded)
+        ):
+            return None
+    return match
 
 
 def validate_snapshot_envelope_shape(snapshot: dict[str, Any]) -> list[str]:
@@ -199,30 +238,29 @@ def validate_snapshot_artifact_projection(snapshot: dict[str, Any]) -> list[str]
             errors.append(f"{prefix} has an invalid sizeBytes")
 
         download_url = str(row.get("downloadUrl") or "").strip()
-        parsed_url = urllib.parse.urlsplit(download_url)
-        absolute_https = parsed_url.scheme == "https" and bool(parsed_url.netloc)
-        root_relative = not parsed_url.scheme and not parsed_url.netloc
-        if (
-            not download_url
-            or not (absolute_https or root_relative)
-            or parsed_url.query
-            or parsed_url.fragment
-            or not IMMUTABLE_DOWNLOAD_PATH.fullmatch(parsed_url.path)
-        ):
-            errors.append(f"{prefix} must use an immutable query-free generation download URL")
+        download_match = safe_root_relative_route_match(
+            download_url,
+            GENERATION_FILE_ROUTE
+            if access_class == "open_public"
+            else GENERATION_INSTALL_ROUTE,
+        )
+        if download_match is None:
+            errors.append(
+                f"{prefix} must use the exact Registry root-relative generation route"
+            )
         public_route = str(row.get("publicInstallRoute") or "").strip()
-        parsed_route = urllib.parse.urlsplit(public_route)
-        if (
-            not public_route
-            or parsed_route.scheme
-            or parsed_route.netloc
-            or parsed_route.query
-            or parsed_route.fragment
-            or not parsed_route.path.startswith("/")
-            or parsed_route.path.startswith("//")
-            or ".." in parsed_route.path.split("/")
-        ):
+        if safe_root_relative_route_match(public_route, PUBLIC_INSTALL_ROUTE) is None:
             errors.append(f"{prefix} has an invalid publicInstallRoute")
+        if access_class == "open_public" and public_route == download_url:
+            errors.append(f"{prefix} open-public routes must be distinct")
+        if access_class in {"account_recommended", "account_required"} and (
+            public_route != download_url
+            or download_match is None
+            or urllib.parse.unquote(download_match.group(2)) != artifact_id
+        ):
+            errors.append(
+                f"{prefix} protected routes must equal and end with artifactId"
+            )
 
     if sorted(artifact_platforms) != platforms:
         errors.append("availablePlatforms must exactly match the canonical artifact projection")

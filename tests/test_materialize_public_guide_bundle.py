@@ -352,7 +352,7 @@ def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: 
         "platformLabel": "Windows x64 Installer",
         "head": "avalonia",
         "kind": "installer",
-        "downloadUrl": "https://chummer.run/downloads/g/generation-1/files/chummer-windows.exe",
+        "downloadUrl": "/downloads/g/generation-1/files/chummer-windows.exe",
         "fileName": "chummer-windows.exe",
         "sizeBytes": 100,
         "installAccessClass": "open_public",
@@ -366,7 +366,7 @@ def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: 
         "promotionState": "promoted",
         "publicationScope": "signed-in-and-public",
         "revokeState": "not_revoked",
-        "publicInstallRoute": "/downloads/windows",
+        "publicInstallRoute": "/downloads/install/windows-installer",
     }
     authority_artifact.pop("fileName")
     authority_artifact.pop("platformLabel")
@@ -401,7 +401,10 @@ def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: 
     download = (tmp_path / "DOWNLOAD.md").read_text(encoding="utf-8")
     assert "Windows downloads start on `chummer.run`." in download
     assert "Windows and Linux downloads start" not in download
-    assert "[Open download](https://chummer.run/downloads/windows)" in download
+    assert (
+        "[Open download](https://chummer.run/downloads/install/windows-installer)"
+        in download
+    )
     assert "/downloads/g/generation-1/files" not in download
     assert banner in download
     assert banner in (tmp_path / "STATUS.md").read_text(encoding="utf-8")

@@ -9,6 +9,11 @@ from scripts.ai.registry_authority_contract import (
 
 
 def artifact(artifact_id: str = "chummer-windows.exe", access_class: str = "open_public") -> dict:
+    download_url = (
+        f"/downloads/g/generation-1/files/{artifact_id}"
+        if access_class == "open_public"
+        else f"/downloads/g/generation-1/install/{artifact_id}"
+    )
     return {
         "artifactId": artifact_id,
         "head": "avalonia",
@@ -16,14 +21,18 @@ def artifact(artifact_id: str = "chummer-windows.exe", access_class: str = "open
         "rid": "win-x64",
         "arch": "x64",
         "kind": "installer",
-        "downloadUrl": f"https://chummer.run/downloads/g/generation-1/files/{artifact_id}",
+        "downloadUrl": download_url,
         "sha256": "a" * 64,
         "sizeBytes": 1024,
         "compatibilityState": "compatible",
         "promotionState": "promoted",
         "publicationScope": "signed-in-and-public",
         "revokeState": "not_revoked",
-        "publicInstallRoute": "/downloads/windows",
+        "publicInstallRoute": (
+            f"/downloads/install/{artifact_id}"
+            if access_class == "open_public"
+            else download_url
+        ),
         "installAccessClass": access_class,
     }
 
@@ -79,7 +88,14 @@ def test_download_url_must_be_generation_bound_and_query_free() -> None:
     row = artifact()
     row["downloadUrl"] += "?mutable=1"
     errors = validate_snapshot_artifact_projection(snapshot(row))
-    assert "artifact projection row 0 must use an immutable query-free generation download URL" in errors
+    assert "artifact projection row 0 must use the exact Registry root-relative generation route" in errors
+
+
+def test_absolute_generation_download_url_is_rejected() -> None:
+    row = artifact()
+    row["downloadUrl"] = "https://chummer.run" + row["downloadUrl"]
+    errors = validate_snapshot_artifact_projection(snapshot(row))
+    assert "artifact projection row 0 must use the exact Registry root-relative generation route" in errors
 
 
 def test_public_install_route_is_distinct_safe_root_relative_path() -> None:

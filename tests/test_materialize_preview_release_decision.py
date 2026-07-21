@@ -39,14 +39,14 @@ def artifact() -> dict:
         "rid": "win-x64",
         "arch": "x64",
         "kind": "installer",
-        "downloadUrl": "https://chummer.run/downloads/g/generation-1/files/chummer-windows.exe",
+        "downloadUrl": "/downloads/g/generation-1/files/chummer-windows.exe",
         "sha256": "d" * 64,
         "sizeBytes": 1024,
         "compatibilityState": "compatible",
         "promotionState": "promoted",
         "publicationScope": "signed-in-and-public",
         "revokeState": "not_revoked",
-        "publicInstallRoute": "/downloads/windows",
+        "publicInstallRoute": "/downloads/install/chummer-windows.exe",
         "installAccessClass": "open_public",
     }
 

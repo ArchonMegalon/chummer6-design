@@ -69,14 +69,14 @@ def registry_snapshot() -> dict:
         "rid": "osx-arm64",
         "arch": "arm64",
         "kind": "installer",
-        "downloadUrl": "https://chummer.run/downloads/g/generation-1/files/chummer-macos-arm64.pkg",
+        "downloadUrl": "/downloads/g/generation-1/files/chummer-macos-arm64.pkg",
         "sha256": "a" * 64,
         "sizeBytes": 1024,
         "compatibilityState": "compatible",
         "promotionState": "promoted",
         "publicationScope": "signed-in-and-public",
         "revokeState": "not_revoked",
-        "publicInstallRoute": "/downloads/macos",
+        "publicInstallRoute": "/downloads/install/chummer-macos-arm64.pkg",
         "installAccessClass": "open_public",
     }
     fallback_artifact = {
@@ -84,8 +84,11 @@ def registry_snapshot() -> dict:
         "artifactId": "chummer-blazor-macos-arm64.pkg",
         "head": "blazor-desktop",
         "downloadUrl": (
-            "https://chummer.run/downloads/g/generation-1/files/"
+            "/downloads/g/generation-1/files/"
             "chummer-blazor-macos-arm64.pkg"
+        ),
+        "publicInstallRoute": (
+            "/downloads/install/chummer-blazor-macos-arm64.pkg"
         ),
         "sha256": "e" * 64,
     }
@@ -846,10 +849,10 @@ def test_windows_visual_uses_scope_exclusion_only_when_windows_is_out_of_scope(
         "platform": "windows",
         "rid": "win-x64",
         "downloadUrl": (
-            "https://chummer.run/downloads/g/generation-1/files/"
+            "/downloads/g/generation-1/files/"
             "chummer-windows-x64.exe"
         ),
-        "publicInstallRoute": "/downloads/windows",
+        "publicInstallRoute": "/downloads/install/chummer-windows-x64.exe",
     }
     windows_snapshot.update(
         {
