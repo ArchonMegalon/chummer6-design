@@ -1,0 +1,67 @@
+name: Design pull request CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: design-pr-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  current-release-authority:
+    name: Current release authority and generated-state guards
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Create hash-locked Python environment
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/design-ci-python"
+          "$RUNNER_TEMP/design-ci-python/bin/python" -m pip install \
+            --disable-pip-version-check \
+            --only-binary=:all: \
+            --require-hashes \
+            --requirement .github/requirements-ci.txt
+
+      - name: Compile release-authority materializers
+        run: >-
+          "$RUNNER_TEMP/design-ci-python/bin/python" -m compileall -q
+          scripts/ai/materialize_campaign_operability_scorecard.py
+          scripts/ai/materialize_preview_release_decision.py
+          scripts/ai/materialize_final_gold_graph.py
+          scripts/ai/materialize_current_release_state.py
+
+      - name: Verify scorecard, preview, stable, and current-state semantics
+        run: >-
+          "$RUNNER_TEMP/design-ci-python/bin/python" -m pytest -q
+          tests/test_materialize_campaign_operability_scorecard.py
+          tests/test_materialize_preview_release_decision.py
+          tests/test_materialize_final_gold_graph.py
+          tests/test_materialize_current_release_state.py
+          tests/test_validate_gold_claim_freshness.py
+
+  dependency-review:
+    name: Dependency review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check out exact pull-request merge
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48
