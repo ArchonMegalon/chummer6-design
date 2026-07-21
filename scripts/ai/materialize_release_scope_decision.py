@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import hashlib
 import json
 import os
@@ -26,6 +27,15 @@ UTC_TIMESTAMP = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 CHANNEL_TARGETS = {"preview": "preview", "public_stable": "stable"}
 ACCESS_CLASSES = {"open_public", "account_required", "support_directed"}
 SIGNING_REQUIREMENTS = {"signed", "preview_unsigned_allowed", "not_applicable"}
+CANONICAL_PLATFORMS = {"linux", "windows", "macos"}
+PLATFORM_RIDS = {
+    "linux": {"linux-x64", "linux-arm64"},
+    "windows": {"win-x64", "win-arm64"},
+    "macos": {"osx-x64", "osx-arm64"},
+}
+SUPPORTED_HEADS = {"avalonia", "blazor-desktop"}
+MAX_PLATFORMS = 16
+MAX_FALLBACK_HEADS = 15
 INVALID_TEXT = {"", "none", "null", "pending", "review_required", "tbd", "unknown"}
 ROOT_KEYS = {
     "contract_name",
@@ -111,6 +121,8 @@ def _require_token(value: Any, field: str) -> str:
         raise ScopeDecisionError(f"{field}_must_be_lowercase_safe_token")
     if value in INVALID_TEXT:
         raise ScopeDecisionError(f"{field}_is_unresolved")
+    if ".." in value:
+        raise ScopeDecisionError(f"{field}_must_not_contain_dot_dot")
     return value
 
 
@@ -129,21 +141,49 @@ def _require_display_text(value: Any, field: str) -> str:
 def _require_timestamp(value: Any, field: str) -> str:
     if not isinstance(value, str) or UTC_TIMESTAMP.fullmatch(value) is None:
         raise ScopeDecisionError(f"{field}_must_be_utc_seconds_timestamp")
+    try:
+        dt.datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as exc:
+        raise ScopeDecisionError(f"{field}_must_be_utc_seconds_timestamp") from exc
     return value
 
 
-def _require_token_map(value: Any, field: str) -> dict[str, str]:
+def _normalize_source_platform(value: Any, field: str) -> str:
+    if not isinstance(value, str) or value != value.strip():
+        raise ScopeDecisionError(f"{field}_must_name_supported_platform")
+    platform = value.casefold()
+    if platform not in CANONICAL_PLATFORMS:
+        raise ScopeDecisionError(f"{field}_must_name_supported_platform")
+    return platform
+
+
+def _require_token_map(
+    value: Any,
+    field: str,
+    *,
+    platform_keys: bool = False,
+) -> dict[str, str]:
     raw = _require_object(value, field)
     result: dict[str, str] = {}
     for raw_key, raw_value in raw.items():
-        key = _require_token(raw_key, f"{field}_key")
+        key = (
+            _normalize_source_platform(raw_key, f"{field}_key")
+            if platform_keys
+            else _require_token(raw_key, f"{field}_key")
+        )
         if key in result:
             raise ScopeDecisionError(f"{field}_contains_duplicate_key")
         result[key] = _require_token(raw_value, f"{field}_{key}")
     return result
 
 
-def _require_token_list(value: Any, field: str, *, allow_empty: bool) -> list[str]:
+def _require_token_list(
+    value: Any,
+    field: str,
+    *,
+    allow_empty: bool,
+    max_items: int | None = None,
+) -> list[str]:
     if not isinstance(value, list):
         raise ScopeDecisionError(f"{field}_must_be_array")
     result = [_require_token(item, field) for item in value]
@@ -151,6 +191,21 @@ def _require_token_list(value: Any, field: str, *, allow_empty: bool) -> list[st
         raise ScopeDecisionError(f"{field}_contains_duplicates")
     if not allow_empty and not result:
         raise ScopeDecisionError(f"{field}_must_not_be_empty")
+    if max_items is not None and len(result) > max_items:
+        raise ScopeDecisionError(f"{field}_exceeds_maximum_items")
+    return result
+
+
+def _require_platform_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        raise ScopeDecisionError("platforms_must_be_array")
+    result = [_normalize_source_platform(item, "platforms") for item in value]
+    if len(result) != len(set(result)):
+        raise ScopeDecisionError("platforms_contains_duplicates")
+    if not result:
+        raise ScopeDecisionError("platforms_must_not_be_empty")
+    if len(result) > MAX_PLATFORMS:
+        raise ScopeDecisionError("platforms_exceeds_maximum_items")
     return result
 
 
@@ -158,13 +213,14 @@ def _require_fallback_map(value: Any) -> dict[str, list[str]]:
     raw = _require_object(value, "fallback_heads_by_platform")
     result: dict[str, list[str]] = {}
     for raw_key, raw_value in raw.items():
-        key = _require_token(raw_key, "fallback_heads_by_platform_key")
+        key = _normalize_source_platform(raw_key, "fallback_heads_by_platform_key")
         if key in result:
             raise ScopeDecisionError("fallback_heads_by_platform_contains_duplicate_key")
         result[key] = _require_token_list(
             raw_value,
             f"fallback_heads_by_platform_{key}",
             allow_empty=True,
+            max_items=MAX_FALLBACK_HEADS,
         )
     return result
 
@@ -196,15 +252,24 @@ def build_release_scope_decision(source: dict[str, Any]) -> dict[str, Any]:
     if CHANNEL_TARGETS.get(channel) != release_target:
         raise ScopeDecisionError("release_scope_channel_target_mismatch")
 
-    platforms = _require_token_list(source.get("platforms"), "platforms", allow_empty=False)
+    platforms = _require_platform_list(source.get("platforms"))
     platform_set = set(platforms)
-    rid_by_platform = _require_token_map(source.get("rid_by_platform"), "rid_by_platform")
+    rid_by_platform = _require_token_map(
+        source.get("rid_by_platform"),
+        "rid_by_platform",
+        platform_keys=True,
+    )
     primary_by_platform = _require_token_map(
         source.get("primary_head_by_platform"),
         "primary_head_by_platform",
+        platform_keys=True,
     )
     fallback_by_platform = _require_fallback_map(source.get("fallback_heads_by_platform"))
-    signing_by_platform = _require_token_map(source.get("signing_requirements"), "signing_requirements")
+    signing_by_platform = _require_token_map(
+        source.get("signing_requirements"),
+        "signing_requirements",
+        platform_keys=True,
+    )
     for field, mapping in (
         ("rid_by_platform", rid_by_platform),
         ("primary_head_by_platform", primary_by_platform),
@@ -220,13 +285,21 @@ def build_release_scope_decision(source: dict[str, Any]) -> dict[str, Any]:
 
     rows: list[dict[str, Any]] = []
     for platform in sorted(platforms):
+        if rid_by_platform[platform] not in PLATFORM_RIDS[platform]:
+            raise ScopeDecisionError(f"rid_incompatible_with_platform:{platform}")
         primary_head = primary_by_platform[platform]
         fallback_heads = fallback_by_platform[platform]
+        if primary_head not in SUPPORTED_HEADS or any(head not in SUPPORTED_HEADS for head in fallback_heads):
+            raise ScopeDecisionError(f"unsupported_desktop_head:{platform}")
         if primary_head in fallback_heads:
             raise ScopeDecisionError(f"fallback_heads_include_primary:{platform}")
         signing_requirement = signing_by_platform[platform]
         if signing_requirement not in SIGNING_REQUIREMENTS:
             raise ScopeDecisionError(f"signing_requirement_invalid:{platform}")
+        if signing_requirement == "preview_unsigned_allowed" and channel != "preview":
+            raise ScopeDecisionError(f"preview_unsigned_requires_preview_channel:{platform}")
+        if signing_requirement == "not_applicable" and platform in {"macos", "windows"}:
+            raise ScopeDecisionError(f"signing_required_for_platform:{platform}")
         rows.append(
             {
                 "artifactAccessClass": access_class,

@@ -132,6 +132,86 @@ def test_rejects_duplicate_fallback_heads() -> None:
         materializer.build_release_scope_decision(source)
 
 
+def test_normalizes_policy_platform_labels_to_runtime_tokens() -> None:
+    source = approved_source()
+    source["platforms"] = ["macOS"]
+    source["rid_by_platform"] = {"macOS": "osx-arm64"}
+    source["primary_head_by_platform"] = {"macOS": "avalonia"}
+    source["fallback_heads_by_platform"] = {"macOS": ["blazor-desktop"]}
+    source["signing_requirements"] = {"macOS": "preview_unsigned_allowed"}
+
+    decision = materializer.build_release_scope_decision(source)
+
+    assert decision["platforms"][0]["platform"] == "macos"
+
+
+def test_rejects_unsupported_platform_alias() -> None:
+    source = approved_source()
+    source["platforms"] = ["osx"]
+
+    with pytest.raises(materializer.ScopeDecisionError, match="platforms_must_name_supported_platform"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_incompatible_platform_rid() -> None:
+    source = approved_source()
+    source["rid_by_platform"] = {"macos": "win-x64"}
+
+    with pytest.raises(materializer.ScopeDecisionError, match="rid_incompatible_with_platform:macos"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_unsupported_desktop_head() -> None:
+    source = approved_source()
+    source["primary_head_by_platform"] = {"macos": "experimental-head"}
+
+    with pytest.raises(materializer.ScopeDecisionError, match="unsupported_desktop_head:macos"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_invalid_calendar_timestamp() -> None:
+    source = approved_source()
+    source["approval"]["approved_at"] = "2026-02-31T00:01:02Z"
+
+    with pytest.raises(materializer.ScopeDecisionError, match="approved_at_must_be_utc_seconds_timestamp"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_dot_dot_in_authority_tokens() -> None:
+    source = approved_source()
+    source["decision_id"] = "nightly..escape"
+
+    with pytest.raises(materializer.ScopeDecisionError, match="decision_id_must_not_contain_dot_dot"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_too_many_fallback_heads() -> None:
+    source = approved_source()
+    source["fallback_heads_by_platform"] = {
+        "macos": [f"fallback-{index:02d}" for index in range(materializer.MAX_FALLBACK_HEADS + 1)]
+    }
+
+    with pytest.raises(materializer.ScopeDecisionError, match="exceeds_maximum_items"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_preview_unsigned_signing_for_stable_release() -> None:
+    source = approved_source()
+    source["target_channel"] = "public_stable"
+    source["release_target"] = "stable"
+
+    with pytest.raises(materializer.ScopeDecisionError, match="preview_unsigned_requires_preview_channel:macos"):
+        materializer.build_release_scope_decision(source)
+
+
+def test_rejects_not_applicable_signing_for_macos() -> None:
+    source = approved_source()
+    source["signing_requirements"] = {"macos": "not_applicable"}
+
+    with pytest.raises(materializer.ScopeDecisionError, match="signing_required_for_platform:macos"):
+        materializer.build_release_scope_decision(source)
+
+
 def test_rejects_unknown_source_fields() -> None:
     source = approved_source()
     source["implicitly_publish"] = True
