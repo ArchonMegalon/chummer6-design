@@ -22,7 +22,7 @@ def approved_source() -> dict:
         "platforms": ["macos"],
         "rid_by_platform": {"macos": "osx-arm64"},
         "primary_head_by_platform": {"macos": "avalonia"},
-        "fallback_heads_by_platform": {"macos": ["blazor"]},
+        "fallback_heads_by_platform": {"macos": ["blazor-desktop"]},
         "artifact_access_class": "open_public",
         "signing_requirements": {"macos": "preview_unsigned_allowed"},
         "support_owner": "Chummer release operations",
@@ -41,7 +41,7 @@ def test_materializes_exact_sorted_runtime_contract_and_digest() -> None:
     source["platforms"] = ["windows", "macos"]
     source["rid_by_platform"] = {"windows": "win-x64", "macos": "osx-arm64"}
     source["primary_head_by_platform"] = {"windows": "avalonia", "macos": "avalonia"}
-    source["fallback_heads_by_platform"] = {"windows": [], "macos": ["blazor"]}
+    source["fallback_heads_by_platform"] = {"windows": [], "macos": ["blazor-desktop"]}
     source["signing_requirements"] = {"windows": "signed", "macos": "preview_unsigned_allowed"}
 
     decision = materializer.build_release_scope_decision(source)
@@ -61,12 +61,12 @@ def test_materializes_exact_sorted_runtime_contract_and_digest() -> None:
         "supportOwner",
     ]
     assert [row["platform"] for row in decision["platforms"]] == ["macos", "windows"]
-    assert decision["platforms"][0]["fallbackHeads"] == ["blazor"]
+    assert decision["platforms"][0]["fallbackHeads"] == ["blazor-desktop"]
     assert encoded.endswith(b"\n")
     assert encoded == (
         json.dumps(decision, sort_keys=True, separators=(",", ":"), ensure_ascii=False) + "\n"
     ).encode("utf-8")
-    assert hashlib.sha256(encoded).hexdigest() == "231bdcfa3b42da38ff1c4059b82896c782594c44513798414eec9bed9ea0aa08"
+    assert hashlib.sha256(encoded).hexdigest() == "01dddc481cae5dbb4346c336f7cbb41824236747c47c8a4796d4d211b0307c6a"
 
 
 def test_writes_exact_bytes_atomically(tmp_path: Path) -> None:
@@ -126,7 +126,7 @@ def test_rejects_primary_head_as_fallback() -> None:
 
 def test_rejects_duplicate_fallback_heads() -> None:
     source = approved_source()
-    source["fallback_heads_by_platform"] = {"macos": ["blazor", "blazor"]}
+    source["fallback_heads_by_platform"] = {"macos": ["blazor-desktop", "blazor-desktop"]}
 
     with pytest.raises(materializer.ScopeDecisionError, match="contains_duplicates"):
         materializer.build_release_scope_decision(source)
