@@ -4,27 +4,191 @@ Generated compatibility projection; do not edit. Current authority: `CURRENT_REL
 
 ## RED blockers
 
-- immutable Registry authority snapshot is not bound
-- release scope decision is not approved
-- release scope release_version is required
-- release scope must name at least one platform
-- release scope artifact access class is unresolved
-- release scope support owner is required
-- release scope approval identity and timestamp are required
-- every campaign operability cell must be evidence-backed at score 2 or 3
+- Registry authority snapshot contract is missing or invalid
+- Registry authority snapshot must contain the exact 21 v2 top-level properties
+- Registry authority authorityContract must be a nonempty string
+- Registry authority downloadAccessPosture must be a nonempty string
+- Registry authority manifestPath must be a nonempty string
+- Registry authority manifestSha256 must be a nonempty string
+- Registry authority registryCommit must be a nonempty string
+- Registry authority registryRepository must be a nonempty string
+- Registry authority releaseDecisionPath must be a nonempty string
+- Registry authority releaseDecisionSha256 must be a nonempty string
+- Registry authority releaseDecisionStatus must be a nonempty string
+- Registry authority supportOwner must be a nonempty string
+- Registry authority availablePlatforms must be an array
+- Registry authority primaryHeadByPlatform must be an object
+- Registry authority artifactCount must be an integer
+- Registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json
+- Registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json
+- Registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry
+- Registry authority supportOwner is required
+- Registry authority nextActions must be a string array
+- Registry authority snapshot path or digest is invalid
+- Registry authority snapshot field availablePlatforms is missing
+- Registry authority snapshot field primaryHeadByPlatform is missing
+- Registry authority snapshot field artifactCount is missing
+- Registry authority snapshot field downloadAccessPosture is missing
+- Registry authority snapshot field manifestPath is missing
+- Registry authority snapshot field releaseDecisionPath is missing
+- Registry authority snapshot field registryRepository is missing
+- Registry authority snapshot field manifestSha256 is missing
+- Registry authority snapshot field registryCommit is missing
+- Registry authority snapshot field releaseDecisionStatus is missing
+- Registry authority snapshot field releaseDecisionSha256 is missing
+- Registry authority registryCommit must be exact lowercase 40-hex
+- Registry authority manifestSha256 must be exact lowercase 64-hex
+- Registry authority releaseDecisionSha256 must be exact lowercase 64-hex
+- Registry authority releaseDecisionStatus is invalid
+- Registry authority repository identity is invalid
+- Registry authority downloadAccessPosture is invalid
+- Registry authority artifactCount must match the artifact inventory
+- Registry authority artifactCount must be a non-negative integer
+- Registry authority artifact projection row 0 must contain the exact v2 artifact fields
+- Registry authority artifact projection row 1 must contain the exact v2 artifact fields
+- Registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes
+- Registry authority manifestPath must name one sibling file
+- Registry authority releaseDecisionPath must name one sibling file
+- campaign operability scorecard contract must be generated v2 and bound to the exact approved candidate
+- every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership
+- campaign operability scorecard is not bound to the exact immutable Registry authority snapshot
+- campaign operability scorecard summary does not match its exact 36-cell denominator
+- campaign operability scorecard preview posture is not 36/36 at score 2 or 3
+- campaign operability scorecard stable posture does not match its score-3 count
 - explicit immutable release manifest bytes are required
 - exact 40-character registry commit is required
+- release scope version does not match exact manifest bytes
 - release manifest channel must be preview
-- Registry authority: immutable Registry authority snapshot is not bound
-- Registry authority: immutable Registry authority snapshot is required for preview readiness
+- Registry authority: Registry authority snapshot contract is missing or invalid
+- Registry authority: Registry authority snapshot must contain the exact 21 v2 top-level properties
+- Registry authority: Registry authority authorityContract must be a nonempty string
+- Registry authority: Registry authority downloadAccessPosture must be a nonempty string
+- Registry authority: Registry authority manifestPath must be a nonempty string
+- Registry authority: Registry authority manifestSha256 must be a nonempty string
+- Registry authority: Registry authority registryCommit must be a nonempty string
+- Registry authority: Registry authority registryRepository must be a nonempty string
+- Registry authority: Registry authority releaseDecisionPath must be a nonempty string
+- Registry authority: Registry authority releaseDecisionSha256 must be a nonempty string
+- Registry authority: Registry authority releaseDecisionStatus must be a nonempty string
+- Registry authority: Registry authority supportOwner must be a nonempty string
+- Registry authority: Registry authority availablePlatforms must be an array
+- Registry authority: Registry authority primaryHeadByPlatform must be an object
+- Registry authority: Registry authority artifactCount must be an integer
+- Registry authority: Registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json
+- Registry authority: Registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json
+- Registry authority: Registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry
+- Registry authority: Registry authority supportOwner is required
+- Registry authority: Registry authority nextActions must be a string array
+- Registry authority: Registry authority snapshot path or digest is invalid
+- Registry authority: Registry authority snapshot field availablePlatforms is missing
+- Registry authority: Registry authority snapshot field primaryHeadByPlatform is missing
+- Registry authority: Registry authority snapshot field artifactCount is missing
+- Registry authority: Registry authority snapshot field downloadAccessPosture is missing
+- Registry authority: Registry authority snapshot field manifestPath is missing
+- Registry authority: Registry authority snapshot field releaseDecisionPath is missing
+- Registry authority: Registry authority snapshot field registryRepository is missing
+- Registry authority: Registry authority snapshot field manifestSha256 is missing
+- Registry authority: Registry authority snapshot field registryCommit is missing
+- Registry authority: Registry authority snapshot field releaseDecisionStatus is missing
+- Registry authority: Registry authority snapshot field releaseDecisionSha256 is missing
+- Registry authority: Registry authority registryCommit must be exact lowercase 40-hex
+- Registry authority: Registry authority manifestSha256 must be exact lowercase 64-hex
+- Registry authority: Registry authority releaseDecisionSha256 must be exact lowercase 64-hex
+- Registry authority: Registry authority releaseDecisionStatus is invalid
+- Registry authority: Registry authority repository identity is invalid
+- Registry authority: Registry authority downloadAccessPosture is invalid
+- Registry authority: Registry authority artifactCount must match the artifact inventory
+- Registry authority: Registry authority artifactCount must be a non-negative integer
+- Registry authority: Registry authority artifact projection row 0 must contain the exact v2 artifact fields
+- Registry authority: Registry authority artifact projection row 1 must contain the exact v2 artifact fields
+- Registry authority: Registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes
+- Registry authority: Registry authority manifestPath must name one sibling file
+- Registry authority: Registry authority releaseDecisionPath must name one sibling file
+- Registry authority: snapshot must contain the exact 21 v2 top-level properties
+- Registry authority: authorityContract must be a nonempty string
+- Registry authority: downloadAccessPosture must be a nonempty string
+- Registry authority: manifestPath must be a nonempty string
+- Registry authority: manifestSha256 must be a nonempty string
+- Registry authority: registryCommit must be a nonempty string
+- Registry authority: registryRepository must be a nonempty string
+- Registry authority: releaseDecisionPath must be a nonempty string
+- Registry authority: releaseDecisionSha256 must be a nonempty string
+- Registry authority: releaseDecisionStatus must be a nonempty string
+- Registry authority: supportOwner must be a nonempty string
+- Registry authority: availablePlatforms must be an array
+- Registry authority: primaryHeadByPlatform must be an object
+- Registry authority: artifactCount must be an integer
+- Registry authority: manifestPath must be exact sibling RELEASE_CHANNEL.json
+- Registry authority: releaseDecisionPath must be exact sibling RELEASE_DECISION.json
+- Registry authority: registryRepository must identify ArchonMegalon/chummer6-hub-registry
+- Registry authority: supportOwner is required
+- Registry authority: nextActions must be a string array
+- Registry authority: artifactCount must be a non-negative integer
+- Registry authority: artifact projection row 0 must contain the exact v2 artifact fields
+- Registry authority: artifact projection row 1 must contain the exact v2 artifact fields
+- Registry authority: downloadAccessPosture must be derived exactly from eligible artifact access classes
+- release scope version does not match immutable Registry snapshot
+- Registry authority snapshot must be the pre-scorecard review_required candidate seed
+- Registry authority candidate decision SHA-256 is invalid
+- release scope platforms do not match immutable public shelf
+- release scope primary heads do not match immutable public shelf
+- release scope artifact access class does not match immutable public shelf
+- release scope support owner does not match immutable Registry snapshot
+- release scope visible heads do not exactly match 'macos' public shelf
 - public release convergence proof is missing or not passing
-- campaign operability scorecard is not an evidence-backed exact 36/36 at score 3
+- campaign_operability_scorecard releaseVersion is missing or does not match current registry authority
+- campaign_operability_scorecard snapshotSha256 is missing or does not match current registry authority
+- campaign_operability_scorecard manifestSha256 is missing or does not match current registry authority
+- campaign_operability_scorecard releaseDecisionSha256 is missing or does not match current registry authority
 - fleet_flagship_readiness status is fail
-- operator_release_dashboard status is fail
-- final_gold_janitor status is fail
-- flagship_product_readiness_gate status is fail
-- release-ready receipt does not prove the exact current 41-gate matrix and projection
-- explicit immutable registry authority snapshot is required
+- operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority; operator_release_dashboard receipt is stale (older than 24 hours)
+- final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority; final_gold_janitor receipt is stale (older than 24 hours)
+- flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority; flagship_product_readiness_gate receipt is stale (older than 24 hours)
+- public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate receipt is stale (older than 24 hours)
+- release_ready_matrix releaseVersion is missing or does not match current registry authority
+- release_ready_matrix snapshotSha256 is missing or does not match current registry authority
+- release_ready_matrix manifestSha256 is missing or does not match current registry authority
+- release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority
+- release_ready_matrix receipt is stale (older than 24 hours)
+- registry authority snapshot path must be snapshots/<releaseVersion>/<snapshotSha256>/SNAPSHOT.json
+- registry authority snapshot must declare chummer.release-authority-snapshot/v2
+- registry authority snapshot must identify ArchonMegalon/chummer6-hub-registry
+- registry authority snapshot must contain the exact 21 v2 top-level properties
+- registry authority authorityContract must be a nonempty string
+- registry authority downloadAccessPosture must be a nonempty string
+- registry authority manifestPath must be a nonempty string
+- registry authority manifestSha256 must be a nonempty string
+- registry authority registryCommit must be a nonempty string
+- registry authority registryRepository must be a nonempty string
+- registry authority releaseDecisionPath must be a nonempty string
+- registry authority releaseDecisionSha256 must be a nonempty string
+- registry authority releaseDecisionStatus must be a nonempty string
+- registry authority supportOwner must be a nonempty string
+- registry authority availablePlatforms must be an array
+- registry authority primaryHeadByPlatform must be an object
+- registry authority artifactCount must be an integer
+- registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json
+- registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json
+- registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry
+- registry authority supportOwner is required
+- registry authority nextActions must be a string array
+- registry authority manifestPath must name one sibling file
+- registry authority downloadAccessPosture is required
+- registry authority downloadAccessPosture is invalid
+- registry authority artifactCount must exactly match the artifacts inventory
+- registry authority artifactCount must be a non-negative integer
+- registry authority artifact projection row 0 must contain the exact v2 artifact fields
+- registry authority artifact projection row 1 must contain the exact v2 artifact fields
+- registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes
+- registry authority registryCommit must be an exact 40-character lowercase Git SHA
+- registry authority releaseDecisionStatus is invalid
+- registry authority releaseDecisionSha256 must be a 64-character lowercase SHA-256
+- registry authority releaseDecisionPath must name one sibling file
+- registry authority releaseVersion disagrees with exact manifest bytes
+- registry authority channel disagrees with exact manifest bytes
+- registry authority status disagrees with exact manifest bytes
+- registry authority rolloutState disagrees with exact manifest bytes
+- registry authority supportabilityState disagrees with exact manifest bytes
 - registry candidate authority is not public_stable and gold_supported
 - live status page does not expose the current stable published version
 - live release manifest does not match exact immutable registry authority

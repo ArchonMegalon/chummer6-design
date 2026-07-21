@@ -1,22 +1,30 @@
 contract_name: chummer.release_scope_decision
 contract_version: 1
-decision_id: ""
-updated_at: 2026-07-18T00:00:00Z
-status: decision_required
+decision_id: nightly-macos-arm64-20260728
+updated_at: "2026-07-21T06:21:37Z"
+status: approved
 target_channel: preview
 release_target: preview
-release_version: ""
-platforms: []
-rid_by_platform: {}
-primary_head_by_platform: {}
-fallback_heads_by_platform: {}
-artifact_access_class: review_required
-signing_requirements: {}
-support_owner: ""
+release_version: run-20260728-050000
+platforms:
+  - macos
+rid_by_platform:
+  macos: osx-arm64
+primary_head_by_platform:
+  macos: avalonia
+fallback_heads_by_platform:
+  macos:
+    - blazor-desktop
+artifact_access_class: open_public
+signing_requirements:
+  macos: signed
+support_owner: chummer-release-operations
 next_actions:
-  - Choose one explicit platform and desktop-head scope before candidate production resumes.
+  - Keep the decision inert until the schema-v6 soak and in-epoch token gate pass.
+  - Build, sign, notarize, and stage exactly the approved macOS ARM64 heads.
+  - Activate only after owner finalization and generation/CURRENT convergence pass.
 approval:
-  status: pending
-  approved_by: ""
-  approved_at: ""
-note: This fail-closed packet intentionally makes no platform availability claim.
+  status: approved
+  approved_by: Tibor Girschele
+  approved_at: "2026-07-21T06:21:37Z"
+note: This packet approves candidate scope only; it does not claim a build, publication, activation, stable readiness, or gold readiness.

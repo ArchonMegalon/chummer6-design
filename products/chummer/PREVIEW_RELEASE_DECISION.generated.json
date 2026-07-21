@@ -1,51 +1,51 @@
 {
-  "artifactAccessClass": "review_required",
-  "authoritySnapshotSha256": "",
+  "artifactAccessClass": "open_public",
+  "authoritySnapshotSha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
   "blockingFindings": [
     {
       "id": "preview_1",
       "severity": "release_truth",
-      "summary": "release scope decision is not approved"
+      "summary": "campaign operability scorecard contract must be generated v2 and bound to the exact approved candidate"
     },
     {
       "id": "preview_2",
       "severity": "release_truth",
-      "summary": "release scope release_version is required"
+      "summary": "every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership"
     },
     {
       "id": "preview_3",
       "severity": "release_truth",
-      "summary": "release scope must name at least one platform"
+      "summary": "campaign operability scorecard is not bound to the exact immutable Registry authority snapshot"
     },
     {
       "id": "preview_4",
       "severity": "release_truth",
-      "summary": "release scope artifact access class is unresolved"
+      "summary": "campaign operability scorecard summary does not match its exact 36-cell denominator"
     },
     {
       "id": "preview_5",
       "severity": "release_truth",
-      "summary": "release scope support owner is required"
+      "summary": "campaign operability scorecard preview posture is not 36/36 at score 2 or 3"
     },
     {
       "id": "preview_6",
       "severity": "release_truth",
-      "summary": "release scope approval identity and timestamp are required"
+      "summary": "campaign operability scorecard stable posture does not match its score-3 count"
     },
     {
       "id": "preview_7",
       "severity": "release_truth",
-      "summary": "every campaign operability cell must be evidence-backed at score 2 or 3"
+      "summary": "explicit immutable release manifest bytes are required"
     },
     {
       "id": "preview_8",
       "severity": "release_truth",
-      "summary": "explicit immutable release manifest bytes are required"
+      "summary": "exact 40-character registry commit is required"
     },
     {
       "id": "preview_9",
       "severity": "release_truth",
-      "summary": "exact 40-character registry commit is required"
+      "summary": "release scope version does not match exact manifest bytes"
     },
     {
       "id": "preview_10",
@@ -55,15 +55,385 @@
     {
       "id": "preview_11",
       "severity": "release_truth",
-      "summary": "Registry authority: immutable Registry authority snapshot is not bound"
+      "summary": "Registry authority: Registry authority snapshot contract is missing or invalid"
     },
     {
       "id": "preview_12",
       "severity": "release_truth",
-      "summary": "Registry authority: immutable Registry authority snapshot is required for preview readiness"
+      "summary": "Registry authority: Registry authority snapshot must contain the exact 21 v2 top-level properties"
     },
     {
       "id": "preview_13",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority authorityContract must be a nonempty string"
+    },
+    {
+      "id": "preview_14",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority downloadAccessPosture must be a nonempty string"
+    },
+    {
+      "id": "preview_15",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority manifestPath must be a nonempty string"
+    },
+    {
+      "id": "preview_16",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority manifestSha256 must be a nonempty string"
+    },
+    {
+      "id": "preview_17",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority registryCommit must be a nonempty string"
+    },
+    {
+      "id": "preview_18",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority registryRepository must be a nonempty string"
+    },
+    {
+      "id": "preview_19",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionPath must be a nonempty string"
+    },
+    {
+      "id": "preview_20",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionSha256 must be a nonempty string"
+    },
+    {
+      "id": "preview_21",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionStatus must be a nonempty string"
+    },
+    {
+      "id": "preview_22",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority supportOwner must be a nonempty string"
+    },
+    {
+      "id": "preview_23",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority availablePlatforms must be an array"
+    },
+    {
+      "id": "preview_24",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority primaryHeadByPlatform must be an object"
+    },
+    {
+      "id": "preview_25",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority artifactCount must be an integer"
+    },
+    {
+      "id": "preview_26",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json"
+    },
+    {
+      "id": "preview_27",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json"
+    },
+    {
+      "id": "preview_28",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry"
+    },
+    {
+      "id": "preview_29",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority supportOwner is required"
+    },
+    {
+      "id": "preview_30",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority nextActions must be a string array"
+    },
+    {
+      "id": "preview_31",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot path or digest is invalid"
+    },
+    {
+      "id": "preview_32",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field availablePlatforms is missing"
+    },
+    {
+      "id": "preview_33",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field primaryHeadByPlatform is missing"
+    },
+    {
+      "id": "preview_34",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field artifactCount is missing"
+    },
+    {
+      "id": "preview_35",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field downloadAccessPosture is missing"
+    },
+    {
+      "id": "preview_36",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field manifestPath is missing"
+    },
+    {
+      "id": "preview_37",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field releaseDecisionPath is missing"
+    },
+    {
+      "id": "preview_38",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field registryRepository is missing"
+    },
+    {
+      "id": "preview_39",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field manifestSha256 is missing"
+    },
+    {
+      "id": "preview_40",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field registryCommit is missing"
+    },
+    {
+      "id": "preview_41",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field releaseDecisionStatus is missing"
+    },
+    {
+      "id": "preview_42",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority snapshot field releaseDecisionSha256 is missing"
+    },
+    {
+      "id": "preview_43",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority registryCommit must be exact lowercase 40-hex"
+    },
+    {
+      "id": "preview_44",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority manifestSha256 must be exact lowercase 64-hex"
+    },
+    {
+      "id": "preview_45",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionSha256 must be exact lowercase 64-hex"
+    },
+    {
+      "id": "preview_46",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionStatus is invalid"
+    },
+    {
+      "id": "preview_47",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority repository identity is invalid"
+    },
+    {
+      "id": "preview_48",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority downloadAccessPosture is invalid"
+    },
+    {
+      "id": "preview_49",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority artifactCount must match the artifact inventory"
+    },
+    {
+      "id": "preview_50",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority artifactCount must be a non-negative integer"
+    },
+    {
+      "id": "preview_51",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority artifact projection row 0 must contain the exact v2 artifact fields"
+    },
+    {
+      "id": "preview_52",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority artifact projection row 1 must contain the exact v2 artifact fields"
+    },
+    {
+      "id": "preview_53",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes"
+    },
+    {
+      "id": "preview_54",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority manifestPath must name one sibling file"
+    },
+    {
+      "id": "preview_55",
+      "severity": "release_truth",
+      "summary": "Registry authority: Registry authority releaseDecisionPath must name one sibling file"
+    },
+    {
+      "id": "preview_56",
+      "severity": "release_truth",
+      "summary": "Registry authority: snapshot must contain the exact 21 v2 top-level properties"
+    },
+    {
+      "id": "preview_57",
+      "severity": "release_truth",
+      "summary": "Registry authority: authorityContract must be a nonempty string"
+    },
+    {
+      "id": "preview_58",
+      "severity": "release_truth",
+      "summary": "Registry authority: downloadAccessPosture must be a nonempty string"
+    },
+    {
+      "id": "preview_59",
+      "severity": "release_truth",
+      "summary": "Registry authority: manifestPath must be a nonempty string"
+    },
+    {
+      "id": "preview_60",
+      "severity": "release_truth",
+      "summary": "Registry authority: manifestSha256 must be a nonempty string"
+    },
+    {
+      "id": "preview_61",
+      "severity": "release_truth",
+      "summary": "Registry authority: registryCommit must be a nonempty string"
+    },
+    {
+      "id": "preview_62",
+      "severity": "release_truth",
+      "summary": "Registry authority: registryRepository must be a nonempty string"
+    },
+    {
+      "id": "preview_63",
+      "severity": "release_truth",
+      "summary": "Registry authority: releaseDecisionPath must be a nonempty string"
+    },
+    {
+      "id": "preview_64",
+      "severity": "release_truth",
+      "summary": "Registry authority: releaseDecisionSha256 must be a nonempty string"
+    },
+    {
+      "id": "preview_65",
+      "severity": "release_truth",
+      "summary": "Registry authority: releaseDecisionStatus must be a nonempty string"
+    },
+    {
+      "id": "preview_66",
+      "severity": "release_truth",
+      "summary": "Registry authority: supportOwner must be a nonempty string"
+    },
+    {
+      "id": "preview_67",
+      "severity": "release_truth",
+      "summary": "Registry authority: availablePlatforms must be an array"
+    },
+    {
+      "id": "preview_68",
+      "severity": "release_truth",
+      "summary": "Registry authority: primaryHeadByPlatform must be an object"
+    },
+    {
+      "id": "preview_69",
+      "severity": "release_truth",
+      "summary": "Registry authority: artifactCount must be an integer"
+    },
+    {
+      "id": "preview_70",
+      "severity": "release_truth",
+      "summary": "Registry authority: manifestPath must be exact sibling RELEASE_CHANNEL.json"
+    },
+    {
+      "id": "preview_71",
+      "severity": "release_truth",
+      "summary": "Registry authority: releaseDecisionPath must be exact sibling RELEASE_DECISION.json"
+    },
+    {
+      "id": "preview_72",
+      "severity": "release_truth",
+      "summary": "Registry authority: registryRepository must identify ArchonMegalon/chummer6-hub-registry"
+    },
+    {
+      "id": "preview_73",
+      "severity": "release_truth",
+      "summary": "Registry authority: supportOwner is required"
+    },
+    {
+      "id": "preview_74",
+      "severity": "release_truth",
+      "summary": "Registry authority: nextActions must be a string array"
+    },
+    {
+      "id": "preview_75",
+      "severity": "release_truth",
+      "summary": "Registry authority: artifactCount must be a non-negative integer"
+    },
+    {
+      "id": "preview_76",
+      "severity": "release_truth",
+      "summary": "Registry authority: artifact projection row 0 must contain the exact v2 artifact fields"
+    },
+    {
+      "id": "preview_77",
+      "severity": "release_truth",
+      "summary": "Registry authority: artifact projection row 1 must contain the exact v2 artifact fields"
+    },
+    {
+      "id": "preview_78",
+      "severity": "release_truth",
+      "summary": "Registry authority: downloadAccessPosture must be derived exactly from eligible artifact access classes"
+    },
+    {
+      "id": "preview_79",
+      "severity": "release_truth",
+      "summary": "release scope version does not match immutable Registry snapshot"
+    },
+    {
+      "id": "preview_80",
+      "severity": "release_truth",
+      "summary": "Registry authority snapshot must be the pre-scorecard review_required candidate seed"
+    },
+    {
+      "id": "preview_81",
+      "severity": "release_truth",
+      "summary": "Registry authority candidate decision SHA-256 is invalid"
+    },
+    {
+      "id": "preview_82",
+      "severity": "release_truth",
+      "summary": "release scope platforms do not match immutable public shelf"
+    },
+    {
+      "id": "preview_83",
+      "severity": "release_truth",
+      "summary": "release scope primary heads do not match immutable public shelf"
+    },
+    {
+      "id": "preview_84",
+      "severity": "release_truth",
+      "summary": "release scope artifact access class does not match immutable public shelf"
+    },
+    {
+      "id": "preview_85",
+      "severity": "release_truth",
+      "summary": "release scope support owner does not match immutable Registry snapshot"
+    },
+    {
+      "id": "preview_86",
+      "severity": "release_truth",
+      "summary": "release scope visible heads do not exactly match 'macos' public shelf"
+    },
+    {
+      "id": "preview_87",
       "severity": "release_truth",
       "summary": "public release convergence proof is missing or not passing"
     }
@@ -73,20 +443,27 @@
   "channel": "preview",
   "contractName": "chummer.preview-release-decision/v1",
   "convergenceSha256": "",
-  "fallbackHeadsByPlatform": {},
-  "generatedAt": "2026-07-18 00:00:00+00:00",
+  "fallbackHeadsByPlatform": {
+    "macos": [
+      "blazor-desktop"
+    ]
+  },
+  "generatedAt": "2026-07-21T09:04:15Z",
   "manifestGeneratedAt": "",
   "manifestSha256": "",
-  "nextActions": [
-    "Choose one explicit platform and desktop-head scope before candidate production resumes."
+  "nextActions": [],
+  "platforms": [
+    "macos"
   ],
-  "platforms": [],
-  "primaryHeadByPlatform": {},
+  "primaryHeadByPlatform": {
+    "macos": "avalonia"
+  },
   "registryCommit": "",
   "releaseDecisionStatus": "review_required",
-  "releaseVersion": "",
-  "scorecardSha256": "dc307e014dd3013194143bd69c724fc7b8d8c156f6a84d3962539c4a83771a96",
+  "releaseScopeDecisionSha256": "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a",
+  "releaseVersion": "run-20260728-050000",
+  "scorecardSha256": "09066e67bcd0aa7aa66cfed0cfe463a65b94db9675d55819c5acdc0ca62147b7",
   "status": "review_required",
-  "supportOwner": "",
+  "supportOwner": "chummer-release-operations",
   "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED"
 }

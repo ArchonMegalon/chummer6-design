@@ -99,6 +99,20 @@ RELEASE_BINDING_FIELDS = (
     "manifestSha256",
     "releaseDecisionSha256",
 )
+GENERIC_CANDIDATE_EVIDENCE_CONTRACT = (
+    "chummer.campaign-operability-candidate-evidence/v1"
+)
+GENERIC_CANDIDATE_EVIDENCE_FIELDS = {
+    "contract_name",
+    "contract_version",
+    "release_version",
+    "release_scope_decision_sha256",
+    "manifest_sha256",
+    "authority_snapshot_sha256",
+    "release_decision_sha256",
+    "registry_commit",
+    "source_receipt_sha256",
+}
 
 
 def utc_now() -> str:
@@ -384,6 +398,35 @@ def binding_projection(payload: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def score_three_candidate_evidence_valid(
+    row: dict[str, Any],
+    *,
+    release_version: str,
+    release_scope_decision_sha256: str,
+    expected_binding: dict[str, str],
+    registry_commit: str,
+) -> bool:
+    source_sha256 = token(row.get("source_sha256"))
+    candidate_evidence = row.get("candidate_evidence")
+    expected = {
+        "contract_name": GENERIC_CANDIDATE_EVIDENCE_CONTRACT,
+        "contract_version": 1,
+        "release_version": release_version,
+        "release_scope_decision_sha256": release_scope_decision_sha256,
+        "manifest_sha256": expected_binding["manifestSha256"],
+        "authority_snapshot_sha256": expected_binding["snapshotSha256"],
+        "release_decision_sha256": expected_binding["releaseDecisionSha256"],
+        "registry_commit": registry_commit,
+        "source_receipt_sha256": source_sha256,
+    }
+    return (
+        HEX_64.fullmatch(source_sha256) is not None
+        and isinstance(candidate_evidence, dict)
+        and set(candidate_evidence) == GENERIC_CANDIDATE_EVIDENCE_FIELDS
+        and candidate_evidence == expected
+    )
+
+
 def portable_proof_path(
     value: str,
     *,
@@ -536,6 +579,9 @@ def build_graph(
         for cell in operability_cells
         if isinstance(cell, dict)
     }
+    operability_scope_sha256 = str(
+        operability.get("releaseScopeDecisionSha256") or ""
+    ).strip()
     expected_operability_pairs = {
         (surface_id, dimension_id)
         for surface_id in (
@@ -558,6 +604,13 @@ def build_graph(
     operability_ready = (
         str(operability.get("contract_name") or "") == "chummer.campaign_operability_scorecard"
         and operability.get("contract_version") == 2
+        and str(operability.get("release_version") or "")
+        == expected_release_binding["releaseVersion"]
+        and str(operability.get("release_scope_decision_sha256") or "")
+        == operability_scope_sha256
+        and HEX_64.fullmatch(operability_scope_sha256) is not None
+        and str(operability.get("releaseScopeDecisionSha256") or "")
+        == operability_scope_sha256
         and token(operability.get("status")) == "pass"
         and str(operability.get("verdict") or "") == "CAMPAIGN_OPERABILITY_READY"
         and token(operability.get("preview_status")) == "pass"
@@ -586,6 +639,13 @@ def build_graph(
             and all(
                 isinstance(row, dict)
                 and row.get("score") == 3
+                and score_three_candidate_evidence_valid(
+                    row,
+                    release_version=expected_release_binding["releaseVersion"],
+                    release_scope_decision_sha256=operability_scope_sha256,
+                    expected_binding=expected_release_binding,
+                    registry_commit=str(registry.get("registryCommit") or "").strip(),
+                )
                 for row in cell.get("evidence")
             )
             and not cell.get("preview_blockers")

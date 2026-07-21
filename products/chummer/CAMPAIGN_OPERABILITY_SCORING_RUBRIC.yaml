@@ -18,14 +18,28 @@ evidence_rules:
     - A failed flagship receipt does not become preview evidence merely because it names blockers or next actions.
   score_2:
     - The exact source receipt contains a `campaign_operability_preview` object.
-    - Its `contract_name` is `chummer.campaign_operability_preview_evidence` and `contract_version` is `1`.
+    - Its `contract_name` is `chummer.campaign_operability_preview_evidence` and `contract_version` is `2`.
+    - The nested declaration carries the exact scorecard `release_version` and `release_scope_decision_sha256`; neither binding may be inferred from a mutable workspace default.
     - Its status is `pass`, `bounded_owner` is resolved, and `next_actions` contains at least one concrete action.
+    - The generated evidence row keeps `source_status` and `source_verdict` as the raw source posture; it does not rewrite a failed flagship receipt as passing source evidence.
+    - The generated evidence row binds the exact source receipt bytes in `source_sha256` and carries an exact `preview_evidence` projection whose canonical `proof_sha256` covers the validated nested declaration. This is a byte binding, not independent authentication of the source producer.
+    - A scorecard consumer must recompute `proof_sha256`, require the projected owner and actions to match the row, and permit a negative raw source posture only for score `2` under that exact proof.
     - Generated owner identifiers are canonical lowercase tokens; cell next actions preserve evidence traversal order and remove only later exact duplicates.
-    - The Registry release channel may satisfy score `2` without the nested object only when it is published as `preview`, rollout is `promoted_preview`, supportability is `preview_supported`, release decision status is `review_required` or `preview_ready`, and support owner plus next actions are present.
+    - The Registry release channel may satisfy score `2` without the nested object only under proof contract `chummer.campaign_operability_registry_review_seed` version `1`, when the explicit immutable authority snapshot is published as `preview`, rollout is `promoted_preview`, supportability is `preview_supported`, release decision status is exactly the pre-scorecard `review_required` seed, and support owner plus next actions are present.
+    - Registry `registry_review_seed` proof binds the exact release version, approved scope digest, and authority snapshot digest. A `preview_ready` snapshot cannot be recycled as its own scorecard predecessor.
+    - When the approved scope excludes Windows, `windows_visual` remains in the fixed denominator at score `2` under `chummer.campaign_operability_approved_scope_exclusion` version `1`. The row retains the raw Windows source posture and flagship debt, and names the approved support owner plus a concrete action before Windows can enter scope.
+    - When Windows is in the approved scope, `windows_visual` cannot use a generic preview declaration or scope exclusion; the actual Windows visual receipt must pass the flagship contract.
     - A `review_required` Registry channel is transition evidence only. It cannot claim preview readiness or authorize publication; `PREVIEW_RELEASE_DECISION.generated.json` independently requires exact live convergence bound to that predecessor authority snapshot and decision.
   score_3:
     - Every required source receipt and journey passes its flagship contract without a preview exception.
+    - Every positive row retains the raw passing `source_status`, any contract-required `source_verdict`, a valid `source_sha256`, and an explicit `source_release_version` matching the approved candidate. Projected score/status fields cannot relabel failed or stale source bytes.
+    - Every score-`3` receipt or journey row carries the same exact nine-field `candidate_evidence` object under `chummer.campaign-operability-candidate-evidence/v1`, binding release version, approved scope digest, Registry manifest/snapshot/decision digests, Registry commit, and the raw source receipt digest.
+    - A release version alone is not strong source binding. Generic producers must carry exact top-level candidate authority aliases; producer-specific contracts such as Presentation's `campaign_operability_candidate_binding` must be validated in full before normalization into `candidate_evidence`.
   fail_closed:
+    - Scorecard contract version remains `2`, and every scorecard root names the exact `release_version` plus `release_scope_decision_sha256` loaded from caller-digest-verified approved JSON bytes.
+    - The scorecard root also projects final-gold authority aliases `releaseVersion`, `releaseScopeDecisionSha256`, `snapshotSha256`, `manifestSha256`, and `releaseDecisionSha256`; all must match the same exact candidate bytes.
+    - Release-eligible materialization requires an explicit immutable Registry authority snapshot; ambient Registry CURRENT state is not candidate authority.
+    - The explicit diagnostic-only unmatched-snapshot mode may preserve readable historical Registry bytes, but marks that source non-candidate and can never satisfy the Registry score-`2` gate or preview readiness.
     - Malformed preview declarations score `1`, not `2`.
     - A score-`2` row without both a bounded owner and concrete next action is downgraded to `1`.
     - Generated cells retain both preview blockers and flagship gaps so preview truth cannot erase stable debt.

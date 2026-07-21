@@ -25,7 +25,7 @@ def approved_source() -> dict:
         "fallback_heads_by_platform": {"macos": ["blazor-desktop"]},
         "artifact_access_class": "open_public",
         "signing_requirements": {"macos": "preview_unsigned_allowed"},
-        "support_owner": "Chummer release operations",
+        "support_owner": "chummer-release-operations",
         "next_actions": ["Generate the candidate bound to this exact decision."],
         "approval": {
             "status": "approved",
@@ -34,6 +34,33 @@ def approved_source() -> dict:
         },
         "note": "Synthetic test fixture.",
     }
+
+
+def test_checked_in_scope_is_the_exact_approved_signed_macos_nightly() -> None:
+    decision = materializer.build_release_scope_decision(
+        materializer.load_source(materializer.DEFAULT_SOURCE)
+    )
+    encoded = materializer.canonical_json_bytes(decision)
+    checked_in = materializer.DEFAULT_OUTPUT.read_bytes()
+
+    assert decision["decisionId"] == "nightly-macos-arm64-20260728"
+    assert decision["releaseVersion"] == "run-20260728-050000"
+    assert decision["channel"] == "preview"
+    assert decision["supportOwner"] == "chummer-release-operations"
+    assert decision["platforms"] == [
+        {
+            "artifactAccessClass": "open_public",
+            "fallbackHeads": ["blazor-desktop"],
+            "platform": "macos",
+            "primaryHead": "avalonia",
+            "rid": "osx-arm64",
+            "signingRequirement": "signed",
+        }
+    ]
+    assert checked_in == encoded
+    assert hashlib.sha256(checked_in).hexdigest() == (
+        "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a"
+    )
 
 
 def test_materializes_exact_sorted_runtime_contract_and_digest() -> None:
@@ -66,7 +93,7 @@ def test_materializes_exact_sorted_runtime_contract_and_digest() -> None:
     assert encoded == (
         json.dumps(decision, sort_keys=True, separators=(",", ":"), ensure_ascii=False) + "\n"
     ).encode("utf-8")
-    assert hashlib.sha256(encoded).hexdigest() == "01dddc481cae5dbb4346c336f7cbb41824236747c47c8a4796d4d211b0307c6a"
+    assert hashlib.sha256(encoded).hexdigest() == "8738a268b8cb77bf91b12dcdf82f41618fcdc2acfa56158eb013e91ecbcc0564"
 
 
 def test_writes_exact_bytes_atomically(tmp_path: Path) -> None:

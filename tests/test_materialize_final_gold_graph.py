@@ -150,6 +150,9 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
         {
             "contract_name": "chummer.campaign_operability_scorecard",
             "contract_version": 2,
+            "release_version": "run-1",
+            "release_scope_decision_sha256": "b" * 64,
+            "releaseScopeDecisionSha256": "b" * 64,
             "status": "pass",
             "verdict": "CAMPAIGN_OPERABILITY_READY",
             "preview_status": "pass",
@@ -268,6 +271,25 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     for receipt_path in release_bound_receipts:
         receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
         receipt.update(release_binding)
+        if receipt_path.name == "CAMPAIGN_OPERABILITY_SCORECARD.generated.json":
+            for cell in receipt["cells"]:
+                for row in cell["evidence"]:
+                    row.update(
+                        {
+                            "source_sha256": "f" * 64,
+                            "candidate_evidence": {
+                                "contract_name": materializer.GENERIC_CANDIDATE_EVIDENCE_CONTRACT,
+                                "contract_version": 1,
+                                "release_version": release_binding["releaseVersion"],
+                                "release_scope_decision_sha256": "b" * 64,
+                                "manifest_sha256": release_binding["manifestSha256"],
+                                "authority_snapshot_sha256": release_binding["snapshotSha256"],
+                                "release_decision_sha256": release_binding["releaseDecisionSha256"],
+                                "registry_commit": snapshot["registryCommit"],
+                                "source_receipt_sha256": "f" * 64,
+                            },
+                        }
+                    )
         write_json(receipt_path, receipt)
     live = {
         "https://example.test/status": "Stable is published. Version run-1",
@@ -498,6 +520,29 @@ def test_campaign_operability_denominator_cannot_be_weakened(tmp_path: Path) -> 
     assert any("exact 36/36" in row["summary"] for row in graph["blocking_findings"])
 
 
+def test_score_three_row_without_generic_candidate_evidence_fails_gold(
+    tmp_path: Path,
+) -> None:
+    paths, live = build_fixture(tmp_path)
+    scorecard_path = (
+        paths["design"]
+        / "products"
+        / "chummer"
+        / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
+    )
+    scorecard = json.loads(scorecard_path.read_text(encoding="utf-8"))
+    scorecard["cells"][0]["evidence"][0].pop("candidate_evidence")
+    write_json(scorecard_path, scorecard)
+
+    graph = materialize_fixture(paths, live)
+
+    assert graph["status"] == "review_required"
+    assert any(
+        "evidence-backed exact 36/36" in row["summary"]
+        for row in graph["blocking_findings"]
+    )
+
+
 def test_trustworthy_preview_score_two_cannot_pass_gold(tmp_path: Path) -> None:
     paths, live = build_fixture(tmp_path)
     scorecard_path = paths["design"] / "products" / "chummer" / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
@@ -566,6 +611,31 @@ def test_release_bound_receipt_from_another_release_fails_closed(tmp_path: Path)
         "operator_release_dashboard releaseVersion is missing or does not match" in row["summary"]
         for row in graph["blocking_findings"]
     )
+
+
+def test_campaign_scorecard_uses_final_gold_camel_authority_binding_schema(
+    tmp_path: Path,
+) -> None:
+    for field in materializer.RELEASE_BINDING_FIELDS:
+        paths, live = build_fixture(tmp_path / field)
+        scorecard_path = (
+            paths["design"]
+            / "products"
+            / "chummer"
+            / "CAMPAIGN_OPERABILITY_SCORECARD.generated.json"
+        )
+        scorecard = json.loads(scorecard_path.read_text(encoding="utf-8"))
+        scorecard[field] = "run-other" if field == "releaseVersion" else "0" * 64
+        write_json(scorecard_path, scorecard)
+
+        graph = materialize_fixture(paths, live)
+
+        assert graph["status"] == "review_required"
+        assert any(
+            f"campaign_operability_scorecard {field} is missing or does not match"
+            in row["summary"]
+            for row in graph["blocking_findings"]
+        )
 
 
 def test_stale_release_bound_receipt_fails_closed(tmp_path: Path) -> None:

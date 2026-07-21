@@ -93,7 +93,7 @@ def validate_snapshot_envelope_shape(snapshot: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if set(snapshot) != SNAPSHOT_FIELDS:
         errors.append("snapshot must contain the exact 21 v2 top-level properties")
-    for field in SNAPSHOT_STRING_FIELDS:
+    for field in sorted(SNAPSHOT_STRING_FIELDS):
         if not isinstance(snapshot.get(field), str) or not snapshot.get(field, "").strip():
             errors.append(f"{field} must be a nonempty string")
     if not isinstance(snapshot.get("availablePlatforms"), list):

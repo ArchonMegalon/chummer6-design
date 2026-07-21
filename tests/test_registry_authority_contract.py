@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from scripts.ai.registry_authority_contract import (
     SNAPSHOT_FIELDS,
+    SNAPSHOT_STRING_FIELDS,
     validate_snapshot_artifact_projection,
     validate_snapshot_envelope_shape,
 )
@@ -132,3 +133,16 @@ def test_snapshot_support_owner_cannot_be_unresolved_sentinel() -> None:
     candidate = envelope()
     candidate["supportOwner"] = "unknown"
     assert "supportOwner cannot be an unresolved sentinel" in validate_snapshot_envelope_shape(candidate)
+
+
+def test_snapshot_string_field_errors_have_canonical_order() -> None:
+    candidate = envelope()
+    for field in SNAPSHOT_STRING_FIELDS:
+        candidate[field] = ""
+
+    errors = validate_snapshot_envelope_shape(candidate)
+
+    assert errors[: len(SNAPSHOT_STRING_FIELDS)] == [
+        f"{field} must be a nonempty string"
+        for field in sorted(SNAPSHOT_STRING_FIELDS)
+    ]

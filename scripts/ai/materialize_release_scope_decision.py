@@ -322,7 +322,7 @@ def build_release_scope_decision(source: dict[str, Any]) -> dict[str, Any]:
         "releaseTarget": release_target,
         "releaseVersion": release_version,
         "status": "approved",
-        "supportOwner": _require_display_text(source.get("support_owner"), "support_owner"),
+        "supportOwner": _require_token(source.get("support_owner"), "support_owner"),
     }
 
 

@@ -24,6 +24,33 @@ if [ ! -f "$registry_manifest" ]; then
   echo "unable to locate canonical registry release manifest; set CHUMMER_REGISTRY_RELEASE_CHANNEL" >&2
   exit 1
 fi
+registry_snapshot="${CHUMMER_REGISTRY_AUTHORITY_SNAPSHOT:-}"
+if [ -z "$registry_snapshot" ] || [ ! -f "$registry_snapshot" ]; then
+  echo "explicit Registry authority snapshot is required; set CHUMMER_REGISTRY_AUTHORITY_SNAPSHOT" >&2
+  exit 1
+fi
+scope_decision="$repo_root/products/chummer/RELEASE_SCOPE_DECISION.approved.json"
+if [ ! -f "$scope_decision" ]; then
+  echo "approved release-scope decision is missing" >&2
+  exit 1
+fi
+scope_decision_sha256="$(sha256sum "$scope_decision" | awk '{print $1}')"
+ui_frame_receipt="${CHUMMER_UI_FRAME_RECEIPT:-}"
+desktop_visual_receipt="${CHUMMER_DESKTOP_VISUAL_RECEIPT:-}"
+desktop_workflow_receipt="${CHUMMER_DESKTOP_WORKFLOW_RECEIPT:-}"
+desktop_executable_receipt="${CHUMMER_DESKTOP_EXECUTABLE_RECEIPT:-}"
+for receipt in \
+  "$ui_frame_receipt" \
+  "$desktop_visual_receipt" \
+  "$desktop_workflow_receipt" \
+  "$desktop_executable_receipt"
+do
+  if [ -z "$receipt" ] || [ ! -f "$receipt" ] || [ -L "$receipt" ]; then
+    echo "explicit regular non-symlink campaign-operability candidate receipts are required" >&2
+    echo "set CHUMMER_UI_FRAME_RECEIPT, CHUMMER_DESKTOP_VISUAL_RECEIPT, CHUMMER_DESKTOP_WORKFLOW_RECEIPT, and CHUMMER_DESKTOP_EXECUTABLE_RECEIPT" >&2
+    exit 1
+  fi
+done
 for path in \
   README.md \
   AGENTS.md \
@@ -278,8 +305,24 @@ if ! python3 "$repo_root/scripts/ai/materialize_human_only_release_boundaries.py
     --no-prune \
     --source products/chummer/RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md >/dev/null
 fi
-python3 "$repo_root/scripts/ai/materialize_preview_release_decision.py" --check >/dev/null
-python3 "$repo_root/scripts/ai/materialize_current_release_state.py" --check >/dev/null
+scorecard_check_output="$(mktemp)"
+trap 'rm -f -- "$scorecard_check_output"' EXIT
+python3 "$repo_root/scripts/ai/materialize_campaign_operability_scorecard.py" \
+  --expected-release-scope-decision-sha256 "$scope_decision_sha256" \
+  --registry-snapshot "$registry_snapshot" \
+  --ui-frame-receipt "$ui_frame_receipt" \
+  --desktop-visual-receipt "$desktop_visual_receipt" \
+  --desktop-workflow-receipt "$desktop_workflow_receipt" \
+  --desktop-executable-receipt "$desktop_executable_receipt" \
+  --target preview \
+  --output "$scorecard_check_output" >/dev/null
+python3 "$repo_root/scripts/ai/materialize_preview_release_decision.py" \
+  --check \
+  --expected-release-scope-decision-sha256 "$scope_decision_sha256" \
+  --registry-snapshot "$registry_snapshot" >/dev/null
+python3 "$repo_root/scripts/ai/materialize_current_release_state.py" \
+  --check \
+  --registry-snapshot "$registry_snapshot" >/dev/null
 python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_horizon_registry_authority.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_next20_milestones.py" >/dev/null
