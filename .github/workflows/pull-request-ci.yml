@@ -41,6 +41,11 @@ jobs:
           scripts/ai/materialize_final_gold_graph.py
           scripts/ai/materialize_current_release_state.py
 
+      - name: Verify hash-locked dependencies and action commit pins
+        run: >-
+          "$RUNNER_TEMP/design-ci-python/bin/python"
+          scripts/ai/verify_ci_dependency_locks.py
+
       - name: Verify scorecard, preview, stable, and current-state semantics
         run: >-
           "$RUNNER_TEMP/design-ci-python/bin/python" -m pytest -q
@@ -49,19 +54,4 @@ jobs:
           tests/test_materialize_final_gold_graph.py
           tests/test_materialize_current_release_state.py
           tests/test_validate_gold_claim_freshness.py
-
-  dependency-review:
-    name: Dependency review
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      pull-requests: read
-    steps:
-      - name: Check out exact pull-request merge
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          persist-credentials: false
-      - name: Review dependency changes
-        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48
+          tests/test_verify_ci_dependency_locks.py
