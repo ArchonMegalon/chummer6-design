@@ -934,6 +934,11 @@ def test_score_one_cell_fails_preview() -> None:
     decision = build(scope, scorecard, manifest, snapshot, convergence)
     assert decision["status"] == "review_required"
     assert any("score 2 or 3" in row["summary"] for row in decision["blockingFindings"])
+    assert not any(
+        "not bound to the exact immutable Registry authority snapshot"
+        in row["summary"]
+        for row in decision["blockingFindings"]
+    )
 
 
 @pytest.mark.parametrize("missing_field", ["bounded_owner", "next_actions"])

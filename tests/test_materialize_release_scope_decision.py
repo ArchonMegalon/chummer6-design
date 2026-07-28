@@ -36,30 +36,30 @@ def approved_source() -> dict:
     }
 
 
-def test_checked_in_scope_is_the_exact_approved_signed_macos_nightly() -> None:
+def test_checked_in_scope_is_the_exact_approved_unsigned_windows_preview() -> None:
     decision = materializer.build_release_scope_decision(
         materializer.load_source(materializer.DEFAULT_SOURCE)
     )
     encoded = materializer.canonical_json_bytes(decision)
     checked_in = materializer.DEFAULT_OUTPUT.read_bytes()
 
-    assert decision["decisionId"] == "nightly-macos-arm64-20260728"
-    assert decision["releaseVersion"] == "run-20260728-050000"
+    assert decision["decisionId"] == "windows-x64-avalonia-preview-20260727-065724"
+    assert decision["releaseVersion"] == "run-20260727-065724"
     assert decision["channel"] == "preview"
     assert decision["supportOwner"] == "chummer-release-operations"
     assert decision["platforms"] == [
         {
             "artifactAccessClass": "open_public",
-            "fallbackHeads": ["blazor-desktop"],
-            "platform": "macos",
+            "fallbackHeads": [],
+            "platform": "windows",
             "primaryHead": "avalonia",
-            "rid": "osx-arm64",
-            "signingRequirement": "signed",
+            "rid": "win-x64",
+            "signingRequirement": "preview_unsigned_allowed",
         }
     ]
     assert checked_in == encoded
     assert hashlib.sha256(checked_in).hexdigest() == (
-        "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a"
+        "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259"
     )
 
 

@@ -330,8 +330,6 @@ def registry_matches_approved_candidate(
         and snapshot.get("releaseVersion") == approved_scope.get("releaseVersion")
         and snapshot.get("channel") == "preview"
         and snapshot.get("status") == "published"
-        and snapshot.get("rolloutState") == "promoted_preview"
-        and snapshot.get("supportabilityState") == "preview_supported"
         and snapshot.get("releaseDecisionStatus") == "review_required"
         and snapshot.get("supportOwner") == approved_scope.get("supportOwner")
         and string_list(snapshot.get("availablePlatforms"))

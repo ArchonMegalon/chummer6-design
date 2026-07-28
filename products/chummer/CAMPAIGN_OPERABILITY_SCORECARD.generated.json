@@ -1,14 +1,14 @@
 {
   "contract_name": "chummer.campaign_operability_scorecard",
   "contract_version": 2,
-  "release_version": "run-20260728-050000",
-  "release_scope_decision_sha256": "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a",
-  "releaseVersion": "run-20260728-050000",
-  "releaseScopeDecisionSha256": "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a",
-  "snapshotSha256": "",
-  "manifestSha256": "",
-  "releaseDecisionSha256": "",
-  "generated_at_utc": "2026-07-21T09:04:15Z",
+  "release_version": "run-20260727-065724",
+  "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+  "releaseVersion": "run-20260727-065724",
+  "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+  "snapshotSha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+  "manifestSha256": "126b5f134401640675edebb724d998173d1100c7e385f8dc901176732d8de408",
+  "releaseDecisionSha256": "df072b707a52e05c94f0d739847b55459db0722c9f2578f76cacae24a774a3e8",
+  "generated_at_utc": "2026-07-28T11:48:12Z",
   "status": "fail",
   "verdict": "CAMPAIGN_OPERABILITY_NOT_READY",
   "preview_status": "fail",
@@ -37,14 +37,14 @@
     "surface_count": 6,
     "dimension_count": 6,
     "cell_count": 36,
-    "score_0_count": 4,
-    "score_1_count": 32,
+    "score_0_count": 0,
+    "score_1_count": 36,
     "score_2_count": 0,
     "score_3_count": 0,
     "at_least_2_count": 0,
     "below_2_count": 36,
     "below_3_count": 36,
-    "minimum_score": 0
+    "minimum_score": 1
   },
   "cells": [
     {
@@ -115,32 +115,32 @@
         },
         {
           "id": "desktop_visual",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T03:51:29.190961Z",
+          "generated_at": "2026-07-27T07:12:34.809975Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "2595dbc1a0e6a3e7f06b44d5fbdfd1151a4430b84b36f9d8bcbd5997ecd8003f",
+          "failure": "desktop_visual is not passing",
+          "preview_failure": "desktop_visual is not passing",
+          "source_sha256": "ce182ebd00c47ea133ab012da55875a42966828c207dbb904287a9161275be0e",
           "preview_evidence": null
         },
         {
           "id": "desktop_workflow",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_WORKFLOW_EXECUTION_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T04:39:22.679304Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "5417404e10e52adf52af25933ebdb7a55a4323f262b912f6409fd566cdcfa73e",
+          "failure": "desktop_workflow is not passing",
+          "preview_failure": "desktop_workflow is not passing",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         }
       ],
@@ -148,22 +148,22 @@
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "fleet_flagship is not passing",
-        "source receipt release version does not match the approved candidate",
-        "source receipt release version does not match the approved candidate"
+        "desktop_visual is not passing",
+        "desktop_workflow is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "fleet_flagship is not passing",
-        "source receipt release version does not match the approved candidate",
-        "source receipt release version does not match the approved candidate"
+        "desktop_visual is not passing",
+        "desktop_workflow is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "fleet_flagship is not passing",
-        "source receipt release version does not match the approved candidate",
-        "source receipt release version does not match the approved candidate"
+        "desktop_visual is not passing",
+        "desktop_workflow is not passing"
       ]
     },
     {
@@ -237,14 +237,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RULESET_READINESS.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:10:13.855471Z",
+          "generated_at": "2026-07-28T04:36:40.530703Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "a0180404ac6045c89f0606517d7c673aef319832b16b3c7f630902626a768e6e",
+          "source_sha256": "584945031a80e7503cd43a9ebdaa512dc26a2c84481ff78422a92803a9b5e710",
           "preview_evidence": null
         },
         {
@@ -252,14 +252,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:24:10Z",
+          "generated_at": "2026-07-27T12:52:52Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "085e01627f9edf7e69f6ef97688fd1221628c38fe812e77e0416076dff238129",
+          "source_sha256": "0e418d38857d5a0cfec4086d5278417f2df5edc3734da378a36febd8ee465fdd",
           "preview_evidence": null
         }
       ],
@@ -337,17 +337,17 @@
         },
         {
           "id": "desktop_executable",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_EXECUTABLE_EXIT_GATE.generated.json",
-          "source_status": "fail",
+          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-13T05:05:19.851311Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "b7b6297f8b38da3c82d87de85ec35fd4bf5561f79faad1a660164c3d8ccefb42",
+          "failure": "positive Presentation receipt is missing exact candidate binding",
+          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "source_sha256": "11c18c0b68549bad3b572cded4da4d1a63798dac9ee94f30684dbd52fe637a8c",
           "preview_evidence": null
         },
         {
@@ -355,33 +355,33 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "release_ready is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "release_ready is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "release_ready is not passing"
       ]
     },
@@ -440,29 +440,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         },
         {
           "id": "release_channel",
-          "path": "$CHUMMER_WORKSPACE/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
-          "generated_at": "2026-07-12T18:46:26Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
+          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
           "preview_evidence": null
         }
       ],
@@ -552,17 +552,17 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_WORKFLOW_EXECUTION_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T04:39:22.679304Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "5417404e10e52adf52af25933ebdb7a55a4323f262b912f6409fd566cdcfa73e",
+          "failure": "desktop_workflow is not passing",
+          "preview_failure": "desktop_workflow is not passing",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         }
       ],
@@ -570,19 +570,19 @@
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt release version does not match the approved candidate"
+        "desktop_workflow is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt release version does not match the approved candidate"
+        "desktop_workflow is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt release version does not match the approved candidate"
+        "desktop_workflow is not passing"
       ]
     },
     {
@@ -638,32 +638,32 @@
         },
         {
           "id": "desktop_visual",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T03:51:29.190961Z",
+          "generated_at": "2026-07-27T07:12:34.809975Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "2595dbc1a0e6a3e7f06b44d5fbdfd1151a4430b84b36f9d8bcbd5997ecd8003f",
+          "failure": "desktop_visual is not passing",
+          "preview_failure": "desktop_visual is not passing",
+          "source_sha256": "ce182ebd00c47ea133ab012da55875a42966828c207dbb904287a9161275be0e",
           "preview_evidence": null
         },
         {
           "id": "design_quality",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/DESIGN_QUALITY_GATE.generated.json",
-          "source_status": "pass",
-          "source_verdict": "DESIGN_READY",
-          "generated_at": "2026-07-12T17:18:37Z",
+          "source_status": "fail",
+          "source_verdict": "DESIGN_NOT_READY",
+          "generated_at": "2026-07-28T04:50:21Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt is missing an explicit candidate release-version binding",
-          "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "f6ce9a019561d4ea3ae5cdce56bfc4df2af3a03afcbf33cf23b6a142021a00c8",
+          "failure": "design_quality is not passing",
+          "preview_failure": "design_quality is not passing",
+          "source_sha256": "e6d1608cc0648e6f19525752f4f743816e01e0cd440721f3676645b6d68de7ad",
           "preview_evidence": null
         },
         {
@@ -671,36 +671,36 @@
           "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:24:10Z",
+          "generated_at": "2026-07-27T12:52:52Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "085e01627f9edf7e69f6ef97688fd1221628c38fe812e77e0416076dff238129",
+          "source_sha256": "0e418d38857d5a0cfec4086d5278417f2df5edc3734da378a36febd8ee465fdd",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
-        "source receipt is missing an explicit candidate release-version binding",
+        "desktop_visual is not passing",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
-        "source receipt is missing an explicit candidate release-version binding",
+        "desktop_visual is not passing",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
-        "source receipt is missing an explicit candidate release-version binding",
+        "desktop_visual is not passing",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -759,14 +759,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/CHUMMER_PUBLIC_ROUTE_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:09:53.656297Z",
+          "generated_at": "2026-07-28T04:43:16.865718Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "49ea08261dc4344e35026f1ccb8d25ced61cb27191d5486f68820610b3ea0ba2",
+          "source_sha256": "af4cc701a59e616a7aa30dca5dbee1a2172c357ca6cfef985436bf1eb5ff7d40",
           "preview_evidence": null
         },
         {
@@ -774,14 +774,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:16:47.060432+00:00",
+          "generated_at": "2026-07-28T10:18:51.794205+00:00",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "c6a3ae11e58c50a618bc9445cca81ba301b155a98412699faf11804d9dd30921",
+          "source_sha256": "01c91b0f0c201a3b2faac9d347fc65308bba5e2f3908588ff368b2ca54074e3b",
           "preview_evidence": null
         }
       ],
@@ -856,17 +856,17 @@
         },
         {
           "id": "release_channel",
-          "path": "$CHUMMER_WORKSPACE/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
-          "generated_at": "2026-07-12T18:46:26Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
+          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
           "preview_evidence": null
         },
         {
@@ -874,14 +874,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_COPY_LEAK_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:08:53Z",
+          "generated_at": "2026-07-28T04:37:09Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "a685be9d1ade1e227bf50626c9a1b24f4c2c8fe933803995abc194beeecfe6bc",
+          "source_sha256": "6be5ecb0cac62e12ac770af52656b72682001561d22e8a7dc4fa23275bcf3072",
           "preview_evidence": null
         }
       ],
@@ -974,14 +974,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/ACCOUNT_HANDOFF_RUNTIME_CONFIG.generated.json",
           "source_status": "pass",
           "source_verdict": "READY",
-          "generated_at": "2026-07-14T01:41:00Z",
+          "generated_at": "2026-07-28T04:37:59Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "85bbe75d5e94977e4283990db643f85a7a650bcb4e8e7eaad930861db7db7b2f",
+          "source_sha256": "4577796926f4c0f88b70498b6e69273d83fbdec2e2acc992f0fd61939ed6031b",
           "preview_evidence": null
         }
       ],
@@ -1075,29 +1075,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         },
         {
           "id": "release_channel",
-          "path": "$CHUMMER_WORKSPACE/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
-          "generated_at": "2026-07-12T18:46:26Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
+          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
           "preview_evidence": null
         }
       ],
@@ -1126,7 +1126,7 @@
     {
       "surface_id": "public_front_door_and_support",
       "dimension_id": "responsiveness",
-      "score": 0,
+      "score": 1,
       "preview_status": "fail",
       "stable_status": "fail",
       "owners": [
@@ -1178,29 +1178,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:16:47.060432+00:00",
+          "generated_at": "2026-07-28T10:18:51.794205+00:00",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "c6a3ae11e58c50a618bc9445cca81ba301b155a98412699faf11804d9dd30921",
+          "source_sha256": "01c91b0f0c201a3b2faac9d347fc65308bba5e2f3908588ff368b2ca54074e3b",
           "preview_evidence": null
         },
         {
           "id": "ui_frame",
-          "path": "$CHUMMER_WORKSPACE/_completion/chummer_run_redesign_closure/UI_FRAME_INTEGRITY.generated.json",
-          "source_status": "missing",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
-          "score": 0,
+          "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "ui_frame is not passing",
           "preview_failure": "ui_frame is not passing",
-          "source_sha256": "",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         }
       ],
@@ -1226,7 +1226,7 @@
     {
       "surface_id": "public_front_door_and_support",
       "dimension_id": "design_authorship",
-      "score": 0,
+      "score": 1,
       "preview_status": "fail",
       "stable_status": "fail",
       "owners": [
@@ -1277,31 +1277,31 @@
         {
           "id": "design_quality",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/DESIGN_QUALITY_GATE.generated.json",
-          "source_status": "pass",
-          "source_verdict": "DESIGN_READY",
-          "generated_at": "2026-07-12T17:18:37Z",
+          "source_status": "fail",
+          "source_verdict": "DESIGN_NOT_READY",
+          "generated_at": "2026-07-28T04:50:21Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt is missing an explicit candidate release-version binding",
-          "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "f6ce9a019561d4ea3ae5cdce56bfc4df2af3a03afcbf33cf23b6a142021a00c8",
+          "failure": "design_quality is not passing",
+          "preview_failure": "design_quality is not passing",
+          "source_sha256": "e6d1608cc0648e6f19525752f4f743816e01e0cd440721f3676645b6d68de7ad",
           "preview_evidence": null
         },
         {
           "id": "ui_frame",
-          "path": "$CHUMMER_WORKSPACE/_completion/chummer_run_redesign_closure/UI_FRAME_INTEGRITY.generated.json",
-          "source_status": "missing",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
-          "score": 0,
+          "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "ui_frame is not passing",
           "preview_failure": "ui_frame is not passing",
-          "source_sha256": "",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         },
         {
@@ -1309,35 +1309,35 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_COPY_LEAK_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:08:53Z",
+          "generated_at": "2026-07-28T04:37:09Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "a685be9d1ade1e227bf50626c9a1b24f4c2c8fe933803995abc194beeecfe6bc",
+          "source_sha256": "6be5ecb0cac62e12ac770af52656b72682001561d22e8a7dc4fa23275bcf3072",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "ui_frame is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "ui_frame is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "ui_frame is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ]
@@ -1379,17 +1379,17 @@
         },
         {
           "id": "desktop_executable",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_EXECUTABLE_EXIT_GATE.generated.json",
-          "source_status": "fail",
+          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-13T05:05:19.851311Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "b7b6297f8b38da3c82d87de85ec35fd4bf5561f79faad1a660164c3d8ccefb42",
+          "failure": "positive Presentation receipt is missing exact candidate binding",
+          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "source_sha256": "11c18c0b68549bad3b572cded4da4d1a63798dac9ee94f30684dbd52fe637a8c",
           "preview_evidence": null
         },
         {
@@ -1397,30 +1397,30 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/CHUMMER_PUBLIC_ROUTE_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:09:53.656297Z",
+          "generated_at": "2026-07-28T04:43:16.865718Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "49ea08261dc4344e35026f1ccb8d25ced61cb27191d5486f68820610b3ea0ba2",
+          "source_sha256": "af4cc701a59e616a7aa30dca5dbee1a2172c357ca6cfef985436bf1eb5ff7d40",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -1476,17 +1476,17 @@
         },
         {
           "id": "release_channel",
-          "path": "$CHUMMER_WORKSPACE/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
-          "generated_at": "2026-07-12T18:46:26Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
+          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
           "preview_evidence": null
         }
       ],
@@ -1543,17 +1543,17 @@
         },
         {
           "id": "desktop_executable",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_EXECUTABLE_EXIT_GATE.generated.json",
-          "source_status": "fail",
+          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-13T05:05:19.851311Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "b7b6297f8b38da3c82d87de85ec35fd4bf5561f79faad1a660164c3d8ccefb42",
+          "failure": "positive Presentation receipt is missing exact candidate binding",
+          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "source_sha256": "11c18c0b68549bad3b572cded4da4d1a63798dac9ee94f30684dbd52fe637a8c",
           "preview_evidence": null
         },
         {
@@ -1561,30 +1561,30 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/ACCOUNT_HANDOFF_RUNTIME_CONFIG.generated.json",
           "source_status": "pass",
           "source_verdict": "READY",
-          "generated_at": "2026-07-14T01:41:00Z",
+          "generated_at": "2026-07-28T04:37:59Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "85bbe75d5e94977e4283990db643f85a7a650bcb4e8e7eaad930861db7db7b2f",
+          "source_sha256": "4577796926f4c0f88b70498b6e69273d83fbdec2e2acc992f0fd61939ed6031b",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -1599,12 +1599,8 @@
         "chummer6-hub",
         "chummer6-hub-registry"
       ],
-      "preview_owners": [
-        "chummer-release-operations"
-      ],
-      "next_actions": [
-        "Capture Windows installer visual proof before adding Windows to the approved release scope."
-      ],
+      "preview_owners": [],
+      "next_actions": [],
       "journey_ids": [
         "install_claim_restore_continue"
       ],
@@ -1630,17 +1626,17 @@
         },
         {
           "id": "release_channel",
-          "path": "$CHUMMER_WORKSPACE/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
-          "generated_at": "2026-07-12T18:46:26Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
+          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
           "preview_evidence": null
         },
         {
@@ -1648,54 +1644,36 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/WINDOWS_INSTALLER_VISUAL_AUDIT.generated.json",
           "source_status": "fail",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:16:34Z",
-          "score": 2,
-          "status": "preview",
-          "bounded_owner": "chummer-release-operations",
-          "next_actions": [
-            "Capture Windows installer visual proof before adding Windows to the approved release scope."
-          ],
+          "generated_at": "2026-07-28T05:09:12Z",
+          "score": 1,
+          "status": "fail",
+          "bounded_owner": "",
+          "next_actions": [],
           "failure": "windows_visual is not passing the flagship Windows visual contract",
-          "preview_failure": "",
-          "source_sha256": "ddbba9e79aa494f322cd5ae7d29d900d2c15574ba37ca80e94655e68f41f8d10",
-          "preview_evidence": {
-            "provenance_kind": "approved_scope_exclusion",
-            "source_receipt_sha256": "ddbba9e79aa494f322cd5ae7d29d900d2c15574ba37ca80e94655e68f41f8d10",
-            "proof_sha256": "2187edd10603e7a316379458c16f9f0e3cb4453560ddcac29d1edc6d03076be6",
-            "proof": {
-              "contract_name": "chummer.campaign_operability_approved_scope_exclusion",
-              "contract_version": 1,
-              "status": "approved",
-              "release_version": "run-20260728-050000",
-              "release_scope_decision_sha256": "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a",
-              "excluded_platform": "windows",
-              "evidence_id": "windows_visual",
-              "bounded_owner": "chummer-release-operations",
-              "next_actions": [
-                "Capture Windows installer visual proof before adding Windows to the approved release scope."
-              ]
-            }
-          }
+          "preview_failure": "windows_visual is not passing the flagship Windows visual contract",
+          "source_sha256": "72a3060f1026525ccd6813c3accc9906344d8fd78055cdeeb0be1ad02a12be12",
+          "preview_evidence": null
         },
         {
           "id": "release_ready",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+        "windows_visual is not passing the flagship Windows visual contract",
         "release_ready is not passing"
       ],
       "flagship_gaps": [
@@ -1722,12 +1700,8 @@
         "chummer6-hub",
         "chummer6-hub-registry"
       ],
-      "preview_owners": [
-        "chummer-release-operations"
-      ],
-      "next_actions": [
-        "Capture Windows installer visual proof before adding Windows to the approved release scope."
-      ],
+      "preview_owners": [],
+      "next_actions": [],
       "journey_ids": [
         "install_claim_restore_continue"
       ],
@@ -1752,17 +1726,17 @@
         },
         {
           "id": "desktop_executable",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_EXECUTABLE_EXIT_GATE.generated.json",
-          "source_status": "fail",
+          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-13T05:05:19.851311Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "b7b6297f8b38da3c82d87de85ec35fd4bf5561f79faad1a660164c3d8ccefb42",
+          "failure": "positive Presentation receipt is missing exact candidate binding",
+          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "source_sha256": "11c18c0b68549bad3b572cded4da4d1a63798dac9ee94f30684dbd52fe637a8c",
           "preview_evidence": null
         },
         {
@@ -1770,48 +1744,30 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/WINDOWS_INSTALLER_VISUAL_AUDIT.generated.json",
           "source_status": "fail",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:16:34Z",
-          "score": 2,
-          "status": "preview",
-          "bounded_owner": "chummer-release-operations",
-          "next_actions": [
-            "Capture Windows installer visual proof before adding Windows to the approved release scope."
-          ],
+          "generated_at": "2026-07-28T05:09:12Z",
+          "score": 1,
+          "status": "fail",
+          "bounded_owner": "",
+          "next_actions": [],
           "failure": "windows_visual is not passing the flagship Windows visual contract",
-          "preview_failure": "",
-          "source_sha256": "ddbba9e79aa494f322cd5ae7d29d900d2c15574ba37ca80e94655e68f41f8d10",
-          "preview_evidence": {
-            "provenance_kind": "approved_scope_exclusion",
-            "source_receipt_sha256": "ddbba9e79aa494f322cd5ae7d29d900d2c15574ba37ca80e94655e68f41f8d10",
-            "proof_sha256": "2187edd10603e7a316379458c16f9f0e3cb4453560ddcac29d1edc6d03076be6",
-            "proof": {
-              "contract_name": "chummer.campaign_operability_approved_scope_exclusion",
-              "contract_version": 1,
-              "status": "approved",
-              "release_version": "run-20260728-050000",
-              "release_scope_decision_sha256": "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a",
-              "excluded_platform": "windows",
-              "evidence_id": "windows_visual",
-              "bounded_owner": "chummer-release-operations",
-              "next_actions": [
-                "Capture Windows installer visual proof before adding Windows to the approved release scope."
-              ]
-            }
-          }
+          "preview_failure": "windows_visual is not passing the flagship Windows visual contract",
+          "source_sha256": "72a3060f1026525ccd6813c3accc9906344d8fd78055cdeeb0be1ad02a12be12",
+          "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate"
+        "positive Presentation receipt is missing exact candidate binding",
+        "windows_visual is not passing the flagship Windows visual contract"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "windows_visual is not passing the flagship Windows visual contract"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "windows_visual is not passing the flagship Windows visual contract"
       ]
     },
@@ -1826,12 +1782,8 @@
         "chummer6-hub",
         "chummer6-hub-registry"
       ],
-      "preview_owners": [
-        "chummer-release-operations"
-      ],
-      "next_actions": [
-        "Capture Windows installer visual proof before adding Windows to the approved release scope."
-      ],
+      "preview_owners": [],
+      "next_actions": [],
       "journey_ids": [
         "install_claim_restore_continue"
       ],
@@ -1857,17 +1809,17 @@
         },
         {
           "id": "desktop_visual",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T03:51:29.190961Z",
+          "generated_at": "2026-07-27T07:12:34.809975Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "2595dbc1a0e6a3e7f06b44d5fbdfd1151a4430b84b36f9d8bcbd5997ecd8003f",
+          "failure": "desktop_visual is not passing",
+          "preview_failure": "desktop_visual is not passing",
+          "source_sha256": "ce182ebd00c47ea133ab012da55875a42966828c207dbb904287a9161275be0e",
           "preview_evidence": null
         },
         {
@@ -1875,65 +1827,47 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/WINDOWS_INSTALLER_VISUAL_AUDIT.generated.json",
           "source_status": "fail",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:16:34Z",
-          "score": 2,
-          "status": "preview",
-          "bounded_owner": "chummer-release-operations",
-          "next_actions": [
-            "Capture Windows installer visual proof before adding Windows to the approved release scope."
-          ],
+          "generated_at": "2026-07-28T05:09:12Z",
+          "score": 1,
+          "status": "fail",
+          "bounded_owner": "",
+          "next_actions": [],
           "failure": "windows_visual is not passing the flagship Windows visual contract",
-          "preview_failure": "",
-          "source_sha256": "ddbba9e79aa494f322cd5ae7d29d900d2c15574ba37ca80e94655e68f41f8d10",
-          "preview_evidence": {
-            "provenance_kind": "approved_scope_exclusion",
-            "source_receipt_sha256": "ddbba9e79aa494f322cd5ae7d29d900d2c15574ba37ca80e94655e68f41f8d10",
-            "proof_sha256": "2187edd10603e7a316379458c16f9f0e3cb4453560ddcac29d1edc6d03076be6",
-            "proof": {
-              "contract_name": "chummer.campaign_operability_approved_scope_exclusion",
-              "contract_version": 1,
-              "status": "approved",
-              "release_version": "run-20260728-050000",
-              "release_scope_decision_sha256": "2eeeadbf76c3a0ce4de0dfebd5bc57e858d79e2cae4f52a6d722c2f3a051950a",
-              "excluded_platform": "windows",
-              "evidence_id": "windows_visual",
-              "bounded_owner": "chummer-release-operations",
-              "next_actions": [
-                "Capture Windows installer visual proof before adding Windows to the approved release scope."
-              ]
-            }
-          }
+          "preview_failure": "windows_visual is not passing the flagship Windows visual contract",
+          "source_sha256": "72a3060f1026525ccd6813c3accc9906344d8fd78055cdeeb0be1ad02a12be12",
+          "preview_evidence": null
         },
         {
           "id": "localization",
           "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:24:10Z",
+          "generated_at": "2026-07-27T12:52:52Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "085e01627f9edf7e69f6ef97688fd1221628c38fe812e77e0416076dff238129",
+          "source_sha256": "0e418d38857d5a0cfec4086d5278417f2df5edc3734da378a36febd8ee465fdd",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "desktop_visual is not passing",
+        "windows_visual is not passing the flagship Windows visual contract",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "desktop_visual is not passing",
         "windows_visual is not passing the flagship Windows visual contract",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "desktop_visual is not passing",
         "windows_visual is not passing the flagship Windows visual contract",
         "source receipt is missing an explicit candidate release-version binding"
       ]
@@ -1975,17 +1909,17 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_WORKFLOW_EXECUTION_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T04:39:22.679304Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "5417404e10e52adf52af25933ebdb7a55a4323f262b912f6409fd566cdcfa73e",
+          "failure": "desktop_workflow is not passing",
+          "preview_failure": "desktop_workflow is not passing",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         },
         {
@@ -1993,30 +1927,30 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/CHUMMER_PUBLIC_ROUTE_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:09:53.656297Z",
+          "generated_at": "2026-07-28T04:43:16.865718Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "49ea08261dc4344e35026f1ccb8d25ced61cb27191d5486f68820610b3ea0ba2",
+          "source_sha256": "af4cc701a59e616a7aa30dca5dbee1a2172c357ca6cfef985436bf1eb5ff7d40",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "desktop_workflow is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "desktop_workflow is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "desktop_workflow is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -2075,14 +2009,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RULESET_READINESS.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:10:13.855471Z",
+          "generated_at": "2026-07-28T04:36:40.530703Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "a0180404ac6045c89f0606517d7c673aef319832b16b3c7f630902626a768e6e",
+          "source_sha256": "584945031a80e7503cd43a9ebdaa512dc26a2c84481ff78422a92803a9b5e710",
           "preview_evidence": null
         }
       ],
@@ -2139,17 +2073,17 @@
         },
         {
           "id": "desktop_executable",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_EXECUTABLE_EXIT_GATE.generated.json",
-          "source_status": "fail",
+          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-13T05:05:19.851311Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "b7b6297f8b38da3c82d87de85ec35fd4bf5561f79faad1a660164c3d8ccefb42",
+          "failure": "positive Presentation receipt is missing exact candidate binding",
+          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "source_sha256": "11c18c0b68549bad3b572cded4da4d1a63798dac9ee94f30684dbd52fe637a8c",
           "preview_evidence": null
         },
         {
@@ -2157,30 +2091,30 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "release_ready is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "release_ready is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
+        "positive Presentation receipt is missing exact candidate binding",
         "release_ready is not passing"
       ]
     },
@@ -2225,14 +2159,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/BLACK_LEDGER_LIVE_MEDIA_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T16:55:40Z",
+          "generated_at": "2026-07-28T04:36:53Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "39cab9364477ab5e36f0f38be9d407bcbc478397b4804a146ce95714fa93dd7e",
+          "source_sha256": "c652c7734f9231eef5cb66ed63d7210abf01f33a39afbf5a050c012023b89a72",
           "preview_evidence": null
         },
         {
@@ -2240,14 +2174,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/EXTERNAL_DISTRIBUTION_MIRROR_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:10:11Z",
+          "generated_at": "2026-07-28T04:43:06Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "09f8c1dbb6da2e53c54d1673d6f1dfd7c2c7198de2cdb3161e5522e9dee1d4dd",
+          "source_sha256": "fb7f8743427d149d176ba2e519f7dce2da2bc6eaf329702b7979e928f1165594",
           "preview_evidence": null
         },
         {
@@ -2255,14 +2189,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         }
       ],
@@ -2337,34 +2271,34 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_WORKFLOW_EXECUTION_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T04:39:22.679304Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "5417404e10e52adf52af25933ebdb7a55a4323f262b912f6409fd566cdcfa73e",
+          "failure": "desktop_workflow is not passing",
+          "preview_failure": "desktop_workflow is not passing",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt release version does not match the approved candidate"
+        "desktop_workflow is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt release version does not match the approved candidate"
+        "desktop_workflow is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt release version does not match the approved candidate"
+        "desktop_workflow is not passing"
       ]
     },
     {
@@ -2405,32 +2339,32 @@
         },
         {
           "id": "desktop_visual",
-          "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/DESKTOP_VISUAL_FAMILIARITY_EXIT_GATE.generated.json",
-          "source_status": "pass",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-13T03:51:29.190961Z",
+          "generated_at": "2026-07-27T07:12:34.809975Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt release version does not match the approved candidate",
-          "preview_failure": "source receipt release version does not match the approved candidate",
-          "source_sha256": "2595dbc1a0e6a3e7f06b44d5fbdfd1151a4430b84b36f9d8bcbd5997ecd8003f",
+          "failure": "desktop_visual is not passing",
+          "preview_failure": "desktop_visual is not passing",
+          "source_sha256": "ce182ebd00c47ea133ab012da55875a42966828c207dbb904287a9161275be0e",
           "preview_evidence": null
         },
         {
           "id": "design_quality",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/DESIGN_QUALITY_GATE.generated.json",
-          "source_status": "pass",
-          "source_verdict": "DESIGN_READY",
-          "generated_at": "2026-07-12T17:18:37Z",
+          "source_status": "fail",
+          "source_verdict": "DESIGN_NOT_READY",
+          "generated_at": "2026-07-28T04:50:21Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt is missing an explicit candidate release-version binding",
-          "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "f6ce9a019561d4ea3ae5cdce56bfc4df2af3a03afcbf33cf23b6a142021a00c8",
+          "failure": "design_quality is not passing",
+          "preview_failure": "design_quality is not passing",
+          "source_sha256": "e6d1608cc0648e6f19525752f4f743816e01e0cd440721f3676645b6d68de7ad",
           "preview_evidence": null
         },
         {
@@ -2438,33 +2372,33 @@
           "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:24:10Z",
+          "generated_at": "2026-07-27T12:52:52Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "085e01627f9edf7e69f6ef97688fd1221628c38fe812e77e0416076dff238129",
+          "source_sha256": "0e418d38857d5a0cfec4086d5278417f2df5edc3734da378a36febd8ee465fdd",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
-        "source receipt is missing an explicit candidate release-version binding",
+        "desktop_visual is not passing",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
-        "source receipt is missing an explicit candidate release-version binding",
+        "desktop_visual is not passing",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt release version does not match the approved candidate",
-        "source receipt is missing an explicit candidate release-version binding",
+        "desktop_visual is not passing",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -2523,14 +2457,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json",
           "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-17T05:21:43Z",
+          "generated_at": "2026-07-27T13:38:17Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "6ce54e758d71cc5f5a0f033c2e0f90314dff25b983aec5117c0cf52a79c7092a",
+          "source_sha256": "ddb72c7569316360294e01ea04e7b92e399e01e7108495bfd6a1021bafe90085",
           "preview_evidence": null
         },
         {
@@ -2538,14 +2472,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/CHUMMER_PUBLIC_ROUTE_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:09:53.656297Z",
+          "generated_at": "2026-07-28T04:43:16.865718Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "49ea08261dc4344e35026f1ccb8d25ced61cb27191d5486f68820610b3ea0ba2",
+          "source_sha256": "af4cc701a59e616a7aa30dca5dbee1a2172c357ca6cfef985436bf1eb5ff7d40",
           "preview_evidence": null
         }
       ],
@@ -2623,14 +2557,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json",
           "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-17T05:21:43Z",
+          "generated_at": "2026-07-27T13:38:17Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "6ce54e758d71cc5f5a0f033c2e0f90314dff25b983aec5117c0cf52a79c7092a",
+          "source_sha256": "ddb72c7569316360294e01ea04e7b92e399e01e7108495bfd6a1021bafe90085",
           "preview_evidence": null
         },
         {
@@ -2723,14 +2657,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json",
           "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-17T05:21:43Z",
+          "generated_at": "2026-07-27T13:38:17Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "6ce54e758d71cc5f5a0f033c2e0f90314dff25b983aec5117c0cf52a79c7092a",
+          "source_sha256": "ddb72c7569316360294e01ea04e7b92e399e01e7108495bfd6a1021bafe90085",
           "preview_evidence": null
         },
         {
@@ -2738,14 +2672,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         }
       ],
@@ -2823,14 +2757,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json",
           "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-17T05:21:43Z",
+          "generated_at": "2026-07-27T13:38:17Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "6ce54e758d71cc5f5a0f033c2e0f90314dff25b983aec5117c0cf52a79c7092a",
+          "source_sha256": "ddb72c7569316360294e01ea04e7b92e399e01e7108495bfd6a1021bafe90085",
           "preview_evidence": null
         },
         {
@@ -2838,14 +2772,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         }
       ],
@@ -2923,14 +2857,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json",
           "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-17T05:21:43Z",
+          "generated_at": "2026-07-27T13:38:17Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "6ce54e758d71cc5f5a0f033c2e0f90314dff25b983aec5117c0cf52a79c7092a",
+          "source_sha256": "ddb72c7569316360294e01ea04e7b92e399e01e7108495bfd6a1021bafe90085",
           "preview_evidence": null
         },
         {
@@ -2938,14 +2872,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:16:47.060432+00:00",
+          "generated_at": "2026-07-28T10:18:51.794205+00:00",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "c6a3ae11e58c50a618bc9445cca81ba301b155a98412699faf11804d9dd30921",
+          "source_sha256": "01c91b0f0c201a3b2faac9d347fc65308bba5e2f3908588ff368b2ca54074e3b",
           "preview_evidence": null
         }
       ],
@@ -3024,29 +2958,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer-play/.codex-studio/published/MOBILE_LOCAL_RELEASE_PROOF.generated.json",
           "source_status": "passed",
           "source_verdict": "",
-          "generated_at": "2026-07-17T05:21:43Z",
+          "generated_at": "2026-07-27T13:38:17Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "6ce54e758d71cc5f5a0f033c2e0f90314dff25b983aec5117c0cf52a79c7092a",
+          "source_sha256": "ddb72c7569316360294e01ea04e7b92e399e01e7108495bfd6a1021bafe90085",
           "preview_evidence": null
         },
         {
           "id": "design_quality",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/DESIGN_QUALITY_GATE.generated.json",
-          "source_status": "pass",
-          "source_verdict": "DESIGN_READY",
-          "generated_at": "2026-07-12T17:18:37Z",
+          "source_status": "fail",
+          "source_verdict": "DESIGN_NOT_READY",
+          "generated_at": "2026-07-28T04:50:21Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt is missing an explicit candidate release-version binding",
-          "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "f6ce9a019561d4ea3ae5cdce56bfc4df2af3a03afcbf33cf23b6a142021a00c8",
+          "failure": "design_quality is not passing",
+          "preview_failure": "design_quality is not passing",
+          "source_sha256": "e6d1608cc0648e6f19525752f4f743816e01e0cd440721f3676645b6d68de7ad",
           "preview_evidence": null
         },
         {
@@ -3054,14 +2988,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:24:10Z",
+          "generated_at": "2026-07-27T12:52:52Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "085e01627f9edf7e69f6ef97688fd1221628c38fe812e77e0416076dff238129",
+          "source_sha256": "0e418d38857d5a0cfec4086d5278417f2df5edc3734da378a36febd8ee465fdd",
           "preview_evidence": null
         }
       ],
@@ -3069,21 +3003,21 @@
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -3157,14 +3091,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/CHUMMER_PUBLIC_ROUTE_PROOF.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:09:53.656297Z",
+          "generated_at": "2026-07-28T04:43:16.865718Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "49ea08261dc4344e35026f1ccb8d25ced61cb27191d5486f68820610b3ea0ba2",
+          "source_sha256": "af4cc701a59e616a7aa30dca5dbee1a2172c357ca6cfef985436bf1eb5ff7d40",
           "preview_evidence": null
         }
       ],
@@ -3242,29 +3176,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_COPY_LEAK_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:08:53Z",
+          "generated_at": "2026-07-28T04:37:09Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "a685be9d1ade1e227bf50626c9a1b24f4c2c8fe933803995abc194beeecfe6bc",
+          "source_sha256": "6be5ecb0cac62e12ac770af52656b72682001561d22e8a7dc4fa23275bcf3072",
           "preview_evidence": null
         },
         {
           "id": "release_channel",
-          "path": "$CHUMMER_WORKSPACE/chummer-hub-registry/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
-          "generated_at": "2026-07-12T18:46:26Z",
+          "generated_at": "",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
+          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
           "preview_evidence": null
         }
       ],
@@ -3357,14 +3291,14 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/ACCOUNT_HANDOFF_RUNTIME_CONFIG.generated.json",
           "source_status": "pass",
           "source_verdict": "READY",
-          "generated_at": "2026-07-14T01:41:00Z",
+          "generated_at": "2026-07-28T04:37:59Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "85bbe75d5e94977e4283990db643f85a7a650bcb4e8e7eaad930861db7db7b2f",
+          "source_sha256": "4577796926f4c0f88b70498b6e69273d83fbdec2e2acc992f0fd61939ed6031b",
           "preview_evidence": null
         }
       ],
@@ -3458,29 +3392,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/RELEASE_READY.generated.json",
           "source_status": "fail",
           "source_verdict": "NOT_RELEASE_READY",
-          "generated_at": "2026-07-17T23:59:48Z",
+          "generated_at": "2026-07-28T05:15:18Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "release_ready is not passing",
           "preview_failure": "release_ready is not passing",
-          "source_sha256": "8ba27d21e38dc52bb65b8f1b2f2b235fbe24f58c2d1c6d5d89094b94c3ea4f9e",
+          "source_sha256": "9e9797303de5fbd86fe2a6cde135799562b8a7d6023655917d8aefcf376e0c9a",
           "preview_evidence": null
         },
         {
           "id": "google_oauth",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/GOOGLE_OAUTH_LINKING_PROOF.generated.json",
-          "source_status": "pass",
+          "source_status": "fail",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:18:08.965804Z",
+          "generated_at": "2026-07-28T04:38:03.466853Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt is missing an explicit candidate release-version binding",
-          "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "889c72c634ea1ff32dd42233217c48b81a591b69e24426d0637a42d51d870f1d",
+          "failure": "google_oauth is not passing",
+          "preview_failure": "google_oauth is not passing",
+          "source_sha256": "c6942f8bd18e7662ef911e6e3819c8403e3d8f6f775763662c8e4f3a9cd26b1f",
           "preview_evidence": null
         }
       ],
@@ -3489,27 +3423,27 @@
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "release_ready is not passing",
-        "source receipt is missing an explicit candidate release-version binding"
+        "google_oauth is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "release_ready is not passing",
-        "source receipt is missing an explicit candidate release-version binding"
+        "google_oauth is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "release_ready is not passing",
-        "source receipt is missing an explicit candidate release-version binding"
+        "google_oauth is not passing"
       ]
     },
     {
       "surface_id": "improve_and_close_the_loop",
       "dimension_id": "responsiveness",
-      "score": 0,
+      "score": 1,
       "preview_status": "fail",
       "stable_status": "fail",
       "owners": [
@@ -3561,29 +3495,29 @@
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-12T17:16:47.060432+00:00",
+          "generated_at": "2026-07-28T10:18:51.794205+00:00",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "c6a3ae11e58c50a618bc9445cca81ba301b155a98412699faf11804d9dd30921",
+          "source_sha256": "01c91b0f0c201a3b2faac9d347fc65308bba5e2f3908588ff368b2ca54074e3b",
           "preview_evidence": null
         },
         {
           "id": "ui_frame",
-          "path": "$CHUMMER_WORKSPACE/_completion/chummer_run_redesign_closure/UI_FRAME_INTEGRITY.generated.json",
-          "source_status": "missing",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
-          "score": 0,
+          "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "ui_frame is not passing",
           "preview_failure": "ui_frame is not passing",
-          "source_sha256": "",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         }
       ],
@@ -3609,7 +3543,7 @@
     {
       "surface_id": "improve_and_close_the_loop",
       "dimension_id": "design_authorship",
-      "score": 0,
+      "score": 1,
       "preview_status": "fail",
       "stable_status": "fail",
       "owners": [
@@ -3660,31 +3594,31 @@
         {
           "id": "design_quality",
           "path": "$CHUMMER_WORKSPACE/chummer.run-services/.codex-studio/published/DESIGN_QUALITY_GATE.generated.json",
-          "source_status": "pass",
-          "source_verdict": "DESIGN_READY",
-          "generated_at": "2026-07-12T17:18:37Z",
+          "source_status": "fail",
+          "source_verdict": "DESIGN_NOT_READY",
+          "generated_at": "2026-07-28T04:50:21Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "source receipt is missing an explicit candidate release-version binding",
-          "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "f6ce9a019561d4ea3ae5cdce56bfc4df2af3a03afcbf33cf23b6a142021a00c8",
+          "failure": "design_quality is not passing",
+          "preview_failure": "design_quality is not passing",
+          "source_sha256": "e6d1608cc0648e6f19525752f4f743816e01e0cd440721f3676645b6d68de7ad",
           "preview_evidence": null
         },
         {
           "id": "ui_frame",
-          "path": "$CHUMMER_WORKSPACE/_completion/chummer_run_redesign_closure/UI_FRAME_INTEGRITY.generated.json",
-          "source_status": "missing",
+          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
-          "score": 0,
+          "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "ui_frame is not passing",
           "preview_failure": "ui_frame is not passing",
-          "source_sha256": "",
+          "source_sha256": "795edad6d8b692c0117acc49dbb88543646d79bdc6ea7b281b7c48ccf8336a8a",
           "preview_evidence": null
         },
         {
@@ -3692,152 +3626,152 @@
           "path": "$CHUMMER_WORKSPACE/chummer-presentation/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
           "source_status": "pass",
           "source_verdict": "",
-          "generated_at": "2026-07-17T22:24:10Z",
+          "generated_at": "2026-07-27T12:52:52Z",
           "score": 1,
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
           "failure": "source receipt is missing an explicit candidate release-version binding",
           "preview_failure": "source receipt is missing an explicit candidate release-version binding",
-          "source_sha256": "085e01627f9edf7e69f6ef97688fd1221628c38fe812e77e0416076dff238129",
+          "source_sha256": "0e418d38857d5a0cfec4086d5278417f2df5edc3734da378a36febd8ee465fdd",
           "preview_evidence": null
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "ui_frame is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "ui_frame is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
+        "design_quality is not passing",
         "ui_frame is not passing",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     }
   ],
   "preview_failures": [
-    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, source receipt release version does not match the approved candidate, source receipt release version does not match the approved candidate",
+    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
+    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
     "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-    "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt release version does not match the approved candidate",
-    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
+    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
-    "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, release_ready is not passing",
-    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate",
-    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, windows_visual is not passing the flagship Windows visual contract, release_ready is not passing",
+    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, windows_visual is not passing the flagship Windows visual contract",
+    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, windows_visual is not passing the flagship Windows visual contract, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
+    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
     "build_explain_publish.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
-    "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt release version does not match the approved candidate",
-    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
+    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "run_and_rejoin.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "run_and_rejoin.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
     "improve_and_close_the_loop.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
-    "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, source receipt is missing an explicit candidate release-version binding",
+    "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, google_oauth is not passing",
     "improve_and_close_the_loop.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
-    "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
+    "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
   ],
   "flagship_gaps": [
-    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, source receipt release version does not match the approved candidate, source receipt release version does not match the approved candidate",
+    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
+    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
     "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
-    "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt release version does not match the approved candidate",
-    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
+    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
-    "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not stable_ready, public_stable, and gold_supported",
-    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, windows_visual is not passing the flagship Windows visual contract, release_ready is not passing",
-    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, windows_visual is not passing the flagship Windows visual contract",
-    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, windows_visual is not passing the flagship Windows visual contract, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, windows_visual is not passing the flagship Windows visual contract",
+    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, windows_visual is not passing the flagship Windows visual contract, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
+    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
     "build_explain_publish.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
-    "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt release version does not match the approved candidate",
-    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
+    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "run_and_rejoin.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "run_and_rejoin.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not stable_ready, public_stable, and gold_supported",
     "improve_and_close_the_loop.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
-    "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, source receipt is missing an explicit candidate release-version binding",
+    "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, google_oauth is not passing",
     "improve_and_close_the_loop.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
-    "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
+    "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
   ],
   "failures": [
-    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, source receipt release version does not match the approved candidate, source receipt release version does not match the approved candidate",
+    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
+    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
     "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
-    "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt release version does not match the approved candidate",
-    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
+    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
-    "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not stable_ready, public_stable, and gold_supported",
-    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, windows_visual is not passing the flagship Windows visual contract, release_ready is not passing",
-    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, windows_visual is not passing the flagship Windows visual contract",
-    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, windows_visual is not passing the flagship Windows visual contract, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, windows_visual is not passing the flagship Windows visual contract",
+    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, windows_visual is not passing the flagship Windows visual contract, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
+    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
     "build_explain_publish.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
-    "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt release version does not match the approved candidate",
-    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
+    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "run_and_rejoin.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "run_and_rejoin.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not stable_ready, public_stable, and gold_supported",
     "improve_and_close_the_loop.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
-    "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, source receipt is missing an explicit candidate release-version binding",
+    "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, google_oauth is not passing",
     "improve_and_close_the_loop.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
-    "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
+    "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
   ]
 }
