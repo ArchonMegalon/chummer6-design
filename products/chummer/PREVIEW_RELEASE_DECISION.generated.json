@@ -1,31 +1,45 @@
 {
   "artifactAccessClass": "open_public",
-  "authoritySnapshotSha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+  "artifactHandoff": {
+    "arch": "x64",
+    "artifactAccessClass": "open_public",
+    "artifactId": "avalonia-win-x64-installer",
+    "channel": "preview",
+    "contractName": "chummer.public-preview-byte-handoff/v1",
+    "downloadUrl": "/downloads/g/g-run-20260727-065724-2ac3c660-71c926e3/files/chummer-avalonia-win-x64-installer.exe",
+    "head": "avalonia",
+    "platform": "windows",
+    "publicInstallRoute": "/downloads/install/avalonia-win-x64-installer",
+    "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+    "releaseVersion": "run-20260727-065724",
+    "rid": "win-x64",
+    "sha256": "0e79772221786ff2f685635ff684b0b6ba75ff1c2ce9ee00b498d0692e2ba99c",
+    "signingRequirement": "preview_unsigned_allowed",
+    "sizeBytes": 2734368,
+    "sourcePublicationState": "preview",
+    "status": "approved_public_preview_bytes"
+  },
+  "authoritySnapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
   "blockingFindings": [
     {
       "id": "preview_1",
       "severity": "release_truth",
       "summary": "every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership"
-    },
-    {
-      "id": "preview_2",
-      "severity": "release_truth",
-      "summary": "public release convergence proof is missing or not passing"
     }
   ],
-  "candidateDecisionSha256": "df072b707a52e05c94f0d739847b55459db0722c9f2578f76cacae24a774a3e8",
+  "candidateDecisionSha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22",
   "candidateDecisionStatus": "review_required",
   "channel": "preview",
-  "contractName": "chummer.preview-release-decision/v1",
-  "convergenceSha256": "",
+  "contractName": "chummer.preview-release-decision/v2",
+  "convergenceSha256": "09c879d46e1fb27b9b5b15fb58e15d964d40ac1e54cc4413178b5eba54421d06",
   "fallbackHeadsByPlatform": {
     "windows": []
   },
-  "generatedAt": "2026-07-28T11:48:12Z",
+  "generatedAt": "2026-07-28T13:54:17Z",
   "manifestGeneratedAt": "2026-07-27T06:57:24Z",
-  "manifestSha256": "126b5f134401640675edebb724d998173d1100c7e385f8dc901176732d8de408",
+  "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
   "nextActions": [
-    "Bind the 36-cell campaign scorecard to this exact immutable candidate snapshot."
+    "Stage this exact immutable generation privately and run all-route convergence."
   ],
   "platforms": [
     "windows"
@@ -37,7 +51,7 @@
   "releaseDecisionStatus": "review_required",
   "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
   "releaseVersion": "run-20260727-065724",
-  "scorecardSha256": "03f7a4f0f3521e492144218d357e34f3e8429ae4d56956e696b7b91e27ac587c",
+  "scorecardSha256": "0b02b3f18cbd82fe78d3c2060398d52c16a6b77f5b4c1a43783e3c803b1f5873",
   "status": "review_required",
   "supportOwner": "chummer-release-operations",
   "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED"

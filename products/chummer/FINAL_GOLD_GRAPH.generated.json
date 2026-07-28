@@ -2,24 +2,24 @@
   "contract_name": "chummer.final_gold_graph",
   "contract_version": 2,
   "product": "chummer",
-  "generated_at_utc": "2026-07-21T09:04:23Z",
+  "generated_at_utc": "2026-07-28T13:54:34Z",
   "status": "review_required",
   "verdict": "PUBLIC_RELEASE_REVIEW_REQUIRED",
   "releaseDecisionStatus": "review_required",
-  "releaseVersion": "run-20260712-174412",
+  "releaseVersion": "run-20260727-065724",
   "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
   "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
   "live_release": {
-    "version": "run-20260715-140426",
+    "version": "run-20260712-174412",
     "channel": "preview",
     "status": "published",
-    "rollout_state": "public_release_review_required",
+    "rollout_state": "coverage_incomplete",
     "supportability_state": "review_required",
     "available_platforms": [],
     "primary_head_by_platform": {},
     "artifact_count": null,
     "download_access_posture": "",
-    "known_issue_summary": "Preview caveats still apply, but the current release has recent install, account return, release updates, community wrap-up, bounded offline prefetch, and current support follow-up coverage Final release checks are not current yet, so launch-sensitive claims stay review-required Translator, XML amendment, Hero Lab, and adjacent import parity receipts are not current yet, so parity-sensitive routes stay with support.",
+    "known_issue_summary": "Known issue: required desktop tuple coverage is incomplete (platforms: macos; pairs: avalonia:macos; tuples: avalonia:osx-arm64:macos).",
     "manifest_sha256": "",
     "registry_commit": "",
     "release_decision_status": "review_required",
@@ -28,13 +28,13 @@
     "release_manifest_endpoint": "https://chummer.run/downloads/releases.json"
   },
   "release_authority": {
-    "contract": "",
-    "snapshot_path": "$REGISTRY_WORKSPACE/.codex-studio/published/RELEASE_CHANNEL.generated.json",
-    "snapshot_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
-    "manifest_sha256": "",
-    "registry_commit": "",
+    "contract": "chummer.release-authority-snapshot/v2",
+    "snapshot_path": "/docker/chummercomplete/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
+    "snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+    "manifest_sha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+    "registry_commit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
     "release_decision_status": "review_required",
-    "release_decision_sha256": ""
+    "release_decision_sha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22"
   },
   "required_loops": [
     "build_correctly",
@@ -121,12 +121,12 @@
       "kind": "campaign_operability_scorecard",
       "path": "products/chummer/CAMPAIGN_OPERABILITY_SCORECARD.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-21T09:04:15Z",
+      "generated_at": "2026-07-28T13:54:17Z",
       "cell_count": 36,
-      "release_version": "run-20260728-050000",
-      "snapshot_sha256": "",
-      "manifest_sha256": "",
-      "release_decision_sha256": ""
+      "release_version": "run-20260727-065724",
+      "snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+      "manifest_sha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+      "release_decision_sha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22"
     },
     {
       "kind": "journey_gates",
@@ -148,7 +148,7 @@
       "kind": "operator_release_dashboard",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/OPERATOR_RELEASE_DASHBOARD.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-14T04:15:24Z",
+      "generated_at": "2026-07-28T05:15:42Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -158,7 +158,7 @@
       "kind": "final_gold_janitor",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/FINAL_GOLD_JANITOR.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-14T03:51:46Z",
+      "generated_at": "2026-07-28T05:15:42Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -168,7 +168,7 @@
       "kind": "flagship_product_readiness_gate",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS_GATE.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-17T23:59:49Z",
+      "generated_at": "2026-07-28T05:15:30Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -177,8 +177,8 @@
     {
       "kind": "google_oauth_linking_proof",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/GOOGLE_OAUTH_LINKING_PROOF.generated.json",
-      "status": "pass",
-      "generated_at": "2026-07-12T17:18:08.965804Z",
+      "status": "fail",
+      "generated_at": "2026-07-28T04:38:03.466853Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -188,7 +188,7 @@
       "kind": "public_edge_postdeploy_gate",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-12T17:16:47.060432+00:00",
+      "generated_at": "2026-07-28T10:18:51.794205+00:00",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -198,7 +198,7 @@
       "kind": "black_ledger_live_media_proof",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/BLACK_LEDGER_LIVE_MEDIA_PROOF.generated.json",
       "status": "pass",
-      "generated_at": "2026-07-12T16:55:40Z",
+      "generated_at": "2026-07-28T04:36:53Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -208,7 +208,7 @@
       "kind": "ui_localization_release_gate",
       "path": "$UI_WORKSPACE/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
       "status": "pass",
-      "generated_at": "2026-07-17T22:24:10Z",
+      "generated_at": "2026-07-27T12:52:52Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -218,7 +218,7 @@
       "kind": "release_ready_matrix",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/RELEASE_READY.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-17T23:59:48Z",
+      "generated_at": "2026-07-28T05:15:18Z",
       "required_gate_count": 41,
       "completed_gate_count": 0,
       "release_version": "",
@@ -230,28 +230,30 @@
       "kind": "ea_release_critical_readiness",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/EA_OPERATOR_READINESS.generated.json",
       "status": "pass",
-      "generated_at": "2026-07-12T17:18:09Z",
+      "generated_at": "2026-07-28T04:38:04Z",
       "required_component_keys": [
         "google_workspace_oauth",
         "mymedia_alexa",
         "proactive_artifacts",
         "telegram"
       ],
-      "optional_blocked_component_keys": []
+      "optional_blocked_component_keys": [
+        "teable_recovery"
+      ]
     },
     {
       "kind": "registry_release_authority",
-      "path": "$REGISTRY_WORKSPACE/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+      "path": "/docker/chummercomplete/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
       "status": "fail",
-      "snapshot_sha256": "9a1b96a04b95f9e07f19d192e37bcf86e37f86de11e423a55bf0fb19f5bf75a3",
-      "manifest_sha256": "",
-      "registry_commit": "",
-      "release_decision_status": "",
-      "release_decision_sha256": ""
+      "snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+      "manifest_sha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+      "registry_commit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
+      "release_decision_status": "review_required",
+      "release_decision_sha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22"
     },
     {
       "kind": "registry_stable_posture",
-      "path": "$REGISTRY_WORKSPACE/.codex-studio/published/RELEASE_CHANNEL.generated.json",
+      "path": "/docker/chummercomplete/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
       "status": "fail"
     },
     {
@@ -263,7 +265,7 @@
       "kind": "live_release_manifest",
       "path": "https://chummer.run/downloads/releases.json",
       "status": "fail",
-      "generated_at": "2026-07-15T14:06:48+00:00"
+      "generated_at": "2026-07-12T18:46:26+00:00"
     }
   ],
   "completion_audit": {
@@ -332,7 +334,8 @@
           "ea_release_critical_readiness"
         ],
         "missing_or_failed_proof_kinds": [
-          "release_ready_matrix"
+          "release_ready_matrix",
+          "google_oauth_linking_proof"
         ]
       },
       {
@@ -425,284 +428,90 @@
     {
       "id": "proof_1",
       "severity": "release_truth",
-      "summary": "campaign_operability_scorecard releaseVersion is missing or does not match current registry authority"
+      "summary": "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3"
     },
     {
       "id": "proof_2",
       "severity": "release_truth",
-      "summary": "campaign_operability_scorecard snapshotSha256 is missing or does not match current registry authority"
+      "summary": "fleet_flagship_readiness status is fail"
     },
     {
       "id": "proof_3",
       "severity": "release_truth",
-      "summary": "campaign_operability_scorecard manifestSha256 is missing or does not match current registry authority"
+      "summary": "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_4",
       "severity": "release_truth",
-      "summary": "campaign_operability_scorecard releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_5",
       "severity": "release_truth",
-      "summary": "fleet_flagship_readiness status is fail"
+      "summary": "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_6",
       "severity": "release_truth",
-      "summary": "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority; operator_release_dashboard receipt is stale (older than 24 hours)"
+      "summary": "google_oauth_linking_proof status is fail"
     },
     {
       "id": "proof_7",
       "severity": "release_truth",
-      "summary": "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority; final_gold_janitor receipt is stale (older than 24 hours)"
+      "summary": "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_8",
       "severity": "release_truth",
-      "summary": "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority; flagship_product_readiness_gate receipt is stale (older than 24 hours)"
+      "summary": "release_ready_matrix releaseVersion is missing or does not match current registry authority"
     },
     {
       "id": "proof_9",
       "severity": "release_truth",
-      "summary": "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate receipt is stale (older than 24 hours)"
+      "summary": "release_ready_matrix snapshotSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_10",
       "severity": "release_truth",
-      "summary": "release_ready_matrix releaseVersion is missing or does not match current registry authority"
+      "summary": "release_ready_matrix manifestSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_11",
       "severity": "release_truth",
-      "summary": "release_ready_matrix snapshotSha256 is missing or does not match current registry authority"
+      "summary": "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_12",
       "severity": "release_truth",
-      "summary": "release_ready_matrix manifestSha256 is missing or does not match current registry authority"
+      "summary": "registry authority decision contract is unsupported"
     },
     {
       "id": "proof_13",
       "severity": "release_truth",
-      "summary": "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "registry authority decision manifest digest disagrees with the snapshot"
     },
     {
       "id": "proof_14",
       "severity": "release_truth",
-      "summary": "release_ready_matrix receipt is stale (older than 24 hours)"
+      "summary": "registry candidate authority is not public_stable and gold_supported"
     },
     {
       "id": "proof_15",
       "severity": "release_truth",
-      "summary": "registry authority snapshot path must be snapshots/<releaseVersion>/<snapshotSha256>/SNAPSHOT.json"
+      "summary": "live status page does not expose the current stable published version"
     },
     {
       "id": "proof_16",
       "severity": "release_truth",
-      "summary": "registry authority snapshot must declare chummer.release-authority-snapshot/v2"
-    },
-    {
-      "id": "proof_17",
-      "severity": "release_truth",
-      "summary": "registry authority snapshot must identify ArchonMegalon/chummer6-hub-registry"
-    },
-    {
-      "id": "proof_18",
-      "severity": "release_truth",
-      "summary": "registry authority snapshot must contain the exact 21 v2 top-level properties"
-    },
-    {
-      "id": "proof_19",
-      "severity": "release_truth",
-      "summary": "registry authority authorityContract must be a nonempty string"
-    },
-    {
-      "id": "proof_20",
-      "severity": "release_truth",
-      "summary": "registry authority downloadAccessPosture must be a nonempty string"
-    },
-    {
-      "id": "proof_21",
-      "severity": "release_truth",
-      "summary": "registry authority manifestPath must be a nonempty string"
-    },
-    {
-      "id": "proof_22",
-      "severity": "release_truth",
-      "summary": "registry authority manifestSha256 must be a nonempty string"
-    },
-    {
-      "id": "proof_23",
-      "severity": "release_truth",
-      "summary": "registry authority registryCommit must be a nonempty string"
-    },
-    {
-      "id": "proof_24",
-      "severity": "release_truth",
-      "summary": "registry authority registryRepository must be a nonempty string"
-    },
-    {
-      "id": "proof_25",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionPath must be a nonempty string"
-    },
-    {
-      "id": "proof_26",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionSha256 must be a nonempty string"
-    },
-    {
-      "id": "proof_27",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionStatus must be a nonempty string"
-    },
-    {
-      "id": "proof_28",
-      "severity": "release_truth",
-      "summary": "registry authority supportOwner must be a nonempty string"
-    },
-    {
-      "id": "proof_29",
-      "severity": "release_truth",
-      "summary": "registry authority availablePlatforms must be an array"
-    },
-    {
-      "id": "proof_30",
-      "severity": "release_truth",
-      "summary": "registry authority primaryHeadByPlatform must be an object"
-    },
-    {
-      "id": "proof_31",
-      "severity": "release_truth",
-      "summary": "registry authority artifactCount must be an integer"
-    },
-    {
-      "id": "proof_32",
-      "severity": "release_truth",
-      "summary": "registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json"
-    },
-    {
-      "id": "proof_33",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json"
-    },
-    {
-      "id": "proof_34",
-      "severity": "release_truth",
-      "summary": "registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry"
-    },
-    {
-      "id": "proof_35",
-      "severity": "release_truth",
-      "summary": "registry authority supportOwner is required"
-    },
-    {
-      "id": "proof_36",
-      "severity": "release_truth",
-      "summary": "registry authority nextActions must be a string array"
-    },
-    {
-      "id": "proof_37",
-      "severity": "release_truth",
-      "summary": "registry authority manifestPath must name one sibling file"
-    },
-    {
-      "id": "proof_38",
-      "severity": "release_truth",
-      "summary": "registry authority downloadAccessPosture is required"
-    },
-    {
-      "id": "proof_39",
-      "severity": "release_truth",
-      "summary": "registry authority downloadAccessPosture is invalid"
-    },
-    {
-      "id": "proof_40",
-      "severity": "release_truth",
-      "summary": "registry authority artifactCount must exactly match the artifacts inventory"
-    },
-    {
-      "id": "proof_41",
-      "severity": "release_truth",
-      "summary": "registry authority artifactCount must be a non-negative integer"
-    },
-    {
-      "id": "proof_42",
-      "severity": "release_truth",
-      "summary": "registry authority artifact projection row 0 must contain the exact v2 artifact fields"
-    },
-    {
-      "id": "proof_43",
-      "severity": "release_truth",
-      "summary": "registry authority artifact projection row 1 must contain the exact v2 artifact fields"
-    },
-    {
-      "id": "proof_44",
-      "severity": "release_truth",
-      "summary": "registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes"
-    },
-    {
-      "id": "proof_45",
-      "severity": "release_truth",
-      "summary": "registry authority registryCommit must be an exact 40-character lowercase Git SHA"
-    },
-    {
-      "id": "proof_46",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionStatus is invalid"
-    },
-    {
-      "id": "proof_47",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionSha256 must be a 64-character lowercase SHA-256"
-    },
-    {
-      "id": "proof_48",
-      "severity": "release_truth",
-      "summary": "registry authority releaseDecisionPath must name one sibling file"
-    },
-    {
-      "id": "proof_49",
-      "severity": "release_truth",
-      "summary": "registry authority releaseVersion disagrees with exact manifest bytes"
-    },
-    {
-      "id": "proof_50",
-      "severity": "release_truth",
-      "summary": "registry authority channel disagrees with exact manifest bytes"
-    },
-    {
-      "id": "proof_51",
-      "severity": "release_truth",
-      "summary": "registry authority status disagrees with exact manifest bytes"
-    },
-    {
-      "id": "proof_52",
-      "severity": "release_truth",
-      "summary": "registry authority rolloutState disagrees with exact manifest bytes"
-    },
-    {
-      "id": "proof_53",
-      "severity": "release_truth",
-      "summary": "registry authority supportabilityState disagrees with exact manifest bytes"
-    },
-    {
-      "id": "proof_54",
-      "severity": "release_truth",
-      "summary": "registry candidate authority is not public_stable and gold_supported"
-    },
-    {
-      "id": "proof_55",
-      "severity": "release_truth",
-      "summary": "live status page does not expose the current stable published version"
-    },
-    {
-      "id": "proof_56",
-      "severity": "release_truth",
       "summary": "live release manifest does not match exact immutable registry authority"
     }
   ],
-  "advisory_findings": [],
+  "advisory_findings": [
+    {
+      "id": "ea_optional_teable_recovery",
+      "severity": "advisory",
+      "summary": "Optional EA operator component remains blocked: teable_recovery"
+    }
+  ],
   "principle": "One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself."
 }

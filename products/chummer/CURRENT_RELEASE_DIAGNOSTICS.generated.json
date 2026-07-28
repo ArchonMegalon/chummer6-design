@@ -1,64 +1,23 @@
 {
   "contractName": "chummer.current-release-diagnostics/v1",
-  "generatedAt": "2026-07-28T11:48:12Z",
-  "rawFindingCount": 59,
+  "generatedAt": "2026-07-28T13:54:34Z",
+  "rawFindingCount": 18,
   "rawFindings": [
     "Registry authority review_required decision digest does not match a current review-required decision",
     "every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership",
-    "public release convergence proof is missing or not passing",
-    "campaign_operability_scorecard releaseVersion is missing or does not match current registry authority",
-    "campaign_operability_scorecard snapshotSha256 is missing or does not match current registry authority",
-    "campaign_operability_scorecard manifestSha256 is missing or does not match current registry authority",
-    "campaign_operability_scorecard releaseDecisionSha256 is missing or does not match current registry authority",
+    "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3",
     "fleet_flagship_readiness status is fail",
-    "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority; operator_release_dashboard receipt is stale (older than 24 hours)",
-    "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority; final_gold_janitor receipt is stale (older than 24 hours)",
-    "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority; flagship_product_readiness_gate receipt is stale (older than 24 hours)",
-    "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate receipt is stale (older than 24 hours)",
+    "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority",
+    "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority",
+    "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority",
+    "google_oauth_linking_proof status is fail",
+    "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority",
     "release_ready_matrix releaseVersion is missing or does not match current registry authority",
     "release_ready_matrix snapshotSha256 is missing or does not match current registry authority",
     "release_ready_matrix manifestSha256 is missing or does not match current registry authority",
     "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority",
-    "release_ready_matrix receipt is stale (older than 24 hours)",
-    "registry authority snapshot path must be snapshots/<releaseVersion>/<snapshotSha256>/SNAPSHOT.json",
-    "registry authority snapshot must declare chummer.release-authority-snapshot/v2",
-    "registry authority snapshot must identify ArchonMegalon/chummer6-hub-registry",
-    "registry authority snapshot must contain the exact 21 v2 top-level properties",
-    "registry authority authorityContract must be a nonempty string",
-    "registry authority downloadAccessPosture must be a nonempty string",
-    "registry authority manifestPath must be a nonempty string",
-    "registry authority manifestSha256 must be a nonempty string",
-    "registry authority registryCommit must be a nonempty string",
-    "registry authority registryRepository must be a nonempty string",
-    "registry authority releaseDecisionPath must be a nonempty string",
-    "registry authority releaseDecisionSha256 must be a nonempty string",
-    "registry authority releaseDecisionStatus must be a nonempty string",
-    "registry authority supportOwner must be a nonempty string",
-    "registry authority availablePlatforms must be an array",
-    "registry authority primaryHeadByPlatform must be an object",
-    "registry authority artifactCount must be an integer",
-    "registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json",
-    "registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json",
-    "registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry",
-    "registry authority supportOwner is required",
-    "registry authority nextActions must be a string array",
-    "registry authority manifestPath must name one sibling file",
-    "registry authority downloadAccessPosture is required",
-    "registry authority downloadAccessPosture is invalid",
-    "registry authority artifactCount must exactly match the artifacts inventory",
-    "registry authority artifactCount must be a non-negative integer",
-    "registry authority artifact projection row 0 must contain the exact v2 artifact fields",
-    "registry authority artifact projection row 1 must contain the exact v2 artifact fields",
-    "registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes",
-    "registry authority registryCommit must be an exact 40-character lowercase Git SHA",
-    "registry authority releaseDecisionStatus is invalid",
-    "registry authority releaseDecisionSha256 must be a 64-character lowercase SHA-256",
-    "registry authority releaseDecisionPath must name one sibling file",
-    "registry authority releaseVersion disagrees with exact manifest bytes",
-    "registry authority channel disagrees with exact manifest bytes",
-    "registry authority status disagrees with exact manifest bytes",
-    "registry authority rolloutState disagrees with exact manifest bytes",
-    "registry authority supportabilityState disagrees with exact manifest bytes",
+    "registry authority decision contract is unsupported",
+    "registry authority decision manifest digest disagrees with the snapshot",
     "registry candidate authority is not public_stable and gold_supported",
     "live status page does not expose the current stable published version",
     "live release manifest does not match exact immutable registry authority"
@@ -67,10 +26,30 @@
   "rootBlockers": [
     {
       "affectedGates": [
+        "release_truth"
+      ],
+      "id": "root_1",
+      "nextAction": "Resolve this independent release-truth finding.",
+      "owner": "chummer-release-operations",
+      "summary": "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3",
+      "suppressedConsequenceCount": 0
+    },
+    {
+      "affectedGates": [
+        "release_truth"
+      ],
+      "id": "root_2",
+      "nextAction": "Resolve this independent release-truth finding.",
+      "owner": "chummer-release-operations",
+      "summary": "google_oauth_linking_proof status is fail",
+      "suppressedConsequenceCount": 0
+    },
+    {
+      "affectedGates": [
         "current_release_authority",
         "preview_promotion"
       ],
-      "id": "root_1",
+      "id": "root_3",
       "nextAction": "Publish a successor review_required snapshot containing the current candidate decision bytes.",
       "owner": "chummer6-hub-registry",
       "summary": "Registry authority decision digest is not yet bound to the current candidate decision bytes.",
@@ -81,7 +60,7 @@
         "campaign_operability",
         "preview_promotion"
       ],
-      "id": "root_2",
+      "id": "root_4",
       "nextAction": "Regenerate candidate-bound journey and surface receipts until every cell reaches score 2 or 3.",
       "owner": "chummer-release-operations",
       "summary": "Campaign operability is below the preview bar for the exact 36-cell candidate denominator.",
@@ -92,37 +71,37 @@
         "postdeploy_convergence",
         "preview_promotion"
       ],
-      "id": "root_3",
+      "id": "root_5",
       "nextAction": "Stage the immutable generation and run the complete convergence route set.",
       "owner": "chummer6-hub",
       "summary": "Private staging and all-route release convergence have not passed for the exact authority snapshot.",
-      "suppressedConsequenceCount": 3
+      "suppressedConsequenceCount": 2
     },
     {
       "affectedGates": [
         "flagship_evidence",
         "stable_release"
       ],
-      "id": "root_4",
+      "id": "root_6",
       "nextAction": "Regenerate the release-ready, dashboard, janitor, matrix, and postdeploy receipts from the current snapshot.",
       "owner": "chummer-release-operations",
       "summary": "The flagship evidence pack is incomplete, stale, or not bound to the current release authority.",
-      "suppressedConsequenceCount": 14
+      "suppressedConsequenceCount": 9
     },
     {
       "affectedGates": [
         "stable_release_authority"
       ],
-      "id": "root_5",
+      "id": "root_7",
       "nextAction": "Regenerate FINAL_GOLD_GRAPH after candidate evidence and convergence are current.",
       "owner": "chummer6-design",
       "summary": "The stable gold graph has not been regenerated from the current immutable Registry authority.",
-      "suppressedConsequenceCount": 40
+      "suppressedConsequenceCount": 3
     }
   ],
-  "snapshotSha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+  "snapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
   "suppressedConsequences": {
-    "count": 59,
+    "count": 16,
     "families": [
       {
         "count": 1,
@@ -139,79 +118,36 @@
         "id": "campaign_scorecard"
       },
       {
-        "count": 3,
+        "count": 9,
         "findings": [
-          "public release convergence proof is missing or not passing",
-          "live status page does not expose the current stable published version",
-          "live release manifest does not match exact immutable registry authority"
-        ],
-        "id": "public_convergence"
-      },
-      {
-        "count": 14,
-        "findings": [
-          "campaign_operability_scorecard releaseVersion is missing or does not match current registry authority",
-          "campaign_operability_scorecard snapshotSha256 is missing or does not match current registry authority",
-          "campaign_operability_scorecard manifestSha256 is missing or does not match current registry authority",
-          "campaign_operability_scorecard releaseDecisionSha256 is missing or does not match current registry authority",
           "fleet_flagship_readiness status is fail",
-          "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority; operator_release_dashboard receipt is stale (older than 24 hours)",
-          "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority; final_gold_janitor receipt is stale (older than 24 hours)",
-          "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority; flagship_product_readiness_gate receipt is stale (older than 24 hours)",
-          "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate receipt is stale (older than 24 hours)",
+          "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority",
+          "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority",
+          "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority",
+          "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority",
           "release_ready_matrix releaseVersion is missing or does not match current registry authority",
           "release_ready_matrix snapshotSha256 is missing or does not match current registry authority",
           "release_ready_matrix manifestSha256 is missing or does not match current registry authority",
-          "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority",
-          "release_ready_matrix receipt is stale (older than 24 hours)"
+          "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority"
         ],
         "id": "candidate_evidence_pack"
       },
       {
-        "count": 40,
+        "count": 3,
         "findings": [
-          "registry authority snapshot path must be snapshots/<releaseVersion>/<snapshotSha256>/SNAPSHOT.json",
-          "registry authority snapshot must declare chummer.release-authority-snapshot/v2",
-          "registry authority snapshot must identify ArchonMegalon/chummer6-hub-registry",
-          "registry authority snapshot must contain the exact 21 v2 top-level properties",
-          "registry authority authorityContract must be a nonempty string",
-          "registry authority downloadAccessPosture must be a nonempty string",
-          "registry authority manifestPath must be a nonempty string",
-          "registry authority manifestSha256 must be a nonempty string",
-          "registry authority registryCommit must be a nonempty string",
-          "registry authority registryRepository must be a nonempty string",
-          "registry authority releaseDecisionPath must be a nonempty string",
-          "registry authority releaseDecisionSha256 must be a nonempty string",
-          "registry authority releaseDecisionStatus must be a nonempty string",
-          "registry authority supportOwner must be a nonempty string",
-          "registry authority availablePlatforms must be an array",
-          "registry authority primaryHeadByPlatform must be an object",
-          "registry authority artifactCount must be an integer",
-          "registry authority manifestPath must be exact sibling RELEASE_CHANNEL.json",
-          "registry authority releaseDecisionPath must be exact sibling RELEASE_DECISION.json",
-          "registry authority registryRepository must identify ArchonMegalon/chummer6-hub-registry",
-          "registry authority supportOwner is required",
-          "registry authority nextActions must be a string array",
-          "registry authority manifestPath must name one sibling file",
-          "registry authority downloadAccessPosture is required",
-          "registry authority downloadAccessPosture is invalid",
-          "registry authority artifactCount must exactly match the artifacts inventory",
-          "registry authority artifactCount must be a non-negative integer",
-          "registry authority artifact projection row 0 must contain the exact v2 artifact fields",
-          "registry authority artifact projection row 1 must contain the exact v2 artifact fields",
-          "registry authority downloadAccessPosture must be derived exactly from eligible artifact access classes",
-          "registry authority registryCommit must be an exact 40-character lowercase Git SHA",
-          "registry authority releaseDecisionStatus is invalid",
-          "registry authority releaseDecisionSha256 must be a 64-character lowercase SHA-256",
-          "registry authority releaseDecisionPath must name one sibling file",
-          "registry authority releaseVersion disagrees with exact manifest bytes",
-          "registry authority channel disagrees with exact manifest bytes",
-          "registry authority status disagrees with exact manifest bytes",
-          "registry authority rolloutState disagrees with exact manifest bytes",
-          "registry authority supportabilityState disagrees with exact manifest bytes",
+          "registry authority decision contract is unsupported",
+          "registry authority decision manifest digest disagrees with the snapshot",
           "registry candidate authority is not public_stable and gold_supported"
         ],
         "id": "stable_graph_authority"
+      },
+      {
+        "count": 2,
+        "findings": [
+          "live status page does not expose the current stable published version",
+          "live release manifest does not match exact immutable registry authority"
+        ],
+        "id": "public_convergence"
       }
     ]
   }
