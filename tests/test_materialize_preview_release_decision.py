@@ -244,6 +244,7 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
     convergence = {
         "contractName": "chummer.live-release-convergence/v1",
         "contractVersion": 1,
+        "generatedAtUtc": "2026-07-18T00:00:00Z",
         "status": "pass",
         "mismatchCount": 0,
         "failureCount": 0,
@@ -254,10 +255,12 @@ def fixture() -> tuple[dict, dict, dict, dict, dict]:
         "checkedRouteCount": len(current_routes),
         "checkedRoutes": list(current_routes),
         "releaseTruth": {},
+        "releaseVersion": "run-1",
         "manifestSha256": "",
         "releaseDecisionStatus": "review_required",
         "releaseDecisionSha256": "e" * 64,
         "authoritySnapshotSha256": "",
+        "verificationMode": "committed_public",
     }
     return scope, scorecard, manifest, snapshot, convergence
 
@@ -287,7 +290,13 @@ def evidence_row(scorecard: dict, evidence_id: str) -> dict:
     )
 
 
-def build(scope: dict, scorecard: dict, manifest: dict, snapshot: dict, convergence: dict) -> dict:
+def bind_fixture(
+    scope: dict,
+    scorecard: dict,
+    manifest: dict,
+    snapshot: dict,
+    convergence: dict,
+) -> tuple[str, dict, dict]:
     manifest_bytes = json.dumps(manifest).encode()
     manifest_sha = hashlib.sha256(manifest_bytes).hexdigest()
     snapshot = {**snapshot, "manifestSha256": manifest_sha}
@@ -311,6 +320,15 @@ def build(scope: dict, scorecard: dict, manifest: dict, snapshot: dict, converge
         "registryCommit": snapshot["registryCommit"],
         "releaseDecisionStatus": snapshot["releaseDecisionStatus"],
         "releaseDecisionSha256": snapshot["releaseDecisionSha256"],
+        "releaseScopeDecisionSha256": SCOPE_SHA256,
+        "artifactHandoff": module.expected_public_preview_byte_handoff(
+            snapshot=snapshot,
+            release_version=scope["releaseVersion"],
+            release_scope_decision_sha256=SCOPE_SHA256,
+            primary_heads={"windows": "avalonia"},
+            signing_requirements={"windows": "signed"},
+            artifact_access_class="open_public",
+        ),
     }
     scorecard.update(
         {
@@ -322,6 +340,17 @@ def build(scope: dict, scorecard: dict, manifest: dict, snapshot: dict, converge
         }
     )
     rebind_preview_proofs(scorecard)
+    return manifest_sha, snapshot, convergence
+
+
+def build(scope: dict, scorecard: dict, manifest: dict, snapshot: dict, convergence: dict) -> dict:
+    manifest_sha, snapshot, convergence = bind_fixture(
+        scope,
+        scorecard,
+        manifest,
+        snapshot,
+        convergence,
+    )
     return module.build_decision(
         scope=scope,
         scope_sha256=SCOPE_SHA256,
@@ -383,7 +412,10 @@ def make_scorecard_stable(scorecard: dict) -> None:
 def test_exact_preview_bar_is_ready() -> None:
     decision = build(*fixture())
     assert decision["status"] == "preview_ready"
+    assert decision["contractName"] == "chummer.preview-release-decision/v2"
     assert decision["releaseScopeDecisionSha256"] == SCOPE_SHA256
+    assert decision["artifactHandoff"]["releaseScopeDecisionSha256"] == SCOPE_SHA256
+    assert decision["artifactHandoff"]["sha256"] == "d" * 64
     assert decision["authoritySnapshotSha256"] == "f" * 64
     assert decision["candidateDecisionStatus"] == "review_required"
     assert decision["candidateDecisionSha256"] == "e" * 64
@@ -992,12 +1024,51 @@ def test_registry_review_seed_cannot_publish_without_exact_convergence() -> None
     assert any("convergence proof" in row["summary"] for row in decision["blockingFindings"])
 
 
-def test_convergence_field_denominator_cannot_be_weakened() -> None:
+@pytest.mark.parametrize(
+    "field",
+    [
+        "knownIssueSummary",
+        "releaseScopeDecisionSha256",
+        "artifactHandoff",
+    ],
+)
+def test_convergence_field_denominator_cannot_be_weakened(field: str) -> None:
     scope, scorecard, manifest, snapshot, convergence = fixture()
-    convergence["comparedFields"].remove("knownIssueSummary")
+    convergence["comparedFields"].remove(field)
     decision = build(scope, scorecard, manifest, snapshot, convergence)
     assert decision["status"] == "review_required"
     assert any("convergence proof" in row["summary"] for row in decision["blockingFindings"])
+
+
+def test_convergence_handoff_must_match_exact_scope_bound_public_bytes() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    manifest_sha, snapshot, convergence = bind_fixture(
+        scope,
+        scorecard,
+        manifest,
+        snapshot,
+        convergence,
+    )
+    convergence["releaseTruth"]["artifactHandoff"]["sha256"] = "0" * 64
+    decision = module.build_decision(
+        scope=scope,
+        scope_sha256=SCOPE_SHA256,
+        scorecard=scorecard,
+        manifest=manifest,
+        manifest_sha256=manifest_sha,
+        registry_commit=snapshot["registryCommit"],
+        snapshot=snapshot,
+        snapshot_sha256=AUTHORITY_SNAPSHOT_SHA256,
+        snapshot_errors=[],
+        convergence=convergence,
+        convergence_sha256="b" * 64,
+        scorecard_sha256="c" * 64,
+    )
+    assert decision["status"] == "review_required"
+    assert any(
+        "does not exactly match" in row["summary"]
+        for row in decision["blockingFindings"]
+    )
 
 
 def test_convergence_contract_rejects_unknown_top_level_fields() -> None:

@@ -7,25 +7,35 @@
     {
       "id": "current_1",
       "severity": "release_truth",
-      "summary": "Registry authority decision digest is not yet bound to the current candidate decision bytes."
+      "summary": "campaign operability scorecard is not an evidence-backed exact 36/36 at score 3"
     },
     {
       "id": "current_2",
       "severity": "release_truth",
-      "summary": "Campaign operability is below the preview bar for the exact 36-cell candidate denominator."
+      "summary": "google_oauth_linking_proof status is fail"
     },
     {
       "id": "current_3",
       "severity": "release_truth",
-      "summary": "Private staging and all-route release convergence have not passed for the exact authority snapshot."
+      "summary": "Registry authority decision digest is not yet bound to the current candidate decision bytes."
     },
     {
       "id": "current_4",
       "severity": "release_truth",
-      "summary": "The flagship evidence pack is incomplete, stale, or not bound to the current release authority."
+      "summary": "Campaign operability is below the preview bar for the exact 36-cell candidate denominator."
     },
     {
       "id": "current_5",
+      "severity": "release_truth",
+      "summary": "Private staging and all-route release convergence have not passed for the exact authority snapshot."
+    },
+    {
+      "id": "current_6",
+      "severity": "release_truth",
+      "summary": "The flagship evidence pack is incomplete, stale, or not bound to the current release authority."
+    },
+    {
+      "id": "current_7",
       "severity": "release_truth",
       "summary": "The stable gold graph has not been regenerated from the current immutable Registry authority."
     }
@@ -33,21 +43,21 @@
   "channel": "preview",
   "contractName": "chummer.current-release-decision/v1",
   "downloadAccessPosture": "open_public",
-  "finalGoldGraphSha256": "625c0c9b76588917772891e3bb2195caabaa7110d718bcb847caccc98bdfbd69",
-  "generatedAt": "2026-07-28T11:48:12Z",
+  "finalGoldGraphSha256": "b83eccbd9dc2b4258360388caf65bf566ef500719b678ffb97d1312ebd345b40",
+  "generatedAt": "2026-07-28T13:45:01Z",
   "knownIssueSummary": "Known issue: stale or incomplete proof receipts and Hosted Build privacy, retention, recovery, and erasure review still block launch-readiness claims.",
-  "manifestSha256": "126b5f134401640675edebb724d998173d1100c7e385f8dc901176732d8de408",
-  "previewDecisionSha256": "79cdb4c598c891cbddd2ec106fb067efeaca8d817e49f6c3bf39b6c9b55a10ff",
+  "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+  "previewDecisionSha256": "bf0632820315744a1aafdac4dad08fae1f067952c25245e7c046cd96313186e8",
   "primaryHeadByPlatform": {
     "windows": "avalonia"
   },
   "registryCommit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
-  "releaseDecisionSha256": "df072b707a52e05c94f0d739847b55459db0722c9f2578f76cacae24a774a3e8",
+  "releaseDecisionSha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22",
   "releaseDecisionStatus": "review_required",
   "releaseStatus": "published",
   "releaseVersion": "run-20260727-065724",
   "rolloutState": "public_release_review_required",
-  "snapshotSha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+  "snapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
   "stableBlockingFindings": [],
   "status": "review_required",
   "supportabilityState": "review_required"

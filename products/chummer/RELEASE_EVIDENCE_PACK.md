@@ -5,9 +5,9 @@ Generated compatibility projection; do not edit. Current authority: `CURRENT_REL
 This projection is an index, not independent release proof.
 
 - Current status: `review_required`
-- Final graph SHA-256: `625c0c9b76588917772891e3bb2195caabaa7110d718bcb847caccc98bdfbd69`
-- Preview decision SHA-256: `79cdb4c598c891cbddd2ec106fb067efeaca8d817e49f6c3bf39b6c9b55a10ff`
-- Authority snapshot SHA-256: `795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620`
-- Authority manifest SHA-256: `126b5f134401640675edebb724d998173d1100c7e385f8dc901176732d8de408`
+- Final graph SHA-256: `b83eccbd9dc2b4258360388caf65bf566ef500719b678ffb97d1312ebd345b40`
+- Preview decision SHA-256: `bf0632820315744a1aafdac4dad08fae1f067952c25245e7c046cd96313186e8`
+- Authority snapshot SHA-256: `768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6`
+- Authority manifest SHA-256: `d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081`
 
 See `CURRENT_BLOCKERS.generated.md` and `CURRENT_HUMAN_APPROVALS.generated.md` for current closure work.

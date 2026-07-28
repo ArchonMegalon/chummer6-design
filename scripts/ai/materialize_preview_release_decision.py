@@ -231,10 +231,13 @@ EXPECTED_CONVERGENCE_FIELDS = (
     "registryCommit",
     "releaseDecisionStatus",
     "releaseDecisionSha256",
+    "releaseScopeDecisionSha256",
+    "artifactHandoff",
 )
 EXPECTED_CONVERGENCE_TOP_LEVEL = {
     "contractName",
     "contractVersion",
+    "generatedAtUtc",
     "status",
     "mismatchCount",
     "failureCount",
@@ -245,10 +248,12 @@ EXPECTED_CONVERGENCE_TOP_LEVEL = {
     "checkedRoutes",
     "comparedFields",
     "releaseTruth",
+    "releaseVersion",
     "manifestSha256",
     "releaseDecisionStatus",
     "releaseDecisionSha256",
     "authoritySnapshotSha256",
+    "verificationMode",
 }
 CURRENT_AUTHORITY_ROUTE = "/api/v1/public/release-truth"
 CURRENT_CONVERGENCE_ROUTES = tuple(sorted((
@@ -319,6 +324,55 @@ def preferred_install_artifact_id(snapshot: dict[str, Any]) -> str:
         if ARTIFACT_ID.fullmatch(artifact_id):
             return artifact_id
     return ""
+
+
+def expected_public_preview_byte_handoff(
+    *,
+    snapshot: dict[str, Any],
+    release_version: str,
+    release_scope_decision_sha256: str,
+    primary_heads: dict[str, str],
+    signing_requirements: dict[str, str],
+    artifact_access_class: str,
+) -> dict[str, Any] | None:
+    raw_artifacts = snapshot.get("artifacts")
+    if not isinstance(raw_artifacts, list):
+        return None
+    candidates = [
+        row
+        for row in raw_artifacts
+        if (
+            isinstance(row, dict)
+            and token(row.get("head")) == primary_heads.get(token(row.get("platform")))
+            and token(row.get("installAccessClass")) == artifact_access_class
+        )
+    ]
+    if len(candidates) != 1:
+        return None
+    artifact = candidates[0]
+    platform = token(artifact.get("platform"))
+    signing_requirement = signing_requirements.get(platform, "")
+    if not signing_requirement:
+        return None
+    return {
+        "contractName": "chummer.public-preview-byte-handoff/v1",
+        "status": "approved_public_preview_bytes",
+        "sourcePublicationState": "preview",
+        "releaseScopeDecisionSha256": release_scope_decision_sha256,
+        "releaseVersion": release_version,
+        "channel": "preview",
+        "artifactId": text(artifact.get("artifactId")),
+        "head": text(artifact.get("head")),
+        "platform": text(artifact.get("platform")),
+        "rid": text(artifact.get("rid")),
+        "arch": text(artifact.get("arch")),
+        "sha256": text(artifact.get("sha256")),
+        "sizeBytes": artifact.get("sizeBytes"),
+        "artifactAccessClass": text(artifact.get("installAccessClass")),
+        "signingRequirement": signing_requirement,
+        "downloadUrl": text(artifact.get("downloadUrl")),
+        "publicInstallRoute": text(artifact.get("publicInstallRoute")),
+    }
 
 
 def expected_convergence_routes(
@@ -999,6 +1053,19 @@ def build_decision(
             if shelf_heads.get(platform, set()) != expected_heads:
                 failures.append(f"release scope visible heads do not exactly match {platform!r} public shelf")
 
+    artifact_handoff = expected_public_preview_byte_handoff(
+        snapshot=snapshot,
+        release_version=release_version,
+        release_scope_decision_sha256=scope_sha256,
+        primary_heads=primary_heads,
+        signing_requirements=signing,
+        artifact_access_class=artifact_access_class,
+    )
+    if artifact_handoff is None:
+        failures.append(
+            "immutable Registry authority does not resolve exactly one approved public preview byte handoff"
+        )
+
     convergence_truth = convergence.get("releaseTruth") if isinstance(convergence.get("releaseTruth"), dict) else {}
     authority_route = text(convergence.get("authorityRoute"))
     checked_routes = convergence.get("checkedRoutes")
@@ -1018,6 +1085,10 @@ def build_decision(
         and token(convergence.get("status")) == "pass"
         and convergence.get("mismatchCount") == 0
         and convergence.get("failureCount") == 0
+        and text(convergence.get("generatedAtUtc")).endswith("Z")
+        and text(convergence.get("releaseVersion")) == release_version
+        and token(convergence.get("verificationMode"))
+        in {"staged_private", "committed_public"}
         and isinstance(convergence.get("checkedRouteCount"), int)
         and not isinstance(convergence.get("checkedRouteCount"), bool)
         and convergence.get("checkedRouteCount") == len(expected_routes or ())
@@ -1058,6 +1129,8 @@ def build_decision(
         "registryCommit": text(snapshot.get("registryCommit")),
         "releaseDecisionStatus": text(snapshot.get("releaseDecisionStatus")),
         "releaseDecisionSha256": text(snapshot.get("releaseDecisionSha256")),
+        "releaseScopeDecisionSha256": scope_sha256,
+        "artifactHandoff": artifact_handoff,
     }
     if convergence and convergence_truth != expected_release_truth:
         failures.append("public release convergence truth does not exactly match immutable Registry snapshot")
@@ -1065,7 +1138,7 @@ def build_decision(
     unique_failures = list(dict.fromkeys(failures))
     ready = not unique_failures
     return {
-        "contractName": "chummer.preview-release-decision/v1",
+        "contractName": "chummer.preview-release-decision/v2",
         "generatedAt": generated_at(scope, scorecard, manifest, convergence),
         "status": "preview_ready" if ready else "review_required",
         "releaseDecisionStatus": "preview_ready" if ready else "review_required",
@@ -1077,6 +1150,7 @@ def build_decision(
         "primaryHeadByPlatform": primary_heads,
         "fallbackHeadsByPlatform": fallback_heads,
         "artifactAccessClass": artifact_access_class,
+        "artifactHandoff": artifact_handoff,
         "supportOwner": text(scope.get("supportOwner")),
         "nextActions": [text(item) for item in (snapshot.get("nextActions") or []) if text(item)],
         "registryCommit": registry_commit,

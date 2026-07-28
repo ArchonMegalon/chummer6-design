@@ -5,10 +5,10 @@
   "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
   "releaseVersion": "run-20260727-065724",
   "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
-  "snapshotSha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
-  "manifestSha256": "126b5f134401640675edebb724d998173d1100c7e385f8dc901176732d8de408",
-  "releaseDecisionSha256": "df072b707a52e05c94f0d739847b55459db0722c9f2578f76cacae24a774a3e8",
-  "generated_at_utc": "2026-07-28T11:48:12Z",
+  "snapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+  "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+  "releaseDecisionSha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22",
+  "generated_at_utc": "2026-07-28T13:43:51Z",
   "status": "fail",
   "verdict": "CAMPAIGN_OPERABILITY_NOT_READY",
   "preview_status": "fail",
@@ -115,7 +115,7 @@
         },
         {
           "id": "desktop_visual",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "2026-07-27T07:12:34.809975Z",
@@ -130,7 +130,7 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -337,7 +337,7 @@
         },
         {
           "id": "desktop_executable",
-          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/startup-smoke/startup-smoke-avalonia-win-x64.receipt.json",
           "source_status": "pass",
           "source_verdict": "",
           "generated_at": "",
@@ -452,7 +452,7 @@
         },
         {
           "id": "release_channel",
-          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
+          "path": "$CHUMMER_WORKSPACE/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -462,7 +462,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+          "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
           "preview_evidence": null
         }
       ],
@@ -552,7 +552,7 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -638,7 +638,7 @@
         },
         {
           "id": "desktop_visual",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "2026-07-27T07:12:34.809975Z",
@@ -856,7 +856,7 @@
         },
         {
           "id": "release_channel",
-          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
+          "path": "$CHUMMER_WORKSPACE/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -866,7 +866,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+          "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
           "preview_evidence": null
         },
         {
@@ -1087,7 +1087,7 @@
         },
         {
           "id": "release_channel",
-          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
+          "path": "$CHUMMER_WORKSPACE/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -1097,7 +1097,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+          "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
           "preview_evidence": null
         }
       ],
@@ -1190,7 +1190,7 @@
         },
         {
           "id": "ui_frame",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -1291,7 +1291,7 @@
         },
         {
           "id": "ui_frame",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -1379,7 +1379,7 @@
         },
         {
           "id": "desktop_executable",
-          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/startup-smoke/startup-smoke-avalonia-win-x64.receipt.json",
           "source_status": "pass",
           "source_verdict": "",
           "generated_at": "",
@@ -1476,7 +1476,7 @@
         },
         {
           "id": "release_channel",
-          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
+          "path": "$CHUMMER_WORKSPACE/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -1486,7 +1486,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+          "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
           "preview_evidence": null
         }
       ],
@@ -1543,7 +1543,7 @@
         },
         {
           "id": "desktop_executable",
-          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/startup-smoke/startup-smoke-avalonia-win-x64.receipt.json",
           "source_status": "pass",
           "source_verdict": "",
           "generated_at": "",
@@ -1626,7 +1626,7 @@
         },
         {
           "id": "release_channel",
-          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
+          "path": "$CHUMMER_WORKSPACE/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -1636,7 +1636,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+          "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
           "preview_evidence": null
         },
         {
@@ -1726,7 +1726,7 @@
         },
         {
           "id": "desktop_executable",
-          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/startup-smoke/startup-smoke-avalonia-win-x64.receipt.json",
           "source_status": "pass",
           "source_verdict": "",
           "generated_at": "",
@@ -1809,7 +1809,7 @@
         },
         {
           "id": "desktop_visual",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "2026-07-27T07:12:34.809975Z",
@@ -1909,7 +1909,7 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -2073,7 +2073,7 @@
         },
         {
           "id": "desktop_executable",
-          "path": "startup-smoke-avalonia-win-x64.receipt.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/startup-smoke/startup-smoke-avalonia-win-x64.receipt.json",
           "source_status": "pass",
           "source_verdict": "",
           "generated_at": "",
@@ -2271,7 +2271,7 @@
         },
         {
           "id": "desktop_workflow",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -2339,7 +2339,7 @@
         },
         {
           "id": "desktop_visual",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_VISUAL_PROOF-avalonia-win-x64.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "2026-07-27T07:12:34.809975Z",
@@ -3188,7 +3188,7 @@
         },
         {
           "id": "release_channel",
-          "path": "products/chummer/release-evidence/snapshots/run-20260727-065724/795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620/SNAPSHOT.json",
+          "path": "$CHUMMER_WORKSPACE/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -3198,7 +3198,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "795a72bc0512bb4d93047493384043dbf43af77464933664ccea401078969620",
+          "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
           "preview_evidence": null
         }
       ],
@@ -3507,7 +3507,7 @@
         },
         {
           "id": "ui_frame",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",
@@ -3608,7 +3608,7 @@
         },
         {
           "id": "ui_frame",
-          "path": "UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
+          "path": "$CHUMMER_WORKSPACE/.state/unsigned-windows-preview-run-20260727-065724-post-pr72-2ac3c660748e-fullclone-r1/candidate-import-v4-30245240244-r2/proof/windows-native/UNSIGNED_WINDOWS_PREVIEW_NATIVE_FINALIZED_EVIDENCE.generated.json",
           "source_status": "passed",
           "source_verdict": "",
           "generated_at": "",

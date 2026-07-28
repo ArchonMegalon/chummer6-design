@@ -7,6 +7,8 @@ Current preview verdict: `PREVIEW_RELEASE_REVIEW_REQUIRED`.
 
 ## RED blockers
 
+- campaign operability scorecard is not an evidence-backed exact 36/36 at score 3
+- google_oauth_linking_proof status is fail
 - Registry authority decision digest is not yet bound to the current candidate decision bytes.
 - Campaign operability is below the preview bar for the exact 36-cell candidate denominator.
 - Private staging and all-route release convergence have not passed for the exact authority snapshot.
