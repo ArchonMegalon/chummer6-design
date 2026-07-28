@@ -8,7 +8,7 @@
   "snapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
   "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
   "releaseDecisionSha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22",
-  "generated_at_utc": "2026-07-28T13:43:51Z",
+  "generated_at_utc": "2026-07-28T13:54:17Z",
   "status": "fail",
   "verdict": "CAMPAIGN_OPERABILITY_NOT_READY",
   "preview_status": "fail",
@@ -396,8 +396,12 @@
         "chummer6-core",
         "chummer6-ui-kit"
       ],
-      "preview_owners": [],
-      "next_actions": [],
+      "preview_owners": [
+        "chummer-release-operations"
+      ],
+      "next_actions": [
+        "Stage this exact immutable generation privately and run all-route convergence."
+      ],
       "journey_ids": [
         "install_claim_restore_continue",
         "build_explain_publish"
@@ -456,21 +460,42 @@
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
-          "score": 1,
-          "status": "fail",
-          "bounded_owner": "",
-          "next_actions": [],
+          "score": 2,
+          "status": "preview",
+          "bounded_owner": "chummer-release-operations",
+          "next_actions": [
+            "Stage this exact immutable generation privately and run all-route convergence."
+          ],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
-          "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+          "preview_failure": "",
           "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-          "preview_evidence": null
+          "preview_evidence": {
+            "provenance_kind": "registry_review_seed",
+            "source_receipt_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+            "proof_sha256": "47aeaa65cdebafdbcf8af87f394d6ff367a083ca6db773c62b8a129176120498",
+            "proof": {
+              "contract_name": "chummer.campaign_operability_registry_review_seed",
+              "contract_version": 1,
+              "status": "published",
+              "channel": "preview",
+              "rollout_state": "public_release_review_required",
+              "supportability_state": "review_required",
+              "release_decision_status": "review_required",
+              "release_version": "run-20260727-065724",
+              "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+              "authority_snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+              "bounded_owner": "chummer-release-operations",
+              "next_actions": [
+                "Stage this exact immutable generation privately and run all-route convergence."
+              ]
+            }
+          }
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "release_ready is not passing",
-        "release channel is not the exact owner-bounded pre-scorecard Registry review seed"
+        "release_ready is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
@@ -815,8 +840,12 @@
         "chummer6-hub-registry",
         "fleet"
       ],
-      "preview_owners": [],
-      "next_actions": [],
+      "preview_owners": [
+        "chummer-release-operations"
+      ],
+      "next_actions": [
+        "Stage this exact immutable generation privately and run all-route convergence."
+      ],
       "journey_ids": [
         "report_cluster_release_notify",
         "organize_community_and_close_loop"
@@ -860,14 +889,36 @@
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
-          "score": 1,
-          "status": "fail",
-          "bounded_owner": "",
-          "next_actions": [],
+          "score": 2,
+          "status": "preview",
+          "bounded_owner": "chummer-release-operations",
+          "next_actions": [
+            "Stage this exact immutable generation privately and run all-route convergence."
+          ],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
-          "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+          "preview_failure": "",
           "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-          "preview_evidence": null
+          "preview_evidence": {
+            "provenance_kind": "registry_review_seed",
+            "source_receipt_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+            "proof_sha256": "47aeaa65cdebafdbcf8af87f394d6ff367a083ca6db773c62b8a129176120498",
+            "proof": {
+              "contract_name": "chummer.campaign_operability_registry_review_seed",
+              "contract_version": 1,
+              "status": "published",
+              "channel": "preview",
+              "rollout_state": "public_release_review_required",
+              "supportability_state": "review_required",
+              "release_decision_status": "review_required",
+              "release_version": "run-20260727-065724",
+              "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+              "authority_snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+              "bounded_owner": "chummer-release-operations",
+              "next_actions": [
+                "Stage this exact immutable generation privately and run all-route convergence."
+              ]
+            }
+          }
         },
         {
           "id": "public_copy",
@@ -888,7 +939,6 @@
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
@@ -1015,8 +1065,12 @@
         "chummer6-hub-registry",
         "fleet"
       ],
-      "preview_owners": [],
-      "next_actions": [],
+      "preview_owners": [
+        "chummer-release-operations"
+      ],
+      "next_actions": [
+        "Stage this exact immutable generation privately and run all-route convergence."
+      ],
       "journey_ids": [
         "report_cluster_release_notify",
         "organize_community_and_close_loop"
@@ -1091,22 +1145,43 @@
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
-          "score": 1,
-          "status": "fail",
-          "bounded_owner": "",
-          "next_actions": [],
+          "score": 2,
+          "status": "preview",
+          "bounded_owner": "chummer-release-operations",
+          "next_actions": [
+            "Stage this exact immutable generation privately and run all-route convergence."
+          ],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
-          "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+          "preview_failure": "",
           "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-          "preview_evidence": null
+          "preview_evidence": {
+            "provenance_kind": "registry_review_seed",
+            "source_receipt_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+            "proof_sha256": "47aeaa65cdebafdbcf8af87f394d6ff367a083ca6db773c62b8a129176120498",
+            "proof": {
+              "contract_name": "chummer.campaign_operability_registry_review_seed",
+              "contract_version": 1,
+              "status": "published",
+              "channel": "preview",
+              "rollout_state": "public_release_review_required",
+              "supportability_state": "review_required",
+              "release_decision_status": "review_required",
+              "release_version": "run-20260727-065724",
+              "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+              "authority_snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+              "bounded_owner": "chummer-release-operations",
+              "next_actions": [
+                "Stage this exact immutable generation privately and run all-route convergence."
+              ]
+            }
+          }
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "release_ready is not passing",
-        "release channel is not the exact owner-bounded pre-scorecard Registry review seed"
+        "release_ready is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
@@ -1435,8 +1510,12 @@
         "chummer6-hub",
         "chummer6-hub-registry"
       ],
-      "preview_owners": [],
-      "next_actions": [],
+      "preview_owners": [
+        "chummer-release-operations"
+      ],
+      "next_actions": [
+        "Stage this exact immutable generation privately and run all-route convergence."
+      ],
       "journey_ids": [
         "install_claim_restore_continue"
       ],
@@ -1480,20 +1559,41 @@
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
-          "score": 1,
-          "status": "fail",
-          "bounded_owner": "",
-          "next_actions": [],
+          "score": 2,
+          "status": "preview",
+          "bounded_owner": "chummer-release-operations",
+          "next_actions": [
+            "Stage this exact immutable generation privately and run all-route convergence."
+          ],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
-          "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+          "preview_failure": "",
           "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-          "preview_evidence": null
+          "preview_evidence": {
+            "provenance_kind": "registry_review_seed",
+            "source_receipt_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+            "proof_sha256": "47aeaa65cdebafdbcf8af87f394d6ff367a083ca6db773c62b8a129176120498",
+            "proof": {
+              "contract_name": "chummer.campaign_operability_registry_review_seed",
+              "contract_version": 1,
+              "status": "published",
+              "channel": "preview",
+              "rollout_state": "public_release_review_required",
+              "supportability_state": "review_required",
+              "release_decision_status": "review_required",
+              "release_version": "run-20260727-065724",
+              "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+              "authority_snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+              "bounded_owner": "chummer-release-operations",
+              "next_actions": [
+                "Stage this exact immutable generation privately and run all-route convergence."
+              ]
+            }
+          }
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
-        "release channel is not the exact owner-bounded pre-scorecard Registry review seed"
+        "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
@@ -1599,8 +1699,12 @@
         "chummer6-hub",
         "chummer6-hub-registry"
       ],
-      "preview_owners": [],
-      "next_actions": [],
+      "preview_owners": [
+        "chummer-release-operations"
+      ],
+      "next_actions": [
+        "Stage this exact immutable generation privately and run all-route convergence."
+      ],
       "journey_ids": [
         "install_claim_restore_continue"
       ],
@@ -1630,14 +1734,36 @@
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
-          "score": 1,
-          "status": "fail",
-          "bounded_owner": "",
-          "next_actions": [],
+          "score": 2,
+          "status": "preview",
+          "bounded_owner": "chummer-release-operations",
+          "next_actions": [
+            "Stage this exact immutable generation privately and run all-route convergence."
+          ],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
-          "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+          "preview_failure": "",
           "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-          "preview_evidence": null
+          "preview_evidence": {
+            "provenance_kind": "registry_review_seed",
+            "source_receipt_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+            "proof_sha256": "47aeaa65cdebafdbcf8af87f394d6ff367a083ca6db773c62b8a129176120498",
+            "proof": {
+              "contract_name": "chummer.campaign_operability_registry_review_seed",
+              "contract_version": 1,
+              "status": "published",
+              "channel": "preview",
+              "rollout_state": "public_release_review_required",
+              "supportability_state": "review_required",
+              "release_decision_status": "review_required",
+              "release_version": "run-20260727-065724",
+              "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+              "authority_snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+              "bounded_owner": "chummer-release-operations",
+              "next_actions": [
+                "Stage this exact immutable generation privately and run all-route convergence."
+              ]
+            }
+          }
         },
         {
           "id": "windows_visual",
@@ -1672,7 +1798,6 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
         "windows_visual is not passing the flagship Windows visual contract",
         "release_ready is not passing"
       ],
@@ -3132,8 +3257,12 @@
         "fleet",
         "executive-assistant"
       ],
-      "preview_owners": [],
-      "next_actions": [],
+      "preview_owners": [
+        "chummer-release-operations"
+      ],
+      "next_actions": [
+        "Stage this exact immutable generation privately and run all-route convergence."
+      ],
       "journey_ids": [
         "report_cluster_release_notify",
         "organize_community_and_close_loop"
@@ -3192,21 +3321,42 @@
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
-          "score": 1,
-          "status": "fail",
-          "bounded_owner": "",
-          "next_actions": [],
+          "score": 2,
+          "status": "preview",
+          "bounded_owner": "chummer-release-operations",
+          "next_actions": [
+            "Stage this exact immutable generation privately and run all-route convergence."
+          ],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
-          "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+          "preview_failure": "",
           "source_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-          "preview_evidence": null
+          "preview_evidence": {
+            "provenance_kind": "registry_review_seed",
+            "source_receipt_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+            "proof_sha256": "47aeaa65cdebafdbcf8af87f394d6ff367a083ca6db773c62b8a129176120498",
+            "proof": {
+              "contract_name": "chummer.campaign_operability_registry_review_seed",
+              "contract_version": 1,
+              "status": "published",
+              "channel": "preview",
+              "rollout_state": "public_release_review_required",
+              "supportability_state": "review_required",
+              "release_decision_status": "review_required",
+              "release_version": "run-20260727-065724",
+              "release_scope_decision_sha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
+              "authority_snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+              "bounded_owner": "chummer-release-operations",
+              "next_actions": [
+                "Stage this exact immutable generation privately and run all-route convergence."
+              ]
+            }
+          }
         }
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "source receipt is missing an explicit candidate release-version binding",
-        "release channel is not the exact owner-bounded pre-scorecard Registry review seed"
+        "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
@@ -3664,19 +3814,19 @@
     "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
-    "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+    "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing",
     "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
     "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, source receipt is missing an explicit candidate release-version binding",
+    "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
-    "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+    "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
     "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, design_quality is not passing, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+    "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, windows_visual is not passing the flagship Windows visual contract, release_ready is not passing",
+    "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, windows_visual is not passing the flagship Windows visual contract, release_ready is not passing",
     "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, windows_visual is not passing the flagship Windows visual contract",
     "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, windows_visual is not passing the flagship Windows visual contract, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
@@ -3692,7 +3842,7 @@
     "run_and_rejoin.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, design_quality is not passing, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
-    "improve_and_close_the_loop.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
+    "improve_and_close_the_loop.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "improve_and_close_the_loop.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, google_oauth is not passing",
     "improve_and_close_the_loop.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",

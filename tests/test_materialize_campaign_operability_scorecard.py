@@ -97,8 +97,8 @@ def registry_snapshot() -> dict:
         "releaseVersion": RELEASE_VERSION,
         "channel": "preview",
         "status": "published",
-        "rolloutState": "promoted_preview",
-        "supportabilityState": "preview_supported",
+        "rolloutState": "public_release_review_required",
+        "supportabilityState": "review_required",
         "availablePlatforms": ["macos"],
         "primaryHeadByPlatform": {"macos": "avalonia"},
         "artifactCount": 2,
@@ -675,20 +675,11 @@ def test_scorecard_projects_preview_and_stable_postures_separately(monkeypatch: 
     assert scorecard["flagship_gaps"]
 
 
-def test_review_required_candidate_binds_authority_without_claiming_preview_support(
+def test_review_required_candidate_is_bounded_preview_evidence_without_claiming_support(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     snapshot = registry_snapshot()
-    snapshot["rolloutState"] = "public_release_review_required"
-    snapshot["supportabilityState"] = "review_required"
     evidence, journeys = passing_catalogs()
-    evidence["release_channel"] = {
-        "id": "release_channel",
-        "status": "fail",
-        "score": 1,
-        "failure": "release channel is not promoted or preview-supported",
-        "preview_failure": "release channel is not promoted or preview-supported",
-    }
     monkeypatch.setattr(materializer, "build_evidence_catalog", lambda *_, **__: evidence)
     monkeypatch.setattr(
         materializer,
@@ -701,14 +692,22 @@ def test_review_required_candidate_binds_authority_without_claiming_preview_supp
         AUTHORITY_SNAPSHOT_SHA256,
         approved_scope(),
     )
-    assert materializer.release_channel_preview_evidence(
+    valid, owner, next_actions, failure, provenance = (
+        materializer.release_channel_preview_evidence(
         snapshot,
         AUTHORITY_SNAPSHOT_SHA256,
         RELEASE_VERSION,
         SCOPE_SHA256,
         AUTHORITY_SNAPSHOT_SHA256,
         SUPPORT_OWNER,
-    )[0] is False
+        )
+    )
+    assert valid
+    assert owner == SUPPORT_OWNER
+    assert next_actions
+    assert failure == ""
+    assert provenance["proof"]["rollout_state"] == "public_release_review_required"
+    assert provenance["proof"]["supportability_state"] == "review_required"
 
     scorecard = materializer.build_scorecard(
         Path("chummer"),
@@ -727,8 +726,8 @@ def test_review_required_candidate_binds_authority_without_claiming_preview_supp
     assert scorecard["snapshotSha256"] == AUTHORITY_SNAPSHOT_SHA256
     assert scorecard["manifestSha256"] == snapshot["manifestSha256"]
     assert scorecard["releaseDecisionSha256"] == snapshot["releaseDecisionSha256"]
-    assert scorecard["preview_status"] == "fail"
-    assert scorecard["summary"]["below_2_count"] > 0
+    assert scorecard["preview_status"] == "pass"
+    assert scorecard["summary"]["below_2_count"] == 0
 
 
 def test_candidate_inputs_require_exact_scope_bytes_and_review_seed_snapshot(tmp_path: Path) -> None:

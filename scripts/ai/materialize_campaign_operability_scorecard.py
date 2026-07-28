@@ -766,8 +766,8 @@ def release_channel_preview_evidence(
         and not registry_snapshot_contract_errors(payload)
         and payload.get("status") == "published"
         and (payload.get("channelId") or payload.get("channel")) == "preview"
-        and payload.get("rolloutState") == "promoted_preview"
-        and payload.get("supportabilityState") == "preview_supported"
+        and payload.get("rolloutState") == "public_release_review_required"
+        and payload.get("supportabilityState") == "review_required"
         and payload.get("releaseDecisionStatus") == "review_required"
         and payload.get("releaseVersion") == release_version
         and source_receipt_sha256 == authority_snapshot_sha256
@@ -782,8 +782,8 @@ def release_channel_preview_evidence(
         "contract_version": REGISTRY_REVIEW_SEED_CONTRACT_VERSION,
         "status": "published",
         "channel": "preview",
-        "rollout_state": "promoted_preview",
-        "supportability_state": "preview_supported",
+        "rollout_state": payload.get("rolloutState"),
+        "supportability_state": payload.get("supportabilityState"),
         "release_decision_status": payload.get("releaseDecisionStatus"),
         "release_version": payload.get("releaseVersion"),
         "release_scope_decision_sha256": release_scope_decision_sha256,

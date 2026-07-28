@@ -35,7 +35,7 @@
   "fallbackHeadsByPlatform": {
     "windows": []
   },
-  "generatedAt": "2026-07-28T13:43:51Z",
+  "generatedAt": "2026-07-28T13:54:17Z",
   "manifestGeneratedAt": "2026-07-27T06:57:24Z",
   "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
   "nextActions": [
@@ -51,7 +51,7 @@
   "releaseDecisionStatus": "review_required",
   "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
   "releaseVersion": "run-20260727-065724",
-  "scorecardSha256": "b7b1ed64a3c08a24d2557a21eced823781fa007c88b40e99b90155647d497b45",
+  "scorecardSha256": "0b02b3f18cbd82fe78d3c2060398d52c16a6b77f5b4c1a43783e3c803b1f5873",
   "status": "review_required",
   "supportOwner": "chummer-release-operations",
   "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED"

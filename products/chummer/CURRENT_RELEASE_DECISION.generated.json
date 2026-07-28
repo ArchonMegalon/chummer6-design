@@ -43,11 +43,11 @@
   "channel": "preview",
   "contractName": "chummer.current-release-decision/v1",
   "downloadAccessPosture": "open_public",
-  "finalGoldGraphSha256": "b83eccbd9dc2b4258360388caf65bf566ef500719b678ffb97d1312ebd345b40",
-  "generatedAt": "2026-07-28T13:45:01Z",
+  "finalGoldGraphSha256": "4a45b24a33d1fde33457daab3f032968861f28ee02ac36322bb190520edfd65c",
+  "generatedAt": "2026-07-28T13:54:34Z",
   "knownIssueSummary": "Known issue: stale or incomplete proof receipts and Hosted Build privacy, retention, recovery, and erasure review still block launch-readiness claims.",
   "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
-  "previewDecisionSha256": "bf0632820315744a1aafdac4dad08fae1f067952c25245e7c046cd96313186e8",
+  "previewDecisionSha256": "9a77a7be9d3ed5d5ed7429aa1f0a0519e54311789b0d633afa5aa3f3b5e97366",
   "primaryHeadByPlatform": {
     "windows": "avalonia"
   },

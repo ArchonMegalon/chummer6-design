@@ -553,8 +553,8 @@ def score_two_preview_proof_error(
             and proof.get("contract_version") == 1
             and proof.get("status") == "published"
             and proof.get("channel") == "preview"
-            and proof.get("rollout_state") == "promoted_preview"
-            and proof.get("supportability_state") == "preview_supported"
+            and proof.get("rollout_state") == "public_release_review_required"
+            and proof.get("supportability_state") == "review_required"
             and proof.get("release_decision_status") == "review_required"
             and proof.get("authority_snapshot_sha256") == authority_snapshot_sha256
             and source_sha256 == authority_snapshot_sha256

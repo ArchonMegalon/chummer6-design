@@ -1,6 +1,6 @@
 {
   "contractName": "chummer.current-release-diagnostics/v1",
-  "generatedAt": "2026-07-28T13:45:01Z",
+  "generatedAt": "2026-07-28T13:54:34Z",
   "rawFindingCount": 18,
   "rawFindings": [
     "Registry authority review_required decision digest does not match a current review-required decision",

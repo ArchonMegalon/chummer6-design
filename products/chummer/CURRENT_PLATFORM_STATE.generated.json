@@ -4,7 +4,7 @@
     "windows"
   ],
   "contractName": "chummer.current-platform-state/v1",
-  "generatedAt": "2026-07-28T13:45:01Z",
+  "generatedAt": "2026-07-28T13:54:34Z",
   "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
   "note": "No platform is promoted by policy alone; this projection is authoritative only when bound to an immutable snapshot.",
   "primaryHeadByPlatform": {
