@@ -675,6 +675,62 @@ def test_scorecard_projects_preview_and_stable_postures_separately(monkeypatch: 
     assert scorecard["flagship_gaps"]
 
 
+def test_review_required_candidate_binds_authority_without_claiming_preview_support(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    snapshot = registry_snapshot()
+    snapshot["rolloutState"] = "public_release_review_required"
+    snapshot["supportabilityState"] = "review_required"
+    evidence, journeys = passing_catalogs()
+    evidence["release_channel"] = {
+        "id": "release_channel",
+        "status": "fail",
+        "score": 1,
+        "failure": "release channel is not promoted or preview-supported",
+        "preview_failure": "release channel is not promoted or preview-supported",
+    }
+    monkeypatch.setattr(materializer, "build_evidence_catalog", lambda *_, **__: evidence)
+    monkeypatch.setattr(
+        materializer,
+        "build_journey_catalog",
+        lambda *_, **__: (journeys, Path("journeys.json")),
+    )
+
+    assert materializer.registry_matches_approved_candidate(
+        snapshot,
+        AUTHORITY_SNAPSHOT_SHA256,
+        approved_scope(),
+    )
+    assert materializer.release_channel_preview_evidence(
+        snapshot,
+        AUTHORITY_SNAPSHOT_SHA256,
+        RELEASE_VERSION,
+        SCOPE_SHA256,
+        AUTHORITY_SNAPSHOT_SHA256,
+        SUPPORT_OWNER,
+    )[0] is False
+
+    scorecard = materializer.build_scorecard(
+        Path("chummer"),
+        Path("fleet"),
+        ui_frame_receipt_path=Path("ui-frame.json"),
+        desktop_visual_receipt_path=Path("desktop-visual.json"),
+        desktop_workflow_receipt_path=Path("desktop-workflow.json"),
+        desktop_executable_receipt_path=Path("desktop-executable.json"),
+        approved_scope=approved_scope(),
+        release_scope_decision_sha256=SCOPE_SHA256,
+        registry_snapshot=snapshot,
+        authority_snapshot_sha256=AUTHORITY_SNAPSHOT_SHA256,
+        registry_snapshot_path=Path("registry-snapshot.json"),
+    )
+
+    assert scorecard["snapshotSha256"] == AUTHORITY_SNAPSHOT_SHA256
+    assert scorecard["manifestSha256"] == snapshot["manifestSha256"]
+    assert scorecard["releaseDecisionSha256"] == snapshot["releaseDecisionSha256"]
+    assert scorecard["preview_status"] == "fail"
+    assert scorecard["summary"]["below_2_count"] > 0
+
+
 def test_candidate_inputs_require_exact_scope_bytes_and_review_seed_snapshot(tmp_path: Path) -> None:
     scope = approved_scope()
     scope_path = tmp_path / "scope.json"

@@ -143,6 +143,58 @@ def test_missing_snapshot_fails_closed_and_asserts_no_platform() -> None:
     assert decision["artifactCount"] == 0
 
 
+def test_current_state_collapses_descendant_release_findings_into_roots() -> None:
+    outputs = module.build_state(
+        final_graph={
+            "status": "review_required",
+            "verdict": "PUBLIC_RELEASE_REVIEW_REQUIRED",
+            "blocking_findings": [
+                {
+                    "summary": "release_ready_matrix snapshotSha256 is missing or does not match current registry authority"
+                },
+                {
+                    "summary": "registry authority snapshot must contain the exact 21 v2 top-level properties"
+                },
+                {
+                    "summary": "live release manifest does not match exact immutable registry authority"
+                },
+            ],
+        },
+        final_graph_sha256="a" * 64,
+        preview_decision={
+            "status": "review_required",
+            "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED",
+            "blockingFindings": [
+                {
+                    "summary": "every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership"
+                },
+                {
+                    "summary": "public release convergence proof is missing or not passing"
+                },
+            ],
+        },
+        preview_decision_sha256="b" * 64,
+        snapshot={
+            "releaseDecisionStatus": "review_required",
+            "releaseDecisionSha256": "c" * 64,
+        },
+        snapshot_sha256="d" * 64,
+        snapshot_errors=[],
+        approvals={},
+        rule_boundaries={"verdict": "CLEAR"},
+    )
+
+    decision = json.loads(outputs["decision_json"])
+    diagnostics = json.loads(outputs["diagnostics"])
+
+    assert len(decision["blockingFindings"]) == 5
+    assert diagnostics["rawFindingCount"] == 6
+    assert diagnostics["suppressedConsequences"]["count"] == 6
+    assert {
+        row["owner"] for row in diagnostics["rootBlockers"]
+    } >= {"chummer6-design", "chummer6-hub", "chummer-release-operations"}
+
+
 def test_decision_digest_mismatch_fails_closed(tmp_path: Path) -> None:
     final_graph, final_sha, preview, preview_sha, snapshot, snapshot_sha, _ = inputs(tmp_path)
     snapshot["releaseDecisionSha256"] = "f" * 64
@@ -169,6 +221,75 @@ def test_snapshot_loader_requires_exact_decision_bytes(tmp_path: Path) -> None:
     _, _, errors = module.load_snapshot(path)
     assert "Registry authority decision digest does not match exact bytes" in errors
     assert "Registry authority decision contract is unsupported" in errors
+
+
+def test_snapshot_loader_accepts_bound_review_required_v2_byte_handoff(
+    tmp_path: Path,
+) -> None:
+    *_, original_path = inputs(tmp_path, decision_status="review_required")
+    snapshot = json.loads(original_path.read_text(encoding="utf-8"))
+    artifact = snapshot["artifacts"][0]
+    decision = {
+        "artifactAccessClass": "open_public",
+        "artifactHandoff": {
+            "arch": artifact["arch"],
+            "artifactAccessClass": artifact["installAccessClass"],
+            "artifactId": artifact["artifactId"],
+            "channel": snapshot["channel"],
+            "contractName": "chummer.public-preview-byte-handoff/v1",
+            "downloadUrl": artifact["downloadUrl"],
+            "head": artifact["head"],
+            "platform": artifact["platform"],
+            "publicInstallRoute": artifact["publicInstallRoute"],
+            "releaseScopeDecisionSha256": "a" * 64,
+            "releaseVersion": snapshot["releaseVersion"],
+            "rid": artifact["rid"],
+            "sha256": artifact["sha256"],
+            "sizeBytes": artifact["sizeBytes"],
+            "sourcePublicationState": "preview",
+            "status": "approved_public_preview_bytes",
+        },
+        "contractName": "chummer.preview-release-decision/v2",
+        "manifestSha256": snapshot["manifestSha256"],
+        "releaseDecisionStatus": "review_required",
+        "releaseVersion": snapshot["releaseVersion"],
+        "status": "review_required",
+    }
+    decision_bytes = json.dumps(decision).encode("utf-8")
+    snapshot["releaseDecisionSha256"] = hashlib.sha256(decision_bytes).hexdigest()
+    snapshot_bytes = json.dumps(snapshot).encode("utf-8")
+    snapshot_sha = hashlib.sha256(snapshot_bytes).hexdigest()
+    path = (
+        tmp_path
+        / "v2"
+        / "snapshots"
+        / snapshot["releaseVersion"]
+        / snapshot_sha
+        / "SNAPSHOT.json"
+    )
+    path.parent.mkdir(parents=True)
+    (path.parent / "RELEASE_CHANNEL.json").write_bytes(
+        (original_path.parent / "RELEASE_CHANNEL.json").read_bytes()
+    )
+    (path.parent / "RELEASE_DECISION.json").write_bytes(decision_bytes)
+    path.write_bytes(snapshot_bytes)
+
+    loaded, loaded_sha, errors = module.load_snapshot(path)
+
+    assert errors == []
+    assert loaded == snapshot
+    assert loaded_sha == snapshot_sha
+
+    decision["artifactHandoff"]["sha256"] = "f" * 64
+    decision_bytes = json.dumps(decision).encode("utf-8")
+    (path.parent / "RELEASE_DECISION.json").write_bytes(decision_bytes)
+    snapshot["releaseDecisionSha256"] = hashlib.sha256(decision_bytes).hexdigest()
+    path.write_text(json.dumps(snapshot), encoding="utf-8")
+    _, _, errors = module.load_snapshot(path)
+    assert (
+        "Registry authority v2 public-preview byte handoff is invalid or unbound"
+        in errors
+    )
 
 
 def test_snapshot_loader_requires_decision_status_and_version_binding(tmp_path: Path) -> None:

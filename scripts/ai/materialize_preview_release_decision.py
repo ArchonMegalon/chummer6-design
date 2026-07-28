@@ -598,7 +598,11 @@ def preview_scorecard_errors(
 
     scores: list[int] = []
     invalid_cell = False
-    registry_authority_seen = False
+    registry_authority_seen = (
+        scorecard.get("snapshotSha256") == authority_snapshot_sha256
+        and scorecard.get("manifestSha256") == manifest_sha256
+        and scorecard.get("releaseDecisionSha256") == release_decision_sha256
+    )
     for index, cell in enumerate(cells):
         if not isinstance(cell, dict):
             invalid_cell = True
@@ -616,6 +620,12 @@ def preview_scorecard_errors(
             expected_evidence_ids,
         ) = CANONICAL_SCORECARD_CELL_INVENTORY[index]
         score = cell.get("score")
+        if (
+            isinstance(score, int)
+            and not isinstance(score, bool)
+            and score in {0, 1, 2, 3}
+        ):
+            scores.append(score)
         evidence = cell.get("evidence")
         owners = string_list(cell.get("owners"))
         expected_row_ids = [*expected_journey_ids, *expected_evidence_ids]
@@ -645,7 +655,6 @@ def preview_scorecard_errors(
         ):
             invalid_cell = True
             continue
-        scores.append(score)
         for row_index, row in enumerate(evidence):
             is_journey = row_index < len(expected_journey_ids)
             expected_row_fields = (
@@ -807,7 +816,7 @@ def preview_scorecard_errors(
         for cell in cells
         if (
             isinstance(cell, dict)
-            and cell.get("score") == 2
+            and cell.get("score") != 3
             and isinstance(cell.get("failures"), list)
             and all(isinstance(item, str) for item in cell.get("failures"))
         )
@@ -834,7 +843,16 @@ def preview_scorecard_errors(
         or scorecard.get("failures") != expected_flagship_gaps
     ):
         failures.append("campaign operability scorecard stable posture does not match its score-3 count")
-    return list(dict.fromkeys(failures))
+    failures = list(dict.fromkeys(failures))
+    below_preview_bar = (
+        "every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership"
+    )
+    preview_posture = (
+        "campaign operability scorecard preview posture is not 36/36 at score 2 or 3"
+    )
+    if below_preview_bar in failures and preview_posture in failures:
+        failures.remove(preview_posture)
+    return failures
 
 
 def build_decision(

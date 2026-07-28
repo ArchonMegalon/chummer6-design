@@ -28,6 +28,7 @@ OUTPUTS = {
     "group_blockers": PRODUCT / "GROUP_BLOCKERS.md",
     "below_gold": PRODUCT / "WHAT_IS_STILL_BELOW_GOLD.md",
     "evidence_pack": PRODUCT / "RELEASE_EVIDENCE_PACK.md",
+    "diagnostics": PRODUCT / "CURRENT_RELEASE_DIAGNOSTICS.generated.json",
 }
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
 HEX_64 = re.compile(r"^[0-9a-f]{64}$")
@@ -198,7 +199,11 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
             errors.append("Registry authority decision digest does not match exact bytes")
         decision_contract = text(decision.get("contractName") or decision.get("contract_name"))
         decision_contract_valid = (
-            decision_contract == "chummer.preview-release-decision/v1"
+            decision_contract
+            in {
+                "chummer.preview-release-decision/v1",
+                "chummer.preview-release-decision/v2",
+            }
             or (
                 decision_contract == "chummer.final_gold_graph"
                 and decision.get("contract_version") == 2
@@ -211,19 +216,168 @@ def load_snapshot(path: Path | None) -> tuple[dict[str, Any], str, list[str]]:
         decision_version = text(decision.get("releaseVersion"))
         if decision_version != text(snapshot.get("releaseVersion")):
             errors.append("Registry authority decision releaseVersion disagrees with snapshot")
-        if decision_contract == "chummer.preview-release-decision/v1":
+        if decision_contract in {
+            "chummer.preview-release-decision/v1",
+            "chummer.preview-release-decision/v2",
+        }:
             decision_manifest_sha = token(decision.get("manifestSha256"))
         else:
             release_authority = decision.get("release_authority") if isinstance(decision.get("release_authority"), dict) else {}
             decision_manifest_sha = token(release_authority.get("manifest_sha256"))
         if decision_manifest_sha != token(snapshot.get("manifestSha256")):
             errors.append("Registry authority decision manifest digest disagrees with snapshot")
+        if decision_contract == "chummer.preview-release-decision/v2":
+            handoff = (
+                decision.get("artifactHandoff")
+                if isinstance(decision.get("artifactHandoff"), dict)
+                else {}
+            )
+            handoff_identity = {
+                field: handoff.get(field)
+                for field in (
+                    "artifactId",
+                    "head",
+                    "platform",
+                    "rid",
+                    "arch",
+                    "downloadUrl",
+                    "sha256",
+                    "sizeBytes",
+                    "publicInstallRoute",
+                )
+            }
+            matching_artifacts = [
+                row
+                for row in artifacts
+                if isinstance(row, dict)
+                and all(row.get(field) == value for field, value in handoff_identity.items())
+                and row.get("installAccessClass") == handoff.get("artifactAccessClass")
+            ]
+            v2_valid = (
+                token(decision.get("status")) == "review_required"
+                and token(decision.get("releaseDecisionStatus")) == "review_required"
+                and token(snapshot.get("releaseDecisionStatus")) == "review_required"
+                and text(handoff.get("contractName"))
+                == "chummer.public-preview-byte-handoff/v1"
+                and token(handoff.get("status")) == "approved_public_preview_bytes"
+                and token(handoff.get("channel")) == token(snapshot.get("channel"))
+                and text(handoff.get("releaseVersion"))
+                == text(snapshot.get("releaseVersion"))
+                and HEX_64.fullmatch(token(handoff.get("releaseScopeDecisionSha256")))
+                is not None
+                and token(handoff.get("sourcePublicationState")) == "preview"
+                and token(decision.get("artifactAccessClass"))
+                == token(snapshot.get("downloadAccessPosture"))
+                == token(handoff.get("artifactAccessClass"))
+                and matching_artifacts
+            )
+            if not v2_valid:
+                errors.append(
+                    "Registry authority v2 public-preview byte handoff is invalid or unbound"
+                )
     return snapshot, digest, errors
 
 
 def finding_summaries(payload: dict[str, Any], key: str) -> list[str]:
     rows = payload.get(key) if isinstance(payload.get(key), list) else []
     return [text(row.get("summary")) for row in rows if isinstance(row, dict) and text(row.get("summary"))]
+
+
+ROOT_BLOCKER_FAMILIES = {
+    "authority_decision_binding": {
+        "summary": "Registry authority decision digest is not yet bound to the current candidate decision bytes.",
+        "owner": "chummer6-hub-registry",
+        "nextAction": "Publish a successor review_required snapshot containing the current candidate decision bytes.",
+        "affectedGates": ["current_release_authority", "preview_promotion"],
+    },
+    "campaign_scorecard": {
+        "summary": "Campaign operability is below the preview bar for the exact 36-cell candidate denominator.",
+        "owner": "chummer-release-operations",
+        "nextAction": "Regenerate candidate-bound journey and surface receipts until every cell reaches score 2 or 3.",
+        "affectedGates": ["campaign_operability", "preview_promotion"],
+    },
+    "public_convergence": {
+        "summary": "Private staging and all-route release convergence have not passed for the exact authority snapshot.",
+        "owner": "chummer6-hub",
+        "nextAction": "Stage the immutable generation and run the complete convergence route set.",
+        "affectedGates": ["postdeploy_convergence", "preview_promotion"],
+    },
+    "candidate_evidence_pack": {
+        "summary": "The flagship evidence pack is incomplete, stale, or not bound to the current release authority.",
+        "owner": "chummer-release-operations",
+        "nextAction": "Regenerate the release-ready, dashboard, janitor, matrix, and postdeploy receipts from the current snapshot.",
+        "affectedGates": ["flagship_evidence", "stable_release"],
+    },
+    "stable_graph_authority": {
+        "summary": "The stable gold graph has not been regenerated from the current immutable Registry authority.",
+        "owner": "chummer6-design",
+        "nextAction": "Regenerate FINAL_GOLD_GRAPH after candidate evidence and convergence are current.",
+        "affectedGates": ["stable_release_authority"],
+    },
+}
+
+
+def blocker_family(blocker: str) -> str:
+    normalized = token(blocker)
+    if "decision digest does not match" in normalized:
+        return "authority_decision_binding"
+    if normalized.startswith("every campaign operability cell") or normalized.startswith(
+        "campaign operability scorecard preview posture"
+    ):
+        return "campaign_scorecard"
+    if (
+        "public release convergence" in normalized
+        or normalized.startswith("live status page")
+        or normalized.startswith("live release manifest")
+    ):
+        return "public_convergence"
+    if normalized.startswith(
+        (
+            "campaign_operability_scorecard ",
+            "fleet_flagship_readiness ",
+            "operator_release_dashboard ",
+            "final_gold_janitor ",
+            "flagship_product_readiness_gate ",
+            "public_edge_postdeploy_gate ",
+            "release_ready_matrix ",
+        )
+    ):
+        return "candidate_evidence_pack"
+    if normalized.startswith(("registry authority ", "registry candidate authority ")):
+        return "stable_graph_authority"
+    return ""
+
+
+def collapse_blockers(
+    blockers: list[str],
+) -> tuple[list[dict[str, Any]], dict[str, list[str]]]:
+    families: dict[str, list[str]] = {}
+    roots: list[dict[str, Any]] = []
+    for blocker in blockers:
+        family = blocker_family(blocker)
+        if not family:
+            roots.append(
+                {
+                    "summary": blocker,
+                    "owner": "chummer-release-operations",
+                    "nextAction": "Resolve this independent release-truth finding.",
+                    "affectedGates": ["release_truth"],
+                    "suppressedConsequenceCount": 0,
+                }
+            )
+            continue
+        families.setdefault(family, []).append(blocker)
+    for family, details in ROOT_BLOCKER_FAMILIES.items():
+        consequences = families.get(family)
+        if not consequences:
+            continue
+        roots.append(
+            {
+                **details,
+                "suppressedConsequenceCount": len(consequences),
+            }
+        )
+    return roots, families
 
 
 def build_state(
@@ -275,9 +429,11 @@ def build_state(
     else:
         blockers.extend(preview_blockers)
         blockers.extend(stable_blockers)
-    blockers = list(dict.fromkeys(blocker for blocker in blockers if blocker))
-    if blockers:
+    raw_blockers = list(dict.fromkeys(blocker for blocker in blockers if blocker))
+    if raw_blockers:
         selected = "review_required"
+    root_blockers, blocker_families = collapse_blockers(raw_blockers)
+    blockers = [text(row.get("summary")) for row in root_blockers]
 
     generated_at = max(
         value
@@ -427,6 +583,29 @@ def build_state(
         "See `CURRENT_BLOCKERS.generated.md` and `CURRENT_HUMAN_APPROVALS.generated.md` for current closure work.",
         "",
     ])
+    diagnostics = {
+        "contractName": "chummer.current-release-diagnostics/v1",
+        "generatedAt": generated_at,
+        "releaseVersion": decision["releaseVersion"],
+        "snapshotSha256": decision["snapshotSha256"],
+        "rootBlockers": [
+            {"id": f"root_{index + 1}", **row}
+            for index, row in enumerate(root_blockers)
+        ],
+        "suppressedConsequences": {
+            "count": sum(len(rows) for rows in blocker_families.values()),
+            "families": [
+                {
+                    "id": family,
+                    "count": len(rows),
+                    "findings": rows,
+                }
+                for family, rows in blocker_families.items()
+            ],
+        },
+        "rawFindingCount": len(raw_blockers),
+        "rawFindings": raw_blockers,
+    }
 
     return {
         "decision_json": json.dumps(decision, indent=2, sort_keys=True) + "\n",
@@ -437,6 +616,7 @@ def build_state(
         "group_blockers": group_blockers,
         "below_gold": below_gold,
         "evidence_pack": evidence_pack,
+        "diagnostics": json.dumps(diagnostics, indent=2, sort_keys=True) + "\n",
     }
 
 
