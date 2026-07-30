@@ -248,6 +248,7 @@ python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_origin_runbook_provider_gold_gate.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_feedback_archive.py" >/dev/null
+python3 "$repo_root/scripts/ai/test_validate_product_spine.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_product_spine.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_gold_claim_freshness.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_golden_journey_release_gates.py" >/dev/null
@@ -301,6 +302,15 @@ if ! python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py
     --no-prune \
     --source products/chummer/WEEKLY_PRODUCT_PULSE.generated.json >/dev/null
 fi
+# The journey-gates contract cites the weekly pulse timestamp and age. Refresh it
+# after the pulse so a single verify run cannot finish with a self-created drift.
+if ! python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null; then
+  python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" >/dev/null
+fi
+python3 "$repo_root/scripts/ai/materialize_weekly_product_pulse_snapshot.py" --check >/dev/null
+python3 "$repo_root/scripts/ai/materialize_journey_gates_contract.py" --check >/dev/null
+python3 "$repo_root/scripts/ai/validate_journey_gates_contract.py" >/dev/null
+python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null
 if [ "${CHUMMER_DESIGN_SKIP_LOCAL_MIRROR_CHECK:-}" != "1" ]; then
   if ! python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --check --no-prune >/dev/null; then
     python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --no-prune >/dev/null

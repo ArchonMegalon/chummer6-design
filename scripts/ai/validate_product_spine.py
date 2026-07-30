@@ -40,7 +40,9 @@ EXPECTED_TRUTH_DOMAINS = {
 }
 EXPECTED_HORIZONS = {
     "alice",
+    "origin-dossier",
     "karma-forge",
+    "knowledge-fabric",
     "jackpoint",
     "runsite",
     "runbook-press",
@@ -71,6 +73,7 @@ EXPECTED_GOLD_PROOF_INPUTS = {
     "parity_and_group_blockers",
     "campaign_operability_scorecard",
     "journey_gates",
+    "horizon_e2e_gold_matrix",
     "fleet_flagship_readiness",
     "operator_release_dashboard",
     "final_gold_janitor",
@@ -85,6 +88,12 @@ EXPECTED_GOLD_PROOF_INPUTS = {
     "below_gold_platform_truth",
     "live_status",
     "live_release_manifest",
+}
+REVIEW_REQUIRED_PROOF_STATUSES = {
+    "pass",
+    "stale",
+    "review_required",
+    "fail",
 }
 
 
@@ -124,6 +133,14 @@ def fail(errors: list[str]) -> int:
     for item in errors:
         print(f"validate_product_spine: {item}", file=sys.stderr)
     return 1
+
+
+def proof_input_status_allowed(graph_verdict: str, item_status: str) -> bool:
+    if graph_verdict == "GOLD_READY":
+        return item_status == "pass"
+    if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED":
+        return item_status in REVIEW_REQUIRED_PROOF_STATUSES
+    return False
 
 
 def main() -> int:
@@ -280,9 +297,9 @@ def main() -> int:
             errors.append("FINAL_GOLD_GRAPH.generated.json proof_inputs rows must be mappings.")
             continue
         item_status = str(item.get("status") or "").strip()
-        if graph_verdict == "GOLD_READY" and item_status != "pass":
+        if graph_verdict == "GOLD_READY" and not proof_input_status_allowed(graph_verdict, item_status):
             errors.append(f"proof input {item.get('kind')} must be pass for GOLD_READY.")
-        if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and item_status not in {"pass", "stale", "review_required"}:
+        if graph_verdict == "PUBLIC_RELEASE_REVIEW_REQUIRED" and not proof_input_status_allowed(graph_verdict, item_status):
             errors.append(f"proof input {item.get('kind')} has unsupported review-required status {item_status!r}.")
 
     return fail(errors) if errors else 0

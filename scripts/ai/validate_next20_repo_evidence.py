@@ -159,7 +159,7 @@ def main() -> int:
     for token in ("authenticatedHomeModel.CampaignSpine.Runs.Count", "authenticatedHomeModel.CampaignSpine.Workspaces.Count", "SupportCases.Any", "accountModel.CampaignSpine.Runs.Count", "accountModel.CampaignSpine.Workspaces.Count", "ReadinessCues.Count", "OperatorRole", "CampaignVisibilitySummary"):
         if token not in smoke:
             errors.append(f"Run-services smoke must keep {token} evidence for home/account cockpit closure.")
-    for token in ("Campaign workspace", "GM readiness", "Recap files", "Permissions", "Campaign visibility", "Rule environment"):
+    for token in ("Campaign workspace", "GM readiness", "Recaps", "Permissions", "Campaign visibility", "Rule environment"):
         if token not in account_view:
             errors.append(f"Account view must keep '{token}' evidence for campaign and organizer workspace closure.")
 

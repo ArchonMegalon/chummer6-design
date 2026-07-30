@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-13T00:42:59.941628Z",
+  "generated_at_utc": "2026-07-29T09:29:23.248528Z",
   "contract_name": "chummer.public_download_shelf_truth",
   "base_url": "https://chummer.run",
   "status": "pass",
@@ -11,8 +11,8 @@
         "version": "run-20260712-174412",
         "publicVersion": "",
         "channel": "preview",
-        "rolloutState": "promoted_preview",
-        "supportabilityState": "preview_supported",
+        "rolloutState": "coverage_incomplete",
+        "supportabilityState": "review_required",
         "status": "published",
         "publishedAt": "2026-07-12T18:46:26Z"
       },
@@ -25,7 +25,7 @@
         "avalonia-linux-x64-installer": {
           "artifactId": "avalonia-linux-x64-installer",
           "fileName": "chummer-avalonia-linux-x64-installer.deb",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb",
+          "url": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-linux-x64-installer.deb",
           "sha256": "c310febe74ea2250f90bde60309bb2a290b443b29691c41de6343d6fde2a85fa",
           "sizeBytes": 39118902,
           "head": "avalonia",
@@ -42,7 +42,7 @@
         "avalonia-win-x64-installer": {
           "artifactId": "avalonia-win-x64-installer",
           "fileName": "chummer-avalonia-win-x64-installer.exe",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe",
+          "url": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-win-x64-installer.exe",
           "sha256": "d0857d0a6e5c958f34117051669373444b785f683e701c3e0ae428abef36e8ca",
           "sizeBytes": 2734299,
           "head": "avalonia",
@@ -52,19 +52,33 @@
           "installerMode": "bootstrap",
           "kind": "installer",
           "payloadFileName": "chummer-avalonia-win-x64-payload.zip",
-          "payloadDownloadUrl": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-payload.zip",
+          "payloadDownloadUrl": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-win-x64-payload.zip",
           "payloadSha256": "abd4f5d4745573cb6a7c62afd0d5145f79f120addefca6e15c4207c97125226b",
           "payloadSizeBytes": 51113721
         }
       }
+    },
+    "projectedPublicManifest": {
+      "topLevel": {
+        "version": "run-20260712-174412",
+        "publicVersion": "",
+        "channel": "preview",
+        "rolloutState": "coverage_incomplete",
+        "supportabilityState": "review_required",
+        "status": "published",
+        "publishedAt": "2026-07-12T18:46:26Z"
+      },
+      "artifactCount": 0,
+      "artifactIds": [],
+      "artifacts": {}
     },
     "canonicalManifest": {
       "topLevel": {
         "version": "run-20260712-174412",
         "publicVersion": "",
         "channel": "preview",
-        "rolloutState": "promoted_preview",
-        "supportabilityState": "preview_supported",
+        "rolloutState": "coverage_incomplete",
+        "supportabilityState": "review_required",
         "status": "published",
         "publishedAt": "2026-07-12T18:46:26Z"
       },
@@ -77,7 +91,7 @@
         "avalonia-linux-x64-installer": {
           "artifactId": "avalonia-linux-x64-installer",
           "fileName": "chummer-avalonia-linux-x64-installer.deb",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb",
+          "url": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-linux-x64-installer.deb",
           "sha256": "c310febe74ea2250f90bde60309bb2a290b443b29691c41de6343d6fde2a85fa",
           "sizeBytes": 39118902,
           "head": "avalonia",
@@ -94,7 +108,7 @@
         "avalonia-win-x64-installer": {
           "artifactId": "avalonia-win-x64-installer",
           "fileName": "chummer-avalonia-win-x64-installer.exe",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe",
+          "url": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-win-x64-installer.exe",
           "sha256": "d0857d0a6e5c958f34117051669373444b785f683e701c3e0ae428abef36e8ca",
           "sizeBytes": 2734299,
           "head": "avalonia",
@@ -104,7 +118,7 @@
           "installerMode": "bootstrap",
           "kind": "installer",
           "payloadFileName": "chummer-avalonia-win-x64-payload.zip",
-          "payloadDownloadUrl": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-payload.zip",
+          "payloadDownloadUrl": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-win-x64-payload.zip",
           "payloadSha256": "abd4f5d4745573cb6a7c62afd0d5145f79f120addefca6e15c4207c97125226b",
           "payloadSizeBytes": 51113721
         }
@@ -120,60 +134,36 @@
         "version": "run-20260712-174412",
         "publicVersion": "",
         "channel": "preview",
-        "rolloutState": "promoted_preview",
-        "supportabilityState": "preview_supported",
+        "rolloutState": "coverage_incomplete",
+        "supportabilityState": "review_required",
         "status": "published",
         "publishedAt": "2026-07-12T18:46:26Z"
       },
-      "artifactCount": 2,
-      "artifactIds": [
-        "avalonia-linux-x64-installer",
-        "avalonia-win-x64-installer"
-      ],
-      "artifacts": {
-        "avalonia-linux-x64-installer": {
-          "artifactId": "avalonia-linux-x64-installer",
-          "fileName": "chummer-avalonia-linux-x64-installer.deb",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb",
-          "sha256": "c310febe74ea2250f90bde60309bb2a290b443b29691c41de6343d6fde2a85fa",
-          "sizeBytes": 39118902,
-          "head": "avalonia",
-          "rid": "linux-x64",
-          "channel": "preview",
-          "installAccessClass": "open_public",
-          "installerMode": "",
-          "kind": "installer",
-          "payloadFileName": "",
-          "payloadDownloadUrl": "",
-          "payloadSha256": "",
-          "payloadSizeBytes": 0
-        },
-        "avalonia-win-x64-installer": {
-          "artifactId": "avalonia-win-x64-installer",
-          "fileName": "chummer-avalonia-win-x64-installer.exe",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe",
-          "sha256": "d0857d0a6e5c958f34117051669373444b785f683e701c3e0ae428abef36e8ca",
-          "sizeBytes": 2734299,
-          "head": "avalonia",
-          "rid": "win-x64",
-          "channel": "preview",
-          "installAccessClass": "open_public",
-          "installerMode": "bootstrap",
-          "kind": "installer",
-          "payloadFileName": "chummer-avalonia-win-x64-payload.zip",
-          "payloadDownloadUrl": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-payload.zip",
-          "payloadSha256": "abd4f5d4745573cb6a7c62afd0d5145f79f120addefca6e15c4207c97125226b",
-          "payloadSizeBytes": 51113721
-        }
-      }
+      "artifactCount": 0,
+      "artifactIds": [],
+      "artifacts": {}
+    },
+    "projectedPublicManifest": {
+      "topLevel": {
+        "version": "run-20260712-174412",
+        "publicVersion": "",
+        "channel": "preview",
+        "rolloutState": "coverage_incomplete",
+        "supportabilityState": "review_required",
+        "status": "published",
+        "publishedAt": "2026-07-12T18:46:26Z"
+      },
+      "artifactCount": 0,
+      "artifactIds": [],
+      "artifacts": {}
     },
     "canonicalManifest": {
       "topLevel": {
         "version": "run-20260712-174412",
         "publicVersion": "",
         "channel": "preview",
-        "rolloutState": "promoted_preview",
-        "supportabilityState": "preview_supported",
+        "rolloutState": "coverage_incomplete",
+        "supportabilityState": "review_required",
         "status": "published",
         "publishedAt": "2026-07-12T18:46:26Z"
       },
@@ -186,7 +176,7 @@
         "avalonia-linux-x64-installer": {
           "artifactId": "avalonia-linux-x64-installer",
           "fileName": "chummer-avalonia-linux-x64-installer.deb",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb",
+          "url": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-linux-x64-installer.deb",
           "sha256": "c310febe74ea2250f90bde60309bb2a290b443b29691c41de6343d6fde2a85fa",
           "sizeBytes": 39118902,
           "head": "avalonia",
@@ -203,7 +193,7 @@
         "avalonia-win-x64-installer": {
           "artifactId": "avalonia-win-x64-installer",
           "fileName": "chummer-avalonia-win-x64-installer.exe",
-          "url": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe",
+          "url": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-win-x64-installer.exe",
           "sha256": "d0857d0a6e5c958f34117051669373444b785f683e701c3e0ae428abef36e8ca",
           "sizeBytes": 2734299,
           "head": "avalonia",
@@ -213,91 +203,15 @@
           "installerMode": "bootstrap",
           "kind": "installer",
           "payloadFileName": "chummer-avalonia-win-x64-payload.zip",
-          "payloadDownloadUrl": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-payload.zip",
+          "payloadDownloadUrl": "https://chummer.run/downloads/g/g-20260727T205345Z-19e9c4d1afb64dd5/files/chummer-avalonia-win-x64-payload.zip",
           "payloadSha256": "abd4f5d4745573cb6a7c62afd0d5145f79f120addefca6e15c4207c97125226b",
           "payloadSizeBytes": 51113721
         }
       }
     },
-    "pageArtifactIds": [
-      "avalonia-win-x64-installer",
-      "avalonia-linux-x64-installer"
-    ],
-    "publicArtifactIds": [
-      "avalonia-linux-x64-installer",
-      "avalonia-win-x64-installer"
-    ],
-    "confirmation": {
-      "requiredConsecutiveMatches": 3,
-      "delaySeconds": 2.0,
-      "maxSamples": 6,
-      "samplesObserved": 3,
-      "stabilized": true,
-      "samples": [
-        {
-          "sampleIndex": 1,
-          "matchedLocalTruth": true,
-          "consecutiveMatches": 1,
-          "releasesVersion": "run-20260712-174412",
-          "canonicalVersion": "run-20260712-174412",
-          "releasesPublishedAt": "2026-07-12T18:46:26Z",
-          "canonicalPublishedAt": "2026-07-12T18:46:26Z",
-          "failureCount": 0,
-          "summary": "pass"
-        },
-        {
-          "sampleIndex": 2,
-          "matchedLocalTruth": true,
-          "consecutiveMatches": 2,
-          "releasesVersion": "run-20260712-174412",
-          "canonicalVersion": "run-20260712-174412",
-          "releasesPublishedAt": "2026-07-12T18:46:26Z",
-          "canonicalPublishedAt": "2026-07-12T18:46:26Z",
-          "failureCount": 0,
-          "summary": "pass"
-        },
-        {
-          "sampleIndex": 3,
-          "matchedLocalTruth": true,
-          "consecutiveMatches": 3,
-          "releasesVersion": "run-20260712-174412",
-          "canonicalVersion": "run-20260712-174412",
-          "releasesPublishedAt": "2026-07-12T18:46:26Z",
-          "canonicalPublishedAt": "2026-07-12T18:46:26Z",
-          "failureCount": 0,
-          "summary": "pass"
-        }
-      ]
-    },
-    "artifactProbes": [
-      {
-        "url": "https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb",
-        "method": "GET",
-        "statusCode": 206,
-        "resolvedUrl": "https://chummer.run/downloads/files/chummer-avalonia-linux-x64-installer.deb",
-        "reportedSizeBytes": 39118902,
-        "sizeMatches": true,
-        "label": "avalonia-linux-x64-installer:installer"
-      },
-      {
-        "url": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe",
-        "method": "GET",
-        "statusCode": 206,
-        "resolvedUrl": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-installer.exe",
-        "reportedSizeBytes": 2734299,
-        "sizeMatches": true,
-        "label": "avalonia-win-x64-installer:installer"
-      },
-      {
-        "url": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-payload.zip",
-        "method": "GET",
-        "statusCode": 206,
-        "resolvedUrl": "https://chummer.run/downloads/files/chummer-avalonia-win-x64-payload.zip",
-        "reportedSizeBytes": 51113721,
-        "sizeMatches": true,
-        "label": "avalonia-win-x64-installer:payload"
-      }
-    ]
+    "pageArtifactIds": [],
+    "publicArtifactIds": [],
+    "artifactProbes": []
   },
   "alignment": {
     "localManifestsAligned": true,

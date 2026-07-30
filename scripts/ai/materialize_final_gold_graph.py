@@ -35,6 +35,7 @@ REQUIRED_RELEASE_READY_GATES = (
     "verify_public_copy_leak_gate",
     "verify_live_surface_parity",
     "verify_public_route_proof",
+    "verify_horizon_e2e_gold_matrix",
     "verify_live_public_windows_installer",
     "verify_external_distribution_mirror_proof",
     "verify_windows_installer_visual_audit_intake_request",
@@ -67,7 +68,8 @@ REQUIRED_RELEASE_READY_GATES = (
 OBJECTIVE_REQUIREMENT_PROOFS = {
     "authoritative_design": ("design_spine", "horizon_registry", "feature_registry", "campaign_os_flagship_closeout"),
     "release_control": ("release_ready_matrix", "final_gold_janitor", "flagship_product_readiness_gate"),
-    "journey_truth": ("journey_gates", "campaign_operability_scorecard"),
+    "journey_truth": ("journey_gates", "campaign_operability_scorecard", "horizon_e2e_gold_matrix"),
+    "horizon_portfolio_gold": ("horizon_e2e_gold_matrix",),
     "legacy_and_adjacent_parity": ("parity_and_group_blockers", "fleet_flagship_readiness"),
     "security_and_privacy": ("release_ready_matrix", "google_oauth_linking_proof", "ea_release_critical_readiness"),
     "localization": ("ui_localization_release_gate",),
@@ -78,6 +80,17 @@ OBJECTIVE_REQUIREMENT_PROOFS = {
     "ui_quality_and_accessibility": ("campaign_operability_scorecard", "public_edge_postdeploy_gate", "ui_localization_release_gate"),
     "live_runtime": ("public_edge_postdeploy_gate", "live_status", "live_release_manifest"),
 }
+EXPECTED_HORIZON_IDS = (
+    "alice",
+    "origin-dossier",
+    "karma-forge",
+    "knowledge-fabric",
+    "jackpoint",
+    "black-ledger",
+    "runsite",
+    "runbook-press",
+    "table-pulse",
+)
 
 
 def utc_now() -> str:
@@ -196,6 +209,37 @@ def build_graph(
         proof_inputs.append({"kind": kind, "path": str(path), "status": "pass" if exists else "fail"})
         if not exists:
             errors.append(f"{kind} is missing or empty")
+
+    horizon_registry_path = product_root / "HORIZON_REGISTRY.yaml"
+    try:
+        horizon_registry = yaml.safe_load(horizon_registry_path.read_text(encoding="utf-8")) or {}
+    except (OSError, yaml.YAMLError):
+        horizon_registry = {}
+    raw_horizons = horizon_registry.get("horizons") if isinstance(horizon_registry, dict) else []
+    registry_horizons = raw_horizons if isinstance(raw_horizons, list) else []
+    required_horizon_lanes = [
+        str(row.get("id") or "").strip()
+        for row in registry_horizons
+        if isinstance(row, dict) and str(row.get("id") or "").strip()
+    ]
+    if tuple(required_horizon_lanes) != EXPECTED_HORIZON_IDS:
+        errors.append(
+            "canonical horizon registry does not contain the exact nine required lanes in order"
+        )
+    for row in registry_horizons:
+        if not isinstance(row, dict):
+            continue
+        horizon_id = str(row.get("id") or "").strip()
+        e2e_gold = row.get("e2e_gold")
+        if str(row.get("status") or "").strip() != "shipped_mvp":
+            errors.append(f"horizon {horizon_id or 'missing'} is not shipped_mvp")
+        if (
+            not isinstance(e2e_gold, dict)
+            or not str(e2e_gold.get("route") or "").startswith("/")
+            or not str(e2e_gold.get("receipt_route") or "").startswith("/")
+            or str(e2e_gold.get("claim_scope") or "") != "registered_shipped_mvp_public_journey"
+        ):
+            errors.append(f"horizon {horizon_id or 'missing'} lacks a complete e2e_gold contract")
 
     human_path = product_root / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md"
     human_text = human_path.read_text(encoding="utf-8") if human_path.is_file() else ""
@@ -356,6 +400,61 @@ def build_graph(
         if error:
             errors.append(error)
 
+    horizon_matrix_path = (
+        run_services_root
+        / ".codex-studio"
+        / "published"
+        / "HORIZON_E2E_GOLD_MATRIX.generated.json"
+    )
+    horizon_matrix = load_json(horizon_matrix_path)
+    horizon_summary = (
+        dict(horizon_matrix.get("summary") or {})
+        if isinstance(horizon_matrix.get("summary"), dict)
+        else {}
+    )
+    horizon_rows = (
+        horizon_matrix.get("horizons")
+        if isinstance(horizon_matrix.get("horizons"), list)
+        else []
+    )
+    matrix_ids = [
+        str(row.get("id") or "").strip()
+        for row in horizon_rows
+        if isinstance(row, dict)
+    ]
+    horizon_matrix_ready = (
+        token(horizon_matrix.get("status")) == "pass"
+        and str(horizon_matrix.get("verdict") or "") == "HORIZON_PORTFOLIO_GOLD"
+        and horizon_matrix.get("all_horizons_gold") is True
+        and int(horizon_summary.get("horizon_count") or 0) == len(EXPECTED_HORIZON_IDS)
+        and int(horizon_summary.get("gold_count") or 0) == len(EXPECTED_HORIZON_IDS)
+        and int(horizon_summary.get("failed_count") or 0) == 0
+        and int(horizon_summary.get("expected_count") or 0) == len(EXPECTED_HORIZON_IDS)
+        and matrix_ids == required_horizon_lanes
+        and all(
+            isinstance(row, dict)
+            and token(row.get("status")) == "pass"
+            and str(row.get("verdict") or "") == "GOLD"
+            and int(row.get("assertion_count") or 0) >= 8
+            and bool(str(row.get("evidence_sha256") or "").strip())
+            and not row.get("failures")
+            for row in horizon_rows
+        )
+    )
+    proof_inputs.append(
+        {
+            "kind": "horizon_e2e_gold_matrix",
+            "path": str(horizon_matrix_path),
+            "status": "pass" if horizon_matrix_ready else "fail",
+            "generated_at": str(horizon_matrix.get("generated_at_utc") or "").strip(),
+            "horizon_count": int(horizon_summary.get("horizon_count") or 0),
+            "gold_count": int(horizon_summary.get("gold_count") or 0),
+            "assertion_count": int(horizon_summary.get("assertion_count") or 0),
+        }
+    )
+    if not horizon_matrix_ready:
+        errors.append("nine-horizon E2E gold matrix is not exact, complete, and pass-shaped")
+
     release_ready_path = run_services_root / ".codex-studio" / "published" / "RELEASE_READY.generated.json"
     release_ready = load_json(release_ready_path)
     started_gates = list(release_ready.get("started_gates") or [])
@@ -386,7 +485,10 @@ def build_graph(
         }
     )
     if not release_matrix_ready:
-        errors.append("release-ready receipt does not prove the exact current 41-gate matrix and projection")
+        errors.append(
+            "release-ready receipt does not prove the exact current "
+            f"{len(REQUIRED_RELEASE_READY_GATES)}-gate matrix and projection"
+        )
 
     ea_path = run_services_root / ".codex-studio" / "published" / "EA_OPERATOR_READINESS.generated.json"
     ea = load_json(ea_path)
@@ -592,7 +694,7 @@ def build_graph(
         "required_loops": list(template.get("required_loops") or []),
         "required_surfaces": list(template.get("required_surfaces") or []),
         "required_truth_domains": list(template.get("required_truth_domains") or []),
-        "required_horizon_lanes": list(template.get("required_horizon_lanes") or []),
+        "required_horizon_lanes": required_horizon_lanes,
         "required_feature_lanes": list(template.get("required_feature_lanes") or []),
         "projection_adapter_policy": dict(template.get("projection_adapter_policy") or {}),
         "proof_inputs": proof_inputs,
@@ -612,6 +714,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--ui-root", type=Path, default=DEFAULT_UI_ROOT)
     parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--mirror-output",
+        type=Path,
+        action="append",
+        default=[],
+        help="Write the exact same generated graph bytes to an additional mirror path.",
+    )
     parser.add_argument("--live-status-url", default="https://chummer.run/status")
     parser.add_argument("--live-release-url", default="https://chummer.run/downloads/releases.json")
     parser.add_argument("--live-status-input", type=Path)
@@ -641,8 +750,10 @@ def main() -> int:
         live_release_url=args.live_release_url,
         url_loader=input_aware_url_loader,
     )
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(graph, indent=2) + "\n", encoding="utf-8")
+    rendered = json.dumps(graph, indent=2) + "\n"
+    for output_path in (args.output, *args.mirror_output):
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(rendered, encoding="utf-8")
     print(f"final_gold_graph:{graph['status']}")
     return 0 if graph["status"] == "pass" else 1
 

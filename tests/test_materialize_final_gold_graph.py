@@ -29,8 +29,32 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     ui = tmp_path / "ui"
     product = design / "products" / "chummer"
     product.mkdir(parents=True)
-    for name in ("PRODUCT_SPINE.yaml", "HORIZON_REGISTRY.yaml", "PUBLIC_FEATURE_REGISTRY.yaml"):
+    for name in ("PRODUCT_SPINE.yaml", "PUBLIC_FEATURE_REGISTRY.yaml"):
         (product / name).write_text("status: pass\n", encoding="utf-8")
+    horizon_routes = {
+        "alice": ("/alice", "/alice/receipts/build-ghost.json"),
+        "origin-dossier": ("/origin-dossier", "/origin-dossier/receipts/story-network.json"),
+        "karma-forge": ("/participate/karma-forge", "/participate/karma-forge/receipts/discovery-network.json"),
+        "knowledge-fabric": ("/rules", "/rules/explanations"),
+        "jackpoint": ("/jackpoint", "/jackpoint/receipts/briefing-network.json"),
+        "black-ledger": ("/ledger", "/ledger/receipts/viewer-network.json"),
+        "runsite": ("/runsites", "/runsites/receipts/prep-network.json"),
+        "runbook-press": ("/runbook", "/runbook/receipts/primer-network.json"),
+        "table-pulse": ("/table-pulse", "/table-pulse/receipts/live-and-aftermath.json"),
+    }
+    (product / "HORIZON_REGISTRY.yaml").write_text(
+        "horizons:\n"
+        + "".join(
+            f"- id: {horizon_id}\n"
+            "  status: shipped_mvp\n"
+            "  e2e_gold:\n"
+            f"    route: {horizon_routes[horizon_id][0]}\n"
+            f"    receipt_route: {horizon_routes[horizon_id][1]}\n"
+            "    claim_scope: registered_shipped_mvp_public_journey\n"
+            for horizon_id in materializer.EXPECTED_HORIZON_IDS
+        ),
+        encoding="utf-8",
+    )
     (product / "HUMAN_ONLY_RELEASE_BOUNDARIES.generated.md").write_text(
         "Verdict: `CLEAR`\n\nNo human-only release boundaries remain.\n",
         encoding="utf-8",
@@ -129,6 +153,33 @@ def build_fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
             payload["verdict"] = verdict
         write_json(run / ".codex-studio" / "published" / name, payload)
     write_json(
+        run / ".codex-studio" / "published" / "HORIZON_E2E_GOLD_MATRIX.generated.json",
+        {
+            "status": "pass",
+            "verdict": "HORIZON_PORTFOLIO_GOLD",
+            "all_horizons_gold": True,
+            "generated_at_utc": "2026-07-11T16:00:00Z",
+            "summary": {
+                "horizon_count": 9,
+                "gold_count": 9,
+                "failed_count": 0,
+                "expected_count": 9,
+                "assertion_count": 108,
+            },
+            "horizons": [
+                {
+                    "id": horizon_id,
+                    "status": "pass",
+                    "verdict": "GOLD",
+                    "assertion_count": 12,
+                    "evidence_sha256": "a" * 64,
+                    "failures": [],
+                }
+                for horizon_id in materializer.EXPECTED_HORIZON_IDS
+            ],
+        },
+    )
+    write_json(
         run / ".codex-studio" / "published" / "RELEASE_READY.generated.json",
         {
             "status": "pass",
@@ -202,12 +253,13 @@ def test_complete_current_evidence_materializes_gold_ready(tmp_path: Path) -> No
     assert graph["status"] == "pass"
     assert graph["verdict"] == "GOLD_READY"
     assert graph["blocking_findings"] == []
-    assert len(graph["proof_inputs"]) == 23
+    assert len(graph["proof_inputs"]) == 24
     assert all(row["status"] == "pass" for row in graph["proof_inputs"])
     assert graph["completion_audit"]["status"] == "pass"
-    assert graph["completion_audit"]["requirement_count"] == 12
-    assert graph["completion_audit"]["passed_count"] == 12
+    assert graph["completion_audit"]["requirement_count"] == 13
+    assert graph["completion_audit"]["passed_count"] == 13
     assert graph["completion_audit"]["failed_count"] == 0
+    assert graph["required_horizon_lanes"] == list(materializer.EXPECTED_HORIZON_IDS)
     serialized = json.dumps(graph)
     assert str(tmp_path) not in serialized
     assert any(row["path"].startswith("$FLEET_WORKSPACE/") for row in graph["proof_inputs"])
@@ -325,4 +377,7 @@ def test_release_ready_gate_matrix_cannot_omit_security_gate(tmp_path: Path) -> 
     write_json(release_path, release)
     graph = materialize_fixture(paths, live)
     assert graph["status"] == "review_required"
-    assert any("41-gate matrix" in row["summary"] for row in graph["blocking_findings"])
+    assert any(
+        f"{len(materializer.REQUIRED_RELEASE_READY_GATES)}-gate matrix" in row["summary"]
+        for row in graph["blocking_findings"]
+    )

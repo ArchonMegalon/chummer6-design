@@ -150,8 +150,19 @@ horizon_lanes:
     loop_refs:
       - build_correctly
       - explain_everything
+  - id: origin-dossier
+    capability: Approved runner-origin canon and private story-edition projections without mechanics mutation.
+    loop_refs:
+      - build_correctly
+      - remember_campaign
+      - publish_projections
   - id: karma-forge
     capability: Governed rule and house-rule package evolution.
+    loop_refs:
+      - build_correctly
+      - explain_everything
+  - id: knowledge-fabric
+    capability: Source-safe rules explanations with visible provenance and bounded public receipts.
     loop_refs:
       - build_correctly
       - explain_everything
