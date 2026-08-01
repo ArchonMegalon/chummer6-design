@@ -461,7 +461,7 @@ rg -n '^## When this helps$' "$repo_root/products/chummer/public-guide/FEATURES/
 rg -n '^## The table problem$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
 rg -n '^## Can I use it\?$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
 ! rg -n '^## Why it is not ready yet$' "$repo_root/products/chummer/public-guide/FEATURES/nexus-pan.md" >/dev/null
-rg -n '^# What is wrong\?$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
+rg -n '^# How can we help\?$' "$repo_root/products/chummer/public-guide/TRUST/help.md" >/dev/null
 rg -n '"generated_from"|"page_count"|"active_wave"|"sources"' "$repo_root/products/chummer/public-guide/manifest.generated.json" >/dev/null
 rg -n '^# Chummer6$' "$downstream_root/README.md" >/dev/null
 rg -n '^## Product promise$' "$downstream_root/README.md" >/dev/null

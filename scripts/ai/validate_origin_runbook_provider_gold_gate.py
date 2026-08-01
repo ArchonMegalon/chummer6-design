@@ -282,7 +282,7 @@ def main() -> int:
             '"awaiting_provider_manuscript"',
             '"approved source packet artifact path"',
             '"approved source packet receipt path"',
-            '"Subscribr full-story manuscript receipt path"',
+            '"approved full-story manuscript receipt path"',
             '"provider manuscript account alias"',
             '"provider_manuscript_import"',
         ):
@@ -292,12 +292,45 @@ def main() -> int:
         origin_publication_tests = _read_runtime("Chummer.Tests/OriginDossierPublicationServiceTests.cs")
         for marker in (
             'Assert.Contains("approved source packet receipt path", publication.MissingGoldRequirements);',
-            'Assert.Contains("Subscribr full-story manuscript receipt path", publication.MissingGoldRequirements);',
+            'Assert.Contains("approved full-story manuscript receipt path", publication.MissingGoldRequirements);',
             'Assert.Contains("provider manuscript account alias", publication.MissingGoldRequirements);',
             'Assert.True(publication.GoldReady, string.Join(", ", publication.MissingGoldRequirements));',
         ):
             if marker not in origin_publication_tests:
                 failures.append(f"OriginDossierPublicationServiceTests.cs missing runtime proof marker: {marker}")
+
+        screenplay_generator = _read_runtime(
+            "Chummer.Run.Api/Services/Community/OriginDossierScreenplayGenerator.cs"
+        )
+        for marker in (
+            "OriginDossierScreenplayContract.Version",
+            "request.MinimumDialogueTurns",
+            "UsesSupportingCanonDialogue",
+            "WardrobeContinuity: wardrobe",
+            "ScreenDirectionContinuity: screenDirection",
+            '"continuous overcast daytime"',
+            '"the same continuous rain"',
+            "cast[0].Name",
+            "cast[1].Name",
+        ):
+            if marker not in screenplay_generator:
+                failures.append(
+                    "OriginDossierScreenplayGenerator.cs missing generic cinematic continuity marker: "
+                    f"{marker}"
+                )
+
+        origin_account_tests = _read_runtime("Chummer.Tests/OriginDossierAccountRouteTests.cs")
+        for marker in (
+            "Assert.True(screenplay.Cast.Count >= 2);",
+            "Assert.True(screenplay.DialogueTurns.Count >= videoRequest.MinimumDialogueTurns);",
+            'Assert.Equal("continuous night", screenplay.TimeOfDay);',
+            "Assert.Equal(64, screenplay.FingerprintSha256.Length);",
+        ):
+            if marker not in origin_account_tests:
+                failures.append(
+                    "OriginDossierAccountRouteTests.cs missing generic screenplay proof marker: "
+                    f"{marker}"
+                )
 
         landing_tests = _read_runtime("Chummer.Tests/PublicLandingDownloadDispatchTests.cs")
         for marker in (
