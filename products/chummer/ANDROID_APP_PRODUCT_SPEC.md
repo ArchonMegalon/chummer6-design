@@ -101,22 +101,31 @@ is allowed; omission is not. In particular:
 
 ## Current preview posture
 
-As of 2026-08-12, preview.6 builds the full native Shell against Android API 36
+As of 2026-08-12, preview.7 builds the full native Shell against Android API 36
 from a clean eight-repository source graph and passes all 31 Android contracts.
-An accelerated API 36 clean install covers Home, runner creation, Build, Play,
-Campaign, and More with no Chummer fatal exception or ANR. That journey caught
-and closed an Android app-data path-validation crash before the candidate was
-rebuilt.
+An API 36 clean install covers Home, Build, Play, Campaign, More, Account &
+privacy, and the native deletion explanation with no Chummer fatal exception,
+ANR, or process exit. The emulator produced one System UI ANR under host load;
+that system-process event is excluded from Chummer runtime evidence.
+
+Preview.7 closes a privacy-proof gap found in preview.6. The app no longer
+presents provisional retention targets as unconditional policy. It clears the
+linked device grant only after the authenticated server receipt covers Hosted
+Build workspaces, support, first-party auxiliary stores, community data, and
+identity, and it offers the content-free receipt digest for copying. The native
+deletion explanation shows that Hosted Build backup retention, replay, and
+whole-account erasure limits remain under review and points to the current
+public deletion route.
 
 The exact signed arm64 candidate is
-`chummer-android-0.1.0-preview.6-upload.aab`, SHA-256
-`847760c63a4b54a4bf11054de499924dc1a1d8cb10daf6f9adc1ecde83726f5d`.
+`chummer-android-0.1.0-preview.7-upload.aab`, SHA-256
+`34b6b206b422e439e19e675e9f6ec849ed6b3c64b7db66852fdf3463ee4b509f`.
 Its clean source-graph receipt has SHA-256
-`ca9182f426583a332b484e19fc7d951d5ddebc92f8ce4228d0bdce80a0e34c52`.
+`ab0c22f777523dc119b1b5debfcfbcf964dd0fdf28c97e81db81ca661c0317ad`.
 Its signer is the accepted replacement upload certificate ending in
 `...93:C9:87:1E:C9:ED:1D:15`. Google blocks uploads from that certificate until
 `2026-08-14T03:29:49Z`. Preview.1 remains active on the internal track; the
-tester roster contains the two approved accounts. Preview.6 has not been
+tester roster contains the two approved accounts. Preview.7 has not been
 uploaded, processed, or installed from Play, and exact approval for an earlier
 candidate does not authorize these bytes.
 The update action no longer carries an external Play-listing launcher: Play
