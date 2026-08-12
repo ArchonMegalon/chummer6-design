@@ -182,30 +182,26 @@ def _load_json(path: Path) -> dict[str, object]:
 
 def _unbound_review_release_truth_packet(reason: str) -> dict[str, object]:
     return {
-        "architecture_scope_line": (
-            "No desktop platform is currently claimed by this unbound repository projection."
-        ),
+        "architecture_scope_line": "No desktop platform is currently listed in this guide.",
         "authority": {"artifacts": [], "status": "unavailable"},
         "authority_binding_status": "unbound_review_placeholder",
         "authority_source": {"reason": reason, "status": "unbound"},
         "available_platforms": [],
         "build_label": "",
         "channel_id": "",
-        "desktop_pick_line": (
-            "No desktop head is approved by this unbound repository projection."
-        ),
+        "desktop_pick_line": "No desktop build is approved in this guide yet.",
         "desktop_tuple_coverage_complete": False,
         "fallback_heads": [],
         "fix_availability_summary": (
             "Wait for a Registry-bound release decision before relying on fix availability."
         ),
-        "generated_from": "unbound repository review placeholder",
+        "generated_from": "review-required guide placeholder",
         "known_issue_summary": (
-            "The repository has no bound current release authority; live availability must not be "
-            "inferred from stale guide text."
+            "This guide does not include the current release record, so check Downloads before "
+            "relying on availability."
         ),
         "missing_installer_lane_line": (
-            "Windows, Linux, and macOS remain unclaimed until immutable authority is supplied."
+            "Windows, Linux, and macOS downloads remain unlisted until release review finishes."
         ),
         "missing_platforms": ["Windows", "Linux", "macOS"],
         "phase_label": "Release review required",
@@ -214,15 +210,15 @@ def _unbound_review_release_truth_packet(reason: str) -> dict[str, object]:
         "published_at": "",
         "published_line": "",
         "quality_gap_line": (
-            "Release review is required. Stable and gold claims remain paused until the immutable "
-            "authority and public routes converge."
+            "Release review is required. Stable and gold labels remain paused until downloads and "
+            "public routes agree."
         ),
         "release_decision_status": "review_required",
         "release_posture": "review_required",
         "release_status": "Review required",
         "release_status_slug": "review_required",
         "release_verification_summary": (
-            "No Registry-bound current release verification is available in this checkout."
+            "This guide does not yet include a current Registry release record."
         ),
         "required_platforms": [],
         "review_required_banner": (
@@ -230,9 +226,7 @@ def _unbound_review_release_truth_packet(reason: str) -> dict[str, object]:
             "snapshot converges."
         ),
         "rollout_state": "review_required",
-        "shelf_truth_line": (
-            "No public platform availability is claimed by this unbound repository projection."
-        ),
+        "shelf_truth_line": "No public desktop download is listed in this guide yet.",
         "short_release_summary": (
             "Release review is required. Do not rely on platform availability claims until the "
             "current immutable snapshot converges."
@@ -2174,7 +2168,7 @@ def _generate_from_chummer5a_to_chummer6(
         (
             "- The promoted Avalonia installer is a supported release path."
             if gold_supported
-            else "- No platform is currently approved by this unbound repository projection."
+            else "- No desktop build is approved in this guide yet."
             if unbound_review
             else "- It is worth a serious look."
         ),
@@ -2606,7 +2600,7 @@ def _generate_download(
     rows.append(
         "- These are the current gold-supported builds for the stated public platform and desktop-head scope."
         if gold_supported
-        else "- No release build is claimed by this unbound repository projection."
+        else "- No release build is listed in this guide yet."
         if unbound_review
         else "- These are real preview builds, not a finished flagship release yet."
     )
