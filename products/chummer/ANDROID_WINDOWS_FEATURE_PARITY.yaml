@@ -22,18 +22,20 @@
     "sideload_update_posture": "in_app_explanation_without_external_launch"
   },
   "current_release_evidence": {
-    "version": "0.1.0-preview.3",
-    "version_code": 3,
+    "version": "0.1.0-preview.6",
+    "version_code": 6,
     "target_api": 36,
-    "android_contracts_passed": 26,
-    "signed_aab_sha256": "4e73ebb8678b8d11b63e6a5f6a02b2981ab6003403daece60b127c511eaa659c",
+    "android_contracts_passed": 31,
+    "signed_aab_sha256": "847760c63a4b54a4bf11054de499924dc1a1d8cb10daf6f9adc1ecde83726f5d",
+    "source_graph_sha256": "ca9182f426583a332b484e19fc7d951d5ddebc92f8ce4228d0bdce80a0e34c52",
     "upload_key_reset": "accepted_active_replacement_certificate_cooldown_until_2026-08-14T03:29:49Z",
-    "exact_artifact_approval": "approved_for_internal_testing_only",
-    "play_upload": "transfer_attempted_rejected_before_ingestion_by_reset_cooldown",
+    "exact_artifact_approval": "required_for_preview6_sha256",
+    "play_upload": "not_attempted_for_preview6",
     "play_retry_not_before_utc": "2026-08-14T03:29:49Z",
     "active_internal_version_code": 1,
-    "preview3_present_in_bundle_library": false,
-    "tester_roster_changed": false,
+    "preview6_present_in_bundle_library": false,
+    "tester_roster_count": 2,
+    "tester_roster_verified": true,
     "internal_test_install": "not_yet_proven"
   },
   "commands": {

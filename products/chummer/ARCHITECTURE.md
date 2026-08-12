@@ -54,6 +54,9 @@ If campaign continuity, product control, or world-state semantics live in Hub, t
 
 `chummer6-ui` owns builder/workbench/admin/browser/desktop UX.
 `chummer6-mobile` owns live-session/mobile/PWA/player/GM shell UX.
+`chummer-android` owns the platform-native projection of those contract families.
+It may not copy their rules, session, or replay semantics, and Play or Campaign
+navigation may not hand the user to the PWA.
 
 No silent re-merging of those surfaces is allowed.
 
