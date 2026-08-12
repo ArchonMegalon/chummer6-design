@@ -13,6 +13,29 @@ guide = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(guide)
 
 
+def test_generate_mobile_part_keeps_native_flow_and_release_boundary(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
+    part_registry = guide._load_yaml(
+        Path(__file__).resolve().parents[1]
+        / "products"
+        / "chummer"
+        / "PUBLIC_PART_REGISTRY.yaml"
+    )
+    mobile = next(item for item in part_registry["parts"] if item["id"] == "mobile")
+
+    guide._generate_part_pages(tmp_path, {"parts": [mobile]})
+
+    rendered = (tmp_path / "PARTS" / "mobile.md").read_text(encoding="utf-8")
+    assert "linked online runners and groups open in native screens" in rendered
+    assert "choose or create a runner" in rendered
+    assert "Play Store updates stay inside the app" in rendered
+    assert "full API 36 Debug builds for arm64 and x64" in rendered
+    assert "has not been published to the Play Store" in rendered
+    assert "digest-bound operator handoff" not in rendered
+
+
 def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
     tmp_path: Path, monkeypatch
 ) -> None:
