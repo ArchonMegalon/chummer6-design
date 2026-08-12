@@ -31,8 +31,9 @@ forcing Android and iOS to share web markup.
    copy, or share browser-openable invite links. Its native Chronicle Studio
    manages versioned drafts, separate consent/spoiler/redaction gates, reviewed
    source packets, separate upload and generation approvals, provider project
-   references, finished-artifact import, publication approval, and external-send
-   approval. These actions record decisions but never invoke the provider,
+   references, a machine-readable operator handoff bound to the source digest
+   and exact credit ceiling, finished-artifact import, publication approval, and
+   external-send approval. These actions record decisions but never invoke the provider,
    publish, or send. It uses the linked
    installation grant directly and never navigates to the campaign PWA.
 5. **All actions** preserves Windows feature coverage through shared presenter
@@ -47,7 +48,9 @@ forcing Android and iOS to share web markup.
    expired, offline, and unlinked posture. Linking uses authenticated browser
    approval plus a signed installation-key proof; grants and the private device
    key use Android Keystore-backed secure storage. Offline local work never
-   depends on the link.
+   depends on the link. Account & privacy remains visible before linking; its
+   deletion explanation is native, while the public deletion address remains
+   copyable for people who no longer have the app.
 9. **Updates** come from Google Play. The desktop updater is never invoked on
    Android. Play-managed installs use the native flexible update flow. A
    sideloaded build stays in Chummer and explains the Play-owned update posture;
@@ -98,27 +101,21 @@ is allowed; omission is not. In particular:
 
 ## Current preview posture
 
-As of 2026-08-12, preview.3 builds the full native Shell against Android API 36,
-passes all 26 Android contracts, and has completed accelerated phone and tablet
-journeys across Home, runner creation, Build, Play, Campaign, Chronicle Studio,
-and More. The Play listing image set is made from that tested native UI: five
-phone captures at 1080×2400 and four tablet captures at 1440×2560.
+As of 2026-08-12, preview.5 source builds the full native Shell against Android
+API 36, passes all 31 Android contracts, the platform-neutral native compile
+gate, and an x64 MAUI build with zero warnings. It adds always-reachable native
+account/privacy guidance and a digest-bound Chronicle operator handoff. It has
+not yet produced a signed, device-proven preview.5 AAB.
 
-The exact signed arm64 candidate is
-`chummer-android-0.1.0-preview.3-upload.aab`, SHA-256
-`4e73ebb8678b8d11b63e6a5f6a02b2981ab6003403daece60b127c511eaa659c`.
-It is signed by the replacement upload certificate ending in
-`...93:C9:87:1E:C9:ED:1D:15`. A read-only Play Console check on 2026-08-12
-confirmed that Google accepted the upload-key reset and now lists that
-certificate as active. The owner then approved this exact AAB digest for the
-internal-testing transaction only. Play accepted the file transfer but rejected
-bundle ingestion under its post-reset cooldown: the replacement certificate is
-not valid for bundle uploads until `2026-08-14T03:29:49Z`. The rejected bundle
-was removed and the empty draft discarded. Read-back showed version code 1
-still active, version code 3 absent from the bundle library, and the selected
-one-member tester list unchanged. Retry the same frozen bytes after the stated
-timestamp. This posture still does not claim a preview.3 Play install or a
-completed internal-test journey.
+Preview.4 remains the latest immutable signed evidence bundle:
+`chummer-android-0.1.0-preview.4-upload.aab`, SHA-256
+`1388b3d16103be8370360f85bf9833b3cdc5fea7af506413a389929ff02bf5c8`.
+Its signer is the accepted replacement upload certificate ending in
+`...93:C9:87:1E:C9:ED:1D:15`, but its bytes are superseded by preview.5 source.
+Google still blocks uploads from the reset certificate until
+`2026-08-14T03:29:49Z`. Preview.1 remains active on the internal track; the
+selected internal tester list now contains two entries. No preview.5 Play
+installation or completed internal-test journey is claimed.
 The update action no longer carries an external Play-listing launcher: Play
 installs use the native in-app update API and sideloaded installs stay inside the
 app with an honest explanation.
@@ -128,7 +125,10 @@ app with an honest explanation.
 Chronicle Studio is the first Android-facing LTD lane. AIWriteBook is a
 human-operated `pilot`, not an in-app automation dependency: Android prepares
 and downloads a consented, spoiler-reviewed, redaction-reviewed source packet,
-records upload and generation approvals, and imports a verified finished export.
+records upload and generation approvals, saves a machine-readable handoff with
+the source digest and zero-or-approved credit ceiling, and imports a verified
+finished export. The handoff contains no source text or runner roster and never
+authorizes unattended automation, publication, or external send.
 The external provider never receives Chummer credentials and never owns campaign
 or publication truth.
 

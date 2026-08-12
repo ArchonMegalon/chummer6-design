@@ -58,11 +58,11 @@ parts:
     what_you_notice:
       - five short native destinations for Home, Build, Play, Campaign, and More
       - account-linked online runners and groups open inside the app instead of handing off to the PWA
-      - native group invites and Chronicle Studio approval steps alongside local dice, condition, notes, files, print, and share
+      - native group invites and Chronicle Studio approvals plus a digest-bound operator handoff alongside local dice, condition, notes, files, print, and share
     public_noteworthy_limits:
-      - the exact signed preview has internal-test-only approval, but Google enforces a post-reset upload cooldown until 14 August 2026 at 03:29:49 UTC; preview.1 remains on the tester track until the same frozen bytes can be retried and an install is proven
+      - preview.5 source is newer than the sealed preview.4 bundle; Google enforces a post-reset upload cooldown until 14 August 2026 at 03:29:49 UTC, and preview.1 remains on the tester track until a new exact bundle is signed, uploaded, and installed
       - the reusable coordinator leaves room for iPhone and tablet-specific shells, but those platform heads are not shipped yet
-    current_truth: The dedicated Android preview is now a native MAUI Shell rather than a Blazor or WebView wrapper. Its signed API 36 candidate and native phone/tablet captures pass local release gates, and the exact bundle is approved for internal testing. Google rejected the first transfer before ingestion because the recently reset upload certificate does not become upload-valid until 14 August 2026 at 03:29:49 UTC. The failed draft was discarded, preview.1 remains active, testers are unchanged, and no preview.3 installation is claimed yet.
+    current_truth: The dedicated Android preview is a native MAUI Shell rather than a Blazor or WebView wrapper. Preview.5 source passes 31 contracts, its native compile gate, and an x64 MAUI build; it adds native privacy guidance and a Chummer-owned Chronicle operator handoff. Preview.4 is retained as signed historical evidence, not the next upload. Google blocks the replacement certificate until 14 August 2026 at 03:29:49 UTC, preview.1 remains active, the selected internal list contains two tester entries, and no preview.5 installation is claimed.
     go_deeper_links:
       - ../NOW/public-surfaces.md
       - ../WHERE_TO_GO_DEEPER.md
@@ -74,14 +74,14 @@ parts:
     what_you_notice:
       - sign-in and account pages
       - groups, browser-openable invites, runner tickets, and GM roster controls
-      - Chronicle Studio drafts with separate source, upload, generation, publication, and sharing decisions
+      - Chronicle Studio drafts with separate source, upload, generation, publication, and sharing decisions plus a source-digest-bound operator handoff
       - public landing, home, and participation entry points
       - account-aware home and account posture for claim, participation, reward, and recovery
       - shared coordination, release status, and recognition views that make sense without learning the plumbing behind them
     public_noteworthy_limits:
       - it is not the rules engine
       - some deeper support and admin screens are still being simplified
-    current_truth: Hub already powers sign-in, landing and home views, participation, groups, runner-bound invite joins, and the governed Chronicle Studio record. Android consumes those account-scoped group and book contracts without giving the external writing provider authority over publication or campaign truth.
+    current_truth: Hub already powers sign-in, landing and home views, participation, groups, runner-bound invite joins, and the governed Chronicle Studio record. Its operator handoff exposes only the source digest, provider lane, action approvals, and exact credit ceiling; source text stays in the separate authenticated packet. Android consumes those account-scoped contracts without giving the writing provider authority over publication or campaign truth.
     go_deeper_links:
       - ../NOW/current-status.md
       - ../WHERE_TO_GO_DEEPER.md

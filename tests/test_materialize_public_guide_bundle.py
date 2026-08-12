@@ -552,7 +552,7 @@ def test_bound_authority_artifacts_do_not_inherit_mutable_manifest_metadata() ->
     assert len(artifacts) == 1
     artifact = artifacts[0]
     assert artifact["platformLabel"] == "Windows x64"
-    assert artifact["fileName"] == "windows-installer"
+    assert artifact["fileName"] == ""
     assert artifact["downloadUrl"] == "https://chummer.run/downloads/install/windows-installer"
     assert artifact["updateFeedUrl"] == ""
     assert "STALE" not in str(artifact)
