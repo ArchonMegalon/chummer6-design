@@ -29,6 +29,24 @@ if [ -z "$registry_snapshot" ] || [ ! -f "$registry_snapshot" ]; then
   echo "explicit Registry authority snapshot is required; set CHUMMER_REGISTRY_AUTHORITY_SNAPSHOT" >&2
   exit 1
 fi
+registry_current="${CHUMMER_REGISTRY_AUTHORITY_CURRENT:-}"
+if [ -z "$registry_current" ] || [ ! -f "$registry_current" ]; then
+  echo "explicit Registry authority CURRENT is required; set CHUMMER_REGISTRY_AUTHORITY_CURRENT" >&2
+  exit 1
+fi
+registry_commit="${CHUMMER_REGISTRY_COMMIT:-}"
+if [[ ! "$registry_commit" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "exact Registry commit is required; set CHUMMER_REGISTRY_COMMIT" >&2
+  exit 1
+fi
+expected_release_decision_status="${CHUMMER_EXPECTED_RELEASE_DECISION_STATUS:-}"
+case "$expected_release_decision_status" in
+  review_required|preview_ready|stable_ready) ;;
+  *)
+    echo "exact Registry decision status is required; set CHUMMER_EXPECTED_RELEASE_DECISION_STATUS" >&2
+    exit 1
+    ;;
+esac
 scope_decision="$repo_root/products/chummer/RELEASE_SCOPE_DECISION.approved.json"
 if [ ! -f "$scope_decision" ]; then
   echo "approved release-scope decision is missing" >&2
@@ -281,7 +299,11 @@ done
 python3 "$repo_root/scripts/ai/validate_contract_sets.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_sync_manifest.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_downstream_root_aliases.py" >/dev/null
-CHUMMER_REGISTRY_RELEASE_CHANNEL="$registry_manifest" python3 "$downstream_root/scripts/verify_public_downloads_match_registry.py" >/dev/null
+CHUMMER_REGISTRY_RELEASE_CHANNEL="$registry_manifest" \
+  python3 "$downstream_root/scripts/verify_public_downloads_match_registry.py" \
+    --authority-current "$registry_current" \
+    --registry-commit "$registry_commit" \
+    --expected-release-decision-status "$expected_release_decision_status" >/dev/null
 python3 "$repo_root/scripts/ai/validate_adr_index.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_public_signal_content_integration.py" >/dev/null
 python3 "$repo_root/scripts/ai/validate_origin_runbook_provider_gold_gate.py" >/dev/null

@@ -7,27 +7,27 @@
         "arch": "x64",
         "artifactAccessClass": "open_public",
         "artifactId": "avalonia-linux-x64-installer",
-        "downloadUrl": "/downloads/g/g-20260806T054328Z-a70073d1ce29082b/files/chummer-avalonia-linux-x64-installer.deb",
+        "downloadUrl": "/downloads/g/gen-20260811T053520Z-58ee89edc36b431f/files/chummer-avalonia-linux-x64-installer.deb",
         "head": "avalonia",
         "platform": "linux",
         "publicInstallRoute": "/downloads/install/avalonia-linux-x64-installer",
         "rid": "linux-x64",
-        "sha256": "2ff033e2efb194690028c992d8128b3d7e3aeff9df36e64da3724e62dddf16a8",
+        "sha256": "140275ab7e47f7369c58c82f81b56d3c711e44a4eb21c5a9b8a41d441090d06b",
         "signingRequirement": "not_applicable",
-        "sizeBytes": 37192294
+        "sizeBytes": 37195722
       },
       {
         "arch": "x64",
         "artifactAccessClass": "open_public",
         "artifactId": "avalonia-win-x64-installer",
-        "downloadUrl": "/downloads/g/g-20260806T054328Z-a70073d1ce29082b/files/chummer-avalonia-win-x64-installer.exe",
+        "downloadUrl": "/downloads/g/gen-20260811T053520Z-58ee89edc36b431f/files/chummer-avalonia-win-x64-installer.exe",
         "head": "avalonia",
         "platform": "windows",
         "publicInstallRoute": "/downloads/install/avalonia-win-x64-installer",
         "rid": "win-x64",
-        "sha256": "8e70de58f40b87b444aed38fb2531af9bd10fe3f18fa35370ee37b1fdfa3de7c",
+        "sha256": "bd45bceac8358b6402ccb0799d0ecf661bb24061301296930791c736f1232dfe",
         "signingRequirement": "preview_unsigned_allowed",
-        "sizeBytes": 2746545
+        "sizeBytes": 53242289
       }
     ],
     "availablePlatforms": [
@@ -36,12 +36,12 @@
     ],
     "channel": "preview",
     "contractName": "chummer.public-preview-byte-handoff/v2",
-    "releaseScopeDecisionSha256": "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37",
-    "releaseVersion": "run-20260806-045300",
+    "releaseScopeDecisionSha256": "ceaccad3559e5b044cd79c31609643d048626fa8352a2c75dc5f60639d491396",
+    "releaseVersion": "run-20260802-160500",
     "sourcePublicationState": "preview",
     "status": "approved_public_preview_bytes"
   },
-  "authoritySnapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+  "authoritySnapshotSha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
   "blockingFindings": [
     {
       "id": "preview_1",
@@ -54,7 +54,7 @@
       "summary": "public release convergence proof is missing or not passing"
     }
   ],
-  "candidateDecisionSha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e",
+  "candidateDecisionSha256": "6a68973e60ebf27e0d3ed5097cce9adda5cb4fae633fbb975ec9d6dc62c1aab3",
   "candidateDecisionStatus": "review_required",
   "channel": "preview",
   "contractName": "chummer.preview-release-decision/v2",
@@ -63,11 +63,11 @@
     "linux": [],
     "windows": []
   },
-  "generatedAt": "2026-08-12T04:43:47Z",
-  "manifestGeneratedAt": "2026-08-06T05:40:34Z",
-  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
+  "generatedAt": "2026-08-12T17:25:06Z",
+  "manifestGeneratedAt": "2026-08-11T03:58:32Z",
+  "manifestSha256": "67641f4b7eab93f872a12519a07271f0249712b1dc224220f49805799d06b327",
   "nextActions": [
-    "Run the owner-only finalizer for the sealed staged candidate."
+    "Bind fresh native Windows evidence and candidate-bound product journey receipts before any product-preview claim."
   ],
   "platforms": [
     "linux",
@@ -77,11 +77,11 @@
     "linux": "avalonia",
     "windows": "avalonia"
   },
-  "registryCommit": "488fc56efc8f87aa05d2cb18451673ed8c1d4c2b",
+  "registryCommit": "f1d7b96c510ef619d8f6c6b7ce7c29b1736e053b",
   "releaseDecisionStatus": "review_required",
-  "releaseScopeDecisionSha256": "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37",
-  "releaseVersion": "run-20260806-045300",
-  "scorecardSha256": "9a3dd6e6469bc6fb29899c0721b2f65b0a8863aeba4874881b5930656d68a658",
+  "releaseScopeDecisionSha256": "ceaccad3559e5b044cd79c31609643d048626fa8352a2c75dc5f60639d491396",
+  "releaseVersion": "run-20260802-160500",
+  "scorecardSha256": "05ca8c6464d9ecf0aac292fcd9f0f2c703210d76050b6f451a1d3c8fd31da2c7",
   "status": "review_required",
   "supportOwner": "chummer-release-operations",
   "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED"

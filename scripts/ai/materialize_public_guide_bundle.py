@@ -2502,14 +2502,30 @@ def _generate_download(
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
     artifacts = _release_truth_artifacts(release_payload, release_truth_packet)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
-    version = "" if unbound_review else _public_build_label(str(release_payload.get("version") or "").strip())
+    authority = (
+        release_truth_packet.get("authority")
+        if isinstance(release_truth_packet.get("authority"), dict)
+        else {}
+    )
+    version = (
+        ""
+        if unbound_review
+        else _public_build_label(
+            str(
+                authority.get("releaseVersion")
+                or release_payload.get("releaseVersion")
+                or release_payload.get("version")
+                or ""
+            ).strip()
+        )
+    )
     published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = "" if unbound_review else str(release_payload.get("publishedAt") or "").strip()
-    status = (
-        str(release_truth_packet.get("release_status_slug") or "review_required").strip()
-        if unbound_review
-        else str(release_payload.get("status") or "unpublished").strip()
-    )
+    status = str(
+        release_truth_packet.get("release_status_slug")
+        or release_payload.get("status")
+        or "unpublished"
+    ).strip()
     release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(status)
     published_label = _format_public_datetime(published_at) or "Not currently published"
     release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip()

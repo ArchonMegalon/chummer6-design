@@ -1,14 +1,14 @@
 {
   "contract_name": "chummer.campaign_operability_scorecard",
   "contract_version": 2,
-  "release_version": "run-20260806-045300",
-  "release_scope_decision_sha256": "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37",
-  "releaseVersion": "run-20260806-045300",
-  "releaseScopeDecisionSha256": "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37",
-  "snapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
-  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
-  "releaseDecisionSha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e",
-  "generated_at_utc": "2026-08-12T04:43:47Z",
+  "release_version": "run-20260802-160500",
+  "release_scope_decision_sha256": "ceaccad3559e5b044cd79c31609643d048626fa8352a2c75dc5f60639d491396",
+  "releaseVersion": "run-20260802-160500",
+  "releaseScopeDecisionSha256": "ceaccad3559e5b044cd79c31609643d048626fa8352a2c75dc5f60639d491396",
+  "snapshotSha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
+  "manifestSha256": "67641f4b7eab93f872a12519a07271f0249712b1dc224220f49805799d06b327",
+  "releaseDecisionSha256": "6a68973e60ebf27e0d3ed5097cce9adda5cb4fae633fbb975ec9d6dc62c1aab3",
+  "generated_at_utc": "2026-08-12T17:25:06Z",
   "status": "fail",
   "verdict": "CAMPAIGN_OPERABILITY_NOT_READY",
   "preview_status": "fail",
@@ -123,8 +123,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "desktop_visual is not passing",
-          "preview_failure": "desktop_visual is not passing",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "cf10e86d4618aa67290acf43a14a4581f42659f7d1435d55b819a7cbce98f0f7",
           "preview_evidence": null
         },
@@ -148,21 +148,21 @@
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "fleet_flagship is not passing",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "desktop_workflow is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "fleet_flagship is not passing",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "desktop_workflow is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
         "fleet_flagship is not passing",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "desktop_workflow is not passing"
       ]
     },
@@ -345,8 +345,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "positive Presentation receipt is missing exact candidate binding",
-          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "62ae7560f359bb267614c2c69991892d166e563f26734d41f4d9383290cf1359",
           "preview_evidence": null
         },
@@ -369,19 +369,19 @@
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "release_ready is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "release_ready is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "release_ready is not passing"
       ]
     },
@@ -452,7 +452,7 @@
         },
         {
           "id": "release_channel",
-          "path": "SNAPSHOT.json",
+          "path": "products/chummer/release-evidence/run-20260802-160500/snapshots/run-20260802-160500/434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -462,7 +462,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+          "source_sha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
           "preview_evidence": null
         }
       ],
@@ -646,8 +646,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "desktop_visual is not passing",
-          "preview_failure": "desktop_visual is not passing",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "cf10e86d4618aa67290acf43a14a4581f42659f7d1435d55b819a7cbce98f0f7",
           "preview_evidence": null
         },
@@ -685,21 +685,21 @@
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding",
         "source receipt is missing an explicit candidate release-version binding"
       ]
@@ -856,7 +856,7 @@
         },
         {
           "id": "release_channel",
-          "path": "SNAPSHOT.json",
+          "path": "products/chummer/release-evidence/run-20260802-160500/snapshots/run-20260802-160500/434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -866,7 +866,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+          "source_sha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
           "preview_evidence": null
         },
         {
@@ -1087,7 +1087,7 @@
         },
         {
           "id": "release_channel",
-          "path": "SNAPSHOT.json",
+          "path": "products/chummer/release-evidence/run-20260802-160500/snapshots/run-20260802-160500/434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -1097,7 +1097,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+          "source_sha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
           "preview_evidence": null
         }
       ],
@@ -1387,8 +1387,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "positive Presentation receipt is missing exact candidate binding",
-          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "62ae7560f359bb267614c2c69991892d166e563f26734d41f4d9383290cf1359",
           "preview_evidence": null
         },
@@ -1410,17 +1410,17 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -1476,7 +1476,7 @@
         },
         {
           "id": "release_channel",
-          "path": "SNAPSHOT.json",
+          "path": "products/chummer/release-evidence/run-20260802-160500/snapshots/run-20260802-160500/434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -1486,7 +1486,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+          "source_sha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
           "preview_evidence": null
         }
       ],
@@ -1551,8 +1551,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "positive Presentation receipt is missing exact candidate binding",
-          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "62ae7560f359bb267614c2c69991892d166e563f26734d41f4d9383290cf1359",
           "preview_evidence": null
         },
@@ -1574,17 +1574,17 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding"
       ]
     },
@@ -1626,7 +1626,7 @@
         },
         {
           "id": "release_channel",
-          "path": "SNAPSHOT.json",
+          "path": "products/chummer/release-evidence/run-20260802-160500/snapshots/run-20260802-160500/434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -1636,7 +1636,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+          "source_sha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
           "preview_evidence": null
         },
         {
@@ -1734,8 +1734,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "positive Presentation receipt is missing exact candidate binding",
-          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "62ae7560f359bb267614c2c69991892d166e563f26734d41f4d9383290cf1359",
           "preview_evidence": null
         },
@@ -1757,17 +1757,17 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing the exact candidate authority binding fields"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing the exact candidate authority binding fields"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing the exact candidate authority binding fields"
       ]
     },
@@ -1817,8 +1817,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "desktop_visual is not passing",
-          "preview_failure": "desktop_visual is not passing",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "cf10e86d4618aa67290acf43a14a4581f42659f7d1435d55b819a7cbce98f0f7",
           "preview_evidence": null
         },
@@ -1855,19 +1855,19 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing the exact candidate authority binding fields",
         "source receipt is missing an explicit candidate release-version binding"
       ]
@@ -2081,8 +2081,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "positive Presentation receipt is missing exact candidate binding",
-          "preview_failure": "positive Presentation receipt is missing exact candidate binding",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "62ae7560f359bb267614c2c69991892d166e563f26734d41f4d9383290cf1359",
           "preview_evidence": null
         },
@@ -2104,17 +2104,17 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "release_ready is not passing"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "release_ready is not passing"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "positive Presentation receipt is missing exact candidate binding",
+        "source receipt release version does not match the approved candidate",
         "release_ready is not passing"
       ]
     },
@@ -2347,8 +2347,8 @@
           "status": "fail",
           "bounded_owner": "",
           "next_actions": [],
-          "failure": "desktop_visual is not passing",
-          "preview_failure": "desktop_visual is not passing",
+          "failure": "source receipt release version does not match the approved candidate",
+          "preview_failure": "source receipt release version does not match the approved candidate",
           "source_sha256": "cf10e86d4618aa67290acf43a14a4581f42659f7d1435d55b819a7cbce98f0f7",
           "preview_evidence": null
         },
@@ -2385,19 +2385,19 @@
       ],
       "preview_blockers": [
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "flagship_gaps": [
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding",
         "source receipt is missing an explicit candidate release-version binding"
       ],
       "failures": [
         "source receipt is missing the exact candidate authority binding fields",
-        "desktop_visual is not passing",
+        "source receipt release version does not match the approved candidate",
         "source receipt is missing an explicit candidate release-version binding",
         "source receipt is missing an explicit candidate release-version binding"
       ]
@@ -3188,7 +3188,7 @@
         },
         {
           "id": "release_channel",
-          "path": "SNAPSHOT.json",
+          "path": "products/chummer/release-evidence/run-20260802-160500/snapshots/run-20260802-160500/434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac/SNAPSHOT.json",
           "source_status": "published",
           "source_verdict": "",
           "generated_at": "",
@@ -3198,7 +3198,7 @@
           "next_actions": [],
           "failure": "release channel is not stable_ready, public_stable, and gold_supported",
           "preview_failure": "release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-          "source_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+          "source_sha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
           "preview_evidence": null
         }
       ],
@@ -3661,30 +3661,30 @@
     }
   ],
   "preview_failures": [
-    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
+    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, source receipt release version does not match the approved candidate, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
+    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
     "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
     "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
-    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
     "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not the exact owner-bounded pre-scorecard Registry review seed",
-    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not the exact owner-bounded pre-scorecard Registry review seed, source receipt is missing the exact candidate authority binding fields, release_ready is not passing",
-    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing the exact candidate authority binding fields",
-    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing the exact candidate authority binding fields",
+    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
+    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
     "build_explain_publish.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
-    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
@@ -3699,30 +3699,30 @@
     "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
   ],
   "flagship_gaps": [
-    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
+    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, source receipt release version does not match the approved candidate, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
+    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
     "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
     "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
-    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
     "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not stable_ready, public_stable, and gold_supported",
-    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, source receipt is missing the exact candidate authority binding fields, release_ready is not passing",
-    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing the exact candidate authority binding fields",
-    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing the exact candidate authority binding fields",
+    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
+    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
     "build_explain_publish.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
-    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
@@ -3737,30 +3737,30 @@
     "improve_and_close_the_loop.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding"
   ],
   "failures": [
-    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, desktop_visual is not passing, desktop_workflow is not passing",
+    "desktop_workbench.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, fleet_flagship is not passing, source receipt release version does not match the approved candidate, desktop_workflow is not passing",
     "desktop_workbench.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
+    "desktop_workbench.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
     "desktop_workbench.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
     "desktop_workbench.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
-    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "desktop_workbench.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "public_front_door_and_support.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, release_ready is not passing, release channel is not stable_ready, public_stable, and gold_supported",
     "public_front_door_and_support.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing",
     "public_front_door_and_support.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, ui_frame is not passing, source receipt is missing an explicit candidate release-version binding",
-    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release channel is not stable_ready, public_stable, and gold_supported",
-    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding",
     "install_claim_restore_continue.closure_honesty: source receipt is missing the exact candidate authority binding fields, release channel is not stable_ready, public_stable, and gold_supported, source receipt is missing the exact candidate authority binding fields, release_ready is not passing",
-    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, source receipt is missing the exact candidate authority binding fields",
-    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
+    "install_claim_restore_continue.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing the exact candidate authority binding fields",
+    "install_claim_restore_continue.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.route_clarity: source receipt is missing the exact candidate authority binding fields, desktop_workflow is not passing, source receipt is missing an explicit candidate release-version binding",
     "build_explain_publish.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
-    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, positive Presentation receipt is missing exact candidate binding, release_ready is not passing",
+    "build_explain_publish.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, release_ready is not passing",
     "build_explain_publish.closure_honesty: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",
     "build_explain_publish.responsiveness: source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, desktop_workflow is not passing",
-    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, desktop_visual is not passing, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
+    "build_explain_publish.design_authorship: source receipt is missing the exact candidate authority binding fields, source receipt release version does not match the approved candidate, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.route_clarity: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.rules_and_continuity_truth: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, source receipt is missing an explicit candidate release-version binding",
     "run_and_rejoin.recovery_confidence: source receipt is missing the exact candidate authority binding fields, source receipt is missing the exact candidate authority binding fields, source receipt is missing an explicit candidate release-version binding, release_ready is not passing",

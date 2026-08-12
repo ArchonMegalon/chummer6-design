@@ -5,14 +5,14 @@
     "windows"
   ],
   "contractName": "chummer.current-platform-state/v1",
-  "generatedAt": "2026-08-12T04:46:22Z",
-  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
+  "generatedAt": "2026-08-12T17:25:06Z",
+  "manifestSha256": "67641f4b7eab93f872a12519a07271f0249712b1dc224220f49805799d06b327",
   "note": "No platform is promoted by policy alone; this projection is authoritative only when bound to an immutable snapshot.",
   "primaryHeadByPlatform": {
     "linux": "avalonia",
     "windows": "avalonia"
   },
-  "releaseVersion": "run-20260806-045300",
-  "snapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+  "releaseVersion": "run-20260802-160500",
+  "snapshotSha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
   "status": "review_required"
 }
