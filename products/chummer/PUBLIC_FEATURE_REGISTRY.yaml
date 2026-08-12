@@ -168,7 +168,7 @@ cards:
     audience: public
     image_family: streetfront
     action_label: Open Chummer
-    status_note: "Native preview.5 source passes its contract and compile gates, but no signed preview.5 AAB or tester install is claimed. Preview.1 remains active while Google's replacement-key cooldown runs until 14 August 2026 at 03:29:49 UTC."
+    status_note: "The exact signed preview.6 candidate passes 31 contracts, clean-source release validation, and an API 36 native device journey. It has not been uploaded or installed from Play; preview.1 remains active while Google's replacement-key cooldown runs until 14 August 2026 at 03:29:49 UTC."
   - id: real_package_browser
     bucket: whats_real_now
     title: Package browser

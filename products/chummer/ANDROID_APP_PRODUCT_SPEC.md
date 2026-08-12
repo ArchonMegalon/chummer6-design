@@ -101,21 +101,24 @@ is allowed; omission is not. In particular:
 
 ## Current preview posture
 
-As of 2026-08-12, preview.5 source builds the full native Shell against Android
-API 36, passes all 31 Android contracts, the platform-neutral native compile
-gate, and an x64 MAUI build with zero warnings. It adds always-reachable native
-account/privacy guidance and a digest-bound Chronicle operator handoff. It has
-not yet produced a signed, device-proven preview.5 AAB.
+As of 2026-08-12, preview.6 builds the full native Shell against Android API 36
+from a clean eight-repository source graph and passes all 31 Android contracts.
+An accelerated API 36 clean install covers Home, runner creation, Build, Play,
+Campaign, and More with no Chummer fatal exception or ANR. That journey caught
+and closed an Android app-data path-validation crash before the candidate was
+rebuilt.
 
-Preview.4 remains the latest immutable signed evidence bundle:
-`chummer-android-0.1.0-preview.4-upload.aab`, SHA-256
-`1388b3d16103be8370360f85bf9833b3cdc5fea7af506413a389929ff02bf5c8`.
+The exact signed arm64 candidate is
+`chummer-android-0.1.0-preview.6-upload.aab`, SHA-256
+`847760c63a4b54a4bf11054de499924dc1a1d8cb10daf6f9adc1ecde83726f5d`.
+Its clean source-graph receipt has SHA-256
+`ca9182f426583a332b484e19fc7d951d5ddebc92f8ce4228d0bdce80a0e34c52`.
 Its signer is the accepted replacement upload certificate ending in
-`...93:C9:87:1E:C9:ED:1D:15`, but its bytes are superseded by preview.5 source.
-Google still blocks uploads from the reset certificate until
+`...93:C9:87:1E:C9:ED:1D:15`. Google blocks uploads from that certificate until
 `2026-08-14T03:29:49Z`. Preview.1 remains active on the internal track; the
-selected internal tester list now contains two entries. No preview.5 Play
-installation or completed internal-test journey is claimed.
+tester roster contains the two approved accounts. Preview.6 has not been
+uploaded, processed, or installed from Play, and exact approval for an earlier
+candidate does not authorize these bytes.
 The update action no longer carries an external Play-listing launcher: Play
 installs use the native in-app update API and sideloaded installs stay inside the
 app with an honest explanation.
