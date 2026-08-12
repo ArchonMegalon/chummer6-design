@@ -7,7 +7,7 @@ sections:
     entries:
       - question: Can I actually use this now?
         required: true
-        answer: "Yes. Start with Download and Status: both consume the same release-truth projection, while each optional campaign tool keeps its own availability label."
+        answer: "Yes. Start with Download and Status: both show the same release status, while each optional campaign tool keeps its own availability label."
       - question: Is it offline-safe?
         required: true
         answer: That is one of the core goals. Chummer6 is being built so bad connectivity does not destroy your flow or your work.

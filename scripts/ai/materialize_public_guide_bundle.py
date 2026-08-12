@@ -990,9 +990,10 @@ def _release_truth_artifacts(
             combined = dict(authority_item)
             public_route = str(authority_item.get("publicInstallRoute") or "").strip()
             combined["downloadUrl"] = f"https://chummer.run{public_route}" if public_route.startswith("/") else ""
-            if not str(combined.get("fileName") or "").strip() and public_route:
-                combined["fileName"] = Path(public_route).name
-            projected.append(_normalize_artifact(combined))
+            normalized = _normalize_artifact(combined)
+            if not str(authority_item.get("fileName") or "").strip():
+                normalized["fileName"] = ""
+            projected.append(normalized)
         return projected
     return []
 
