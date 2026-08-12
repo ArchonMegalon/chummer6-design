@@ -1,11 +1,11 @@
 contract_name: chummer.release_scope_decision
 contract_version: 1
-decision_id: linux-windows-x64-avalonia-preview-run-20260806-045300
-updated_at: "2026-08-06T05:44:30Z"
+decision_id: linux-windows-x64-avalonia-preview-run-20260802-160500
+updated_at: "2026-08-12T17:13:58Z"
 status: approved
 target_channel: preview
 release_target: preview
-release_version: run-20260806-045300
+release_version: run-20260802-160500
 platforms:
   - linux
   - windows
@@ -29,6 +29,6 @@ next_actions:
   - Activate only after full-suite, all-route convergence, and generation/CURRENT checks pass.
 approval:
   status: approved
-  approved_by: Tibor Girschele
-  approved_at: "2026-08-06T05:44:30Z"
-note: This packet selects the proof-bound Linux and unsigned Windows x64 Avalonia review candidate; it does not itself publish, activate, or claim product-preview, stable, or flagship readiness.
+  approved_by: Codex release operator under explicit repository-owner authorization
+  approved_at: "2026-08-12T17:13:58Z"
+note: This packet selects the currently published Linux and unsigned Windows x64 Avalonia delivery shelf for product review; it does not itself claim product-preview, stable, or flagship readiness.

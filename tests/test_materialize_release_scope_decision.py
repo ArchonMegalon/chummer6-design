@@ -43,8 +43,8 @@ def test_checked_in_scope_is_the_exact_approved_linux_windows_preview() -> None:
     encoded = materializer.canonical_json_bytes(decision)
     checked_in = materializer.DEFAULT_OUTPUT.read_bytes()
 
-    assert decision["decisionId"] == "linux-windows-x64-avalonia-preview-run-20260806-045300"
-    assert decision["releaseVersion"] == "run-20260806-045300"
+    assert decision["decisionId"] == "linux-windows-x64-avalonia-preview-run-20260802-160500"
+    assert decision["releaseVersion"] == "run-20260802-160500"
     assert decision["channel"] == "preview"
     assert decision["supportOwner"] == "chummer-release-operations"
     assert decision["platforms"] == [
@@ -67,7 +67,7 @@ def test_checked_in_scope_is_the_exact_approved_linux_windows_preview() -> None:
     ]
     assert checked_in == encoded
     assert hashlib.sha256(checked_in).hexdigest() == (
-        "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37"
+        "ceaccad3559e5b044cd79c31609643d048626fa8352a2c75dc5f60639d491396"
     )
 
 
