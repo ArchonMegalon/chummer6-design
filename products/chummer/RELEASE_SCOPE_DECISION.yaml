@@ -1,29 +1,34 @@
 contract_name: chummer.release_scope_decision
 contract_version: 1
-decision_id: windows-x64-avalonia-preview-20260727-065724
-updated_at: "2026-07-28T11:18:19Z"
+decision_id: linux-windows-x64-avalonia-preview-run-20260806-045300
+updated_at: "2026-08-06T05:44:30Z"
 status: approved
 target_channel: preview
 release_target: preview
-release_version: run-20260727-065724
+release_version: run-20260806-045300
 platforms:
+  - linux
   - windows
 rid_by_platform:
+  linux: linux-x64
   windows: win-x64
 primary_head_by_platform:
+  linux: avalonia
   windows: avalonia
 fallback_heads_by_platform:
+  linux: []
   windows: []
 artifact_access_class: open_public
 signing_requirements:
+  linux: not_applicable
   windows: preview_unsigned_allowed
 support_owner: chummer-release-operations
 next_actions:
-  - Publish a review-required immutable Registry snapshot for the exact finalized Windows candidate.
-  - Bind the campaign scorecard and private Hub stage to that exact snapshot.
-  - Activate only after all-route convergence and generation/CURRENT checks pass.
+  - Bind fresh product and journey receipts to the exact August Registry snapshot and decisions.
+  - Raise all 36 campaign-operability cells to at least score 2.
+  - Activate only after full-suite, all-route convergence, and generation/CURRENT checks pass.
 approval:
   status: approved
   approved_by: Tibor Girschele
-  approved_at: "2026-07-28T11:18:19Z"
-note: This packet selects the finalized unsigned Windows x64 Avalonia preview candidate; it does not itself publish, activate, or claim stable readiness.
+  approved_at: "2026-08-06T05:44:30Z"
+note: This packet selects the proof-bound Linux and unsigned Windows x64 Avalonia review candidate; it does not itself publish, activate, or claim product-preview, stable, or flagship readiness.

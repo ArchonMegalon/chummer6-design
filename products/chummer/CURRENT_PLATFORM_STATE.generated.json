@@ -1,16 +1,18 @@
 {
-  "artifactCount": 1,
+  "artifactCount": 2,
   "availablePlatforms": [
+    "linux",
     "windows"
   ],
   "contractName": "chummer.current-platform-state/v1",
-  "generatedAt": "2026-07-28T13:54:34Z",
-  "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+  "generatedAt": "2026-08-12T04:46:22Z",
+  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
   "note": "No platform is promoted by policy alone; this projection is authoritative only when bound to an immutable snapshot.",
   "primaryHeadByPlatform": {
+    "linux": "avalonia",
     "windows": "avalonia"
   },
-  "releaseVersion": "run-20260727-065724",
-  "snapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+  "releaseVersion": "run-20260806-045300",
+  "snapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
   "status": "review_required"
 }

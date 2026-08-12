@@ -2,15 +2,15 @@
   "contract_name": "chummer.final_gold_graph",
   "contract_version": 2,
   "product": "chummer",
-  "generated_at_utc": "2026-07-28T13:54:34Z",
+  "generated_at_utc": "2026-08-12T04:46:22Z",
   "status": "review_required",
   "verdict": "PUBLIC_RELEASE_REVIEW_REQUIRED",
   "releaseDecisionStatus": "review_required",
-  "releaseVersion": "run-20260727-065724",
+  "releaseVersion": "run-20260806-045300",
   "spine_ref": "products/chummer/PRODUCT_SPINE.yaml",
   "design_ref": "products/chummer/PRODUCT_SPINE_REDESIGN.md",
   "live_release": {
-    "version": "run-20260712-174412",
+    "version": "run-20260802-160500",
     "channel": "preview",
     "status": "published",
     "rollout_state": "coverage_incomplete",
@@ -19,7 +19,7 @@
     "primary_head_by_platform": {},
     "artifact_count": null,
     "download_access_posture": "",
-    "known_issue_summary": "Known issue: required desktop tuple coverage is incomplete (platforms: macos; pairs: avalonia:macos; tuples: avalonia:osx-arm64:macos).",
+    "known_issue_summary": "Known issue: required desktop build coverage is incomplete (platforms: macos; pairs: avalonia:macos; build combinations: avalonia:osx-arm64:macos).",
     "manifest_sha256": "",
     "registry_commit": "",
     "release_decision_status": "review_required",
@@ -29,12 +29,12 @@
   },
   "release_authority": {
     "contract": "chummer.release-authority-snapshot/v2",
-    "snapshot_path": "/docker/chummercomplete/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
-    "snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-    "manifest_sha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
-    "registry_commit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
+    "snapshot_path": "/tmp/chummer-aug6-authority/snapshots/run-20260806-045300/757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e/SNAPSHOT.json",
+    "snapshot_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+    "manifest_sha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
+    "registry_commit": "488fc56efc8f87aa05d2cb18451673ed8c1d4c2b",
     "release_decision_status": "review_required",
-    "release_decision_sha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22"
+    "release_decision_sha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e"
   },
   "required_loops": [
     "build_correctly",
@@ -121,12 +121,12 @@
       "kind": "campaign_operability_scorecard",
       "path": "products/chummer/CAMPAIGN_OPERABILITY_SCORECARD.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-28T13:54:17Z",
+      "generated_at": "2026-08-12T04:43:47Z",
       "cell_count": 36,
-      "release_version": "run-20260727-065724",
-      "snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-      "manifest_sha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
-      "release_decision_sha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22"
+      "release_version": "run-20260806-045300",
+      "snapshot_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+      "manifest_sha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
+      "release_decision_sha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e"
     },
     {
       "kind": "journey_gates",
@@ -138,7 +138,7 @@
       "kind": "fleet_flagship_readiness",
       "path": "$FLEET_WORKSPACE/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-18T00:25:10Z",
+      "generated_at": "2026-08-05T19:55:46Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -148,7 +148,7 @@
       "kind": "operator_release_dashboard",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/OPERATOR_RELEASE_DASHBOARD.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-28T05:15:42Z",
+      "generated_at": "2026-07-02T11:43:09Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -158,7 +158,7 @@
       "kind": "final_gold_janitor",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/FINAL_GOLD_JANITOR.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-28T05:15:42Z",
+      "generated_at": "2026-07-02T07:11:12Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -168,7 +168,7 @@
       "kind": "flagship_product_readiness_gate",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/FLAGSHIP_PRODUCT_READINESS_GATE.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-28T05:15:30Z",
+      "generated_at": "2026-07-02T07:57:05Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -177,8 +177,8 @@
     {
       "kind": "google_oauth_linking_proof",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/GOOGLE_OAUTH_LINKING_PROOF.generated.json",
-      "status": "fail",
-      "generated_at": "2026-07-28T04:38:03.466853Z",
+      "status": "pass",
+      "generated_at": "2026-05-08T20:02:00.000000Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -188,7 +188,7 @@
       "kind": "public_edge_postdeploy_gate",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/PUBLIC_EDGE_POSTDEPLOY_GATE.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-28T10:18:51.794205+00:00",
+      "generated_at": "2026-07-02T11:43:01.307234+00:00",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -198,7 +198,7 @@
       "kind": "black_ledger_live_media_proof",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/BLACK_LEDGER_LIVE_MEDIA_PROOF.generated.json",
       "status": "pass",
-      "generated_at": "2026-07-28T04:36:53Z",
+      "generated_at": "2026-06-29T11:55:48Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -208,7 +208,7 @@
       "kind": "ui_localization_release_gate",
       "path": "$UI_WORKSPACE/.codex-studio/published/UI_LOCALIZATION_RELEASE_GATE.generated.json",
       "status": "pass",
-      "generated_at": "2026-07-27T12:52:52Z",
+      "generated_at": "2026-07-04T11:34:37Z",
       "release_version": "",
       "snapshot_sha256": "",
       "manifest_sha256": "",
@@ -218,7 +218,7 @@
       "kind": "release_ready_matrix",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/RELEASE_READY.generated.json",
       "status": "fail",
-      "generated_at": "2026-07-28T05:15:18Z",
+      "generated_at": "2026-07-02T11:43:09Z",
       "required_gate_count": 41,
       "completed_gate_count": 0,
       "release_version": "",
@@ -229,31 +229,29 @@
     {
       "kind": "ea_release_critical_readiness",
       "path": "$RUN_SERVICES_WORKSPACE/.codex-studio/published/EA_OPERATOR_READINESS.generated.json",
-      "status": "pass",
-      "generated_at": "2026-07-28T04:38:04Z",
+      "status": "fail",
+      "generated_at": "",
       "required_component_keys": [
         "google_workspace_oauth",
         "mymedia_alexa",
         "proactive_artifacts",
         "telegram"
       ],
-      "optional_blocked_component_keys": [
-        "teable_recovery"
-      ]
+      "optional_blocked_component_keys": []
     },
     {
       "kind": "registry_release_authority",
-      "path": "/docker/chummercomplete/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
-      "status": "fail",
-      "snapshot_sha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
-      "manifest_sha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
-      "registry_commit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
+      "path": "/tmp/chummer-aug6-authority/snapshots/run-20260806-045300/757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e/SNAPSHOT.json",
+      "status": "pass",
+      "snapshot_sha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+      "manifest_sha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
+      "registry_commit": "488fc56efc8f87aa05d2cb18451673ed8c1d4c2b",
       "release_decision_status": "review_required",
-      "release_decision_sha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22"
+      "release_decision_sha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e"
     },
     {
       "kind": "registry_stable_posture",
-      "path": "/docker/chummercomplete/.state/design-release-rebind-20260728/authority/snapshots/run-20260727-065724/768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6/SNAPSHOT.json",
+      "path": "/tmp/chummer-aug6-authority/snapshots/run-20260806-045300/757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e/SNAPSHOT.json",
       "status": "fail"
     },
     {
@@ -265,14 +263,14 @@
       "kind": "live_release_manifest",
       "path": "https://chummer.run/downloads/releases.json",
       "status": "fail",
-      "generated_at": "2026-07-12T18:46:26+00:00"
+      "generated_at": "2026-08-11T03:58:32+00:00"
     }
   ],
   "completion_audit": {
     "status": "fail",
     "requirement_count": 12,
-    "passed_count": 3,
-    "failed_count": 9,
+    "passed_count": 2,
+    "failed_count": 10,
     "requirements": [
       {
         "id": "authoritative_design",
@@ -296,7 +294,6 @@
           "flagship_product_readiness_gate"
         ],
         "missing_or_failed_proof_kinds": [
-          "registry_release_authority",
           "registry_stable_posture",
           "release_ready_matrix",
           "final_gold_janitor",
@@ -335,7 +332,7 @@
         ],
         "missing_or_failed_proof_kinds": [
           "release_ready_matrix",
-          "google_oauth_linking_proof"
+          "ea_release_critical_readiness"
         ]
       },
       {
@@ -367,7 +364,6 @@
         ],
         "missing_or_failed_proof_kinds": [
           "release_ready_matrix",
-          "registry_release_authority",
           "registry_stable_posture",
           "live_release_manifest"
         ]
@@ -388,12 +384,14 @@
       },
       {
         "id": "provider_posture",
-        "status": "pass",
+        "status": "fail",
         "proof_kinds": [
           "ea_release_critical_readiness",
           "black_ledger_live_media_proof"
         ],
-        "missing_or_failed_proof_kinds": []
+        "missing_or_failed_proof_kinds": [
+          "ea_release_critical_readiness"
+        ]
       },
       {
         "id": "ui_quality_and_accessibility",
@@ -438,80 +436,69 @@
     {
       "id": "proof_3",
       "severity": "release_truth",
-      "summary": "operator_release_dashboard status is fail; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "operator_release_dashboard verdict is NIGHTLY_HANDOFF_READY, expected OPERABLE_RELEASE_READY; operator_release_dashboard releaseVersion is missing or does not match current registry authority; operator_release_dashboard snapshotSha256 is missing or does not match current registry authority; operator_release_dashboard manifestSha256 is missing or does not match current registry authority; operator_release_dashboard releaseDecisionSha256 is missing or does not match current registry authority; operator_release_dashboard receipt is stale (older than 24 hours)"
     },
     {
       "id": "proof_4",
       "severity": "release_truth",
-      "summary": "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "final_gold_janitor status is fail; final_gold_janitor releaseVersion is missing or does not match current registry authority; final_gold_janitor snapshotSha256 is missing or does not match current registry authority; final_gold_janitor manifestSha256 is missing or does not match current registry authority; final_gold_janitor releaseDecisionSha256 is missing or does not match current registry authority; final_gold_janitor receipt is stale (older than 24 hours)"
     },
     {
       "id": "proof_5",
       "severity": "release_truth",
-      "summary": "flagship_product_readiness_gate status is fail; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "flagship_product_readiness_gate verdict is missing, expected FLAGSHIP_PRODUCT_READY; flagship_product_readiness_gate releaseVersion is missing or does not match current registry authority; flagship_product_readiness_gate snapshotSha256 is missing or does not match current registry authority; flagship_product_readiness_gate manifestSha256 is missing or does not match current registry authority; flagship_product_readiness_gate releaseDecisionSha256 is missing or does not match current registry authority; flagship_product_readiness_gate receipt is stale (older than 24 hours)"
     },
     {
       "id": "proof_6",
       "severity": "release_truth",
-      "summary": "google_oauth_linking_proof status is fail"
+      "summary": "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate receipt is stale (older than 24 hours)"
     },
     {
       "id": "proof_7",
       "severity": "release_truth",
-      "summary": "public_edge_postdeploy_gate releaseVersion is missing or does not match current registry authority; public_edge_postdeploy_gate snapshotSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate manifestSha256 is missing or does not match current registry authority; public_edge_postdeploy_gate releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "release_ready_matrix releaseVersion is missing or does not match current registry authority"
     },
     {
       "id": "proof_8",
       "severity": "release_truth",
-      "summary": "release_ready_matrix releaseVersion is missing or does not match current registry authority"
+      "summary": "release_ready_matrix snapshotSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_9",
       "severity": "release_truth",
-      "summary": "release_ready_matrix snapshotSha256 is missing or does not match current registry authority"
+      "summary": "release_ready_matrix manifestSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_10",
       "severity": "release_truth",
-      "summary": "release_ready_matrix manifestSha256 is missing or does not match current registry authority"
+      "summary": "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority"
     },
     {
       "id": "proof_11",
       "severity": "release_truth",
-      "summary": "release_ready_matrix releaseDecisionSha256 is missing or does not match current registry authority"
+      "summary": "release_ready_matrix receipt is stale (older than 24 hours)"
     },
     {
       "id": "proof_12",
       "severity": "release_truth",
-      "summary": "registry authority decision contract is unsupported"
+      "summary": "EA release-critical operator components are not semantically ready"
     },
     {
       "id": "proof_13",
       "severity": "release_truth",
-      "summary": "registry authority decision manifest digest disagrees with the snapshot"
+      "summary": "registry candidate authority is not public_stable and gold_supported"
     },
     {
       "id": "proof_14",
       "severity": "release_truth",
-      "summary": "registry candidate authority is not public_stable and gold_supported"
+      "summary": "live status page does not expose the current stable published version"
     },
     {
       "id": "proof_15",
       "severity": "release_truth",
-      "summary": "live status page does not expose the current stable published version"
-    },
-    {
-      "id": "proof_16",
-      "severity": "release_truth",
       "summary": "live release manifest does not match exact immutable registry authority"
     }
   ],
-  "advisory_findings": [
-    {
-      "id": "ea_optional_teable_recovery",
-      "severity": "advisory",
-      "summary": "Optional EA operator component remains blocked: teable_recovery"
-    }
-  ],
+  "advisory_findings": [],
   "principle": "One current graph may reference many receipts, but no isolated receipt may claim whole-product gold by itself."
 }

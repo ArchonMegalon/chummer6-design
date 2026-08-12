@@ -1,57 +1,87 @@
 {
   "artifactAccessClass": "open_public",
   "artifactHandoff": {
-    "arch": "x64",
-    "artifactAccessClass": "open_public",
-    "artifactId": "avalonia-win-x64-installer",
+    "artifactCount": 2,
+    "artifacts": [
+      {
+        "arch": "x64",
+        "artifactAccessClass": "open_public",
+        "artifactId": "avalonia-linux-x64-installer",
+        "downloadUrl": "/downloads/g/g-20260806T054328Z-a70073d1ce29082b/files/chummer-avalonia-linux-x64-installer.deb",
+        "head": "avalonia",
+        "platform": "linux",
+        "publicInstallRoute": "/downloads/install/avalonia-linux-x64-installer",
+        "rid": "linux-x64",
+        "sha256": "2ff033e2efb194690028c992d8128b3d7e3aeff9df36e64da3724e62dddf16a8",
+        "signingRequirement": "not_applicable",
+        "sizeBytes": 37192294
+      },
+      {
+        "arch": "x64",
+        "artifactAccessClass": "open_public",
+        "artifactId": "avalonia-win-x64-installer",
+        "downloadUrl": "/downloads/g/g-20260806T054328Z-a70073d1ce29082b/files/chummer-avalonia-win-x64-installer.exe",
+        "head": "avalonia",
+        "platform": "windows",
+        "publicInstallRoute": "/downloads/install/avalonia-win-x64-installer",
+        "rid": "win-x64",
+        "sha256": "8e70de58f40b87b444aed38fb2531af9bd10fe3f18fa35370ee37b1fdfa3de7c",
+        "signingRequirement": "preview_unsigned_allowed",
+        "sizeBytes": 2746545
+      }
+    ],
+    "availablePlatforms": [
+      "linux",
+      "windows"
+    ],
     "channel": "preview",
-    "contractName": "chummer.public-preview-byte-handoff/v1",
-    "downloadUrl": "/downloads/g/g-run-20260727-065724-2ac3c660-71c926e3/files/chummer-avalonia-win-x64-installer.exe",
-    "head": "avalonia",
-    "platform": "windows",
-    "publicInstallRoute": "/downloads/install/avalonia-win-x64-installer",
-    "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
-    "releaseVersion": "run-20260727-065724",
-    "rid": "win-x64",
-    "sha256": "0e79772221786ff2f685635ff684b0b6ba75ff1c2ce9ee00b498d0692e2ba99c",
-    "signingRequirement": "preview_unsigned_allowed",
-    "sizeBytes": 2734368,
+    "contractName": "chummer.public-preview-byte-handoff/v2",
+    "releaseScopeDecisionSha256": "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37",
+    "releaseVersion": "run-20260806-045300",
     "sourcePublicationState": "preview",
     "status": "approved_public_preview_bytes"
   },
-  "authoritySnapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+  "authoritySnapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
   "blockingFindings": [
     {
       "id": "preview_1",
       "severity": "release_truth",
       "summary": "every campaign operability cell must be evidence-backed at score 2 or 3 with bounded preview ownership"
+    },
+    {
+      "id": "preview_2",
+      "severity": "release_truth",
+      "summary": "public release convergence proof is missing or not passing"
     }
   ],
-  "candidateDecisionSha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22",
+  "candidateDecisionSha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e",
   "candidateDecisionStatus": "review_required",
   "channel": "preview",
   "contractName": "chummer.preview-release-decision/v2",
-  "convergenceSha256": "09c879d46e1fb27b9b5b15fb58e15d964d40ac1e54cc4413178b5eba54421d06",
+  "convergenceSha256": "",
   "fallbackHeadsByPlatform": {
+    "linux": [],
     "windows": []
   },
-  "generatedAt": "2026-07-28T13:54:17Z",
-  "manifestGeneratedAt": "2026-07-27T06:57:24Z",
-  "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
+  "generatedAt": "2026-08-12T04:43:47Z",
+  "manifestGeneratedAt": "2026-08-06T05:40:34Z",
+  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
   "nextActions": [
-    "Stage this exact immutable generation privately and run all-route convergence."
+    "Run the owner-only finalizer for the sealed staged candidate."
   ],
   "platforms": [
+    "linux",
     "windows"
   ],
   "primaryHeadByPlatform": {
+    "linux": "avalonia",
     "windows": "avalonia"
   },
-  "registryCommit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
+  "registryCommit": "488fc56efc8f87aa05d2cb18451673ed8c1d4c2b",
   "releaseDecisionStatus": "review_required",
-  "releaseScopeDecisionSha256": "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259",
-  "releaseVersion": "run-20260727-065724",
-  "scorecardSha256": "0b02b3f18cbd82fe78d3c2060398d52c16a6b77f5b4c1a43783e3c803b1f5873",
+  "releaseScopeDecisionSha256": "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37",
+  "releaseVersion": "run-20260806-045300",
+  "scorecardSha256": "9a3dd6e6469bc6fb29899c0721b2f65b0a8863aeba4874881b5930656d68a658",
   "status": "review_required",
   "supportOwner": "chummer-release-operations",
   "verdict": "PREVIEW_RELEASE_REVIEW_REQUIRED"

@@ -36,18 +36,26 @@ def approved_source() -> dict:
     }
 
 
-def test_checked_in_scope_is_the_exact_approved_unsigned_windows_preview() -> None:
+def test_checked_in_scope_is_the_exact_approved_linux_windows_preview() -> None:
     decision = materializer.build_release_scope_decision(
         materializer.load_source(materializer.DEFAULT_SOURCE)
     )
     encoded = materializer.canonical_json_bytes(decision)
     checked_in = materializer.DEFAULT_OUTPUT.read_bytes()
 
-    assert decision["decisionId"] == "windows-x64-avalonia-preview-20260727-065724"
-    assert decision["releaseVersion"] == "run-20260727-065724"
+    assert decision["decisionId"] == "linux-windows-x64-avalonia-preview-run-20260806-045300"
+    assert decision["releaseVersion"] == "run-20260806-045300"
     assert decision["channel"] == "preview"
     assert decision["supportOwner"] == "chummer-release-operations"
     assert decision["platforms"] == [
+        {
+            "artifactAccessClass": "open_public",
+            "fallbackHeads": [],
+            "platform": "linux",
+            "primaryHead": "avalonia",
+            "rid": "linux-x64",
+            "signingRequirement": "not_applicable",
+        },
         {
             "artifactAccessClass": "open_public",
             "fallbackHeads": [],
@@ -59,7 +67,7 @@ def test_checked_in_scope_is_the_exact_approved_unsigned_windows_preview() -> No
     ]
     assert checked_in == encoded
     assert hashlib.sha256(checked_in).hexdigest() == (
-        "ae9cff04a324d29a53902c0c9a7aa08d902c561e22e1dce4857e8e06ea099259"
+        "6381c86929d0d9590cf3b1736f24617f9419dc181e22819329b18486eb2cdf37"
     )
 
 

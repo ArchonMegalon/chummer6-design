@@ -326,6 +326,47 @@ def preferred_install_artifact_id(snapshot: dict[str, Any]) -> str:
     return ""
 
 
+def public_install_artifact_ids(snapshot: dict[str, Any]) -> tuple[str, ...]:
+    raw_artifacts = snapshot.get("artifacts")
+    if not isinstance(raw_artifacts, list):
+        return ()
+    artifacts = [row for row in raw_artifacts if isinstance(row, dict)]
+    preferred = [
+        row for row in artifacts if token(row.get("installAccessClass")) == "open_public"
+    ] or artifacts
+    return tuple(
+        sorted(
+            {
+                artifact_id
+                for row in preferred
+                if ARTIFACT_ID.fullmatch(
+                    artifact_id := text(row.get("artifactId") or row.get("id"))
+                )
+            }
+        )
+    )
+
+
+def _public_preview_artifact_handoff(
+    artifact: dict[str, Any],
+    *,
+    signing_requirement: str,
+) -> dict[str, Any]:
+    return {
+        "artifactId": text(artifact.get("artifactId")),
+        "head": text(artifact.get("head")),
+        "platform": text(artifact.get("platform")),
+        "rid": text(artifact.get("rid")),
+        "arch": text(artifact.get("arch")),
+        "sha256": text(artifact.get("sha256")),
+        "sizeBytes": artifact.get("sizeBytes"),
+        "artifactAccessClass": text(artifact.get("installAccessClass")),
+        "signingRequirement": signing_requirement,
+        "downloadUrl": text(artifact.get("downloadUrl")),
+        "publicInstallRoute": text(artifact.get("publicInstallRoute")),
+    }
+
+
 def expected_public_preview_byte_handoff(
     *,
     snapshot: dict[str, Any],
@@ -347,31 +388,49 @@ def expected_public_preview_byte_handoff(
             and token(row.get("installAccessClass")) == artifact_access_class
         )
     ]
-    if len(candidates) != 1:
+    expected_platforms = sorted(primary_heads)
+    candidates_by_platform: dict[str, list[dict[str, Any]]] = {
+        platform: [] for platform in expected_platforms
+    }
+    for artifact in candidates:
+        platform = token(artifact.get("platform"))
+        if platform in candidates_by_platform:
+            candidates_by_platform[platform].append(artifact)
+    if (
+        not expected_platforms
+        or len(candidates) != len(expected_platforms)
+        or any(len(rows) != 1 for rows in candidates_by_platform.values())
+    ):
         return None
-    artifact = candidates[0]
-    platform = token(artifact.get("platform"))
-    signing_requirement = signing_requirements.get(platform, "")
-    if not signing_requirement:
+    if any(not signing_requirements.get(platform) for platform in expected_platforms):
         return None
-    return {
-        "contractName": "chummer.public-preview-byte-handoff/v1",
+
+    handoffs = [
+        _public_preview_artifact_handoff(
+            candidates_by_platform[platform][0],
+            signing_requirement=signing_requirements[platform],
+        )
+        for platform in expected_platforms
+    ]
+    common = {
         "status": "approved_public_preview_bytes",
         "sourcePublicationState": "preview",
         "releaseScopeDecisionSha256": release_scope_decision_sha256,
         "releaseVersion": release_version,
         "channel": "preview",
-        "artifactId": text(artifact.get("artifactId")),
-        "head": text(artifact.get("head")),
-        "platform": text(artifact.get("platform")),
-        "rid": text(artifact.get("rid")),
-        "arch": text(artifact.get("arch")),
-        "sha256": text(artifact.get("sha256")),
-        "sizeBytes": artifact.get("sizeBytes"),
-        "artifactAccessClass": text(artifact.get("installAccessClass")),
-        "signingRequirement": signing_requirement,
-        "downloadUrl": text(artifact.get("downloadUrl")),
-        "publicInstallRoute": text(artifact.get("publicInstallRoute")),
+    }
+    if len(handoffs) == 1:
+        return {
+            "contractName": "chummer.public-preview-byte-handoff/v1",
+            **common,
+            **handoffs[0],
+        }
+    return {
+        "contractName": "chummer.public-preview-byte-handoff/v2",
+        **common,
+        "artifactCount": len(handoffs),
+        "availablePlatforms": expected_platforms,
+        "artifacts": handoffs,
     }
 
 
@@ -381,8 +440,7 @@ def expected_convergence_routes(
 ) -> tuple[str, ...] | None:
     if authority_route == CURRENT_AUTHORITY_ROUTE:
         routes = list(CURRENT_CONVERGENCE_ROUTES)
-        artifact_id = preferred_install_artifact_id(snapshot or {})
-        if artifact_id:
+        for artifact_id in public_install_artifact_ids(snapshot or {}):
             routes.append(f"/downloads/install/{artifact_id}")
         return tuple(sorted(routes))
     match = GENERATION_AUTHORITY_ROUTE.fullmatch(authority_route)
@@ -395,8 +453,7 @@ def expected_convergence_routes(
         f"/downloads/g/{generation_id}/RELEASE_CHANNEL.generated.json",
         f"/downloads/g/{generation_id}/releases.json/",
     ]
-    artifact_id = preferred_install_artifact_id(snapshot or {})
-    if artifact_id:
+    for artifact_id in public_install_artifact_ids(snapshot or {}):
         routes.append(f"/downloads/g/{generation_id}/install/{artifact_id}")
     return tuple(sorted(routes))
 
@@ -1063,7 +1120,7 @@ def build_decision(
     )
     if artifact_handoff is None:
         failures.append(
-            "immutable Registry authority does not resolve exactly one approved public preview byte handoff"
+            "immutable Registry authority does not resolve exactly one approved public preview byte handoff per selected platform"
         )
 
     convergence_truth = convergence.get("releaseTruth") if isinstance(convergence.get("releaseTruth"), dict) else {}

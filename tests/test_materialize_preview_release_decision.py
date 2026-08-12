@@ -304,6 +304,12 @@ def bind_fixture(
     convergence["authoritySnapshotSha256"] = "f" * 64
     convergence["releaseDecisionStatus"] = snapshot["releaseDecisionStatus"]
     convergence["releaseDecisionSha256"] = snapshot["releaseDecisionSha256"]
+    primary_heads = {
+        row["platform"]: row["primaryHead"] for row in scope["platforms"]
+    }
+    signing_requirements = {
+        row["platform"]: row["signingRequirement"] for row in scope["platforms"]
+    }
     convergence["releaseTruth"] = {
         "contractName": "chummer.release-truth-projection/v1",
         "releaseVersion": snapshot["releaseVersion"],
@@ -325,8 +331,8 @@ def bind_fixture(
             snapshot=snapshot,
             release_version=scope["releaseVersion"],
             release_scope_decision_sha256=SCOPE_SHA256,
-            primary_heads={"windows": "avalonia"},
-            signing_requirements={"windows": "signed"},
+            primary_heads=primary_heads,
+            signing_requirements=signing_requirements,
             artifact_access_class="open_public",
         ),
     }
@@ -420,6 +426,65 @@ def test_exact_preview_bar_is_ready() -> None:
     assert decision["candidateDecisionStatus"] == "review_required"
     assert decision["candidateDecisionSha256"] == "e" * 64
     assert decision["blockingFindings"] == []
+
+
+def test_multi_platform_preview_binds_one_artifact_and_route_per_platform() -> None:
+    scope, scorecard, manifest, snapshot, convergence = fixture()
+    linux_artifact = {
+        **artifact(),
+        "artifactId": "chummer-linux.deb",
+        "platform": "linux",
+        "rid": "linux-x64",
+        "downloadUrl": "/downloads/g/generation-1/files/chummer-linux.deb",
+        "sha256": "c" * 64,
+        "publicInstallRoute": "/downloads/install/chummer-linux.deb",
+    }
+    scope["platforms"].insert(
+        0,
+        {
+            "artifactAccessClass": "open_public",
+            "fallbackHeads": [],
+            "platform": "linux",
+            "primaryHead": "avalonia",
+            "rid": "linux-x64",
+            "signingRequirement": "not_applicable",
+        },
+    )
+    manifest["artifacts"].insert(0, linux_artifact)
+    snapshot.update(
+        {
+            "availablePlatforms": ["linux", "windows"],
+            "primaryHeadByPlatform": {
+                "linux": "avalonia",
+                "windows": "avalonia",
+            },
+            "artifactCount": 2,
+            "artifacts": [linux_artifact, artifact()],
+        }
+    )
+    expected_routes = module.expected_convergence_routes(
+        convergence["authorityRoute"], snapshot
+    )
+    assert expected_routes is not None
+    convergence["checkedRouteCount"] = len(expected_routes)
+    convergence["checkedRoutes"] = list(expected_routes)
+
+    decision = build(scope, scorecard, manifest, snapshot, convergence)
+
+    assert decision["status"] == "preview_ready"
+    assert decision["blockingFindings"] == []
+    handoff = decision["artifactHandoff"]
+    assert handoff["contractName"] == "chummer.public-preview-byte-handoff/v2"
+    assert handoff["artifactCount"] == 2
+    assert handoff["availablePlatforms"] == ["linux", "windows"]
+    assert [row["platform"] for row in handoff["artifacts"]] == [
+        "linux",
+        "windows",
+    ]
+    routes = module.expected_convergence_routes(module.CURRENT_AUTHORITY_ROUTE, snapshot)
+    assert routes is not None
+    assert "/downloads/install/chummer-linux.deb" in routes
+    assert "/downloads/install/chummer-windows.exe" in routes
 
 
 def test_frozen_cell_inventory_fixture_matches_surface_definitions_exactly() -> None:

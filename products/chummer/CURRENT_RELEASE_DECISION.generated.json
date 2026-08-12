@@ -1,6 +1,7 @@
 {
-  "artifactCount": 1,
+  "artifactCount": 2,
   "availablePlatforms": [
+    "linux",
     "windows"
   ],
   "blockingFindings": [
@@ -12,7 +13,7 @@
     {
       "id": "current_2",
       "severity": "release_truth",
-      "summary": "google_oauth_linking_proof status is fail"
+      "summary": "EA release-critical operator components are not semantically ready"
     },
     {
       "id": "current_3",
@@ -43,22 +44,23 @@
   "channel": "preview",
   "contractName": "chummer.current-release-decision/v1",
   "downloadAccessPosture": "open_public",
-  "finalGoldGraphSha256": "4a45b24a33d1fde33457daab3f032968861f28ee02ac36322bb190520edfd65c",
-  "generatedAt": "2026-07-28T13:54:34Z",
-  "knownIssueSummary": "Known issue: stale or incomplete proof receipts and Hosted Build privacy, retention, recovery, and erasure review still block launch-readiness claims.",
-  "manifestSha256": "d98a3864c8b5726442bcdb7cd77f785585dd2f86056f97f4ab25c029fa2cd081",
-  "previewDecisionSha256": "9a77a7be9d3ed5d5ed7429aa1f0a0519e54311789b0d633afa5aa3f3b5e97366",
+  "finalGoldGraphSha256": "1c73b84233a12ab9ea61159c46fbeb0bf914b57aac6dd3136414667cdd5aa4f7",
+  "generatedAt": "2026-08-12T04:46:22Z",
+  "knownIssueSummary": "Known issue: stale or incomplete proof receipts still block launch-readiness claims; 51 launch blockers remain. Full readiness details remain in releaseProof.flagshipReadiness.",
+  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
+  "previewDecisionSha256": "97c856de8593abc1ab7a04b29087a59e79e792ea13ad99684777097c91f5446c",
   "primaryHeadByPlatform": {
+    "linux": "avalonia",
     "windows": "avalonia"
   },
-  "registryCommit": "12a161d36d7caedf18451ff28ff6b7a55c2bae38",
-  "releaseDecisionSha256": "bd206414bd82ba41cc18a2b51dd21fa21f5ed12fbd9bbd52a233059cf7919b22",
+  "registryCommit": "488fc56efc8f87aa05d2cb18451673ed8c1d4c2b",
+  "releaseDecisionSha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e",
   "releaseDecisionStatus": "review_required",
   "releaseStatus": "published",
-  "releaseVersion": "run-20260727-065724",
-  "rolloutState": "public_release_review_required",
-  "snapshotSha256": "768eb387b9dcbe2a5c677fbaab3c5fc9d84dbe88251b7ee7b0f942b975f445e6",
+  "releaseVersion": "run-20260806-045300",
+  "rolloutState": "promoted_preview",
+  "snapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
   "stableBlockingFindings": [],
   "status": "review_required",
-  "supportabilityState": "review_required"
+  "supportabilityState": "preview_supported"
 }
