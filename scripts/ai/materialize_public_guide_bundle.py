@@ -348,6 +348,10 @@ def _teaser_first_cleanup(content: str) -> str:
     )
     for pattern, replacement in public_term_replacements:
         cleaned = re.sub(pattern, replacement, cleaned, flags=re.IGNORECASE)
+    # Terminology cleanup can change the initial sound of the following word.
+    # Repair the article in the same generator pass so authored public copy does
+    # not inherit mechanical phrases such as "a evidence gate".
+    cleaned = re.sub(r"\ba evidence\b", "an evidence", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"\s*\[Captions\]\(https?://[^)]*\.vtt\)\.?", "", cleaned)
     cleaned = re.sub(r"`(https?://[^`]+)`", lambda match: _titled_public_link(match.group(1)), cleaned)
     cleaned = re.sub(r"<(https?://[^>]+)>", lambda match: _titled_public_link(match.group(1)), cleaned)

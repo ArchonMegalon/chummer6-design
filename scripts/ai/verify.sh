@@ -352,6 +352,7 @@ python3 -m pytest -q \
   "$repo_root/tests/test_validate_gold_claim_freshness.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_public_guide_new_section_verdict.py" >/dev/null
 python3 "$repo_root/scripts/ai/verify_chummer6_guide_generator_semantic_contracts.py" >/dev/null
+python3 "$repo_root/scripts/ai/validate_public_privacy_and_account_lifecycle.py" >/dev/null
 if ! python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" --check >/dev/null; then
   python3 "$repo_root/scripts/ai/materialize_public_guide_bundle.py" >/dev/null
   python3 "$repo_root/scripts/ai/publish_local_mirrors.py" --no-prune >/dev/null
