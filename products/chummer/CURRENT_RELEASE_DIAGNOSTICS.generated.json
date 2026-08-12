@@ -1,6 +1,6 @@
 {
   "contractName": "chummer.current-release-diagnostics/v1",
-  "generatedAt": "2026-08-12T04:46:22Z",
+  "generatedAt": "2026-08-12T17:25:06Z",
   "rawFindingCount": 18,
   "rawFindings": [
     "Registry authority review_required decision digest does not match a current review-required decision",
@@ -22,7 +22,7 @@
     "live status page does not expose the current stable published version",
     "live release manifest does not match exact immutable registry authority"
   ],
-  "releaseVersion": "run-20260806-045300",
+  "releaseVersion": "run-20260802-160500",
   "rootBlockers": [
     {
       "affectedGates": [
@@ -99,7 +99,7 @@
       "suppressedConsequenceCount": 1
     }
   ],
-  "snapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+  "snapshotSha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
   "suppressedConsequences": {
     "count": 16,
     "families": [

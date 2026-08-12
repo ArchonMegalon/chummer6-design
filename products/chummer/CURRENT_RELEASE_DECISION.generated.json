@@ -45,22 +45,22 @@
   "contractName": "chummer.current-release-decision/v1",
   "downloadAccessPosture": "open_public",
   "finalGoldGraphSha256": "1c73b84233a12ab9ea61159c46fbeb0bf914b57aac6dd3136414667cdd5aa4f7",
-  "generatedAt": "2026-08-12T04:46:22Z",
-  "knownIssueSummary": "Known issue: stale or incomplete proof receipts still block launch-readiness claims; 51 launch blockers remain. Full readiness details remain in releaseProof.flagshipReadiness.",
-  "manifestSha256": "559adccbdad82e98757006894eb0b543d6f7545ee7fa865b5e18c1003b8c33e0",
-  "previewDecisionSha256": "97c856de8593abc1ab7a04b29087a59e79e792ea13ad99684777097c91f5446c",
+  "generatedAt": "2026-08-12T17:25:06Z",
+  "knownIssueSummary": "Known issue: required desktop build coverage is incomplete (platforms: macos; pairs: avalonia:macos; build combinations: avalonia:osx-arm64:macos).",
+  "manifestSha256": "67641f4b7eab93f872a12519a07271f0249712b1dc224220f49805799d06b327",
+  "previewDecisionSha256": "ec0e5b1296a23dfd53671623d03a271d24e3c7a64ac3c070af546425319e3aa4",
   "primaryHeadByPlatform": {
     "linux": "avalonia",
     "windows": "avalonia"
   },
-  "registryCommit": "488fc56efc8f87aa05d2cb18451673ed8c1d4c2b",
-  "releaseDecisionSha256": "aa0b52f410755c318ad5cc3decaf77c8d5b72f599689141375697ddc1383700e",
+  "registryCommit": "f1d7b96c510ef619d8f6c6b7ce7c29b1736e053b",
+  "releaseDecisionSha256": "6a68973e60ebf27e0d3ed5097cce9adda5cb4fae633fbb975ec9d6dc62c1aab3",
   "releaseDecisionStatus": "review_required",
   "releaseStatus": "published",
-  "releaseVersion": "run-20260806-045300",
-  "rolloutState": "promoted_preview",
-  "snapshotSha256": "757d123fc6ab144a270bd1cbe9619a7b50c621a7a8a36690148e0c827d595b1e",
+  "releaseVersion": "run-20260802-160500",
+  "rolloutState": "coverage_incomplete",
+  "snapshotSha256": "434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac",
   "stableBlockingFindings": [],
   "status": "review_required",
-  "supportabilityState": "preview_supported"
+  "supportabilityState": "review_required"
 }
