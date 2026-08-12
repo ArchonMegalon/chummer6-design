@@ -27,8 +27,13 @@
     "target_api": 36,
     "android_contracts_passed": 26,
     "signed_aab_sha256": "4e73ebb8678b8d11b63e6a5f6a02b2981ab6003403daece60b127c511eaa659c",
-    "upload_key_reset": "accepted_active_replacement_certificate",
-    "play_upload": "not_performed",
+    "upload_key_reset": "accepted_active_replacement_certificate_cooldown_until_2026-08-14T03:29:49Z",
+    "exact_artifact_approval": "approved_for_internal_testing_only",
+    "play_upload": "transfer_attempted_rejected_before_ingestion_by_reset_cooldown",
+    "play_retry_not_before_utc": "2026-08-14T03:29:49Z",
+    "active_internal_version_code": 1,
+    "preview3_present_in_bundle_library": false,
+    "tester_roster_changed": false,
     "internal_test_install": "not_yet_proven"
   },
   "commands": {

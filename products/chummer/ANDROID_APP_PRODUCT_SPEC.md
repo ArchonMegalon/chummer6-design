@@ -110,9 +110,15 @@ The exact signed arm64 candidate is
 It is signed by the replacement upload certificate ending in
 `...93:C9:87:1E:C9:ED:1D:15`. A read-only Play Console check on 2026-08-12
 confirmed that Google accepted the upload-key reset and now lists that
-certificate as active. The exact AAB digest still needs explicit upload
-approval, and the bundle has not been uploaded, so this posture does not claim
-a Play-installable preview or a completed internal-test journey.
+certificate as active. The owner then approved this exact AAB digest for the
+internal-testing transaction only. Play accepted the file transfer but rejected
+bundle ingestion under its post-reset cooldown: the replacement certificate is
+not valid for bundle uploads until `2026-08-14T03:29:49Z`. The rejected bundle
+was removed and the empty draft discarded. Read-back showed version code 1
+still active, version code 3 absent from the bundle library, and the selected
+one-member tester list unchanged. Retry the same frozen bytes after the stated
+timestamp. This posture still does not claim a preview.3 Play install or a
+completed internal-test journey.
 The update action no longer carries an external Play-listing launcher: Play
 installs use the native in-app update API and sideloaded installs stay inside the
 app with an honest explanation.
