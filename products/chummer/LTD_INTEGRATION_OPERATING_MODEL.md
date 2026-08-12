@@ -33,6 +33,14 @@ The executable lane table is now captured in `LTD_UTILIZATION_MATRIX.md`.
 - `rules_backend`: `avoid`
 - `sourcebook_training_without_license_receipt`: `avoid`
 
+## AIWriteBook classification
+
+- `chronicle_studio_long_form`: `pilot`
+- authenticated Tier 4 account and synthetic PDF/EPUB/DOCX export/deletion canary: verified
+- unattended provider automation: `avoid`
+- direct publication, external send, campaign truth, and rules truth: `avoid`
+- required posture: human-operated, digest-bound credit authority, reviewed source packet, separate Chummer approvals, provider off-switch, and first-party artifact hash verification
+
 ## LTD posture hard rules (for reference)
 
 - No LTD may publish directly from this layer.

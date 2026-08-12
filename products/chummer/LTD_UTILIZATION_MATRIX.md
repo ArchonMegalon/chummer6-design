@@ -53,6 +53,7 @@ Default hard rule:
 | Hedy | pilot | meeting_to_decision | transcript summaries, consented meeting packets | private campaign history, raw recordings without consent | transcript capture proof, privacy boundary checks | chummer6-hub | yes |
 | blipai | pilot | meeting_to_decision | operator prompts, voice notes | user secrets, campaign data, decision-critical payloads | proof of capture and storage posture | chummer6-hub | yes |
 | Subscribr | pilot | black_ledger_media_bakeoff | approved scripts and briefing packets | raw campaign private data, unreviewed claims | narrative source packet proof, editorial review | chummer-media-factory | yes |
+| AIWriteBook | pilot | chronicle_studio_long_form | consented, spoiler-reviewed, redaction-reviewed Chummer source packets approved for upload | unapproved packets, sourcebook text, private GM notes outside the packet, credentials, direct publication or send instructions | authenticated account review, digest-bound credit authority, operator-only PDF/EPUB/DOCX round trip, deletion receipt, per-project upload/generation/publication/send approvals | chummer6-hub + executive-assistant | yes |
 | Unmixr AI | pilot | black_ledger_media_bakeoff, audio_campaign_memory | approved script text, approved story packets | unlicensed raw text, private campaign data | voice selection audit, consent receipt, output checksum | chummer-media-factory | yes |
 | MagicFit | use_now | black_ledger_media_bakeoff | approved B-roll briefs | unreviewed sensitive source files, private campaign data | commercial-use/watermark checks, content quality pass | chummer-media-factory | no |
 | AvoMap | pilot | black_ledger_media_bakeoff, runsite_walkthrough_artifacts | approved spatial briefs, map overlays | raw sensitive location data without consent | route safety checks, output integrity evidence | chummer-media-factory | no |
@@ -84,6 +85,7 @@ Default hard rule:
 - `proof_debt_operations`
 - `feedback_to_roadmap`
 - `creator_publication_ops`
+- `chronicle_studio_long_form`
 - `no_desktop_onboarding_funnel`
 - `runsite_walkthrough_artifacts`
 - `audio_campaign_memory`
@@ -103,6 +105,7 @@ Default hard rule:
 - `proof_debt_operations` → `LTD_PROOF_DEBT.generated.json` (executive-assistant)
 - `storage_archive` → archive manifest and restore drill artifacts (operations)
 - `meeting_to_decision` → immutable decision packet and approval trail (chummer6-hub)
+- `chronicle_studio_long_form` → versioned source packet, separate approval record, provider reference, and hash-bound artifact import (chummer6-hub; EA verifies provider/account evidence)
 
 ## Promotion policy
 

@@ -57,6 +57,12 @@ capability_slots:
     primary: First Book ai
     contract: ORIGIN_BOOK_STUDIO.md
     boundary: approved_packet_set_only; chapter_review_required; no_rules_truth; no_origin_canon_truth; no_publication_truth; exports return to Chummer-owned validation before release
+  chronicle_studio_long_form:
+    primary: AIWriteBook
+    vendor_plan_tier: AppSumo Tier 4
+    workspace_tier: pilot_operator_lane
+    contract: ANDROID_APP_PRODUCT_SPEC.md
+    boundary: consented_spoiler_reviewed_redaction_reviewed_source_packet_only; digest_bound_credit_authority; operator_only; no_unattended_browser_automation; no_provider_credentials_in_chummer; no_rules_truth; no_campaign_truth; no_publication_truth; no_direct_publish; no_external_send; pdf_epub_docx_exports_return_to_chummer_owned_hash_validation
   discovery_research:
     primary:
       - Icanpreneur
@@ -116,6 +122,7 @@ product_systems:
     tools:
       - vidBoard
       - Subscribr.ai
+      - AIWriteBook
       - MarkupGo
       - PeekShot
       - Taja
