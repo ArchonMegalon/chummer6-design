@@ -106,13 +106,16 @@ phone captures at 1080×2400 and four tablet captures at 1440×2560.
 
 The exact signed arm64 candidate is
 `chummer-android-0.1.0-preview.3-upload.aab`, SHA-256
-`e36083b5c8861d66781585e98d97acd2379db6c53d9824a3cf8c5ffbce781e1a`.
+`4e73ebb8678b8d11b63e6a5f6a02b2981ab6003403daece60b127c511eaa659c`.
 It is signed by the replacement upload certificate ending in
 `...93:C9:87:1E:C9:ED:1D:15`. A read-only Play Console check on 2026-08-12
 confirmed that Google accepted the upload-key reset and now lists that
 certificate as active. The exact AAB digest still needs explicit upload
 approval, and the bundle has not been uploaded, so this posture does not claim
 a Play-installable preview or a completed internal-test journey.
+The update action no longer carries an external Play-listing launcher: Play
+installs use the native in-app update API and sideloaded installs stay inside the
+app with an honest explanation.
 
 ## Governed LTD opportunities
 
