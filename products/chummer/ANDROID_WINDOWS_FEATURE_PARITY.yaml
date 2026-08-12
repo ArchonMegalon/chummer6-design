@@ -26,8 +26,8 @@
     "version_code": 3,
     "target_api": 36,
     "android_contracts_passed": 26,
-    "signed_aab_sha256": "e36083b5c8861d66781585e98d97acd2379db6c53d9824a3cf8c5ffbce781e1a",
-    "upload_key_reset": "submitted_pending_google_review",
+    "signed_aab_sha256": "4e73ebb8678b8d11b63e6a5f6a02b2981ab6003403daece60b127c511eaa659c",
+    "upload_key_reset": "accepted_active_replacement_certificate",
     "play_upload": "not_performed",
     "internal_test_install": "not_yet_proven"
   },
