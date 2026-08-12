@@ -69,6 +69,7 @@ product_source_groups:
     - products/chummer/PRODUCT_USAGE_TELEMETRY_EVENT_SCHEMA.md
     - products/chummer/CAMPAIGN_AUTHORITY_AND_PERMISSIONS.md
     - products/chummer/PRIVACY_AND_RETENTION_BOUNDARIES.md
+    - products/chummer/PUBLIC_PRIVACY_AND_ACCOUNT_LIFECYCLE.md
     - products/chummer/GOVERNED_SPATIAL_RENDER_PRIVACY_RETENTION_POLICY.md
     - products/chummer/EXPERIENCE_SUCCESS_METRICS.md
     - products/chummer/USER_JOURNEYS.md
