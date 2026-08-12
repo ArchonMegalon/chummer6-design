@@ -423,7 +423,7 @@ def test_unbound_review_placeholder_suppresses_stale_manifest_metadata(tmp_path:
         "phase_label": "Release review required",
         "available_platforms": [],
         "missing_platforms": ["Windows", "Linux", "macOS"],
-        "shelf_truth_line": "No public platform availability is claimed by this unbound repository projection.",
+        "shelf_truth_line": "No public desktop download is listed in this guide yet.",
     }
     stale_payload = {
         "status": "published",
