@@ -31,9 +31,8 @@ forcing Android and iOS to share web markup.
    copy, or share browser-openable invite links. Its native Chronicle Studio
    manages versioned drafts, separate consent/spoiler/redaction gates, reviewed
    source packets, separate upload and generation approvals, provider project
-   references, a machine-readable operator handoff bound to the source digest
-   and exact credit ceiling, finished-artifact import, publication approval, and
-   external-send approval. These actions record decisions but never invoke the provider,
+   references, finished-artifact import, publication approval, and external-send
+   approval. These actions record decisions but never invoke the provider,
    publish, or send. It uses the linked
    installation grant directly and never navigates to the campaign PWA.
 5. **All actions** preserves Windows feature coverage through shared presenter
@@ -48,9 +47,7 @@ forcing Android and iOS to share web markup.
    expired, offline, and unlinked posture. Linking uses authenticated browser
    approval plus a signed installation-key proof; grants and the private device
    key use Android Keystore-backed secure storage. Offline local work never
-   depends on the link. Account & privacy remains visible before linking; its
-   deletion explanation is native, while the public deletion address remains
-   copyable for people who no longer have the app.
+   depends on the link.
 9. **Updates** come from Google Play. The desktop updater is never invoked on
    Android. Play-managed installs use the native flexible update flow. A
    sideloaded build stays in Chummer and explains the Play-owned update posture;
@@ -58,13 +55,41 @@ forcing Android and iOS to share web markup.
 
 ## Adaptive navigation
 
+Phone and tablet are two deliberate native compositions over the same presenters,
+mutation contracts, revision state, and recovery path.
+
+### Phone composition
+
 Phones use native bottom tabs for Home, Build, Play, Campaign, and More. Dense
 desktop menus project into grouped list/detail pages plus search without deleting
-any command. Build follows dashboard → area → value-group navigation, with Save
-and Actions kept in the native app bar. Multiple desktop windows become runner
-selections and navigation tasks so the same work remains possible within Android lifecycle rules. Tablet,
-foldable, and later iPhone/iPad shells reuse the coordinator but may project the
-same destinations as a rail or split view when device-specific work begins.
+any command. Deep navigation is acceptable: Build may move through dashboard →
+area → collection → item → field group, with Save and Actions kept in the native
+app bar. Multiple desktop windows become runner selections and navigation tasks
+so the same work remains possible within Android lifecycle rules.
+
+### Tablet composition
+
+Tablets and expanded foldables use a purpose-designed large-screen shell rather
+than a stretched phone page. Primary destinations use a navigation rail or
+persistent destination pane. Editing workbenches keep the collection, selected
+item, and field inspector visible together when width permits; supporting source,
+validation, costs, limits, and conflict/recovery state remain adjacent instead of
+being hidden behind repeated back navigation. Selection and unsaved edits survive
+rotation, resize, and fold posture changes.
+
+The tablet breakpoint is explicit and testable. At compact width the phone
+composition is used. At expanded width the app must expose a materially different
+master/detail or multi-pane visual tree with stable AutomationIds. A larger screen
+capture of the phone stack does not count as tablet implementation or proof.
+
+### Shared capability contract
+
+Both compositions expose every Chummer5-editable value through the same typed
+presenter operations. Neither composition may write raw character XML directly,
+silently omit a mutation family, or use browser/web content as a substitute for a
+native editor. Phone and tablet E2E matrices must edit the same capability
+inventory and prove navigation-away, reopen, save/reload, and process-restart
+persistence on API 36.
 
 Navigation labels are short and stable. Explanatory detail is progressively
 disclosed inside the selected workflow; landing screens prefer compact actions
@@ -99,48 +124,40 @@ is allowed; omission is not. In particular:
 - public help, community, and account links use verified `https://chummer.run`
   app links with an external-browser fallback.
 
-## Current preview posture
+## Current release and parity posture
 
-As of 2026-08-12, preview.7 builds the full native Shell against Android API 36
-from a clean eight-repository source graph and passes all 31 Android contracts.
-An API 36 clean install covers Home, Build, Play, Campaign, More, Account &
-privacy, and the native deletion explanation with no Chummer fatal exception,
-ANR, or process exit. The emulator produced one System UI ANR under host load;
-that system-process event is excluded from Chummer runtime evidence.
-
-Preview.7 closes a privacy-proof gap found in preview.6. The app no longer
-presents provisional retention targets as unconditional policy. It clears the
-linked device grant only after the authenticated server receipt covers Hosted
-Build workspaces, support, first-party auxiliary stores, community data, and
-identity, and it offers the content-free receipt digest for copying. The native
-deletion explanation shows that Hosted Build backup retention, replay, and
-whole-account erasure limits remain under review and points to the current
-public deletion route.
-
-The exact signed arm64 candidate is
-`chummer-android-0.1.0-preview.7-upload.aab`, SHA-256
+As of 2026-08-14, Play accepted and processed
+`chummer-android-0.1.0-preview.7-upload.aab`, version code `7`, targeting Android
+API 36. The Internal testing track reports `0.1.0-preview.7` as available to
+internal testers. The exact AAB SHA-256 is
 `34b6b206b422e439e19e675e9f6ec849ed6b3c64b7db66852fdf3463ee4b509f`.
-Its clean source-graph receipt has SHA-256
-`ab0c22f777523dc119b1b5debfcfbcf964dd0fdf28c97e81db81ca661c0317ad`.
-Its signer is the accepted replacement upload certificate ending in
-`...93:C9:87:1E:C9:ED:1D:15`. Google blocks uploads from that certificate until
-`2026-08-14T03:29:49Z`. Preview.1 remains active on the internal track; the
-tester roster contains the two approved accounts. Preview.7 has not been
-uploaded, processed, or installed from Play, and exact approval for an earlier
-candidate does not authorize these bytes.
-The update action no longer carries an external Play-listing launcher: Play
-installs use the native in-app update API and sideloaded installs stay inside the
-app with an honest explanation.
+The activated upload certificate exactly matched the approved artifact.
+
+Saved Play setup and listing changes are in review; this is not store approval.
+The tester join page proves listing access, but no real-device Play installation
+has been recorded. Do not claim installed-from-Play proof.
+
+The released preview.7 is also not evidence for the newer exhaustive editing and
+second-tablet-UI requirement. Attribute and origin-dossier phone editors are an
+incomplete post-release slice pending emulator proof. Most Chummer5 mutation
+families remain partial or missing, and the dedicated master/detail tablet
+composition remains missing. The fail-closed status lives in
+`ANDROID_WINDOWS_FEATURE_PARITY.yaml`. The row-level inventory is generated from
+all Chummer5 `Chummer/Forms` and `Chummer/Controls` C# UI sources, plus the
+bundled Hub-client, Translator, crash-reporter, and data-viewer UI sources, by
+`chummer-android/scripts/materialize_chummer5_editability_inventory.py`. It is
+published as
+`chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json`.
+Ambiguous event-wired controls remain `review_required`; they are not silently
+classified as non-mutating. Older phone/tablet screenshots and broad destination
+journeys do not close those rows.
 
 ## Governed LTD opportunities
 
 Chronicle Studio is the first Android-facing LTD lane. AIWriteBook is a
 human-operated `pilot`, not an in-app automation dependency: Android prepares
 and downloads a consented, spoiler-reviewed, redaction-reviewed source packet,
-records upload and generation approvals, saves a machine-readable handoff with
-the source digest and zero-or-approved credit ceiling, and imports a verified
-finished export. The handoff contains no source text or runner roster and never
-authorizes unattended automation, publication, or external send.
+records upload and generation approvals, and imports a verified finished export.
 The external provider never receives Chummer credentials and never owns campaign
 or publication truth.
 
@@ -167,6 +184,14 @@ cleartext-network permission, and passes clean-install, upgrade, offline,
 rotation, process-death, deep-link, import/export, print/share, account-link,
 sync-conflict, in-app live-session, group-invite, runner-selection, and
 runner-ticket journeys on phone and tablet profiles.
+
+Parity completion also requires a deterministic inventory of every Chummer5
+control that mutates runner or application data. Every inventory row must map to
+a shared durable mutation operation, a phone route, a purpose-designed tablet
+surface, and passing API-36 phone and tablet E2E receipts that prove edit,
+navigation-away, reopen, save/reload, and process-restart persistence. Quick-add,
+read-only projection, source-string assertions, or a stretched phone layout do
+not satisfy that gate.
 
 Play publication additionally requires a Chummer-scoped Play Console lane,
 Play App Signing, a Chummer-specific upload key, privacy/data-safety answers

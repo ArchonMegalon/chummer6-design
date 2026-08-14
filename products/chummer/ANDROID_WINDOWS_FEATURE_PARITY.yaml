@@ -25,21 +25,365 @@
     "version": "0.1.0-preview.7",
     "version_code": 7,
     "target_api": 36,
-    "android_contracts_passed": 31,
     "signed_aab_sha256": "34b6b206b422e439e19e675e9f6ec849ed6b3c64b7db66852fdf3463ee4b509f",
-    "source_graph_sha256": "ab0c22f777523dc119b1b5debfcfbcf964dd0fdf28c97e81db81ca661c0317ad",
-    "upload_key_reset": "accepted_active_replacement_certificate_cooldown_until_2026-08-14T03:29:49Z",
-    "exact_artifact_approval": "required_for_preview7_sha256",
-    "play_upload": "not_attempted_for_preview7",
-    "play_retry_not_before_utc": "2026-08-14T03:29:49Z",
-    "active_internal_version_code": 1,
-    "preview7_present_in_bundle_library": false,
-    "tester_roster_count": 2,
-    "tester_roster_verified": true,
-    "internal_test_install": "not_yet_proven",
-    "api36_native_device_journey": "passed_home_build_play_campaign_more_account_privacy_deletion_info",
-    "account_erasure_receipt_validation": "all_five_first_party_components_required_before_local_grant_clear",
-    "unapproved_retention_windows_shown": false
+    "upload_key_reset": "activated_exact_certificate_match",
+    "play_upload": "accepted_and_processed_internal_testing",
+    "internal_test_availability": "available_to_internal_testers",
+    "play_review": "saved_setup_changes_in_review",
+    "internal_test_install": "not_yet_proven"
+  },
+  "ui_profiles": {
+    "phone": {
+      "composition": "deep_native_navigation",
+      "status": "partial",
+      "proof": "api_36_phone_e2e_required"
+    },
+    "tablet": {
+      "composition": "adaptive_master_detail_multi_pane",
+      "status": "missing",
+      "proof": "api_36_tablet_e2e_required"
+    }
+  },
+  "editing_parity": {
+    "goal": "Every value that Chummer5 allows a user to edit must be editable in the native Android app on both phone and tablet layouts.",
+    "inventory_status": "incomplete_fail_closed",
+    "completion_rule": "A surface is complete only after a phone and tablet API 36 emulator persistence journey edits representative values, navigates away, reopens the editor, restarts the process, and proves the same durable values.",
+    "status_legend": [
+      "implemented_pending_emulator",
+      "partial_create_only",
+      "read_only",
+      "missing",
+      "review_required",
+      "not_applicable_non_mutating"
+    ],
+    "control_inventory": {
+      "schema": "chummer.android.chummer5-editability-inventory/v1",
+      "generator": "chummer-android/scripts/materialize_chummer5_editability_inventory.py",
+      "artifact": "chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json",
+      "chummer5_source_roots": [
+        "Chummer/Forms",
+        "Chummer/Controls",
+        "Plugins/ChummerHub.Client/UI",
+        "Translator",
+        "CrashHandler",
+        "ChummerDataViewer"
+      ],
+      "status": "materialized_incomplete_fail_closed",
+      "required_row_evidence": [
+        "legacy control and event handlers",
+        "mutation family and operation",
+        "phone route and AutomationId",
+        "purpose-designed tablet surface and AutomationId",
+        "shared presenter/core mutation",
+        "persistence assertion",
+        "executed phone and tablet API 36 E2E receipts"
+      ]
+    },
+    "surfaces": {
+      "attributes": {
+        "status": "implemented_pending_emulator",
+        "phone_status": "implemented_pending_emulator",
+        "tablet_status": "missing",
+        "chummer5_source": "CharacterCreate/CharacterCareer attribute controls",
+        "phone_route": "AttributeEditPage",
+        "tablet_surface": "missing"
+      },
+      "origin_dossier": {
+        "status": "implemented_pending_emulator",
+        "phone_status": "implemented_pending_emulator",
+        "tablet_status": "missing",
+        "chummer5_source": "CharacterShared identity, appearance and story controls",
+        "phone_route": "OriginDossierPage",
+        "tablet_surface": "missing"
+      },
+      "skills": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "skill_groups": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "knowledge_and_languages": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "specializations": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "qualities": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "contacts": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "identities": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "lifestyles": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "notes": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "calendar": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "expenses": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "gear": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "weapons": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "weapon_accessories": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "armor": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "armor_mods": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "vehicles_and_drones": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "vehicle_mods_and_mounts": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "cyberware": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "bioware": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "nested_plugins": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "drugs": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "spells": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "rituals": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "adept_powers": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "metamagics_and_echoes": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "spirits_and_sprites": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "complex_forms": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "matrix_programs": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "initiation_and_submersion": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "critter_powers": {
+        "status": "partial_create_only",
+        "phone_status": "partial_create_only",
+        "tablet_status": "missing"
+      },
+      "foci": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "locations_and_containers": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "equipped_quantity_rating_and_custom_names": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "character_settings": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "application_settings": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "sourcebook_selection": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "mugshots": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "unclassified_legacy_controls": {
+        "status": "review_required",
+        "phone_status": "missing",
+        "tablet_status": "missing",
+        "completion_rule": "Each row must be reviewed into a concrete mutation family or explicitly proven non-mutating."
+      },
+      "online_account_groups_and_sharing": {
+        "status": "review_required",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "translation_and_localization": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "crash_report_and_diagnostics": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "data_tools": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "condition_monitors_and_damage": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "karma_nuyen_and_reputation": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "magic_tradition_and_resonance": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "improvements": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "initiative_and_turn_tracking": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "dice_pools_and_tokens": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "xml_and_custom_data": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "import_export_printing": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "packs_and_templates": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "limits_and_modifiers": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "application_file_workflows": {
+        "status": "review_required",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "character_roster": {
+        "status": "missing",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "generic_selection_and_collection_controls": {
+        "status": "review_required",
+        "phone_status": "missing",
+        "tablet_status": "missing"
+      },
+      "navigation_and_reference_actions": {
+        "status": "review_required",
+        "phone_status": "missing",
+        "tablet_status": "missing",
+        "completion_rule": "Each row must be proven non-mutating or mapped to the mutation it triggers before closeout."
+      }
+    }
   },
   "commands": {
     "new_character": "native_presenter_workflow",
