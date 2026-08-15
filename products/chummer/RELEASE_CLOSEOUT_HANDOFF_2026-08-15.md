@@ -31,7 +31,7 @@ authority and is intentionally fail-closed:
 - 1,772 rows require edit parity
 - 457 rows are proven non-mutating
 - 531 rows have completion proof, including the non-mutating rows
-- phone: 1,398 rows still marked `missing`
+- phone: 1,394 rows still marked `missing`
 - tablet: 1,550 rows still marked `missing`
 
 Do not convert a green representative E2E receipt into a claim that every
@@ -77,12 +77,12 @@ Installed under `/home/tibor/.local/share/chummer-api36-local`:
 The current locally proven phone candidate is
 `chummer-android/src/Chummer.Android/bin/Debug/net10.0-android36.0/android-x64/com.myexternalbrain.chummer-Signed.apk`
 with SHA-256
-`64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`.
+`9ae8a5b3fae1ce86935908b0328bd528235cf5e633feb0ff145965fc25a9dc94`.
 
 ## Local evidence
 
 - Android native build and compile-check: pass, zero warnings and zero errors.
-- Python Android contract/driver suite: 90/90 pass.
+- Python Android contract/driver suite: 130 tests and 5 subtests pass.
 - `git diff --check`: pass.
 - Exact full edited revision-17 workspace: host roster replay pass and Android
   direct-ID process-restart recovery probe pass.
@@ -100,14 +100,12 @@ runner attach/remove with restored editable identity.
 
 ## Repository closeout state
 
-- Android feature head `6ab991d` was pushed, merged locally with `[skip ci]`,
-  pushed to `main`, and remote-verified at
-  `f57842d07b5c2d49be7efa5182931e5d0ba79ea4`.
+- Android `main` is pushed and remote-verified at `d1a4b13` with `[skip ci]`.
 - This handoff was merged with `[skip ci]`, pushed to design `main`, and
   remote-verified at `5ecb445e250bd67f05461a191f27172afabc0201` before
   the live-closeout and public-guide follow-up below was added.
-- Presentation stable starter identities are pushed on
-  `codex/main-ui-closeout-20260814` at `3bf28215e`. A clean local `main` merge
+- Presentation phone-priority changes are pushed on
+  `codex/main-ui-closeout-20260814` at `131eef14e`. A prior clean local `main` merge
   exists at `a77b1ab310fedfb14c3e4cc7dbf6c736c0afc4c5`, based on remote
   `4333e546cb22daecb6b8d042f080c6a58cfef5f5`.
 - Presentation remote `main` rejected the push because branch protection
@@ -194,9 +192,9 @@ runner attach/remove with restored editable identity.
    Do not claim presentation `main` contains `3bf28215e` until remote truth
    changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
    diagnostic commit is on `main` until remote truth changes from `972311c44`.
-2. Keep reproductions pinned to presentation `04594bffc` and Android main
-   `6c26027` with x64 APK SHA256
-   `64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`
+2. Keep reproductions pinned to presentation `131eef14e` and Android main
+   `d1a4b13` with x64 APK SHA256
+   `9ae8a5b3fae1ce86935908b0328bd528235cf5e633feb0ff145965fc25a9dc94`
    until a newer candidate is built and re-receipted.
 3. Resume the 1,772-row inventory by highest-impact missing phone editor group.
    For each row, add or reuse the shared durable mutation, provide the phone
@@ -304,6 +302,8 @@ Telegram updates were delivered through the live EA runtime:
 - `5277`: refreshed 12–24 week full-goal ETA, separated from the remaining
   3–5 focused engineering days and explicitly conditioned on Play review,
   physical-device, OAuth, macOS, and stable-release gates.
+- `5279`: revised phone-first full-goal ETA of 8–16 weeks with tablet UI work
+  explicitly paused.
 
 ## Android contact/pet parity slice at 2026-08-15 12:53 UTC
 
@@ -564,3 +564,57 @@ Telegram updates were delivered through the live EA runtime:
   evidence does not strengthen the existing review-withheld claims. The
   8–16 week phone-first ETA remains unchanged, with external human/device and
   authority gates able to extend calendar closeout.
+
+## Dynamic phone priority choices at 2026-08-15 16:39 UTC
+
+- Android `main` is pushed and remote-aligned at `d1a4b13` (`feat(android):
+  prove dynamic priority choices [skip ci]`). Presentation production and test
+  changes are pushed on `codex/main-ui-closeout-20260814` at `131eef14e`;
+  protected presentation `main` remains `4333e546c`. The unrelated untracked
+  `Chummer/state/workspaces/` path was preserved. No GitHub Action was used.
+- The phone priority dialog now structurally re-renders only for fields whose
+  changes can alter the conditional workflow. Metavariant and each applicable
+  free-skill selector become reachable with stable automation IDs; the Build
+  summary exposes the saved metavariant for direct UI readback.
+- Completion persists Chummer5-compatible XML: Dryad is stored as
+  `<metavariant>Dryad</metavariant>`, the priority letter remains the scalar
+  `<priorityskills>D,1</priorityskills>`, and a second sibling
+  `<priorityskills>` contains ordered `Summoning`, `Binding`, and `Gymnastics`
+  `<priorityskill>` children. Blank/base metavariants and stale nested skill
+  containers are removed before the current values are written.
+- The refreshed source-bound priority receipt is
+  `chummer-android/docs/editability-evidence/api36-phone-new-character-priority/receipt.json`.
+  It passed all 17 journeys on API 36, including four new edits, exact durable
+  XML, Build UI readback, force-stop/relaunch, and repeated persistence checks.
+  The build-settings receipt was also rerun because the shared production
+  source hashes changed. Both receipts bind x64 APK SHA256
+  `9ae8a5b3fae1ce86935908b0328bd528235cf5e633feb0ff145965fc25a9dc94`.
+- Thirteen `SelectMetatypePriority` controls are now phone-verified. The newly
+  promoted rows are `cboMetavariant`, `cboSkill1`, `cboSkill2`, and
+  `cboSkill3`. `chkPossessionBased`, `cboPossessionMethod`, and `nudForce`
+  remain honestly missing until their full Chummer5 critter semantics exist;
+  they were not represented as simple scalar shortcuts.
+- The regenerated inventory remains globally fail-closed at 531 completion-
+  proven rows while tablet is paused. Phone now has 94 API-36-verified, 30
+  pending-emulator, 1,394 missing, 110 partial-create-only, and 144 partial-
+  exact-saved-data rows. Tablet is deliberately unchanged at 74 verified, 4
+  pending, 1,550 missing, and 144 partial-exact rows.
+- Local gates pass: deterministic inventory generation plus `--check`, 130
+  Python tests and 5 subtests, `git diff --check`, the x64 Android build, and
+  the native compatibility compile with zero warnings and zero errors. The
+  focused presentation test command remains blocked before test discovery by
+  the pre-existing package-plane `Chummer.Run.Contracts` downgrade and missing
+  cross-repository contract types; do not report it as passing. The production
+  sources compiled into the exact APK and passed live E2E.
+- The phone AVD reached readiness in 42,900 ms and passed five consecutive
+  checks. The first strict rerun correctly rejected an emulator timing false
+  negative; captured hierarchy proved the exact Binding field had retained its
+  value just after the bound expired. A bounded ANR-aware verifier then passed
+  the unchanged app binary without weakening any assertion. The required vexp
+  pipeline and completion audit were attempted, but its MCP transport remained
+  closed.
+- External release truth is unchanged from the 15:28 UTC refresh: Play review
+  remains unverified pending the reserved browser sign-in, no physical Play
+  install or candidate OAuth artifact is present, and current macOS/stable
+  authority remains missing. Generator-owned Chummer6 public documentation was
+  therefore left unchanged.
