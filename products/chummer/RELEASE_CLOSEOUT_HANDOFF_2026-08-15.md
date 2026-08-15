@@ -92,8 +92,8 @@ runner attach/remove with restored editable identity.
   pushed to `main`, and remote-verified at
   `f57842d07b5c2d49be7efa5182931e5d0ba79ea4`.
 - This handoff was merged with `[skip ci]`, pushed to design `main`, and
-  remote-verified at `084e2339f3ede942bb4cdf08f4a25a6d18cbbafb` before
-  this follow-up receipt line was added.
+  remote-verified at `5ecb445e250bd67f05461a191f27172afabc0201` before
+  the live-closeout and public-guide follow-up below was added.
 - Presentation stable starter identities are pushed on
   `codex/main-ui-closeout-20260814` at `3bf28215e`. A clean local `main` merge
   exists at `a77b1ab310fedfb14c3e4cc7dbf6c736c0afc4c5`, based on remote
@@ -116,6 +116,45 @@ runner attach/remove with restored editable identity.
 - Stable desktop release authority and native macOS artifact/proof remain
   separate release gates; do not infer them from Android evidence.
 
+## Live closeout continuation at 2026-08-15 05:23 UTC
+
+- The owned Google Play browser reached the Google account chooser with the
+  expected operator account signed out. A one-hour human-assist handoff was
+  delivered over Telegram for sign-in. No browser action may resume until the
+  operator reports that handoff complete, and no current review-state claim has
+  been added from the unauthenticated page.
+- No physical Android device was attached to `adb`, and targeted discovery in
+  the approved pCloud/EA and Downloads intake roots found no Play-install
+  screenshot, device receipt, or preview.7 artifact. The requested evidence
+  remains package `com.myexternalbrain.chummer`, version name
+  `0.1.0-preview.7`, version code `7`, installer `com.android.vending`, device
+  model/API, UTC timestamp, and installed/open screenshots.
+- The live Google Workspace probe returned `ready_manual_console_check`. The
+  OAuth and active `gcloud` projects match (`propertyquarry-498318`), all four
+  required Workspace APIs are enabled, and project number binding passes. The
+  expected work account still needs manual confirmation in Google Auth
+  Platform Audience followed by a fresh Full Workspace consent. There is no
+  candidate-bound success receipt yet.
+- `https://chummer.run/status`, `/downloads/releases.json`,
+  `/api/public/release-truth`, and `/downloads/` returned HTTP 200. They agree on
+  release `run-20260802-160500`, channel `preview`, status `published`, rollout
+  `public_release_review_required`, supportability `review_required`, and only
+  Linux x64 plus Windows x64 artifacts. The macOS proof route returned HTTP 404
+  with `review_required`, as required by the fail-closed posture.
+- The local macOS startup receipt passes only for older preview
+  `run-20260701-124648`; it is not evidence for the current release. The current
+  Registry checkout exposes no immutable `CURRENT.json`, while the live release
+  truth still reports missing release-decision and scope-decision authority.
+  Do not run stable materialization or rewrite that absence into success.
+- Chummer6 public-guide source was refreshed through
+  `PUBLIC_PART_REGISTRY.yaml` and `PUBLIC_FEATURE_REGISTRY.yaml`, then generated
+  and mirrored without hand-editing output. It now distinguishes the released
+  Play preview.7 bundle from the newer locally verified phone/tablet APK and
+  explicitly preserves the real-device and exhaustive-parity gaps. Generator,
+  sync, first-impression, link, video/audio, and 117 Chummer6 unit checks pass;
+  the strict immutable-authority verifier remains unavailable because the
+  required Registry `CURRENT.json` is absent.
+
 ## Continuation order
 
 1. Resolve the presentation policy conflict with the operator/repository owner:
@@ -129,6 +168,10 @@ runner attach/remove with restored editable identity.
    process-restart evidence before upgrading its status.
 4. Separately obtain Play physical-install and OAuth receipts when the required
    user authentication/device inputs are available.
+5. Re-run the strict Chummer6 public-guide release verifier only with a real
+   immutable Registry `CURRENT.json`, the exact bound Registry commit, and the
+   expected `review_required` decision. Never substitute the mutable served
+   mirror or the Hub public-projection pointer for that authority.
 
 ## Operator communication
 
@@ -141,3 +184,7 @@ Telegram updates were delivered through the live EA runtime:
 - `5262`: corrected full-goal estimate of roughly 12–24 weeks, explicitly
   separated from the scoped closeout ETA and grounded in the remaining
   inventory gaps.
+- `5263`: Android closeout receipts and the presentation branch-policy blocker.
+- `5264`: current full-goal and release-closeout ETA.
+- `5265`: action-required Google Play human-assist sign-in handoff.
+- `5266`: physical Play-install and OAuth Audience/consent action packet.
