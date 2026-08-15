@@ -91,6 +91,9 @@ runner attach/remove with restored editable identity.
 - Android feature head `6ab991d` was pushed, merged locally with `[skip ci]`,
   pushed to `main`, and remote-verified at
   `f57842d07b5c2d49be7efa5182931e5d0ba79ea4`.
+- This handoff was merged with `[skip ci]`, pushed to design `main`, and
+  remote-verified at `084e2339f3ede942bb4cdf08f4a25a6d18cbbafb` before
+  this follow-up receipt line was added.
 - Presentation stable starter identities are pushed on
   `codex/main-ui-closeout-20260814` at `3bf28215e`. A clean local `main` merge
   exists at `a77b1ab310fedfb14c3e4cc7dbf6c736c0afc4c5`, based on remote
