@@ -1,16 +1,22 @@
-# Chummer Android editability handoff — 2026-08-15
+# Chummer phone-first editability handoff — 2026-08-15
 
 ## Goal
 
-Complete Chummer5 editability parity in the native Android application without
-overstating coverage. Every value editable in Chummer5 must have a durable
-Android mutation, a reachable phone route, a purpose-designed tablet surface,
-stable automation selectors, and executed local API 36 evidence covering edit,
-validation, save, reload, and process restart where persistence applies.
+Finish Chummer5 editability parity on phone before doing any more tablet UI
+work. Every value editable in Chummer5 must first have a durable Android
+mutation, a reachable phone route, stable automation selectors, and executed
+local API 36 phone evidence covering edit, validation, save, reload, and
+process restart where persistence applies. Deep and compact phone navigation is
+acceptable when that is the clearest way to make the full editor reachable.
 
-Phone navigation may be deep and compact. Tablet must remain a distinct
-large-screen composition with persistent navigation and master/detail editing;
-it is not acceptable to stretch the phone layout.
+Tablet-specific implementation, layout expansion, refactoring, and new tablet
+E2E receipts are paused. Preserve the tablet work and evidence that already
+exist, but do not spend the current phase extending them or make tablet evidence
+a prerequisite for raising an accurately separate phone status. Resume the
+purpose-designed large-screen phase only after every required phone row is
+implemented and locally proven. The eventual product goal still includes a
+distinct tablet composition; this reprioritization changes sequence, not that
+long-term requirement.
 
 All validation and release closeout work is local. Do not add, start, or rely on
 GitHub Actions.
@@ -31,6 +37,10 @@ authority and is intentionally fail-closed:
 Do not convert a green representative E2E receipt into a claim that every
 Chummer5 editor is implemented. Continue row by row until the generated
 inventory has durable source and device evidence for all 1,775 edit-parity rows.
+For the current phase, drive the phone missing and pending counts to zero first.
+The inventory's existing global `completionProven` field may remain false while
+tablet work is paused; report phone proof separately instead of weakening that
+fail-closed global meaning.
 
 ## Scoped implementation in this session
 
@@ -45,8 +55,9 @@ inventory has durable source and device evidence for all 1,775 edit-parity rows.
   clears it.
 - Phone collection-card selection and long-form field traversal use stable,
   overlapping scrolls and exact value assertions.
-- The tablet composition keeps separate navigation, center workbench, and right
-  inspector behavior, with tablet-specific automation routes.
+- The existing tablet composition keeps separate navigation, center workbench,
+  and right inspector behavior, with tablet-specific automation routes. This is
+  preserved historical work, not an instruction to extend tablet UI now.
 - The local driver handles Gboard dismissal, empty-field clearing, Android
   document-picker roots and tablet drawers, startup tap races, fresh hierarchy
   capture, clipped action bounds, validation dialogs, dense toggles,
@@ -187,9 +198,13 @@ runner attach/remove with restored editable identity.
    `1e026e0` with x64 APK SHA256
    `02945fda284459e9d4444835381db67e6554366ff283b9016b0af0db34b34d8c`
    until a newer candidate is built and re-receipted.
-3. Resume the 1,775-row inventory by highest-impact missing editor group. For
-   each row, add one shared durable mutation plus phone/tablet routes and local
-   process-restart evidence before upgrading its status.
+3. Resume the 1,775-row inventory by highest-impact missing phone editor group.
+   For each row, add or reuse the shared durable mutation, provide the phone
+   route and stable selector, and execute local API 36 phone save/reload/process-
+   restart evidence. Drive phone `missing` and `implemented_pending_emulator`
+   counts to zero before resuming tablet-specific work. Preserve existing tablet
+   fields and receipts, but do not create new tablet UI or tablet E2E in this
+   phase.
 4. Separately obtain Play physical-install and OAuth receipts when the required
    user authentication/device inputs are available.
 5. Preserve the release-specific immutable `CURRENT.json`, exact bound Registry
@@ -372,3 +387,29 @@ Telegram updates were delivered through the live EA runtime:
   unchanged: current evidence still proves only review-withheld metadata and
   HTTP 409 handoffs, exactly matching its existing claims. Regeneration would
   not authorize a stronger statement.
+
+## Phone-first reprioritization at 2026-08-15 13:50 UTC
+
+- The operator explicitly paused tablet UI work and made complete phone UI
+  parity the first implementation milestone. The active sequence is now phone
+  implementation, phone API 36 proof, and phone inventory convergence; tablet
+  implementation resumes only after that milestone.
+- Android remote `main` remains clean and aligned at `1e026e0`. The local
+  Android worktree has an unfinished, uncommitted attribute-proof draft in
+  `tests/run_api36_attribute_e2e.py`,
+  `tests/test_api36_attribute_e2e_driver.py`, and
+  `scripts/materialize_chummer5_editability_inventory.py`.
+- The draft currently proves only its Python driver contract (3/3 tests). It
+  has no executed emulator receipt, has not regenerated the checked-in
+  inventory, and does not change the authoritative counts. Do not commit it in
+  its current dual-profile form: remove the tablet execution path and tablet
+  receipt dependency first, retain the phone Base/Karma journey, and keep
+  Improve/Burn fail-closed until separately exercised.
+- A disposable phone AVD eventually reported boot complete after 417,775 ms,
+  too late for the bounded readiness probe. It was stopped without running the
+  attribute journey. No phone or tablet attribute receipt exists, and no result
+  may be inferred from that boot. Check host pressure before retrying; a slow
+  boot is not a failed editor and not a passing E2E.
+- The revised phone-first forecast is approximately 8–16 weeks. Telegram
+  delivery `5279` records that estimate, the paused tablet phase, current phone
+  inventory counts, and the external gates that can extend calendar closeout.
