@@ -28,15 +28,15 @@ complete the full legacy inventory. The generated inventory remains the
 authority and is intentionally fail-closed:
 
 - 2,229 Chummer5 UI rows reviewed
-- 1,775 rows require edit parity
-- 454 rows are proven non-mutating
-- 528 rows have completion proof, including the non-mutating rows
-- phone: 1,413 rows still marked `missing`
-- tablet: 1,553 rows still marked `missing`
+- 1,772 rows require edit parity
+- 457 rows are proven non-mutating
+- 531 rows have completion proof, including the non-mutating rows
+- phone: 1,407 rows still marked `missing`
+- tablet: 1,550 rows still marked `missing`
 
 Do not convert a green representative E2E receipt into a claim that every
 Chummer5 editor is implemented. Continue row by row until the generated
-inventory has durable source and device evidence for all 1,775 edit-parity rows.
+inventory has durable source and device evidence for all 1,772 edit-parity rows.
 For the current phase, drive the phone missing and pending counts to zero first.
 The inventory's existing global `completionProven` field may remain false while
 tablet work is paused; report phone proof separately instead of weakening that
@@ -74,10 +74,10 @@ Installed under `/home/tibor/.local/share/chummer-api36-local`:
 - tablet AVD `chummer_local_tablet_api36` (Pixel C)
 - .NET SDK 10.0.103 for the pinned presentation tree; system .NET 10.0.110
 
-The sealed debug candidate is
-`/tmp/chummer-local-api36-candidate/chummer-android-x64-debug-accessible-navigation.apk`
+The current locally proven phone candidate is
+`chummer-android/src/Chummer.Android/bin/Debug/net10.0-android36.0/android-x64/com.myexternalbrain.chummer-Signed.apk`
 with SHA-256
-`935f8354c8ce4ea3e32bd1c5ff2efe8f1efffbb70bb612292080a555fe2a7b94`.
+`64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`.
 
 ## Local evidence
 
@@ -194,11 +194,11 @@ runner attach/remove with restored editable identity.
    Do not claim presentation `main` contains `3bf28215e` until remote truth
    changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
    diagnostic commit is on `main` until remote truth changes from `972311c44`.
-2. Keep reproductions pinned to presentation `3bf28215e` and Android main
-   `1758200` with x64 APK SHA256
-   `02945fda284459e9d4444835381db67e6554366ff283b9016b0af0db34b34d8c`
+2. Keep reproductions pinned to presentation `04594bffc` and Android main
+   `368a8a0` with x64 APK SHA256
+   `64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`
    until a newer candidate is built and re-receipted.
-3. Resume the 1,775-row inventory by highest-impact missing phone editor group.
+3. Resume the 1,772-row inventory by highest-impact missing phone editor group.
    For each row, add or reuse the shared durable mutation, provide the phone
    route and stable selector, and execute local API 36 phone save/reload/process-
    restart evidence. Drive phone `missing` and `implemented_pending_emulator`
@@ -457,3 +457,51 @@ Telegram updates were delivered through the live EA runtime:
 - Generator-owned Chummer6 public documentation remains unchanged. These fresh
   observations match its existing review-withheld claims and provide no new
   authority for publication or download language.
+
+## Phone build-settings parity slice at 2026-08-15 15:21 UTC
+
+- Android `main` is pushed and remote-aligned at
+  `368a8a09f26036082b83f09122c03fbcfcdde3f8` (`test(android): prove phone
+  build settings [skip ci]`). Presentation production and test sources are
+  pushed on `codex/main-ui-closeout-20260814` at
+  `04594bffc6095a195e5c406d8342c5ba723be9f8`; protected presentation `main`
+  remains `4333e546cb22daecb6b8d042f080c6a58cfef5f5`. No GitHub Action was used.
+- The phone New runner flow now exposes Chummer5 `SelectBuildMethod` values for
+  Character Setting and Ignore Character Creation Rules, carries them through
+  the conditional creation workflow, commits them as `<settings>` and
+  `<ignorerules>True</ignorerules>`, and shows Character Setting on the Build
+  summary for direct readback.
+- The legacy form audit classifies `cboBuildMethod`, `nudMaxAvail`, and
+  `cboGamePlay` as non-mutating designer leftovers: they are instantiated at
+  `(0, 0)`, are not added to the visible control tree, and have no event
+  handlers. The visible `cmdEditCharacterSetting` remains honestly `missing`
+  until the complete character-settings editor exists; it was not replaced by
+  a false-parity shortcut.
+- The tracked fail-closed receipt is
+  `chummer-android/docs/editability-evidence/api36-phone-new-character-build-settings/receipt.json`.
+  It binds API 36, profile `phone`, the dedicated and shared drivers, dialog
+  factory/coordinator, native dialog and Build page sources, and x64 APK SHA256
+  `64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`.
+  Editing both values, creation commit, visible readback, workspace XML
+  persistence, and force-stop/relaunch persistence all pass. The phone AVD
+  booted in 59,390 ms, passed five consecutive service checks, and was shut
+  down after evidence capture.
+- The regenerated 2,229-row inventory has 1,772 edit-parity rows, 457 proven
+  non-mutating rows, and 531 completion-proven rows. Phone now has 81 API-36-
+  verified, 30 pending-emulator, 1,407 missing, 110 partial-create-only, and 144
+  partial-exact-saved-data rows. Tablet remains paused and unchanged by this
+  slice at 74 verified, 4 pending, 1,550 missing, and 144 partial-exact rows.
+- Local Android gates pass: inventory generation plus `--check`, 123 Python
+  tests and 5 subtests, `git diff --check`, x64 Debug APK build, and the native
+  compatibility compile with zero warnings and zero errors. The focused
+  presentation unit invocation remains blocked before test discovery by the
+  pre-existing package-plane downgrade and missing cross-repository contract
+  types; do not report that unit invocation as passing. The same production
+  presentation sources compile in the successful APK and native compatibility
+  builds. The required vexp completion audit was attempted again, but its MCP
+  transport remained closed.
+- The 8–16 week phone-first forecast already delivered to Telegram as message
+  `5279` remains the honest full-goal ETA. Play review and physical-install
+  proof, candidate-bound OAuth, current native macOS proof, stable publication
+  authority, presentation protected-main integration, and the remaining phone
+  inventory are still open gates.
