@@ -148,24 +148,31 @@ runner attach/remove with restored editable identity.
   review, not as downloadable files.
 - The local macOS startup receipt passes only for older preview
   `run-20260701-124648`; it is not evidence for the current release. The current
-  Registry checkout exposes no immutable `CURRENT.json`, while the live release
-  truth still reports missing release-decision and scope-decision authority.
-  Do not run stable materialization or rewrite that absence into success.
+  Registry checkout itself exposes no immutable `CURRENT.json`, but the imported
+  release-evidence lane now contains the release-specific immutable pointer for
+  `run-20260802-160500`. It resolves snapshot
+  `434b8c201ee76cc5e0c6649a4a173096bec7d3a6a07b3127c322eccaa0a39aac`, Registry
+  commit `f1d7b96c510ef619d8f6c6b7ce7c29b1736e053b`, and decision
+  `review_required`. This authority preserves the review gate; it does not
+  authorize stable materialization or public downloads.
 - Chummer6 public-guide source was refreshed through
   `PUBLIC_PART_REGISTRY.yaml` and `PUBLIC_FEATURE_REGISTRY.yaml`, then generated
   and mirrored without hand-editing output. It now distinguishes the released
   Play preview.7 bundle from the newer locally verified phone/tablet APK and
   explicitly preserves the real-device and exhaustive-parity gaps. Generator,
-  sync, first-impression, link, video/audio, and 117 Chummer6 unit checks pass;
-  the strict immutable-authority verifier remains unavailable because the
-  required Registry `CURRENT.json` is absent.
+  sync, first-impression, link, video/audio, and 117 Chummer6 unit checks pass.
+  The strict immutable-authority docs and download verifiers now also pass
+  against the exact imported pointer, Registry commit, and expected
+  `review_required` decision; the live link verifier confirms that each
+  intentionally withheld review route returns HTTP 409.
 - The public-guide generator now treats any `review_required` packet, including
   a bound packet with artifact rows, as availability-withheld. It renders review
   routes and hashes without `Public download`, `Open download`, or `downloads
   are posted` claims and fails generation if those phrases reappear. The
-  Chummer6 release-packet materializer carries the same rule for future
-  authority-bound regenerations; the checked-in packet itself cannot be
-  regenerated until its immutable authority input is restored.
+  Chummer6 release-packet materializer carries the same rule. The checked-in
+  packet was regenerated source-first from the exact immutable authority and
+  now states that Linux and Windows metadata is listed for review while
+  download handoff remains withheld.
 
 ## Continuation order
 
@@ -182,10 +189,37 @@ runner attach/remove with restored editable identity.
    process-restart evidence before upgrading its status.
 4. Separately obtain Play physical-install and OAuth receipts when the required
    user authentication/device inputs are available.
-5. Re-run the strict Chummer6 public-guide release verifier only with a real
-   immutable Registry `CURRENT.json`, the exact bound Registry commit, and the
-   expected `review_required` decision. Never substitute the mutable served
-   mirror or the Hub public-projection pointer for that authority.
+5. Preserve the release-specific immutable `CURRENT.json`, exact bound Registry
+   commit, and expected `review_required` decision whenever the Chummer6 public
+   guide is regenerated or verified. Never substitute the mutable served mirror
+   or Hub public-projection pointer for that authority. A later stable claim
+   requires a newer immutable authority decision plus the outstanding platform
+   and human-device receipts.
+
+## Immutable authority and docs convergence at 2026-08-15 07:17 UTC
+
+- The release-specific imported pointer is
+  `products/chummer/release-evidence/run-20260802-160500/CURRENT.json`, SHA256
+  `a1759655a0976c557f2c4eb5ceb9b8382ad2cd3637a29b432966f5d76463a24d`.
+  The strict resolver verified its snapshot hash, Registry commit binding, and
+  `review_required` decision before any generated packet or guide projection
+  was accepted.
+- Official source-first public-guide regeneration completed without hand edits
+  to generated Markdown. Strict docs truth, Registry/download parity, live link,
+  video/audio, generator, sync, and focused verifier suites pass. Chummer6 also
+  passes 118 unittest cases and 211 pytest cases with 84 subtests; the design
+  repository passes 242 pytest cases.
+- The complete local convergence wrapper passes in one invocation. Two clean
+  Debian builds reproduce archive SHA256
+  `8dea09eda6f14f6e534810b1d77f28cde29914b778eef64dbebf61ae1a61cf51`, both
+  startup smokes pass, the updater dispatch/pending-state-clearing simulation
+  proves its invocation contract, and 58 freshly built desktop update runtime
+  tests pass under the pinned .NET 10.0.103 SDK. The composite convergence
+  receipt verifies successfully.
+- This closes only the immutable-authority documentation convergence gap.
+  Stable publication remains blocked by the review-required decision, missing
+  current macOS proof, missing physical Play-install proof, missing signed-in
+  candidate OAuth proof, and incomplete Chummer5 editable-surface parity.
 
 ## Production InstallLinking recovery at 2026-08-15 06:30 UTC
 
