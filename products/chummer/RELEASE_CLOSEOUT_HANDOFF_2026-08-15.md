@@ -424,3 +424,31 @@ Telegram updates were delivered through the live EA runtime:
 - The revised phone-first forecast is approximately 8–16 weeks. Telegram
   delivery `5279` records that estimate, the paused tablet phase, current phone
   inventory counts, and the external gates that can extend calendar closeout.
+
+## Fresh release-gate check at 2026-08-15 14:33 UTC
+
+- Production remains healthy: `/api/ready` returns `ready=true`, and all four
+  deep checks pass for durable Data Protection storage, PostgreSQL authority,
+  the verified generation shelf, and the published manifest. The active shelf
+  is unchanged at `gen-20260811T053520Z-58ee89edc36b431f`, preview release
+  `run-20260802-160500`, published `2026-08-11T04:00:00Z`.
+- Public release truth remains `public_release_review_required` and
+  `review_required`, with `registryCommit`, release decision status/hashes, and
+  artifact handoff still missing. The live Downloads page still renders public
+  count `2` and Windows/Linux download buttons; both routes return HTTP 409 with
+  missing authority snapshot and decision headers. Hub fix `b83bbb33` remains
+  validated on its feature branch but blocked from protected `main`; production
+  has not received it.
+- A fresh approved-root intake found no Play-install, Play-review, preview.7,
+  or stable artifact. ADB has no attached physical device. The only macOS match
+  remains the 2026-07-26 scope-decision JSON, which is not current native startup
+  proof. Do not strengthen any platform or stable-release claim.
+- The live Google OAuth redirect/state/nonce/PKCE S256 structural handoff still
+  passes. Candidate-bound v2 intake remains `waiting_for_artifact` for
+  `google-oauth-linking-operator-evidence-run-20260802-160500.zip`; no fresh
+  signed-in operator receipt appeared. Current Google Play review status also
+  remains unverified because the reserved Play browser is awaiting human sign-
+  in; do not drive it or infer review state from the product release gate.
+- Generator-owned Chummer6 public documentation remains unchanged. These fresh
+  observations match its existing review-withheld claims and provide no new
+  authority for publication or download language.
