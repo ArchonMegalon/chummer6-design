@@ -169,10 +169,12 @@ runner attach/remove with restored editable identity.
 
 ## Continuation order
 
-1. Resolve the presentation policy conflict with the operator/repository owner:
+1. Resolve both protected-main policy conflicts with the operator/repository
+   owner:
    either authorize the required PR/status workflow or change branch policy.
    Do not claim presentation `main` contains `3bf28215e` until remote truth
-   changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`.
+   changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
+   diagnostic commit is on `main` until remote truth changes from `972311c44`.
 2. Keep reproductions pinned to presentation `3bf28215e` and Android
    `6ab991d`/main `f57842d` until a newer candidate is built and re-receipted.
 3. Resume the 1,775-row inventory by highest-impact missing editor group. For
@@ -184,6 +186,48 @@ runner attach/remove with restored editable identity.
    immutable Registry `CURRENT.json`, the exact bound Registry commit, and the
    expected `review_required` decision. Never substitute the mutable served
    mirror or the Hub public-projection pointer for that authority.
+
+## Production InstallLinking recovery at 2026-08-15 06:30 UTC
+
+- The unhealthy public edge was traced to deterministic network-address drift,
+  not PostgreSQL credentials, TLS, authority corruption, or local state. The
+  candidate's reviewed `extra_hosts` binding still mapped the PostgreSQL DNS
+  name to `172.25.0.3`, but Docker had reassigned that address to the portal and
+  placed PostgreSQL at `172.25.0.5` after the containers restarted.
+- The existing containers were transactionally re-pinned on
+  `chummer5a_default`: PostgreSQL now has static `172.25.0.3` and the portal has
+  static `172.25.0.5`. The portal's existing certificate-SAN host mapping now
+  resolves to PostgreSQL again, and both `IPAMConfig.IPv4Address` values retain
+  those addresses across ordinary restarts.
+- Current observed truth is healthy: container health is `healthy`, local
+  `/api/ready` returns HTTP 200 with `ready=true`, public
+  `https://chummer.run/status` returns HTTP 200, and the store loaded PostgreSQL
+  authority generation 14 with two receipts. Linux and Windows `get` routes
+  remain HTTP 409 because publication is still review-gated; do not misreport
+  those expected denials as an outage or as public download availability.
+- Runtime-role, least-privilege, authority-chain, local-mirror, credential-bind,
+  CA-bind, and Data Protection custody probes all passed during diagnosis. Four
+  disposable diagnostic clone volumes and their one stopped test container were
+  removed after the source volume was verified intact.
+- Scoped source hardening adds secret-safe activation exception type/failure-site
+  logging, sanitized PostgreSQL readiness-code logging, and explicit production
+  documentation that the reviewed address must remain stable and must be fully
+  re-attested/redeployed after change. Exact pinned .NET SDK 10.0.103 verification
+  passed 26 focused C# tests; the deployment contract passed 14 tests and 49
+  subtests.
+- The verified commit is `08d73ba99` on remote branch
+  `codex/install-linking-main-integration-20260815`. Direct fast-forward push to
+  Hub/run-services `main` was rejected by `GH006`: a pull request and two remote
+  status checks are mandatory. No GitHub Action was started and protection was
+  not bypassed. Remote `main` remained `972311c44` at the failed push.
+- ADB 36.0.0 is already installed at
+  `/docker/chummercomplete/.state/toolchains/chummer-android-api36-20260812/android-sdk/platform-tools/adb`;
+  its fresh device inventory is empty. The approved Play and macOS intake roots
+  are also empty. The live Google OAuth structural redirect/PKCE handoff passes,
+  but the strict candidate proof still fails for missing quick handoff,
+  signed-in link handoff, and operator end-to-end evidence. The owned Play
+  browser remains paused for the existing human-assist sign-in and must not be
+  driven until the operator reports completion.
 
 ## Operator communication
 
@@ -200,3 +244,6 @@ Telegram updates were delivered through the live EA runtime:
 - `5264`: current full-goal and release-closeout ETA.
 - `5265`: action-required Google Play human-assist sign-in handoff.
 - `5266`: physical Play-install and OAuth Audience/consent action packet.
+- `5267`: current-release native macOS proof request.
+- `5268`: repaired production status, verified Hub/run-services branch, and
+  action-required protected-main conflict.

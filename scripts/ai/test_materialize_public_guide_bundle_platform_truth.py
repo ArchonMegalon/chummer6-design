@@ -29,6 +29,8 @@ class PublicGuidePlatformTruthTests(unittest.TestCase):
                     ],
                 },
                 release_truth_packet={
+                    "authority_binding_status": "bound",
+                    "release_posture": "stable_ready",
                     "available_platforms": ["Windows", "Linux"],
                     "missing_platforms": [],
                 },
@@ -54,6 +56,8 @@ class PublicGuidePlatformTruthTests(unittest.TestCase):
                     ],
                 },
                 release_truth_packet={
+                    "authority_binding_status": "bound",
+                    "release_posture": "stable_ready",
                     "published_line": "Published: July 4, 2026 at 17:48 UTC.",
                     "release_status": "Published",
                     "shelf_truth_line": "Windows and Linux downloads are posted.",
