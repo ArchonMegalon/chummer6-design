@@ -213,7 +213,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
         self.assertIn("macOS does not have a normal installer yet.", status)
         self.assertNotIn("Still missing from the public download page", status)
 
-    def test_generate_download_uses_bound_publication_status_not_product_readiness(self) -> None:
+    def test_generate_download_withholds_bound_artifacts_while_review_is_required(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             out_dir = Path(temp_dir)
             MODULE._generate_download(
@@ -236,7 +236,7 @@ class ReleaseTruthWordingTests(unittest.TestCase):
                                 "platformLabel": "Windows x64",
                                 "head": "avalonia",
                                 "kind": "installer",
-                                "downloadUrl": "https://chummer.run/downloads/install/avalonia-win-x64-installer",
+                                "publicInstallRoute": "/downloads/install/avalonia-win-x64-installer",
                                 "sha256": "a" * 64,
                                 "sizeBytes": 42,
                                 "installAccessClass": "open_public",
@@ -250,9 +250,17 @@ class ReleaseTruthWordingTests(unittest.TestCase):
 
             download = (out_dir / "DOWNLOAD.md").read_text(encoding="utf-8")
 
-        self.assertIn("## Current public download", download)
-        self.assertIn("Where an installer exists, start there.", download)
-        self.assertNotIn("until the release is published", download)
+        self.assertIn("## Release review", download)
+        self.assertIn("Windows artifact metadata is listed for review", download)
+        self.assertIn("Access: Listed for review; download handoff withheld.", download)
+        self.assertIn("Review route (currently withheld)", download)
+        self.assertIn(
+            "https://chummer.run/downloads/install/avalonia-win-x64-installer",
+            download,
+        )
+        self.assertNotIn("Access: Public download.", download)
+        self.assertNotIn("Download: [Open download]", download)
+        self.assertNotIn("Where an installer exists, start there.", download)
 
 if __name__ == "__main__":
     unittest.main()

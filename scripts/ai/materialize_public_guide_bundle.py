@@ -1447,11 +1447,60 @@ def _release_authority_is_unbound_review(release_truth_packet: dict[str, object]
     return str(release_truth_packet.get("authority_binding_status") or "").strip() != "bound"
 
 
+def _release_review_required(release_truth_packet: dict[str, object]) -> bool:
+    return (
+        _release_authority_is_unbound_review(release_truth_packet)
+        or str(release_truth_packet.get("release_posture") or "").strip() == "review_required"
+        or str(release_truth_packet.get("release_decision_status") or "").strip() == "review_required"
+    )
+
+
+def _review_shelf_truth_line(
+    release_truth_packet: dict[str, object],
+    artifacts: list[dict[str, object]],
+) -> str:
+    platforms = _release_truth_available_platform_labels(release_truth_packet, artifacts)
+    if platforms:
+        return (
+            f"{_english_join(platforms)} artifact metadata is listed for review; "
+            "download handoff is withheld."
+        )
+    return "No public desktop download is listed while release review is open."
+
+
+def _resolved_shelf_truth_line(
+    release_truth_packet: dict[str, object],
+    status: object,
+    artifacts: list[dict[str, object]],
+) -> str:
+    if _release_review_required(release_truth_packet):
+        return _review_shelf_truth_line(release_truth_packet, artifacts)
+    return (
+        str(release_truth_packet.get("shelf_truth_line") or "").strip()
+        or _public_shelf_truth_line(status, artifacts)
+    )
+
+
+def _resolved_architecture_scope_line(
+    release_truth_packet: dict[str, object],
+    artifacts: list[dict[str, object]],
+) -> str:
+    if _release_review_required(release_truth_packet):
+        platforms = _release_truth_available_platform_labels(release_truth_packet, artifacts)
+        if platforms:
+            return (
+                f"Desktop artifact metadata is recorded for {_english_join(platforms)}; "
+                "this is not a download-availability claim."
+            )
+        return "No desktop platform availability is claimed while release review is open."
+    return (
+        str(release_truth_packet.get("architecture_scope_line") or "").strip()
+        or _public_architecture_scope_line(artifacts)
+    )
+
+
 def _release_review_banner(release_truth_packet: dict[str, object]) -> str:
-    if (
-        not _release_authority_is_unbound_review(release_truth_packet)
-        and str(release_truth_packet.get("release_posture") or "").strip() != "review_required"
-    ):
+    if not _release_review_required(release_truth_packet):
         return ""
     return str(release_truth_packet.get("review_required_banner") or "").strip() or (
         "Release review required. Public availability claims remain paused until one immutable "
@@ -1688,12 +1737,12 @@ def _public_install_section(
         return dict(section)
     rendered = dict(section)
     rendered["heading"] = "Download and install status"
-    if _release_authority_is_unbound_review(release_truth_packet or {}):
+    if _release_review_required(release_truth_packet or {}):
         rendered["body"] = (
-            "Release review is required. This guide does not claim that an installer or package is currently available."
+            "Release review is required. Artifact metadata may remain inspectable, but this guide does not claim that an installer or package is currently available."
         )
         rendered["bullets"] = [
-            "Check Download for the current review posture; do not rely on an older platform or package claim.",
+            "Check Download for the current review posture; listed routes may stay withheld until authority and public delivery converge.",
             "Keep an existing working install while the immutable Registry authority and public routes converge.",
             "Contact support if you need help with a package you already have.",
         ]
@@ -1742,14 +1791,31 @@ def _public_install_section(
     return rendered
 
 
-def _assert_public_bundle_language(out_dir: Path) -> None:
+def _assert_public_bundle_language(
+    out_dir: Path,
+    release_truth_packet: dict[str, object] | None = None,
+) -> None:
     errors: list[str] = []
+    review_forbidden = (
+        "Access: Public download.",
+        "downloads are posted.",
+        "Desktop downloads are available",
+        "Start with a visibly posted preview installer",
+        "Download: [Open download]",
+        "Posture: Current primary public route",
+    )
     for path in sorted(out_dir.rglob("*.md")):
         body = path.read_text(encoding="utf-8")
         lowered = body.lower()
         for phrase in PUBLIC_COPY_BANNED_PHRASES:
             if phrase in lowered:
                 errors.append(f"{path.relative_to(out_dir)}: banned public copy phrase {phrase!r}")
+        if release_truth_packet and _release_review_required(release_truth_packet):
+            for phrase in review_forbidden:
+                if phrase in body:
+                    errors.append(
+                        f"{path.relative_to(out_dir)}: review-required copy overclaims availability with {phrase!r}"
+                    )
     if errors:
         raise SystemExit("public_bundle_language_failed:\n- " + "\n- ".join(errors))
 
@@ -1807,6 +1873,7 @@ def _generate_root(
     phase = _release_phase_label(release_truth_packet, progress, "Current product posture")
     gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
+    review_required = _release_review_required(release_truth_packet)
     post_audit_closed = _load_registry_status(POST_AUDIT_REGISTRY) == "complete"
     active_registry_status = _load_registry_status(ACTIVE_WAVE_REGISTRY)
     active_wave = _current_recommended_wave()
@@ -1816,7 +1883,11 @@ def _generate_root(
     artifacts = _release_truth_artifacts(release_payload, release_truth_packet)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     published = _release_is_published(release_payload.get("status"))
-    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(release_payload.get("status"), artifacts)
+    shelf_truth = _resolved_shelf_truth_line(
+        release_truth_packet,
+        release_payload.get("status"),
+        artifacts,
+    )
     primary_jobs = [
         item
         for item in (primary_route_registry.get("jobs") or [])
@@ -1854,7 +1925,11 @@ def _generate_root(
         landing_manifest.get("product_flagship_boundary_line")
         or "Preview proof, fallback routes, and artifact explainers can show real progress, but flagship wording is reserved for surfaces that independently clear the flagship acceptance bar."
     ).strip()
-    desktop_pick_line = str(release_truth_packet.get("desktop_pick_line") or "").strip() or (
+    desktop_pick_line = (
+        "Installer metadata remains inspectable, but no download handoff is offered while release review is open."
+        if review_required
+        else str(release_truth_packet.get("desktop_pick_line") or "").strip()
+    ) or (
         "For today, start with Avalonia. Treat Blazor Desktop as the alternate only when a support page points you there."
         if fallback_apps
         else f"If more than one desktop app is offered, start with the {primary_app}."
@@ -1864,8 +1939,13 @@ def _generate_root(
         if families_below_gold
         else "Character math is already solid. The rough edges are mostly installer polish, update polish, and support polish."
     )
-    short_release_summary = str(release_truth_packet.get("short_release_summary") or "").strip() or "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time."
-    architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
+    short_release_summary = (
+        "Release review is required. Inspect the recorded artifact metadata, but do not rely on a download route until public delivery converges."
+        if review_required
+        else str(release_truth_packet.get("short_release_summary") or "").strip()
+        or "Use the files linked on [Download](DOWNLOAD.md). If your platform is missing or preview-only, wait before switching full time."
+    )
+    architecture_scope_line = _resolved_architecture_scope_line(release_truth_packet, artifacts)
 
     cta_map = {
         "start_here": "- [Start here](START_HERE.md)",
@@ -1943,7 +2023,7 @@ def _generate_root(
                 "",
             ]
         )
-    elif unbound_review:
+    elif review_required:
         rows.extend(
             [
                 "- No release shelf is claimed until the immutable Registry authority and public pages converge.",
@@ -2092,12 +2172,17 @@ def _generate_from_chummer5a_to_chummer6(
     missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
     gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
-    architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
+    review_required = _release_review_required(release_truth_packet)
+    architecture_scope_line = _resolved_architecture_scope_line(release_truth_packet, artifacts)
     packet_quality_line = str(release_truth_packet.get("quality_gap_line") or "").strip()
-    packet_shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip()
+    packet_shelf_truth = _resolved_shelf_truth_line(
+        release_truth_packet,
+        release_payload.get("status"),
+        artifacts,
+    )
     rules_gap_line = (
         packet_quality_line
-        if unbound_review and packet_quality_line
+        if review_required and packet_quality_line
         else
         "Some rules coverage is still moving, so keep treating this as a preview."
         if below_gold
@@ -2106,7 +2191,9 @@ def _generate_from_chummer5a_to_chummer6(
         else "Character math is not the main thing to worry about now. The rougher edges are installer polish, update polish, and support polish."
     )
     switch_now_line = (
-        f"Today you can try the current builds on {_english_join(available_platforms)}."
+        "Do not switch based on this guide yet; artifact metadata is inspectable, but download handoff remains withheld."
+        if review_required
+        else f"Today you can try the current builds on {_english_join(available_platforms)}."
         if available_platforms
         else "There are no public downloads posted right now, so this is not a practical switch yet."
     )
@@ -2160,7 +2247,7 @@ def _generate_from_chummer5a_to_chummer6(
             "- The current promoted shelf is supported for its stated scope; platforms outside that shelf need separate proof before promotion."
             if gold_supported
             else "- No release shelf is claimed until immutable authority and public-route convergence are complete."
-            if unbound_review
+            if review_required
             else "- Treat the current shelf as a serious preview, not a fully settled every-platform replacement yet."
         ),
         "",
@@ -2173,8 +2260,8 @@ def _generate_from_chummer5a_to_chummer6(
         (
             "- The promoted Avalonia installer is a supported release path."
             if gold_supported
-            else "- No desktop build is approved in this guide yet."
-            if unbound_review
+            else "- Artifact metadata is visible, but no desktop download handoff is approved in this guide yet."
+            if review_required
             else "- It is worth a serious look."
         ),
         "",
@@ -2233,8 +2320,8 @@ def _generate_status(
     if not release_verification and not unbound_review:
         release_verification = _public_release_proof_summary(release_payload)
     published_label = "Published" if _release_is_published(raw_status) else "Last refreshed"
-    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(raw_status, artifacts)
-    architecture_scope = str(release_truth_packet.get("architecture_scope_line") or "").strip() or _public_architecture_scope_line(artifacts)
+    shelf_truth = _resolved_shelf_truth_line(release_truth_packet, raw_status, artifacts)
+    architecture_scope = _resolved_architecture_scope_line(release_truth_packet, artifacts)
     known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip()
     if not known_issues and not unbound_review:
         known_issues = _public_known_issue_summary(release_payload)
@@ -2314,13 +2401,18 @@ def _generate_now_pages(
 ) -> None:
     artifacts = _release_truth_artifacts(release_payload, release_truth_packet)
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
+    review_required = _release_review_required(release_truth_packet)
     phase = _release_phase_label(release_truth_packet, progress, "Preview")
     release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(release_payload.get("status") or "unpublished")
     published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = "" if unbound_review else _format_public_datetime(release_payload.get("publishedAt") or "")
     version = "" if unbound_review else _public_build_label(str(release_payload.get("version") or "").strip())
-    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(release_payload.get("status"), artifacts)
-    architecture_scope_line = str(release_truth_packet.get("architecture_scope_line") or "").strip()
+    shelf_truth = _resolved_shelf_truth_line(
+        release_truth_packet,
+        release_payload.get("status"),
+        artifacts,
+    )
+    architecture_scope_line = _resolved_architecture_scope_line(release_truth_packet, artifacts)
     missing_platforms = _release_truth_missing_platform_labels(release_truth_packet, artifacts)
     missing_installer_lane_line = str(release_truth_packet.get("missing_installer_lane_line") or "").strip()
     recent_checks = str(release_truth_packet.get("release_verification_summary") or "").strip()
@@ -2412,6 +2504,7 @@ def _generate_help(
     trust_pages = _trust_pages(trust_payload)
     help_page = trust_pages.get("help", {})
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
+    review_required = _release_review_required(release_truth_packet)
     rows = [
         _front_matter("Help", "products/chummer/PUBLIC_HELP_COPY.md"),
         "# Help",
@@ -2422,7 +2515,7 @@ def _generate_help(
         "",
         (
             "- **Installer will not start:** No current installer is claimed by this guide while release review is open; contact support about a package you already have."
-            if unbound_review
+            if review_required
             else "- **Installer will not start:** Start with the recommended download for your platform, then contact support if setup still fails."
         ),
         "- **I cannot sign in:** Use the account recovery flow before trying random reinstall steps.",
@@ -2451,6 +2544,7 @@ def _generate_faq(
     platform_scope = _english_join(available_platforms) or "the platforms listed on Download"
     gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
+    review_required = _release_review_required(release_truth_packet)
     rows = [
         _front_matter("FAQ", "products/chummer/PUBLIC_FAQ_REGISTRY.yaml"),
         "# FAQ",
@@ -2462,7 +2556,7 @@ def _generate_faq(
             f"- **What platforms are publicly available today?** {platform_scope} are the current gold-supported public shelf."
             if gold_supported
             else "- **What platforms are publicly available today?** No platform availability is claimed until immutable authority and public-route convergence are complete."
-            if unbound_review
+            if review_required
             else f"- **What platforms are publicly available today?** {platform_scope} are the current public path; check Download for exact posture."
         ),
         "- **I use Chummer5a now. Where should I start?** Start with [What Chummer6 Is](WHAT_CHUMMER6_IS.md) and [Current status](NOW/current-status.md).",
@@ -2479,7 +2573,7 @@ def _generate_faq(
                     continue
                 question = str(entry.get("question") or "").strip()
                 answer = _public_copy(str(entry.get("answer") or "").strip())
-                if unbound_review and question.casefold() == "can i actually use this now?":
+                if review_required and question.casefold() == "can i actually use this now?":
                     answer = (
                         "Release review is required. Check Download and Status; this guide does not claim current public availability until immutable authority converges."
                     )
@@ -2500,6 +2594,7 @@ def _generate_download(
     phase = _release_phase_label(release_truth_packet, progress, "Current release status")
     gold_supported = _release_posture_is_gold_supported(release_truth_packet)
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
+    review_required = _release_review_required(release_truth_packet)
     artifacts = _release_truth_artifacts(release_payload, release_truth_packet)
     grouped_artifacts = _group_artifacts_by_platform(artifacts)
     authority = (
@@ -2562,13 +2657,13 @@ def _generate_download(
     }
     section_heading = (
         "Release review"
-        if unbound_review
+        if review_required
         else "Current public download"
         if _release_is_published(status)
         else "Current preview shelf"
     )
     timestamp_label = "Published" if _release_is_published(status) else "Last refreshed"
-    shelf_truth = str(release_truth_packet.get("shelf_truth_line") or "").strip() or _public_shelf_truth_line(status, artifacts)
+    shelf_truth = _resolved_shelf_truth_line(release_truth_packet, status, artifacts)
     flagship_head = str(release_experience.get("desktop_flagship_head") or "Chummer.Avalonia").strip()
     fallback_head = str(release_experience.get("desktop_fallback_head") or "Chummer.Blazor.Desktop").strip()
 
@@ -2577,7 +2672,11 @@ def _generate_download(
         "# Download",
         "",
         (
-            f"{_english_join(_release_truth_available_platform_labels(release_truth_packet, artifacts))} downloads start on `chummer.run`."
+            f"{_english_join(_release_truth_available_platform_labels(release_truth_packet, artifacts))} artifact metadata is listed for review on `chummer.run`; download handoff is withheld."
+            if review_required and _release_truth_available_platform_labels(release_truth_packet, artifacts)
+            else "Release review is open; no public download handoff is claimed."
+            if review_required
+            else f"{_english_join(_release_truth_available_platform_labels(release_truth_packet, artifacts))} downloads start on `chummer.run`."
             if _release_truth_available_platform_labels(release_truth_packet, artifacts)
             else "Public downloads start on `chummer.run` when a release is posted."
         ),
@@ -2592,11 +2691,21 @@ def _generate_download(
         rows[4:4] = [review_banner, ""]
     for platform_key in ("windows", "linux", "macos"):
         platform_label, missing_note = platform_expectations[platform_key]
-        rows.append(f"- {_platform_start_line(platform_label, grouped_artifacts.get(platform_key, []), missing_note)}")
+        platform_artifacts = grouped_artifacts.get(platform_key, [])
+        if review_required and platform_artifacts:
+            rows.append(
+                f"- {platform_label} artifact metadata is listed for review; the download handoff is withheld."
+            )
+        else:
+            rows.append(f"- {_platform_start_line(platform_label, platform_artifacts, missing_note)}")
     heads_present = {str(item.get("head") or "").strip().lower() for item in artifacts if isinstance(item, dict)}
     if {"avalonia", "chummer.avalonia"} & heads_present and {"blazor-desktop", "chummer.blazor.desktop"} & heads_present:
         rows.append("- If both Avalonia and Blazor appear for your platform, start with Avalonia. Use Blazor only if a page or support tells you to.")
-    rows.append("- You do not need GitHub for the normal download path.")
+    rows.append(
+        "- Do not use GitHub as a substitute download source while the official handoff is withheld."
+        if review_required
+        else "- You do not need GitHub for the normal download path."
+    )
     rows.append("- Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md).")
     rows.append("- For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md).")
 
@@ -2621,6 +2730,8 @@ def _generate_download(
     rows.append(
         "- These are the current gold-supported builds for the stated public platform and desktop-head scope."
         if gold_supported
+        else "- Artifact metadata and hashes are preserved for review; no download availability claim is made."
+        if review_required
         else "- No release build is listed in this guide yet."
         if unbound_review
         else "- These are real preview builds, not a finished flagship release yet."
@@ -2635,7 +2746,11 @@ def _generate_download(
             "",
             "## Current build matrix",
             "",
-            "Use chummer.run for downloads. Use GitHub only when you want source or a public bug thread.",
+            (
+                "Artifact metadata and official route names remain inspectable below; the routes are withheld until release review clears."
+                if review_required
+                else "Use chummer.run for downloads. Use GitHub only when you want source or a public bug thread."
+            ),
         ]
     )
 
@@ -2650,22 +2765,34 @@ def _generate_download(
             artifact_kind = _public_artifact_kind_label(str(artifact.get("kind") or "artifact").strip() or "artifact")
             platform_name = str(artifact.get("platformLabel") or platform_label).strip()
             rows.append(f"- {_artifact_label_with_kind(platform_name, artifact_kind)}.")
-            posture_line = _artifact_posture_line(
-                artifact,
-                published=_release_is_published(status),
-                flagship_head=flagship_head,
-                fallback_head=fallback_head,
+            posture_line = (
+                "Posture: Listed for review; download handoff is withheld."
+                if review_required
+                else _artifact_posture_line(
+                    artifact,
+                    published=_release_is_published(status),
+                    flagship_head=flagship_head,
+                    fallback_head=fallback_head,
+                )
             )
             if posture_line:
                 rows.append(f"- {posture_line}")
             if artifact.get("downloadUrl"):
-                rows.append(f"- Download: [Open download]({artifact['downloadUrl']})")
+                rows.append(
+                    f"- Review route (currently withheld): [Inspect route]({artifact['downloadUrl']})"
+                    if review_required
+                    else f"- Download: [Open download]({artifact['downloadUrl']})"
+                )
             if artifact.get("fileName"):
                 rows.append(f"- File: `{artifact['fileName']}`")
             rows.append(f"- Size: {_format_size_bytes(artifact.get('sizeBytes'))}")
             access_class = str(artifact.get("installAccessClass") or "").strip()
             if access_class:
-                rows.append(f"- Access: {_public_access_label(access_class)}.")
+                rows.append(
+                    "- Access: Listed for review; download handoff withheld."
+                    if review_required
+                    else f"- Access: {_public_access_label(access_class)}."
+                )
             update_feed = str(artifact.get("updateFeedUrl") or "").strip()
             if update_feed:
                 rows.append(f"- Update feed: `{update_feed}`")
@@ -2673,7 +2800,9 @@ def _generate_download(
     rows.extend(["", "## Current package format", ""])
     if artifacts:
         installer_artifacts = [item for item in artifacts if str(item.get("kind") or "").strip() == "installer"]
-        if installer_artifacts:
+        if review_required:
+            rows.append("- Installer metadata and checksums remain inspectable, but the listed handoff routes are withheld until release review clears.")
+        elif installer_artifacts:
             if _release_is_published(status):
                 rows.append("- Where an installer exists, start there. Archive packages are fallback or recovery paths, not the normal first pick.")
             else:
@@ -2683,17 +2812,18 @@ def _generate_download(
                 rows.append("- Setup currently starts from a downloaded package because there is no posted installer.")
             else:
                 rows.append("- Setup currently starts from a downloaded package because there is no posted installer yet.")
-        rows.extend(
-            _bullet_lines(
-                [
-                    (
-                        f"{_artifact_label_with_kind(str(item.get('platformLabel') or item.get('platform') or 'Published build').strip(), _public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact'))} via "
-                        f"{_titled_public_link(str(item.get('downloadUrl') or '').strip()) if str(item.get('downloadUrl') or '').strip() else str(item.get('fileName') or '').strip()}"
-                    )
-                    for item in artifacts
-                ]
+        if not review_required:
+            rows.extend(
+                _bullet_lines(
+                    [
+                        (
+                            f"{_artifact_label_with_kind(str(item.get('platformLabel') or item.get('platform') or 'Published build').strip(), _public_artifact_kind_label(str(item.get('kind') or 'artifact').strip() or 'artifact'))} via "
+                            f"{_titled_public_link(str(item.get('downloadUrl') or '').strip()) if str(item.get('downloadUrl') or '').strip() else str(item.get('fileName') or '').strip()}"
+                        )
+                        for item in artifacts
+                    ]
+                )
             )
-        )
     else:
         if _release_is_published(status):
             rows.append("- No downloads are posted right now.")
@@ -3110,7 +3240,7 @@ def generate_bundle(repo_root: Path, out_dir: Path, *, derivative_fallback_root:
     _copy_chummer6_owned_public_guide_supplements(out_dir, repo_root)
     _generate_now_pages(out_dir, progress, release_payload, release_truth_packet)
     _generate_manifest(out_dir, manifest)
-    _assert_public_bundle_language(out_dir)
+    _assert_public_bundle_language(out_dir, release_truth_packet)
 
 
 def _collect_files(root: Path) -> list[Path]:

@@ -31,8 +31,9 @@ def test_generate_mobile_part_keeps_native_flow_and_release_boundary(
     assert "linked online runners and groups open in native screens" in rendered
     assert "choose or create a runner" in rendered
     assert "Play Store updates stay inside the app" in rendered
-    assert "full API 36 Debug builds for arm64 and x64" in rendered
-    assert "has not been published to the Play Store" in rendered
+    assert "phone and distinct tablet profiles each pass 19 of 19" in rendered
+    assert "preview.7 is available only through Google Play Internal testing" in rendered
+    assert "A real-device Play install has not yet been recorded" in rendered
     assert "digest-bound operator handoff" not in rendered
 
 
@@ -422,12 +423,15 @@ def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: 
     guide._generate_now_pages(tmp_path, {}, release_payload, packet)
 
     download = (tmp_path / "DOWNLOAD.md").read_text(encoding="utf-8")
-    assert "Windows downloads start on `chummer.run`." in download
+    assert "Windows artifact metadata is listed for review on `chummer.run`; download handoff is withheld." in download
     assert "Windows and Linux downloads start" not in download
     assert (
-        "[Open download](https://chummer.run/downloads/install/windows-installer)"
+        "[Inspect route](https://chummer.run/downloads/install/windows-installer)"
         in download
     )
+    assert "Access: Listed for review; download handoff withheld." in download
+    assert "Access: Public download." not in download
+    assert "Download: [Open download]" not in download
     assert "/downloads/g/generation-1/files" not in download
     assert banner in download
     assert banner in (tmp_path / "STATUS.md").read_text(encoding="utf-8")

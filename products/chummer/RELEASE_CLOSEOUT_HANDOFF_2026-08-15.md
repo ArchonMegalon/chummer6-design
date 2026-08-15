@@ -141,6 +141,11 @@ runner attach/remove with restored editable identity.
   `public_release_review_required`, supportability `review_required`, and only
   Linux x64 plus Windows x64 artifacts. The macOS proof route returned HTTP 404
   with `review_required`, as required by the fail-closed posture.
+- Both platform `get`, `install`, and generation-file handoffs returned HTTP
+  409. The current Hub generation retains exact local Linux and Windows bytes
+  matching the listed hashes and passing candidate-bound startup receipts, but
+  the public guide must describe them only as artifact metadata listed for
+  review, not as downloadable files.
 - The local macOS startup receipt passes only for older preview
   `run-20260701-124648`; it is not evidence for the current release. The current
   Registry checkout exposes no immutable `CURRENT.json`, while the live release
@@ -154,6 +159,13 @@ runner attach/remove with restored editable identity.
   sync, first-impression, link, video/audio, and 117 Chummer6 unit checks pass;
   the strict immutable-authority verifier remains unavailable because the
   required Registry `CURRENT.json` is absent.
+- The public-guide generator now treats any `review_required` packet, including
+  a bound packet with artifact rows, as availability-withheld. It renders review
+  routes and hashes without `Public download`, `Open download`, or `downloads
+  are posted` claims and fails generation if those phrases reappear. The
+  Chummer6 release-packet materializer carries the same rule for future
+  authority-bound regenerations; the checked-in packet itself cannot be
+  regenerated until its immutable authority input is restored.
 
 ## Continuation order
 
