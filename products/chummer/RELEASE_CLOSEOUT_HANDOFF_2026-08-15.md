@@ -100,7 +100,7 @@ runner attach/remove with restored editable identity.
 
 ## Repository closeout state
 
-- Android `main` is pushed and remote-verified at `d1a4b13` with `[skip ci]`.
+- Android `main` is pushed and remote-verified at `9df740a` with `[skip ci]`.
 - This handoff was merged with `[skip ci]`, pushed to design `main`, and
   remote-verified at `5ecb445e250bd67f05461a191f27172afabc0201` before
   the live-closeout and public-guide follow-up below was added.
@@ -193,7 +193,7 @@ runner attach/remove with restored editable identity.
    changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
    diagnostic commit is on `main` until remote truth changes from `972311c44`.
 2. Keep reproductions pinned to presentation `131eef14e` and Android main
-   `d1a4b13` with x64 APK SHA256
+   `9df740a` with x64 APK SHA256
    `9ae8a5b3fae1ce86935908b0328bd528235cf5e633feb0ff145965fc25a9dc94`
    until a newer candidate is built and re-receipted.
 3. Resume the 1,772-row inventory by highest-impact missing phone editor group.
@@ -618,3 +618,39 @@ Telegram updates were delivered through the live EA runtime:
   install or candidate OAuth artifact is present, and current macOS/stable
   authority remains missing. Generator-owned Chummer6 public documentation was
   therefore left unchanged.
+
+## Complete character-settings contract audit at 2026-08-15 16:58 UTC
+
+- Android `main` is pushed and remote-aligned at `9df740a` (`docs(android):
+  audit character settings contract [skip ci]`). The commit changes no runtime
+  source and does not invalidate the sealed APK or its receipts. No GitHub
+  Action was used.
+- The new source-owned generator materializes
+  `chummer-android/docs/CHUMMER5_CHARACTER_SETTINGS_CONTRACT.generated.json`
+  directly from the 2,229-row inventory, Chummer5 `EditCharacterSettings.cs`,
+  `CharacterSettings.cs`, and the built-in settings XML. It resolves all 162
+  edit-parity controls: 149 value fields and 13 profile or collection actions.
+- Each row names the exact Chummer5 `CharacterSettings` property or profile
+  operation, XML persistence path, built-in Standard value when present, event
+  wiring, legacy line, and inventory identity. Nested karma costs, sourcebook
+  sets, banned-grade sets, redliner exclusions, and ordered custom-data
+  directories retain their collection paths instead of being flattened into
+  misleading scalar fields.
+- Computed properties with dependent backing fields have explicit exact-path
+  overrides so the generator cannot overstate a control's mutation target.
+  The audit also records two relevant legacy wiring defects without using them
+  to claim implementation: the Reaction encumbrance checkbox is bound a second
+  time to the wound-modifier property while the dedicated wound checkbox is
+  unbound, and `chkUnclampAttributeMinimum` is present but unbound. The phone
+  implementation must expose both intended values independently.
+- The contract is deliberately marked `implementationEvidence: false`; phone
+  inventory counts remain 94 verified, 30 pending, and 1,394 missing. Its four
+  focused tests, deterministic `--check`, `git diff --check`, and the complete
+  Android suite pass at 134 tests plus 5 subtests. The required vexp audit was
+  attempted again and its MCP transport remained closed.
+- The current four-preference `dialog.character_settings` is now explicitly
+  identified as a placeholder, not Chummer5 settings parity. The next runtime
+  slice must add a durable multi-profile settings store and a sectioned phone
+  editor driven by this complete contract, including save/save-as/rename/delete,
+  sourcebooks, and ordered custom-data directory operations before any of the
+  162 rows can be promoted.
