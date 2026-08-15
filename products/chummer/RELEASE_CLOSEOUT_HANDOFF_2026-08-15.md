@@ -24,8 +24,9 @@ authority and is intentionally fail-closed:
 - 2,229 Chummer5 UI rows reviewed
 - 1,775 rows require edit parity
 - 454 rows are proven non-mutating
-- phone: 1,417 rows still marked `missing`
-- tablet: 1,557 rows still marked `missing`
+- 528 rows have completion proof, including the non-mutating rows
+- phone: 1,413 rows still marked `missing`
+- tablet: 1,553 rows still marked `missing`
 
 Do not convert a green representative E2E receipt into a claim that every
 Chummer5 editor is implemented. Continue row by row until the generated
@@ -182,8 +183,10 @@ runner attach/remove with restored editable identity.
    Do not claim presentation `main` contains `3bf28215e` until remote truth
    changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
    diagnostic commit is on `main` until remote truth changes from `972311c44`.
-2. Keep reproductions pinned to presentation `3bf28215e` and Android
-   `6ab991d`/main `f57842d` until a newer candidate is built and re-receipted.
+2. Keep reproductions pinned to presentation `3bf28215e` and Android main
+   `1e026e0` with x64 APK SHA256
+   `02945fda284459e9d4444835381db67e6554366ff283b9016b0af0db34b34d8c`
+   until a newer candidate is built and re-receipted.
 3. Resume the 1,775-row inventory by highest-impact missing editor group. For
    each row, add one shared durable mutation plus phone/tablet routes and local
    process-restart evidence before upgrading its status.
@@ -281,3 +284,39 @@ Telegram updates were delivered through the live EA runtime:
 - `5267`: current-release native macOS proof request.
 - `5268`: repaired production status, verified Hub/run-services branch, and
   action-required protected-main conflict.
+- `5275`: refreshed full-goal ETA of 12–24 weeks plus the current API 36
+  phone/tablet contact, pet, and condition-monitor progress.
+
+## Android contact/pet parity slice at 2026-08-15 12:53 UTC
+
+- Android `main` is pushed and remote-aligned at `1e026e0` (`feat(android):
+  prove contact and pet editing parity [skip ci]`). No GitHub Action was used.
+- The focused creation-mode fixture proves Chummer5-compatible contact and pet
+  validation, field/toggle edits, delete persistence, reload, and process
+  restart on both phone and the purpose-designed tablet master/detail surface.
+  Contact ratings are saved before the Group toggle because Group makes Loyalty
+  read-only under the canonical Chummer5 semantics.
+- Tracked receipts are
+  `chummer-android/docs/editability-evidence/api36-phone-contact-pet/receipt.json`
+  and
+  `chummer-android/docs/editability-evidence/api36-tablet-contact-pet/receipt.json`.
+  Fresh condition-monitor receipts for both profiles bind the same driver and
+  signed x64 Debug APK. All four receipts bind APK SHA256
+  `02945fda284459e9d4444835381db67e6554366ff283b9016b0af0db34b34d8c`.
+- The UI action wrapper now coalesces coordinator refreshes during mutations,
+  avoiding repeated visual-tree rebuilds that previously caused Android layout
+  ANRs. Phone collection sections surface existing entries before long action
+  lists; tablet retains separate navigation, collection, and inspector panes.
+- The source-owned inventory was regenerated and checked: 2,229 rows reviewed,
+  1,775 edit-parity rows, 454 non-mutating rows, and 528 completion-proven rows.
+  Phone has 74 API-36-verified, 34 pending-emulator, and 1,413 missing rows;
+  tablet has 74 API-36-verified, 4 pending-emulator, and 1,553 missing rows.
+- Local gates pass: 108 Python tests, inventory `--check`, `git diff --check`,
+  Android API 36 arm64 Debug build, and the native compile check. Both builds
+  report zero warnings and zero errors. The required vexp completion audit was
+  attempted but its MCP transport remained closed; do not describe that audit
+  as passing.
+- A fresh physical `adb` inventory is still empty. Play review/physical-install,
+  candidate OAuth, current native macOS, desktop stable authority, and the
+  remaining Chummer5 editor rows remain open. The honest full-goal ETA sent to
+  Telegram remains 12–24 weeks.
