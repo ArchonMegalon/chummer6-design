@@ -31,7 +31,7 @@ authority and is intentionally fail-closed:
 - 1,772 rows require edit parity
 - 457 rows are proven non-mutating
 - 531 rows have completion proof, including the non-mutating rows
-- phone: 1,407 rows still marked `missing`
+- phone: 1,398 rows still marked `missing`
 - tablet: 1,550 rows still marked `missing`
 
 Do not convert a green representative E2E receipt into a claim that every
@@ -195,7 +195,7 @@ runner attach/remove with restored editable identity.
    changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
    diagnostic commit is on `main` until remote truth changes from `972311c44`.
 2. Keep reproductions pinned to presentation `04594bffc` and Android main
-   `368a8a0` with x64 APK SHA256
+   `6c26027` with x64 APK SHA256
    `64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`
    until a newer candidate is built and re-receipted.
 3. Resume the 1,772-row inventory by highest-impact missing phone editor group.
@@ -505,3 +505,62 @@ Telegram updates were delivered through the live EA runtime:
   proof, candidate-bound OAuth, current native macOS proof, stable publication
   authority, presentation protected-main integration, and the remaining phone
   inventory are still open gates.
+
+## Phone metatype-priority proof and live-gate refresh at 2026-08-15 15:47 UTC
+
+- Android `main` is pushed and remote-aligned at
+  `6c26027` (`test(android): prove phone priority workflow [skip ci]`). No
+  production source was changed after the sealed APK was built; the new receipt
+  binds the same x64 candidate SHA256
+  `64bdf477d199ab60964b3303d85271aca0f3d9a02d6e191ac49f8eb665c52215`.
+  No GitHub Action was used.
+- The tracked fail-closed receipt is
+  `chummer-android/docs/editability-evidence/api36-phone-new-character-priority/receipt.json`.
+  It binds API 36, profile `phone`, the dedicated and shared drivers, dialog
+  factory/coordinator, native dialog and Build page sources, and the APK. The
+  phone journey edits the metatype filter, metatype, all five priority
+  allocations, and talent choice; commits creation; verifies exact character
+  XML; reads the metatype back in the Build UI; and repeats XML/UI verification
+  after force-stop and relaunch.
+- Nine `SelectMetatypePriority` controls are now phone-verified:
+  `cboCategory`, `lstMetatypes`, `cboHeritage`, `cboAttributes`, `cboTalent`,
+  `cboSkills`, `cboResources`, `cboTalents`, and `cmdOK`. The journey uses a
+  legal non-human Elf selection under the initial Heritage D constraint, then
+  commits the unique A/C/B/D/E priority allocation and Adept talent. Exact XML
+  values include `prioritymetatype=A,4`, `priorityattributes=C,2`,
+  `priorityspecial=B,3`, `priorityskills=D,1`, and `priorityresources=E,0`.
+  Metavariant, three conditional skill choices, possession toggle/method, and
+  force remain honestly missing; no broad form-level parity claim was made.
+- The regenerated inventory remains globally fail-closed at 531 completion-
+  proven rows while tablet is paused. Phone now has 90 API-36-verified, 30
+  pending-emulator, 1,398 missing, 110 partial-create-only, and 144 partial-
+  exact-saved-data rows. Tablet is unchanged at 74 verified, 4 pending, 1,550
+  missing, and 144 partial-exact rows.
+- The clean phone AVD booted in 39,782 ms, passed five consecutive API 36
+  service/settings checks, and was shut down after proof. Local gates pass:
+  inventory regeneration plus `--check`, 129 Python tests and 5 subtests, and
+  `git diff --check`. The required vexp pipeline and completion audit were both
+  attempted; its MCP transport remains closed and must not be described as
+  passing.
+- Fresh live truth at 15:28 UTC remains fail-closed. `/api/ready` returns
+  `ready=true`; durable Data Protection, PostgreSQL install-linking authority,
+  release shelf, and canonical manifest checks all pass. The active shelf is
+  still generation `gen-20260811T053520Z-58ee89edc36b431f`, preview
+  `run-20260802-160500`, published `2026-08-11T04:00:00Z`.
+- Public release truth still reports `public_release_review_required` and
+  `review_required`, with Registry commit, release-decision status and hashes,
+  and artifact handoff missing. The Downloads page still claims public count
+  `2`; both `get` routes, both generation-file routes, and both install routes
+  return HTTP 409 with missing authority-snapshot and decision-status headers.
+  This remains a public-UX contradiction, not downloadable installer proof.
+- Fresh approved-root intake found no preview.7/Play-install, candidate OAuth,
+  or current-release macOS artifact, and physical ADB inventory is empty. Play
+  review truth remains unverified because the reserved browser still awaits the
+  operator's sign-in completion report; it was not driven or inferred from the
+  product release gate. Candidate OAuth, physical Play install, current native
+  macOS proof, desktop stable authority, and protected-main integrations remain
+  open.
+- Generator-owned Chummer6 public documentation was not regenerated: current
+  evidence does not strengthen the existing review-withheld claims. The
+  8–16 week phone-first ETA remains unchanged, with external human/device and
+  authority gates able to extend calendar closeout.
