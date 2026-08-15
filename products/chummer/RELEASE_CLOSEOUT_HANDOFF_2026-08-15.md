@@ -195,7 +195,7 @@ runner attach/remove with restored editable identity.
    changes from `4333e546cb22daecb6b8d042f080c6a58cfef5f5`; do not claim the Hub/run-services
    diagnostic commit is on `main` until remote truth changes from `972311c44`.
 2. Keep reproductions pinned to presentation `3bf28215e` and Android main
-   `c536017` with x64 APK SHA256
+   `1758200` with x64 APK SHA256
    `02945fda284459e9d4444835381db67e6554366ff283b9016b0af0db34b34d8c`
    until a newer candidate is built and re-receipted.
 3. Resume the 1,775-row inventory by highest-impact missing phone editor group.
@@ -394,30 +394,35 @@ Telegram updates were delivered through the live EA runtime:
   parity the first implementation milestone. The active sequence is now phone
   implementation, phone API 36 proof, and phone inventory convergence; tablet
   implementation resumes only after that milestone.
-- Android remote `main` is clean and aligned at `c536017` (`test(android):
-  prove phone attribute editing [skip ci]`). The dedicated phone-only driver,
-  its fail-closed inventory binding, the tracked receipt, and deterministic
-  local restore hardening are integrated. No GitHub Action was used.
-- The tracked receipt is
-  `chummer-android/docs/editability-evidence/api36-phone-attributes/receipt.json`.
-  It binds API 36, profile `phone`, the dedicated and shared driver hashes, and
-  sealed x64 APK SHA256
+- Android remote `main` is clean and aligned at `1758200`. Commits `c536017`
+  and `1758200` integrate the phone-only creation and career Attribute drivers,
+  their fail-closed inventory bindings, both tracked receipts, and deterministic
+  local restore hardening. No GitHub Action was used.
+- The tracked receipts are
+  `chummer-android/docs/editability-evidence/api36-phone-attributes/receipt.json`
+  and
+  `chummer-android/docs/editability-evidence/api36-phone-career-attributes/receipt.json`.
+  Both bind API 36, profile `phone`, their driver/fixture chains, and sealed x64
+  APK SHA256
   `02945fda284459e9d4444835381db67e6554366ff283b9016b0af0db34b34d8c`.
   New-runner creation, Body Base and Karma edits, immediate readback, and
-  force-stop/relaunch persistence all pass.
+  force-stop/relaunch persistence all pass. A separate created-runner fixture
+  proves Body improvement, confirmed Burn Edge, and both resulting totals after
+  force-stop/relaunch.
 - The generated inventory remains globally fail-closed at 528 completion-
   proven rows because tablet evidence is paused. Phone API-36-verified rows rose
-  from 74 to 76 and pending-emulator rows fell from 34 to 32; phone missing
+  from 74 to 78 and pending-emulator rows fell from 34 to 30; phone missing
   remains 1,413. Tablet counts are deliberately unchanged: 74 verified, 4
-  pending, and 1,553 missing. Attribute Improve and Burn remain pending with no
-  E2E receipt.
+  pending, and 1,553 missing. All four legacy Attribute controls are now
+  phone-verified; none is counted as globally complete while tablet is paused.
 - The initial under-provisioned AVD runs were rejected after package/settings
-  Binder failures and `system_server` watchdog restarts. A clean API 36 phone
-  AVD with 4 cores and 4 GB RAM booted in 86,882 ms, passed five consecutive
-  service checks, and completed the real journey. The driver also now accepts
+  Binder failures and `system_server` watchdog restarts. Clean API 36 phone AVD
+  runs with 4 cores and 4 GB RAM booted in 86,882 ms and 52,984 ms, passed five
+  consecutive service checks, and completed both real journeys. The creation
+  driver also now accepts
   the valid phone state where Build restores directly into the nested
   Attributes route instead of exposing the overview selector.
-- Local gates pass: 113 Python tests, inventory `--check`, `git diff --check`,
+- Local gates pass: 117 Python tests, inventory `--check`, `git diff --check`,
   Android arm64 Debug build, and the platform-neutral native compile check.
   Both builds report zero warnings and zero errors. The required vexp
   completion audit was attempted again, but its MCP transport remained closed.
