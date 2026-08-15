@@ -286,6 +286,9 @@ Telegram updates were delivered through the live EA runtime:
   action-required protected-main conflict.
 - `5275`: refreshed full-goal ETA of 12–24 weeks plus the current API 36
   phone/tablet contact, pet, and condition-monitor progress.
+- `5277`: refreshed 12–24 week full-goal ETA, separated from the remaining
+  3–5 focused engineering days and explicitly conditioned on Play review,
+  physical-device, OAuth, macOS, and stable-release gates.
 
 ## Android contact/pet parity slice at 2026-08-15 12:53 UTC
 
@@ -320,3 +323,52 @@ Telegram updates were delivered through the live EA runtime:
   candidate OAuth, current native macOS, desktop stable authority, and the
   remaining Chummer5 editor rows remain open. The honest full-goal ETA sent to
   Telegram remains 12–24 weeks.
+
+## Public download authority gate at 2026-08-15 13:27 UTC
+
+- Production remains healthy. `https://chummer.run/api/ready` returns HTTP 200
+  with `ready=true`; deep readiness passes durable Data Protection storage,
+  PostgreSQL install-linking authority, the verified generation shelf, and the
+  published manifest. The active shelf remains generation
+  `gen-20260811T053520Z-58ee89edc36b431f`, preview release
+  `run-20260802-160500`, published `2026-08-11T04:00:00Z`.
+- Public release truth still reports `public_release_review_required` and
+  `review_required`. `registryCommit`, `releaseDecisionStatus`, both decision
+  hashes, and artifact handoff are missing. The live Downloads page nevertheless
+  renders `data-downloads-public-count="2"` and actionable Windows/Linux buttons.
+  Both installer routes return HTTP 409 with
+  `x-chummer-release-authority-snapshot-sha256: missing` and
+  `x-chummer-release-decision-status: missing`. This is a current public-UX
+  contradiction; it is not evidence that either installer is downloadable.
+- Hub commit `b83bbb33c06af00039f3b94509de5e210b336ce9` gates the Downloads
+  cards, links, and Linux setup command on `AvailabilityClaimsAllowed`. While
+  authority is withheld, the page shows review-safe metadata and an explicit
+  `Installer handoffs unavailable` state; public counts become zero while the
+  separate listed-installer count preserves audit metadata. The Status page
+  applies the same count semantics.
+- Local verification for that commit passes 77 focused release-trust/Windows
+  dispatch tests and 316 adjacent release-truth, Downloads chrome, dispatch,
+  projection, and HTTP contract tests. The isolated no-siblings package-plane
+  verifier passes 337 release-control Python tests, a zero-warning/zero-error
+  Release build, and 737 API tests under exact .NET SDK 10.0.103. Its receipt is
+  `/tmp/HUB_NO_SIBLINGS_PACKAGE_PLANE.download-gate-20260815.generated.json`,
+  SHA256 `4c641b0b1e6d7f7d90dedd49ebd2d0820b68544631019386ff2bba85ad63ad02`.
+  The pre-existing `SSH.NET` 2025.1.0 `NU1903` advisory remains separate from
+  this view-only change. The required vexp completion audit was attempted but
+  its MCP transport remains closed.
+- The commit is pushed to remote branch
+  `codex/release-truth-download-gate-20260815`. A direct fast-forward push to
+  Hub `main` was rejected by `GH006`: a pull request and two status checks are
+  required. No GitHub Action was started and branch protection was not bypassed;
+  remote `main` remained `972311c4408a51ede76224a66ae103e75cb2e53c`.
+- Fresh approved-root intake found no Play-install, OAuth-evidence, or stable
+  artifact. The only macOS match remains the 2026-07-26 scope-decision JSON,
+  which is not current native startup proof. ADB 36.0.0 reports no attached
+  device. The live Google OAuth redirect, state, nonce, and PKCE S256 handoff
+  passes structurally, but the candidate-bound v2 operator import remains
+  `waiting_for_artifact`; the v1 screenshots observed 2026-07-04 remain stale
+  for this release.
+- Generator-owned Chummer6 public documentation was deliberately left
+  unchanged: current evidence still proves only review-withheld metadata and
+  HTTP 409 handoffs, exactly matching its existing claims. Regeneration would
+  not authorize a stronger statement.
