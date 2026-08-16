@@ -1798,7 +1798,6 @@ def _assert_public_bundle_language(
     errors: list[str] = []
     review_forbidden = (
         "Access: Public download.",
-        "downloads are posted.",
         "Desktop downloads are available",
         "Start with a visibly posted preview installer",
         "Download: [Open download]",
@@ -1815,6 +1814,12 @@ def _assert_public_bundle_language(
                 if phrase in body:
                     errors.append(
                         f"{path.relative_to(out_dir)}: review-required copy overclaims availability with {phrase!r}"
+                    )
+            for line in body.splitlines():
+                normalized_line = line.strip().lstrip("-").strip().lower()
+                if "downloads are posted." in normalized_line and not normalized_line.startswith("no "):
+                    errors.append(
+                        f"{path.relative_to(out_dir)}: review-required copy overclaims availability with 'downloads are posted.'"
                     )
     if errors:
         raise SystemExit("public_bundle_language_failed:\n- " + "\n- ".join(errors))

@@ -262,5 +262,21 @@ class ReleaseTruthWordingTests(unittest.TestCase):
         self.assertNotIn("Download: [Open download]", download)
         self.assertNotIn("Where an installer exists, start there.", download)
 
+    def test_review_language_allows_an_explicit_no_downloads_statement(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out_dir = Path(temp_dir)
+            (out_dir / "DOWNLOAD.md").write_text(
+                "# Download\n\nNo public downloads are posted right now.\n",
+                encoding="utf-8",
+            )
+
+            MODULE._assert_public_bundle_language(
+                out_dir,
+                {
+                    "release_posture": "review_required",
+                    "release_decision_status": "review_required",
+                },
+            )
+
 if __name__ == "__main__":
     unittest.main()
