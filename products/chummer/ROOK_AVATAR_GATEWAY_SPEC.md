@@ -95,7 +95,7 @@ ownerId
 workspaceId + workspaceRevision
 characterId
 optional campaignId
-rulesetId + runtimeFingerprint
+rulesetId + rulesetProfileId + runtimeFingerprint
 sourceDigest + sourcebookFingerprint
 customDataFingerprint + gmPolicyFingerprint
 scenarioId
@@ -147,9 +147,39 @@ Allowed actions are limited to Chummer-owned navigation such as `chummer.open_ru
 
 The natural-language `question` is conversation/audit input, not by itself a deterministic rules invocation. A resolved answer additionally requires a Core-owned mapping to a versioned capability/intent ID and validated typed arguments. A UI-bound subject may supply that typed target directly. A freeform question may be classified into candidate intents, but Core must validate one unambiguous supported target; ambiguity, missing arguments or an unsupported capability returns `unresolved` and may request clarification.
 
+The provider-to-Hub request may retain `question` and `subject_id` for conversation and audit, but its authority-bearing portion is a versioned object:
+
+```text
+contractName = chummer.avatar-rule-intent/v1
+intentId + intentVersion
+capabilityId + invocationKind
+typed arguments
+```
+
+Hub authenticates the context before deciding whether that object is missing or unsupported, so the ordinary provider response can safely say `typed-intent-required` or `typed-intent-unsupported` without leaking context existence. A malformed object is rejected as a request error. Hub never classifies, repairs, renames, reorders, defaults, or coerces the intent or its arguments.
+
+The Hub-to-Core request contains no question or other natural-language field. Its phase-one authority contract is:
+
+```text
+contractVersion = chummer.avatar-rule-authority/v1
+intentId + intentVersion
+capabilityId + invocationKind
+subjectId
+typed arguments
+expectedBinding:
+  rulesetId
+  rulesetProfileId
+  runtimeFingerprint
+  workspaceRevision
+```
+
+`rulesetProfileId` is a distinct context binding established by authenticated minting. It must never be inferred from `characterId`, a display label, provider text, or another identifier. The idempotent payload digest includes the entire ordered typed invocation and expected binding while excluding only the fresh nonce used on the provider-to-Hub call.
+
 The current mechanical kernel is `IRulesetCapabilityHost.InvokeAsync` with `RulesetExecutionOptions(Explain: true)`, producing canonical output plus `RulesetExplainTrace`. A new Core-owned authority resolver must sit in front of that kernel and a new source resolver must convert rule evidence into page-backed `SourceAnchor` objects. Hub may project/localize those receipts but may not invent capability arguments, evidence or anchors.
 
 Current implementation truth is intentionally restrictive: baseline SR4/SR5/SR6 hosts expose only `derive.stat`, `derive.initiative` and `session.quick-actions`, their generic traces do not yet provide full rule references/source anchors, and no general source-anchor/local-route resolver exists. Therefore no broad natural-language rule-answer readiness may be claimed. Until a requested typed capability and its evidence path are implemented, the only correct result is `unresolved`/`unavailable`.
+
+The first honest vertical slice is intentionally narrow: `rules.session.quick-actions` version `1` maps to SR6 `session.quick-actions` with invocation kind `script` and the existing SR6 action-economy anchors. SR4, SR5, derived-stat, initiative and every unanchored or unknown tuple remain unresolved until their own typed descriptor, executor and evidence path are implemented and tested. This narrow admission is a release-truth constraint, not permission to route arbitrary capability names through the host.
 
 ## Build Ghost and Build Lab response
 
