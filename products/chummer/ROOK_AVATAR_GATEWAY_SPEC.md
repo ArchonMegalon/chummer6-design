@@ -1,6 +1,6 @@
 # Rook Avatar Gateway
 
-Status: approved implementation contract
+Status: approved design; implementation deferred until the phone-first app goal is complete
 Updated: 2026-08-25
 Owner: Chummer Core + Hub; Tough Tongue is presentation only
 
@@ -168,12 +168,16 @@ subjectId
 typed arguments
 expectedBinding:
   rulesetId
-  rulesetProfileId
+  profileId (the distinct ruleset profile identity)
   runtimeFingerprint
+  sourceDigest + sourcebookFingerprint
+  customDataFingerprint + gmPolicyFingerprint
   workspaceRevision
 ```
 
 `rulesetProfileId` is a distinct context binding established by authenticated minting. It must never be inferred from `characterId`, a display label, provider text, or another identifier. The idempotent payload digest includes the entire ordered typed invocation and expected binding while excluding only the fresh nonce used on the provider-to-Hub call.
+
+Core resolves the active binding from an injected, subject-bound authority resolver; it does not accept Hub's `expectedBinding` as proof of current state. Request binding, active binding and the selected Core profile must agree exactly. The capability invocation receives that active binding, and its explain trace must echo the exact runtime/profile values. Blank or mismatched trace bindings, output/trace value disagreement, changed source/custom/GM fingerprints, or a subject not present in the resolver all fail closed.
 
 The current mechanical kernel is `IRulesetCapabilityHost.InvokeAsync` with `RulesetExecutionOptions(Explain: true)`, producing canonical output plus `RulesetExplainTrace`. A new Core-owned authority resolver must sit in front of that kernel and a new source resolver must convert rule evidence into page-backed `SourceAnchor` objects. Hub may project/localize those receipts but may not invent capability arguments, evidence or anchors.
 
