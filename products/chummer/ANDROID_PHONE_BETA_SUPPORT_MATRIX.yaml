@@ -1,0 +1,285 @@
+{
+  "schema": "chummer.android_phone_beta_support_matrix.v1",
+  "owner": "chummer6-design",
+  "updated": "2026-08-25",
+  "status": "contract_defined_evidence_pending",
+  "target": {
+    "platform": "android",
+    "formFactor": "phone",
+    "distribution": "google_play_internal_testing",
+    "minimumApi": 24,
+    "targetApi": 36,
+    "releaseAbi": "arm64-v8a",
+    "tabletRequiredForPhoneBeta": false,
+    "tabletPosture": "postponed_and_separately_proven"
+  },
+  "evidenceAuthority": {
+    "implementationRepository": "chummer-android",
+    "rowInventory": "chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json",
+    "featureParityRegistry": "ANDROID_WINDOWS_FEATURE_PARITY.yaml",
+    "rule": "This design contract defines scope but never proves a build. Every supported claim must bind the exact app head, dependency graph, AAB or APK digest, device profile, journey receipt, and applicable row-level parity evidence."
+  },
+  "postureLegend": [
+    "required",
+    "optional_feature_gated",
+    "postponed_non_blocking",
+    "exhaustive_parity_only"
+  ],
+  "visibilityLegend": [
+    "visible",
+    "visible_only_when_proven",
+    "hidden_until_proven",
+    "not_in_phone_beta"
+  ],
+  "claimTiers": {
+    "phone_beta": {
+      "currentEvidenceStatus": "pending",
+      "tabletRequired": false,
+      "rookRequired": false,
+      "completionRule": "Every required capability in this matrix has exact-head physical ARM64 evidence and every optional capability visible in the candidate has its own passing evidence. Missing optional capabilities are hidden, not implied by a generic command route.",
+      "allowedClaims": [
+        "Chummer Android phone beta",
+        "Supports the exact editions, creation methods, career action families, file formats, and journeys named by the bound candidate evidence"
+      ],
+      "forbiddenClaims": [
+        "Chummer5 replacement",
+        "Chummer5 parity complete",
+        "Android parity complete",
+        "all Chummer5 features",
+        "tablet supported",
+        "Rook or live avatar included"
+      ]
+    },
+    "phone_feature_complete": {
+      "currentEvidenceStatus": "pending",
+      "tabletRequired": false,
+      "rookRequired": false,
+      "completionRule": "Every applicable phone mutation row and every phone human-workflow family is proven on the exact release candidate. Tablet remains a separate claim.",
+      "forbiddenClaims": [
+        "Android parity complete",
+        "tablet supported"
+      ]
+    },
+    "android_parity_complete": {
+      "currentEvidenceStatus": "pending",
+      "tabletRequired": true,
+      "rookRequired": false,
+      "completionRule": "The exhaustive Chummer5 mutation inventory, Windows command and startup-surface mapping, and human-parity families pass on both the phone and purpose-designed tablet compositions."
+    }
+  },
+  "declaredScope": {
+    "editions": {
+      "sr5": "required",
+      "sr4": "optional_feature_gated",
+      "sr6": "optional_feature_gated"
+    },
+    "creationMethods": {
+      "priority": "required",
+      "sum_to_ten": "optional_feature_gated",
+      "karma": "optional_feature_gated",
+      "life_modules": "optional_feature_gated"
+    },
+    "creationRule": "A release may expose only methods whose complete route, budgets, effects, finalization, save, reopen, and fresh Career projection pass on the bound candidate. Life Modules must be the real staged story journey; no method may substitute another workflow.",
+    "careerMinimum": [
+      "one exact attribute-or-skill advancement",
+      "one exact Karma-or-Nuyen gain or expense",
+      "one exact equipment acquisition, removal, reload, or modification",
+      "one reversible receipt corrected through a compensating transaction"
+    ],
+    "fileMinimum": [
+      "inspect and import one supported .chum5 document with a migration verdict",
+      "save and reopen the same durable workspace",
+      "export a supported .chum5 document through Android document storage"
+    ],
+    "localeMinimum": [
+      "en-US"
+    ],
+    "localeRule": "The candidate declares its exact locale list. Unproven locales are not offered, and deterministic fallback never implies translated completeness."
+  },
+  "informationArchitecture": {
+    "primaryDestinations": [
+      "runners",
+      "runner",
+      "play",
+      "table",
+      "more"
+    ],
+    "runnerModes": [
+      "create",
+      "sheet",
+      "actions",
+      "history"
+    ],
+    "defaultRouteRules": [
+      "No selected runner opens Runners.",
+      "Created=false opens Runner/Create and never exposes the unrestricted editor.",
+      "Created=true opens Runner/Sheet; Actions and History remain one stable runner context away.",
+      "Play opens only a proven local or session overlay, never an absolute-value scratchpad presented as character truth.",
+      "Table opens only proven campaign/session capabilities for the authenticated role.",
+      "More owns global Activity, files, rule environments, settings, account, support, privacy, and update posture."
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "native_phone_shell",
+      "surface": "runners_runner_play_table_more",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "Lifecycle-aware routing, Android Back, rotation, screen lock, and process recreation preserve the valid runner/task context without silent confirmation or discard."
+    },
+    {
+      "id": "runner_library_and_document_lifecycle",
+      "surface": "runners",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "Create, inspect/import, resume, rename, duplicate, archive, delete/restore, and local-versus-linked posture use stable identities and explicit destructive consequences."
+    },
+    {
+      "id": "runner_create",
+      "surface": "runner/create",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "At least the required SR5 Priority route completes from empty draft through one atomic finalization and a fresh Career projection; every additional visible method passes the same bar."
+    },
+    {
+      "id": "runner_sheet",
+      "surface": "runner/sheet",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "A created runner opens to a readable, searchable sheet with identity, attributes, skills and pools, combat, inventory, magic/resonance when applicable, contacts, conditions, and source-aware explanations."
+    },
+    {
+      "id": "runner_actions",
+      "surface": "runner/actions",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "The declared Career minimum uses typed choose, configure, quote, diff, confirm, receipt flows and never falls back to raw field editing."
+    },
+    {
+      "id": "runner_history",
+      "surface": "runner/history",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "Transactions, expenses, session settlements, scheduled work, pending or unknown outcomes, conflicts, and corrections are filterable without collapsing their record types."
+    },
+    {
+      "id": "shared_catalog",
+      "surface": "runner/create_and_actions_and_sheet",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "One virtualized catalog contract provides stable typed identity, search, facets, source/page, pack posture, exact cost and availability, disabled reasons, comparison, and offline-safe cached lookup."
+    },
+    {
+      "id": "rules_environment",
+      "surface": "more/rules",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "The active edition, profile, sourcebooks, custom-data or house-rule fingerprints, missing packs, and source drift are visible before calculation or mutation."
+    },
+    {
+      "id": "activity_receipts_and_corrections",
+      "surface": "runner/history_and_global_activity",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "Global Activity and Runner/History link every committed, pending, unknown, or conflicted result to its typed receipt. Outcome lookup, idempotent retry, stale/conflict recovery, and at least one legal compensating correction survive process restart."
+    },
+    {
+      "id": "local_first_persistence",
+      "surface": "all_required_runner_surfaces",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "Every required mutation proves exact identity, one atomic revision transition, changed expected digests, unchanged unrelated data, navigation-away, reopen, save/reload, and a genuinely new process."
+    },
+    {
+      "id": "legacy_chum5_interop",
+      "surface": "runners_import_and_more_export",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "Import first shows compatibility, changed, needs-review, and blocked classifications; export uses an explicit versioned target and never claims lossless round trip without proof."
+    },
+    {
+      "id": "accessibility_and_recovery",
+      "surface": "all_required_surfaces",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "TalkBack, 200 percent text, touch targets, keyboard and IME, reduced motion, crash recovery, and one-handed critical paths pass on the candidate."
+    },
+    {
+      "id": "physical_arm64_delivery",
+      "surface": "google_play_internal_testing",
+      "betaPosture": "required",
+      "visibility": "visible",
+      "acceptance": "A clean Play-managed install on physical ARM64 binds the exact AAB, package, version, signing identity, app head, dependency heads, and required journey receipts."
+    },
+    {
+      "id": "play_overlay",
+      "surface": "play",
+      "betaPosture": "optional_feature_gated",
+      "visibility": "hidden_until_proven",
+      "acceptance": "If visible, Play is a replayable event overlay with derived dice pools, Edge, initiative, damage, ammo, effects, sync state, and auditable history; an absolute local scratchpad does not qualify."
+    },
+    {
+      "id": "table_lifecycle",
+      "surface": "table",
+      "betaPosture": "optional_feature_gated",
+      "visibility": "hidden_until_proven",
+      "acceptance": "If visible, role-bound Before Run, Live, After Run, and Downtime transitions use exact session authority; Chronicle or media tooling cannot substitute for the table lifecycle."
+    },
+    {
+      "id": "linked_account_and_roaming",
+      "surface": "runners_and_more/account",
+      "betaPosture": "optional_feature_gated",
+      "visibility": "visible_only_when_proven",
+      "acceptance": "If enabled, account linking, remote runner choice, explicit latest/compare/branch/stay-local conflict recovery, unlink, and deletion pass without making local work account-dependent."
+    },
+    {
+      "id": "advanced_editor",
+      "surface": "runner/advanced",
+      "betaPosture": "optional_feature_gated",
+      "visibility": "hidden_until_proven",
+      "acceptance": "If visible, it is post-creation and context-gated, preserves the same typed durable authority, and is never used to satisfy a missing Create or Career step."
+    },
+    {
+      "id": "rook_and_live_avatar",
+      "surface": "assistant",
+      "betaPosture": "postponed_non_blocking",
+      "visibility": "not_in_phone_beta",
+      "acceptance": "Phone beta has no dependency on Rook, Tough Tongue, avatar, speech, or lip-sync availability. Launch points stay hidden until separately promoted; ordinary deterministic help remains available without being branded as Rook."
+    },
+    {
+      "id": "tablet_composition",
+      "surface": "tablet",
+      "betaPosture": "postponed_non_blocking",
+      "visibility": "not_in_phone_beta",
+      "acceptance": "Tablet has a separate purpose-designed master/detail contract and proof lane and never blocks the phone-beta claim."
+    },
+    {
+      "id": "exhaustive_chummer5_control_parity",
+      "surface": "all_legacy_mutation_and_human_parity_families",
+      "betaPosture": "exhaustive_parity_only",
+      "visibility": "not_in_phone_beta",
+      "acceptance": "Every applicable row and human-workflow family must pass before Chummer5 replacement or Android parity-complete language is allowed."
+    }
+  ],
+  "featureGateRules": [
+    "A missing required capability blocks the phone-beta claim.",
+    "An optional capability without exact candidate evidence is absent from primary navigation, search, deep links, command catalogs, and assistant suggestions.",
+    "A generic All actions route, shared dialog renderer, read-only projection, screenshot, or source-string test does not promote an unsupported capability.",
+    "A visible optional capability inherits the same persistence, accessibility, offline, and failure-recovery bar as a required capability.",
+    "Unsupported runner types and contextual conversions stay hidden until exact prerequisites and mutation authority are present.",
+    "Feature gates are capability and evidence gates, never premium, account, provider, or marketing guesses.",
+    "Rook and live-avatar implementation is postponed and is never part of phone-beta readiness, completion, or ETA."
+  ],
+  "requiredJourneys": [
+    "clean_install_first_run_without_account",
+    "create_sr5_priority_finalize_and_reopen_fresh_career",
+    "inspect_import_chum5_review_migration_save_reopen",
+    "open_runner_sheet_complete_declared_career_minimum",
+    "view_history_and_correct_one_reversible_receipt",
+    "force_stop_and_restore_with_new_process_identity",
+    "offline_edit_and_explicit_conflict_recovery",
+    "export_chum5_through_android_document_storage",
+    "talkback_large_text_ime_system_back",
+    "google_play_physical_arm64_install_and_update"
+  ]
+}
