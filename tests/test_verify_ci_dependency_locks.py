@@ -75,7 +75,7 @@ def test_pull_request_ci_proves_public_guide_generation_from_exact_companion_sou
     assert "sparse-checkout-cone-mode: false" in workflow
     assert "/.guide-internal/receipts/" in workflow
     assert "/assets/" in workflow
-    assert "CHUMMER6_GUIDE_ASSET_SOURCE: ${{ github.workspace }}/.ci/chummer6/assets" in workflow
-    assert "CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT: ${{ github.workspace }}/.ci/chummer6" in workflow
+    assert 'CHUMMER6_GUIDE_ASSET_SOURCE="${{ github.workspace }}/.ci/chummer6/assets"' in workflow
+    assert 'CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT="${{ github.workspace }}/.ci/chummer6"' in workflow
     assert "tests/test_materialize_public_guide_bundle.py" in workflow
     assert "scripts/ai/materialize_public_guide_bundle.py --check" in workflow
