@@ -13,7 +13,7 @@ guide = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(guide)
 
 
-def test_generate_mobile_part_keeps_native_flow_and_release_boundary(
+def test_generate_mobile_parts_keep_web_and_native_android_authority_separate(
     tmp_path: Path, monkeypatch
 ) -> None:
     monkeypatch.setattr(guide, "_image_rows", lambda **_kwargs: [])
@@ -24,17 +24,32 @@ def test_generate_mobile_part_keeps_native_flow_and_release_boundary(
         / "PUBLIC_PART_REGISTRY.yaml"
     )
     mobile = next(item for item in part_registry["parts"] if item["id"] == "mobile")
+    android = next(item for item in part_registry["parts"] if item["id"] == "android")
 
-    guide._generate_part_pages(tmp_path, {"parts": [mobile]})
+    guide._generate_part_pages(tmp_path, {"parts": [mobile, android]})
 
-    rendered = (tmp_path / "PARTS" / "mobile.md").read_text(encoding="utf-8")
-    assert "linked online runners and groups open in native screens" in rendered
-    assert "choose or create a runner" in rendered
-    assert "Play Store updates stay inside the app" in rendered
-    assert "phone and distinct tablet profiles each pass 19 of 19" in rendered
-    assert "preview.7 is available only through Google Play Internal testing" in rendered
-    assert "A real-device Play install has not yet been recorded" in rendered
-    assert "digest-bound operator handoff" not in rendered
+    mobile_rendered = (tmp_path / "PARTS" / "mobile.md").read_text(encoding="utf-8")
+    android_rendered = (tmp_path / "PARTS" / "android.md").read_text(encoding="utf-8")
+    index_rendered = (tmp_path / "PARTS" / "README.md").read_text(encoding="utf-8")
+
+    assert "# Web/PWA/Play" in mobile_rendered
+    assert "`chummer6-mobile` repository is the Web/PWA/Play delivery lane" in mobile_rendered
+    assert "separate from `chummer-android`" in mobile_rendered
+    assert "phone and distinct tablet profiles each pass 19 of 19" not in mobile_rendered
+
+    assert "# Native Android" in android_rendered
+    assert "`chummer-android` app is a native MAUI Shell" in android_rendered
+    assert "linked online runners and groups open in native screens" in android_rendered
+    assert "choose or create a runner" in android_rendered
+    assert "Play Store updates stay inside the app" in android_rendered
+    assert "phone and distinct tablet profiles each pass 19 of 19" in android_rendered
+    assert "preview.7 is available only through Google Play Internal testing" in android_rendered
+    assert "A real-device Play install has not yet been recorded" in android_rendered
+    assert "digest-bound operator handoff" not in android_rendered
+
+    assert "[Web/PWA/Play](mobile.md)" in index_rendered
+    assert "[Native Android](android.md)" in index_rendered
+    assert "Web/PWA/Play companion, native Android app" in index_rendered
 
 
 def test_generate_root_uses_campaign_os_positioning_and_unique_migration_link(
@@ -363,6 +378,10 @@ def test_generate_download_scopes_public_proof_and_flagship_claims(tmp_path: Pat
     download = (tmp_path / "DOWNLOAD.md").read_text(encoding="utf-8")
 
     assert "Windows downloads are posted." in download
+    assert "Candidate metadata: Published." in download
+    assert "Artifact review: Passed." in download
+    assert "Public download handoff: Enabled." in download
+    assert "Product preview approval: Granted." in download
     assert "There is no public Linux download today." in download
     assert "There is no public macOS download today." in download
     assert "Recent checks: This release covers installs and recovery, campaign session recovery, and support follow-up." in download
@@ -404,6 +423,10 @@ def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: 
         "missing_platforms": ["Linux", "macOS"],
         "shelf_truth_line": "One bounded Windows artifact remains accessible while release review is open.",
         "release_status": "Published",
+        "candidate_metadata_status": "published",
+        "artifact_review_status": "under_review",
+        "public_download_handoff_status": "withheld",
+        "product_preview_approval_status": "not_granted",
     }
     release_payload = {
         "status": "published",
@@ -434,8 +457,16 @@ def test_bound_review_packet_controls_links_opening_and_review_banner(tmp_path: 
     assert "Download: [Open download]" not in download
     assert "/downloads/g/generation-1/files" not in download
     assert banner in download
-    assert banner in (tmp_path / "STATUS.md").read_text(encoding="utf-8")
-    assert banner in (tmp_path / "NOW" / "current-status.md").read_text(encoding="utf-8")
+    status = (tmp_path / "STATUS.md").read_text(encoding="utf-8")
+    current = (tmp_path / "NOW" / "current-status.md").read_text(encoding="utf-8")
+    for rendered in (download, status, current):
+        assert "Candidate metadata: Published." in rendered
+        assert "Artifact review: Under review." in rendered
+        assert "Public download handoff: Withheld." in rendered
+        assert "Product preview approval: Not granted." in rendered
+        assert "Release status: Published." not in rendered
+    assert banner in status
+    assert banner in current
 
 
 def test_unbound_review_placeholder_suppresses_stale_manifest_metadata(tmp_path: Path) -> None:

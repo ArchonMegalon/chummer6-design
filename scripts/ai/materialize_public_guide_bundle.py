@@ -183,11 +183,15 @@ def _load_json(path: Path) -> dict[str, object]:
 def _unbound_review_release_truth_packet(reason: str) -> dict[str, object]:
     return {
         "architecture_scope_line": "No desktop platform is currently listed in this guide.",
+        "artifact_review_status": "not_bound",
         "authority": {"artifacts": [], "status": "unavailable"},
         "authority_binding_status": "unbound_review_placeholder",
         "authority_source": {"reason": reason, "status": "unbound"},
         "available_platforms": [],
         "build_label": "",
+        "candidate_metadata_published_at": "",
+        "candidate_metadata_published_line": "",
+        "candidate_metadata_status": "not_published",
         "channel_id": "",
         "desktop_pick_line": "No desktop build is approved in this guide yet.",
         "desktop_tuple_coverage_complete": False,
@@ -207,6 +211,8 @@ def _unbound_review_release_truth_packet(reason: str) -> dict[str, object]:
         "phase_label": "Release review required",
         "primary_head": "",
         "primary_head_by_platform": {},
+        "product_preview_approval_status": "not_granted",
+        "public_download_handoff_status": "withheld",
         "published_at": "",
         "published_line": "",
         "quality_gap_line": (
@@ -739,8 +745,9 @@ def _required_public_asset_paths(
         if not isinstance(item, dict):
             continue
         part_id = str(item.get("id") or "").strip()
-        if part_id:
-            required.add(f"assets/parts/{_slug(part_id)}.png")
+        asset_id = str(item.get("asset_id") or part_id).strip()
+        if asset_id:
+            required.add(f"assets/parts/{_slug(asset_id)}.png")
     for item in horizon_registry.get("horizons") or []:
         if not isinstance(item, dict):
             continue
@@ -1453,6 +1460,115 @@ def _release_review_required(release_truth_packet: dict[str, object]) -> bool:
         or str(release_truth_packet.get("release_posture") or "").strip() == "review_required"
         or str(release_truth_packet.get("release_decision_status") or "").strip() == "review_required"
     )
+
+
+def _release_publication_facets(
+    release_truth_packet: dict[str, object],
+    status: object,
+    artifacts: list[dict[str, object]],
+) -> dict[str, str]:
+    """Render independent release facts; never use metadata publication as delivery proof."""
+    decision_status = str(
+        release_truth_packet.get("release_decision_status")
+        or release_truth_packet.get("release_posture")
+        or ""
+    ).strip().lower()
+    review_required = _release_review_required(release_truth_packet)
+    unbound = _release_authority_is_unbound_review(release_truth_packet)
+
+    effective_status = str(
+        release_truth_packet.get("release_status_slug") or status or ""
+    ).strip()
+    metadata_status = str(
+        release_truth_packet.get("candidate_metadata_status") or ""
+    ).strip().lower()
+    if not metadata_status:
+        metadata_status = "published" if _release_is_published(effective_status) else "not_published"
+
+    artifact_review_status = str(
+        release_truth_packet.get("artifact_review_status") or ""
+    ).strip().lower()
+    if not artifact_review_status:
+        artifact_review_status = (
+            "not_bound"
+            if unbound
+            else "under_review"
+            if review_required
+            else "passed"
+            if decision_status in {"preview_ready", "stable_ready"}
+            else "not_approved"
+        )
+
+    download_handoff_status = str(
+        release_truth_packet.get("public_download_handoff_status") or ""
+    ).strip().lower()
+    if not download_handoff_status:
+        download_handoff_status = (
+            "withheld"
+            if review_required or unbound
+            else "enabled"
+            if artifacts
+            else "not_enabled"
+        )
+
+    preview_approval_status = str(
+        release_truth_packet.get("product_preview_approval_status") or ""
+    ).strip().lower()
+    if not preview_approval_status:
+        preview_approval_status = (
+            "granted"
+            if decision_status in {"preview_ready", "stable_ready"}
+            else "not_granted"
+        )
+
+    labels = {
+        "candidate_metadata": {
+            "published": "Published",
+            "not_published": "Not published",
+        }.get(metadata_status, "Not available"),
+        "artifact_review": {
+            "under_review": "Under review",
+            "passed": "Passed",
+            "not_bound": "Not bound to immutable authority",
+            "not_approved": "Not approved",
+        }.get(artifact_review_status, "Not available"),
+        "public_download_handoff": {
+            "withheld": "Withheld",
+            "enabled": "Enabled",
+            "not_enabled": "Not enabled",
+        }.get(download_handoff_status, "Not available"),
+        "product_preview_approval": {
+            "granted": "Granted",
+            "not_granted": "Not granted",
+        }.get(preview_approval_status, "Not available"),
+    }
+    return labels
+
+
+def _candidate_metadata_published_line(
+    release_truth_packet: dict[str, object],
+    fallback_published_at: str,
+) -> str:
+    explicit = str(
+        release_truth_packet.get("candidate_metadata_published_line") or ""
+    ).strip()
+    if explicit:
+        return explicit
+    legacy = str(release_truth_packet.get("published_line") or "").strip()
+    if legacy.lower().startswith("published:"):
+        return f"Candidate metadata published:{legacy[len('Published:'):]}"
+    if fallback_published_at:
+        return f"Candidate metadata published: {fallback_published_at}."
+    return ""
+
+
+def _release_publication_facet_rows(facets: dict[str, str]) -> list[str]:
+    return [
+        f"- Candidate metadata: {facets['candidate_metadata']}.",
+        f"- Artifact review: {facets['artifact_review']}.",
+        f"- Public download handoff: {facets['public_download_handoff']}.",
+        f"- Product preview approval: {facets['product_preview_approval']}.",
+    ]
 
 
 def _review_shelf_truth_line(
@@ -2313,14 +2429,23 @@ def _generate_status(
     artifacts = _release_truth_artifacts(release_payload, release_truth_packet)
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
     version = "" if unbound_review else _public_build_label(str(release_payload.get("version") or "").strip())
-    published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = "" if unbound_review else _format_public_datetime(str(release_payload.get("publishedAt") or "").strip())
-    raw_status = (
-        str(release_truth_packet.get("release_status_slug") or "review_required").strip()
-        if unbound_review
-        else str(release_payload.get("status") or "unpublished").strip()
+    fallback_status = "review_required" if unbound_review else "unpublished"
+    raw_status = str(
+        release_truth_packet.get("release_status_slug")
+        or release_payload.get("releaseStatus")
+        or release_payload.get("status")
+        or fallback_status
+    ).strip()
+    published_line = _candidate_metadata_published_line(
+        release_truth_packet,
+        published_at if _release_is_published(raw_status) else "",
     )
-    release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(raw_status)
+    publication_facets = _release_publication_facets(
+        release_truth_packet,
+        raw_status,
+        artifacts,
+    )
     release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip()
     if not release_verification and not unbound_review:
         release_verification = _public_release_proof_summary(release_payload)
@@ -2369,9 +2494,8 @@ def _generate_status(
         if published_line:
             rows.append(f"- {published_line}")
         elif published_at:
-            rows.append(f"- {published_label}: {published_at}.")
-        if release_status:
-            rows.append(f"- Release status: {release_status}.")
+            rows.append(f"- Candidate metadata {published_label.lower()}: {published_at}.")
+        rows.extend(_release_publication_facet_rows(publication_facets))
         rows.append(f"- {shelf_truth}")
         if architecture_scope:
             rows.append(f"- {architecture_scope}")
@@ -2408,9 +2532,11 @@ def _generate_now_pages(
     unbound_review = _release_authority_is_unbound_review(release_truth_packet)
     review_required = _release_review_required(release_truth_packet)
     phase = _release_phase_label(release_truth_packet, progress, "Preview")
-    release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(release_payload.get("status") or "unpublished")
-    published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = "" if unbound_review else _format_public_datetime(release_payload.get("publishedAt") or "")
+    published_line = _candidate_metadata_published_line(
+        release_truth_packet,
+        published_at if _release_is_published(release_payload.get("status")) else "",
+    )
     version = "" if unbound_review else _public_build_label(str(release_payload.get("version") or "").strip())
     shelf_truth = _resolved_shelf_truth_line(
         release_truth_packet,
@@ -2426,6 +2552,11 @@ def _generate_now_pages(
     known_issues = str(release_truth_packet.get("known_issue_summary") or "").strip()
     if not known_issues and not unbound_review:
         known_issues = _public_known_issue_summary(release_payload)
+    publication_facets = _release_publication_facets(
+        release_truth_packet,
+        release_payload.get("status"),
+        artifacts,
+    )
 
     current_rows = [
         "# Current status",
@@ -2435,9 +2566,9 @@ def _generate_now_pages(
         "## Today",
         "",
         f"- Product state: {phase}.",
-        f"- Release status: {release_status or 'Not currently published'}.",
-        f"- {shelf_truth}",
     ]
+    current_rows.extend(_release_publication_facet_rows(publication_facets))
+    current_rows.append(f"- {shelf_truth}")
     review_banner = _release_review_banner(release_truth_packet)
     if review_banner:
         current_rows[4:4] = [review_banner, ""]
@@ -2619,15 +2750,22 @@ def _generate_download(
             ).strip()
         )
     )
-    published_line = str(release_truth_packet.get("published_line") or "").strip()
     published_at = "" if unbound_review else str(release_payload.get("publishedAt") or "").strip()
     status = str(
         release_truth_packet.get("release_status_slug")
         or release_payload.get("status")
         or "unpublished"
     ).strip()
-    release_status = str(release_truth_packet.get("release_status") or "").strip() or _public_release_state(status)
     published_label = _format_public_datetime(published_at) or "Not currently published"
+    published_line = _candidate_metadata_published_line(
+        release_truth_packet,
+        published_label if _release_is_published(status) else "",
+    )
+    publication_facets = _release_publication_facets(
+        release_truth_packet,
+        status,
+        artifacts,
+    )
     release_verification = str(release_truth_packet.get("release_verification_summary") or "").strip()
     if not release_verification and not unbound_review:
         release_verification = _public_release_proof_summary(release_payload)
@@ -2714,19 +2852,12 @@ def _generate_download(
     rows.append("- Advanced users can also [build the Linux desktop client from source](SOURCE_BUILD_LINUX.md).")
     rows.append("- For a personal local Mac build, use [SOURCE_BUILD_MACOS.md](SOURCE_BUILD_MACOS.md).")
 
-    rows.extend(
-        [
-            "",
-            f"## {section_heading}",
-            "",
-            f"- Today: {phase}.",
-            f"- Release status: {release_status or 'Not currently published'}.",
-        ]
-    )
+    rows.extend(["", f"## {section_heading}", "", f"- Today: {phase}."])
+    rows.extend(_release_publication_facet_rows(publication_facets))
     if published_line:
-        rows.insert(len(rows) - 1, f"- {published_line}")
+        rows.append(f"- {published_line}")
     elif not unbound_review:
-        rows.insert(len(rows) - 1, f"- {timestamp_label}: {published_label}.")
+        rows.append(f"- Candidate metadata {timestamp_label.lower()}: {published_label}.")
     if version:
         rows.append(f"- Build label: `{version}`.")
     rows.append(f"- {shelf_truth}")
@@ -2901,7 +3032,7 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         "# Parts",
         "",
         "This is the inside tour, not the first stop for most readers.",
-        "Open it when you want to see how the app, phone companion, updater, and support tools fit together.",
+        "Open it when you want to see how the desktop app, Web/PWA/Play companion, native Android app, updater, and support tools fit together.",
         "",
     ]
     index_rows.extend(_image_rows(doc_path=index_path, out_dir=out_dir, asset_path="assets/pages/parts-index.png", alt="Chummer6 parts index art"))
@@ -2909,6 +3040,7 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
         part_id = str(part.get("id") or "").strip()
         title = str(part.get("title") or part_id).strip() or part_id
         slug = _slug(part_id)
+        asset_slug = _slug(str(part.get("asset_id") or part_id).strip())
         index_rows.append(f"- [{title}]({slug}.md)")
 
         doc_path = out_dir / "PARTS" / f"{slug}.md"
@@ -2919,7 +3051,7 @@ def _generate_part_pages(out_dir: Path, part_registry: dict[str, object]) -> Non
             _public_copy(str(part.get("public_tagline") or "").strip()),
             "",
         ]
-        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/parts/{slug}.png", alt=f"{title} guide art"))
+        rows.extend(_image_rows(doc_path=doc_path, out_dir=out_dir, asset_path=f"assets/parts/{asset_slug}.png", alt=f"{title} guide art"))
         rows.extend(
             [
                 "## When you care",
