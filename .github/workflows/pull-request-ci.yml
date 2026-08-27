@@ -23,6 +23,31 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Check out exact Chummer6 public-guide source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: ArchonMegalon/Chummer6
+          ref: f5a69e4cc241a464ad68338255bf449984b9af03
+          path: .ci/chummer6
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.guide-internal/receipts/
+            /assets/
+            /FEATURES/
+            /START_HERE.md
+            /ONRAMP.md
+            /BLACK_LEDGER_NEWSROOM.md
+            /WHAT_CHUMMER6_IS.md
+            /RUNNER_PASSPORT.md
+            /LIVING_WORLD.md
+            /SOURCE_BUILD_LINUX.md
+            /SOURCE_BUILD_MACOS.md
+            /HOW_CAN_I_HELP.md
+            /WHERE_TO_GO_DEEPER.md
+            /GLOSSARY.md
+
       - name: Create hash-locked Python environment
         run: |
           set -euo pipefail
@@ -41,6 +66,7 @@ jobs:
           scripts/ai/materialize_preview_release_decision.py
           scripts/ai/materialize_final_gold_graph.py
           scripts/ai/materialize_current_release_state.py
+          scripts/ai/materialize_public_guide_bundle.py
 
       - name: Verify hash-locked dependencies and action commit pins
         run: >-
@@ -57,3 +83,14 @@ jobs:
           tests/test_materialize_current_release_state.py
           tests/test_validate_gold_claim_freshness.py
           tests/test_verify_ci_dependency_locks.py
+
+      - name: Verify public-guide semantics and deterministic generated state
+        env:
+          CHUMMER6_GUIDE_ASSET_SOURCE: ${{ github.workspace }}/.ci/chummer6/assets
+          CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT: ${{ github.workspace }}/.ci/chummer6
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/design-ci-python/bin/python" -m pytest -q \
+            tests/test_materialize_public_guide_bundle.py
+          "$RUNNER_TEMP/design-ci-python/bin/python" \
+            scripts/ai/materialize_public_guide_bundle.py --check

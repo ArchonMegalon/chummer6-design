@@ -63,3 +63,19 @@ def test_rejects_mutable_action_tag(tmp_path: Path) -> None:
 
     with pytest.raises(RuntimeError, match="ci_action_not_commit_pinned"):
         module.verify(tmp_path)
+
+
+def test_pull_request_ci_proves_public_guide_generation_from_exact_companion_source() -> None:
+    workflow = (
+        REPO_ROOT / ".github/workflows/pull-request-ci.yml"
+    ).read_text(encoding="utf-8")
+
+    assert "repository: ArchonMegalon/Chummer6" in workflow
+    assert "ref: f5a69e4cc241a464ad68338255bf449984b9af03" in workflow
+    assert "sparse-checkout-cone-mode: false" in workflow
+    assert "/.guide-internal/receipts/" in workflow
+    assert "/assets/" in workflow
+    assert "CHUMMER6_GUIDE_ASSET_SOURCE: ${{ github.workspace }}/.ci/chummer6/assets" in workflow
+    assert "CHUMMER6_PUBLIC_GUIDE_SOURCE_ROOT: ${{ github.workspace }}/.ci/chummer6" in workflow
+    assert "tests/test_materialize_public_guide_bundle.py" in workflow
+    assert "scripts/ai/materialize_public_guide_bundle.py --check" in workflow
