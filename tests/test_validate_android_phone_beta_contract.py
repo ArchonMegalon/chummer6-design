@@ -85,3 +85,44 @@ def test_validator_rejects_navigation_without_history(tmp_path: Path) -> None:
     _write_matrix(matrix_path, matrix)
 
     assert "invalid_runner_modes" in validator.validate_contract(tmp_path)
+
+
+def test_validator_rejects_full_editing_as_phone_beta_requirement(tmp_path: Path) -> None:
+    matrix_path, _ = _copy_contract(tmp_path)
+    matrix = _load_matrix(matrix_path)
+    capabilities = matrix["capabilities"]
+    assert isinstance(capabilities, list)
+    advanced = next(item for item in capabilities if item["id"] == "advanced_editor")
+    advanced["betaPosture"] = "required"
+    advanced["visibility"] = "visible"
+    _write_matrix(matrix_path, matrix)
+
+    errors = validator.validate_contract(tmp_path)
+    assert "invalid_gated_posture:advanced_editor" in errors
+    assert "invalid_gated_visibility:advanced_editor" in errors
+
+
+def test_validator_rejects_full_editing_in_p0_wizard_matrix(tmp_path: Path) -> None:
+    matrix_path, _ = _copy_contract(tmp_path)
+    matrix = _load_matrix(matrix_path)
+    authority = matrix["evidenceAuthority"]
+    assert isinstance(authority, dict)
+    journeys = authority["requiredP0Journeys"]
+    assert isinstance(journeys, list)
+    journeys.append("full-editing")
+    _write_matrix(matrix_path, matrix)
+
+    assert "invalid_required_p0_wizard_journeys" in validator.validate_contract(tmp_path)
+
+
+def test_validator_rejects_legacy_inventory_as_beta_authority(tmp_path: Path) -> None:
+    matrix_path, _ = _copy_contract(tmp_path)
+    matrix = _load_matrix(matrix_path)
+    authority = matrix["evidenceAuthority"]
+    assert isinstance(authority, dict)
+    authority["rowInventory"] = authority["legacyRowInventory"]
+    _write_matrix(matrix_path, matrix)
+
+    assert "legacy_row_inventory_must_not_be_beta_authority" in validator.validate_contract(
+        tmp_path
+    )
