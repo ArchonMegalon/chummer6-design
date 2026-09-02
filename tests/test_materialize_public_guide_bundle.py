@@ -39,12 +39,15 @@ def test_generate_mobile_parts_keep_web_and_native_android_authority_separate(
 
     assert "# Native Android" in android_rendered
     assert "`chummer-android` app is a native MAUI Shell" in android_rendered
-    assert "linked online runners and groups open in native screens" in android_rendered
-    assert "choose or create a runner" in android_rendered
-    assert "Play Store updates stay inside the app" in android_rendered
-    assert "phone and distinct tablet profiles each pass 19 of 19" in android_rendered
-    assert "preview.7 is available only through Google Play Internal testing" in android_rendered
-    assert "A real-device Play install has not yet been recorded" in android_rendered
+    assert "SR5 Priority creation wizard with resumable prerequisites" in android_rendered
+    assert "Play Store updates remain owned by Google Play" in android_rendered
+    assert "preview.10 is available only through Google Play Internal testing" in android_rendered
+    assert "version code 10" in android_rendered
+    assert "exact three-journey aggregate gates" in android_rendered
+    assert "Full Editing was absent" in android_rendered
+    assert "no physical-phone record" in android_rendered
+    assert "phone and distinct tablet profiles each pass 19 of 19" not in android_rendered
+    assert "linked online runners and groups open in native screens" not in android_rendered
     assert "digest-bound operator handoff" not in android_rendered
 
     assert "[Web/PWA/Play](mobile.md)" in index_rendered
