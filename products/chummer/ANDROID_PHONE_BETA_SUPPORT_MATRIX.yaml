@@ -1,7 +1,7 @@
 {
   "schema": "chummer.android_phone_beta_support_matrix.v1",
   "owner": "chummer6-design",
-  "updated": "2026-08-25",
+  "updated": "2026-09-02",
   "status": "contract_defined_evidence_pending",
   "target": {
     "platform": "android",
@@ -15,9 +15,16 @@
   },
   "evidenceAuthority": {
     "implementationRepository": "chummer-android",
-    "rowInventory": "chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json",
+    "wizardGateAuthority": "chummer-android/eng/api36-sr5-wizard-gate-authority.json",
+    "wizardAggregateSchema": "chummer.android.api36-sr5-wizard-e2e-aggregate/v1",
+    "requiredP0Journeys": [
+      "creation-prerequisite",
+      "career-active-skill-advance",
+      "career-weapon-fire"
+    ],
+    "legacyRowInventory": "chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json",
     "featureParityRegistry": "ANDROID_WINDOWS_FEATURE_PARITY.yaml",
-    "rule": "This design contract defines scope but never proves a build. Every supported claim must bind the exact app head, dependency graph, AAB or APK digest, device profile, journey receipt, and applicable row-level parity evidence."
+    "rule": "This design contract defines scope but never proves a build. The wizard-only gate and aggregate must bind the exact app head, dependency graph, AAB or APK digest, device profile, and all required wizard receipts. Full Editing and the exhaustive legacy row inventory cannot satisfy or block this gate."
   },
   "postureLegend": [
     "required",
@@ -36,7 +43,7 @@
       "currentEvidenceStatus": "pending",
       "tabletRequired": false,
       "rookRequired": false,
-      "completionRule": "Every required capability in this matrix has exact-head physical ARM64 evidence and every optional capability visible in the candidate has its own passing evidence. Missing optional capabilities are hidden, not implied by a generic command route.",
+      "completionRule": "Every declared wizard capability has exact-head physical ARM64 evidence and every optional wizard visible in the candidate has its own passing evidence. Missing optional capabilities are hidden, not implied by a generic command route or Full Editing surface.",
       "allowedClaims": [
         "Chummer Android phone beta",
         "Supports the exact editions, creation methods, career action families, file formats, and journeys named by the bound candidate evidence"
@@ -54,7 +61,7 @@
       "currentEvidenceStatus": "pending",
       "tabletRequired": false,
       "rookRequired": false,
-      "completionRule": "Every applicable phone mutation row and every phone human-workflow family is proven on the exact release candidate. Tablet remains a separate claim.",
+      "completionRule": "Every declared phone wizard and every typed mutation exercised by those wizards is proven on the exact release candidate. Universal Full Editing and tablet remain separate, unclaimed surfaces.",
       "forbiddenClaims": [
         "Android parity complete",
         "tablet supported"
@@ -80,12 +87,14 @@
       "life_modules": "optional_feature_gated"
     },
     "creationRule": "A release may expose only methods whose complete route, budgets, effects, finalization, save, reopen, and fresh Career projection pass on the bound candidate. Life Modules must be the real staged story journey; no method may substitute another workflow.",
-    "careerMinimum": [
-      "one exact attribute-or-skill advancement",
-      "one exact Karma-or-Nuyen gain or expense",
-      "one exact equipment acquisition, removal, reload, or modification",
-      "one reversible receipt corrected through a compensating transaction"
+    "careerWizardFamilies": [
+      "general_career_advancement_and_maintenance",
+      "before_run",
+      "playtime",
+      "after_run",
+      "downtime"
     ],
+    "careerRule": "Only typed actions required by the active Career or table-lifecycle wizard are exposed. A generic property editor, raw XML editor, or exhaustive legacy mutation surface is not required.",
     "fileMinimum": [
       "inspect and import one supported .chum5 document with a migration verdict",
       "save and reopen the same durable workspace",
@@ -235,9 +244,9 @@
     {
       "id": "advanced_editor",
       "surface": "runner/advanced",
-      "betaPosture": "optional_feature_gated",
-      "visibility": "hidden_until_proven",
-      "acceptance": "If visible, it is post-creation and context-gated, preserves the same typed durable authority, and is never used to satisfy a missing Create or Career step."
+      "betaPosture": "postponed_non_blocking",
+      "visibility": "not_in_phone_beta",
+      "acceptance": "A universal Full Editing surface is not required by the app goal and cannot satisfy or block a Create, Career, Before Run, Playtime, After Run, or Downtime wizard."
     },
     {
       "id": "rook_and_live_avatar",
@@ -268,7 +277,8 @@
     "A visible optional capability inherits the same persistence, accessibility, offline, and failure-recovery bar as a required capability.",
     "Unsupported runner types and contextual conversions stay hidden until exact prerequisites and mutation authority are present.",
     "Feature gates are capability and evidence gates, never premium, account, provider, or marketing guesses.",
-    "Rook and live-avatar implementation is postponed and is never part of phone-beta readiness, completion, or ETA."
+    "Rook and live-avatar implementation is postponed and is never part of phone-beta readiness, completion, or ETA.",
+    "Full Editing is not a required journey, cannot enter the wizard aggregate, and cannot convert a wizard-only beta into an exhaustive edit-parity claim."
   ],
   "requiredJourneys": [
     "clean_install_first_run_without_account",

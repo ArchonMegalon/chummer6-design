@@ -1,7 +1,7 @@
 # Android flagship application
 
 Status: canonical Android product contract
-Updated: 2026-08-25 — phone-beta scope, lifecycle-aware navigation, and cross-cutting trust surfaces
+Updated: 2026-09-02 — wizard-only phone-beta scope and lifecycle-aware navigation
 
 ## Decision
 
@@ -16,6 +16,13 @@ actions, and dialogs into Android controls. The coordinator and page contracts
 also compile on plain `net10.0`, leaving a clean path to an iPhone shell without
 forcing Android and iOS to share web markup.
 
+The phone product is intentionally wizard-led. The SR5 Priority Create wizard
+and the declared SR5 Career, Before Run, Playtime, After Run, and Downtime
+wizards are the mutation surfaces. A readable post-creation Sheet and History
+support those flows, but a universal Full Editing screen and exhaustive legacy
+control parity are neither beta requirements nor product completion criteria.
+Legacy editability inventories remain regression and discovery inputs only.
+
 ## Phone-beta authority and claim tiers
 
 `ANDROID_PHONE_BETA_SUPPORT_MATRIX.yaml` is the machine-readable authority for
@@ -27,8 +34,9 @@ The three claim tiers are intentionally separate:
 
 1. **Phone beta** proves the bounded capabilities declared for one exact physical
    ARM64 candidate. Tablet and Rook are not requirements.
-2. **Phone feature-complete** proves every applicable phone mutation and human
-   workflow. It still makes no tablet claim.
+2. **Phone feature-complete** proves every declared phone wizard and every
+   mutation used by those wizards. It still makes no Full Editing or tablet
+   claim.
 3. **Android parity-complete / Chummer5 replacement** requires the exhaustive
    parity and human-acceptance gates, including a separately designed and proven
    tablet composition where the Android parity contract requires it.
@@ -326,7 +334,8 @@ signing digests, declared edition/method/locale scope, and a physical ARM64
 Play-managed install with persistence and new-process receipts. Tablet and Rook
 are explicitly outside this tier and do not block it.
 
-The Android app is not called parity-complete until automation proves every
+The optional historical parity-complete claim is not part of the current app
+goal. If it is ever reactivated, the Android app is not called parity-complete until automation proves every
 visible Windows command and startup surface has a mapped Android behavior, the
 release AAB targets the supported API level, contains no broad-storage or
 cleartext-network permission, and passes clean-install, upgrade, offline,
@@ -334,7 +343,7 @@ rotation, process-death, deep-link, import/export, print/share, account-link,
 sync-conflict, in-app live-session, group-invite, runner-selection, and
 runner-ticket journeys on phone and tablet profiles.
 
-Parity completion also requires a deterministic inventory of every Chummer5
+That separate parity claim also requires a deterministic inventory of every Chummer5
 control that mutates runner or application data. Every inventory row must map to
 a shared durable mutation operation, a phone route, a purpose-designed tablet
 surface, and passing API-36 phone and tablet E2E receipts that prove edit,
@@ -346,3 +355,10 @@ Play publication additionally requires a Chummer-scoped Play Console lane,
 Play App Signing, a Chummer-specific upload key, privacy/data-safety answers
 grounded in the built artifact, captures from the tested app, and an internal-test
 install receipt before production widening.
+
+For the current integration wave, the exact API-36 merge authority is
+wizard-only: Creation Prerequisite, Career Active Skill, and Career Weapon Fire
+must pass from one APK and one dependency graph. The Full Editing journey is
+excluded from the matrix and aggregate; neither a passing nor a stale Full
+Editing receipt can affect authorization. Later wizard families receive their
+own typed journeys as they enter the declared beta scope.

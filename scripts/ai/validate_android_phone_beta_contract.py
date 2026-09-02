@@ -36,6 +36,17 @@ REQUIRED_JOURNEYS = {
     "force_stop_and_restore_with_new_process_identity",
     "google_play_physical_arm64_install_and_update",
 }
+REQUIRED_P0_WIZARD_JOURNEYS = [
+    "creation-prerequisite",
+    "career-active-skill-advance",
+    "career-weapon-fire",
+]
+EXPECTED_WIZARD_GATE_AUTHORITY = (
+    "chummer-android/eng/api36-sr5-wizard-gate-authority.json"
+)
+EXPECTED_WIZARD_AGGREGATE_SCHEMA = (
+    "chummer.android.api36-sr5-wizard-e2e-aggregate/v1"
+)
 REQUIRED_SPEC_MARKERS = (
     "## Phone-beta authority and claim tiers",
     "## Phone information architecture",
@@ -88,6 +99,16 @@ def validate_contract(root: Path = ROOT) -> list[str]:
     for key, expected in expected_target.items():
         if target.get(key) != expected:
             errors.append(f"invalid_target:{key}:{expected}")
+
+    evidence_authority = _mapping(matrix.get("evidenceAuthority"))
+    if evidence_authority.get("wizardGateAuthority") != EXPECTED_WIZARD_GATE_AUTHORITY:
+        errors.append("invalid_wizard_gate_authority")
+    if evidence_authority.get("wizardAggregateSchema") != EXPECTED_WIZARD_AGGREGATE_SCHEMA:
+        errors.append("invalid_wizard_aggregate_schema")
+    if evidence_authority.get("requiredP0Journeys") != REQUIRED_P0_WIZARD_JOURNEYS:
+        errors.append("invalid_required_p0_wizard_journeys")
+    if "rowInventory" in evidence_authority:
+        errors.append("legacy_row_inventory_must_not_be_beta_authority")
 
     claim_tiers = _mapping(matrix.get("claimTiers"))
     phone_beta = _mapping(claim_tiers.get("phone_beta"))
@@ -161,6 +182,7 @@ def validate_contract(root: Path = ROOT) -> list[str]:
     expected_postures = {
         "play_overlay": ("optional_feature_gated", "hidden_until_proven"),
         "table_lifecycle": ("optional_feature_gated", "hidden_until_proven"),
+        "advanced_editor": ("postponed_non_blocking", "not_in_phone_beta"),
         "rook_and_live_avatar": ("postponed_non_blocking", "not_in_phone_beta"),
         "tablet_composition": ("postponed_non_blocking", "not_in_phone_beta"),
         "exhaustive_chummer5_control_parity": (
@@ -183,6 +205,7 @@ def validate_contract(root: Path = ROOT) -> list[str]:
         "absent from primary navigation, search, deep links, command catalogs, and assistant suggestions",
         "never premium, account, provider, or marketing guesses",
         "Rook and live-avatar implementation is postponed",
+        "Full Editing is not a required journey",
     ):
         if marker not in rules_text:
             errors.append(f"missing_feature_gate_rule:{marker}")
