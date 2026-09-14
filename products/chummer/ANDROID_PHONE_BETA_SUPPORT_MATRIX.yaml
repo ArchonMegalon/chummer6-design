@@ -1,7 +1,7 @@
 {
   "schema": "chummer.android_phone_beta_support_matrix.v1",
   "owner": "chummer6-design",
-  "updated": "2026-09-02",
+  "updated": "2026-09-14",
   "status": "contract_defined_evidence_pending",
   "target": {
     "platform": "android",
@@ -16,15 +16,21 @@
   "evidenceAuthority": {
     "implementationRepository": "chummer-android",
     "wizardGateAuthority": "chummer-android/eng/api36-sr5-wizard-gate-authority.json",
-    "wizardAggregateSchema": "chummer.android.api36-sr5-wizard-e2e-aggregate/v1",
+    "wizardGateSchema": "chummer.android.api36-sr5-wizard-gate-authority/v1",
+    "wizardGateSha256": "c867b4fd8c2a771e3ddb4c3e20c0b843ea87510a197b476c7ce75dc013fec7b4",
+    "wizardAggregateSchema": "chummer.android.api36-sr5-wizard-e2e-aggregate/v2",
     "requiredP0Journeys": [
       "creation-prerequisite",
       "career-active-skill-advance",
-      "career-weapon-fire"
+      "career-weapon-fire",
+      "before-run-edge",
+      "playtime-short-burst",
+      "downtime-calendar",
+      "after-run-settlement"
     ],
     "legacyRowInventory": "chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json",
     "featureParityRegistry": "ANDROID_WINDOWS_FEATURE_PARITY.yaml",
-    "rule": "This design contract defines scope but never proves a build. The wizard-only gate and aggregate must bind the exact app head, dependency graph, AAB or APK digest, device profile, and all required wizard receipts. Full Editing and the exhaustive legacy row inventory cannot satisfy or block this gate."
+    "rule": "This design contract defines scope but never proves a build. The wizard-only gate and aggregate must bind the exact app head, dependency graph, AAB or APK digest, device profile, and all seven required wizard receipts. Android independently verifies this matrix against the exact gate bytes and records Design as policyAuthorities.design, including repository, commit, tree, matrix and validator paths and SHA-256 values, and schema identity. Ordered Review-to-Main qualification requires the same Design policy authority in both runs. A later source-graph checkout cannot retroactively qualify an older run. Full Editing and the exhaustive legacy row inventory cannot satisfy or block this gate."
   },
   "postureLegend": [
     "required",
