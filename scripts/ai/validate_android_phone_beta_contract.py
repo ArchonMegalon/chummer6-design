@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -40,12 +42,22 @@ REQUIRED_P0_WIZARD_JOURNEYS = [
     "creation-prerequisite",
     "career-active-skill-advance",
     "career-weapon-fire",
+    "before-run-edge",
+    "playtime-short-burst",
+    "downtime-calendar",
+    "after-run-settlement",
 ]
 EXPECTED_WIZARD_GATE_AUTHORITY = (
     "chummer-android/eng/api36-sr5-wizard-gate-authority.json"
 )
 EXPECTED_WIZARD_AGGREGATE_SCHEMA = (
-    "chummer.android.api36-sr5-wizard-e2e-aggregate/v1"
+    "chummer.android.api36-sr5-wizard-e2e-aggregate/v2"
+)
+EXPECTED_WIZARD_GATE_SCHEMA = "chummer.android.api36-sr5-wizard-gate-authority/v1"
+# Reviewed Android gate bytes, not a current-head discovery or a generated claim.
+# Changing this denominator requires an explicit Design and Android qualification.
+EXPECTED_WIZARD_GATE_SHA256 = (
+    "c867b4fd8c2a771e3ddb4c3e20c0b843ea87510a197b476c7ce75dc013fec7b4"
 )
 REQUIRED_SPEC_MARKERS = (
     "## Phone-beta authority and claim tiers",
@@ -67,7 +79,55 @@ def _mapping(value: Any) -> dict[str, Any]:
     return value if isinstance(value, dict) else {}
 
 
-def validate_contract(root: Path = ROOT) -> list[str]:
+def validate_android_gate(android_root: Path) -> list[str]:
+    """Check an explicitly supplied implementation; never discover a sibling.
+
+    This convenience check does not replace the Android-owned cross-repository
+    verifier or manufacture candidate, signing, or publication evidence.
+    """
+    relative_path = Path(EXPECTED_WIZARD_GATE_AUTHORITY).relative_to("chummer-android")
+    path = android_root / relative_path
+    for component in (android_root, android_root / "eng", path):
+        if component.is_symlink():
+            return ["android_wizard_gate_symlink_forbidden"]
+    try:
+        with path.open("rb") as stream:
+            raw = stream.read(64 * 1024 + 1)
+    except OSError:
+        return ["android_wizard_gate_missing_or_unreadable"]
+    if len(raw) > 64 * 1024:
+        return ["android_wizard_gate_oversized"]
+    errors: list[str] = []
+    if hashlib.sha256(raw).hexdigest() != EXPECTED_WIZARD_GATE_SHA256:
+        errors.append("android_wizard_gate_digest_mismatch")
+    try:
+        gate = json.loads(raw)
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return errors + ["android_wizard_gate_invalid_json"]
+    if not isinstance(gate, dict):
+        return errors + ["android_wizard_gate_not_object"]
+    if gate.get("schema") != EXPECTED_WIZARD_GATE_SCHEMA:
+        errors.append("android_wizard_gate_schema_mismatch")
+    required = gate.get("requiredJourneys")
+    ids = (
+        [item.get("matrixJourney") if isinstance(item, dict) else None for item in required]
+        if isinstance(required, list)
+        else None
+    )
+    if ids != REQUIRED_P0_WIZARD_JOURNEYS or gate.get("requiredJourneyCount") != len(
+        REQUIRED_P0_WIZARD_JOURNEYS
+    ):
+        errors.append("android_wizard_gate_journeys_mismatch")
+    if (
+        gate.get("authorityClass") != "internal_phone_beta_sr5_wizard_only"
+        or gate.get("proofScope") != "sr5_wizards_only"
+        or gate.get("publicationAuthorized") is not False
+    ):
+        errors.append("android_wizard_gate_scope_mismatch")
+    return errors
+
+
+def validate_contract(root: Path = ROOT, *, android_root: Path | None = None) -> list[str]:
     product = root / "products" / "chummer"
     matrix_path = product / MATRIX_NAME
     spec_path = product / SPEC_NAME
@@ -103,6 +163,10 @@ def validate_contract(root: Path = ROOT) -> list[str]:
     evidence_authority = _mapping(matrix.get("evidenceAuthority"))
     if evidence_authority.get("wizardGateAuthority") != EXPECTED_WIZARD_GATE_AUTHORITY:
         errors.append("invalid_wizard_gate_authority")
+    if evidence_authority.get("wizardGateSchema") != EXPECTED_WIZARD_GATE_SCHEMA:
+        errors.append("invalid_wizard_gate_schema")
+    if evidence_authority.get("wizardGateSha256") != EXPECTED_WIZARD_GATE_SHA256:
+        errors.append("invalid_wizard_gate_sha256")
     if evidence_authority.get("wizardAggregateSchema") != EXPECTED_WIZARD_AGGREGATE_SCHEMA:
         errors.append("invalid_wizard_aggregate_schema")
     if evidence_authority.get("requiredP0Journeys") != REQUIRED_P0_WIZARD_JOURNEYS:
@@ -231,11 +295,20 @@ def validate_contract(root: Path = ROOT) -> list[str]:
             if marker not in readme_text:
                 errors.append(f"missing_readme_marker:{marker}")
 
+    if android_root is not None:
+        errors.extend(validate_android_gate(android_root))
     return errors
 
 
 def main() -> int:
-    errors = validate_contract(ROOT)
+    parser = argparse.ArgumentParser(description="Validate the Android phone-beta product policy")
+    parser.add_argument(
+        "--android-root",
+        type=Path,
+        help="Explicit Android checkout for gate-byte consistency; no ambient sibling lookup",
+    )
+    args = parser.parse_args()
+    errors = validate_contract(ROOT, android_root=args.android_root)
     if errors:
         for error in errors:
             print(error)

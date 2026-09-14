@@ -1,7 +1,7 @@
 # Android flagship application
 
 Status: canonical Android product contract
-Updated: 2026-09-02 — wizard-only phone-beta scope and lifecycle-aware navigation
+Updated: 2026-09-14 — exact seven-journey wizard policy and cross-repository qualification
 
 ## Decision
 
@@ -357,8 +357,21 @@ grounded in the built artifact, captures from the tested app, and an internal-te
 install receipt before production widening.
 
 For the current integration wave, the exact API-36 merge authority is
-wizard-only: Creation Prerequisite, Career Active Skill, and Career Weapon Fire
-must pass from one APK and one dependency graph. The Full Editing journey is
+wizard-only: Creation Prerequisite, Career Active Skill, Career Weapon Fire,
+Before Run Edge, Playtime Short Burst, Downtime Calendar, and After Run Settlement
+must pass from one APK and one dependency graph. The matrix binds the exact
+seven-journey gate bytes and aggregate schema
+`chummer.android.api36-sr5-wizard-e2e-aggregate/v2`. The Full Editing journey is
 excluded from the matrix and aggregate; neither a passing nor a stale Full
-Editing receipt can affect authorization. Later wizard families receive their
-own typed journeys as they enter the declared beta scope.
+Editing receipt can affect authorization. These hosted journeys do not replace
+the separately required physical Play-managed install/update evidence.
+
+Design is a first-class qualification policy authority, not a runtime package.
+Android independently checks the matrix against its own gate before accepting
+evidence. The P0 and ordered Review-to-Main receipts carry
+`policyAuthorities.design`: the exact Design repository, commit, tree, matrix
+and validator paths and SHA-256 values, and schema identity. Both qualifying runs
+must use the same Design authority. A different Design pin, matrix, validator,
+gate, or aggregate schema requires fresh qualification; a later release-source
+checkout cannot repair policy provenance retroactively. Design validation alone
+is neither Android runtime proof nor signing or publication permission.
