@@ -107,6 +107,11 @@ Minimum default posture:
 
 These limits may tighten or widen by canon and explicit operator policy, but they must remain machine-enforced independent of model behavior.
 
+Effective operator exception (2026-09-14): for the Chummer project only, the per-repository daily PR-count limit is unlimited.
+The general default above remains 2; this exception changes only the effective PR count.
+File, line, concurrency, protected-path approval, non-writer evidence, and all other review and protection controls remain unchanged.
+This records operator policy, not a claim that runtime quota enforcement is implemented.
+
 ## Mirror and synthesis rule
 
 Fleet should own the repeatable mechanics of mirror/parity checking and feedback clustering.
