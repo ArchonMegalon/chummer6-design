@@ -160,9 +160,14 @@ Minimum default posture:
 * self-review forbidden
 * release-promoting changes require non-writer evidence
 
+Effective operator exception (2026-09-14): for the Chummer project only, the per-repository daily PR-count limit is unlimited.
+The general default above remains 2; this exception changes only the effective PR count.
+File, line, concurrency, protected-path approval, non-writer evidence, and all other review and protection controls remain unchanged.
+This records operator policy, not a claim that runtime quota enforcement is implemented.
+
 Accept when:
 
-* Fleet enforces the limits in code and policy, not only in prose
+* Fleet enforces the effective limits, including explicit operator exceptions, in code and policy, not only in prose
 
 ### 8. Canonical repo graph manifest
 

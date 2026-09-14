@@ -49,7 +49,7 @@ initiatives:
       - chummer6-design
     status: proposed
     accepts_when:
-      - Fleet enforces per-repo PR, file, line, and parallelism caps in code.
+      - Fleet enforces effective per-repo daily PR-count policy, including explicit operator exceptions, and unchanged file, line, and parallelism caps in code.
       - Protected paths require human approval.
       - Self-review and release without non-writer evidence are blocked.
 
