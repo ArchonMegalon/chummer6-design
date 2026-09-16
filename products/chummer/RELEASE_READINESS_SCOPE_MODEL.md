@@ -18,6 +18,30 @@ machine contracts that retain `preview_ready` for compatibility may use it only
 as a whole-product Design decision and must expose `readinessScope` as
 `whole_product_preview`.
 
+## Rolling surface delivery
+
+Rolling releases name their surface explicitly and reuse its existing
+qualification and publication contracts. No new readiness enum or receipt
+dialect is required. The surface, exact source/dependency graph, version,
+qualification, signing, distribution track, provider readback, and recovery
+inputs remain distinguishable; an Internal track is not a publication result.
+
+For `android-wizard-sr5`, the scoped qualification is the exact governed SR5
+wizard set and its aggregate API-36 edit/save/reopen/process-restart proof.
+The existing Android publication contract requires signing, scoped Play
+readback, and successful Internal test installation before its publication claim
+is emitted. Qualification alone only identifies an eligible candidate, not a
+signed or uploaded application. Play processing and physical installation stay
+separately evidenced steps. Full Editing, tablet composition, uncovered Chummer5
+controls, and live Rook remain separate scopes.
+
+Surface publication may proceed when its own gates pass, even while the
+whole-product decision remains `review_required` or `blocked` for unrelated
+surfaces. A shared dependency defect, revoked approval, credential exposure,
+or data-loss risk affecting this surface still blocks its release. Public copy
+must display the surface name and exclusions so users cannot mistake a rolling
+wizard update for a complete Chummer editor release.
+
 ## Required receipt boundary
 
 A desktop-delivery receipt carries:

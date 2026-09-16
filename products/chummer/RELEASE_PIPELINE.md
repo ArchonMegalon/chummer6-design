@@ -8,9 +8,84 @@ The goal is to keep build recipes near the owning code, keep release control in 
 
 ## Scheduled rolling release rule
 
-The normal publication happens once per day at 08:00 Europe/Vienna after the required release gates pass.
-Extra publishes are allowed only when a fix is urgent, user-visible, and worth the extra release noise.
-emergency publishes require an explicit release reason, the affected surface, and the verification that made the extra publish safe.
+Chummer uses rolling, surface-scoped releases rather than a month-long
+whole-product train. A qualified surface may move independently as soon as
+its own authority, rollback, and publication gates pass; it must not wait for
+unrelated desktop, campaign, tablet, or Rook work.
+
+The normal public shelf promotion runs once per day at 08:00 Europe/Vienna and
+selects the newest qualified bundle for each lane. Internal Android wizard
+builds may be promoted after qualification (subject to the protected signing
+and Play gates) without waiting for whole-product preview readiness. Every
+promotion still binds one immutable source/dependency graph and one lane
+receipt. Extra publishes require an explicit release reason, affected lane,
+and the verification that made that publish safe. Emergency publishes use the
+same lane receipt and recovery contract; they do not bypass it. Emergency
+publishes require an explicit release reason and affected lane.
+
+A lane release never widens another lane's claims. In particular, an Android
+wizard release does not claim Full Editing, tablet parity, desktop gold,
+whole-product preview readiness, or live Rook authority.
+
+### Rolling release units
+
+The initial rolling units are:
+
+* `android-wizard-sr5`: the explicitly governed SR5 phone wizard journeys;
+* `desktop-win-x64` and `desktop-linux-x64`: the public desktop installer lanes;
+* `pwa-mobile`: the Web/PWA lane;
+* `rook-private`: a private, read-only/preview-only lane until Core rule
+  resolution and provider canaries exist.
+
+Each unit keeps its existing versioning, immutable dependency graph,
+qualification evidence, publication evidence, recovery procedure, and
+user-facing status. A shared product version is not a prerequisite for shipping
+a qualified unit. These units are release scopes, not a new receipt schema or
+an authorization to activate postponed features.
+
+### Android Internal rolling transaction
+
+The delivery target is a small SR5 wizard update whenever a candidate is
+qualified, normally within 24 hours of qualification once the signing/upload
+service is operational. This is a cadence target, not a claim that the service
+already exists or a deadline that overrides a failed gate.
+
+1. Keep changes small. Assign a higher Play version code before qualification;
+   keep the already qualified dependency pins unless the change needs new bytes.
+2. Run the existing seven-journey PR and subsequent exact-tree main checks.
+   On successful main qualification, automatically resolve the matching review
+   run and replay the existing Review-to-Main verifier. Manual dispatch remains
+   a recovery path; it must not be the normal scheduling mechanism.
+3. Freeze that qualified candidate while newer work queues for the next update.
+   A later main commit alone does not invalidate an immutable candidate. An
+   actual revocation or safety defect affecting it does. Do not repeatedly repin
+   every repository to latest main and restart qualification without a relevant
+   dependency or policy change.
+4. Hand the exact eligible candidate to the protected signing/upload worker.
+   Use the existing approval, signing, and artifact-inspection boundaries;
+   successful CI is not itself signing or upload permission.
+5. Upload to the existing Play Internal track and tester audience. Record Play
+   processing/readback and the required physical Play-managed installation/update
+   separately. Upload alone does not satisfy the Android publication contract;
+   the scoped Play receipt and successful Internal test install are both needed
+   for the publication claim. Neither grants public rollout authority.
+6. Publish concise changes and known limitations from the actual uploaded
+   version. Do not leave a merged fix described as delivered while the previous
+   version is still on Play.
+
+Keep one signing/upload transaction active for this lane; new changes do not
+interrupt it. A failed stage resumes from authenticated immutable outputs where
+the existing verifier permits reuse, without replaying mutations or rebuilding
+already verified bytes just to collect another status.
+
+Recovery on Android is not a version-code downgrade: halt expansion of a bad
+release and issue the known-good fix under a higher code after checking stored
+data compatibility. Retain the previous published evidence and recovery inputs.
+
+Track the remaining queue by stage: qualification, signing, upload, Play
+processing, and physical installation. Report the actual blocked stage and its
+elapsed time; do not call the whole application unfinished because an unrelated
+product surface is still in development.
 
 ## Arch/AUR package rule
 

@@ -14,6 +14,14 @@ Allowed labels are finite:
 - `blocked`
 - `revoked`
 
+Rolling surface releases explicitly identify their surface in existing
+qualification and publication contracts. They may advance on their admitted
+track when that surface's gates pass, even if the whole-product decision
+remains `public_release_review_required` or `blocked` for unrelated work.
+Qualification, signing, publication, and installation remain separate states;
+an eligible Android candidate must not be labelled published before the scoped
+Play receipt and successful Internal test install required by its contract.
+
 Resolver rules:
 
 1. If a promoted primary route is revoked, the release label is `revoked`.
@@ -23,6 +31,11 @@ Resolver rules:
 5. If the promoted desktop matrix is gold-clean but non-desktop product gates are still incomplete, the release label is `desktop_gold`.
 6. Only when every release gate passes may the release label be `public_stable`.
 7. Before any public artifact shelf exists, the release label stays `preview`, `protected_preview`, or `internal`.
+
+The rolling-surface rule is scoped, not global: evidence for
+`android-wizard-sr5` can advance that Android lane, but cannot advance desktop,
+tablet, Full Editing, whole-product preview, or stable labels. Shared defects
+and revocations affecting the Android candidate still block that candidate.
 
 `public_stable` is forbidden when any of the following are true:
 
@@ -52,6 +65,17 @@ Scheduled rolling-release rule for that scope:
 - forced publication is allowed only for an explicit release reason, not as the default cadence
 - leaving an older Windows/Linux public shelf live after the scheduled promotion completes is a release-pipeline failure
 - ad hoc builds should target only the platform needed for a concrete test or fix
+
+Rolling surface cadence:
+
+- a qualified surface may be promoted on the next available protected window;
+- once signing/upload is operational, the default target is within 24 hours of
+  qualification, not the next whole-product milestone; this is not permission
+  to skip a required gate;
+- each surface keeps an independent version, digest, recovery procedure, and
+  publication receipt;
+- no surface may inherit readiness from another surface or from stale whole-
+  product evidence.
 
 Status language:
 

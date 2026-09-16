@@ -34,9 +34,12 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
     ),
     "RELEASE_PIPELINE.md": (
         "## Scheduled rolling release rule",
-        "normal publication happens once per day at 08:00 Europe/Vienna",
+        "normal public shelf promotion runs once per day at 08:00 Europe/Vienna",
+        "surface-scoped releases",
+        "android-wizard-sr5",
         "## Arch/AUR package rule",
-        "emergency publishes require an explicit release reason",
+        "publishes require an explicit release reason and affected lane",
+        "### Android Internal rolling transaction",
     ),
     "DESKTOP_CLIENT_PRODUCT_CUT.md": (
         "no public portable CTA",
