@@ -4,9 +4,7 @@ import importlib.util
 from pathlib import Path
 
 
-MODULE_PATH = Path(
-    "/docker/chummercomplete/chummer-design/scripts/ai/validate_minimal_public_surface_design.py"
-)
+MODULE_PATH = Path(__file__).resolve().parents[1] / "scripts/ai/validate_minimal_public_surface_design.py"
 SPEC = importlib.util.spec_from_file_location("validate_minimal_public_surface_design", MODULE_PATH)
 assert SPEC is not None and SPEC.loader is not None
 validator = importlib.util.module_from_spec(SPEC)

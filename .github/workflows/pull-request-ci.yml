@@ -81,6 +81,12 @@ jobs:
           "$RUNNER_TEMP/design-ci-python/bin/python" -m pytest -q \
             tests/test_validate_android_phone_beta_contract.py
 
+      - name: Verify scoped rolling-release and public-surface policy
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/design-ci-python/bin/python" scripts/ai/validate_minimal_public_surface_design.py
+          "$RUNNER_TEMP/design-ci-python/bin/python" -m pytest -q tests/test_validate_minimal_public_surface_design.py
+
       - name: Verify scorecard, preview, stable, and current-state semantics
         run: >-
           "$RUNNER_TEMP/design-ci-python/bin/python" -m pytest -q

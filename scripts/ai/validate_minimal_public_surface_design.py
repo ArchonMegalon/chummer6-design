@@ -38,7 +38,8 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "surface-scoped releases",
         "android-wizard-sr5",
         "## Arch/AUR package rule",
-        "emergency publishes require an explicit release reason",
+        "publishes require an explicit release reason and affected lane",
+        "### Android Internal rolling transaction",
     ),
     "DESKTOP_CLIENT_PRODUCT_CUT.md": (
         "no public portable CTA",

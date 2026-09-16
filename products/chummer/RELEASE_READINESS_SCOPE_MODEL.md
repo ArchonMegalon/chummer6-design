@@ -8,7 +8,6 @@ another scope.
 
 | State | Owner | What it proves | What it does not prove |
 | --- | --- | --- | --- |
-| `rolling_surface_ready` | Owning repo plus Hub Registry | One explicitly named product surface has a complete immutable dependency graph, its scoped runtime proof, rollback data, and publication receipt. | Other surfaces, whole-product preview readiness, stable/gold readiness, or unrelated feature parity. |
 | `artifact_shelf_ready` | Hub Registry | The selected immutable bytes, hashes, routes, and startup evidence form a stageable shelf. | Product journeys, campaign operability, public activation, stable readiness. |
 | `desktop_delivery_ready` | Hub Registry and Hub | The exact reviewed desktop shelf can be privately staged and served through its bounded Linux/Windows delivery routes. | Whole-product preview readiness, flagship readiness, stable readiness. |
 | `product_preview_ready` | Design | Every required campaign-operability cell and candidate-bound journey gate meets the preview threshold for the same authority generation. | Stable or gold readiness. |
@@ -19,30 +18,27 @@ machine contracts that retain `preview_ready` for compatibility may use it only
 as a whole-product Design decision and must expose `readinessScope` as
 `whole_product_preview`.
 
-## Rolling surface release contract
+## Rolling surface delivery
 
-Rolling releases use `readinessScope: rolling_surface` and must name the
-surface explicitly. A surface receipt must bind:
-
-```json
-{
-  "readinessScope": "rolling_surface",
-  "surfaceId": "android-wizard-sr5",
-  "sourceGraphDigest": "<immutable graph>",
-  "qualificationReceipt": "<scoped runtime proof>",
-  "rollbackTarget": "<previous lane version>",
-  "publicationState": "internal|preview|public"
-}
-```
+Rolling releases name their surface explicitly and reuse its existing
+qualification and publication contracts. No new readiness enum or receipt
+dialect is required. The surface, exact source/dependency graph, version,
+qualification, signing, distribution track, provider readback, and recovery
+inputs remain distinguishable; an Internal track is not a publication result.
 
 For `android-wizard-sr5`, the scoped qualification is the exact governed SR5
 wizard set and its aggregate API-36 edit/save/reopen/process-restart proof.
-The receipt must also carry the signing and Play-processing evidence before an
-internal publication claim is emitted. Full Editing, tablet composition,
-uncovered Chummer5 controls, and live Rook remain separate scopes.
+The existing Android publication contract requires signing, scoped Play
+readback, and successful Internal test installation before its publication claim
+is emitted. Qualification alone only identifies an eligible candidate, not a
+signed or uploaded application. Play processing and physical installation stay
+separately evidenced steps. Full Editing, tablet composition, uncovered Chummer5
+controls, and live Rook remain separate scopes.
 
 Surface publication may proceed when its own gates pass, even while the
-whole-product decision remains `review_required` or `blocked`. Public copy
+whole-product decision remains `review_required` or `blocked` for unrelated
+surfaces. A shared dependency defect, revoked approval, credential exposure,
+or data-loss risk affecting this surface still blocks its release. Public copy
 must display the surface name and exclusions so users cannot mistake a rolling
 wizard update for a complete Chummer editor release.
 

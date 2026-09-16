@@ -14,10 +14,13 @@ Allowed labels are finite:
 - `blocked`
 - `revoked`
 
-Rolling surface releases additionally carry a machine-readable
-`readinessScope` and `surfaceId`. They may be published as `internal` or
-`preview` when that surface's scoped receipt passes, even if the whole-product
-decision remains `public_release_review_required` or `blocked`.
+Rolling surface releases explicitly identify their surface in existing
+qualification and publication contracts. They may advance on their admitted
+track when that surface's gates pass, even if the whole-product decision
+remains `public_release_review_required` or `blocked` for unrelated work.
+Qualification, signing, publication, and installation remain separate states;
+an eligible Android candidate must not be labelled published before the scoped
+Play receipt and successful Internal test install required by its contract.
 
 Resolver rules:
 
@@ -29,9 +32,10 @@ Resolver rules:
 6. Only when every release gate passes may the release label be `public_stable`.
 7. Before any public artifact shelf exists, the release label stays `preview`, `protected_preview`, or `internal`.
 
-The rolling-surface exception is scoped, not global: a passing
-`android-wizard-sr5` receipt can advance that Android lane, but cannot advance
-desktop, tablet, Full Editing, whole-product preview, or stable labels.
+The rolling-surface rule is scoped, not global: evidence for
+`android-wizard-sr5` can advance that Android lane, but cannot advance desktop,
+tablet, Full Editing, whole-product preview, or stable labels. Shared defects
+and revocations affecting the Android candidate still block that candidate.
 
 `public_stable` is forbidden when any of the following are true:
 
@@ -65,9 +69,10 @@ Scheduled rolling-release rule for that scope:
 Rolling surface cadence:
 
 - a qualified surface may be promoted on the next available protected window;
-- the default target is within 24 hours of the qualifying receipt, not the next
-  whole-product milestone;
-- each surface keeps an independent version, digest, rollback target, and
+- once signing/upload is operational, the default target is within 24 hours of
+  qualification, not the next whole-product milestone; this is not permission
+  to skip a required gate;
+- each surface keeps an independent version, digest, recovery procedure, and
   publication receipt;
 - no surface may inherit readiness from another surface or from stale whole-
   product evidence.
