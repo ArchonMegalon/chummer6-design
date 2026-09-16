@@ -8,9 +8,41 @@ The goal is to keep build recipes near the owning code, keep release control in 
 
 ## Scheduled rolling release rule
 
-The normal publication happens once per day at 08:00 Europe/Vienna after the required release gates pass.
-Extra publishes are allowed only when a fix is urgent, user-visible, and worth the extra release noise.
-emergency publishes require an explicit release reason, the affected surface, and the verification that made the extra publish safe.
+Chummer uses rolling, surface-scoped releases rather than a month-long
+whole-product train. A qualified surface may move independently as soon as
+its own authority, rollback, and publication gates pass; it must not wait for
+unrelated desktop, campaign, tablet, or Rook work.
+
+The normal public shelf promotion runs once per day at 08:00 Europe/Vienna and
+selects the newest qualified bundle for each lane. Internal Android wizard
+builds may be promoted after qualification (subject to the protected signing
+and Play gates) without waiting for whole-product preview readiness. Every
+promotion still binds one immutable source/dependency graph and one lane
+receipt. Extra publishes require an explicit release reason, affected lane,
+and the verification that made that publish safe. Emergency publishes use the
+same lane receipt and rollback contract; they do not bypass it.
+
+Emergency publishes require an explicit release reason and affected lane;
+emergency publishes require an explicit release reason.
+
+A lane release never widens another lane's claims. In particular, an Android
+wizard release does not claim Full Editing, tablet parity, desktop gold,
+whole-product preview readiness, or live Rook authority.
+
+### Rolling release units
+
+The initial rolling units are:
+
+* `android-wizard-sr5`: the explicitly governed SR5 phone wizard journeys;
+* `desktop-win-x64` and `desktop-linux-x64`: the public desktop installer lanes;
+* `pwa-mobile`: the Web/PWA lane;
+* `rook-private`: a private, read-only/preview-only lane until Core rule
+  resolution and provider canaries exist.
+
+Each unit has its own monotonically increasing lane version, immutable graph
+digest, qualification receipt, publication receipt, rollback target, and
+user-facing status. A shared product version may be generated later as a
+projection, but it is not a prerequisite for shipping a qualified unit.
 
 ## Arch/AUR package rule
 

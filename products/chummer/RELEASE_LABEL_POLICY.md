@@ -14,6 +14,11 @@ Allowed labels are finite:
 - `blocked`
 - `revoked`
 
+Rolling surface releases additionally carry a machine-readable
+`readinessScope` and `surfaceId`. They may be published as `internal` or
+`preview` when that surface's scoped receipt passes, even if the whole-product
+decision remains `public_release_review_required` or `blocked`.
+
 Resolver rules:
 
 1. If a promoted primary route is revoked, the release label is `revoked`.
@@ -23,6 +28,10 @@ Resolver rules:
 5. If the promoted desktop matrix is gold-clean but non-desktop product gates are still incomplete, the release label is `desktop_gold`.
 6. Only when every release gate passes may the release label be `public_stable`.
 7. Before any public artifact shelf exists, the release label stays `preview`, `protected_preview`, or `internal`.
+
+The rolling-surface exception is scoped, not global: a passing
+`android-wizard-sr5` receipt can advance that Android lane, but cannot advance
+desktop, tablet, Full Editing, whole-product preview, or stable labels.
 
 `public_stable` is forbidden when any of the following are true:
 
@@ -52,6 +61,16 @@ Scheduled rolling-release rule for that scope:
 - forced publication is allowed only for an explicit release reason, not as the default cadence
 - leaving an older Windows/Linux public shelf live after the scheduled promotion completes is a release-pipeline failure
 - ad hoc builds should target only the platform needed for a concrete test or fix
+
+Rolling surface cadence:
+
+- a qualified surface may be promoted on the next available protected window;
+- the default target is within 24 hours of the qualifying receipt, not the next
+  whole-product milestone;
+- each surface keeps an independent version, digest, rollback target, and
+  publication receipt;
+- no surface may inherit readiness from another surface or from stale whole-
+  product evidence.
 
 Status language:
 
