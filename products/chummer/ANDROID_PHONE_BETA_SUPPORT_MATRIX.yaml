@@ -1,7 +1,7 @@
 {
   "schema": "chummer.android_phone_beta_support_matrix.v1",
   "owner": "chummer6-design",
-  "updated": "2026-09-14",
+  "updated": "2026-09-20",
   "status": "contract_defined_evidence_pending",
   "target": {
     "platform": "android",
@@ -13,7 +13,27 @@
     "tabletRequiredForPhoneBeta": false,
     "tabletPosture": "postponed_and_separately_proven"
   },
+  "internalDeliveryPolicy": {
+    "execution": "local_isolated_docker",
+    "verification": "affected_build_tests_and_route_smoke",
+    "persistenceChangesRequireProcessRestart": true,
+    "securityChangesRequireNegativeTests": true,
+    "reuseUnchangedEvidence": true,
+    "hostedRuntimeRequired": false,
+    "orderedReviewMainRequired": false,
+    "extendedApi36": "manual_only",
+    "sourceCheckIsRuntimeEvidence": false,
+    "allowedDependencyModes": ["sealed_package_graph", "exact_source_assembly"],
+    "existingUploadKeyRequired": true,
+    "keylessBuildAndVerification": true,
+    "isolatedSignerRequired": true,
+    "exactArtifactAndCertificateChecks": true,
+    "playReadbackRequired": true,
+    "physicalPlayInstallRequiredForBetaClaim": true,
+    "policyAuthorizesUpload": false
+  },
   "evidenceAuthority": {
+    "qualificationUse": "optional_extended_runtime",
     "implementationRepository": "chummer-android",
     "wizardGateAuthority": "chummer-android/eng/api36-sr5-wizard-gate-authority.json",
     "wizardGateSchema": "chummer.android.api36-sr5-wizard-gate-authority/v1",
@@ -30,7 +50,7 @@
     ],
     "legacyRowInventory": "chummer-android/docs/ANDROID_CHUMMER5_EDITABILITY_INVENTORY.generated.json",
     "featureParityRegistry": "ANDROID_WINDOWS_FEATURE_PARITY.yaml",
-    "rule": "This design contract defines scope but never proves a build. The wizard-only gate and aggregate must bind the exact app head, dependency graph, AAB or APK digest, device profile, and all seven required wizard receipts. Android independently verifies this matrix against the exact gate bytes and records Design as policyAuthorities.design, including repository, commit, tree, matrix and validator paths and SHA-256 values, and schema identity. Ordered Review-to-Main qualification requires the same Design policy authority in both runs. A later source-graph checkout cannot retroactively qualify an older run. Full Editing and the exhaustive legacy row inventory cannot satisfy or block this gate."
+    "rule": "The seven-journey aggregate remains an optional extended runtime proof, not the default Internal merge or release gate. If claimed, it must bind one exact APK, source/dependency graph, device profile and all seven listed receipts under the exact Design policy. Historical ordered Review-to-Main evidence keeps its original PR/push event rules and policy binding; a manual or local run cannot masquerade as that evidence. Routine Internal delivery follows internalDeliveryPolicy and RELEASE_PIPELINE.md. Neither policy nor source checks prove a build, grant upload permission or complete the phone-beta claim. Full Editing and the exhaustive legacy row inventory cannot satisfy or block the wizard gate."
   },
   "postureLegend": [
     "required",

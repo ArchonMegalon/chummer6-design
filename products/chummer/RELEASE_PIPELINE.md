@@ -45,28 +45,46 @@ an authorization to activate postponed features.
 
 ### Android Internal rolling transaction
 
-The delivery target is a small SR5 wizard update whenever a candidate is
-qualified, normally within 24 hours of qualification once the signing/upload
-service is operational. This is a cadence target, not a claim that the service
-already exists or a deadline that overrides a failed gate.
+The owner-approved execution model since 2026-09-19 is local isolated Docker
+build/signing and local hosting. This supersedes the former mandatory hosted
+PR→Main/double-full-suite transaction for routine Play Internal updates.
+`ANDROID_PHONE_BETA_SUPPORT_MATRIX.yaml` records `internalDeliveryPolicy` as the
+machine-readable policy. It is policy, not a candidate approval or new receipt
+chain. Existing enforced branch, signer and Play controls still apply.
+
+Deliver a small SR5 wizard update when its affected checks pass, normally within
+24 hours of qualification. This is a cadence target, not permission to skip a
+failed check or a claim that signing, upload or installation already happened.
 
 1. Keep changes small. Assign a higher Play version code before qualification;
    keep the already qualified dependency pins unless the change needs new bytes.
-2. Run the existing seven-journey PR and subsequent exact-tree main checks.
-   On successful main qualification, automatically resolve the matching review
-   run and replay the existing Review-to-Main verifier. Manual dispatch remains
-   a recovery path; it must not be the normal scheduling mechanism.
+2. Run the affected build and focused existing tests locally. Smoke the changed
+   user route; persistence/lifecycle changes include save, reopen and process
+   restart. Authentication, ownership, signing and destructive changes retain
+   their negative/data-protection tests. Documentation-only changes use the
+   applicable lightweight validator, not an app rebuild. Source/security merge
+   checks do not stand in for compile or runtime results. Reuse passing evidence
+   only for unchanged inputs, recording any untested delta honestly.
 3. Freeze that qualified candidate while newer work queues for the next update.
    A later main commit alone does not invalidate an immutable candidate. An
    actual revocation or safety defect affecting it does. Do not repeatedly repin
    every repository to latest main and restart qualification without a relevant
    dependency or policy change.
-4. Hand the exact eligible candidate to the protected signing/upload worker.
-   Use the existing approval, signing, and artifact-inspection boundaries;
-   successful CI is not itself signing or upload permission.
+4. Build one exact ARM64 AAB in a credential-free local container. Record source
+   commits/trees, dependency and content identity, toolchain, policy and artifact
+   digests. Use either an exact sealed package graph or an explicitly named
+   exact-source assembly with absolute roots and retained inputs; never label
+   source assembly as package-only/no-siblings proof. Inspect the unsigned AAB,
+   then use a separate local signer with the existing upload key. Independently
+   verify certificate identity, signature, unchanged payload, package/version,
+   API/ABI, content and proof/secret exclusion. No key enters builder, verifier,
+   image, logs or download directories. No hosted signer/GHCR/remote-storage
+   prerequisite, automatic key regeneration or extra rebuild by default.
 5. Upload to the existing Play Internal track and tester audience. Record Play
    processing/readback and the required physical Play-managed installation/update
-   separately. Upload alone does not satisfy the Android publication contract;
+   separately. Verified processing may be described as "Available on Play
+   Internal; physical Play installation not yet verified." Upload alone does
+   not satisfy the Android publication contract;
    the scoped Play receipt and successful Internal test install are both needed
    for the publication claim. Neither grants public rollout authority.
 6. Publish concise changes and known limitations from the actual uploaded
@@ -77,6 +95,21 @@ Keep one signing/upload transaction active for this lane; new changes do not
 interrupt it. A failed stage resumes from authenticated immutable outputs where
 the existing verifier permits reuse, without replaying mutations or rebuilding
 already verified bytes just to collect another status.
+
+The full seven-journey API-36 workflow remains manual-only for explicitly
+requested extended coverage or a demonstrated broad-impact risk. Its aggregate
+still requires all seven journeys against one APK; this policy never turns a
+partial or failed aggregate green. No mandatory two-green receipt is required
+for local Internal delivery. Historical Review-to-Main contracts and tools retain
+their exact PR/push rules for historical replay, not current-release scheduling.
+Do not reclassify workflow_dispatch as pull_request/push, forge a hosted result,
+weaken the historical verifier, or silently bypass an enforced protection.
+
+Known credential, ownership, data-loss, crash and broken required-wizard defects
+still block the affected candidate. Hide unsupported optional methods/features
+or label their experimental Internal scope without claiming complete beta
+support. Do not widen the phone-beta claim until its declared capabilities and
+physical Play-managed installation/update have their required evidence.
 
 Recovery on Android is not a version-code downgrade: halt expansion of a bad
 release and issue the known-good fix under a higher code after checking stored

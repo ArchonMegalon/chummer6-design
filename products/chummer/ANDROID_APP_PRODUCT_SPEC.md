@@ -1,7 +1,7 @@
 # Android flagship application
 
 Status: canonical Android product contract
-Updated: 2026-09-14 — exact seven-journey wizard policy and cross-repository qualification
+Updated: 2026-09-20 — local-first Internal delivery; separate extended and beta evidence
 
 ## Decision
 
@@ -356,8 +356,17 @@ Play App Signing, a Chummer-specific upload key, privacy/data-safety answers
 grounded in the built artifact, captures from the tested app, and an internal-test
 install receipt before production widening.
 
-For the current integration wave, the exact API-36 merge authority is
-wizard-only: Creation Prerequisite, Career Active Skill, Career Weapon Fire,
+Routine Internal delivery follows the owner-approved local Docker transaction
+in `RELEASE_PIPELINE.md` and the matrix's `internalDeliveryPolicy`: affected
+build/tests and route smoke, with save/reopen/process restart for persistence
+changes. Source/safety merge checks are not compile or runtime evidence. The
+seven-journey hosted aggregate and ordered Review-to-Main proof are not mandatory
+for that local lane. Keyless build/verification, an isolated existing-key signer,
+artifact/certificate checks and actual Play readback remain required. This does
+not lower the separate phone-beta claim bar above or authorize an upload.
+
+Optional extended API-36 runtime authority remains wizard-only: Creation
+Prerequisite, Career Active Skill, Career Weapon Fire,
 Before Run Edge, Playtime Short Burst, Downtime Calendar, and After Run Settlement
 must pass from one APK and one dependency graph. The matrix binds the exact
 seven-journey gate bytes and aggregate schema
@@ -366,12 +375,15 @@ excluded from the matrix and aggregate; neither a passing nor a stale Full
 Editing receipt can affect authorization. These hosted journeys do not replace
 the separately required physical Play-managed install/update evidence.
 
-Design is a first-class qualification policy authority, not a runtime package.
-Android independently checks the matrix against its own gate before accepting
-evidence. The P0 and ordered Review-to-Main receipts carry
+Design is a first-class policy authority, not a runtime package. Local delivery
+records the exact policy used alongside the candidate's source/artifact records.
+Android independently verifies the policy; Design cannot approve itself. The
+extended aggregate and historical P0/ordered Review-to-Main receipts carry
 `policyAuthorities.design`: the exact Design repository, commit, tree, matrix
-and validator paths and SHA-256 values, and schema identity. Both qualifying runs
-must use the same Design authority. A different Design pin, matrix, validator,
-gate, or aggregate schema requires fresh qualification; a later release-source
-checkout cannot repair policy provenance retroactively. Design validation alone
-is neither Android runtime proof nor signing or publication permission.
+and validator paths and SHA-256 values, and schema identity. Historical review
+and main runs must use the same Design authority; a manual/local run cannot
+substitute for either event. Changed inputs cannot reuse stale qualification,
+and a later checkout cannot repair provenance retroactively. A documentation-only
+policy change does not require two new full runtime runs for local delivery.
+Design validation alone is neither Android runtime proof nor signing or
+publication permission.
