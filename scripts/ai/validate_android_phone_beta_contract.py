@@ -59,6 +59,25 @@ EXPECTED_WIZARD_GATE_SCHEMA = "chummer.android.api36-sr5-wizard-gate-authority/v
 EXPECTED_WIZARD_GATE_SHA256 = (
     "c867b4fd8c2a771e3ddb4c3e20c0b843ea87510a197b476c7ce75dc013fec7b4"
 )
+EXPECTED_INTERNAL_DELIVERY_POLICY = {
+    "execution": "local_isolated_docker",
+    "verification": "affected_build_tests_and_route_smoke",
+    "persistenceChangesRequireProcessRestart": True,
+    "securityChangesRequireNegativeTests": True,
+    "reuseUnchangedEvidence": True,
+    "hostedRuntimeRequired": False,
+    "orderedReviewMainRequired": False,
+    "extendedApi36": "manual_only",
+    "sourceCheckIsRuntimeEvidence": False,
+    "allowedDependencyModes": ["sealed_package_graph", "exact_source_assembly"],
+    "existingUploadKeyRequired": True,
+    "keylessBuildAndVerification": True,
+    "isolatedSignerRequired": True,
+    "exactArtifactAndCertificateChecks": True,
+    "playReadbackRequired": True,
+    "physicalPlayInstallRequiredForBetaClaim": True,
+    "policyAuthorizesUpload": False,
+}
 REQUIRED_SPEC_MARKERS = (
     "## Phone-beta authority and claim tiers",
     "## Phone information architecture",
@@ -147,6 +166,11 @@ def validate_contract(root: Path = ROOT, *, android_root: Path | None = None) ->
         errors.append("invalid_schema")
     if matrix.get("status") != "contract_defined_evidence_pending":
         errors.append("invalid_status:must_fail_closed_pending")
+    # JSON equality distinguishes booleans from numerically equal 0/1 values.
+    if json.dumps(matrix.get("internalDeliveryPolicy"), sort_keys=True) != json.dumps(
+        EXPECTED_INTERNAL_DELIVERY_POLICY, sort_keys=True
+    ):
+        errors.append("invalid_internal_delivery_policy")
 
     target = _mapping(matrix.get("target"))
     expected_target = {
@@ -161,6 +185,8 @@ def validate_contract(root: Path = ROOT, *, android_root: Path | None = None) ->
             errors.append(f"invalid_target:{key}:{expected}")
 
     evidence_authority = _mapping(matrix.get("evidenceAuthority"))
+    if evidence_authority.get("qualificationUse") != "optional_extended_runtime":
+        errors.append("invalid_extended_qualification_use")
     if evidence_authority.get("wizardGateAuthority") != EXPECTED_WIZARD_GATE_AUTHORITY:
         errors.append("invalid_wizard_gate_authority")
     if evidence_authority.get("wizardGateSchema") != EXPECTED_WIZARD_GATE_SCHEMA:

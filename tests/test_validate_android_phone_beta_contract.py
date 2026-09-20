@@ -47,6 +47,32 @@ def test_validator_accepts_current_phone_beta_contract() -> None:
     assert validator.validate_contract(REPO_ROOT) == []
 
 
+@pytest.mark.parametrize("key,value", [
+    ("hostedRuntimeRequired", True), ("orderedReviewMainRequired", True),
+    ("persistenceChangesRequireProcessRestart", False),
+    ("securityChangesRequireNegativeTests", False),
+    ("keylessBuildAndVerification", False), ("isolatedSignerRequired", False),
+    ("existingUploadKeyRequired", False), ("exactArtifactAndCertificateChecks", False),
+    ("playReadbackRequired", False), ("physicalPlayInstallRequiredForBetaClaim", False),
+    ("policyAuthorizesUpload", True), ("sourceCheckIsRuntimeEvidence", True),
+    ("orderedReviewMainRequired", 0), ("isolatedSignerRequired", 1),
+])
+def test_local_policy_rejects_hosted_dependency_or_lost_safety_boundary(tmp_path, key, value):
+    matrix_path, _ = _copy_contract(tmp_path)
+    matrix = _load_matrix(matrix_path)
+    matrix["internalDeliveryPolicy"][key] = value
+    _write_matrix(matrix_path, matrix)
+    assert "invalid_internal_delivery_policy" in validator.validate_contract(tmp_path)
+
+
+def test_extended_runtime_cannot_become_default_internal_gate(tmp_path):
+    matrix_path, _ = _copy_contract(tmp_path)
+    matrix = _load_matrix(matrix_path)
+    matrix["evidenceAuthority"]["qualificationUse"] = "required_merge_and_release"
+    _write_matrix(matrix_path, matrix)
+    assert "invalid_extended_qualification_use" in validator.validate_contract(tmp_path)
+
+
 def test_validator_rejects_rook_as_phone_beta_requirement(tmp_path: Path) -> None:
     matrix_path, _ = _copy_contract(tmp_path)
     matrix = _load_matrix(matrix_path)
