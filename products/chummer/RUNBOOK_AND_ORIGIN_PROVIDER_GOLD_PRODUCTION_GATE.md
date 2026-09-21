@@ -13,7 +13,7 @@ This gate applies to:
 * `runbook-press` strict runbooks
 * `runbook-press` tutorial and video-script drafts
 * `origin-dossier` narration and story-video drafts
-* `origin-dossier` premium long-form dossier books
+* `origin-dossier` default long-form dossier books and optional deluxe editions
 
 ## Gold production definition
 
@@ -35,10 +35,10 @@ Custom Chummer code:
   source of truth, packet builder, rule and legal validation, origin lineage, receipts, export, approval gates
 
 Subscribr:
-  outlines, scripts, runbook narration, tutorial drafts, origin narration, hooks, titles, shot lists, production planning
+  runbook narration and tutorials; optional Origin editorial/script assistance
 
 First Book ai:
-  premium long-form book and manual treatment after a packet or packet set is already approved
+  default Origin Dossier / SR5 Life Modules chapter and manuscript authoring from approved packets, plus optional deluxe book treatment
 ```
 
 Provider workspaces may explain approved truth.
@@ -52,6 +52,12 @@ The shared contract set is:
 * `chummer.subscribr_script_receipt.v1`
 * `chummer.firstbook_premium_packet.v1`
 * `chummer.firstbook_premium_receipt.v1`
+
+The existing `firstbook_premium_*` identifiers are legacy transport names, not
+an entitlement rule requiring premium access to the base Origin story. Keep
+their source/approval validation; do not create a new contract dialect merely
+to rename a provider lane. This gold gate does not add unrelated media or full
+suite prerequisites to the local Android rolling-release loop.
 
 Minimum packet fields:
 
@@ -107,7 +113,8 @@ Promotion requires runnable packet, receipt, and verification entrypoints.
 `origin-dossier` must prove:
 
 * `ORIGIN_DOSSIER_NARRATIVE` uses approved origin canon only
-* Subscribr authors the real full-story manuscript before portrait, audiobook, or cinema follow-through opens
+* First Book ai authors the real full-story manuscript before portrait, audiobook, or cinema follow-through opens
+* Life Modules prose stops at the decision; only Core-admitted choices advance the character, while accepted chapters survive wizard completion and restart
 * the ebook handoff embeds the fitted cover before any later media choices appear
 * exactly three story-fit portrait choices are surfaced and one chosen portrait becomes the edition face
 * audiobook request stays closed until ebook handoff is complete and the player makes an explicit voice choice
@@ -116,9 +123,9 @@ Promotion requires runnable packet, receipt, and verification entrypoints.
 * narration cannot change karma, gear, ware entitlement, or legality
 * later ALICE follow-up consumes approved canon without treating prose as mechanics authority
 
-### First Book ai Premium Lane
+### First Book ai Authoring Lane
 
-The premium book lane must prove:
+The default book and optional deluxe lanes must prove:
 
 * packet-set approval happens before outline generation
 * every chapter carries review state and export hash
@@ -184,7 +191,7 @@ They may not expose the operator plumbing that makes it safe.
 Promotion to gold requires stored evidence for:
 
 1. Manual Subscribr proof:
-   `How to Restore a Runner`, `Why Chummer's Numbers Changed`, and one player-safe `Origin Dossier` narration draft.
+   `How to Restore a Runner` and `Why Chummer's Numbers Changed`; Origin separately proves a player-safe First Book ai chapter and complete book.
 2. API roundtrip proof:
    idea creation, script generation, Markdown export, receipt hash.
 3. Webhook proof:
@@ -193,16 +200,16 @@ Promotion to gold requires stored evidence for:
    stale-source rejection, forbidden-claim rejection, privacy rejection, mechanics-mutation rejection.
 5. Public-guide proof:
    origin and runbook public pages stay human-authored, provider-neutral, and route-valid.
-6. Premium book proof:
+6. Origin book proof:
    outline approval, chapter review, export hashing, final publication block until approval.
 
 ## Rollout order
 
-1. Manual Subscribr proof
-2. Subscribr API lane
-3. Origin Dossier provider lane
+1. First Book ai Origin Dossier / Life Modules authoring lane
+2. Manual Subscribr proof for Runbook Press, independently of Origin delivery
+3. Subscribr API lane for Runbook Press
 4. Media-factory handoff
-5. First Book ai premium lane
+5. Optional deluxe book lane
 6. Gold promotion only after all evidence above exists
 
 ## Canon references

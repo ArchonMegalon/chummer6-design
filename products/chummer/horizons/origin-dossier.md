@@ -34,10 +34,10 @@ Custom Chummer code:
   runner dossier truth, rules legality, source validation, origin lineage, receipts, export, approval gates
 
 Subscribr:
-  full chaptered origin story manuscript from the approved source packet, plus bounded scene lists, hooks, titles, and production planning
+  optional editorial/script assistance; Runbook Press retains its own authoring policy
 
 First Book ai:
-  optional premium long-form packaging after the full story manuscript and Chummer approvals are already complete
+  default chapter-by-chapter origin story and book from approved facts, including the growing SR5 Life Modules story; never mechanics authority
 ```
 
 Magicfit is the preferred visual lane after manuscript approval for:
@@ -53,7 +53,7 @@ The flagship flow is a full private story edition.
 It should work like this:
 
 1. Chummer freezes approved origin canon and source snapshots.
-2. `Subscribr` drafts the real full story manuscript from the approved packet.
+2. `First Book ai` drafts the real full story manuscript from the approved packet. During SR5 Life Modules, passages stop at Core-owned decisions and continue only after the player's choice.
 3. Chummer runs continuity review, humanization, and publication checks.
 4. `Magicfit` prepares a fitting cover from the approved story.
 5. Chummer packages and hands over the finished ebook with that cover.
@@ -86,7 +86,8 @@ The shipped slice can:
 
 What is still not launch-complete:
 
-* live Subscribr story generation still needs current provider receipts
+* live First Book ai chapter and book generation still needs current provider receipts
+* the native Life Modules journey is not complete merely because a Nationality draft and a saved chapter reader exist
 * real cover, three portrait renders, audiobook render/import, and chosen cinematic render/import still need current proof
 * multi-runner shared-history links need live group proof before they can become a launch claim
 * the ebook-with-cover -> three portraits -> chosen portrait flow still needs live end-to-end delivery proof
@@ -122,7 +123,7 @@ An Origin Dossier bundle can include:
 
 * approved origin canon in markdown and JSON
 * mechanics snapshot hash and public or private projection metadata
-* Subscribr-ready source packet and accepted full-story manuscript with source hash
+* provider-neutral source packet and accepted First Book ai full-story manuscript with source hash
 * ebook and archive exports with fitted cover art
 * three portrait candidates and the selected portrait
 * accepted runner story links from redeemed link codes
@@ -131,7 +132,7 @@ An Origin Dossier bundle can include:
 * one chosen cinematic scene request
 * video storyboard and bounded scene render request
 * media-factory render request
-* optional First Book ai premium chaptered dossier book, anthology, or player-facing manual after separate approval
+* optional deluxe edition, anthology, or player-facing manual after separate approval
 * receipts for source, approval, selected assets, and render state
 
 The media is downstream. It can make the character easier to understand, pitch, and remember, but it does not own the character.
@@ -184,14 +185,14 @@ Before this lane widens, Chummer needs durable confidence that:
 * the fitted cover ships with the ebook instead of landing as a detached late asset
 * selected portraits, scenes, narration, and videos carry provenance
 * the three-portrait shortlist stays visually consistent with the approved runner identity
-* Subscribr exports stay source-bound and do not change facts, legality, or privacy scope
+* First Book ai and optional editorial exports stay source-bound and do not change facts, legality, or privacy scope
 * origin-story audiobooks carry the same approval lineage and scoped-access receipt as the rest of the bundle
 * the player-facing voice choice happens after story delivery and before audio render burn
 * chapter or scene summaries stay tied to the approved manuscript before cinema is requested
 * runner link codes add only consented relationship summaries and never grant access to another player's private ebook, audio, portraits, or campaign material
 * accepted runner links enter the next source packet as `shared_history_links` with link id, linked runner ref, alias, relationship summary, consent receipt, and `origin_story_context_only` scope; providers never receive linked-runner artifact URLs or private campaign payloads
 * media and book outputs can be rejected without harming the runner dossier
-* First Book ai outputs stay optional, review-gated, and non-canonical until publication approval
+* First Book ai is the default authoring route; its prose remains reviewable and never changes rules or public-sharing consent
 * later ALICE follow-up can use origin context without confusing story truth and rules truth
 * private and GM-only context stays scoped
 
@@ -208,7 +209,7 @@ The full canon-first book architecture now lives in `products/chummer/ORIGIN_BOO
 The rule does not change:
 
 ```text
-Subscribr and First Book ai may narrate the origin.
+First Book ai narrates the origin; Subscribr is an optional editorial alternative.
 They may not change the runner.
 ```
 
