@@ -6,7 +6,13 @@ Some older uploaded files are no longer available, so this design is self-contai
 
 Chummer should keep origin canon, mechanics snapshots, approvals, validation, and export control internal.
 
-Subscribr is the default creative and content-production lane for:
+First Book ai is the default authoring provider for Origin Dossier, including
+the story that grows during the SR5 Life Modules wizard. This supersedes the
+older premium-only First Book ai / default Subscribr split for this surface.
+Provider selection does not make provider prose rules authority or imply that
+the integration is already live.
+
+The default Origin authoring lane covers:
 
 * the real full-story manuscript drafted from the approved origin packet
 * chapter-by-chapter scene writing and revision passes for that book
@@ -16,16 +22,17 @@ Subscribr is the default creative and content-production lane for:
 * video-ready scene plans
 * creator-facing and player-facing explainer drafts
 
-First Book ai is the premium long-form lane after a packet is already approved.
+Subscribr can remain an explicitly selected editorial/script alternative and
+the Runbook Press authoring lane. It is not a prerequisite for the Origin book.
 
 External providers may help with structure, prose, layout, export, covers, narration, or optional editorial packaging, but they must never own the runner's history.
 
 ```text
 Runner dossier and origin canon truth
 -> approved source packet
--> Subscribr narration, script, or production draft
+-> First Book ai chapter or manuscript draft
 -> Chummer validation and review
--> optional First Book ai premium book packet
+-> retained, player-approved book edition
 -> chapter and export review
 -> EPUB, PDF, DOCX, Markdown, audiobook
 ```
@@ -39,7 +46,7 @@ OriginCanonGraph
 OriginContinuityAuditor
 OriginBookPacketValidator
 OriginPublicationRenderer
-SubscribrManuscriptLane
+OriginManuscriptLane
 OriginPublicationProviderRouter
 ```
 
@@ -47,13 +54,44 @@ Fundamental rule:
 
 ```text
 Chummer owns facts, legality, lineage, approvals, and exports.
-Subscribr explains approved packets.
-First Book ai productizes approved packet sets into premium long-form books or manuals.
+First Book ai narrates approved Origin packets and produces the default book.
+Subscribr may assist with explicitly selected editorial or script work.
 The player decides what becomes personal canon.
 The GM approves anything that affects campaign canon.
 ```
 
 Do not ship this as one button that sends a giant prompt to a model and accepts whatever comes back. Long-form runner fiction still needs explicit memory, source packets, continuity checks, chapter review, and packet-to-export validation before anything becomes player or campaign canon.
+
+## Current Android delivery priority
+
+User decision, 2026-09-21: finish SR5 Life Modules **including the book** before
+starting Windows. Origin is part of this build method, not a second New Runner
+entry or a starter-screen action. Full Editing, tablets, Rook and optional media
+rewards are not prerequisites.
+
+The playable loop is: read to the decision → inspect Core's legal choices and
+costs → explicitly choose → persist the rule decision once → append the next
+story passage. Saved chapters remain readable after leaving the wizard or
+restarting the app. Completing a stage must not delete the book checkpoint.
+
+Core owns stage order, eligibility, effects, follow-up choices, remaining Karma
+and finalization. Hub/EA own provider access, quota and resumable narrative jobs;
+Android receives no provider credentials. First Book ai receives only approved
+narrative facts and legal choice identifiers, not raw character files or
+sourcebook text. A provider outage preserves the decision and existing chapters;
+it may delay prose, never silently retry a character mutation.
+
+Use the phone language for new stories (DE/EN/ES). Reading an existing edition
+after a language change preserves its text and shows its recorded language.
+Runner/player attribution is prominent; technical author metadata remains
+`chummer.run`. Private reading or export never implies public sharing consent.
+
+Completion requires all supported Life Modules stages and follow-ups, an honest
+Core finalization into Career, save/reopen/process-restart of the affected route,
+and a readable, downloadable book generated from the accepted decisions. A
+Nationality-only draft or deterministic chapter reader is progress, not this
+completion claim. Provider-generated output must be identified as such only
+after an actual successful provider call and retained output.
 
 ## Product modes
 
@@ -404,7 +442,7 @@ Chummer still owns the book.
 
 ```yaml
 First_Book_AI:
-  role: benchmark and operator experiment
+  role: default Origin Dossier and Life Modules chapter and manuscript authoring
   not_runtime_truth: true
 
 Syllabbles:
@@ -431,13 +469,6 @@ Poppy:
   role:
     - operator ideation
 
-First_Book_ai:
-  role:
-    - premium long-form editorial presentation
-    - chaptered dossier book or anthology lane
-    - DOCX, PDF, EPUB, and Markdown export lane
-    - bounded secondary output, never canon truth
-
 BrowserAct_manual_export:
   role:
     - browser fallback for export capture when direct provider APIs are weak or absent
@@ -446,18 +477,20 @@ BrowserAct_manual_export:
 
 ## Premium posture
 
-First Book ai belongs on the premium branch, not the canonical branch.
+First Book ai is the default narrative provider, not a premium-only unlock and
+never the canonical rules source. Premium and voting incentives can fund deluxe
+editions, audiobook or rendered scenes without gating the base growing story.
 
 ```yaml
 free:
   included:
     - Origin Dossier
+    - default chaptered Origin story and book
     - Origin Script Packet
     - Markdown
 
 premium:
   adds:
-    - chaptered First Book ai edition
     - optional Runner Memoir render
     - bounded editorial packaging experiments
     - DOCX
@@ -467,7 +500,7 @@ premium:
 
 Rules:
 
-* First Book ai may render a deluxe edition from approved Chummer canon.
+* First Book ai drafts the default Origin book and may render optional deluxe editions from approved Chummer canon.
 * First Book ai must not become the source of runner history.
 * First Book ai output remains optional and rejectable.
 * No First Book ai prose invention may mutate the runner, campaign canon, or game state automatically.
