@@ -76,6 +76,10 @@ def main() -> int:
     ):
         if marker not in boundaries:
             errors.append(f"android_diagnostics_boundary_missing:{marker}")
+    diagnostic_section = boundaries.split("### Android Internal technical observations", 1)[-1].split("\n### ", 1)[0]
+    for marker in ("\nOwner:", "\nRetention posture:", "\nRedaction baseline:"):
+        if marker not in diagnostic_section:
+            errors.append(f"android_diagnostics_hub_parser_missing:{marker.strip()}")
     for marker in (
         "Technical problem reports, without your story",
         "unless you have already switched it off",
