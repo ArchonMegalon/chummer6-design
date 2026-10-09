@@ -68,6 +68,23 @@ def main() -> int:
     if "a evidence" in rendered_privacy.lower():
         errors.append("rendered_privacy_ungrammatical_article")
 
+    for marker in (
+        "Android Internal technical observations",
+        "saved opt-outs survive updates and restarts",
+        "Reports expire two days after receipt",
+        "exclude the report store from Teable",
+    ):
+        if marker not in boundaries:
+            errors.append(f"android_diagnostics_boundary_missing:{marker}")
+    for marker in (
+        "Technical problem reports, without your story",
+        "unless you have already switched it off",
+        "Individual reports expire after two days",
+        "Your off setting survives app updates and restarts",
+    ):
+        if marker not in trust or marker not in rendered_privacy:
+            errors.append(f"android_diagnostics_disclosure_missing:{marker}")
+
     if "products/chummer/PUBLIC_PRIVACY_AND_ACCOUNT_LIFECYCLE.md" not in sync:
         errors.append("sync_missing:PUBLIC_PRIVACY_AND_ACCOUNT_LIFECYCLE.md")
 
