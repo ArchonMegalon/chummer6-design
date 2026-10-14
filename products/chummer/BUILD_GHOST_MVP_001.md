@@ -15,3 +15,11 @@ The first-pass Build Ghost contract is:
 - cite the governing rule, source, or build constraint,
 - provide a guided next action that returns the user to the exact surface that resolves the issue,
 - and never invent hidden math, fake certainty, or unsupported parity claims.
+
+## Creation assistant extension (planned)
+
+[Finish my character](FINISH_MY_CHARACTER_ASSISTANT.md) specifies the native
+in-progress runner completion and optional contextual `Why?` chat. Explanations
+bind to the current proposal and Core facts; chat can propose an alternative but
+cannot mutate the character. Guided FAQ chips and a compact review are sufficient;
+an avatar, voice session or mandatory conversation is not a prerequisite.

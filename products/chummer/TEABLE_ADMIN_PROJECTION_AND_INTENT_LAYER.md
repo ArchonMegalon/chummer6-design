@@ -185,6 +185,23 @@ Teable cannot become active for a workflow until:
 - stale-projection UX exists
 - privacy scan is defined
 
+## Separate private rulebook content adapter (planned)
+
+User decision, 2026-10-14: [Private rulebook library](PRIVATE_RULEBOOK_LIBRARY.md)
+permits bounded, explicitly synced passages from an account's locally imported
+PDFs in a dedicated private Teable content store. This is not an admin projection,
+contribution queue or extension of the allowed workbenches above. Their raw-book
+text prohibition remains unchanged.
+
+Hub retains owner/import admission, grants, revision and revocation truth; Core
+retains rule truth. Clients access excerpts only through authenticated Hub routes.
+No public views, account-to-account reuse, general operator projection, direct
+client credentials or Teable-originated entitlement edits. Treat content writes
+as versioned Hub-controlled storage, not a second AdminIntent/rules engine.
+Isolation, limits, retention/deletion and replacement-host recovery must pass the
+library acceptance gates before the adapter is enabled. Teable rows alone are
+not sufficient permission or recovery authority.
+
 ## Canonical decision
 
 Teable is a first-class admin workbench for Chummer.

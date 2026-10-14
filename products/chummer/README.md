@@ -19,6 +19,19 @@ Use `FINAL_GOLD_GRAPH.generated.json` when the question is "what is the current 
 Use `JOURNEY_GATES.generated.json` when the question is "what lived journey truth is the fleet publishing right now?"
 Use `CURRENT_HUMAN_APPROVALS.generated.md` when the question is "what still needs an actual person instead of more automation?"
 
+For the planned native Creation assistant, read
+[`FINISH_MY_CHARACTER_ASSISTANT.md`](FINISH_MY_CHARACTER_ASSISTANT.md): preserve
+player choices, complete missing allocations, explain alternatives and explicitly
+apply the reviewed result. Its source constraints come from
+[`CHARACTER_RULEBOOK_SELECTION.md`](CHARACTER_RULEBOOK_SELECTION.md), a
+per-character core-only/custom/all-supported book choice. Both are new design
+requirements, not claims of current native implementation or release readiness.
+
+[`PRIVATE_RULEBOOK_LIBRARY.md`](PRIVATE_RULEBOOK_LIBRARY.md) separately specifies
+planned Windows/macOS PDF text/OCR import, owner-private passage storage through
+Hub/Teable and original spell, talent/power and quality text in linked Android
+details. Account-library access never replaces per-character rulebook selection.
+
 Use `RULE_AUTHORITY_HUMAN_BOUNDARIES.generated.md` only for SR4/SR6 rule-authority review; it is not a whole-product approval ledger.
 
 Use `history/` only for version-named, superseded closeout records. Historical prose never outranks a generated current decision.
@@ -225,6 +238,9 @@ Use `CAMPAIGN_OPERABILITY_SCORING_RUBRIC.yaml` when the question is "what score 
 177. `ANDROID_APP_PRODUCT_SPEC.md`
 178. `ANDROID_PHONE_BETA_SUPPORT_MATRIX.yaml`
 179. `ANDROID_WINDOWS_FEATURE_PARITY.yaml`
+180. `FINISH_MY_CHARACTER_ASSISTANT.md`
+181. `CHARACTER_RULEBOOK_SELECTION.md`
+182. `PRIVATE_RULEBOOK_LIBRARY.md`
 
 The current high-leverage hero-path additions are `READY_FOR_TONIGHT_MODE.md`, `READY_FOR_TONIGHT_GATES.yaml`, `PUBLIC_ONBOARDING_PATHS_FOR_NO_DESKTOP_USERS.md`, `ROLE_KITS_AND_STARTER_LOADOUTS.md`, `ROLE_KIT_REGISTRY.yaml`, `SOURCE_AWARE_EXPLAIN_PUBLIC_TRUST_HOOK.md`, `EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md`, `CAMPAIGN_ADOPTION_START_FROM_TODAY_FLOW.md`, `FOUNDRY_FIRST_VTT_HANDOFF_PROOF.md`, `VTT_EXPORT_TARGET_ACCEPTANCE.yaml`, `COMMUNITY_SAFETY_MODERATION_AND_APPEALS.md`, `COMMUNITY_SAFETY_EVENT_AND_APPEAL_STATES.yaml`, `WORLD_BROADCAST_AND_FACTION_PROPAGANDA_CADENCE.md`, `WORLD_BROADCAST_RECIPE_REGISTRY.yaml`, `CREATOR_DASHBOARD_AND_ADOPTION_ANALYTICS.md`, `CREATOR_PUBLICATION_ANALYTICS_SCHEMA.yaml`, `ACCESSIBILITY_AND_COGNITIVE_LOAD_RELEASE_BAR.md`, and `ACCESSIBILITY_COGNITIVE_LOAD_GATES.yaml`.
 They exist so the product cannot mistake canonical depth for immediate user value: the design must still prove readiness tonight, no-desktop participation, role-kit clarity, start-from-today adoption, Foundry-first handoff, world cadence, community safety, creator feedback, and reduced cognitive load.

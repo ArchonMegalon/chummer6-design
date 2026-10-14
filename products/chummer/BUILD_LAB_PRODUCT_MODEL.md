@@ -16,6 +16,20 @@ It turns deterministic rules truth into comparable build ideas, tradeoff project
 * the active ruleset, preset, and amend package set stay visible and diffable so build output never feels detached from the rule environment that produced it
 * SR4, SR5, and SR6 flows feel authored where their build logic or table expectations materially diverge, instead of being flattened into one generic lowest-common-denominator compare view
 
+## Native Creation completion extension (planned)
+
+[Finish my character](FINISH_MY_CHARACTER_ASSISTANT.md) brings this model into an
+in-progress native Creation wizard: preserve player choices, propose the missing
+allocations, explain alternatives, then explicitly apply a Core-validated diff.
+Optional chat supports the structured preview; it never replaces review or owns
+rules math. Public build discussions and consented feedback may improve reviewed
+recommendations, not deterministic legality. This extension is not a shipped
+feature claim and does not depend on avatar, voice or whole-platform parity.
+
+[Per-character rulebook selection](CHARACTER_RULEBOOK_SELECTION.md) supplies
+core-only, selected-expansion or all-supported-source constraints to both manual
+Creation and the assistant. It is not a global application preference.
+
 ## Core product objects
 
 * build idea

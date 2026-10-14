@@ -6,7 +6,15 @@
 
 ## Product rule
 
-Chummer should help users open the right rule page without becoming a rulebook host.
+Chummer should help users open the right rule page without becoming a public or
+shared rulebook host. Local PDF binding remains available without an account.
+
+User-approved design extension, 2026-10-14:
+[Private rulebook library](PRIVATE_RULEBOOK_LIBRARY.md) adds Windows/macOS local
+text extraction/OCR and explicit account-private passage sync through Hub/Teable
+for linked Android reading. It is planned, not delivered by this policy change.
+This narrowly supersedes the local-only restriction for admitted excerpts, not
+for full PDFs, local paths, public projections or cross-account sharing.
 
 This lane is the source-open branch of `EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md`, not a detached citation garnish.
 Every `SourceAnchor` shown to a user must stay attached to the same `ExplanationPacket`, bounded follow-up packet, or migration receipt that made the claim.
@@ -17,7 +25,14 @@ It must not:
 * upload user PDFs to cloud storage
 * depend on remote rulebook hosting for explain receipts
 
+Private passage storage is optional; engine explanations and short summaries
+must continue without a linked PDF or the remote content store.
+
 ## Core objects
+
+The objects below describe local opening only. The private-library extension
+adds a separate owner-bound import/passage manifest; it does not change a Core
+source anchor into a cloud entitlement or sync `LocalSourceBinding` paths/hashes.
 
 ```yaml
 SourceAnchor:
@@ -72,6 +87,11 @@ They do not become public telemetry, support payload defaults, or campaign truth
 * `chummer6-ui`: desktop binding workflow and Rules Navigator surfaces
 * `chummer6-mobile`: local open-on-device affordance where the platform permits it
 * `chummer6-hub`: no cloud authority over local rulebook files
+
+For the private-library extension, Hub owns excerpt admission, owner/install
+access and revocation, never the local file or Core rules. Android owns its native
+private passage reader. See `PRIVATE_RULEBOOK_LIBRARY.md` for the separate sync
+manifest, Teable isolation, deletion/recovery and acceptance requirements.
 
 ## First release gate
 
