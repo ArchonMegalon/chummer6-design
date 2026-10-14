@@ -192,6 +192,25 @@ Redaction baseline:
 * never collect raw sourcebook text, private table spoilers, faction secrets, or support notes into public or vendor-visible contribution queues unless a Hub-owned projection explicitly permits the field
 * private submissions must move through visibility classes before becoming public lore, job seeds, map markers, videos, newsletters, or Signitic/Emailit campaign payloads
 
+### Private imported rulebook excerpts (planned)
+
+Owner: `chummer6-hub`; desktop owns local files/extraction and Android owns its
+reader. [Private rulebook library](PRIVATE_RULEBOOK_LIBRARY.md) is the specific
+2026-10-14 exception for owner-private excerpts in an isolated Teable content
+adapter, not permission for raw book text in contribution/admin projections.
+
+The library requires explicit sync choice, linked-owner access, no full-PDF upload
+and no public or cross-account sharing. Initial Android reads are online-authorized
+with session-memory caching; private excerpts do not enter diagnostics, public
+feedback, AI training/prompts or Origin exports by implication.
+
+Planned retention: admitted excerpts while the library entry remains; incomplete
+uploads at most 24 hours; immediate serving revocation and active-content deletion
+within 24 hours of removal; content backups at most 30 days; content-free deletion
+tombstones 35 days and deletion audit receipts 365 days. Replay deletions before
+replacement-host serving. These are implementation gates, not current live
+retention guarantees. Local PDFs remain untouched by cloud-library removal.
+
 ### Publication and file records
 
 Owner: `chummer6-media-factory` plus `chummer6-hub-registry`

@@ -27,6 +27,12 @@ contribution_classes:
       - MetaSurvey
     raw_retention: short
     public_by_default: true
+  creation_assistant_feedback:
+    tools:
+      - first_party_creation_assistant
+    raw_retention: review_window
+    public_by_default: false
+    cross_user_learning: separate_explicit_opt_in
   intel_report:
     tools:
       - Deftform
@@ -58,6 +64,15 @@ contribution_classes:
     raw_retention: project_bound
     public_by_default: false
 ```
+
+## Private Creation feedback
+
+Creation-assistant feedback is not `public_feedback` and is not technical crash
+diagnostics. Follow [Finish my character](FINISH_MY_CHARACTER_ASSISTANT.md):
+disclose contributed fields and a bounded retention/deletion policy before
+submission, require separate consent for cross-user learning, and review/version
+derived recommendation packs. No automatic corpus of private builds, chats or
+Origin books. Public build discussions remain contextual advice, never rule truth.
 
 ## Public-safe summarization
 
