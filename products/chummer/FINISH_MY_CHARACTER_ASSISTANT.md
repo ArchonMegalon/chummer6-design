@@ -2,8 +2,10 @@
 
 ## Status and scope
 
-Design requirement agreed on 2026-10-14; implementation and release acceptance
-remain pending. Existing Build Lab, ALICE or provider integrations do not prove
+Design requirement agreed on 2026-10-14, refined on 2026-10-16 for playable
+completion, grounded Rook voice discussion and optional adviser/video routing.
+Implementation and release acceptance remain pending. Existing Build Lab,
+ALICE or provider integrations do not prove
 this native workflow is delivered. First increment: native Android SR5 Creation.
 Share Core/Presentation contracts for later clients without claiming Windows,
 SR6, tablet or full Career coverage. This does not change rolling-release policy
@@ -91,6 +93,53 @@ retrospective rationale or expose model reasoning traces as rules evidence.
 An alternative or chat request creates a revised proposal, never a direct write.
 Discussion, dismissal and reading do not mutate the runner.
 
+### Rook voice discussion and another adviser
+
+Allow the player to discuss the reviewed proposal with Rook in text or voice
+before applying it. Both use the same authorized character/proposal snapshot,
+Core facts and concise reasons. Voice is a presentation/input mode, not a second
+planner or a shortcut around review. A spoken request may revise a proposal but
+cannot approve its application or entry into Career: retain the explicit native
+confirmation of the exact resulting diff.
+
+After some useful back-and-forth, Rook may naturally suggest another adviser or
+a video conversation when it fits the question, for example: "Want another
+perspective on this build?" Keep a discoverable `Speak to someone else` action
+as well; a player need not wait for an offer. Do not offer automatically after
+a fixed number of messages, interrupt the first answer or keep asking after a
+dismissal. An offer is bounded to one per discussion unless the user requests it.
+
+Use the adviser's name/role and normal conversational copy, not an `AI persona`
+badge. The AI setting explains the feature once in plain language; the adviser
+must not claim to be a live human, human support transfer or real player. Another
+adviser is a bounded perspective inside the same consultation, not an unrelated
+bot with its own rule, owner or mutation authority. Forward only the permitted
+build packet and necessary conversation summary, not the whole account/history.
+
+Video uses a suitable default Tough Tongue avatar only after that exact account,
+API route and avatar/video capability are verified. Owned credits or an existing
+voice route do not establish video support. No custom-avatar pipeline is required.
+The player explicitly chooses the initial switch; never open a provider session,
+start audio capture or enable a camera merely because an offer was displayed.
+Avatar video does not require the user's camera. Keep a return-to-text action,
+visible connecting state and an honest unavailable state if the route fails.
+
+In the first successfully connected video consultation, the avatar may ask once:
+"Would you like to speak with me directly next time?" `Yes, directly` saves direct
+video routing; `No, start with Rook` or dismissing keeps Rook first. This is one
+account-level offer, not once per device, character or app update. Thereafter an
+explicit opening of build discussion can go directly to the available video
+adviser, without a mandatory Rook exchange. It does not start a call on app launch,
+opening Creation, proposal generation, resume or a preference synchronization.
+
+All offers, starts and one-time prompt state follow
+[the linked-account AI and consultation preference](AI_AND_CONSULTATION_PREFERENCES.md).
+The master AI setting defaults on only for genuinely unset preferences; when off,
+neither automatic offers nor new AI/voice/video work is admitted. Direct video is
+separate, defaults off and changes only through the user's answer/settings. Both
+settings and the one-time prompt disposition roam between linked Android, Windows
+and macOS clients; microphone permissions, camera permissions and sessions do not.
+
 Follow [grounded follow-up](EXPLAIN_EVERY_VALUE_AND_GROUNDED_FOLLOW_UP.md) and
 [artifact truth](BUILD_EXPLAIN_ARTIFACT_TRUTH_POLICY.md). Native summaries stay
 short and independently written; detailed rule references are inspectable, not
@@ -104,6 +153,11 @@ copied sourcebook passages or a substitute for an explanation.
 | Presentation / Android | Selection provenance and locks, compact refinement/review/chat, progress, stale-state handling and forward wizard navigation |
 | Hub / governed EA adapter | Owner-scoped provider orchestration, bounded structured proposals, cancellation/recovery, model and recommendation-pack provenance |
 | Design | Scope, UX, recommendation/feedback policy and acceptance criteria |
+
+Hub owns the linked-person preference and revision/conflict authority. Presentation
+and each native head consume that shared preference; local devices cannot redefine
+an account opt-out. See the preference contract for owner transitions, offline
+edits, fresh session admission and the desktop implementation handoff.
 
 The logical proposal binds owner context including transition identity,
 workspace and revision, source snapshot digest, rule/source-set digest, locks,
@@ -154,6 +208,35 @@ the default. An owned LTD account is not proof of live entitlement or readiness.
 Live provider availability, quotas and the complete native apply route are not
 established by this design update. Rook avatars, voice and meeting sessions are
 not prerequisites for the text-first assistant.
+
+## Playable completion and response time
+
+Distinguish a rules-valid finalization, a bounded starter proposal and a playable
+completed archetype. They are not interchangeable readiness claims. Review must
+identify unsupported categories and practical role gaps rather than hiding them
+behind legal totals or an enabled Career action. Keep these labels consistent
+with actual coverage and Core finalization admission.
+
+For every applicable budget, show required allocation, useful optional spending,
+requested reserve/legal carryover and any unspendable or forfeited remainder.
+Do not quietly discard substantial resources while claiming to have completed
+the missing loadout; equally, do not buy filler merely to consume every point.
+Include role-compatible dependencies such as ammunition and its weapon binding,
+communications and required magic/gear support where supported. Preserve manual
+purchases and their identity. A generic starter is not evidence of this coverage.
+
+Use meaningful localized group and choice labels in review, with repair links to
+the relevant wizard step. Avoid generic `Character change` rows, raw priority
+tuples or identifiers as substitutes for explanations. Show changes, not repeated
+unchanged baseline panels.
+
+Reuse catalog/projection and evaluation work only within an immutable planning
+snapshot keyed by owner transition, workspace/revision, sources/rules, locks and
+preferences. Invalidate on a relevant change. Do not cache mutation authority or
+replace the fresh final admission check. Measure preparation, evaluation, review
+and native presentation separately before claiming a latency fix. Cancellation,
+visible progress and manual Creation must remain responsive; larger timeouts or
+fresh timestamps are not performance improvements.
 
 ## Learning from feedback and public build discussions
 
@@ -216,5 +299,12 @@ Before claiming the complete native feature:
 6. Native review/apply/Career/save/reopen works on the exact delivered candidate.
    Life Modules cannot bypass chapter gates. Record affected-route evidence, not
    a new mandatory whole-project or double-green release ceremony.
+
+Optional voice/video has its own scoped acceptance: discussion and switching
+preserve the runner and exact proposal authority; edits invalidate old approval;
+AI-off rejects offers and provider work; direct routing and the single prompt
+survive cross-device synchronization and restart without duplicate sessions.
+Provider failure or missing avatar support returns to usable text/manual flow.
+Neither conversational assent nor a restored session finalizes the character.
 
 These are acceptance targets, not assertions that any existing release passed.

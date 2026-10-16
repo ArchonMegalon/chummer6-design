@@ -17,6 +17,16 @@
 | `executive-assistant`    | governed synthesis/runtime substrate | provider-aware runtime substrate, petition-packet and design-synthesis helpers, proactive horizon scans, human-edit reflection, bounded replanning, interruption-budget throttling, mirror-status briefs, ownership telemetry and governed-spatial provider-redacted derived telemetry, synthetic zero-burn compose assistance downstream of mirrored canon | canonical product truth, queue/milestone/blocker/contract truth, durable media contracts, authoritative compose/build receipts, provider jobs or provider-run receipts, quota mutation, product/readiness projection, support-case truth, release-channel or update-feed truth, hidden guide/help canon, direct landing authority | none                                                                            |
 | `chummer5a`             | legacy oracle                      | migration fixtures, regression corpus, legacy compatibility reference                                   | vNext architecture ownership                                                       | none                                                                            |
 
+## Creation consultation preference amendment — 2026-10-16
+
+For [AI and consultation preferences](AI_AND_CONSULTATION_PREFERENCES.md), Hub owns
+linked-person preference/revision truth, atomic one-time prompt disposition and
+provider-session admission. Presentation and Android/desktop heads own settings,
+local pending opt-outs, accessible routing and device-specific media permissions.
+The existing governed provider adapter owns no character mutation authority;
+Core alone admits/finalizes the reviewed proposal. These are implementation
+requirements, not a declaration of cross-device sync or live video readiness.
+
 ## Program-level stewardship roles
 
 ### Lead designer

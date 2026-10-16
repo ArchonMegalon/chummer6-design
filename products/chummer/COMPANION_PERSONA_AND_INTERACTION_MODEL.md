@@ -82,6 +82,18 @@ Masks may change presentation, visual theme, and wording style. They do not chan
 
 ## Core role
 
+### Bounded build consultation extension — 2026-10-16
+
+[Finish my character](FINISH_MY_CHARACTER_ASSISTANT.md) adds optional Rook
+text/voice consultation and a contextually offered adviser/video handoff. This is
+a bounded consultation surface, not a second rules authority or a global rename
+of Switch. A different adviser shares the permitted proposal context. Use its
+name/role without an `AI persona` badge; do not pretend a human joined the call.
+All such offers obey [AI and consultation preferences](AI_AND_CONSULTATION_PREFERENCES.md),
+including the master AI switch and the avatar's one-time direct-routing offer.
+Existing interruption budgets and explicit media activation boundaries still apply.
+Video/default-avatar support remains conditional on actual provider verification.
+
 Switch exists to do five jobs:
 
 1. make Chummer feel alive without making it feel invasive

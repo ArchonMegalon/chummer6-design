@@ -33,6 +33,12 @@ Includes:
 * personal artifact-shelf refs
 * notification posture
 
+The [AI and consultation preference](AI_AND_CONSULTATION_PREFERENCES.md) is one
+person-scoped setting across linked Android, Windows and macOS: default-on AI only
+when truly unset, preserved explicit opt-out, separate opt-in direct-video routing
+and account-wide one-time prompt disposition. Hub owns revision/conflict admission.
+It is not an entitlement; device permissions and active media sessions never roam.
+
 ### Campaign or group scope
 
 Belongs to a campaign, crew, GM circle, or creator team rather than one machine.

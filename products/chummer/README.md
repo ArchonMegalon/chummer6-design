@@ -21,8 +21,13 @@ Use `CURRENT_HUMAN_APPROVALS.generated.md` when the question is "what still need
 
 For the planned native Creation assistant, read
 [`FINISH_MY_CHARACTER_ASSISTANT.md`](FINISH_MY_CHARACTER_ASSISTANT.md): preserve
-player choices, complete missing allocations, explain alternatives and explicitly
-apply the reviewed result. Its source constraints come from
+player choices, complete a playable loadout, explain alternatives and explicitly
+apply the reviewed result. Optional Rook text/voice discussion can offer another
+adviser and, when supported, a default-avatar video consultation. The account-wide
+[`AI_AND_CONSULTATION_PREFERENCES.md`](AI_AND_CONSULTATION_PREFERENCES.md) defines
+default-on AI, one-time direct-video opt-in and linked Android/Windows/macOS sync.
+These remain planned capabilities, not evidence of a working voice/video route.
+The assistant's source constraints come from
 [`CHARACTER_RULEBOOK_SELECTION.md`](CHARACTER_RULEBOOK_SELECTION.md), a
 per-character core-only/custom/all-supported book choice. Both are new design
 requirements, not claims of current native implementation or release readiness.

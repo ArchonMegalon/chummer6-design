@@ -39,6 +39,36 @@ repo_boundary_purity:
   score: 0.86
   reason: Compile, runtime healing, publish readiness, and journey-gate truth now live together as one governed control-plane seam instead of a loose operator toolbox.
 program_phases:
+- id: FC
+  title: Native playable completion and optional grounded consultation
+  status: planned
+  release_blocking: false
+  goal: Complete reviewed missing allocations without changing player intent; add optional discussion without widening unrelated Internal release gates.
+  milestones:
+  - id: FC0
+    title: Playable completion and readable native review
+    owners: [chummer6-core, chummer6-ui, chummer-android]
+    status: planned
+    exit:
+    - FINISH_MY_CHARACTER_ASSISTANT.md category coverage, role dependencies and remaining budgets are honest and verified on the delivered supported slice.
+    - Locked choices survive; cancel is read-only; explicit exact-proposal apply enters Career once and reopens correctly.
+    - Snapshot-scoped planning reuse improves measured affected-route latency without caching mutation authority.
+  - id: FC1
+    title: Shared linked-person AI preference and consultation routing
+    owners: [chummer6-hub, chummer6-ui, chummer-android]
+    status: planned
+    exit:
+    - AI_AND_CONSULTATION_PREFERENCES.md default-on initialization and preserved explicit off are verified across linked Android, Windows and macOS.
+    - Old clients, offline conflicts and owner transitions cannot bypass backend admission or resurrect an opt-out.
+    - The avatar direct-video question is asked at most once account-wide and the routing preference remains editable.
+  - id: FC2
+    title: Optional Rook voice and default-avatar video discussion
+    owners: [chummer6-hub, chummer6-ui, chummer-android]
+    status: planned
+    exit:
+    - Actual provider entitlement, voice route and default-avatar video capability are verified before exposure.
+    - Contextual adviser offers and opt-in future direct routing preserve exact proposal authority and explicit native Apply.
+    - Disabled AI, media permission denial, unavailable video and uncertain session outcomes have safe usable fallbacks without replay.
 - id: A
   title: Design and contract canon
   status: complete

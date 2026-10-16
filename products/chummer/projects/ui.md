@@ -7,6 +7,21 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 
 ## Owns
 
+### Planned Creation consultation increment — 2026-10-16
+
+Implement the Presentation/shared-client parts of
+[`FINISH_MY_CHARACTER_ASSISTANT.md`](../FINISH_MY_CHARACTER_ASSISTANT.md) and
+[`AI_AND_CONSULTATION_PREFERENCES.md`](../AI_AND_CONSULTATION_PREFERENCES.md):
+playable rather than merely legal completion, readable grouped review, scoped
+planning reuse and grounded pre-apply text/voice discussion. Android owns its
+native surface; the assigned desktop worker owns Windows/macOS surfaces. Consume
+one Hub-owned linked-person AI preference and separate opt-in direct-video route;
+persist explicit local off and account-wide prompt disposition without roaming
+media permissions or sessions. No desktop or video completion claim follows from
+an Android-only test; no new desktop worker is authorized by this scope update.
+
+### Existing UI responsibilities
+
 * workbench/browser/desktop UX
 * builders, inspectors, and compare flows
 * explain and audit-facing UX on the workbench side
