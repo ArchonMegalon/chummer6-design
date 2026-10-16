@@ -34,6 +34,9 @@ misleading working toggle.
 - Core calculation, deterministic starter suggestions, manual editing, saved
   proposals, existing chapters/images and export remain available. Reading saved
   work must not make a hidden provider request.
+- Fictional AI metatypes, E-Ghosts and other rules-eligible character options are
+  not generative AI services. The switch must not hide them or change rule/source
+  eligibility. Separate this from any actual assistant/companion invocation.
 - Disabling locally stops capture/playback, closes the local conversation and
   prevents new outbound work immediately. Revoke server session authority and
   queued unstarted work when synchronized. An already-submitted paid job may still
@@ -111,6 +114,19 @@ Supported old-client paths must not bypass the backend gate or overwrite newer
 fields with absent/default values.
 
 ## Owners and implementation scope
+
+Migration anchor: Presentation `e1d348400265156db01473016cf440ba581ad978` already
+has an inverse `DisableAiFeatures` preference in
+`Chummer.Presentation/Overview/DesktopPreferenceState.cs:23`. Reuse that user
+choice with a correctly inverted positive settings label, not a competing switch.
+The head-local persistence in
+`Chummer.Desktop.Runtime/DesktopPreferenceRuntime.cs:18` does not establish
+owner-scoped sync and conflates unreadable/missing state. Migrate with explicit
+resolution/persistence status and preserved opt-out; do not infer linked-account
+agreement from that Boolean. The existing deterministic-option filtering test in
+`Chummer.Tests/Presentation/OverviewCommandPolicyTests.cs:107` needs a deliberate
+behavior correction, not a second contradictory gate. These are inspected
+implementation gaps, not fixes delivered by this document.
 
 | Owner | Responsibility |
 | --- | --- |
