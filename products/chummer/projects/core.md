@@ -6,6 +6,18 @@
 
 ## Owns
 
+### Planned Creation completion increment — 2026-10-16
+
+For [`FINISH_MY_CHARACTER_ASSISTANT.md`](../FINISH_MY_CHARACTER_ASSISTANT.md),
+keep legal candidate/dependency evaluation, exact before/after budgets and
+revision-bound atomic apply/finalization authoritative. Support snapshot-scoped
+planning reuse without caching mutation authority. Deterministic/manual Creation
+must remain usable when AI is off. Rook text, speech, avatar switching and account
+preferences cannot mutate a character or bypass Life Modules story gates; Hub,
+not Core, owns the linked-person preference and provider admission.
+
+### Existing Core responsibilities
+
 * rules math
 * runtime fingerprints
 * runtime bundles

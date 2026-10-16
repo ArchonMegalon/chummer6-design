@@ -6,6 +6,20 @@
 
 ## Owns
 
+### Planned Creation consultation increment — 2026-10-16
+
+Own the authenticated linked-person state and provider admission described in
+[`AI_AND_CONSULTATION_PREFERENCES.md`](../AI_AND_CONSULTATION_PREFERENCES.md).
+Reuse profile/roaming contracts; preserve explicit opt-outs, revisioned partial
+updates, owner transition identity, idempotent one-time prompt claims and fresh
+session admission. Gate new provider work even for older clients. Broker only
+verified adviser/voice/default-avatar capabilities with short-lived access and
+uncertain-session no-replay. Do not grant mutation/finalization to Rook or a video
+provider; [`FINISH_MY_CHARACTER_ASSISTANT.md`](../FINISH_MY_CHARACTER_ASSISTANT.md)
+keeps the native reviewed diff and Core admission authoritative.
+
+### Existing Hub responsibilities
+
 * hosted orchestration and relay seams
 * identity, approvals, memory, and delivery on the hosted side
 * principal-to-user mapping and user-profile truth
