@@ -55,6 +55,12 @@ are visible incompatibilities, not permission to enable everything.
   Save/reopen, sync and export/import preserve the exact same source selection.
 - Campaign profiles may supply a starting set, but are not a global preference.
   Later campaign-rule changes require explicit per-character adoption and review.
+  Bind one campaign explicitly; do not combine every membership on the account.
+  Mandatory current GM restrictions are checked separately from the runner's
+  adopted profile: a conflict requires adoption/repair or an authorized explicit
+  exception, not silent changes or presumed compliance. House-rule and campaign
+  context follow [the completion snapshot contract](FINISH_MY_CHARACTER_ASSISTANT.md#whole-character-context-house-rules-and-campaign-authority)
+  for both assistant and manual rule/settings admission.
 - Selecting a book enables supported rule options; it does not supply the full
   sourcebook, establish ownership, license its text or authorize uploading it to AI.
 
