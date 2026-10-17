@@ -3,7 +3,8 @@
 ## Status and scope
 
 Design requirement agreed on 2026-10-14, refined on 2026-10-16 for playable
-completion, grounded Rook voice discussion and optional adviser/video routing.
+completion, grounded Rook voice discussion and optional adviser/video routing,
+and on 2026-10-17 for remaining-budget and end-to-end acceptance.
 Implementation and release acceptance remain pending. Existing Build Lab,
 ALICE or provider integrations do not prove
 this native workflow is delivered. First increment: native Android SR5 Creation.
@@ -238,6 +239,31 @@ and native presentation separately before claiming a latency fix. Cancellation,
 visible progress and manual Creation must remain responsive; larger timeouts or
 fresh timestamps are not performance improvements.
 
+### Remaining Karma is an explicit planning result
+
+Search applicable, source-allowed attributes, qualities, skills, groups,
+specializations, magic and other supported allocations for useful spending before
+declaring a remainder unavoidable. Compare their role benefit and dependency
+costs under the actual build method; a category the planner does not implement
+is a coverage gap, not proof that no legal purchase exists. Preserve ordinary
+point pools, heritage/talent grants, player locks and requested reserves. Do not
+convert, double-spend or flatten these into one generic Karma balance.
+
+Show the evaluated starting balance, proposed spend and resulting balance, and
+classify the remainder as requested reserve, legal carryover, no eligible useful
+choice, unsupported planning coverage or forfeiture requiring acknowledgement.
+An incomplete search must say so. Explain the selected recommendation and useful
+alternatives without claiming a mathematically optimal build or buying filler.
+Existing safeguards against unrequested negative qualities and identity changes
+still apply. The final Core check uses current source prices and owner/revision
+authority, even when proposal computation reused a valid immutable snapshot.
+
+Include the reported partially built runner with 22 unallocated Creation Karma
+in affected regressions: prove the exact costs and remaining balances, retain
+manual choices and grants, and recover the same single committed result after
+restart. This is not a rule that every method must finish with zero Karma, nor
+proof that a Core-only correction is already consumed by a distributed app.
+
 ## Learning from feedback and public build discussions
 
 Start with **curated retrieval and reviewed recommendation packs**, not automatic
@@ -299,6 +325,20 @@ Before claiming the complete native feature:
 6. Native review/apply/Career/save/reopen works on the exact delivered candidate.
    Life Modules cannot bypass chapter gates. Record affected-route evidence, not
    a new mandatory whole-project or double-green release ceremony.
+7. Check an actual partial runner for every advertised complete build method,
+   including its magic/resonance and category restrictions where applicable.
+   A minimal Priority smoke does not close Sum-to-Ten, Karma or Life Modules.
+   Preserve the initial choices and inspect resulting values and all balances,
+   not just successful navigation. Unsupported categories remain explicit.
+8. Measure time to a usable restored screen and the preparation/evaluation/review/
+   apply phases separately. A spinner, process launch or compile is not usable
+   completion. Cancellation and a failed refresh recover on the same page without
+   requiring leave/re-enter. Physical performance claims need the tested ARM64
+   release and representative saved runner, not an overloaded emulator result.
+
+Complete Creation/Career/Origin acceptance also follows the Android product
+contract's end-to-end journey. Keep those open acceptance targets separate from
+a small, correctly scoped Internal update and from broader Android parity.
 
 Optional voice/video has its own scoped acceptance: discussion and switching
 preserve the runner and exact proposal authority; edits invalidate old approval;

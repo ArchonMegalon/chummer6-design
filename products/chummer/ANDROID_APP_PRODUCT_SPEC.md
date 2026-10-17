@@ -1,7 +1,7 @@
 # Android flagship application
 
 Status: canonical Android product contract
-Updated: 2026-09-20 — local-first Internal delivery; separate extended and beta evidence
+Updated: 2026-10-17 — explicit journey completion and installation-local update highlights
 
 ## Decision
 
@@ -20,8 +20,12 @@ The phone product is intentionally wizard-led. The SR5 Priority Create wizard
 and the declared SR5 Career, Before Run, Playtime, After Run, and Downtime
 wizards are the mutation surfaces. A readable post-creation Sheet and History
 support those flows, but a universal Full Editing screen and exhaustive legacy
-control parity are neither beta requirements nor product completion criteria.
-Legacy editability inventories remain regression and discovery inputs only.
+control parity are not prerequisites for this bounded phone increment. The
+broader explicitly requested Android parity goal remains separate and open until
+its own exhaustive mutation and phone/tablet evidence requirements are met.
+For the bounded wizard increment, legacy editability inventories remain
+regression and discovery inputs; they do not replace its declared journey
+acceptance.
 
 ## Phone-beta authority and claim tiers
 
@@ -100,6 +104,40 @@ only navigation state that remains valid for the new stable runner identity.
   Android. Play-managed installs use the native flexible update flow. A sideloaded
   build stays in Chummer and explains the Play-owned update posture without
   launching another app.
+
+### Once-per-upgrade highlights
+
+After an upgrade to a higher installed version code, show one compact native
+sheet with the important changes since the previously acknowledged version as
+short, localized bullet points. One acknowledgement returns to the existing
+screen. The same notes remain accessible under Settings / What's new.
+
+- Aggregate skipped shipped versions into one concise list; deduplicate repeated
+  improvements instead of opening a sheet for each intermediate release.
+- Bundle curated notes for offline use and bind them to the actual installed
+  artifact/version and supported scope. Merged, planned, Core-only or disabled
+  provider features are not shipped changes. Include no account, runner or book
+  contents. This is product information, not a new release-authority service.
+- Keep the acknowledged-version marker local to this installation, not in
+  account roaming. Two devices update independently. Never lower the marker on
+  downgrade; reinstalling the same version with retained data does not replay it.
+- A first install establishes the current baseline without a historical dump.
+  If an upgrade is known but its previous version is unavailable, show only the
+  current release's highlights and label that scope honestly. If even the
+  upgrade is unknown, establish a baseline rather than inventing prior history.
+- Present only after a usable screen has restored, not over recovery, an error,
+  a permission request, export or mutation confirmation. Do not change the
+  selected runner, navigation or pending work to show release notes.
+- Persist acknowledgement on explicit dismissal, not when display is merely
+  scheduled. An interrupted unacknowledged sheet may return; acknowledged notes
+  do not return on restart or account switch. Do not display an empty sheet.
+  If a release has no applicable notes, advance the baseline without a popup.
+
+Focused acceptance covers normal/skipped upgrades, unchanged versions,
+downgrades, missing/corrupt markers, first install, interrupted acknowledgement
+and two installations. The native smoke checks readable bullets, safe timing,
+dismissal and cold reopen. These are implementation requirements, not evidence
+that update highlights already ship in an existing Internal build.
 
 ## Adaptive navigation
 
@@ -271,6 +309,13 @@ is allowed; omission is not. In particular:
 
 ## Current release and parity posture
 
+Read the current version from Android's maintained release authority and actual
+Play readback, not a version number copied into Design. Build, merge, signing,
+Internal availability, physical installation and feature completion are separate
+claims. The following retained observation is historical, not current status.
+
+### Historical Preview 7 observation (2026-08-14)
+
 As of 2026-08-14, Play accepted and processed
 `chummer-android-0.1.0-preview.7-upload.aab`, version code `7`, targeting Android
 API 36. The Internal testing track reports `0.1.0-preview.7` as available to
@@ -278,15 +323,15 @@ internal testers. The exact AAB SHA-256 is
 `34b6b206b422e439e19e675e9f6ec849ed6b3c64b7db66852fdf3463ee4b509f`.
 The activated upload certificate exactly matched the approved artifact.
 
-Saved Play setup and listing changes are in review; this is not store approval.
-The tester join page proves listing access, but no real-device Play installation
-has been recorded. Do not claim installed-from-Play proof.
+At that observation, saved Play setup and listing changes were in review, not
+store approval. The tester join page proved listing access, but no real-device
+Play installation was recorded in that packet. It neither proves nor disproves
+physical installation of later releases.
 
 The released preview.7 is also not evidence for the newer exhaustive editing and
-second-tablet-UI requirement. Attribute and origin-dossier phone editors are an
-incomplete post-release slice pending emulator proof. Most Chummer5 mutation
-families remain partial or missing, and the dedicated master/detail tablet
-composition remains missing. The fail-closed status lives in
+second-tablet-UI requirement. Attribute and origin-dossier phone editors were an
+incomplete post-release slice pending emulator proof at that time. Do not reuse
+that historical observation as current coverage. The fail-closed status lives in
 `ANDROID_WINDOWS_FEATURE_PARITY.yaml`. The row-level inventory is generated from
 all Chummer5 `Chummer/Forms` and `Chummer/Controls` C# UI sources, plus the
 bundled Hub-client, Translator, crash-reporter, and data-viewer UI sources, by
@@ -301,6 +346,39 @@ The processed preview artifact above predates this phone-beta contract and does
 not prove it. Current beta readiness must be read from exact candidate evidence
 against `ANDROID_PHONE_BETA_SUPPORT_MATRIX.yaml`; design status, a Play listing,
 or an x86_64 hosted journey is not physical ARM64 phone proof.
+
+## Complete Creation, Career and Origin acceptance
+
+Keep these completion targets open until demonstrated on an identified current
+candidate. They do not require rerunning the full workflow for every unrelated
+Internal change; each increment retains the risk-based local delivery policy.
+
+1. Each advertised complete SR5 creation method reaches Career with the same
+   runner identity, exact values, budgets and grants, and one durable
+   finalization. Cover manual and assistant completion. Minimal Priority success
+   is not proof of all methods or all Career action families.
+2. Confirmations lead to the next valid wizard step. Failures offer a working
+   same-page retry without losing edits. Long work exposes its actual phase and
+   progress; an ETA uses measured work, never an invented countdown.
+3. Measure a representative retained runner on a physical ARM64 Release build:
+   cold launch to usable restoration, entry/re-entry, finalization to usable
+   Career, and Origin read. Separate authentication/storage, provider and local
+   rendering time. Preserve crash mitigations unless separately justified and
+   tested; an overloaded emulator is not a physical performance result.
+4. Keep one runner and book identity through successive Life Module decisions,
+   multiple full provider chapters, automatic illustrations, explicit reading
+   acknowledgement, rule effects, next choices, finalization and full EPUB/HTML
+   export. Force-stop/reopen and recover an interrupted read without duplicate
+   generation. Inspect actual values/budgets and accepted prose/images, not just
+   screen navigation, summaries or fixtures.
+5. Reconcile an uncertain provider operation using its existing authenticated
+   request identity, or record it explicitly as unresolved/abandoned. Success of
+   an independent book does not close the original incident. Never clear its
+   fence or blindly repeat a paid generation to obtain a green result.
+6. Record the current physical Play-managed install/update and changed routes.
+   Separately observe a fresh eligible metadata-only diagnostic through the real
+   outbox, receiver and operator path. Retry/restart retain deduplication and
+   saved opt-outs; a seeded already-accepted report is not fresh delivery proof.
 
 ## Governed LTD opportunities
 
@@ -334,8 +412,9 @@ signing digests, declared edition/method/locale scope, and a physical ARM64
 Play-managed install with persistence and new-process receipts. Tablet and Rook
 are explicitly outside this tier and do not block it.
 
-The optional historical parity-complete claim is not part of the current app
-goal. If it is ever reactivated, the Android app is not called parity-complete until automation proves every
+The broader explicitly requested parity goal remains open, but is not a
+prerequisite for each Internal increment. The Android app is not called
+parity-complete until automation proves every
 visible Windows command and startup surface has a mapped Android behavior, the
 release AAB targets the supported API level, contains no broad-storage or
 cleartext-network permission, and passes clean-install, upgrade, offline,
