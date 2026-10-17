@@ -8,7 +8,8 @@ and on 2026-10-17 for remaining-budget/end-to-end acceptance, optional timed
 decision cards, explicit negative-quality consent, contextual Rook discussion,
 rules-aware OODA planning across every applicable completion aspect, and
 player-owned optimization goals with whole-build comparisons and explicit
-playability/coverage closure.
+playability/coverage closure. The same day's refinement adds a whole-character
+rules snapshot, authorized campaign/GM context and a visible recoverable EA queue.
 Implementation and release acceptance remain pending. Existing Build Lab,
 ALICE or provider integrations do not prove
 this native workflow is delivered. First increment: native Android SR5 Creation.
@@ -34,6 +35,8 @@ admits changes; the player decides.
    comparison dashboards. Keep visible
    progress near the action: preparing choices, checking rules, preparing review.
    Show an estimated range only when measured; otherwise say the ETA is unknown.
+   Before execution, use the separate capacity-queue state below, not a running
+   analysis spinner or fabricated percentage.
    Optional decision cards may use the waiting time as specified below; they do
    not replace progress feedback or make a mandatory interview out of completion.
 5. Show a grouped before/after summary of changes, remaining budgets and blockers.
@@ -145,6 +148,107 @@ The normal final before/after review and explicit Apply are still required.
   chapter readiness/reading acknowledgements or cumulative-rule admission.
   Preview/chat do not trigger paid Origin chapters, illustrations or publication.
   Where a story gate remains, offer the next valid wizard action, not Career.
+
+## Whole-character context, house rules and campaign authority
+
+User decision, 2026-10-17: completion must consider the whole character and any
+applicable house rules, including account-linked group membership and the GM's
+creation restrictions. Account-linked game context is relevant; account secrets
+are not. A raw character-file upload alone is insufficient: effective settings,
+amend packages and campaign policy may live outside that file.
+
+### One coherent planning snapshot
+
+Capture one immutable, schema-versioned rules-relevant snapshot after pending
+character saves finish. Include the complete realized mechanical baseline across
+all supported aspects, not only empty fields or a guessed archetype: method and
+heritage/talent, normal/special attributes, skills and grants, qualities/levels,
+magic/resonance, gear/ware and dependencies, contacts/lifestyles, pools, costs,
+Essence, reserves, locks and provenance. Core supplies values and derived effects;
+the adapter must not reconstruct rules from names or count grants twice.
+
+Include the exact enabled books/errata, resolved optional-rule settings and
+compiled house-rule/amend authority with its version, digest and validation
+status. Prefer effective Core facts to a long list of nominal settings that
+may not actually be supported. Every required area has an explicit observed,
+not-applicable, unsupported or missing disposition. Missing policy or an omitted
+character category does not mean default rules, no restrictions or an empty
+inventory. Unknown/imported settings require resolution before claiming a
+complete rules-aware proposal.
+
+The client sends the bounded structured snapshot to the authenticated private
+Hub route once per planning generation. The governed provider receives the
+necessary character facts and authorized campaign constraints, with catalog
+pages and later Core evaluation deltas as needed. Do not serialize arbitrary
+save XML, local paths, caches or account objects. Preserve a completeness manifest
+and snapshot identity across pages; reject an oversized required section rather
+than silently truncating it. No page from another generation may fill a gap.
+Local Core remains the sandbox and mutation authority; uploading context does
+not create a second hosted rules engine.
+
+Use the applicable AI preference and clear disclosure of these field classes;
+do not add a consent toggle for every round. Group constraints, shared team-role
+facts and player-provided concept are allowed when authorized for this purpose.
+Exclude credentials, email/login details, unrelated account records, private GM
+notes, other players' character sheets, full rulebooks and unrelated Origin
+prose. Linked-library access does not authorize provider disclosure of PDF text.
+Logs retain safe metadata, not private payloads. Reuse existing owner-scoped
+retention/erasure controls, including cancellation, expiry and account deletion;
+current-request use is not consent for cross-user learning.
+
+### Bind one campaign and distinguish kinds of constraints
+
+A runner may be independent or explicitly bound to a campaign. If membership
+offers several campaigns and the runner has no binding, ask which one applies;
+never merge restrictions from every group on the account. Offline/unknown
+membership is not proof that the runner is independent. A verified standalone
+runner needs no campaign account and may use the supported manual path.
+
+Hub resolves membership, role and the player-visible campaign profile through
+current account authority. Do not trust client-supplied GM identity, elevated
+role or policy revision. Only the existing authorized GM/campaign-management
+path can publish table restrictions or exceptions; model text and player chat
+cannot edit them. The provider receives the authorized policy projection, not
+the membership roster or private GM material.
+
+Separate three policy classes:
+
+- **Core-enforced rules:** supported house rules, source restrictions, budgets,
+  caps and eligibility. Carry the compiled effective values and authority into
+  candidate evaluation and fresh final admission.
+- **Required table decisions:** narrative bans, obligations, exceptions or GM
+  approvals not mechanically checkable. Show them as pending confirmation or
+  unsupported validation; model agreement does not satisfy them. A blocking
+  unresolved requirement prevents assisted `Apply & enter Career`.
+- **Preferences:** campaign tone, shared team-role needs and optional play-style
+  goals. They influence advice but cannot override hard rules or player locks.
+
+Constraints retain their source, revision, enforcement class and concise reason.
+Rule precedence comes from Core's admitted rule environment, not from an AI
+guess that a GM note overrides a book. Conflicting mandatory constraints or a
+locked player choice produce an actionable conflict, not silent relaxation.
+Suggest the smallest repair or the required GM decision without changing policy.
+Natural-language rules and account-provided strings are untrusted data, never
+instructions to tools or executable rule patches.
+
+Campaign profiles can supply initial character settings. Later policy changes
+do not silently mutate a runner: show adoption/repair and its consequences.
+An old adopted profile does not automatically satisfy a newer mandatory table
+requirement. A GM-approved exception must be explicit and revision-bound.
+Bind the planning snapshot and proposal to character/rules/books, campaign policy,
+membership authority, AI permission and player goals. Recheck before provider
+dispatch, disclosure and Apply. An intervening relevant change makes the job or
+proposal stale; no free replay, silent adoption or cached apply authority.
+
+### Minimal explanation, not another configuration wizard
+
+The finish sheet shows one collapsed summary such as `Your character · Campaign
+rules applied`. Expand it to inspect active books, house rules and GM constraints.
+Never show that summary when policy loading failed. Only ask for unresolved
+campaign selection, conflicting locks or a required table decision. Review links
+each affected recommendation to its applicable constraint and distinguishes
+`Core checked`, `GM confirmation needed` and `advice`. These are accessible,
+localized states, not raw policy IDs or a new mandatory dashboard.
 
 ## Rules-aware OODA across every aspect
 
@@ -439,16 +543,18 @@ an account opt-out. See the preference contract for owner transitions, offline
 edits, fresh session admission and the desktop implementation handoff.
 
 The logical proposal binds owner context including transition identity,
-workspace and revision, source snapshot digest, rule/source-set digest, locks,
+workspace and revision, source snapshot digest, rule/source-set digest,
+campaign policy and membership authority when applicable, locks,
 archetype/preferences, recommendation-pack version and validated changes.
 Retain an immutable proposal digest, per-change reasons, before/after budgets,
 Core blockers and the exact permitted finalization action. Extend existing
 contracts where possible; this is not a new rule engine or receipt framework.
 
 At apply, reacquire the exact owner-bound mutation authority and revalidate the
-snapshot, books, locks and complete dependency set. Apply atomically: all admitted
-changes or none. Repeated clicks, restart and uncertain persistence outcomes must
-resolve through the same durable operation identity, not duplicate purchases or
+snapshot, books, campaign constraints, locks and complete dependency set. Apply
+atomically: all admitted changes or none. Repeated clicks, restart and uncertain
+persistence outcomes must resolve through the same durable operation identity,
+not duplicate purchases or
 finalization. If Core cannot yet support that boundary, implement it before
 exposing `Apply & enter Career`; sequential unprotected writes are not a substitute.
 Report local commit separately from later roaming sync; cancellation after a
@@ -487,6 +593,62 @@ the default. An owned LTD account is not proof of live entitlement or readiness.
 Live provider availability, quotas and the complete native apply route are not
 established by this design update. Rook avatars, voice and meeting sessions are
 not prerequisites for the text-first assistant.
+
+### Visible EA capacity queue
+
+When the admitted EA route is busy, show a real waiting state instead of a
+perpetual spinner or simulated analysis. Reuse the existing Hub/EA scheduling
+boundary and durable job identity; do not introduce a separate generic queue
+platform or equate development-worker Codex quota with app-provider capacity.
+
+The native card distinguishes `Waiting for capacity`, `Analysing`, `Checking
+rules`, `Needs your decision`, `Ready for review`, `Changed — refresh needed`
+and terminal failure/cancellation. Show queue age, a live phase description,
+`Cancel` and `Continue editing`. Leaving the screen is not cancellation. Keep
+the card visible near the initiating action and restore it on re-entry/restart.
+Do not require push notification permission; normal status reads must suffice.
+
+Show a queue position only if the scheduler supplies one with defined ordering
+semantics. Parallel pools/priorities may make an exact position unknowable: say
+so, or show an explicitly approximate number ahead. Never expose other users,
+characters or job details. Estimate waiting and execution separately from
+measured recent jobs of the same kind; show a range and its freshness, not a
+fixed countdown or a fabricated completion percentage. If there is insufficient
+evidence, state `Estimate not available`. Completed work stages may drive a
+progress bar; time spent queued does not count as analysed character work.
+
+Persist one owner-scoped accepted job before acknowledging queue admission.
+Double clicks, reconnects and multiple devices recover that same job for the
+same snapshot/intent, not duplicate paid work. Before acceptance, distinguish
+`Waiting for connection` from a server-accepted queue entry. Bound queue size,
+waiting lifetime, per-owner concurrency and provider capacity; use the existing
+fair scheduling policy and surface saturation without dropping accepted jobs.
+Queued time has a separate expiry from the bounded active OODA budget. A worker
+restart may resume a provably undispatched job, but an uncertain provider
+dispatch remains fenced pending reconciliation rather than lease-timeout replay.
+
+Before dispatch and between new rounds, recheck owner/membership, AI preference,
+runner and rule/policy revisions. Edits while waiting remain allowed but mark the
+old request stale, stop new paid work when safe and offer a refreshed request;
+never silently restart it with a different character. Logging out, switching
+owner or losing membership prevents further disclosure. Saved AI-off stops new
+provider dispatch. These checks apply again when opening a retained result.
+Hub checks its current account/campaign authority; native Core checks the actual
+local runner and sends generation invalidation through the existing job route.
+A disconnected client's unsynchronized edits cannot be detected magically by
+the server: do not promise instant remote cancellation in that case. Fresh local
+review must reject the old result on return, and Apply always uses current local
+authority plus required current campaign admission.
+
+Cancel before dispatch prevents the paid call. After dispatch it stops new rounds
+and local waiting, without promising a provider refund or remote cancellation.
+Retain the minimal uncertain-operation identity until reconciled. Provider rate
+limits, exhausted credits, unavailable models and missing authorization are
+different states from a busy queue. Report the actual blocker and a verified
+retry/reset time if known; do not leave permanently ineligible work in a fake
+queue, buy credits or switch accounts/providers merely to clear it. Manual
+Creation remains usable in every case. A ready queue result is a proposal, never
+permission to apply, finalize or bypass a pending player/GM/story decision.
 
 ## Playable completion and response time
 
@@ -613,6 +775,23 @@ Before claiming the complete native feature:
    completion. Cancellation and a failed refresh recover on the same page without
    requiring leave/re-enter. Physical performance claims need the tested ARM64
    release and representative saved runner, not an overloaded emulator result.
+9. Compare the same synthetic runner under standard and supported house-rule
+   profiles: exact budgets/costs and eligible choices must follow Core, including
+   across coupled categories. Cover missing/imported policy, conflicting locks,
+   a free-text mandatory GM condition and a supported explicit exception. Unknown
+   policy must not produce a complete result or silently become standard rules.
+10. With two campaigns on one account, prove only the runner's chosen authorized
+    profile enters the job. Changed policy, revoked membership and owner A-B-A
+    reject stale dispatch/disclosure/Apply. Verify snapshot paging/completeness
+    and absence of credentials, private GM notes and other players' sheets in
+    provider payloads or logs; test-data-only fixtures are sufficient for this.
+11. Saturate the admitted route with controlled synthetic work and observe a real
+    native queue entry, truthful wait/phase state and responsive cancellation.
+    Cover double-click/multi-device admission, edits while queued, AI-off, app and
+    server restart, queue expiry/full capacity, unavailable ETA, exhausted credit
+    and an uncertain already-dispatched request. Prove no duplicate paid dispatch
+    and no fabricated progress. Use a bounded real-provider check only where
+    needed to establish the live adapter boundary; do not buy capacity for tests.
 
 Complete Creation/Career/Origin acceptance also follows the Android product
 contract's end-to-end journey. Keep those open acceptance targets separate from
