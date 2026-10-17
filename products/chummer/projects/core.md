@@ -6,7 +6,7 @@
 
 ## Owns
 
-### Planned Creation completion increment — 2026-10-16
+### Planned Creation completion increment — updated 2026-10-17
 
 For [`FINISH_MY_CHARACTER_ASSISTANT.md`](../FINISH_MY_CHARACTER_ASSISTANT.md),
 keep legal candidate/dependency evaluation, exact before/after budgets and
@@ -15,6 +15,12 @@ planning reuse without caching mutation authority. Deterministic/manual Creation
 must remain usable when AI is off. Rook text, speech, avatar switching and account
 preferences cannot mutate a character or bypass Life Modules story gates; Hub,
 not Core, owns the linked-person preference and provider admission.
+
+For all-aspect OODA, expose actual candidate legality, realized whole-plan results,
+shared-wallet effects, dependencies and supported/not-applicable coverage. Core
+does not choose a hardcoded archetype allocation or own provider ranking. Missing
+identity, implant or dependent-loadout support remains explicit until implemented;
+an advisor's claim of coverage cannot replace Core capability or admission.
 
 ### Existing Core responsibilities
 

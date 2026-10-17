@@ -31,9 +31,11 @@ misleading working toggle.
 - AI off suppresses new AI suggestions, chat, voice/video sessions, automatic
   adviser offers and new automatic story/illustration generation for this owner.
   Gate on both client and backend; hiding a button is insufficient.
-- Core calculation, deterministic starter suggestions, manual editing, saved
-  proposals, existing chapters/images and export remain available. Reading saved
-  work must not make a hidden provider request.
+- Core calculation, manual editing, saved proposals, existing chapters/images
+  and export remain available. Reading saved work must not make a hidden provider
+  request. Per the 2026-10-17 completion decision, `Finish my character` must not
+  replace an unavailable AI route with deterministic starters or random choices;
+  keep manual Creation usable and explain why assisted planning is unavailable.
 - Fictional AI metatypes, E-Ghosts and other rules-eligible character options are
   not generative AI services. The switch must not hide them or change rule/source
   eligibility. Separate this from any actual assistant/companion invocation.
