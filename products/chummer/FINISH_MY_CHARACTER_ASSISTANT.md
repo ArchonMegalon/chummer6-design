@@ -4,7 +4,8 @@
 
 Design requirement agreed on 2026-10-14, refined on 2026-10-16 for playable
 completion, grounded Rook voice discussion and optional adviser/video routing,
-and on 2026-10-17 for remaining-budget and end-to-end acceptance.
+and on 2026-10-17 for remaining-budget/end-to-end acceptance, optional timed
+decision cards, explicit negative-quality consent and contextual Rook discussion.
 Implementation and release acceptance remain pending. Existing Build Lab,
 ALICE or provider integrations do not prove
 this native workflow is delivered. First increment: native Android SR5 Creation.
@@ -29,6 +30,8 @@ admits changes; the player decides.
 4. Prepare one proposal, not three mandatory comparison dashboards. Keep visible
    progress near the action: preparing choices, checking rules, preparing review.
    Show an estimated range only when measured; otherwise say the ETA is unknown.
+   Optional decision cards may use the waiting time as specified below; they do
+   not replace progress feedback or make a mandatory interview out of completion.
 5. Show a grouped before/after summary of changes, remaining budgets and blockers.
    Expand a group for individual choices and `Why?`. Let the player pin, replace
    or decline suggestions and recalculate the dependent proposal before approval.
@@ -44,6 +47,68 @@ require a new preview before applying. Never silently rebase an approval.
 No raw GUIDs, provider names, receipt digests or debug fields in ordinary copy;
 keep technical identity in diagnostic detail. Localize the native labels and
 accessible summaries; do not rely on color alone to distinguish changes.
+
+### Optional decisions while planning
+
+Offer one compact card at a time, with two or three already Core-checked,
+meaningfully different alternatives and a clearly marked recommended default.
+Start with at most three useful questions per planning pass and offer `Decide
+the rest for me` for ordinary choices. Do not ask about dominated alternatives,
+unsupported categories or decisions the player has already locked. If there is
+no useful choice, continue planning without manufacturing a question or delay.
+
+Examples include eligible spell alternatives or a stronger fake identity versus
+a cheaper identity with more equipment budget. Compare complete dependency
+bundles under the same snapshot, not isolated sticker prices. Show concise
+role benefits, costs and consequences; a ware alternative also needs the prior
+permission for that category. AI wording does not establish legality or price.
+
+For ordinary choices, mark the default before a visible 30-second countdown
+starts. The countdown starts only when the card is actually presented in the
+foreground, pauses on interaction, reading an explanation or opening Rook, and
+never expires invisibly in the background. Offer `Use recommendation` and `More
+time`/pause; time limits must not prevent accessible reading or selection.
+Expiry selects the displayed default in the proposal only, never applies or
+finalizes the character. Keep this decision timer distinct from measured planning
+progress/ETA. Finishing the analysis does not dismiss an actively read card.
+
+Continue independent analysis while a card is open. An answer invalidates only
+dependent cached work; fresh whole-proposal Core admission remains mandatory
+before apply. Bind cards, options and replies to the owner transition, runner
+revision, rule/source snapshot and proposal/card generation. A reply and an
+expiry must resolve to one decision: process foreground interaction first and
+reject stale timer callbacks, never overwrite an explicit answer with a default.
+Changed costs, prerequisites or consequences retire an obsolete card; present
+the changed comparison instead of silently substituting an option.
+
+Retain explicit answers and their locks across recalculation and cold recovery;
+do not ask unchanged questions again. Distinguish player choices from automatic
+defaults so later suggestions may replace only the latter without permission.
+Allow undo/revisit before final apply and recalculate affected budgets. Restore
+pending cards paused, revalidate their authority and do not convert elapsed
+offline time into consent. Cancellation leaves the runner unchanged.
+
+### Negative qualities require a deliberate choice
+
+Ask about each proposed new negative quality separately, including its exact
+level, player-facing effect, Karma benefit and any required details or table/GM
+agreement. Explain the roleplaying obligation, not just the points gained.
+There is no preselected acceptance and no countdown-to-accept. Skipping, expiry,
+`Decide the rest for me`, a general optimization preference, AI-on or permission
+to suggest negatives means no new negative quality is accepted. The safe
+continuation is a proposal without that disadvantage; do not repeatedly ask
+after the player declines it during this completion attempt.
+
+Only an explicit selection of that exact quality/level may add it to the draft
+proposal. Never pre-spend its Karma benefit on other suggestions before this
+selection. Declining or undoing it also withdraws dependent spending; do not
+keep an unaffordable plan or substitute another disadvantage. A changed level,
+meaningful effect or rule context requires renewed choice. Preserve existing
+player-selected negatives and locks rather than removing or worsening them for
+efficiency. Core legality and a recorded player choice are not proof of GM
+approval; if the current table policy requires approval, retain that requirement
+and a clearly actionable pending state without claiming complete admission.
+The normal final before/after review and explicit Apply are still required.
 
 ## What completion means
 
@@ -65,7 +130,8 @@ accessible summaries; do not rely on color alone to distinguish changes.
   just to display zero remaining; separate required spending from optional use.
 - Do not introduce negative qualities, addiction, implants, major backstory or
   other identity-defining compromises solely for efficiency without explicit
-  player preference and review. No universal optimal-build claim.
+   player preference and review. Negative qualities additionally require the
+   per-quality deliberate choice above. No universal optimal-build claim.
 - If locked choices conflict, explain the smallest possible repair and link to
   the affected step. A repair remains a proposal, never a silent prerequisite edit.
 - Team-role advice may use only a shared, authorized capability summary, not
@@ -93,6 +159,22 @@ evaluations. Store concise decision reasons with the proposal; do not invent a
 retrospective rationale or expose model reasoning traces as rules evidence.
 An alternative or chat request creates a revised proposal, never a direct write.
 Discussion, dismissal and reading do not mutate the runner.
+
+Every decision card may additionally offer `Discuss with Rook` when linked AI
+preferences allow it and the actual authorized route is available. Pass the
+exact card alternatives, preserved choices, current budgets and grounded reasons
+inside the existing bounded owner-scoped consultation packet. Offer relevant
+question chips such as `What is the downside?`, `Which suits my role?` and `Can
+we avoid this disadvantage?`; do not send unrelated account or book history.
+Opening discussion pauses the decision timer. Returning preserves the card and
+its answers; keep the timer paused until the user resumes it. Rook may explain
+or propose a revised alternative, never mark a negative quality accepted based
+on conversation, speech, silence or its own recommendation. The player makes
+that selection on the native card. A changed alternative needs Core rechecking.
+AI-off hides the discussion action; unavailable/offline Rook leaves readable
+local explanations and normal manual selection usable, without an automatic
+provider session, timer resumption or provider-request replay. Existing voice/
+video preferences and permissions still apply; a button does not prove shipment.
 
 ### Rook voice discussion and another adviser
 
@@ -346,5 +428,14 @@ AI-off rejects offers and provider work; direct routing and the single prompt
 survive cross-device synchronization and restart without duplicate sessions.
 Provider failure or missing avatar support returns to usable text/manual flow.
 Neither conversational assent nor a restored session finalizes the character.
+
+Decision-card acceptance is scoped separately: exercise one ordinary timed
+default and one explicit alternative, paused/background/cold-restored cards,
+answer-versus-expiry arbitration, changed-source invalidation, retained answers
+and undo of a budget-dependent choice. Prove a negative quality and its Karma
+funding cannot enter through timeout, general permission or Rook discussion;
+only the exact explicit choice and final apply may admit them. Verify AI-off and
+unavailable-Rook fallback without starting provider work. These affected-route
+checks do not impose a new full-suite gate on unrelated Internal delivery.
 
 These are acceptance targets, not assertions that any existing release passed.
