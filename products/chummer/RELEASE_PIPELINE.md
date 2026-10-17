@@ -120,6 +120,33 @@ processing, and physical installation. Report the actual blocked stage and its
 elapsed time; do not call the whole application unfinished because an unrelated
 product surface is still in development.
 
+### Interrupted work and truthful estimates
+
+Track work by its actual process/session/job and retained outputs, not a plan,
+lock file, old screenshot or unfinished worker report. A polling timeout does
+not prove process exit. Inspect the existing handle and runtime before retrying;
+an absent or terminal process is interrupted/failed at its last observed stage,
+not successful work still running. A SystemUI failure or lost emulator alone
+does not establish an application crash.
+
+Resume only from authenticated retained inputs and verified state. Preserve test
+runner data and compare it after interruption. Do not reinstall, wipe, regenerate
+a side-effecting proposal or clear an uncertain paid-operation fence simply to
+restart observation. Worker quota failure is not a completed review and does not
+authorize account/provider switching, direct-traffic fallback or purchases.
+Independent in-scope local work may continue.
+
+An ETA distinguishes the candidate from the version actually available on Play,
+names the current stage, and gives a range only when the remaining work supports
+one. External Play processing is separate from local build/signing time. Report
+an unknown duration honestly. Use the existing logs and handoff: this adds no
+receipt service, mandatory matrix or duplicate rebuild.
+
+User-facing upgrade highlights follow `ANDROID_APP_PRODUCT_SPEC.md`: summarize
+only shipped changes between installed versions, retain installation-local
+acknowledgement, and keep the notes available in Settings. Release notes are not
+evidence of physical installation or whole-feature completion.
+
 ## Arch/AUR package rule
 
 Arch-based users should not be asked to convert Debian packages as the long-term path.
