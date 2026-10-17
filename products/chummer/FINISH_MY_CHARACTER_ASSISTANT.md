@@ -5,7 +5,10 @@
 Design requirement agreed on 2026-10-14, refined on 2026-10-16 for playable
 completion, grounded Rook voice discussion and optional adviser/video routing,
 and on 2026-10-17 for remaining-budget/end-to-end acceptance, optional timed
-decision cards, explicit negative-quality consent and contextual Rook discussion.
+decision cards, explicit negative-quality consent, contextual Rook discussion,
+rules-aware OODA planning across every applicable completion aspect, and
+player-owned optimization goals with whole-build comparisons and explicit
+playability/coverage closure.
 Implementation and release acceptance remain pending. Existing Build Lab,
 ALICE or provider integrations do not prove
 this native workflow is delivered. First increment: native Android SR5 Creation.
@@ -27,7 +30,8 @@ admits changes; the player decides.
    Ask only for genuinely missing prerequisites; do not force a chat interview.
 3. Keep existing player choices locked. Show a compact preserved/available
    summary and a way to deliberately unlock a choice before planning.
-4. Prepare one proposal, not three mandatory comparison dashboards. Keep visible
+4. Prepare one proposal through the OODA loop below, not three mandatory
+   comparison dashboards. Keep visible
    progress near the action: preparing choices, checking rules, preparing review.
    Show an estimated range only when measured; otherwise say the ETA is unknown.
    Optional decision cards may use the waiting time as specified below; they do
@@ -123,7 +127,8 @@ The normal final before/after review and explicit Apply are still required.
   Record choice provenance: player-set, untouched default, imported, and accepted
   assistant suggestion. Treat unknown/imported provenance as locked until the
   player deliberately unlocks it; never infer intent from value equality.
-- Reuse [role kits](ROLE_KITS_AND_STARTER_LOADOUTS.md) as candidates, not overrides.
+- Reuse [role kits](ROLE_KITS_AND_STARTER_LOADOUTS.md) only as optional candidate
+  inspiration, never as the automatic allocation or ranking policy.
   Check complete dependency bundles, affordable equipment and practical role gaps
   as well as legal totals. An ammunition-dependent weapon needs a usable loadout.
 - Keep legal carryover and requested reserves. Do not waste resources on filler
@@ -140,6 +145,197 @@ The normal final before/after review and explicit Apply are still required.
   chapter readiness/reading acknowledgements or cumulative-rule admission.
   Preview/chat do not trigger paid Origin chapters, illustrations or publication.
   Where a story gate remains, offer the next valid wizard action, not Career.
+
+## Rules-aware OODA across every aspect
+
+Standing user decision, 2026-10-17: automatic completion must not use hardcoded
+archetype allocations, fixed target ratings, fixed shopping/spell lists, random
+selection or a deterministic starter fallback. This supersedes the earlier
+permission to substitute starters when AI is unavailable. Deterministic Core
+rules, candidate enumeration, stable identities and repeatable application remain
+required: the prohibition concerns build recommendations, not rules validation.
+
+The existing governed Hub/EA boundary, initially with an admitted 1min.ai route,
+must perform a coordinated observe, orient, decide and preview-act cycle:
+
+1. **Observe:** capture the exact owner transition, runner revision, rules/books,
+   method, grants, budgets/reserves and player locks, including explicit zero or
+   default choices. Obtain Core's legal candidate identities and projections for
+   every applicable category. Unknown/imported choice provenance stays locked.
+2. **Orient:** relate the actual primary/secondary role, concept and play style
+   to Core-reported capability and dependencies. A Mystic Adept needs its actual
+   tradition, relevant attributes, skills and magic/adept choices considered
+   together; renaming a general survivor foundation is not role-aware planning.
+3. **Decide:** request bounded structured alternatives referencing the admitted
+   identities, with concise role tradeoffs. Do not reduce the candidate space
+   to a static archetype whitelist or silently ignore the user's concept. Keep
+   the unchanged baseline as a comparator, not a canned solution.
+4. **Act only in preview:** evaluate complete proposals in the existing Core
+   planning sandbox. Return rejection reasons, budget deltas, dependencies and
+   remaining gaps to the planner for revision. Reject unknown identities and
+   invalid values; never silently clamp, substitute, save, sync or finalize.
+5. **Observe again:** compare legal alternatives and retain the better supported
+   proposal against the user's goals. Revisit dependent allocations when another
+   category changes. A loop for attributes followed by fixed spells or equipment
+   does not satisfy this requirement.
+
+Coverage includes normal/special attributes, skills/groups/specializations,
+qualities and levels, traditions and other prerequisites, spells/powers and
+resonance, equipment/ware and dependencies, contacts, lifestyle and required
+identity choices where Core supports them. Every aspect must be explicitly
+preserved, planned and validated, reserved, awaiting a player/story decision,
+unsupported or blocked. An unimplemented category is not an empty candidate set.
+Life Modules story gates and deliberate per-negative-quality consent remain
+mandatory. No unrequested disadvantage, implant or identity change buys budget.
+
+Use one shared coherent plan, not independent agents spending the same points.
+Bound rounds, candidates, elapsed time and provider usage under existing controls.
+Stop at a supported complete plan, no useful improvement among evaluated choices,
+cancel, stale authority or a stated capacity limit. Do not claim global optimality
+or exhaustive search from a bounded model run. Stable ID ordering is for replay,
+not a hidden preference score. Capacity exhaustion cannot turn missing coverage
+into a completed character; unknown provider outcomes must not be blindly replayed.
+
+Keep concise reasons, compared alternatives and provider/model/run provenance
+with the proposal, not hidden model reasoning. Show localized stage progress
+(analysing attributes, comparing magic, balancing equipment), distinguishing
+provider waiting from Core evaluation. ETA requires measured support. Cache only
+unchanged observations/evaluations under exact snapshot keys, never apply authority.
+Reacquire Core authority for explicit final Apply and commit atomically once.
+Neither the loop nor a later model update rewrites a saved Career runner.
+
+If AI is off or its admitted route is unavailable, keep manual Creation and saved
+work usable and report assisted planning unavailable. Never return a hardcoded
+or random replacement from `Finish my character`.
+
+Acceptance includes contrasting Mystic Adept concepts/traditions, restricted
+books, low budgets, locked choices and a meaningful cross-category tradeoff.
+Prove a real governed provider call, rejection and revision of an invalid
+candidate, explicit all-aspect coverage, cancel/stale-owner rejection and no
+saved-byte changes before Apply. Provider-free tests prove orchestration only.
+Resolve Tibor's exact reported runner before asserting its values or history.
+
+Observed gap, 2026-10-17: Preview 241's recorded Presentation source
+`2258f103226d51ecb7f4d8f2bb71e4bbda70c5e3` maps Mystic Adept to the survivor
+attribute/skill foundation. Its Android producer
+`09aaf5330e355ee74fd909ef9266f326473f6081` calls the providerless
+`CompletionRecommendationBuilder.BuildMissingOnly` directly. This is not live
+1min.ai/OODA evidence, proof of the phone's installed version or inspection of
+Tibor's saved values. Implementation and live acceptance of this replacement
+remain pending; package/intake passes must not be represented as its delivery.
+
+### Player-owned goals, not an archetype score
+
+An archetype label is a starting hypothesis, not an allocation policy. For
+example, two Mystic Adepts may emphasize spellcasting, close combat or support
+very differently. Use the player's concept, existing choices and optional
+primary/secondary role and play-style preferences to describe the intended
+outcome. Offer one concise clarification when materially different directions
+remain plausible; do not manufacture a long interview or silently choose a
+fixed interpretation of the archetype.
+
+Separate hard constraints (books, table rules, player locks, consent and budgets)
+from soft goals (capability, versatility, survivability, theme and complexity).
+Bind the confirmed goals and their precedence to the proposal. A changed goal
+retires the previous recommendation/approval and reuses only still-valid Core
+observations. Do not invent numeric weights or a hidden universal min-max score.
+Any quantitative comparison must use actual Core outcomes; qualitative role-fit
+judgment remains labelled advice, with uncertainty where Core cannot measure it.
+Do not treat unavailable metrics as zero, satisfactory or proof of equivalence.
+
+### Compare coherent, usable builds
+
+Run one coordinated loop across all aspects, not separate optimizers spending
+the same budget. Shared Core/Presentation owns local sandbox evaluation and
+fresh apply admission; the governed Hub/EA advisor supplies alternatives and
+comparison advice. Hosting the advisor does not move rules or mutation authority
+into provider text or require a new hosted build/release system.
+
+Compare the unchanged baseline and meaningfully different, Core-evaluated whole
+candidates under the same source snapshot and goals. Observe the realized result,
+not merely the model's requested ratings or shopping list. Where available,
+include actual relevant pools, defenses, magic/adept capabilities, resource and
+Essence effects, and equipment prerequisites. Re-evaluate dependent aspects when
+attributes, qualities, tradition, powers, ware or equipment change. A favorable
+isolated attribute result cannot hide an unusable spell or broken loadout.
+
+Retain concise counterfactuals: what the alternative improves, what it costs or
+weakens, and why the chosen candidate better matches this player's stated goals.
+If alternatives trade benefits rather than one clearly dominating, present a
+useful decision card or an honest recommendation with its tradeoff. Do not claim
+an exhaustive comparison after a bounded search, or call two candidates distinct
+when they produce the same admitted selections. Stable ordering/digests support
+replay and evaluation caching, never hidden role preferences.
+
+If preserving a locked choice prevents a stronger fit, show the smallest proposed
+unlock and its before/after effect. The player must explicitly authorize it and
+receive a new proposal. The assistant must not change saved Career runners or
+reinterpret an accepted choice as an untouched default to improve its score.
+
+### Every aspect has an honest disposition
+
+The coverage inventory distinguishes prerequisites, normal and special
+attributes, active/knowledge skills, groups, specializations, native language,
+positive and negative qualities, traditions, spells, complex forms, adept powers,
+Mystic Adept Power Points, resource conversion, weapons, armor, gear, ammunition,
+augmentations, vehicles/drones, contacts, lifestyle and required identity.
+Applicability and support come from the admitted edition/method/Core capability,
+not a model's assertion that a category is irrelevant. Preserve edition-specific
+additions; this inventory is not permission to flatten different rule systems.
+
+Each aspect needs a source-bound disposition: preserved, evaluated with realized
+result, not applicable with reason, intentionally reserved, awaiting a player or
+story decision, unsupported, or blocked. A broad `magic complete` or `equipment
+complete` label cannot hide unexamined subchoices. Keep this detail expandable
+in native review rather than presenting another mandatory checklist to the user.
+
+Evaluate dependency bundles for practical use: a weapon's compatible ammunition
+and accessories, and required support for the selected magical, augmented or
+technical role where Core exposes those facts. Missing implementation is a
+coverage gap, never evidence that no useful purchase exists. Current Core's
+completion contract explicitly does not establish identity, implants or dependent
+loadout completion; exposing an advisor does not close those gaps.
+
+Keep three separate conclusions: **Core legality**, **practical role coverage**
+and **player approval**. A supported partial preview may be useful without
+passing all three, but it cannot silently enable `Apply & enter Career` or claim
+the complete feature. Negative qualities retain exact per-quality/level consent;
+no timer, general permission or optimization target substitutes for that choice.
+
+### Bounded convergence and acceptance
+
+Stop with an explicit reason: a selected supported proposal, no useful further
+improvement among evaluated candidates, capacity/round/time limit, changed
+authority, cancellation or unavailable/uncertain provider outcome. On a limit,
+retain safe results for inspection without silently selecting the first legal
+candidate or converting partial coverage into completion. An uncertain paid
+request remains reconcilable under its original identity, not automatically
+repeated. Distinguish provider wait, Core evaluation and user-decision wait in
+progress; an ETA or improvement guarantee must not be fabricated.
+
+The affected acceptance set must demonstrate:
+
+- Contrasting goals for two Mystic Adepts produce justified different choices
+  from the actual current catalogs, not a survivor template or fixed target map.
+- A cross-category alternative is compared using both realized whole-Core
+  results and the same shared wallets; an attractive but unusable bundle is not
+  represented as the better completed build.
+- Saved explicit-zero choices, source/grant identities, declined disadvantages
+  and requested reserves survive. A proposed unlock waits for player action.
+- Every aspect has a truthful disposition; unsupported equipment/identity/ware
+  remains visible. Rest budgets distinguish useful spending, reserve/carryover,
+  incomplete search and acknowledged forfeiture without buying filler.
+- Invalid provider candidates receive Core feedback and can be revised; model
+  claims, unknown source IDs, stale replies and attempted scope expansion cannot
+  become apply authority. Failed or uncertain calls produce no canned fallback.
+- A live governed advisor result, exact native review, explicit atomic apply and
+  cold reopen agree on the selected values and remaining budgets. Synthetic
+  advisor tests do not establish live reasoning quality or Play delivery.
+
+These checks close the changed completion route, not a new mandatory exhaustive
+qualification ceremony for unrelated Internal updates. The local OODA kernel
+under development is orchestration work only: the actual 1min.ai advisor,
+native integration, complete supported coverage and live acceptance remain open.
 
 ## Optional grounded conversation
 
@@ -284,9 +480,9 @@ the default. An owned LTD account is not proof of live entitlement or readiness.
 - Treat model output as untrusted typed suggestions against Core's candidate
   identities. Reject unknown IDs, disallowed books, impossible values and injected
   tool requests. The provider never owns mutation or finalization authority.
-- Without AI, offer engine-validated deterministic starter suggestions where
-  implemented, or continue manual Creation. Do not disguise fixed template scores
-  or canned suggestions as a tested complete character or a live AI response.
+- Without an available admitted AI route, continue manual Creation with saved
+  work intact. Do not substitute deterministic starters, fixed template scores,
+  random filler or canned builds in automatic completion.
 
 Live provider availability, quotas and the complete native apply route are not
 established by this design update. Rook avatars, voice and meeting sessions are

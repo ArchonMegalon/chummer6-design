@@ -6,7 +6,7 @@
 
 ## Owns
 
-### Planned Creation consultation increment — 2026-10-16
+### Planned Creation consultation increment — updated 2026-10-17
 
 Own the authenticated linked-person state and provider admission described in
 [`AI_AND_CONSULTATION_PREFERENCES.md`](../AI_AND_CONSULTATION_PREFERENCES.md).
@@ -17,6 +17,16 @@ verified adviser/voice/default-avatar capabilities with short-lived access and
 uncertain-session no-replay. Do not grant mutation/finalization to Rook or a video
 provider; [`FINISH_MY_CHARACTER_ASSISTANT.md`](../FINISH_MY_CHARACTER_ASSISTANT.md)
 keeps the native reviewed diff and Core admission authoritative.
+
+Broker the all-aspect completion advisor through the existing governed EA route,
+initially an admitted 1min.ai capability. Bind each round to the exact owner,
+source snapshot, goals and allowed candidate scope. Admit only bounded, disclosed
+character facts and Core feedback; validate structured responses as untrusted
+suggestions. Reuse EA's provider usage/request custody and uncertain-outcome
+reconciliation rather than inventing a second credit ledger or replaying a paid
+call. Provider/model/request provenance is transport-owned. Hub supplies neither
+replacement rules nor a fixed/random completion fallback; local Core/Presentation
+owns whole-plan evaluation and native apply authority.
 
 ### Existing Hub responsibilities
 

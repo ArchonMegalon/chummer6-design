@@ -7,7 +7,7 @@ It is the repo for builders, inspectors, compare views, explain UX, moderation/a
 
 ## Owns
 
-### Planned Creation consultation increment — 2026-10-16
+### Planned Creation consultation increment — updated 2026-10-17
 
 Implement the Presentation/shared-client parts of
 [`FINISH_MY_CHARACTER_ASSISTANT.md`](../FINISH_MY_CHARACTER_ASSISTANT.md) and
@@ -19,6 +19,15 @@ one Hub-owned linked-person AI preference and separate opt-in direct-video route
 persist explicit local off and account-wide prompt disposition without roaming
 media permissions or sessions. No desktop or video completion claim follows from
 an Android-only test; no new desktop worker is authorized by this scope update.
+
+Presentation coordinates one bounded OODA plan against a detached Core sandbox,
+using the governed advisor for alternatives and comparison advice across every
+applicable aspect. Preserve player goals, provenance/locks, exact consent and
+reserves; compare realized whole-build results, not model claims. Show concise
+tradeoffs, honest progress and expandable coverage gaps. No fixed-template or
+random recommendation fallback is permitted. Final Apply still needs fresh
+owner/revision-bound Core admission; orchestration tests are not live-provider or
+native-delivery acceptance.
 
 ### Existing UI responsibilities
 
