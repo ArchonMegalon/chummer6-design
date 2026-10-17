@@ -131,13 +131,52 @@ screen. The same notes remain accessible under Settings / What's new.
 - Persist acknowledgement on explicit dismissal, not when display is merely
   scheduled. An interrupted unacknowledged sheet may return; acknowledged notes
   do not return on restart or account switch. Do not display an empty sheet.
-  If a release has no applicable notes, advance the baseline without a popup.
+  Advance the baseline without a popup only when the entire pending version
+  range has no applicable notes; an empty intermediate release must not erase
+  older unacknowledged highlights.
+
+#### Minimal presentation and durable state
+
+- Show at most five important bullets, a clear Continue action and an optional
+  All changes link to Settings; do not add filler for a small update. Do not add
+  a permanent home-screen panel, nested confirmation or new preference. Keep readable wrapping, screen-reader
+  labels, large-font support and contrast in both themes. Use the app language;
+  fall back to curated default-language text, never translation keys. Language
+  changes alone do not trigger another automatic sheet.
+- Keep the last observed installed version separate from the acknowledged
+  high-water mark. Repeated launches while presentation is deferred must retain
+  the pending range. Capture the displayed target version before presentation:
+  acknowledging its sheet cannot acknowledge a newer update that arrived in the
+  meantime. Persist only that captured target, monotonically and atomically.
+  Navigation, process recreation and concurrent page appearance must not open
+  duplicate sheets. If acknowledgement cannot be saved, allow Continue; retain
+  the pending state for a later launch rather than claiming durable dismissal.
+  Exclude this installation-local marker from account sync and device backup
+  restoration onto another installation; no hardware tracking is needed.
+- Curated bundled entries have stable change identities, numeric introduction
+  version codes, localized text and applicable product/channel scope. Select
+  only entries above the acknowledgement boundary and at or below the installed
+  code. Deduplicate by identity, not translated wording; retain distinct fixes
+  and important limitations. Do not infer ordering from preview-name strings.
+  Settings can show the full bundled applicable history, without claiming that
+  an unavailable older history has been recovered.
+- Offline launch needs no Hub login, provider request or credit expenditure.
+  Missing or malformed notes must not block runner restoration or dismiss
+  pending highlights as though the user had read them. Treat unavailable notes
+  differently from a valid empty applicable range. Release notes neither
+  replace actionable migration/recovery messages nor acknowledge permission or
+  data-loss confirmations on the user's behalf.
 
 Focused acceptance covers normal/skipped upgrades, unchanged versions,
 downgrades, missing/corrupt markers, first install, interrupted acknowledgement
-and two installations. The native smoke checks readable bullets, safe timing,
-dismissal and cold reopen. These are implementation requirements, not evidence
-that update highlights already ship in an existing Internal build.
+and two installations. Also cover deferred display across multiple launches,
+an empty intermediate release, acknowledgement of an older displayed target,
+unavailable versus empty notes, failed acknowledgement persistence, duplicate
+change identities and locale fallback. The native smoke checks readable bullets
+at large font size in German and English, safe timing, dismissal and cold reopen.
+Use focused checks for this feature, not another whole-app qualification matrix.
+These are implementation requirements, not evidence that update highlights
+already ship in an existing Internal build.
 
 ## Adaptive navigation
 

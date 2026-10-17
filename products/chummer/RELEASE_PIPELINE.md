@@ -147,6 +147,16 @@ only shipped changes between installed versions, retain installation-local
 acknowledgement, and keep the notes available in Settings. Release notes are not
 evidence of physical installation or whole-feature completion.
 
+Keep their small curated catalog with the app sources and freeze it with the
+candidate. Check stable change identities, numeric version bounds, supported
+scope and a readable default-language fallback in the affected local checks.
+Use those same shipped-change entries when preparing the concise Play notes;
+do not create a second runtime release-note service or infer changes from raw
+commits. A valid empty release is permitted, but must not hide pending notes
+from skipped versions. Record the first candidate that actually implements the
+upgrade sheet; approving this design does not retrofit it into an older AAB.
+Do not rebuild a consumed version or alter a frozen candidate for later notes.
+
 ## Arch/AUR package rule
 
 Arch-based users should not be asked to convert Debian packages as the long-term path.
